@@ -1,0 +1,42 @@
+corpus_id	index	input_file	lemma	trace_quantifier	tamarin_result	proverif_result	proverif_oom	proverif_timeout	translate_error	proverif_error	proverif_category
+K2	433	examples/related_work/YubiSecure_KS_STM12/Yubikey.spthy	Login_reachable	exists-trace	true	null	false	false	false	null	no verdict
+K2	434	examples/related_work/YubiSecure_KS_STM12/Yubikey.spthy	no_replay	all-traces	true	error	false	true	false	null	timeout
+K2	435	examples/related_work/YubiSecure_KS_STM12/Yubikey.spthy	slightly_weaker_invariant	all-traces	true	error	false	true	false	null	timeout
+K2	436	examples/related_work/YubiSecure_KS_STM12/Yubikey.spthy	injective_correspondance	all-traces	true	error	false	true	false	null	timeout
+K2	437	examples/related_work/YubiSecure_KS_STM12/Yubikey.spthy	Login_invalidates_smaller_counters	all-traces	true	error	false	true	false	null	timeout
+K3	157	examples/related_work/AIF_Moedersheim_CCS10/Keyserver.spthy	Knows_Honest_Key_imp_Revoked	all-traces	true	error	false	true	false	null	timeout
+K4	183	examples/related_work/TPM_DKRS_CSF11/Envelope.spthy	types	all-traces	true	error	false	false	false	Formula contains KU fact, which is outside the supported formal semantics	error
+K4	184	examples/related_work/TPM_DKRS_CSF11/Envelope.spthy	PCR_Write_charn	all-traces	true	null	false	false	false	null	no verdict
+K4	185	examples/related_work/TPM_DKRS_CSF11/Envelope.spthy	Secret_and_Denied_exclusive	all-traces	true	null	false	false	false	null	no verdict
+K5	152	examples/related_work/StatVerif_ARR_CSF11/StatVerif_Security_Device.spthy	types	all-traces	true	error	false	false	false	Formula contains KU fact, which is outside the supported formal semantics	error
+K5	153	examples/related_work/StatVerif_ARR_CSF11/StatVerif_Security_Device.spthy	reachability_left	exists-trace	true	error	false	false	false	Exists-trace formula contains K fact; completeness is only proved for K-free formulas	error
+K5	154	examples/related_work/StatVerif_ARR_CSF11/StatVerif_Security_Device.spthy	reachability_right	exists-trace	true	error	false	false	false	Exists-trace formula contains K fact; completeness is only proved for K-free formulas	error
+K5	155	examples/related_work/StatVerif_ARR_CSF11/StatVerif_Security_Device.spthy	secrecy	all-traces	true	true	false	false	false	null	boolean
+K6	64	examples/loops/RFID_Simple.spthy	types	all-traces	true	error	false	false	false	Formula contains KU fact, which is outside the supported formal semantics	error
+K6	65	examples/loops/RFID_Simple.spthy	reachability_left	exists-trace	true	error	false	false	false	Exists-trace formula contains K fact; completeness is only proved for K-free formulas	error
+K6	66	examples/loops/RFID_Simple.spthy	Device_Init_Use_Set	all-traces	true	null	false	false	false	null	no verdict
+K6	67	examples/loops/RFID_Simple.spthy	Device_ToBob	all-traces	true	null	false	false	false	null	no verdict
+K7	376	examples/csf17/counter-protocol.spthy	count_unique	all-traces	true	error	true	false	false	null	out of memory
+K7	377	examples/csf17/counter-protocol.spthy	exists_second_session	exists-trace	true	error	false	true	false	null	timeout
+K7	378	examples/csf17/counter-protocol.spthy	correct_dolevyao	all-traces	true	error	false	true	false	null	timeout
+K7	379	examples/csf17/counter-protocol.spthy	exists_session	exists-trace	true	error	false	true	false	null	timeout
+K7	380	examples/csf17/counter-protocol.spthy	nonces_unique	all-traces	true	error	false	true	false	null	timeout
+K7	381	examples/csf17/counter-protocol.spthy	exists_detect_no_R_compromise	exists-trace	true	error	true	false	false	null	out of memory
+K7	382	examples/csf17/counter-protocol.spthy	injectivity	all-traces	true	error	false	true	false	null	timeout
+K7	383	examples/csf17/counter-protocol.spthy	unmatching_implies_detect_with_R_uncompromised	all-traces	true	error	false	true	false	null	timeout
+K7	384	examples/csf17/counter-protocol.spthy	force_nonce_ordering	all-traces	true	error	false	true	false	null	timeout
+K7	385	examples/csf17/counter-protocol.spthy	exists_detect_no_I_compromise	exists-trace	true	error	true	false	false	null	out of memory
+K7	386	examples/csf17/counter-protocol.spthy	detect_sound	all-traces	true	error	true	false	false	null	out of memory
+K7	387	examples/csf17/counter-protocol.spthy	invariant_sources	all-traces	true	error	true	false	false	null	out of memory
+K8	555	examples/jcs18/dnp3.spthy	update_key_agreement	all-traces	true	error	true	false	false	null	out of memory
+K8	556	examples/jcs18/dnp3.spthy	sessions_unique	all-traces	true	error	true	false	false	null	out of memory
+K8	557	examples/jcs18/dnp3.spthy	CSQ_Uniqueness	all-traces	error	error	true	false	false	null	out of memory
+K8	558	examples/jcs18/dnp3.spthy	update_key_secrecy	all-traces	true	error	true	false	false	null	out of memory
+K8	559	examples/jcs18/dnp3.spthy	skiup_agreement	all-traces	true	error	true	false	false	null	out of memory
+K8	560	examples/jcs18/dnp3.spthy	asdu_agreement_implies_mode_agreement	all-traces	true	error	true	false	false	null	out of memory
+K8	561	examples/jcs18/dnp3.spthy	update_key_sourced	all-traces	true	error	true	false	false	null	out of memory
+K8	562	examples/jcs18/dnp3.spthy	session_key_secrecy	all-traces	true	error	true	false	false	null	out of memory
+K8	563	examples/jcs18/dnp3.spthy	sessionkeys_sourced	all-traces	true	error	true	false	false	null	out of memory
+K8	564	examples/jcs18/dnp3.spthy	asdu_aliveness	all-traces	true	error	true	false	false	null	out of memory
+K8	565	examples/jcs18/dnp3.spthy	asdu_injective_agreement	all-traces	true	error	true	false	false	null	out of memory
+K8	566	examples/jcs18/dnp3.spthy	countervalue_uniqueness	all-traces	true	error	true	false	false	null	out of memory

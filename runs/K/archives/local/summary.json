@@ -1,0 +1,314 @@
+[
+  {
+    "case": "KEEP",
+    "lemma": "busy_keep_reachable",
+    "cim_pv_archived_raw": "false",
+    "cim_pv_archived_expected": true,
+    "tamarin_retest": true,
+    "pv_from_tamarin": true,
+    "pv_diagnostic": null,
+    "exit_codes": {
+      "tamarin": 0,
+      "export": 0,
+      "proverif": 0
+    },
+    "translation_flags": {
+      "timepoints_split": false,
+      "leading_negation": false,
+      "multiple_queries": false,
+      "restriction_missing": false,
+      "axiom_missing": false,
+      "reachability_trace_present": true
+    },
+    "status": "MATCH"
+  },
+  {
+    "case": "KEEP",
+    "lemma": "busy_keep_continues",
+    "cim_pv_archived_raw": "true",
+    "cim_pv_archived_expected": true,
+    "tamarin_retest": true,
+    "pv_from_tamarin": true,
+    "pv_diagnostic": null,
+    "exit_codes": {
+      "tamarin": 0,
+      "export": 0,
+      "proverif": 0
+    },
+    "translation_flags": {
+      "timepoints_split": false,
+      "leading_negation": false,
+      "multiple_queries": false,
+      "restriction_missing": false,
+      "axiom_missing": false
+    },
+    "status": "MATCH"
+  },
+  {
+    "case": "REFRESH",
+    "lemma": "refresh_reachable",
+    "cim_pv_archived_raw": "false",
+    "cim_pv_archived_expected": true,
+    "tamarin_retest": true,
+    "pv_from_tamarin": true,
+    "pv_diagnostic": null,
+    "exit_codes": {
+      "tamarin": 0,
+      "export": 0,
+      "proverif": 0
+    },
+    "translation_flags": {
+      "timepoints_split": false,
+      "leading_negation": false,
+      "multiple_queries": false,
+      "restriction_missing": false,
+      "axiom_missing": false,
+      "reachability_trace_present": true
+    },
+    "status": "MATCH"
+  },
+  {
+    "case": "REFRESH",
+    "lemma": "refresh_parent_and_context",
+    "cim_pv_archived_raw": "true",
+    "cim_pv_archived_expected": true,
+    "tamarin_retest": true,
+    "pv_from_tamarin": true,
+    "pv_diagnostic": null,
+    "exit_codes": {
+      "tamarin": 0,
+      "export": 0,
+      "proverif": 0
+    },
+    "translation_flags": {
+      "timepoints_split": false,
+      "leading_negation": false,
+      "multiple_queries": false,
+      "restriction_missing": false,
+      "axiom_missing": false
+    },
+    "status": "MATCH"
+  },
+  {
+    "case": "REFRESH",
+    "lemma": "refresh_temp_distinct",
+    "cim_pv_archived_raw": "true",
+    "cim_pv_archived_expected": true,
+    "tamarin_retest": true,
+    "pv_from_tamarin": true,
+    "pv_diagnostic": null,
+    "exit_codes": {
+      "tamarin": 0,
+      "export": 0,
+      "proverif": 0
+    },
+    "translation_flags": {
+      "timepoints_split": false,
+      "leading_negation": false,
+      "multiple_queries": false,
+      "restriction_missing": false,
+      "axiom_missing": false
+    },
+    "status": "MATCH"
+  },
+  {
+    "case": "REFRESH",
+    "lemma": "refresh_pair_distinct",
+    "cim_pv_archived_raw": "true",
+    "cim_pv_archived_expected": true,
+    "tamarin_retest": true,
+    "pv_from_tamarin": true,
+    "pv_diagnostic": null,
+    "exit_codes": {
+      "tamarin": 0,
+      "export": 0,
+      "proverif": 0
+    },
+    "translation_flags": {
+      "timepoints_split": false,
+      "leading_negation": false,
+      "multiple_queries": false,
+      "restriction_missing": false,
+      "axiom_missing": false
+    },
+    "status": "MATCH"
+  },
+  {
+    "case": "T6",
+    "lemma": "pending_old_reachable",
+    "cim_pv_archived_raw": "false",
+    "cim_pv_archived_expected": true,
+    "tamarin_retest": true,
+    "pv_from_tamarin": true,
+    "pv_diagnostic": null,
+    "exit_codes": {
+      "tamarin": 0,
+      "export": 0,
+      "proverif": 0
+    },
+    "translation_flags": {
+      "timepoints_split": false,
+      "leading_negation": false,
+      "multiple_queries": false,
+      "restriction_missing": false,
+      "axiom_missing": false,
+      "reachability_trace_present": true
+    },
+    "status": "MATCH"
+  },
+  {
+    "case": "T6",
+    "lemma": "pending_old_verified_receipt",
+    "cim_pv_archived_raw": "true",
+    "cim_pv_archived_expected": true,
+    "tamarin_retest": true,
+    "pv_from_tamarin": true,
+    "pv_diagnostic": null,
+    "exit_codes": {
+      "tamarin": 0,
+      "export": 0,
+      "proverif": 0
+    },
+    "translation_flags": {
+      "timepoints_split": false,
+      "leading_negation": false,
+      "multiple_queries": false,
+      "restriction_missing": false,
+      "axiom_missing": false
+    },
+    "status": "MATCH"
+  },
+  {
+    "case": "T6",
+    "lemma": "pending_old_aborts_matching_update",
+    "cim_pv_archived_raw": "true",
+    "cim_pv_archived_expected": true,
+    "tamarin_retest": true,
+    "pv_from_tamarin": true,
+    "pv_diagnostic": null,
+    "exit_codes": {
+      "tamarin": 0,
+      "export": 0,
+      "proverif": 0
+    },
+    "translation_flags": {
+      "timepoints_split": false,
+      "leading_negation": false,
+      "multiple_queries": false,
+      "restriction_missing": false,
+      "axiom_missing": false
+    },
+    "status": "MATCH"
+  },
+  {
+    "case": "T6",
+    "lemma": "pending_old_slots_empty",
+    "cim_pv_archived_raw": "true",
+    "cim_pv_archived_expected": true,
+    "tamarin_retest": true,
+    "pv_from_tamarin": true,
+    "pv_diagnostic": null,
+    "exit_codes": {
+      "tamarin": 0,
+      "export": 0,
+      "proverif": 0
+    },
+    "translation_flags": {
+      "timepoints_split": false,
+      "leading_negation": false,
+      "multiple_queries": false,
+      "restriction_missing": false,
+      "axiom_missing": false
+    },
+    "status": "MATCH"
+  },
+  {
+    "case": "T7",
+    "lemma": "pending_new_reachable",
+    "cim_pv_archived_raw": "false",
+    "cim_pv_archived_expected": true,
+    "tamarin_retest": true,
+    "pv_from_tamarin": true,
+    "pv_diagnostic": null,
+    "exit_codes": {
+      "tamarin": 0,
+      "export": 0,
+      "proverif": 0
+    },
+    "translation_flags": {
+      "timepoints_split": false,
+      "leading_negation": false,
+      "multiple_queries": false,
+      "restriction_missing": false,
+      "axiom_missing": false,
+      "reachability_trace_present": true
+    },
+    "status": "MATCH"
+  },
+  {
+    "case": "T7",
+    "lemma": "pending_new_receipt_and_promotion",
+    "cim_pv_archived_raw": "true",
+    "cim_pv_archived_expected": true,
+    "tamarin_retest": true,
+    "pv_from_tamarin": true,
+    "pv_diagnostic": null,
+    "exit_codes": {
+      "tamarin": 0,
+      "export": 0,
+      "proverif": 0
+    },
+    "translation_flags": {
+      "timepoints_split": false,
+      "leading_negation": false,
+      "multiple_queries": false,
+      "restriction_missing": false,
+      "axiom_missing": false
+    },
+    "status": "MATCH"
+  },
+  {
+    "case": "T7",
+    "lemma": "pending_new_aborts_matching_update",
+    "cim_pv_archived_raw": "true",
+    "cim_pv_archived_expected": true,
+    "tamarin_retest": true,
+    "pv_from_tamarin": true,
+    "pv_diagnostic": null,
+    "exit_codes": {
+      "tamarin": 0,
+      "export": 0,
+      "proverif": 0
+    },
+    "translation_flags": {
+      "timepoints_split": false,
+      "leading_negation": false,
+      "multiple_queries": false,
+      "restriction_missing": false,
+      "axiom_missing": false
+    },
+    "status": "MATCH"
+  },
+  {
+    "case": "T7",
+    "lemma": "pending_new_slots_empty",
+    "cim_pv_archived_raw": "true",
+    "cim_pv_archived_expected": true,
+    "tamarin_retest": true,
+    "pv_from_tamarin": true,
+    "pv_diagnostic": null,
+    "exit_codes": {
+      "tamarin": 0,
+      "export": 0,
+      "proverif": 0
+    },
+    "translation_flags": {
+      "timepoints_split": false,
+      "leading_negation": false,
+      "multiple_queries": false,
+      "restriction_missing": false,
+      "axiom_missing": false
+    },
+    "status": "MATCH"
+  }
+]

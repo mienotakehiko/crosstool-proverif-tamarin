@@ -1,0 +1,80 @@
+(* Generated t6_continuation case. Verification result is a local premise. *)
+free ch_Pending, ch_BeforeSnapshot, ch_VerifiedOldPremise, ch_VerifiedDivergent, ch_BusyEntry, ch_BusyReady, ch_ReadyToSend, ch_PendingAfter: channel [private].
+free empty_new, empty_pair: bitstring.
+fun tempctx(bitstring, bitstring): bitstring.
+fun newctx(bitstring, bitstring, bitstring): bitstring.
+
+event PendingBefore(bitstring, bitstring, bitstring, bitstring).
+event OldVerified(bitstring, bitstring, bitstring, bitstring, bitstring).
+event PendingAborted(bitstring, bitstring, bitstring, bitstring, bitstring).
+event BusyEntryRead(bitstring, bitstring, bitstring, bitstring, bitstring, bitstring, bitstring).
+event RestartDerived(bitstring, bitstring, bitstring, bitstring, bitstring, bitstring).
+event ConvergentSent(bitstring, bitstring, bitstring).
+event PendingRead(bitstring, bitstring, bitstring, bitstring, bitstring, bitstring, bitstring, bitstring, bitstring).
+
+query q1_exchange_id:bitstring, q1_incoming_id:bitstring, q1_old_ctx:bitstring, q1_peer_pair:bitstring, q1_local_pair:bitstring, q1_active_ctx:bitstring, q1_discarded_ctx:bitstring, q1_discarded_pair:bitstring, q1_rx_temp:bitstring;
+  event(PendingRead(q1_exchange_id,q1_incoming_id,q1_old_ctx,q1_peer_pair,q1_local_pair,q1_active_ctx,q1_discarded_ctx,q1_discarded_pair,q1_rx_temp)).
+
+query q2_exchange_id:bitstring, q2_incoming_id:bitstring, q2_old_ctx:bitstring, q2_peer_pair:bitstring, q2_local_pair:bitstring, q2_active_ctx:bitstring, q2_discarded_ctx:bitstring, q2_discarded_pair:bitstring, q2_rx_temp:bitstring;
+  event(PendingRead(q2_exchange_id,q2_incoming_id,q2_old_ctx,q2_peer_pair,q2_local_pair,q2_active_ctx,q2_discarded_ctx,q2_discarded_pair,q2_rx_temp)) ==> event(OldVerified(q2_exchange_id,q2_incoming_id,q2_old_ctx,q2_peer_pair,q2_rx_temp)) && event(PendingAborted(q2_exchange_id,q2_incoming_id,q2_old_ctx,q2_discarded_ctx,q2_discarded_pair)) && event(BusyEntryRead(q2_exchange_id,q2_incoming_id,q2_old_ctx,q2_peer_pair,q2_rx_temp,empty_new,empty_pair)) && q2_rx_temp = tempctx(q2_old_ctx,q2_peer_pair).
+
+query q3_exchange_id:bitstring, q3_incoming_id:bitstring, q3_old_ctx:bitstring, q3_peer_pair:bitstring, q3_local_pair:bitstring, q3_active_ctx:bitstring, q3_discarded_ctx:bitstring, q3_discarded_pair:bitstring, q3_rx_temp:bitstring;
+  event(PendingRead(q3_exchange_id,q3_incoming_id,q3_old_ctx,q3_peer_pair,q3_local_pair,q3_active_ctx,q3_discarded_ctx,q3_discarded_pair,q3_rx_temp)) ==> event(RestartDerived(q3_exchange_id,q3_incoming_id,q3_old_ctx,q3_peer_pair,q3_local_pair,q3_active_ctx)) && event(ConvergentSent(q3_exchange_id,q3_incoming_id,q3_active_ctx)) && q3_active_ctx = newctx(q3_old_ctx,q3_local_pair,q3_peer_pair).
+
+query q4_exchange_id:bitstring, q4_incoming_id:bitstring, q4_old_ctx:bitstring, q4_peer_pair:bitstring, q4_discarded_pair:bitstring, q4_active_ctx:bitstring, q4_discarded_ctx:bitstring, q4_rx_temp:bitstring;
+  event(PendingRead(q4_exchange_id,q4_incoming_id,q4_old_ctx,q4_peer_pair,q4_discarded_pair,q4_active_ctx,q4_discarded_ctx,q4_discarded_pair,q4_rx_temp)).
+
+query q5_exchange_id:bitstring, q5_incoming_id:bitstring, q5_old_ctx:bitstring, q5_peer_pair:bitstring, q5_local_pair:bitstring, q5_discarded_ctx:bitstring, q5_discarded_pair:bitstring, q5_rx_temp:bitstring;
+  event(PendingRead(q5_exchange_id,q5_incoming_id,q5_old_ctx,q5_peer_pair,q5_local_pair,q5_discarded_ctx,q5_discarded_ctx,q5_discarded_pair,q5_rx_temp)).
+
+process
+  new exchange_id:bitstring;
+  new old_ctx:bitstring;
+  new prior_local_pair:bitstring;
+  new prior_peer_pair:bitstring;
+  new incoming_pair:bitstring;
+  new incoming_id:bitstring;
+  event PendingBefore(exchange_id,old_ctx,newctx(old_ctx,prior_local_pair,prior_peer_pair),prior_local_pair);
+  (
+    (out(ch_Pending,(exchange_id,old_ctx,newctx(old_ctx,prior_local_pair,prior_peer_pair),prior_local_pair));
+     0)
+    |
+    (out(ch_BeforeSnapshot,(exchange_id,old_ctx,newctx(old_ctx,prior_local_pair,prior_peer_pair),prior_local_pair));
+     0)
+    |
+    (out(ch_VerifiedOldPremise,(exchange_id,incoming_id,old_ctx,incoming_pair));
+     0)
+    |
+    (in(ch_VerifiedOldPremise,(exchange_id_s1:bitstring,incoming_id_s1:bitstring,old_ctx_s1:bitstring,peer_pair_s1:bitstring));
+     event OldVerified(exchange_id_s1,incoming_id_s1,old_ctx_s1,peer_pair_s1,tempctx(old_ctx_s1,peer_pair_s1));
+     out(ch_VerifiedDivergent,(exchange_id_s1,incoming_id_s1,old_ctx_s1,peer_pair_s1,tempctx(old_ctx_s1,peer_pair_s1)));
+     0)
+    |
+    (in(ch_Pending,(exchange_id_s2:bitstring,old_ctx_s2:bitstring,discarded_ctx_s2:bitstring,discarded_pair_s2:bitstring));
+     in(ch_VerifiedDivergent,(=exchange_id_s2,incoming_id_s2:bitstring,=old_ctx_s2,peer_pair_s2:bitstring,rx_temp_s2:bitstring));
+     if rx_temp_s2 = tempctx(old_ctx_s2,peer_pair_s2) then
+       (event PendingAborted(exchange_id_s2,incoming_id_s2,old_ctx_s2,discarded_ctx_s2,discarded_pair_s2);
+        out(ch_BusyEntry,(exchange_id_s2,incoming_id_s2,old_ctx_s2,peer_pair_s2,rx_temp_s2,empty_new,empty_pair));
+        0))
+    |
+    (in(ch_BusyEntry,(exchange_id_s3:bitstring,incoming_id_s3:bitstring,old_ctx_s3:bitstring,peer_pair_s3:bitstring,rx_temp_s3:bitstring,ctx_slot_s3:bitstring,pair_slot_s3:bitstring));
+     event BusyEntryRead(exchange_id_s3,incoming_id_s3,old_ctx_s3,peer_pair_s3,rx_temp_s3,ctx_slot_s3,pair_slot_s3);
+     out(ch_BusyReady,(exchange_id_s3,incoming_id_s3,old_ctx_s3,peer_pair_s3,rx_temp_s3,ctx_slot_s3,pair_slot_s3));
+     0)
+    |
+    (in(ch_BusyReady,(exchange_id_s4:bitstring,incoming_id_s4:bitstring,old_ctx_s4:bitstring,peer_pair_s4:bitstring,rx_temp_s4:bitstring,=empty_new,=empty_pair));
+     new fresh_local_pair_s4:bitstring;
+     event RestartDerived(exchange_id_s4,incoming_id_s4,old_ctx_s4,peer_pair_s4,fresh_local_pair_s4,newctx(old_ctx_s4,fresh_local_pair_s4,peer_pair_s4));
+     out(ch_ReadyToSend,(exchange_id_s4,incoming_id_s4,old_ctx_s4,peer_pair_s4,rx_temp_s4,fresh_local_pair_s4,newctx(old_ctx_s4,fresh_local_pair_s4,peer_pair_s4)));
+     0)
+    |
+    (in(ch_ReadyToSend,(exchange_id_s5:bitstring,incoming_id_s5:bitstring,old_ctx_s5:bitstring,peer_pair_s5:bitstring,rx_temp_s5:bitstring,local_pair_s5:bitstring,active_ctx_s5:bitstring));
+     event ConvergentSent(exchange_id_s5,incoming_id_s5,active_ctx_s5);
+     out(ch_PendingAfter,(exchange_id_s5,incoming_id_s5,old_ctx_s5,peer_pair_s5,rx_temp_s5,local_pair_s5,active_ctx_s5));
+     0)
+    |
+    (in(ch_PendingAfter,(exchange_id_s6:bitstring,incoming_id_s6:bitstring,old_ctx_s6:bitstring,peer_pair_s6:bitstring,rx_temp_s6:bitstring,local_pair_s6:bitstring,active_ctx_s6:bitstring));
+     in(ch_BeforeSnapshot,(=exchange_id_s6,=old_ctx_s6,discarded_ctx_s6:bitstring,discarded_pair_s6:bitstring));
+     event PendingRead(exchange_id_s6,incoming_id_s6,old_ctx_s6,peer_pair_s6,local_pair_s6,active_ctx_s6,discarded_ctx_s6,discarded_pair_s6,rx_temp_s6);
+     0)
+  )

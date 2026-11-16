@@ -1,0 +1,25 @@
+'tamarin-cyclic' '--with-maude=maude35' '--derivcheck-timeout=0' '--prove=Knows_Honest_Key_imp_Revoked' 'corpus/related_work__AIF_Moedersheim_CCS10__Keyserver.spthy' +RTS '-N' '-M56g' '-A64m' '-qg' '-N4' '-sresults/out/P5_P4_cyc_related_work__AIF_Moedersheim_CCS10__Keyserver_T0_Knows_Honest_Key_imp_Revoked_d_prove_r5.rts' 
+      94,758,576 bytes allocated in the heap
+          51,864 bytes copied during GC
+         228,168 bytes maximum residency (1 sample(s))
+         115,896 bytes maximum slop
+             266 MiB total memory in use (0 MiB lost due to fragmentation)
+
+                                     Tot time (elapsed)  Avg pause  Max pause
+  Gen  0         0 colls,     0 par    0.000s   0.000s     0.0000s    0.0000s
+  Gen  1         1 colls,     0 par    0.000s   0.000s     0.0002s    0.0002s
+
+  TASKS: 10 (1 bound, 9 peak workers (9 total), using -N4)
+
+  SPARKS: 61 (47 converted, 0 overflowed, 0 dud, 0 GC'd, 14 fizzled)
+
+  INIT    time    0.003s  (  0.003s elapsed)
+  MUT     time    0.071s  (  0.067s elapsed)
+  GC      time    0.000s  (  0.000s elapsed)
+  EXIT    time    0.001s  (  0.010s elapsed)
+  Total   time    0.075s  (  0.080s elapsed)
+
+  Alloc rate    1,335,912,941 bytes per MUT second
+
+  Productivity  94.4% of total user, 83.9% of total elapsed
+

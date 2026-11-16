@@ -1,0 +1,12 @@
+[
+  "/step4-tamarin-prover",
+  "+RTS",
+  "-N1",
+  "-M768m",
+  "-RTS",
+  "-d=0",
+  "-m=proverif",
+  "--lemma=good_reachable",
+  "-o=/work/candidate/source/mixed_public_leaf/good_reachable/translated.pv",
+  "/kit/models/source/mixed_public_leaf.spthy"
+]

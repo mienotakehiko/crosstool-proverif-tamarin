@@ -1,0 +1,56 @@
+{
+  "model": "pending_new",
+  "theory": "CimPendingNew",
+  "constants": ["empty_oldest_temp", "empty_oldest_parent", "empty_pending_new"],
+  "function": "tempctx",
+  "init": {
+    "fresh": ["old_ctx", "new_ctx", "oldest_pair", "incoming_pair", "message"],
+    "emit": [["PendingBefore", "new_ctx", "old_ctx", ["tempctx", "old_ctx", "oldest_pair"]]],
+    "produce": [
+      ["Pending", "new_ctx", "old_ctx", ["tempctx", "old_ctx", "oldest_pair"]],
+      ["BeforeSnapshot", "new_ctx", "old_ctx", ["tempctx", "old_ctx", "oldest_pair"]],
+      ["VerifiedNewOnlyPremise", "message", "new_ctx", "incoming_pair"]
+    ]
+  },
+  "steps": [
+    {
+      "id": "RecordVerifiedReceipt",
+      "consume": [["VerifiedNewOnlyPremise", "m", "n", "peer_pair"]],
+      "emit": [["NewVerified", "m", "n", ["tempctx", "n", "peer_pair"]]],
+      "produce": [["VerifiedDivergent", "m", "n", ["tempctx", "n", "peer_pair"], "peer_pair"]]
+    },
+    {
+      "id": "AbortOnNewDerived",
+      "consume": [["Pending", "n", "b", "t0"], ["VerifiedDivergent", "m", "n", "r", "peer_pair"]],
+      "require_equal": ["r", ["tempctx", "n", "peer_pair"]],
+      "emit": [["PendingAborted", "m", "n", "b", "t0"]],
+      "produce": [["BusyEntry", "m", "n", "r", "empty_oldest_temp", "empty_oldest_parent", "empty_pending_new"]]
+    },
+    {
+      "id": "ReadBusyEntry",
+      "consume": [["BeforeSnapshot", "n0", "b0", "t0"], ["BusyEntry", "m", "o", "r", "st", "sp", "sn"]],
+      "emit": [["BusyEntryRead", "m", "o", "r", "n0", "b0", "t0", "st", "sp", "sn"]],
+      "produce": []
+    }
+  ],
+  "observed": ["BusyEntryRead", "m", "o", "r", "n0", "b0", "t0", "st", "sp", "sn"],
+  "properties": [
+    {"id": "reachable", "kind": "exists"},
+    {
+      "id": "receipt_and_promotion",
+      "kind": "correspondence",
+      "before": [["NewVerified", "m", "n0", "r"]],
+      "equal": [["o", "n0"]]
+    },
+    {
+      "id": "aborts_matching_update",
+      "kind": "correspondence",
+      "before": [["PendingBefore", "n0", "b0", "t0"], ["PendingAborted", "m", "n0", "b0", "t0"]]
+    },
+    {
+      "id": "slots_empty",
+      "kind": "correspondence",
+      "equal": [["st", "empty_oldest_temp"], ["sp", "empty_oldest_parent"], ["sn", "empty_pending_new"]]
+    }
+  ]
+}

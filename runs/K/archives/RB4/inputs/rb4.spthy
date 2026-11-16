@@ -1,0 +1,54 @@
+// Bounded RB4: KUDOS draft 14, Appendix A.1, through response #1.
+theory CimRb4A1
+begin
+
+functions: rb4_context/5
+
+rule Init:
+  [ Fr(~run_id), Fr(~parent_context) ]
+  --[ Init() ]->
+  [ ClientReady(~run_id,~parent_context), ServerReady(~run_id,~parent_context) ]
+
+rule SendRequest:
+  [ Fr(~token_id), Fr(~client_nonce), ClientReady(run_id,parent_context) ]
+  --[ BranchRequestSent(run_id,~token_id,'x_client',~client_nonce) ]->
+  [ ClientPending(run_id,parent_context,~token_id,'x_client',~client_nonce), BranchRequest(run_id,~token_id,'x_client',~client_nonce) ]
+
+rule AcceptRequest:
+  [ ServerReady(run_id,parent_context), BranchRequest(run_id,token_id,client_x,client_nonce) ]
+  --[ BranchRequestAccepted(run_id,token_id,client_x,client_nonce) ]->
+  [ ServerAccepted(run_id,parent_context,token_id,client_x,client_nonce) ]
+
+rule DeriveServerContext:
+  [ Fr(~server_nonce), ServerAccepted(run_id,parent_context,token_id,client_x,client_nonce) ]
+  --[ KudosDerived(run_id,token_id,client_x,client_nonce,'x_server',~server_nonce,rb4_context(parent_context,client_x,client_nonce,'x_server',~server_nonce)) ]->
+  [ ServerPrepared(run_id,token_id,client_x,client_nonce,'x_server',~server_nonce,rb4_context(parent_context,client_x,client_nonce,'x_server',~server_nonce)) ]
+
+rule SendResponse:
+  [ ServerPrepared(run_id,token_id,client_x,client_nonce,server_x,server_nonce,next_context) ]
+  --[ ConvergenceResponseSent(run_id,token_id,client_x,client_nonce,server_x,server_nonce,next_context) ]->
+  [ ConvergenceResponse(run_id,token_id,client_x,client_nonce,server_x,server_nonce,next_context) ]
+
+rule CommitClientContext:
+  [ ClientPending(run_id,parent_context,token_id,client_x,client_nonce), ConvergenceResponse(run_id,token_id,client_x,client_nonce,server_x,server_nonce,next_context) ]
+  --[ KudosCommit(run_id,token_id,client_x,client_nonce,server_x,server_nonce,next_context), ContextMatch(next_context,rb4_context(parent_context,client_x,client_nonce,server_x,server_nonce)) ]->
+  [  ]
+
+restriction SingleInit:
+  "All #i #j. Init()@i & Init()@j ==> #i = #j"
+
+restriction EqualContext:
+  "All a b #i. ContextMatch(a,b)@i ==> a = b"
+
+lemma rb4_commit_reachable: exists-trace
+  "Ex run_id token_id client_x client_nonce server_x server_nonce next_context #k. KudosCommit(run_id,token_id,client_x,client_nonce,server_x,server_nonce,next_context)@k"
+
+lemma rb4_request_response_binding:
+  "All run_id token_id client_x client_nonce server_x server_nonce next_context #k. KudosCommit(run_id,token_id,client_x,client_nonce,server_x,server_nonce,next_context)@k ==>
+    Ex #t1 #t2 #t3 #t4. BranchRequestSent(run_id,token_id,client_x,client_nonce)@t1 & BranchRequestAccepted(run_id,token_id,client_x,client_nonce)@t2 & KudosDerived(run_id,token_id,client_x,client_nonce,server_x,server_nonce,next_context)@t3 & ConvergenceResponseSent(run_id,token_id,client_x,client_nonce,server_x,server_nonce,next_context)@t4 & #t1 < #t2 & #t2 < #t3 & #t3 < #t4 & #t4 < #k"
+
+lemma rb4_unique_commit_per_request:
+  "All run_id token_id client_x client_nonce server_x server_nonce next_context server_x_other server_nonce_other next_context_other #i #j.
+    KudosCommit(run_id,token_id,client_x,client_nonce,server_x,server_nonce,next_context)@i & KudosCommit(run_id,token_id,client_x,client_nonce,server_x_other,server_nonce_other,next_context_other)@j ==> #i = #j"
+
+end

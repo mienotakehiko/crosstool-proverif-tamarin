@@ -1,0 +1,66 @@
+set preciseActions = true.
+
+(* Free names *)
+free publicChannel:channel.
+
+(* Functions *)
+fun fst(bitstring):bitstring.
+fun pair(bitstring,bitstring):bitstring.
+fun snd(bitstring):bitstring.
+fun z():bitstring.
+
+(* Equations *)
+equation forall x_1:bitstring, x_2:bitstring; fst((x_1, x_2)) = x_1.
+equation forall x_1:bitstring, x_2:bitstring; snd((x_1, x_2)) = x_2.
+
+(* Events *)
+event eGood(bitstring).
+event eInitOnce(bitstring).
+
+(* Tables *)
+table tResult(bitstring, bitstring).
+table tSt(bitstring, bitstring).
+
+(* Restrictions *)
+
+(* OneInit *)
+
+restriction rid_i:bitstring, rid_j:bitstring, i:time, j:time;
+  event(eInitOnce( rid_i ))@i && event(eInitOnce( rid_j ))@j
+  ==> rid_i = rid_j.
+
+(* Queries *)
+
+(* good_reachable *)
+
+query asid:bitstring, i:time; event(eGood( asid ))@i.
+
+(* Processes *)
+
+let rInit =
+        new rid_rInit: bitstring;
+        new asid: bitstring;
+        event eInitOnce(rid_rInit);
+        insert tSt(asid, z()).
+
+let rGood =
+        get tSt(asid, =z()) in
+        get tSt(=asid, value) in
+        new stR_Result: bitstring;
+        event eGood(asid);
+        insert tResult(stR_Result, value).
+
+process
+    ( !(rInit) | !(rGood) )
+
+(*
+All wellformedness checks were successful.
+*)
+
+(*
+Generated from:
+Tamarin version 1.13.0
+Maude version 3.5
+Git revision: UNKNOWN
+Compiled at: 2026-11-15 05:08:08.737146731 UTC
+*)

@@ -1,0 +1,13 @@
+variant	lemma	tamarin_retest	pv_from_tamarin	context_match_before_protection	status
+action_order	rb3_same_reuse_reachable	True	True	True	MATCH
+action_order	rb3_same_own_reachable	True	True	True	MATCH
+action_order	rb3_different_own_reachable	True	True	True	MATCH
+action_order	rb3_accepted_matches_protected	True	True	True	MATCH
+action_order	rb3_reuse_requires_same	True	True	True	MATCH
+action_order	rb3_own_uses_sender_ssn	True	True	True	MATCH
+equality_guard	rb3_same_reuse_reachable	True	True	False	MATCH
+equality_guard	rb3_same_own_reachable	True	True	False	MATCH
+equality_guard	rb3_different_own_reachable	True	True	False	MATCH
+equality_guard	rb3_accepted_matches_protected	True	True	False	MATCH
+equality_guard	rb3_reuse_requires_same	True	True	False	MATCH
+equality_guard	rb3_own_uses_sender_ssn	True	True	False	MATCH

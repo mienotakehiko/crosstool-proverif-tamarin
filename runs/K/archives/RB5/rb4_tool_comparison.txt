@@ -1,0 +1,4 @@
+/usr/local/bin/tamarin-prover: OK
+/usr/local/bin/proverif: OK
+/usr/local/bin/maude: OK
+/opt/eval/eval.py: OK

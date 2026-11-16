@@ -1,0 +1,136 @@
+theory CimBusyRefresh
+
+begin
+
+// Function signature and definition of the equational theory E
+
+functions: fst/1, pair/2, snd/1, tempctx/2
+equations: fst(<x.1, x.2>) = x.1, snd(<x.1, x.2>) = x.2
+
+rule (modulo E) Init:
+   [ Fr( ~initial_parent ), Fr( ~initial_pair ) ]
+  --[
+  Init( ),
+  RefreshBefore( ~initial_parent, tempctx(~initial_parent, ~initial_pair),
+                 ~initial_pair
+  )
+  ]->
+   [
+   BusyUnusable( ~initial_parent, tempctx(~initial_parent, ~initial_pair),
+                 ~initial_pair
+   ),
+   BeforeSnapshot( ~initial_parent, tempctx(~initial_parent, ~initial_pair),
+                   ~initial_pair
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Refresh:
+   [ Fr( ~fresh_pair ), BusyUnusable( parent, previous_temp, previous_pair )
+   ]
+  --[ RefreshInstalled( parent, tempctx(parent, ~fresh_pair), ~fresh_pair )
+  ]->
+   [ BusyActive( parent, tempctx(parent, ~fresh_pair), ~fresh_pair ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) ReadActive:
+   [ BeforeSnapshot( b, t0, x0 ), BusyActive( p, t, x ) ]
+  --[ RefreshRead( b, t0, x0, p, t, x ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+restriction SingleInit:
+  "∀ #i #j. ((Init( ) @ #i) ∧ (Init( ) @ #j)) ⇒ (#i = #j)"
+  // safety formula
+
+  /*
+  expanded formula:
+  "∀ #i #j. ((Init( ) @ #i) ∧ (Init( ) @ #j)) ⇒ (#i = #j)"
+  */
+
+lemma refresh_reachable:
+  exists-trace "∃ b t0 x0 p t x #k. RefreshRead( b, t0, x0, p, t, x ) @ #k"
+/*
+guarded formula characterizing all satisfying traces:
+"∃ b t0 x0 p t x #k. (RefreshRead( b, t0, x0, p, t, x ) @ #k)"
+*/
+by sorry
+
+lemma refresh_parent_and_context:
+  all-traces
+  "∀ b t0 x0 p t x #k.
+    (RefreshRead( b, t0, x0, p, t, x ) @ #k) ⇒
+    (∃ #t1 #t2.
+      (((((RefreshBefore( b, t0, x0 ) @ #t1) ∧
+          (RefreshInstalled( p, t, x ) @ #t2)) ∧
+         (#t1 < #k)) ∧
+        (#t2 < #k)) ∧
+       (p = b)) ∧
+      (t = tempctx(p, x)))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ b t0 x0 p t x #k.
+  (RefreshRead( b, t0, x0, p, t, x ) @ #k)
+ ∧
+  ∀ #t1 #t2.
+   (RefreshBefore( b, t0, x0 ) @ #t1) ∧
+   (RefreshInstalled( p, t, x ) @ #t2) ∧
+   (p = b) ∧
+   (t = tempctx(p, x))
+  ⇒
+   ((¬(#t1 < #k)) ∨ (¬(#t2 < #k)))"
+*/
+by sorry
+
+lemma refresh_temp_distinct:
+  all-traces
+  "∀ b t0 x0 p t x #k.
+    (RefreshRead( b, t0, x0, p, t, x ) @ #k) ⇒ (¬(t0 = t))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ b t0 x0 p t x #k. (RefreshRead( b, t0, x0, p, t, x ) @ #k) ∧ t0 = t"
+*/
+by sorry
+
+lemma refresh_pair_distinct:
+  all-traces
+  "∀ b t0 x0 p t x #k.
+    (RefreshRead( b, t0, x0, p, t, x ) @ #k) ⇒ (¬(x0 = x))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ b t0 x0 p t x #k. (RefreshRead( b, t0, x0, p, t, x ) @ #k) ∧ x0 = x"
+*/
+simplify
+solve( BeforeSnapshot( b, t0, x0 ) ▶₀ #k )
+  case Init
+  by solve( BusyActive( p, t, ~initial_pair ) ▶₁ #k )
+qed
+
+/* All wellformedness checks were successful. */
+
+/*
+Generated from:
+Tamarin version 1.13.0
+Maude version 3.5
+Git revision: UNKNOWN
+Compiled at: 2026-10-24 02:25:12.718891574 UTC
+*/
+
+end
+
+==============================================================================
+summary of summaries:
+
+analyzed: /work/inputs/REFRESH/busy_refresh.spthy
+
+  processing time: 0.03s
+  
+  refresh_reachable (exists-trace): analysis incomplete (1 steps)
+  refresh_parent_and_context (all-traces): analysis incomplete (1 steps)
+  refresh_temp_distinct (all-traces): analysis incomplete (1 steps)
+  refresh_pair_distinct (all-traces): verified (3 steps)
+
+==============================================================================

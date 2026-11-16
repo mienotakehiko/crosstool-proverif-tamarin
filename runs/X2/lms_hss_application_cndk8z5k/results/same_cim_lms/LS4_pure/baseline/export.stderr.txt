@@ -1,0 +1,7 @@
+maude tool: 'maude'
+ checking version: 3.5. OK.
+ checking installation: OK.
+[Theory LMS_S2_T_base] Theory loaded
+[Theory LMS_S2_T_base] Theory translated
+[Theory LMS_S2_T_base] No Deconstruction Chain checks started
+[Theory LMS_S2_T_base] No Deconstruction Chain checks ended

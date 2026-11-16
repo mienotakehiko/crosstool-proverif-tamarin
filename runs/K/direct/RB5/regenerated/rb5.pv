@@ -1,0 +1,59 @@
+(* Generated finite RB5 model. No network inputs. *)
+free ch_Execution, ch_AppCheck: channel [private].
+free phase_active, phase_closed, no_outcome, outcome_commit, outcome_abort: bitstring.
+
+event KudosStart(bitstring).
+event KudosCommit(bitstring).
+event KudosAbort(bitstring).
+event AppSendChecked(bitstring, bitstring, bitstring).
+event AppSendBlocked(bitstring).
+event AppSend(bitstring, bitstring, bitstring).
+
+query sid:bitstring;
+  event(AppSendBlocked(sid)).
+
+query sid:bitstring, outcome:bitstring;
+  event(AppSend(sid,phase_active,outcome)).
+
+query sid:bitstring;
+  event(AppSend(sid,phase_closed,outcome_commit)).
+
+query sid:bitstring;
+  event(AppSend(sid,phase_closed,outcome_commit)) ==> event(KudosStart(sid)) && event(KudosCommit(sid)).
+
+query sid:bitstring;
+  event(AppSend(sid,phase_closed,outcome_abort)).
+
+query sid:bitstring;
+  event(AppSend(sid,phase_closed,outcome_abort)) ==> event(KudosStart(sid)) && event(KudosAbort(sid)).
+
+process
+  new initial_sid:bitstring;
+  event KudosStart(initial_sid);
+  (
+    (out(ch_Execution,(initial_sid,phase_active,no_outcome));
+     0)
+    |
+    (in(ch_Execution,(sid:bitstring,=phase_active,=no_outcome));
+     event KudosCommit(sid);
+     out(ch_Execution,(sid,phase_closed,outcome_commit));
+     0)
+    |
+    (in(ch_Execution,(sid:bitstring,=phase_active,=no_outcome));
+     event KudosAbort(sid);
+     out(ch_Execution,(sid,phase_closed,outcome_abort));
+     0)
+    |
+    (in(ch_Execution,(sid:bitstring,current_phase:bitstring,outcome:bitstring));
+     event AppSendChecked(sid,current_phase,outcome);
+     out(ch_AppCheck,(sid,current_phase,outcome));
+     0)
+    |
+    (in(ch_AppCheck,(sid:bitstring,=phase_active,=no_outcome));
+     event AppSendBlocked(sid);
+     0)
+    |
+    (in(ch_AppCheck,(sid:bitstring,=phase_closed,outcome:bitstring));
+     event AppSend(sid,phase_closed,outcome);
+     0)
+  )

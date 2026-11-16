@@ -1,0 +1,19 @@
+{
+  "schema": "h1h2-local-abstract-v1",
+  "provenance": "new abstract models, not recovered historical implementations/traces",
+  "algebra": {"kdf": 2, "xn": 2, "key": 2, "civ": 1, "nce": 3, "succ": 1},
+  "cases": [
+    {"id":"H1_Nb", "family":"H1", "first":"Nb", "second":"request", "client_reset":true, "hypothesis_collision":true},
+    {"id":"H1_Na", "family":"H1", "first":"Na", "second":"request", "client_reset":true, "hypothesis_collision":false},
+    {"id":"H1_section3_own", "family":"H1", "first":"own", "second":"request", "client_reset":true, "hypothesis_collision":false},
+    {"id":"H1_second_own", "family":"H1", "first":"Nb", "second":"own", "client_reset":true, "hypothesis_collision":false},
+    {"id":"H1_both_own", "family":"H1", "first":"own", "second":"own", "client_reset":true, "hypothesis_collision":false},
+    {"id":"H1_retain_client_counter", "family":"H1", "first":"Nb", "second":"request", "client_reset":false, "hypothesis_collision":false},
+    {"id":"H2_rederive_reset", "family":"H2", "restart":true, "retain_counter":false, "fresh_inputs":false, "new_parent":false, "hypothesis_collision":true},
+    {"id":"H2_retain_counter", "family":"H2", "restart":true, "retain_counter":true, "fresh_inputs":false, "new_parent":false, "hypothesis_collision":false},
+    {"id":"H2_fresh_inputs", "family":"H2", "restart":true, "retain_counter":false, "fresh_inputs":true, "new_parent":false, "hypothesis_collision":false},
+    {"id":"H2_new_parent", "family":"H2", "restart":true, "retain_counter":false, "fresh_inputs":false, "new_parent":true, "hypothesis_collision":false},
+    {"id":"H2_no_restart", "family":"H2", "restart":false, "retain_counter":false, "fresh_inputs":false, "new_parent":false, "hypothesis_collision":false},
+    {"id":"H2_fresh_and_retain", "family":"H2", "restart":true, "retain_counter":true, "fresh_inputs":true, "new_parent":false, "hypothesis_collision":false}
+  ]
+}

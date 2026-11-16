@@ -1,0 +1,16 @@
+
+==============================================================================
+summary of summaries:
+
+analyzed: results/T7_CONTINUATION.Zfes59CW/models/t7_continuation.spthy
+
+  output:          results/T7_CONTINUATION.Zfes59CW/tamarin.proof.spthy
+  processing time: 0.81s
+  
+  t7_continuation_reachable (exists-trace): verified (4 steps)
+  t7_continuation_new_receipt_and_promotion (all-traces): verified (4 steps)
+  t7_continuation_derive_and_send (all-traces): verified (3 steps)
+  t7_continuation_parent_distinct (all-traces): verified (3 steps)
+  t7_continuation_context_distinct (all-traces): verified (3 steps)
+
+==============================================================================

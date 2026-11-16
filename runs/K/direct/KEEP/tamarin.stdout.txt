@@ -1,0 +1,13 @@
+
+==============================================================================
+summary of summaries:
+
+analyzed: results/KEEP.rmgeKXuP/models/busy_keep.spthy
+
+  output:          results/KEEP.rmgeKXuP/tamarin.proof.spthy
+  processing time: 0.06s
+  
+  busy_keep_reachable (exists-trace): verified (3 steps)
+  busy_keep_continues (all-traces): verified (3 steps)
+
+==============================================================================

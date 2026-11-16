@@ -1,0 +1,25 @@
+'tamarin-prover' '--with-maude=maude' '--derivcheck-timeout=0' '--prove=aliveness' 'corpus/K1_hoglund_KUDOS.spthy' +RTS '-N' '-M56g' '-A64m' '-qg' '-N4' '-sresults/out/P5_P4_std_K1_hoglund_KUDOS_T0_aliveness_d_prove_r3.rts' 
+     545,277,408 bytes allocated in the heap
+       8,223,616 bytes copied during GC
+       4,797,872 bytes maximum residency (2 sample(s))
+          88,656 bytes maximum slop
+             273 MiB total memory in use (0 MiB lost due to fragmentation)
+
+                                     Tot time (elapsed)  Avg pause  Max pause
+  Gen  0         1 colls,     0 par    0.000s   0.007s     0.0066s    0.0066s
+  Gen  1         2 colls,     0 par    0.000s   0.010s     0.0051s    0.0098s
+
+  TASKS: 10 (1 bound, 9 peak workers (9 total), using -N4)
+
+  SPARKS: 87 (64 converted, 0 overflowed, 0 dud, 0 GC'd, 23 fizzled)
+
+  INIT    time    0.003s  (  0.003s elapsed)
+  MUT     time    0.297s  (  0.162s elapsed)
+  GC      time    0.000s  (  0.017s elapsed)
+  EXIT    time    0.001s  (  0.009s elapsed)
+  Total   time    0.302s  (  0.190s elapsed)
+
+  Alloc rate    1,833,030,363 bytes per MUT second
+
+  Productivity  98.6% of total user, 85.3% of total elapsed
+

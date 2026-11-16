@@ -1,0 +1,178 @@
+Linear part: No equation.
+Convergent part:
+fst((x_1,x_2)) = x_1
+snd((x_1,x_2)) = x_2
+Completing equations...
+Completed equations:
+snd((x_1,x_2)) = x_2
+fst((x_1,x_2)) = x_1
+Process 0 (that is, the initial process):
+(
+    {1}!
+    {2}new rid_rInit: bitstring;
+    {3}new stR_Pending: bitstring;
+    {4}new stR_BeforeSnapshot: bitstring;
+    {5}new stR_VerifiedOldPremise: bitstring;
+    {6}new exchange_id: bitstring;
+    {7}new old_ctx: bitstring;
+    {8}new prior_local_pair: bitstring;
+    {9}new prior_peer_pair: bitstring;
+    {10}new incoming_pair: bitstring;
+    {11}new incoming_id: bitstring;
+    {12}event eInit(rid_rInit);
+    {13}event ePendingBefore(exchange_id,old_ctx,newctx(old_ctx,prior_local_pair,prior_peer_pair),prior_local_pair);
+    {14}insert tPending(stR_Pending,exchange_id,old_ctx,newctx(old_ctx,prior_local_pair,prior_peer_pair),prior_local_pair);
+    {15}insert tBeforeSnapshot(stR_BeforeSnapshot,exchange_id,old_ctx,newctx(old_ctx,prior_local_pair,prior_peer_pair),prior_local_pair);
+    {16}insert tVerifiedOldPremise(stR_VerifiedOldPremise,exchange_id,incoming_id,old_ctx,incoming_pair)
+) | (
+    {17}!
+    {18}get tVerifiedOldPremise(stL_VerifiedOldPremise: bitstring,exchange_id_1: bitstring,incoming_id_1: bitstring,old_ctx_1: bitstring,peer_pair: bitstring) in
+    {19}new rid_rRecordVerifiedReceipt: bitstring;
+    {20}new stR_VerifiedDivergent: bitstring;
+    {21}event eDistinctFact(rid_rRecordVerifiedReceipt,(stL_VerifiedOldPremise,(exchange_id_1,(incoming_id_1,(old_ctx_1,peer_pair)))));
+    {22}event eOldVerified(exchange_id_1,incoming_id_1,old_ctx_1,peer_pair,tempctx(old_ctx_1,peer_pair));
+    {23}insert tVerifiedDivergent(stR_VerifiedDivergent,exchange_id_1,incoming_id_1,old_ctx_1,peer_pair,tempctx(old_ctx_1,peer_pair))
+) | (
+    {24}!
+    {25}get tPending(stL_Pending: bitstring,exchange_id_2: bitstring,old_ctx_2: bitstring,discarded_ctx: bitstring,discarded_pair: bitstring) in
+    {26}get tVerifiedDivergent(stL_VerifiedDivergent: bitstring,=exchange_id_2,incoming_id_2: bitstring,=old_ctx_2,peer_pair_1: bitstring,rx_temp: bitstring) in
+    {27}new rid_rAbortOnOldDerived: bitstring;
+    {28}new stR_BusyEntry: bitstring;
+    {29}event eDistinctFact(rid_rAbortOnOldDerived,(stL_Pending,(exchange_id_2,(old_ctx_2,(discarded_ctx,discarded_pair)))));
+    {30}event eDistinctFact(rid_rAbortOnOldDerived,(stL_VerifiedDivergent,(exchange_id_2,(incoming_id_2,(old_ctx_2,(peer_pair_1,rx_temp))))));
+    {31}event ePendingAborted(exchange_id_2,incoming_id_2,old_ctx_2,discarded_ctx,discarded_pair);
+    {32}event eVerifiedTempMatches(rx_temp,tempctx(old_ctx_2,peer_pair_1));
+    {33}insert tBusyEntry(stR_BusyEntry,exchange_id_2,incoming_id_2,old_ctx_2,peer_pair_1,rx_temp,vempty_new,vempty_pair)
+) | (
+    {34}!
+    {35}get tBusyEntry(stL_BusyEntry: bitstring,exchange_id_3: bitstring,incoming_id_3: bitstring,old_ctx_3: bitstring,peer_pair_2: bitstring,rx_temp_1: bitstring,ctx_slot: bitstring,pair_slot: bitstring) in
+    {36}new rid_rReadBusyEntry: bitstring;
+    {37}new stR_BusyReady: bitstring;
+    {38}event eDistinctFact(rid_rReadBusyEntry,(stL_BusyEntry,(exchange_id_3,(incoming_id_3,(old_ctx_3,(peer_pair_2,(rx_temp_1,(ctx_slot,pair_slot))))))));
+    {39}event eBusyEntryRead(exchange_id_3,incoming_id_3,old_ctx_3,peer_pair_2,rx_temp_1,ctx_slot,pair_slot);
+    {40}insert tBusyReady(stR_BusyReady,exchange_id_3,incoming_id_3,old_ctx_3,peer_pair_2,rx_temp_1,ctx_slot,pair_slot)
+) | (
+    {41}!
+    {42}get tBusyReady(stL_BusyReady: bitstring,exchange_id_4: bitstring,incoming_id_4: bitstring,old_ctx_4: bitstring,peer_pair_3: bitstring,rx_temp_2: bitstring,=vempty_new,=vempty_pair) in
+    {43}new rid_rDeriveNewContext: bitstring;
+    {44}new stR_ReadyToSend: bitstring;
+    {45}new fresh_local_pair: bitstring;
+    {46}event eDistinctFact(rid_rDeriveNewContext,(stL_BusyReady,(exchange_id_4,(incoming_id_4,(old_ctx_4,(peer_pair_3,(rx_temp_2,(vempty_new,vempty_pair))))))));
+    {47}event eRestartDerived(exchange_id_4,incoming_id_4,old_ctx_4,peer_pair_3,fresh_local_pair,newctx(old_ctx_4,fresh_local_pair,peer_pair_3));
+    {48}insert tReadyToSend(stR_ReadyToSend,exchange_id_4,incoming_id_4,old_ctx_4,peer_pair_3,rx_temp_2,fresh_local_pair,newctx(old_ctx_4,fresh_local_pair,peer_pair_3))
+) | (
+    {49}!
+    {50}get tReadyToSend(stL_ReadyToSend: bitstring,exchange_id_5: bitstring,incoming_id_5: bitstring,old_ctx_5: bitstring,peer_pair_4: bitstring,rx_temp_3: bitstring,local_pair: bitstring,active_ctx: bitstring) in
+    {51}new rid_rSendConvergent: bitstring;
+    {52}new stR_PendingAfter: bitstring;
+    {53}event eDistinctFact(rid_rSendConvergent,(stL_ReadyToSend,(exchange_id_5,(incoming_id_5,(old_ctx_5,(peer_pair_4,(rx_temp_3,(local_pair,active_ctx))))))));
+    {54}event eConvergentSent(exchange_id_5,incoming_id_5,active_ctx);
+    {55}insert tPendingAfter(stR_PendingAfter,exchange_id_5,incoming_id_5,old_ctx_5,peer_pair_4,rx_temp_3,local_pair,active_ctx)
+) | (
+    {56}!
+    {57}get tPendingAfter(stL_PendingAfter: bitstring,exchange_id_6: bitstring,incoming_id_6: bitstring,old_ctx_6: bitstring,peer_pair_5: bitstring,rx_temp_4: bitstring,local_pair_1: bitstring,active_ctx_1: bitstring) in
+    {58}get tBeforeSnapshot(stL_BeforeSnapshot: bitstring,=exchange_id_6,=old_ctx_6,discarded_ctx_1: bitstring,discarded_pair_1: bitstring) in
+    {59}new rid_rReadPending: bitstring;
+    {60}event eDistinctFact(rid_rReadPending,(stL_PendingAfter,(exchange_id_6,(incoming_id_6,(old_ctx_6,(peer_pair_5,(rx_temp_4,(local_pair_1,active_ctx_1))))))));
+    {61}event eDistinctFact(rid_rReadPending,(stL_BeforeSnapshot,(exchange_id_6,(old_ctx_6,(discarded_ctx_1,discarded_pair_1)))));
+    {62}event ePendingRead(exchange_id_6,incoming_id_6,old_ctx_6,peer_pair_5,local_pair_1,active_ctx_1,discarded_ctx_1,discarded_pair_1,rx_temp_4)
+)
+
+-- Restriction event(eInit(rid_i))@i && event(eInit(rid_j))@j ==> rid_i = rid_j encoded as event(eInit(rid_i)) && event(eInit(rid_j)) ==> rid_i = rid_j in process 0.
+-- Restriction event(eVerifiedTempMatches(a,b))@i ==> a = b encoded as event(eVerifiedTempMatches(a,b)) ==> a = b in process 0.
+-- Restriction event(eDistinctFact(rid_i,x))@i && event(eDistinctFact(rid_j,x))@j ==> rid_i = rid_j encoded as event(eDistinctFact(rid_i,x)) && event(eDistinctFact(rid_j,x)) ==> rid_i = rid_j in process 0.
+-- Query event(ePendingRead(exchange_id_7,incoming_id_7,old_ctx_7,peer_pair_6,local_pair_2,active_ctx_2,discarded_ctx_2,discarded_pair_2,rx_temp_5))@k ==> event(eRestartDerived(exchange_id_7,incoming_id_7,old_ctx_7,peer_pair_6,local_pair_2,active_ctx_2))@t1 && event(eConvergentSent(exchange_id_7,incoming_id_7,active_ctx_2))@t2 && t2 > t1 && k > t2 && active_ctx_2 = newctx(old_ctx_7,local_pair_2,peer_pair_6) encoded as event(ePendingRead(exchange_id_7,incoming_id_7,old_ctx_7,peer_pair_6,local_pair_2,active_ctx_2,discarded_ctx_2,discarded_pair_2,rx_temp_5))@i ==> (event(eConvergentSent(exchange_id_7,incoming_id_7,active_ctx_2))@i_1 ==> event(eRestartDerived(exchange_id_7,incoming_id_7,old_ctx_7,peer_pair_6,local_pair_2,active_ctx_2))) && i > i_1 && active_ctx_2 = newctx(old_ctx_7,local_pair_2,peer_pair_6) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query event(ePendingRead(exchange_id_7,incoming_id_7,old_ctx_7,peer_pair_6,local_pair_2,active_ctx_2,discarded_ctx_2,discarded_pair_2,rx_temp_5))@k ==> event(eRestartDerived(exchange_id_7,incoming_id_7,old_ctx_7,peer_pair_6,local_pair_2,active_ctx_2))@t1 && event(eConvergentSent(exchange_id_7,incoming_id_7,active_ctx_2))@t2 && t2 > t1 && k > t2 && active_ctx_2 = newctx(old_ctx_7,local_pair_2,peer_pair_6)
+Removing redudant clauses.
+Removing subsumed clauses modulo the equational theory.
+Starting verification.
+Clauses verified: 0. Clauses remaining: 1. Failed clauses: 0.
+Removing redudant clauses.
+Starting verification.
+Clauses verified: 0. Clauses remaining: 1. Failed clauses: 0.
+Removing redudant clauses.
+Starting verification.
+Clauses verified: 0. Clauses remaining: 1. Failed clauses: 0.
+goal reachable: b-event(eDistinctFact(rid_rReadPending_1,(stR_BeforeSnapshot_1,(exchange_id_7,(old_ctx_7,(newctx(old_ctx_7,prior_local_pair_1,prior_peer_pair_1),prior_local_pair_1)))))) && b-event(eDistinctFact(rid_rReadPending_1,(stR_PendingAfter_1,(exchange_id_7,(incoming_id_7,(old_ctx_7,(incoming_pair_1,(tempctx(old_ctx_7,incoming_pair_1),(fresh_local_pair_1,newctx(old_ctx_7,fresh_local_pair_1,incoming_pair_1)))))))))) && b-event(@p_act(@occ58_1,tBeforeSnapshot(stR_BeforeSnapshot_1,exchange_id_7,old_ctx_7,newctx(old_ctx_7,prior_local_pair_1,prior_peer_pair_1),prior_local_pair_1))) && b-event(eConvergentSent(exchange_id_7,incoming_id_7,newctx(old_ctx_7,fresh_local_pair_1,incoming_pair_1))) && b-event(eDistinctFact(rid_rSendConvergent_1,(stR_ReadyToSend_1,(exchange_id_7,(incoming_id_7,(old_ctx_7,(incoming_pair_1,(tempctx(old_ctx_7,incoming_pair_1),(fresh_local_pair_1,newctx(old_ctx_7,fresh_local_pair_1,incoming_pair_1)))))))))) && b-event(eRestartDerived(exchange_id_7,incoming_id_7,old_ctx_7,incoming_pair_1,fresh_local_pair_1,newctx(old_ctx_7,fresh_local_pair_1,incoming_pair_1))) && b-event(eDistinctFact(rid_rDeriveNewContext_1,(stR_BusyReady_1,(exchange_id_7,(incoming_id_7,(old_ctx_7,(incoming_pair_1,(tempctx(old_ctx_7,incoming_pair_1),(vempty_new[],vempty_pair[]))))))))) && b-event(eDistinctFact(rid_rReadBusyEntry_1,(stR_BusyEntry_1,(exchange_id_7,(incoming_id_7,(old_ctx_7,(incoming_pair_1,(tempctx(old_ctx_7,incoming_pair_1),(vempty_new[],vempty_pair[]))))))))) && b-event(eVerifiedTempMatches(tempctx(old_ctx_7,incoming_pair_1),tempctx(old_ctx_7,incoming_pair_1))) && b-event(eDistinctFact(rid_rAbortOnOldDerived_1,(stR_VerifiedDivergent_1,(exchange_id_7,(incoming_id_7,(old_ctx_7,(incoming_pair_1,tempctx(old_ctx_7,incoming_pair_1)))))))) && b-event(eDistinctFact(rid_rAbortOnOldDerived_1,(stR_Pending_1,(exchange_id_7,(old_ctx_7,(newctx(old_ctx_7,prior_local_pair_1,prior_peer_pair_1),prior_local_pair_1)))))) && b-event(eDistinctFact(rid_rRecordVerifiedReceipt_1,(stR_VerifiedOldPremise_1,(exchange_id_7,(incoming_id_7,(old_ctx_7,incoming_pair_1)))))) && b-event(@p_act(@occ18_1,tVerifiedOldPremise(stR_VerifiedOldPremise_1,exchange_id_7,incoming_id_7,old_ctx_7,incoming_pair_1))) && b-event(@p_act(@occ26_1,tVerifiedDivergent(stR_VerifiedDivergent_1,exchange_id_7,incoming_id_7,old_ctx_7,incoming_pair_1,tempctx(old_ctx_7,incoming_pair_1)))) && b-event(eInit(rid_rInit_1)) && b-event(@p_act(@occ25_1,tPending(stR_Pending_1,exchange_id_7,old_ctx_7,newctx(old_ctx_7,prior_local_pair_1,prior_peer_pair_1),prior_local_pair_1))) && b-event(@p_act(@occ35_1,tBusyEntry(stR_BusyEntry_1,exchange_id_7,incoming_id_7,old_ctx_7,incoming_pair_1,tempctx(old_ctx_7,incoming_pair_1),vempty_new[],vempty_pair[]))) && b-event(@p_act(@occ42_1,tBusyReady(stR_BusyReady_1,exchange_id_7,incoming_id_7,old_ctx_7,incoming_pair_1,tempctx(old_ctx_7,incoming_pair_1),vempty_new[],vempty_pair[]))) && b-event(@p_act(@occ50_1,tReadyToSend(stR_ReadyToSend_1,exchange_id_7,incoming_id_7,old_ctx_7,incoming_pair_1,tempctx(old_ctx_7,incoming_pair_1),fresh_local_pair_1,newctx(old_ctx_7,fresh_local_pair_1,incoming_pair_1)))) && b-event(@p_act(@occ57_1,tPendingAfter(stR_PendingAfter_1,exchange_id_7,incoming_id_7,old_ctx_7,incoming_pair_1,tempctx(old_ctx_7,incoming_pair_1),fresh_local_pair_1,newctx(old_ctx_7,fresh_local_pair_1,incoming_pair_1)))) -> event(ePendingRead(exchange_id_7,incoming_id_7,old_ctx_7,incoming_pair_1,fresh_local_pair_1,newctx(old_ctx_7,fresh_local_pair_1,incoming_pair_1),newctx(old_ctx_7,prior_local_pair_1,prior_peer_pair_1),prior_local_pair_1,tempctx(old_ctx_7,incoming_pair_1)))
+The 1st, 2nd, 3rd, 4th, 5th, 6th, 7th, 8th, 9th, 10th, 11th, 12th, 13th, 14th, 15th, 16th, 17th, 18th, 19th, 20th hypotheses occur strictly before the conclusion.
+Abbreviations:
+exchange_id_7 = exchange_id[!1 = @sid]
+incoming_id_7 = incoming_id[!1 = @sid]
+old_ctx_7 = old_ctx[!1 = @sid]
+incoming_pair_1 = incoming_pair[!1 = @sid]
+stR_VerifiedOldPremise_1 = stR_VerifiedOldPremise[!1 = @sid]
+stR_VerifiedDivergent_1 = stR_VerifiedDivergent[peer_pair = incoming_pair_1,old_ctx_1 = old_ctx_7,incoming_id_1 = incoming_id_7,exchange_id_1 = exchange_id_7,stL_VerifiedOldPremise = stR_VerifiedOldPremise_1,!1 = @sid_1]
+prior_local_pair_1 = prior_local_pair[!1 = @sid]
+prior_peer_pair_1 = prior_peer_pair[!1 = @sid]
+stR_Pending_1 = stR_Pending[!1 = @sid]
+stR_BusyEntry_1 = stR_BusyEntry[rx_temp = tempctx(old_ctx_7,incoming_pair_1),peer_pair_1 = incoming_pair_1,incoming_id_2 = incoming_id_7,stL_VerifiedDivergent = stR_VerifiedDivergent_1,discarded_pair = prior_local_pair_1,discarded_ctx = newctx(old_ctx_7,prior_local_pair_1,prior_peer_pair_1),old_ctx_2 = old_ctx_7,exchange_id_2 = exchange_id_7,stL_Pending = stR_Pending_1,!1 = @sid_2]
+stR_BusyReady_1 = stR_BusyReady[pair_slot = vempty_pair[],ctx_slot = vempty_new[],rx_temp_1 = tempctx(old_ctx_7,incoming_pair_1),peer_pair_2 = incoming_pair_1,old_ctx_3 = old_ctx_7,incoming_id_3 = incoming_id_7,exchange_id_3 = exchange_id_7,stL_BusyEntry = stR_BusyEntry_1,!1 = @sid_3]
+fresh_local_pair_1 = fresh_local_pair[rx_temp_2 = tempctx(old_ctx_7,incoming_pair_1),peer_pair_3 = incoming_pair_1,old_ctx_4 = old_ctx_7,incoming_id_4 = incoming_id_7,exchange_id_4 = exchange_id_7,stL_BusyReady = stR_BusyReady_1,!1 = @sid_4]
+stR_BeforeSnapshot_1 = stR_BeforeSnapshot[!1 = @sid]
+stR_ReadyToSend_1 = stR_ReadyToSend[rx_temp_2 = tempctx(old_ctx_7,incoming_pair_1),peer_pair_3 = incoming_pair_1,old_ctx_4 = old_ctx_7,incoming_id_4 = incoming_id_7,exchange_id_4 = exchange_id_7,stL_BusyReady = stR_BusyReady_1,!1 = @sid_4]
+stR_PendingAfter_1 = stR_PendingAfter[active_ctx = newctx(old_ctx_7,fresh_local_pair_1,incoming_pair_1),local_pair = fresh_local_pair_1,rx_temp_3 = tempctx(old_ctx_7,incoming_pair_1),peer_pair_4 = incoming_pair_1,old_ctx_5 = old_ctx_7,incoming_id_5 = incoming_id_7,exchange_id_5 = exchange_id_7,stL_ReadyToSend = stR_ReadyToSend_1,!1 = @sid_5]
+rid_rReadPending_1 = rid_rReadPending[discarded_pair_1 = prior_local_pair_1,discarded_ctx_1 = newctx(old_ctx_7,prior_local_pair_1,prior_peer_pair_1),stL_BeforeSnapshot = stR_BeforeSnapshot_1,active_ctx_1 = newctx(old_ctx_7,fresh_local_pair_1,incoming_pair_1),local_pair_1 = fresh_local_pair_1,rx_temp_4 = tempctx(old_ctx_7,incoming_pair_1),peer_pair_5 = incoming_pair_1,old_ctx_6 = old_ctx_7,incoming_id_6 = incoming_id_7,exchange_id_6 = exchange_id_7,stL_PendingAfter = stR_PendingAfter_1,!1 = @sid_6]
+@occ58_1 = @occ58[!1 = @sid_6]
+rid_rSendConvergent_1 = rid_rSendConvergent[active_ctx = newctx(old_ctx_7,fresh_local_pair_1,incoming_pair_1),local_pair = fresh_local_pair_1,rx_temp_3 = tempctx(old_ctx_7,incoming_pair_1),peer_pair_4 = incoming_pair_1,old_ctx_5 = old_ctx_7,incoming_id_5 = incoming_id_7,exchange_id_5 = exchange_id_7,stL_ReadyToSend = stR_ReadyToSend_1,!1 = @sid_5]
+rid_rDeriveNewContext_1 = rid_rDeriveNewContext[rx_temp_2 = tempctx(old_ctx_7,incoming_pair_1),peer_pair_3 = incoming_pair_1,old_ctx_4 = old_ctx_7,incoming_id_4 = incoming_id_7,exchange_id_4 = exchange_id_7,stL_BusyReady = stR_BusyReady_1,!1 = @sid_4]
+rid_rReadBusyEntry_1 = rid_rReadBusyEntry[pair_slot = vempty_pair[],ctx_slot = vempty_new[],rx_temp_1 = tempctx(old_ctx_7,incoming_pair_1),peer_pair_2 = incoming_pair_1,old_ctx_3 = old_ctx_7,incoming_id_3 = incoming_id_7,exchange_id_3 = exchange_id_7,stL_BusyEntry = stR_BusyEntry_1,!1 = @sid_3]
+rid_rAbortOnOldDerived_1 = rid_rAbortOnOldDerived[rx_temp = tempctx(old_ctx_7,incoming_pair_1),peer_pair_1 = incoming_pair_1,incoming_id_2 = incoming_id_7,stL_VerifiedDivergent = stR_VerifiedDivergent_1,discarded_pair = prior_local_pair_1,discarded_ctx = newctx(old_ctx_7,prior_local_pair_1,prior_peer_pair_1),old_ctx_2 = old_ctx_7,exchange_id_2 = exchange_id_7,stL_Pending = stR_Pending_1,!1 = @sid_2]
+rid_rRecordVerifiedReceipt_1 = rid_rRecordVerifiedReceipt[peer_pair = incoming_pair_1,old_ctx_1 = old_ctx_7,incoming_id_1 = incoming_id_7,exchange_id_1 = exchange_id_7,stL_VerifiedOldPremise = stR_VerifiedOldPremise_1,!1 = @sid_1]
+@occ18_1 = @occ18[!1 = @sid_1]
+@occ26_1 = @occ26[!1 = @sid_2]
+rid_rInit_1 = rid_rInit[!1 = @sid]
+@occ25_1 = @occ25[!1 = @sid_2]
+@occ35_1 = @occ35[!1 = @sid_3]
+@occ42_1 = @occ42[!1 = @sid_4]
+@occ50_1 = @occ50[!1 = @sid_5]
+@occ57_1 = @occ57[!1 = @sid_6]
+goal reachable: b-event(eDistinctFact(rid_rReadPending_1,(stR_BeforeSnapshot_1,(exchange_id_7,(old_ctx_7,(newctx(old_ctx_7,prior_local_pair_1,prior_peer_pair_1),prior_local_pair_1)))))) && b-event(eDistinctFact(rid_rReadPending_1,(stR_PendingAfter_1,(exchange_id_7,(incoming_id_7,(old_ctx_7,(incoming_pair_1,(tempctx(old_ctx_7,incoming_pair_1),(fresh_local_pair_1,newctx(old_ctx_7,fresh_local_pair_1,incoming_pair_1)))))))))) && b-event(@p_act(@occ58_1,tBeforeSnapshot(stR_BeforeSnapshot_1,exchange_id_7,old_ctx_7,newctx(old_ctx_7,prior_local_pair_1,prior_peer_pair_1),prior_local_pair_1))) && b-event(eConvergentSent(exchange_id_7,incoming_id_7,newctx(old_ctx_7,fresh_local_pair_1,incoming_pair_1))) && b-event(@p_act(@occ57_1,tPendingAfter(stR_PendingAfter_1,exchange_id_7,incoming_id_7,old_ctx_7,incoming_pair_1,tempctx(old_ctx_7,incoming_pair_1),fresh_local_pair_1,newctx(old_ctx_7,fresh_local_pair_1,incoming_pair_1)))) && b-event(eDistinctFact(rid_rSendConvergent_1,(stR_ReadyToSend_1,(exchange_id_7,(incoming_id_7,(old_ctx_7,(incoming_pair_1,(tempctx(old_ctx_7,incoming_pair_1),(fresh_local_pair_1,newctx(old_ctx_7,fresh_local_pair_1,incoming_pair_1)))))))))) && b-event(eRestartDerived(exchange_id_7,incoming_id_7,old_ctx_7,incoming_pair_1,fresh_local_pair_1,newctx(old_ctx_7,fresh_local_pair_1,incoming_pair_1))) && b-event(eDistinctFact(rid_rDeriveNewContext_1,(stR_BusyReady_1,(exchange_id_7,(incoming_id_7,(old_ctx_7,(incoming_pair_1,(tempctx(old_ctx_7,incoming_pair_1),(vempty_new[],vempty_pair[]))))))))) && b-event(eDistinctFact(rid_rReadBusyEntry_1,(stR_BusyEntry_1,(exchange_id_7,(incoming_id_7,(old_ctx_7,(incoming_pair_1,(tempctx(old_ctx_7,incoming_pair_1),(vempty_new[],vempty_pair[]))))))))) && b-event(eVerifiedTempMatches(tempctx(old_ctx_7,incoming_pair_1),tempctx(old_ctx_7,incoming_pair_1))) && b-event(eDistinctFact(rid_rAbortOnOldDerived_1,(stR_VerifiedDivergent_1,(exchange_id_7,(incoming_id_7,(old_ctx_7,(incoming_pair_1,tempctx(old_ctx_7,incoming_pair_1)))))))) && b-event(eDistinctFact(rid_rAbortOnOldDerived_1,(stR_Pending_1,(exchange_id_7,(old_ctx_7,(newctx(old_ctx_7,prior_local_pair_1,prior_peer_pair_1),prior_local_pair_1)))))) && b-event(eDistinctFact(rid_rRecordVerifiedReceipt_1,(stR_VerifiedOldPremise_1,(exchange_id_7,(incoming_id_7,(old_ctx_7,incoming_pair_1)))))) && b-event(@p_act(@occ18_1,tVerifiedOldPremise(stR_VerifiedOldPremise_1,exchange_id_7,incoming_id_7,old_ctx_7,incoming_pair_1))) && b-event(@p_act(@occ26_1,tVerifiedDivergent(stR_VerifiedDivergent_1,exchange_id_7,incoming_id_7,old_ctx_7,incoming_pair_1,tempctx(old_ctx_7,incoming_pair_1)))) && b-event(eInit(rid_rInit_1)) && b-event(@p_act(@occ25_1,tPending(stR_Pending_1,exchange_id_7,old_ctx_7,newctx(old_ctx_7,prior_local_pair_1,prior_peer_pair_1),prior_local_pair_1))) && b-event(@p_act(@occ35_1,tBusyEntry(stR_BusyEntry_1,exchange_id_7,incoming_id_7,old_ctx_7,incoming_pair_1,tempctx(old_ctx_7,incoming_pair_1),vempty_new[],vempty_pair[]))) && b-event(@p_act(@occ42_1,tBusyReady(stR_BusyReady_1,exchange_id_7,incoming_id_7,old_ctx_7,incoming_pair_1,tempctx(old_ctx_7,incoming_pair_1),vempty_new[],vempty_pair[]))) && b-event(@p_act(@occ50_1,tReadyToSend(stR_ReadyToSend_1,exchange_id_7,incoming_id_7,old_ctx_7,incoming_pair_1,tempctx(old_ctx_7,incoming_pair_1),fresh_local_pair_1,newctx(old_ctx_7,fresh_local_pair_1,incoming_pair_1)))) -> event(ePendingRead(exchange_id_7,incoming_id_7,old_ctx_7,incoming_pair_1,fresh_local_pair_1,newctx(old_ctx_7,fresh_local_pair_1,incoming_pair_1),newctx(old_ctx_7,prior_local_pair_1,prior_peer_pair_1),prior_local_pair_1,tempctx(old_ctx_7,incoming_pair_1))) && event(eConvergentSent(exchange_id_7,incoming_id_7,newctx(old_ctx_7,fresh_local_pair_1,incoming_pair_1)))
+The 1st, 2nd, 3rd, 4th, 5th, 6th, 7th, 8th, 9th, 10th, 11th, 12th, 13th, 14th, 15th, 16th, 17th, 18th, 19th, 20th hypotheses occur strictly before the 1st conclusion.
+The 6th, 7th, 8th, 9th, 10th, 11th, 12th, 13th, 14th, 15th, 16th, 17th, 18th, 19th, 20th hypotheses occur strictly before the 2nd conclusion.
+Abbreviations:
+exchange_id_7 = exchange_id[!1 = @sid]
+incoming_id_7 = incoming_id[!1 = @sid]
+old_ctx_7 = old_ctx[!1 = @sid]
+incoming_pair_1 = incoming_pair[!1 = @sid]
+stR_VerifiedOldPremise_1 = stR_VerifiedOldPremise[!1 = @sid]
+stR_VerifiedDivergent_1 = stR_VerifiedDivergent[peer_pair = incoming_pair_1,old_ctx_1 = old_ctx_7,incoming_id_1 = incoming_id_7,exchange_id_1 = exchange_id_7,stL_VerifiedOldPremise = stR_VerifiedOldPremise_1,!1 = @sid_1]
+prior_local_pair_1 = prior_local_pair[!1 = @sid]
+prior_peer_pair_1 = prior_peer_pair[!1 = @sid]
+stR_Pending_1 = stR_Pending[!1 = @sid]
+stR_BusyEntry_1 = stR_BusyEntry[rx_temp = tempctx(old_ctx_7,incoming_pair_1),peer_pair_1 = incoming_pair_1,incoming_id_2 = incoming_id_7,stL_VerifiedDivergent = stR_VerifiedDivergent_1,discarded_pair = prior_local_pair_1,discarded_ctx = newctx(old_ctx_7,prior_local_pair_1,prior_peer_pair_1),old_ctx_2 = old_ctx_7,exchange_id_2 = exchange_id_7,stL_Pending = stR_Pending_1,!1 = @sid_2]
+stR_BusyReady_1 = stR_BusyReady[pair_slot = vempty_pair[],ctx_slot = vempty_new[],rx_temp_1 = tempctx(old_ctx_7,incoming_pair_1),peer_pair_2 = incoming_pair_1,old_ctx_3 = old_ctx_7,incoming_id_3 = incoming_id_7,exchange_id_3 = exchange_id_7,stL_BusyEntry = stR_BusyEntry_1,!1 = @sid_3]
+fresh_local_pair_1 = fresh_local_pair[rx_temp_2 = tempctx(old_ctx_7,incoming_pair_1),peer_pair_3 = incoming_pair_1,old_ctx_4 = old_ctx_7,incoming_id_4 = incoming_id_7,exchange_id_4 = exchange_id_7,stL_BusyReady = stR_BusyReady_1,!1 = @sid_4]
+stR_BeforeSnapshot_1 = stR_BeforeSnapshot[!1 = @sid]
+stR_ReadyToSend_1 = stR_ReadyToSend[rx_temp_2 = tempctx(old_ctx_7,incoming_pair_1),peer_pair_3 = incoming_pair_1,old_ctx_4 = old_ctx_7,incoming_id_4 = incoming_id_7,exchange_id_4 = exchange_id_7,stL_BusyReady = stR_BusyReady_1,!1 = @sid_4]
+stR_PendingAfter_1 = stR_PendingAfter[active_ctx = newctx(old_ctx_7,fresh_local_pair_1,incoming_pair_1),local_pair = fresh_local_pair_1,rx_temp_3 = tempctx(old_ctx_7,incoming_pair_1),peer_pair_4 = incoming_pair_1,old_ctx_5 = old_ctx_7,incoming_id_5 = incoming_id_7,exchange_id_5 = exchange_id_7,stL_ReadyToSend = stR_ReadyToSend_1,!1 = @sid_5]
+rid_rReadPending_1 = rid_rReadPending[discarded_pair_1 = prior_local_pair_1,discarded_ctx_1 = newctx(old_ctx_7,prior_local_pair_1,prior_peer_pair_1),stL_BeforeSnapshot = stR_BeforeSnapshot_1,active_ctx_1 = newctx(old_ctx_7,fresh_local_pair_1,incoming_pair_1),local_pair_1 = fresh_local_pair_1,rx_temp_4 = tempctx(old_ctx_7,incoming_pair_1),peer_pair_5 = incoming_pair_1,old_ctx_6 = old_ctx_7,incoming_id_6 = incoming_id_7,exchange_id_6 = exchange_id_7,stL_PendingAfter = stR_PendingAfter_1,!1 = @sid_6]
+@occ58_1 = @occ58[!1 = @sid_6]
+@occ57_1 = @occ57[!1 = @sid_6]
+rid_rSendConvergent_1 = rid_rSendConvergent[active_ctx = newctx(old_ctx_7,fresh_local_pair_1,incoming_pair_1),local_pair = fresh_local_pair_1,rx_temp_3 = tempctx(old_ctx_7,incoming_pair_1),peer_pair_4 = incoming_pair_1,old_ctx_5 = old_ctx_7,incoming_id_5 = incoming_id_7,exchange_id_5 = exchange_id_7,stL_ReadyToSend = stR_ReadyToSend_1,!1 = @sid_5]
+rid_rDeriveNewContext_1 = rid_rDeriveNewContext[rx_temp_2 = tempctx(old_ctx_7,incoming_pair_1),peer_pair_3 = incoming_pair_1,old_ctx_4 = old_ctx_7,incoming_id_4 = incoming_id_7,exchange_id_4 = exchange_id_7,stL_BusyReady = stR_BusyReady_1,!1 = @sid_4]
+rid_rReadBusyEntry_1 = rid_rReadBusyEntry[pair_slot = vempty_pair[],ctx_slot = vempty_new[],rx_temp_1 = tempctx(old_ctx_7,incoming_pair_1),peer_pair_2 = incoming_pair_1,old_ctx_3 = old_ctx_7,incoming_id_3 = incoming_id_7,exchange_id_3 = exchange_id_7,stL_BusyEntry = stR_BusyEntry_1,!1 = @sid_3]
+rid_rAbortOnOldDerived_1 = rid_rAbortOnOldDerived[rx_temp = tempctx(old_ctx_7,incoming_pair_1),peer_pair_1 = incoming_pair_1,incoming_id_2 = incoming_id_7,stL_VerifiedDivergent = stR_VerifiedDivergent_1,discarded_pair = prior_local_pair_1,discarded_ctx = newctx(old_ctx_7,prior_local_pair_1,prior_peer_pair_1),old_ctx_2 = old_ctx_7,exchange_id_2 = exchange_id_7,stL_Pending = stR_Pending_1,!1 = @sid_2]
+rid_rRecordVerifiedReceipt_1 = rid_rRecordVerifiedReceipt[peer_pair = incoming_pair_1,old_ctx_1 = old_ctx_7,incoming_id_1 = incoming_id_7,exchange_id_1 = exchange_id_7,stL_VerifiedOldPremise = stR_VerifiedOldPremise_1,!1 = @sid_1]
+@occ18_1 = @occ18[!1 = @sid_1]
+@occ26_1 = @occ26[!1 = @sid_2]
+rid_rInit_1 = rid_rInit[!1 = @sid]
+@occ25_1 = @occ25[!1 = @sid_2]
+@occ35_1 = @occ35[!1 = @sid_3]
+@occ42_1 = @occ42[!1 = @sid_4]
+@occ50_1 = @occ50[!1 = @sid_5]
+RESULT event(ePendingRead(exchange_id_7,incoming_id_7,old_ctx_7,peer_pair_6,local_pair_2,active_ctx_2,discarded_ctx_2,discarded_pair_2,rx_temp_5))@k ==> event(eRestartDerived(exchange_id_7,incoming_id_7,old_ctx_7,peer_pair_6,local_pair_2,active_ctx_2))@t1 && event(eConvergentSent(exchange_id_7,incoming_id_7,active_ctx_2))@t2 && t2 > t1 && k > t2 && active_ctx_2 = newctx(old_ctx_7,local_pair_2,peer_pair_6) is true.
+
+--------------------------------------------------------------
+Verification summary:
+
+Query(ies):
+ - Query event(ePendingRead(exchange_id_7,incoming_id_7,old_ctx_7,peer_pair_6,local_pair_2,active_ctx_2,discarded_ctx_2,discarded_pair_2,rx_temp_5))@k ==> event(eRestartDerived(exchange_id_7,incoming_id_7,old_ctx_7,peer_pair_6,local_pair_2,active_ctx_2))@t1 && event(eConvergentSent(exchange_id_7,incoming_id_7,active_ctx_2))@t2 && t2 > t1 && k > t2 && active_ctx_2 = newctx(old_ctx_7,local_pair_2,peer_pair_6) is true.
+Associated restriction(s):
+ - Restriction event(eInit(rid_i))@i && event(eInit(rid_j))@j ==> rid_i = rid_j encoded as event(eInit(rid_i)) && event(eInit(rid_j)) ==> rid_i = rid_j in process 0.
+ - Restriction event(eVerifiedTempMatches(a,b))@i ==> a = b encoded as event(eVerifiedTempMatches(a,b)) ==> a = b in process 0.
+ - Restriction event(eDistinctFact(rid_i,x))@i && event(eDistinctFact(rid_j,x))@j ==> rid_i = rid_j encoded as event(eDistinctFact(rid_i,x)) && event(eDistinctFact(rid_j,x)) ==> rid_i = rid_j in process 0.
+
+--------------------------------------------------------------
+

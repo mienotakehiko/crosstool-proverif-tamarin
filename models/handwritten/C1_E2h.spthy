@@ -1,0 +1,40 @@
+theory C1_E2h
+/* Stage 1a: a single Winternitz chain without checksum. L2 is the upward key-generation loop; L6 is the upward verification loop (E2: the remaining steps are counted down by taking s(r) apart).
+   Positions are the free constructors s/z; w=2 gives positions z..s(s(s(z))). ch(I,t) is one chain step; the step index is implicit in the term depth. */
+begin
+functions: ch/2, s/1, z/0
+restriction Neq: "All x y #i. Neq(x,y)@i ==> not (x = y)"
+
+rule KeyGen: [ Fr(~I), Fr(~x) ] --[ Start(~I,~x), Gen(~I,z,~x) ]-> [ G(~I,z,~x), !Sk(~I,~x) ]
+rule GenStep: [ G(I,p,t) ] --[ Neq(p,s(s(s(z)))), Gen(I,s(p),ch(I,t)) ]-> [ G(I,s(p),ch(I,t)) ]
+rule GenDone: [ G(I,s(s(s(z))),y) ] --[ PkOut(I,y) ]-> [ !Pk(I,y), Out(<I,y>) ]
+
+rule Sign: [ !Sk(I,x), !Pk(I,y), In(a) ] --[ SignReq(I,a) ]-> [ S(I,z,x,a) ]
+rule SigStep: [ S(I,p,t,a) ] --[ Neq(p,a) ]-> [ S(I,s(p),ch(I,t),a) ]
+rule SigEmit: [ S(I,a,t,a) ] --[ Signed(I,a,t) ]-> [ Out(<I,a,t>) ]
+
+rule Rem: [ In(<I,a,t>) ] --> [ Rem(I,a,t,a,s(s(s(z)))) ]
+/* Rem: compute the remaining steps u = 3 - a by lowering a and the bound 3 together, one step at a time (destructor style: s(q) is taken apart). */
+rule RemStep: [ Rem(I,a,t,s(q),s(u)) ] --> [ Rem(I,a,t,q,u) ]
+rule VerStart: [ !Pk(I,y), Rem(I,a,t,z,u), Fr(~v) ] --[ VerIn(~v,I,a,t) ]-> [ V(~v,I,t,u,a,t,y) ]
+rule VerStep: [ V(v,I,t,s(r),a,t0,y) ] --[ VStep(v,I,t,r,y) ]-> [ V(v,I,ch(I,t),r,a,t0,y) ]
+rule VerAccept: [ V(v,I,y,z,a,t0,y) ] --[ Accept(v,I,a), AcceptV(v,I,a,t0) ]-> []
+rule RevealSk: [ !Sk(I,x) ] --[ Reveal(I) ]-> [ Out(x) ]
+lemma Auto_exec: exists-trace "Ex v I a t #s #k. Signed(I,a,t)@s & Accept(v,I,a)@k"
+// L2 invariant: every value of the generation loop is built from the seed x.
+lemma Auto_GenSeed: "All I p t #i. Gen(I,p,t)@i ==> Ex x #j. Start(I,x)@j & (x << t | x = t)"
+// L2 uniqueness (the counterpart of GenUnique in the Up and Down example).
+lemma Auto_GenUnique: "All I p1 p2 t #i #j. Gen(I,p1,t)@i & Gen(I,p2,t)@j ==> #i = #j"
+// L6, weak form: an accepted verification ends at the last value of the generation loop (the public key).
+// Helper lemma for E2: every verification step belongs to a run whose public key y was output.
+lemma Auto_VStepPk: "All v I t r y #i. VStep(v,I,t,r,y)@i ==> Ex #j. PkOut(I,y)@j"
+lemma Auto_AcceptPk: "All v I a #k. Accept(v,I,a)@k ==> Ex y #j. PkOut(I,y)@j"
+// L6, strong form: an accepted signature value t0 is the value at position a of the generated chain.
+lemma Auto_AcceptGen: "All v I a t0 #k. AcceptV(v,I,a,t0)@k ==> Ex #j. Gen(I,a,t0)@j"
+// Secrecy (the weakest form of L2 one-wayness): the seed stays secret unless it is revealed.
+// A signature on digit 0 discloses the seed itself, as in RFC 8554.
+lemma Auto_SeedSecret: "All I x #i #k. Start(I,x)@i & KU(x)@k ==> (Ex #r. Reveal(I)@r) | (Ex #s. Signed(I,z,x)@s)"
+// Counterpart of L-S1: without a checksum a single chain should be forgeable (the attack side of L-S2).
+lemma LS2_forge_nocks: exists-trace
+  "Ex v I a b t #s #k. Signed(I,a,t)@s & Accept(v,I,b)@k & not (a = b) & not (Ex #r. Reveal(I)@r)"
+end

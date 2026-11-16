@@ -1,0 +1,10 @@
+maude tool: 'maude'
+ checking version: 3.5.1. OK.
+ checking installation: OK.
+[Theory CimT7Continuation] Theory loaded
+[Theory CimT7Continuation] Theory translated
+[Theory CimT7Continuation] Derivation checks started
+[Theory CimT7Continuation] Derivation checks ended
+[Theory CimT7Continuation] Theory closed
+[Saturating Sources] Step 1 (Max 5)
+[Saturating Sources] Done

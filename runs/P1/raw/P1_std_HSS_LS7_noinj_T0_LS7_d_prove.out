@@ -1,0 +1,8 @@
+maude tool: 'maude'
+ checking version: 3.5.1. OK.
+ checking installation: OK.
+[Theory HSS_LS7_noinj] Theory loaded
+[Theory HSS_LS7_noinj] Theory translated
+[Theory HSS_LS7_noinj] Theory closed
+[Saturating Sources] Step 1 (Max 5)
+[Saturating Sources] Done

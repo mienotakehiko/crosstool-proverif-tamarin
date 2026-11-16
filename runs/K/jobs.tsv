@@ -1,0 +1,25 @@
+family	group	case	tool	model_path	sha256	lemmas_in_comparison	record_kind
+H1	RB1	H1_section3_own	Tamarin	runs/K/archives/RB1/inputs/H1_section3_own/H1_section3_own.spthy	0f43e0230b4e261ee00f2940ccecc0c002ad84a2ace747c861707eab10fb29e1	3	derived schedule/tool index
+H1	RB1	H1_section3_own	ProVerif (direct CIM)	runs/K/archives/RB1/inputs/H1_section3_own/H1_section3_own.pv	e5243c3dae94da6731593fb720dc3fcc3233dc989fe2e04511615288c7d5b028	3	derived schedule/tool index
+H1	RB1	H1_both_own	Tamarin	runs/K/archives/RB1/inputs/H1_both_own/H1_both_own.spthy	8c816e228084ab7ddeb62401e2c8e497e8e91741851478c7df6a31245ddd2b7c	3	derived schedule/tool index
+H1	RB1	H1_both_own	ProVerif (direct CIM)	runs/K/archives/RB1/inputs/H1_both_own/H1_both_own.pv	3ca491d4a0d8ca3a688ebcb6b9de80c7febaebaf9e70bba01b2e0daeec62bc22	3	derived schedule/tool index
+H1	RB2	RB2	Tamarin	runs/K/archives/RB2/inputs/rb2.spthy	1dc816961fc29e35ea61118fe15db8f8731b57f46079134892df4a2d94046b44	4	derived schedule/tool index
+H1	RB2	RB2	ProVerif (direct CIM)	runs/K/archives/RB2/inputs/rb2.pv	5d8549189d923718ba5d7583f908c4faed375248fe36c046e4c773c39f978bcd	4	derived schedule/tool index
+H1	RB3	RB3	Tamarin	runs/K/archives/RB3/inputs/rb3.spthy	2f15802b393065a63ed47b8a048e9df76d071a14fda32cfbc6f5f4ab43afc8d9	6	derived schedule/tool index
+H1	RB3	RB3	ProVerif (direct CIM)	runs/K/archives/RB3/inputs/rb3.pv	3a9fdc2b81e05af7048d6cc062f3d9f187f842bbf3d39747b893c67c1e314052	6	derived schedule/tool index
+H1	RB4	RB4	Tamarin	runs/K/archives/RB4/inputs/rb4.spthy	2db35889d398a47a08e40d3f39c7822ffe5dea964ab885b78502bc2537951665	3	derived schedule/tool index
+H1	RB4	RB4	ProVerif (direct CIM)	runs/K/archives/RB4/inputs/rb4.pv	3e7f02b67e2db7fc3c77b9433d08835cd5cc9c9b934f23e95bb604a431c837c5	3	derived schedule/tool index
+H1	RB5	RB5	Tamarin	runs/K/archives/RB5/inputs/rb5.spthy	d444c868ba3eb35ec81f913e4e5f29df7ef48751a94167c6f63454a990a42c47	6	derived schedule/tool index
+H1	RB5	RB5	ProVerif (direct CIM)	runs/K/archives/RB5/inputs/rb5.pv	401537a05e36d1717edcff4e468fac3873340ccc6cc29d80155f7cc09d664621	6	derived schedule/tool index
+H2	local	KEEP	Tamarin	runs/K/archives/local/inputs/KEEP/busy_keep.spthy	7b8b93befa43036340513ce4285e16760231f823c71bd87ffa519abaadd74938	2	derived schedule/tool index
+H2	local	KEEP	ProVerif (direct CIM)	runs/K/archives/local/inputs/KEEP/busy_keep.pv	7c1f7527303901b879bacf818b37b1d76640b8eb6e213d7980d7678eefc60cd4	2	derived schedule/tool index
+H2	local	REFRESH	Tamarin	runs/K/archives/local/inputs/REFRESH/busy_refresh.spthy	597e3473b024404532d46c8fd7cfc93e5c0b9a3f874f6e0742d131b83018edc9	4	derived schedule/tool index
+H2	local	REFRESH	ProVerif (direct CIM)	runs/K/archives/local/inputs/REFRESH/busy_refresh.pv	64f9a5bd0a4fdc98c8bde4c1a783c12e92bacb9a72b14c9792ce201e56834834	4	derived schedule/tool index
+H2	local	T6	Tamarin	runs/K/archives/local/inputs/T6/pending_old.spthy	bc3947f2ee3f1d257f59af181e9f2f550d757dfea7069b7c0ab5c36207c59093	4	derived schedule/tool index
+H2	local	T6	ProVerif (direct CIM)	runs/K/archives/local/inputs/T6/pending_old.pv	2805c55fd66078366429bd2e6ffd91fcc6a303f48124dc777b8b6988d23ccc8c	4	derived schedule/tool index
+H2	local	T7	Tamarin	runs/K/archives/local/inputs/T7/pending_new.spthy	bc300098a40717aee6e6603cec46cae29a855be50c5058e1b25a3f6b5af45f74	4	derived schedule/tool index
+H2	local	T7	ProVerif (direct CIM)	runs/K/archives/local/inputs/T7/pending_new.pv	d120a0326e5f2aca61fe23f528a1c5f2b98d9950365b9df977f3307d5fe7b166	4	derived schedule/tool index
+H2	T6_CONTINUATION	T6_CONTINUATION	Tamarin	runs/K/archives/T6_CONTINUATION/inputs/t6_continuation.spthy	b242c0ad936b4bf175bba10b28c79ab33f8b5765f3c6f6e61bc74d4bdd0becbc	5	derived schedule/tool index
+H2	T6_CONTINUATION	T6_CONTINUATION	ProVerif (direct CIM)	runs/K/archives/T6_CONTINUATION/inputs/t6_continuation.pv	d199254735f59b41ad19d49c9dbc2f091cb409520e2ce61548136ae1db2b585c	5	derived schedule/tool index
+H2	T7_CONTINUATION	T7_CONTINUATION	Tamarin	runs/K/archives/T7_CONTINUATION/inputs/t7_continuation.spthy	a434ecc6bdb054b3df2579d7d5d62e7f8fc35d129473e235eec48c820122a8f9	5	derived schedule/tool index
+H2	T7_CONTINUATION	T7_CONTINUATION	ProVerif (direct CIM)	runs/K/archives/T7_CONTINUATION/inputs/t7_continuation.pv	772646e9e08eb944c0884753fcc1bc21c9b64dace8e42cb81dc52550baa832f6	5	derived schedule/tool index

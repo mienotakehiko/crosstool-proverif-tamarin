@@ -1,0 +1,11 @@
+--- original_inj.spthy
++++ hss_dginj_only.spthy
+@@ -143,7 +143,7 @@
+      & not (Ex #r. RevealBot(I,J)@r)"
+ 
+ // Helper: an accepted bottom key was signed by the top key.
+-lemma TopAuth [reuse]:
++lemma TopAuth:
+   "All I J rB #k. AcceptTop(I,J,rB)@k ==>
+      (Ex #s. SignTop(I,J)@s) | (Ex #r. RevealTop(I)@r)"
+ 

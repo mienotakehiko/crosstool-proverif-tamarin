@@ -1,0 +1,129 @@
+set preciseActions = true.
+
+(* Free names *)
+free publicChannel:channel.
+free vempty_oldest_parent:bitstring.
+free vempty_oldest_temp:bitstring.
+free vempty_pending_new:bitstring.
+
+(* Functions *)
+fun fst(bitstring):bitstring.
+fun pair(bitstring,bitstring):bitstring.
+fun snd(bitstring):bitstring.
+fun tempctx(bitstring,bitstring):bitstring.
+
+(* Equations *)
+equation forall x_1:bitstring, x_2:bitstring; fst((x_1, x_2)) = x_1.
+equation forall x_1:bitstring, x_2:bitstring; snd((x_1, x_2)) = x_2.
+
+(* Events *)
+event eBusyEntryRead(bitstring, bitstring, bitstring, bitstring, bitstring, bitstring, bitstring, bitstring, bitstring).
+event eDistinctFact(bitstring, bitstring).
+event eInit(bitstring).
+event eNewVerified(bitstring, bitstring, bitstring).
+event ePendingAborted(bitstring, bitstring, bitstring, bitstring).
+event ePendingBefore(bitstring, bitstring, bitstring).
+event eVerifiedTempMatches(bitstring, bitstring).
+
+(* Tables *)
+table tBeforeSnapshot(bitstring, bitstring, bitstring, bitstring).
+table tBusyEntry(bitstring, bitstring, bitstring, bitstring, bitstring, bitstring, bitstring).
+table tPending(bitstring, bitstring, bitstring, bitstring).
+table tVerifiedDivergent(bitstring, bitstring, bitstring, bitstring, bitstring).
+table tVerifiedNewOnlyPremise(bitstring, bitstring, bitstring, bitstring).
+
+(* Restrictions *)
+
+(* SingleInit *)
+
+restriction rid_i:bitstring, rid_j:bitstring, i:time, j:time;
+  event(eInit( rid_i ))@i && event(eInit( rid_j ))@j ==> rid_i = rid_j.
+
+(* VerifiedTemporaryContext *)
+
+restriction a:bitstring, b:bitstring, i:time;
+  event(eVerifiedTempMatches( a, b ))@i ==> a = b.
+
+(* DistinctFact *)
+
+restriction rid_i:bitstring, rid_j:bitstring, x:bitstring, i:time,
+            j:time;
+  event(eDistinctFact( rid_i, x ))@i && event(eDistinctFact( rid_j, x ))@j
+  ==> rid_i = rid_j.
+
+(* Queries *)
+
+(* pending_new_slots_empty *)
+
+query b0:bitstring, m:bitstring, n0:bitstring, o:bitstring, r:bitstring,
+      sn:bitstring, sp:bitstring, st:bitstring, t0:bitstring, k:time;
+  event(eBusyEntryRead( m, o, r, n0, b0, t0, st, sp, sn ))@k
+  ==> st = vempty_oldest_temp
+      && sp = vempty_oldest_parent
+      && sn = vempty_pending_new.
+
+(* Processes *)
+
+let rInit =
+        new rid_rInit: bitstring;
+        new stR_Pending: bitstring;
+        new stR_BeforeSnapshot: bitstring;
+        new stR_VerifiedNewOnlyPremise: bitstring;
+        new old_ctx: bitstring;
+        new new_ctx: bitstring;
+        new oldest_pair: bitstring;
+        new incoming_pair: bitstring;
+        new message: bitstring;
+        event eInit(rid_rInit);
+        event ePendingBefore(new_ctx, old_ctx, tempctx(old_ctx, oldest_pair));
+        insert tPending(stR_Pending, new_ctx, old_ctx,
+                        tempctx(old_ctx, oldest_pair));
+        insert tBeforeSnapshot(stR_BeforeSnapshot, new_ctx, old_ctx,
+                               tempctx(old_ctx, oldest_pair));
+        insert tVerifiedNewOnlyPremise(stR_VerifiedNewOnlyPremise, message,
+                                       new_ctx, incoming_pair).
+
+let rRecordVerifiedReceipt =
+        get tVerifiedNewOnlyPremise(stL_VerifiedNewOnlyPremise, m, n,
+                                    peer_pair) in
+        new rid_rRecordVerifiedReceipt: bitstring;
+        new stR_VerifiedDivergent: bitstring;
+        event eDistinctFact(rid_rRecordVerifiedReceipt, (stL_VerifiedNewOnlyPremise, (m, (n, peer_pair))));
+        event eNewVerified(m, n, tempctx(n, peer_pair));
+        insert tVerifiedDivergent(stR_VerifiedDivergent, m, n,
+                                  tempctx(n, peer_pair), peer_pair).
+
+let rAbortOnNewDerived =
+        get tPending(stL_Pending, n, b, t0) in
+        get tVerifiedDivergent(stL_VerifiedDivergent, m, =n, r, peer_pair) in
+        new rid_rAbortOnNewDerived: bitstring;
+        new stR_BusyEntry: bitstring;
+        event eDistinctFact(rid_rAbortOnNewDerived, (stL_Pending, (n, (b, t0))));
+        event eDistinctFact(rid_rAbortOnNewDerived, (stL_VerifiedDivergent, (m, (n, (r, peer_pair)))));
+        event ePendingAborted(m, n, b, t0);
+        event eVerifiedTempMatches(r, tempctx(n, peer_pair));
+        insert tBusyEntry(stR_BusyEntry, m, n, r, vempty_oldest_temp,
+                          vempty_oldest_parent, vempty_pending_new).
+
+let rReadBusyEntry =
+        get tBeforeSnapshot(stL_BeforeSnapshot, n0, b0, t0) in
+        get tBusyEntry(stL_BusyEntry, m, o, r, st, sp, sn) in
+        new rid_rReadBusyEntry: bitstring;
+        event eDistinctFact(rid_rReadBusyEntry, (stL_BeforeSnapshot, (n0, (b0, t0))));
+        event eDistinctFact(rid_rReadBusyEntry, (stL_BusyEntry, (m, (o, (r, (st, (sp, sn)))))));
+        event eBusyEntryRead(m, o, r, n0, b0, t0, st, sp, sn).
+
+process
+    ( !(rInit) | !(rRecordVerifiedReceipt) | !(rAbortOnNewDerived) | !(rReadBusyEntry) )
+
+(*
+All wellformedness checks were successful.
+*)
+
+(*
+Generated from:
+Tamarin version 1.13.0
+Maude version 3.5
+Git revision: UNKNOWN
+Compiled at: 2026-10-24 02:25:12.718891574 UTC
+*)

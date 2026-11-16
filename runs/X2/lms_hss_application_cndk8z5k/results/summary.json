@@ -1,0 +1,674 @@
+[
+  {
+    "model": "legacy_lms",
+    "lemma": "exec",
+    "variant": "baseline",
+    "source_sha256": "20bf9a373a3e2314cf48e4b8c0843918e9015604bc36d46dab795a216e259eb3",
+    "export": {
+      "rc": 0,
+      "timeout": false,
+      "limit_seconds": 60,
+      "wall_seconds": 0.11518944899944472
+    },
+    "status": "EXPORTED",
+    "diagnostics": {
+      "export.stdout.txt": {
+        "warnings": [],
+        "information": []
+      },
+      "export.stderr.txt": {
+        "warnings": [],
+        "information": []
+      },
+      "translated.pv": {
+        "warnings": [],
+        "information": [
+          {
+            "line": 140,
+            "text": "(* Lemma has a leading negation, interpret ProVerif's answers accordingly! *)"
+          },
+          {
+            "line": 418,
+            "text": "- Lemma `exec`: contains an inverted query result; follow the adjacent interpretation instruction [PV-GOAL-INVERTED]"
+          }
+        ]
+      }
+    },
+    "generated_sha256": "784a8ea7827c13cd007d7991d3e10d211c7e0995ccbecf0cda15001abd47d402",
+    "queries": 1,
+    "row_condition_lines": []
+  },
+  {
+    "model": "legacy_lms",
+    "lemma": "exec",
+    "variant": "candidate",
+    "source_sha256": "20bf9a373a3e2314cf48e4b8c0843918e9015604bc36d46dab795a216e259eb3",
+    "export": {
+      "rc": 0,
+      "timeout": false,
+      "limit_seconds": 60,
+      "wall_seconds": 0.1191909620010847
+    },
+    "status": "EXPORTED",
+    "diagnostics": {
+      "export.stdout.txt": {
+        "warnings": [],
+        "information": []
+      },
+      "export.stderr.txt": {
+        "warnings": [],
+        "information": []
+      },
+      "translated.pv": {
+        "warnings": [],
+        "information": [
+          {
+            "line": 140,
+            "text": "(* Lemma has a leading negation, interpret ProVerif's answers accordingly! *)"
+          },
+          {
+            "line": 418,
+            "text": "- Lemma `exec`: contains an inverted query result; follow the adjacent interpretation instruction [PV-GOAL-INVERTED]"
+          }
+        ]
+      }
+    },
+    "generated_sha256": "812e9c9325efb8394b85e6b95fea6a81dcf2e6281a9b9a82226c1a86cd117f74",
+    "queries": 1,
+    "row_condition_lines": []
+  },
+  {
+    "model": "legacy_lms",
+    "lemma": "LS1",
+    "variant": "baseline",
+    "source_sha256": "20bf9a373a3e2314cf48e4b8c0843918e9015604bc36d46dab795a216e259eb3",
+    "export": {
+      "rc": 0,
+      "timeout": false,
+      "limit_seconds": 60,
+      "wall_seconds": 0.11660098599895719
+    },
+    "status": "EXPORTED",
+    "diagnostics": {
+      "export.stdout.txt": {
+        "warnings": [],
+        "information": []
+      },
+      "export.stderr.txt": {
+        "warnings": [],
+        "information": []
+      },
+      "translated.pv": {
+        "warnings": [],
+        "information": []
+      }
+    },
+    "generated_sha256": "b157a3d159d2473fd918d5b5ae69c8b2032b91db75546a8bee89b0238a55e22e",
+    "queries": 1,
+    "row_condition_lines": []
+  },
+  {
+    "model": "legacy_lms",
+    "lemma": "LS1",
+    "variant": "candidate",
+    "source_sha256": "20bf9a373a3e2314cf48e4b8c0843918e9015604bc36d46dab795a216e259eb3",
+    "export": {
+      "rc": 0,
+      "timeout": false,
+      "limit_seconds": 60,
+      "wall_seconds": 0.06538811300015368
+    },
+    "status": "EXPORTED",
+    "diagnostics": {
+      "export.stdout.txt": {
+        "warnings": [],
+        "information": []
+      },
+      "export.stderr.txt": {
+        "warnings": [],
+        "information": []
+      },
+      "translated.pv": {
+        "warnings": [],
+        "information": []
+      }
+    },
+    "generated_sha256": "02c5b01fa010ce5780aeb1fa111b1556be12fc7dda16d41896571a6a21b06414",
+    "queries": 1,
+    "row_condition_lines": []
+  },
+  {
+    "model": "legacy_lms",
+    "lemma": "LS4_pure",
+    "variant": "baseline",
+    "source_sha256": "20bf9a373a3e2314cf48e4b8c0843918e9015604bc36d46dab795a216e259eb3",
+    "export": {
+      "rc": 0,
+      "timeout": false,
+      "limit_seconds": 60,
+      "wall_seconds": 0.11714227199991001
+    },
+    "status": "EXPORTED",
+    "diagnostics": {
+      "export.stdout.txt": {
+        "warnings": [],
+        "information": []
+      },
+      "export.stderr.txt": {
+        "warnings": [],
+        "information": []
+      },
+      "translated.pv": {
+        "warnings": [],
+        "information": []
+      }
+    },
+    "generated_sha256": "084c1aa66890b89d95599d3277d81b80a044d9a175910475f209e21324638d83",
+    "queries": 1,
+    "row_condition_lines": []
+  },
+  {
+    "model": "legacy_lms",
+    "lemma": "LS4_pure",
+    "variant": "candidate",
+    "source_sha256": "20bf9a373a3e2314cf48e4b8c0843918e9015604bc36d46dab795a216e259eb3",
+    "export": {
+      "rc": 0,
+      "timeout": false,
+      "limit_seconds": 60,
+      "wall_seconds": 0.11843145500097307
+    },
+    "status": "EXPORTED",
+    "diagnostics": {
+      "export.stdout.txt": {
+        "warnings": [],
+        "information": []
+      },
+      "export.stderr.txt": {
+        "warnings": [],
+        "information": []
+      },
+      "translated.pv": {
+        "warnings": [],
+        "information": []
+      }
+    },
+    "generated_sha256": "02be65d1a1a7221ba6664083b8693f427834be1def3ee747ffd35ca9bb2864a3",
+    "queries": 1,
+    "row_condition_lines": []
+  },
+  {
+    "model": "same_cim_lms",
+    "lemma": "exec",
+    "variant": "baseline",
+    "source_sha256": "19829fa7ca8f36f6609f301278740bd2325f22b17a53c6439bb5a2e0697e423b",
+    "export": {
+      "rc": 0,
+      "timeout": false,
+      "limit_seconds": 60,
+      "wall_seconds": 0.06518080599926179
+    },
+    "status": "EXPORTED",
+    "diagnostics": {
+      "export.stdout.txt": {
+        "warnings": [],
+        "information": []
+      },
+      "export.stderr.txt": {
+        "warnings": [],
+        "information": []
+      },
+      "translated.pv": {
+        "warnings": [],
+        "information": [
+          {
+            "line": 148,
+            "text": "(* Lemma has a leading negation, interpret ProVerif's answers accordingly! *)"
+          },
+          {
+            "line": 415,
+            "text": "- Lemma `exec`: contains an inverted query result; follow the adjacent interpretation instruction [PV-GOAL-INVERTED]"
+          }
+        ]
+      }
+    },
+    "generated_sha256": "46400e53a0b0c4f3b9fa9bef699b24e7e53d204a9f55ee0e5a6a83ebe99df3e9",
+    "queries": 1,
+    "row_condition_lines": []
+  },
+  {
+    "model": "same_cim_lms",
+    "lemma": "exec",
+    "variant": "candidate",
+    "source_sha256": "19829fa7ca8f36f6609f301278740bd2325f22b17a53c6439bb5a2e0697e423b",
+    "export": {
+      "rc": 0,
+      "timeout": false,
+      "limit_seconds": 60,
+      "wall_seconds": 0.065006736000214
+    },
+    "status": "EXPORTED",
+    "diagnostics": {
+      "export.stdout.txt": {
+        "warnings": [],
+        "information": []
+      },
+      "export.stderr.txt": {
+        "warnings": [],
+        "information": []
+      },
+      "translated.pv": {
+        "warnings": [],
+        "information": [
+          {
+            "line": 148,
+            "text": "(* Lemma has a leading negation, interpret ProVerif's answers accordingly! *)"
+          },
+          {
+            "line": 415,
+            "text": "- Lemma `exec`: contains an inverted query result; follow the adjacent interpretation instruction [PV-GOAL-INVERTED]"
+          }
+        ]
+      }
+    },
+    "generated_sha256": "b83e043936eca0cc0bfd697fd7b8d535a9467885afbb43f0560d1e13608d45fe",
+    "queries": 1,
+    "row_condition_lines": []
+  },
+  {
+    "model": "same_cim_lms",
+    "lemma": "LS1",
+    "variant": "baseline",
+    "source_sha256": "19829fa7ca8f36f6609f301278740bd2325f22b17a53c6439bb5a2e0697e423b",
+    "export": {
+      "rc": 0,
+      "timeout": false,
+      "limit_seconds": 60,
+      "wall_seconds": 0.06491721800011874
+    },
+    "status": "EXPORTED",
+    "diagnostics": {
+      "export.stdout.txt": {
+        "warnings": [],
+        "information": []
+      },
+      "export.stderr.txt": {
+        "warnings": [],
+        "information": []
+      },
+      "translated.pv": {
+        "warnings": [],
+        "information": []
+      }
+    },
+    "generated_sha256": "0c6d6bb98883a82038ac327debccc30cffd661a9ed9345ab34d00ea3cfcd9f9e",
+    "queries": 1,
+    "row_condition_lines": []
+  },
+  {
+    "model": "same_cim_lms",
+    "lemma": "LS1",
+    "variant": "candidate",
+    "source_sha256": "19829fa7ca8f36f6609f301278740bd2325f22b17a53c6439bb5a2e0697e423b",
+    "export": {
+      "rc": 0,
+      "timeout": false,
+      "limit_seconds": 60,
+      "wall_seconds": 0.06513845399967977
+    },
+    "status": "EXPORTED",
+    "diagnostics": {
+      "export.stdout.txt": {
+        "warnings": [],
+        "information": []
+      },
+      "export.stderr.txt": {
+        "warnings": [],
+        "information": []
+      },
+      "translated.pv": {
+        "warnings": [],
+        "information": []
+      }
+    },
+    "generated_sha256": "981c733d942456a24bfdb19fbe6de992ef9745822c819b56d86b57b4795917fc",
+    "queries": 1,
+    "row_condition_lines": []
+  },
+  {
+    "model": "same_cim_lms",
+    "lemma": "LS4_pure",
+    "variant": "baseline",
+    "source_sha256": "19829fa7ca8f36f6609f301278740bd2325f22b17a53c6439bb5a2e0697e423b",
+    "export": {
+      "rc": 0,
+      "timeout": false,
+      "limit_seconds": 60,
+      "wall_seconds": 0.06476362800094648
+    },
+    "status": "EXPORTED",
+    "diagnostics": {
+      "export.stdout.txt": {
+        "warnings": [],
+        "information": []
+      },
+      "export.stderr.txt": {
+        "warnings": [],
+        "information": []
+      },
+      "translated.pv": {
+        "warnings": [],
+        "information": []
+      }
+    },
+    "generated_sha256": "7763af74cadb8b29acd3b51cce698d2e65a5cdd8209eb72294bfdf2a94ea508e",
+    "queries": 1,
+    "row_condition_lines": []
+  },
+  {
+    "model": "same_cim_lms",
+    "lemma": "LS4_pure",
+    "variant": "candidate",
+    "source_sha256": "19829fa7ca8f36f6609f301278740bd2325f22b17a53c6439bb5a2e0697e423b",
+    "export": {
+      "rc": 0,
+      "timeout": false,
+      "limit_seconds": 60,
+      "wall_seconds": 0.06522280699937255
+    },
+    "status": "EXPORTED",
+    "diagnostics": {
+      "export.stdout.txt": {
+        "warnings": [],
+        "information": []
+      },
+      "export.stderr.txt": {
+        "warnings": [],
+        "information": []
+      },
+      "translated.pv": {
+        "warnings": [],
+        "information": []
+      }
+    },
+    "generated_sha256": "ed20bd988cd077905d9218376ac026194512088a0e310e58a9dbe313b4956b65",
+    "queries": 1,
+    "row_condition_lines": []
+  },
+  {
+    "model": "hss_inj",
+    "lemma": "exec",
+    "variant": "baseline",
+    "source_sha256": "c3b7aadb01e18325b5f333fa9c65a4984ab57a6b838ab6a73bda562278cfd6d3",
+    "export": {
+      "rc": 0,
+      "timeout": false,
+      "limit_seconds": 60,
+      "wall_seconds": 0.11519032800060813
+    },
+    "status": "EXPORTED",
+    "diagnostics": {
+      "export.stdout.txt": {
+        "warnings": [],
+        "information": []
+      },
+      "export.stderr.txt": {
+        "warnings": [],
+        "information": []
+      },
+      "translated.pv": {
+        "warnings": [],
+        "information": [
+          {
+            "line": 272,
+            "text": "(* Lemma has a leading negation, interpret ProVerif's answers accordingly! *)"
+          },
+          {
+            "line": 761,
+            "text": "- Lemma `exec`: contains an inverted query result; follow the adjacent interpretation instruction [PV-GOAL-INVERTED]"
+          }
+        ]
+      }
+    },
+    "generated_sha256": "8a9d1fcae919a12cf77d939112f6518354d7d4b231c609e8d780fb7d0e9b5195",
+    "queries": 1,
+    "row_condition_lines": []
+  },
+  {
+    "model": "hss_inj",
+    "lemma": "exec",
+    "variant": "candidate",
+    "source_sha256": "c3b7aadb01e18325b5f333fa9c65a4984ab57a6b838ab6a73bda562278cfd6d3",
+    "export": {
+      "rc": 0,
+      "timeout": false,
+      "limit_seconds": 60,
+      "wall_seconds": 0.1209755279996898
+    },
+    "status": "EXPORTED",
+    "diagnostics": {
+      "export.stdout.txt": {
+        "warnings": [],
+        "information": []
+      },
+      "export.stderr.txt": {
+        "warnings": [],
+        "information": []
+      },
+      "translated.pv": {
+        "warnings": [],
+        "information": [
+          {
+            "line": 272,
+            "text": "(* Lemma has a leading negation, interpret ProVerif's answers accordingly! *)"
+          },
+          {
+            "line": 761,
+            "text": "- Lemma `exec`: contains an inverted query result; follow the adjacent interpretation instruction [PV-GOAL-INVERTED]"
+          }
+        ]
+      }
+    },
+    "generated_sha256": "165faa8279f1ba6fdbddde1aeae61bc7e2ecc177a015f2d343c9936e04932e3d",
+    "queries": 1,
+    "row_condition_lines": []
+  },
+  {
+    "model": "hss_inj",
+    "lemma": "LS7",
+    "variant": "baseline",
+    "source_sha256": "c3b7aadb01e18325b5f333fa9c65a4984ab57a6b838ab6a73bda562278cfd6d3",
+    "export": {
+      "rc": 0,
+      "timeout": false,
+      "limit_seconds": 60,
+      "wall_seconds": 0.11697894899953099
+    },
+    "status": "EXPORTED",
+    "diagnostics": {
+      "export.stdout.txt": {
+        "warnings": [],
+        "information": []
+      },
+      "export.stderr.txt": {
+        "warnings": [],
+        "information": []
+      },
+      "translated.pv": {
+        "warnings": [],
+        "information": []
+      }
+    },
+    "generated_sha256": "6a0a90decff1eaca5c9816169457eb4ee31633e8706fc43881fa1f58546c51fc",
+    "queries": 1,
+    "row_condition_lines": []
+  },
+  {
+    "model": "hss_inj",
+    "lemma": "LS7",
+    "variant": "candidate",
+    "source_sha256": "c3b7aadb01e18325b5f333fa9c65a4984ab57a6b838ab6a73bda562278cfd6d3",
+    "export": {
+      "rc": 0,
+      "timeout": false,
+      "limit_seconds": 60,
+      "wall_seconds": 0.12174066499937908
+    },
+    "status": "EXPORTED",
+    "diagnostics": {
+      "export.stdout.txt": {
+        "warnings": [],
+        "information": []
+      },
+      "export.stderr.txt": {
+        "warnings": [],
+        "information": []
+      },
+      "translated.pv": {
+        "warnings": [],
+        "information": []
+      }
+    },
+    "generated_sha256": "9bea72606ea8f84cfd9b419500b6cd85bfccf4d61275b24949e17286c18e02ea",
+    "queries": 1,
+    "row_condition_lines": []
+  },
+  {
+    "model": "hss_noinj",
+    "lemma": "exec",
+    "variant": "baseline",
+    "source_sha256": "9d534e11b88bbb6c950ab87d4fd8dedf9e9b881d7853a920c206c5afb8496d5c",
+    "export": {
+      "rc": 0,
+      "timeout": false,
+      "limit_seconds": 60,
+      "wall_seconds": 0.11525561599955836
+    },
+    "status": "EXPORTED",
+    "diagnostics": {
+      "export.stdout.txt": {
+        "warnings": [],
+        "information": []
+      },
+      "export.stderr.txt": {
+        "warnings": [],
+        "information": []
+      },
+      "translated.pv": {
+        "warnings": [],
+        "information": [
+          {
+            "line": 258,
+            "text": "(* Lemma has a leading negation, interpret ProVerif's answers accordingly! *)"
+          },
+          {
+            "line": 747,
+            "text": "- Lemma `exec`: contains an inverted query result; follow the adjacent interpretation instruction [PV-GOAL-INVERTED]"
+          }
+        ]
+      }
+    },
+    "generated_sha256": "28383c95c1d5898dd88ebaf812b1ff0cb80301b5663e7ecda73b3f62bcfedbdc",
+    "queries": 1,
+    "row_condition_lines": []
+  },
+  {
+    "model": "hss_noinj",
+    "lemma": "exec",
+    "variant": "candidate",
+    "source_sha256": "9d534e11b88bbb6c950ab87d4fd8dedf9e9b881d7853a920c206c5afb8496d5c",
+    "export": {
+      "rc": 0,
+      "timeout": false,
+      "limit_seconds": 60,
+      "wall_seconds": 0.1147067670008255
+    },
+    "status": "EXPORTED",
+    "diagnostics": {
+      "export.stdout.txt": {
+        "warnings": [],
+        "information": []
+      },
+      "export.stderr.txt": {
+        "warnings": [],
+        "information": []
+      },
+      "translated.pv": {
+        "warnings": [],
+        "information": [
+          {
+            "line": 258,
+            "text": "(* Lemma has a leading negation, interpret ProVerif's answers accordingly! *)"
+          },
+          {
+            "line": 747,
+            "text": "- Lemma `exec`: contains an inverted query result; follow the adjacent interpretation instruction [PV-GOAL-INVERTED]"
+          }
+        ]
+      }
+    },
+    "generated_sha256": "ab6bb9248c043fe07351a2f36efbccee8d516cb810e00bb80f34e238d7627644",
+    "queries": 1,
+    "row_condition_lines": []
+  },
+  {
+    "model": "hss_noinj",
+    "lemma": "LS7",
+    "variant": "baseline",
+    "source_sha256": "9d534e11b88bbb6c950ab87d4fd8dedf9e9b881d7853a920c206c5afb8496d5c",
+    "export": {
+      "rc": 0,
+      "timeout": false,
+      "limit_seconds": 60,
+      "wall_seconds": 0.11626830100067309
+    },
+    "status": "EXPORTED",
+    "diagnostics": {
+      "export.stdout.txt": {
+        "warnings": [],
+        "information": []
+      },
+      "export.stderr.txt": {
+        "warnings": [],
+        "information": []
+      },
+      "translated.pv": {
+        "warnings": [],
+        "information": []
+      }
+    },
+    "generated_sha256": "c8a76717b5b1c6dbbec0762754b52352a582d7058fe8a6d8bc585ad99d038db5",
+    "queries": 1,
+    "row_condition_lines": []
+  },
+  {
+    "model": "hss_noinj",
+    "lemma": "LS7",
+    "variant": "candidate",
+    "source_sha256": "9d534e11b88bbb6c950ab87d4fd8dedf9e9b881d7853a920c206c5afb8496d5c",
+    "export": {
+      "rc": 0,
+      "timeout": false,
+      "limit_seconds": 60,
+      "wall_seconds": 0.11865016299998388
+    },
+    "status": "EXPORTED",
+    "diagnostics": {
+      "export.stdout.txt": {
+        "warnings": [],
+        "information": []
+      },
+      "export.stderr.txt": {
+        "warnings": [],
+        "information": []
+      },
+      "translated.pv": {
+        "warnings": [],
+        "information": []
+      }
+    },
+    "generated_sha256": "c68cf8112b1b856d0795f5ee72f94b47dfc120c4bea604cf16cb98dd40caaea9",
+    "queries": 1,
+    "row_condition_lines": []
+  }
+]

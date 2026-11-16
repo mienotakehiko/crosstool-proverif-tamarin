@@ -1,0 +1,1 @@
+["tamarin-prover", "-d=0", "-m=proverif", "--lemma=t6_continuation_pair_distinct", "-o=/work/pair_distinct/translated.pv", "/work/inputs/t6_continuation.spthy"]

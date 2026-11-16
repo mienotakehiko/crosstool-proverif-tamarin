@@ -1,0 +1,47 @@
+{
+  "model": "pending_old",
+  "theory": "CimPendingOld",
+  "constants": ["empty_new", "empty_pair"],
+  "function": "tempctx",
+  "init": {
+    "fresh": ["old_ctx", "new_ctx", "local_pair", "incoming_pair", "message"],
+    "emit": [["PendingBefore", "old_ctx", "new_ctx", "old_ctx", "local_pair"]],
+    "produce": [
+      ["Pending", "old_ctx", "new_ctx", "old_ctx", "local_pair"],
+      ["BeforeSnapshot", "new_ctx", "old_ctx", "local_pair"],
+      ["VerifiedOldPremise", "message", "old_ctx", "incoming_pair"]
+    ]
+  },
+  "steps": [
+    {
+      "id": "RecordVerifiedReceipt",
+      "consume": [["VerifiedOldPremise", "m", "o", "peer_pair"]],
+      "emit": [["OldVerified", "m", "o", ["tempctx", "o", "peer_pair"]]],
+      "produce": [["VerifiedDivergent", "m", "o", ["tempctx", "o", "peer_pair"], "peer_pair"]]
+    },
+    {
+      "id": "AbortOnOldDerived",
+      "consume": [["Pending", "o", "n", "src", "p"], ["VerifiedDivergent", "m", "o", "r", "peer_pair"]],
+      "require_equal": ["r", ["tempctx", "o", "peer_pair"]],
+      "emit": [["PendingAborted", "m", "o", "n", "src", "p"]],
+      "produce": [["BusyEntry", "m", "o", "r", "empty_new", "empty_pair"]]
+    },
+    {
+      "id": "ReadBusyEntry",
+      "consume": [["BeforeSnapshot", "n0", "i0", "p0"], ["BusyEntry", "m", "o", "r", "ns", "ps"]],
+      "emit": [["BusyEntryRead", "m", "o", "r", "n0", "i0", "p0", "ns", "ps"]],
+      "produce": []
+    }
+  ],
+  "observed": ["BusyEntryRead", "m", "o", "r", "n0", "i0", "p0", "ns", "ps"],
+  "properties": [
+    {"id": "reachable", "kind": "exists"},
+    {"id": "verified_receipt", "kind": "correspondence", "before": [["OldVerified", "m", "o", "r"]]},
+    {
+      "id": "aborts_matching_update",
+      "kind": "correspondence",
+      "before": [["PendingBefore", "o", "n0", "i0", "p0"], ["PendingAborted", "m", "o", "n0", "i0", "p0"]]
+    },
+    {"id": "slots_empty", "kind": "correspondence", "equal": [["ns", "empty_new"], ["ps", "empty_pair"]]}
+  ]
+}

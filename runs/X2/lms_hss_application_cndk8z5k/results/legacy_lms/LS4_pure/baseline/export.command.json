@@ -1,0 +1,12 @@
+[
+  "/baseline-tamarin",
+  "+RTS",
+  "-N1",
+  "-M768m",
+  "-RTS",
+  "-d=0",
+  "-m=proverif",
+  "--lemma=LS4_pure",
+  "-o=/work/legacy_lms/LS4_pure/baseline/translated.pv",
+  "/kit/models/legacy_lms.spthy"
+]

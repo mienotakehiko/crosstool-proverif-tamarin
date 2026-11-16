@@ -1,0 +1,108 @@
+{
+  "pass": true,
+  "model": "busy_refresh",
+  "baseline_archives_sha256": {
+    "H1H2_busy_refresh_results_20261111T072150Z.tar.gz": "5aae14399c9ff8eba8dacca0356ebaccca5cc6f1887a2c1fe10c764360ea620a"
+  },
+  "checks": {
+    "tool_exit_codes_zero": true,
+    "proverif_query_statements_match_baseline": true,
+    "proverif_expected_verdicts": true,
+    "tamarin_expected_verdicts": true,
+    "tamarin_proof_closed": true,
+    "proverif_normal_trace_matches_baseline": true,
+    "tamarin_normal_trace_matches_baseline": true
+  },
+  "proverif_verdicts": [
+    "false",
+    "true",
+    "true",
+    "true"
+  ],
+  "tamarin_verdicts": {
+    "reachable": "verified",
+    "parent_and_context": "verified",
+    "temp_distinct": "verified",
+    "pair_distinct": "verified"
+  },
+  "wall_seconds": {
+    "proverif": 0.005,
+    "tamarin": 0.173
+  },
+  "tamarin_processing_seconds": 0.14,
+  "observed_events": {
+    "proverif": {
+      "RefreshBefore": [
+        "fresh_0",
+        [
+          "tempctx",
+          "fresh_0",
+          "fresh_1"
+        ],
+        "fresh_1"
+      ],
+      "RefreshInstalled": [
+        "fresh_0",
+        [
+          "tempctx",
+          "fresh_0",
+          "fresh_2"
+        ],
+        "fresh_2"
+      ],
+      "RefreshRead": [
+        "fresh_0",
+        [
+          "tempctx",
+          "fresh_0",
+          "fresh_1"
+        ],
+        "fresh_1",
+        "fresh_0",
+        [
+          "tempctx",
+          "fresh_0",
+          "fresh_2"
+        ],
+        "fresh_2"
+      ]
+    },
+    "tamarin": {
+      "RefreshBefore": [
+        "fresh_0",
+        [
+          "tempctx",
+          "fresh_0",
+          "fresh_1"
+        ],
+        "fresh_1"
+      ],
+      "RefreshInstalled": [
+        "fresh_0",
+        [
+          "tempctx",
+          "fresh_0",
+          "fresh_2"
+        ],
+        "fresh_2"
+      ],
+      "RefreshRead": [
+        "fresh_0",
+        [
+          "tempctx",
+          "fresh_0",
+          "fresh_1"
+        ],
+        "fresh_1",
+        "fresh_0",
+        [
+          "tempctx",
+          "fresh_0",
+          "fresh_2"
+        ],
+        "fresh_2"
+      ]
+    }
+  },
+  "trace_errors": {}
+}

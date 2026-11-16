@@ -1,0 +1,25 @@
+'tamarin-prover' '--with-maude=maude' '--derivcheck-timeout=0' '--prove=unmatching_implies_detect_with_R_uncompromised' 'corpus/csf17__counter-protocol.spthy' +RTS '-N' '-M56g' '-A64m' '-qg' '-N4' '-sresults/out/P5_P4_std_csf17__counter-protocol_T0_unmatching_implies_detect_with_R_uncompromised_d_prove_r1.rts' 
+  11,683,341,536 bytes allocated in the heap
+     715,636,552 bytes copied during GC
+     117,695,712 bytes maximum residency (7 sample(s))
+         363,296 bytes maximum slop
+             506 MiB total memory in use (0 MiB lost due to fragmentation)
+
+                                     Tot time (elapsed)  Avg pause  Max pause
+  Gen  0        39 colls,     0 par    0.080s   0.584s     0.0150s    0.0341s
+  Gen  1         7 colls,     0 par    0.006s   0.312s     0.0446s    0.1162s
+
+  TASKS: 10 (1 bound, 9 peak workers (9 total), using -N4)
+
+  SPARKS: 487 (216 converted, 0 overflowed, 0 dud, 0 GC'd, 271 fizzled)
+
+  INIT    time    0.003s  (  0.003s elapsed)
+  MUT     time    5.914s  (  2.591s elapsed)
+  GC      time    0.086s  (  0.896s elapsed)
+  EXIT    time    0.000s  (  0.010s elapsed)
+  Total   time    6.004s  (  3.500s elapsed)
+
+  Alloc rate    1,975,481,702 bytes per MUT second
+
+  Productivity  98.5% of total user, 74.0% of total elapsed
+

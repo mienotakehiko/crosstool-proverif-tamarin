@@ -1,0 +1,8 @@
+cff-version: 1.2.0
+message: "If you use this repository, please cite it as follows."
+type: software
+title: "Cross-tool verification of iterative cryptographic protocols"
+authors:
+  - family-names: Mieno
+    given-names: Takehiko
+repository-code: "https://github.com/mienotakehiko/crosstool-proverif-tamarin"

@@ -1,94 +1,78 @@
 # Cross-tool verification of iterative cryptographic protocols
 
-This repository accompanies *A Cross-Tool Formal Verification Methodology for Cryptographic Protocols with Iterative Behavior Using ProVerif and Tamarin Prover*. It contains the Common Iterative Model (CIM) compiler, selected symbolic models, state-translation probes, and result tables from the my research snapshot.
+This repository accompanies *A Cross-Tool Formal Verification Methodology for Cryptographic Protocols with Iterative Behavior Using ProVerif and Tamarin Prover*. It collects the Common Iterative Model (CIM) compiler, symbolic models, published comparison data and archived results for the manuscript. See the [GitHub repository](https://github.com/mienotakehiko/crosstool-proverif-tamarin).
 
-Project repository on [GitHub](https://github.com/mienotakehiko/crosstool-proverif-tamarin).
+**Evidence status.** The [manuscript map](docs/PAPER_MAPPING.md) identifies the original evidence available for each claim. The release still requires the historical generator revisions and tests, the production G Tamarin run, series M, and the 21 tests for Lemma 1.
 
-## Verification paths
+## Recompute the manuscript results
 
-| Path | Input and procedure |
-| --- | --- |
-| (a) Native Tamarin | Tamarin checks a lemma in a multiset-rewriting model. |
-| (b) Direct ProVerif | The CIM compiler generates a ProVerif encoding directly from a TOML model. The correspondence applies under the stated conditions for the encoding and property. |
-| (c) Translated ProVerif | The pinned Tamarin exporter translates the input model and lemma for ProVerif. The recorded verdicts retain the effects of query polarity and any translation warnings. |
-
-Model assumptions, query scope, and termination status determine which verdicts can be compared. For example, a reconstructed trace for a negated event query establishes reachability, while a timeout leaves the property unresolved. The tables distinguish archived runs from diagnostic interventions.
-
-## Repository layout
-
-| Location | Contents |
-| --- | --- |
-| [`code/cimc/pv-kit-v2/`](code/cimc/pv-kit-v2/) | CIM compiler and diagnosis tools, LM-OTS and LMS inputs, generated fixtures, and regression tests |
-| [`code/tamarin-kit/v3/`](code/tamarin-kit/v3/) | Selected Tamarin models, tactic generation, and single-run and summary tools |
-| [`code/studies/state-translation/`](code/studies/state-translation/) | Initial, zero-argument, guarded, and expanded state probes |
-| [`experiments/`](experiments/) | Historical run records and result tables, including C1, H1/H2, the pinned corpus, and LMS |
-| [`environments/fixed-ccs26/`](environments/fixed-ccs26/) | Recorded tool hashes, commit markers, and fixed container identity |
-| [`registry/`](registry/) | Cohort descriptions, state comparison rows, and SHA-256 inventories |
-| [`scripts/verify_evidence.py`](scripts/verify_evidence.py) | Offline integrity and consistency checks |
-
-## Check the snapshot
-
-The offline checker requires Python 3.11 or later. Run it from the repository root.
+Use Python 3.11 or later from the repository root.
 
 ```bash
 python3 -B scripts/verify_evidence.py
+python3 -B scripts/check_model_hashes.py
+python3 -B scripts/check_kudos_models.py
+python3 -B scripts/recompute_paper_numbers.py
+python3 -B corpus/recompute_morio.py
 ```
 
-The script checks the current file manifest, archived counts, and evidence references. Pass `--archives /path/to/extracted/cross-tool-evidence` to verify the original archive files by SHA-256. Pass `--u5-a /path/to/U5_A_models_results.tar.gz` for the separate U5 archive. The checker reads the files without extracting their contents or starting either prover.
+The default recomputation includes the baseline counts and the checks added for the recovered records. Use `--baseline-only` for the 61 baseline comparisons. The scripts read local files and start neither prover.
 
-Run the CIM unit and regression tests and regenerate the LMS fixtures in a temporary directory.
+| Series | Records | Recalculation | Manuscript location |
+| --- | --- | --- | --- |
+| G | [ProVerif verdicts](runs/G/proverif/), [sandbox fixtures](cimc/v0.1.0/tests/data/) | `scripts/recompute_paper_numbers.py` | Table 9, generated-model evaluation and AL |
+| P1–P4 | [P1](runs/P1/), [P2](runs/P2/), [P3](runs/P3/), [P4](runs/P4/), [cumulative checkpoints](runs/screening/) | `scripts/recompute_paper_numbers.py`, `scripts/check_model_hashes.py` | Tables 9–10, screening and corpus |
+| P5 | [Repeated runs](runs/P5/) | `scripts/recompute_paper_numbers.py` | Repetition and search-order comparison |
+| L | [Ladder and cloud runs](runs/L/), [host configuration](env/u11/) | `scripts/recompute_paper_numbers.py`, `paper/plot_ladder.py` | Heap-exhaustion figure and 96 GiB trials |
+| M | [Historical evidence required](runs/M/) | See the manuscript map | Mutation evaluation |
+| X0 | [Historical and post-rename records](runs/X0/) | `scripts/recompute_paper_numbers.py` | Handwritten-model translation outcomes |
+| X1 | [Comparison and stage files](runs/X1/), [patches and recipes](exporter/) | `exporter/index_regression.py`, `scripts/recompute_paper_numbers.py` | B0/B1/B2 regression table |
+| X2 | [LMS/HSS exports and proof records](runs/X2/) | `scripts/recompute_paper_numbers.py` | LMS/HSS application and assumptions table |
+| K | [Schedules and run records](runs/K/), [specifications and generators](cim/kudos/) | `scripts/recompute_paper_numbers.py` | Finite KUDOS schedule comparison |
+| Corpus | [Theory sources and SHA-256 hashes](registry/corpus.tsv), [Morio et al. subset](corpus/morio/) | `corpus/recompute_morio.py`, `scripts/check_model_hashes.py` | Public theory corpus and related work |
+| Lemma 1 | [Historical tests required](scheduler/) | See the manuscript map | Appendix B |
+
+The paper references use the series names and table subjects because table and figure numbers can change between revisions.
+
+## Source and evidence layout
+
+| Directory | Contents |
+| --- | --- |
+| [`cimc/`](cimc/), [`cim/`](cim/) | Archived compiler 0.1.0 and signer/KUDOS specifications |
+| [`models/`](models/) | Generated signer fixtures and their SHA-256 sums, handwritten theories, and tactic generation |
+| [`al/`](al/), [`diagnosis/`](diagnosis/), [`scheduler/`](scheduler/) | Version and test coverage notes |
+| [`exporter/`](exporter/) | Translation probes, regression stage indexing, source patches and selected build recipes |
+| [`env/`](env/), [`registry/`](registry/) | Recorded environments, manuscript map, source provenance and file inventories |
+| [`paper/`](paper/) | Data and script for the memory-ladder figure |
+
+The native Tamarin route checks a lemma against a multiset-rewriting theory. The direct ProVerif route generates a process from a CIM specification. The translated ProVerif route uses an exporter on a Tamarin model and lemma. Compare verdicts only after checking the model assumptions and query polarity. A reconstructed witness for a negated existence query establishes reachability. A timeout leaves that run unresolved.
+
+## Check the archived compiler and models
+
+Run the compiler and its existing tests from its version directory.
 
 ```bash
 (
-  cd code/cimc/pv-kit-v2 &&
+  cd cimc/v0.1.0 &&
   python3 -B tests/test_al.py &&
   python3 -B tests/regress_al.py &&
-  output_dir="$(mktemp -d)" &&
-  python3 -B -m cimc cims/lms_s2.toml "$output_dir" &&
-  diff -r --exclude=run_tam.sh out/lms_s2 "$output_dir"
+  work="$(mktemp -d)" &&
+  python3 -B -m cimc ../../cim/signers/lms_s2.toml "$work" &&
+  diff -r --exclude=run_tam.sh ../../models/generated/v0.1.0/lms_s2 "$work"
 )
+(cd models/generated && sha256sum -c SHA256SUMS)
+(cd exporter/probes/initial && python3 -B -m unittest -v test_kit)
 ```
 
-The generated fixtures include a SHA-256 manifest and a report on the compiler's side conditions. The historical tool versions for these CIM examples were ProVerif 2.05 and Tamarin 1.12.0. The shell runners also use tools such as GNU `timeout` and `bc`. The resource settings in the historical runners reflect the original hosts.
+The legacy compiler checks exercise version 0.1.0. The generated signer manifest authenticates the 16 archived fixtures. To inspect the exporter build, follow the [build and regression notes](exporter/README.md). The resource budgets and runtime identities in the archived records belong to their respective cohorts.
 
-Run the initial state probe's runner tests separately.
+## Sources and licensing
 
-```bash
-(cd code/studies/state-translation/initial && python3 -B -m unittest -v test_kit)
-```
+The LMS and LM-OTS models use abstractions of [RFC 8554](https://www.rfc-editor.org/rfc/rfc8554). The controlled translation comparison records the [pinned Tamarin fork](https://github.com/felixlinker/tamarin-prover/tree/c293106913ccf7bb41f49b0dc555a8074e8ea88c). The Morio et al. subset comes from the [CCS 2026 evaluation artifact](https://doi.org/10.5281/zenodo.21827126). The upstream licenses accompany the exported patch and dataset directories. [CITATION.cff](CITATION.cff) identifies the repository and its author.
 
-The runner tests exercise input checks and mock tool launches. The pinned probe commands below require a locally available Docker image with the identity recorded in [`runtime.json`](environments/fixed-ccs26/runtime.json). An arbitrary Tamarin or ProVerif release does not reproduce this environment. The version markers and executable hashes establish the recorded runtime identity. The snapshot does not establish a byte-identical rebuild from the recorded source commits.
-
-| Working directory under `code/studies/state-translation/` | Command | Comparison |
-| --- | --- | --- |
-| `initial/` | `bash run_pinned.sh` | Native and translated verdicts for finite state consumption |
-| `zero-argument/` | `bash run_pinned.sh` | Zero-argument and successor state patterns |
-| `guarded/` | `python3 -B guard_compare.py` | Saved and equality-guarded ProVerif inputs |
-| `source/source_probe/` | `python3 -B run_probe.py` | Nested, paired, and variable state patterns |
-
-## Archived comparisons
-
-| Cohort | Observations |
-| --- | --- |
-| Initial state probe | 16 agreements in 16 native–export comparisons |
-| Zero-argument state probe | 10 agreements and 6 differences in 16 comparisons |
-| Explicit equality guard | The original inputs reproduced all 16 saved ProVerif verdicts. All 16 guarded verdicts agreed with the saved native results. |
-| Expanded state probe | 13 agreements and 3 differences in 16 native–export comparisons |
-| H1/H2 Stage D | 48 agreements in 49 original comparisons and 12 agreements in 12 separate diagnostic comparisons |
-| C1 native closeout | Four universal properties verified, one universal property falsified, and two existence lemmas verified |
-| RQ5(b) | The correspondence table records the 24 resource-limited cases. The numerator and proportion remain undetermined. |
-
-These counts apply to the listed cohorts. The guard study changes generated ProVerif inputs for a local diagnostic comparison. The candidate exporter patch had reached a static apply check at the date of this snapshot. The state probes address specific patterns in finite test models.
-
-The repository contains selected records from the research archive. Where a public table projects columns from its source, it retains case IDs, verdicts, and relevant digests. The separate evidence archive retains the original host paths, full output, and additional historical inputs. The evidence inventory includes third-party inputs and historical materials outside this repository.
-
-## Sources and attribution
-
-The LMS and LM-OTS models use abstractions of the schemes in [RFC 8554](https://www.rfc-editor.org/rfc/rfc8554). The translation experiments reference [the pinned Tamarin fork](https://github.com/felixlinker/tamarin-prover/tree/c293106913ccf7bb41f49b0dc555a8074e8ea88c) and [the CCS evaluation artifact](https://zenodo.org/records/21827126). The latter appears as `ccs26.zip` in the evidence inventory. Consult the original distributions for their source code and license notices.
-
+The supplied materials do not identify a repository-wide license for the author's code. The author can add one after confirming the intended terms. For evidence provenance, see [recovered-files.tsv](registry/recovered-files.tsv). It records source and published hashes for files recovered from archives. Some text logs normalize host paths. Model files and benchmark inputs retain their source bytes.
 
 ## Contact
 
-Takehiko Mieno, EPSON AVASYS Corporation, Ueda, Nagano 386-1214, Japan.
-Email: `Mieno.Takehiko2@exc.epson.co.jp`.
-
+Takehiko Mieno, EPSON AVASYS Corporation, Ueda, Nagano, Japan.
+Email `Mieno.Takehiko2@exc.epson.co.jp`.

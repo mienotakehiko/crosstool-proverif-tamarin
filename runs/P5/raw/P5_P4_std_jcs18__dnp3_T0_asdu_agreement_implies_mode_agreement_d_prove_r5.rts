@@ -1,0 +1,25 @@
+'tamarin-prover' '--with-maude=maude' '--derivcheck-timeout=0' '--prove=asdu_agreement_implies_mode_agreement' 'corpus/jcs18__dnp3.spthy' +RTS '-N' '-M56g' '-A64m' '-qg' '-N4' '-sresults/out/P5_P4_std_jcs18__dnp3_T0_asdu_agreement_implies_mode_agreement_d_prove_r5.rts' 
+1,154,314,146,848 bytes allocated in the heap
+  34,685,295,752 bytes copied during GC
+   1,335,692,824 bytes maximum residency (25 sample(s))
+       3,240,424 bytes maximum slop
+            3777 MiB total memory in use (0 MiB lost due to fragmentation)
+
+                                     Tot time (elapsed)  Avg pause  Max pause
+  Gen  0      4488 colls,     0 par    8.799s  32.827s     0.0073s    0.0360s
+  Gen  1        25 colls,     0 par    1.925s   7.553s     0.3021s    1.0987s
+
+  TASKS: 10 (1 bound, 9 peak workers (9 total), using -N4)
+
+  SPARKS: 4751 (1585 converted, 0 overflowed, 0 dud, 48 GC'd, 3118 fizzled)
+
+  INIT    time    0.003s  (  0.003s elapsed)
+  MUT     time  400.845s  (219.657s elapsed)
+  GC      time   10.725s  ( 40.379s elapsed)
+  EXIT    time    0.001s  (  0.001s elapsed)
+  Total   time  411.574s  (260.040s elapsed)
+
+  Alloc rate    2,879,699,206 bytes per MUT second
+
+  Productivity  97.4% of total user, 84.5% of total elapsed
+

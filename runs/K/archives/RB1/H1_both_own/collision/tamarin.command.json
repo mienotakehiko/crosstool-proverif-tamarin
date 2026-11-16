@@ -1,0 +1,1 @@
+["tamarin-prover", "+RTS", "-N1", "-M768m", "-RTS", "-d=0", "--prove=collision", "/work/inputs/H1_both_own/H1_both_own.spthy"]

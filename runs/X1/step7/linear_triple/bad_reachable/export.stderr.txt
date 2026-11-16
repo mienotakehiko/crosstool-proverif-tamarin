@@ -1,0 +1,7 @@
+maude tool: 'maude'
+ checking version: 3.5. OK.
+ checking installation: OK.
+[Theory linear_triple] Theory loaded
+[Theory linear_triple] Theory translated
+[Theory linear_triple] No Deconstruction Chain checks started
+[Theory linear_triple] No Deconstruction Chain checks ended

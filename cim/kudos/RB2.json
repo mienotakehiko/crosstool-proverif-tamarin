@@ -1,0 +1,161 @@
+{
+  "theory": "CimRb2",
+  "constants": ["old_gen", "new_gen", "zero_piv"],
+  "init": {
+    "fresh": ["initial_id", "initial_context", "next_context"],
+    "produce": [
+      ["ReadyOld", "initial_id", "initial_context", "next_context"]
+    ]
+  },
+  "steps": [
+    {
+      "id": "SendRequestOld",
+      "consume": [
+        ["ReadyOld", "run_id", "context", "next_context"]
+      ],
+      "fresh": ["token_id", "request_id"],
+      "emit": [
+        ["RequestSent", "old_gen", "run_id", "token_id", "request_id", "context", "zero_piv"]
+      ],
+      "produce": [
+        ["PendingOld", "run_id", "token_id", "request_id", "context", "zero_piv", "next_context"],
+        ["RequestWireOld", "run_id", "token_id", "request_id", "context", "zero_piv"]
+      ]
+    },
+    {
+      "id": "AcceptRequestOld",
+      "consume": [
+        ["RequestWireOld", "run_id", "token_id", "request_id", "context", "request_piv"]
+      ],
+      "emit": [
+        ["RequestAccepted", "old_gen", "run_id", "token_id", "request_id", "context", "request_piv"]
+      ],
+      "produce": [
+        ["AcceptedRequestOld", "run_id", "token_id", "request_id", "context", "request_piv"]
+      ]
+    },
+    {
+      "id": "ProtectResponseOld",
+      "consume": [
+        ["AcceptedRequestOld", "run_id", "token_id", "request_id", "context", "request_piv"]
+      ],
+      "fresh": ["response_id"],
+      "emit": [
+        ["ResponseProtected", "old_gen", "run_id", "token_id", "request_id", "context", "request_piv", "response_id"]
+      ],
+      "produce": [
+        ["ResponseWireOld", "run_id", "token_id", "request_id", "context", "request_piv", "response_id"]
+      ]
+    },
+    {
+      "id": "AcceptResponseOld",
+      "consume": [
+        ["PendingOld", "run_id", "token_id", "request_id", "context", "request_piv", "next_context"],
+        ["ResponseWireOld", "run_id", "token_id", "request_id", "context", "request_piv", "response_id"]
+      ],
+      "emit": [
+        ["ResponseAccepted", "old_gen", "run_id", "token_id", "request_id", "context", "request_piv", "response_id"]
+      ],
+      "produce": [
+        ["OldExchangeCleared", "run_id", "next_context"]
+      ]
+    },
+    {
+      "id": "ActivateNewContext",
+      "consume": [
+        ["OldExchangeCleared", "run_id", "next_context"]
+      ],
+      "emit": [
+        ["ContextActivated", "run_id", "next_context"]
+      ],
+      "produce": [
+        ["ReadyNew", "run_id", "next_context"]
+      ]
+    },
+    {
+      "id": "SendRequestNew",
+      "consume": [
+        ["ReadyNew", "run_id", "context"]
+      ],
+      "fresh": ["token_id", "request_id"],
+      "emit": [
+        ["RequestSent", "new_gen", "run_id", "token_id", "request_id", "context", "zero_piv"]
+      ],
+      "produce": [
+        ["PendingNew", "run_id", "token_id", "request_id", "context", "zero_piv"],
+        ["RequestWireNew", "run_id", "token_id", "request_id", "context", "zero_piv"]
+      ]
+    },
+    {
+      "id": "AcceptRequestNew",
+      "consume": [
+        ["RequestWireNew", "run_id", "token_id", "request_id", "context", "request_piv"]
+      ],
+      "emit": [
+        ["RequestAccepted", "new_gen", "run_id", "token_id", "request_id", "context", "request_piv"]
+      ],
+      "produce": [
+        ["AcceptedRequestNew", "run_id", "token_id", "request_id", "context", "request_piv"]
+      ]
+    },
+    {
+      "id": "ProtectResponseNew",
+      "consume": [
+        ["AcceptedRequestNew", "run_id", "token_id", "request_id", "context", "request_piv"]
+      ],
+      "fresh": ["response_id"],
+      "emit": [
+        ["ResponseProtected", "new_gen", "run_id", "token_id", "request_id", "context", "request_piv", "response_id"]
+      ],
+      "produce": [
+        ["ResponseWireNew", "run_id", "token_id", "request_id", "context", "request_piv", "response_id"]
+      ]
+    },
+    {
+      "id": "AcceptResponseNew",
+      "consume": [
+        ["PendingNew", "run_id", "token_id", "request_id", "context", "request_piv"],
+        ["ResponseWireNew", "run_id", "token_id", "request_id", "context", "request_piv", "response_id"]
+      ],
+      "emit": [
+        ["ResponseAccepted", "new_gen", "run_id", "token_id", "request_id", "context", "request_piv", "response_id"]
+      ],
+      "produce": []
+    }
+  ],
+  "properties": [
+    {
+      "id": "second_acceptance_reachable",
+      "kind": "exists",
+      "observe": ["ResponseAccepted", "new_gen", "run_id", "token_id", "request_id", "context", "request_piv", "response_id"]
+    },
+    {
+      "id": "request_response_binding",
+      "kind": "ordered",
+      "observe": ["ResponseAccepted", "generation", "run_id", "token_id", "request_id", "context", "request_piv", "response_id"],
+      "before": [
+        ["RequestSent", "generation", "run_id", "token_id", "request_id", "context", "request_piv"],
+        ["RequestAccepted", "generation", "run_id", "token_id", "request_id", "context", "request_piv"],
+        ["ResponseProtected", "generation", "run_id", "token_id", "request_id", "context", "request_piv", "response_id"]
+      ]
+    },
+    {
+      "id": "unique_acceptance",
+      "kind": "injective",
+      "observe": ["ResponseAccepted", "generation", "run_id", "token_id", "request_id", "context", "request_piv", "response_id"],
+      "before": [
+        ["ResponseProtected", "generation", "run_id", "token_id", "request_id", "context", "request_piv", "response_id"],
+        ["RequestSent", "generation", "run_id", "token_id", "request_id", "context", "request_piv"]
+      ],
+      "unique": ["run_id", "token_id"]
+    },
+    {
+      "id": "new_request_after_activation",
+      "kind": "ordered",
+      "observe": ["RequestSent", "new_gen", "run_id", "token_id", "request_id", "context", "request_piv"],
+      "before": [
+        ["ContextActivated", "run_id", "context"]
+      ]
+    }
+  ]
+}

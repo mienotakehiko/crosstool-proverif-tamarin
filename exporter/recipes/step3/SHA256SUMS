@@ -1,0 +1,12 @@
+5fba5342bc6b2695ce9b3377696ee5830fe9f3fa1cd2682bba8e895e0914ae7b  ./context/Dockerfile
+ccf63a271655fd1900a990a4a54be6ce28ebf26b26dc198e74ca9f0a29871d2c  ./context/Rule.candidate.hs
+d46697132edf49fef76d6fd38b558cb99543a5b1c14f709dd1c982cc742c3b4e  ./context/compile-variant.sh
+e389be662e2bdae3049a0ac17c689a95f4c0019e6f4796a412deba4e89d909e9  ./evidence-origin/Dockerfile-eval.kit3-snapshot
+c61f12da7cdad526bdcbed47a4c0a603e60dbbfdaf8b66933cd088e9132c303f  ./evidence-origin/TAMARIN-LICENSE
+b715dbb418845106033af3153d432a247e4e46360605de4e0a430c71c47fd391  ./evidence-origin/build-log-excerpt.txt
+b58f5268c019d2066168d62af1478296aed8648a5052f977d6c14d22864d8803  ./evidence-origin/leafless_ground_candidate.patch
+4d36ec97b0b4ba0df5839396abea9c3e978fd3a7fb59cda6f7393b5144402655  ./evidence-origin/saved-build-script-excerpt.txt
+3f0108d0172be12faca40de02fc0b50c6a476df0d43a82b5a0ba9ac4ee9392bc  ./evidence-origin/source-manifest.json
+7e91de70245baf6b7ce1996cbce6cb20a5a75ee0565e6f5e3af941548c6e4566  ./fixed-runtime.sha256
+a1daa72ff869a41882891fa8be66ca442c85770a10d55265f2e6e106ee1d625e  ./run-step3.sh
+06c1213c26d2e7975a3b82c516813dd373207f4aa764b2ded479d1bb09557f68  ./source-manifest.sha256.txt

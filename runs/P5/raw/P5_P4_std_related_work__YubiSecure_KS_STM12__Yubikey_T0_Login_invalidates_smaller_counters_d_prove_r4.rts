@@ -1,0 +1,25 @@
+'tamarin-prover' '--with-maude=maude' '--derivcheck-timeout=0' '--prove=Login_invalidates_smaller_counters' 'corpus/related_work__YubiSecure_KS_STM12__Yubikey.spthy' +RTS '-N' '-M56g' '-A64m' '-qg' '-N4' '-sresults/out/P5_P4_std_related_work__YubiSecure_KS_STM12__Yubikey_T0_Login_invalidates_smaller_counters_d_prove_r4.rts' 
+     792,955,848 bytes allocated in the heap
+      21,643,064 bytes copied during GC
+       7,166,112 bytes maximum residency (2 sample(s))
+          92,000 bytes maximum slop
+             279 MiB total memory in use (0 MiB lost due to fragmentation)
+
+                                     Tot time (elapsed)  Avg pause  Max pause
+  Gen  0         2 colls,     0 par    0.000s   0.027s     0.0136s    0.0141s
+  Gen  1         2 colls,     0 par    0.000s   0.014s     0.0072s    0.0140s
+
+  TASKS: 10 (1 bound, 9 peak workers (9 total), using -N4)
+
+  SPARKS: 79 (62 converted, 0 overflowed, 0 dud, 5 GC'd, 12 fizzled)
+
+  INIT    time    0.003s  (  0.003s elapsed)
+  MUT     time    0.409s  (  0.242s elapsed)
+  GC      time    0.000s  (  0.042s elapsed)
+  EXIT    time    0.001s  (  0.004s elapsed)
+  Total   time    0.413s  (  0.290s elapsed)
+
+  Alloc rate    1,939,040,906 bytes per MUT second
+
+  Productivity  99.0% of total user, 83.3% of total elapsed
+

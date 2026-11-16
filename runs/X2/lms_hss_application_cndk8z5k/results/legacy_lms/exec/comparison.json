@@ -1,0 +1,9 @@
+{
+  "model": "legacy_lms",
+  "lemma": "exec",
+  "status": "CHANGED",
+  "declarations_query_prefix_equal": true,
+  "body_equal": false,
+  "baseline_status": "EXPORTED",
+  "candidate_status": "EXPORTED"
+}

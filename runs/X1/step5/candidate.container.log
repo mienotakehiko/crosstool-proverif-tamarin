@@ -1,0 +1,8 @@
+candidate	session_join	good_reachable	reachable	reachable	MATCH
+candidate	session_join	bad_reachable	unreachable	unreachable	MATCH
+candidate	linear_pair	good_reachable	reachable	reachable	MATCH
+candidate	linear_pair	bad_reachable	unreachable	reachable	DIFFERENT
+candidate	name_constructor	good_ctor_reachable	reachable	reachable	MATCH
+candidate	name_constructor	good_name_reachable	reachable	reachable	MATCH
+candidate	name_constructor	bad_ctor_reachable	unreachable	unreachable	MATCH
+candidate	name_constructor	bad_name_reachable	unreachable	unreachable	MATCH

@@ -1,0 +1,12 @@
+[
+  "/step7-tamarin-prover",
+  "+RTS",
+  "-N1",
+  "-M768m",
+  "-RTS",
+  "-d=0",
+  "-m=proverif",
+  "--lemma=bad_reachable",
+  "-o=/work/linear_pair/bad_reachable/translated.pv",
+  "/kit/models/linear_pair.spthy"
+]

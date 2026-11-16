@@ -1,0 +1,7 @@
+maude tool: 'maude'
+ checking version: 3.5. OK.
+ checking installation: OK.
+[Theory mixed_public_leaf] Theory loaded
+[Theory mixed_public_leaf] Theory translated
+[Theory mixed_public_leaf] No Deconstruction Chain checks started
+[Theory mixed_public_leaf] No Deconstruction Chain checks ended

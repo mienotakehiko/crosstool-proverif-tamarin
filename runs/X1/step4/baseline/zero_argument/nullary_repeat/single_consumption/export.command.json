@@ -1,0 +1,12 @@
+[
+  "/step4-tamarin-prover",
+  "+RTS",
+  "-N1",
+  "-M768m",
+  "-RTS",
+  "-d=0",
+  "-m=proverif",
+  "--lemma=single_consumption",
+  "-o=/work/baseline/zero_argument/nullary_repeat/single_consumption/translated.pv",
+  "/kit/models/zero_argument/nullary_repeat.spthy"
+]

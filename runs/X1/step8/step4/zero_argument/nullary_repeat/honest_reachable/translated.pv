@@ -1,0 +1,92 @@
+set preciseActions = true.
+
+(* Free names *)
+free publicChannel:channel.
+free vphase0:bitstring.
+free vphase1:bitstring.
+
+(* Functions *)
+fun fst(bitstring):bitstring.
+fun pair(bitstring,bitstring):bitstring.
+fun q0():bitstring.
+fun q1():bitstring.
+fun snd(bitstring):bitstring.
+
+(* Equations *)
+equation forall x_1:bitstring, x_2:bitstring; fst((x_1, x_2)) = x_1.
+equation forall x_1:bitstring, x_2:bitstring; snd((x_1, x_2)) = x_2.
+
+(* Events *)
+event eAgain(bitstring).
+event eBad(bitstring).
+event eDistinctFact(bitstring, bitstring).
+event eHonest(bitstring).
+event eInitOnce(bitstring).
+
+(* Tables *)
+table tSt(bitstring, bitstring, bitstring, bitstring).
+
+(* Restrictions *)
+
+(* OneInit *)
+
+restriction rid_i:bitstring, rid_j:bitstring, i:time, j:time;
+  event(eInitOnce( rid_i ))@i && event(eInitOnce( rid_j ))@j
+  ==> rid_i = rid_j.
+
+(* DistinctFact *)
+
+restriction rid_i:bitstring, rid_j:bitstring, x:bitstring, i:time,
+            j:time;
+  event(eDistinctFact( rid_i, x ))@i && event(eDistinctFact( rid_j, x ))@j
+  ==> rid_i = rid_j.
+
+(* Queries *)
+
+(* honest_reachable *)
+
+query asid:bitstring, i:time; event(eHonest( asid ))@i.
+
+(* Processes *)
+
+let rInit =
+        new rid_rInit: bitstring;
+        new stR_St: bitstring;
+        new asid: bitstring;
+        event eInitOnce(rid_rInit);
+        insert tSt(stR_St, asid, q0(), vphase0).
+
+let rGood =
+        get tSt(stL_St, asid, =q0(), =vphase0) in
+        new rid_rGood: bitstring;
+        new stR_St: bitstring;
+        event eDistinctFact(rid_rGood, (stL_St, (asid, (q0(), vphase0))));
+        event eHonest(asid);
+        insert tSt(stR_St, asid, q0(), vphase1).
+
+let rBad =
+        get tSt(stL_St, asid, =q1(), =vphase0) in
+        new rid_rBad: bitstring;
+        event eDistinctFact(rid_rBad, (stL_St, (asid, (q1(), vphase0))));
+        event eBad(asid).
+
+let rAgain =
+        get tSt(stL_St, asid, =q0(), =vphase1) in
+        new rid_rAgain: bitstring;
+        event eDistinctFact(rid_rAgain, (stL_St, (asid, (q0(), vphase1))));
+        event eAgain(asid).
+
+process
+    ( !(rInit) | !(rGood) | !(rBad) | !(rAgain) )
+
+(*
+All wellformedness checks were successful.
+*)
+
+(*
+Generated from:
+Tamarin version 1.13.0
+Maude version 3.5
+Git revision: UNKNOWN
+Compiled at: 2026-11-15 05:08:08.737146731 UTC
+*)

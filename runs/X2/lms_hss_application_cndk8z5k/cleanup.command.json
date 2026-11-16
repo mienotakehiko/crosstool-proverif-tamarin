@@ -1,0 +1,6 @@
+[
+  "docker",
+  "rm",
+  "-f",
+  "lms-hss-application-cndk8z5k"
+]

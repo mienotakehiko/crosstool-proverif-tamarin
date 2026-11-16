@@ -1,0 +1,9 @@
+maude tool: 'maude'
+ checking version: 3.5. OK.
+ checking installation: OK.
+[Theory repeated_equality] Theory loaded
+[Theory repeated_equality] Theory translated
+[Theory repeated_equality] No Deconstruction Chain checks started
+[Theory repeated_equality] No Deconstruction Chain checks ended
+[Theory repeated_equality] Theory closed
+[Saturating Sources] Done

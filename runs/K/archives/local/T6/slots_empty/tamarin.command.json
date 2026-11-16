@@ -1,0 +1,1 @@
+["tamarin-prover", "+RTS", "-N1", "-M768m", "-RTS", "-d=0", "--prove=pending_old_slots_empty", "/work/inputs/T6/pending_old.spthy"]

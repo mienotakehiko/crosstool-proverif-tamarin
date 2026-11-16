@@ -1,0 +1,107 @@
+Process 0 (that is, the initial process):
+{1}new initial_parent: bitstring;
+{2}new initial_pair: bitstring;
+{3}event RefreshBefore(initial_parent,tempctx(initial_parent,initial_pair),initial_pair);
+(
+    {4}out(ch_BusyUnusable, (initial_parent,tempctx(initial_parent,initial_pair),initial_pair))
+) | (
+    {5}out(ch_BeforeSnapshot, (initial_parent,tempctx(initial_parent,initial_pair),initial_pair))
+) | (
+    {6}in(ch_BusyUnusable, (parent: bitstring,previous_temp: bitstring,previous_pair: bitstring));
+    {7}new fresh_pair: bitstring;
+    {8}event RefreshInstalled(parent,tempctx(parent,fresh_pair),fresh_pair);
+    {9}out(ch_BusyActive, (parent,tempctx(parent,fresh_pair),fresh_pair))
+) | (
+    {10}in(ch_BeforeSnapshot, (b: bitstring,t0: bitstring,x0: bitstring));
+    {11}in(ch_BusyActive, (p: bitstring,t: bitstring,x: bitstring));
+    {12}event RefreshRead(b,t0,x0,p,t,x)
+)
+
+-- Query not event(RefreshRead(b_1,t0_1,x0_1,p_1,t_1,x_1)) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query not event(RefreshRead(b_1,t0_1,x0_1,p_1,t_1,x_1))
+goal reachable: event(RefreshRead(initial_parent[],tempctx(initial_parent[],initial_pair[]),initial_pair[],initial_parent[],tempctx(initial_parent[],fresh_pair_1),fresh_pair_1))
+Abbreviations:
+fresh_pair_1 = fresh_pair[previous_pair = initial_pair[],previous_temp = tempctx(initial_parent[],initial_pair[]),parent = initial_parent[]]
+
+Derivation:
+Abbreviations:
+fresh_pair_1 = fresh_pair[previous_pair = initial_pair[],previous_temp = tempctx(initial_parent[],initial_pair[]),parent = initial_parent[]]
+
+1. The message (initial_parent[],tempctx(initial_parent[],initial_pair[]),initial_pair[]) may be sent on channel ch_BeforeSnapshot[] at output {5}.
+mess(ch_BeforeSnapshot[],(initial_parent[],tempctx(initial_parent[],initial_pair[]),initial_pair[])).
+
+2. The message (initial_parent[],tempctx(initial_parent[],initial_pair[]),initial_pair[]) may be sent on channel ch_BusyUnusable[] at output {4}.
+mess(ch_BusyUnusable[],(initial_parent[],tempctx(initial_parent[],initial_pair[]),initial_pair[])).
+
+3. The message (initial_parent[],tempctx(initial_parent[],initial_pair[]),initial_pair[]) that may be sent on channel ch_BusyUnusable[] by 2 may be received at input {6}.
+So the message (initial_parent[],tempctx(initial_parent[],fresh_pair_1),fresh_pair_1) may be sent on channel ch_BusyActive[] at output {9}.
+mess(ch_BusyActive[],(initial_parent[],tempctx(initial_parent[],fresh_pair_1),fresh_pair_1)).
+
+4. The message (initial_parent[],tempctx(initial_parent[],initial_pair[]),initial_pair[]) that may be sent on channel ch_BeforeSnapshot[] by 1 may be received at input {10}.
+The message (initial_parent[],tempctx(initial_parent[],fresh_pair_1),fresh_pair_1) that may be sent on channel ch_BusyActive[] by 3 may be received at input {11}.
+So event RefreshRead(initial_parent[],tempctx(initial_parent[],initial_pair[]),initial_pair[],initial_parent[],tempctx(initial_parent[],fresh_pair_1),fresh_pair_1) may be executed at {12}.
+event(RefreshRead(initial_parent[],tempctx(initial_parent[],initial_pair[]),initial_pair[],initial_parent[],tempctx(initial_parent[],fresh_pair_1),fresh_pair_1)).
+
+5. By 4, event(RefreshRead(initial_parent[],tempctx(initial_parent[],initial_pair[]),initial_pair[],initial_parent[],tempctx(initial_parent[],fresh_pair_1),fresh_pair_1)).
+The goal is reached, represented in the following fact:
+event(RefreshRead(initial_parent[],tempctx(initial_parent[],initial_pair[]),initial_pair[],initial_parent[],tempctx(initial_parent[],fresh_pair_1),fresh_pair_1)).
+
+
+A more detailed output of the traces is available with
+  set traceDisplay = long.
+
+new initial_parent: bitstring creating initial_parent_1 at {1}
+
+new initial_pair: bitstring creating initial_pair_1 at {2}
+
+event RefreshBefore(initial_parent_1,tempctx(initial_parent_1,initial_pair_1),initial_pair_1) at {3}
+
+out(ch_BusyUnusable, (initial_parent_1,tempctx(initial_parent_1,initial_pair_1),initial_pair_1)) at {4} received at {6}
+
+new fresh_pair: bitstring creating fresh_pair_2 at {7}
+
+event RefreshInstalled(initial_parent_1,tempctx(initial_parent_1,fresh_pair_2),fresh_pair_2) at {8}
+
+out(ch_BeforeSnapshot, (initial_parent_1,tempctx(initial_parent_1,initial_pair_1),initial_pair_1)) at {5} received at {10}
+
+out(ch_BusyActive, (initial_parent_1,tempctx(initial_parent_1,fresh_pair_2),fresh_pair_2)) at {9} received at {11}
+
+event RefreshRead(initial_parent_1,tempctx(initial_parent_1,initial_pair_1),initial_pair_1,initial_parent_1,tempctx(initial_parent_1,fresh_pair_2),fresh_pair_2) at {12} (goal)
+
+The event RefreshRead(initial_parent_1,tempctx(initial_parent_1,initial_pair_1),initial_pair_1,initial_parent_1,tempctx(initial_parent_1,fresh_pair_2),fresh_pair_2) is executed at {12}.
+A trace has been found.
+RESULT not event(RefreshRead(b_1,t0_1,x0_1,p_1,t_1,x_1)) is false.
+-- Query event(RefreshRead(b_1,t0_1,x0_1,p_1,t_1,x_1)) ==> event(RefreshBefore(b_1,t0_1,x0_1)) && event(RefreshInstalled(p_1,t_1,x_1)) && p_1 = b_1 && t_1 = tempctx(p_1,x_1) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query event(RefreshRead(b_1,t0_1,x0_1,p_1,t_1,x_1)) ==> event(RefreshBefore(b_1,t0_1,x0_1)) && event(RefreshInstalled(p_1,t_1,x_1)) && p_1 = b_1 && t_1 = tempctx(p_1,x_1)
+goal reachable: b-event(RefreshInstalled(initial_parent[],tempctx(initial_parent[],fresh_pair_1),fresh_pair_1)) && b-event(RefreshBefore(initial_parent[],tempctx(initial_parent[],initial_pair[]),initial_pair[])) -> event(RefreshRead(initial_parent[],tempctx(initial_parent[],initial_pair[]),initial_pair[],initial_parent[],tempctx(initial_parent[],fresh_pair_1),fresh_pair_1))
+Abbreviations:
+fresh_pair_1 = fresh_pair[previous_pair = initial_pair[],previous_temp = tempctx(initial_parent[],initial_pair[]),parent = initial_parent[]]
+RESULT event(RefreshRead(b_1,t0_1,x0_1,p_1,t_1,x_1)) ==> event(RefreshBefore(b_1,t0_1,x0_1)) && event(RefreshInstalled(p_1,t_1,x_1)) && p_1 = b_1 && t_1 = tempctx(p_1,x_1) is true.
+-- Query not event(RefreshRead(b_1,t_1,x0_1,p_1,t_1,x_1)) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query not event(RefreshRead(b_1,t_1,x0_1,p_1,t_1,x_1))
+RESULT not event(RefreshRead(b_1,t_1,x0_1,p_1,t_1,x_1)) is true.
+-- Query not event(RefreshRead(b_1,t0_1,x_1,p_1,t_1,x_1)) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query not event(RefreshRead(b_1,t0_1,x_1,p_1,t_1,x_1))
+RESULT not event(RefreshRead(b_1,t0_1,x_1,p_1,t_1,x_1)) is true.
+
+--------------------------------------------------------------
+Verification summary:
+
+Query not event(RefreshRead(b_1,t0_1,x0_1,p_1,t_1,x_1)) is false.
+
+Query event(RefreshRead(b_1,t0_1,x0_1,p_1,t_1,x_1)) ==> event(RefreshBefore(b_1,t0_1,x0_1)) && event(RefreshInstalled(p_1,t_1,x_1)) && p_1 = b_1 && t_1 = tempctx(p_1,x_1) is true.
+
+Query not event(RefreshRead(b_1,t_1,x0_1,p_1,t_1,x_1)) is true.
+
+Query not event(RefreshRead(b_1,t0_1,x_1,p_1,t_1,x_1)) is true.
+
+--------------------------------------------------------------
+

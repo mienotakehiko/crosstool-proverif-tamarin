@@ -1,0 +1,324 @@
+theory CimT6Continuation
+
+begin
+
+// Function signature and definition of the equational theory E
+
+functions: fst/1, newctx/3, pair/2, snd/1, tempctx/2
+equations: fst(<x.1, x.2>) = x.1, snd(<x.1, x.2>) = x.2
+
+rule (modulo E) Init:
+   [
+   Fr( ~exchange_id ), Fr( ~old_ctx ), Fr( ~prior_local_pair ),
+   Fr( ~prior_peer_pair ), Fr( ~incoming_pair ), Fr( ~incoming_id )
+   ]
+  --[
+  Init( ),
+  PendingBefore( ~exchange_id, ~old_ctx,
+                 newctx(~old_ctx, ~prior_local_pair, ~prior_peer_pair), ~prior_local_pair
+  )
+  ]->
+   [
+   Pending( ~exchange_id, ~old_ctx,
+            newctx(~old_ctx, ~prior_local_pair, ~prior_peer_pair), ~prior_local_pair
+   ),
+   BeforeSnapshot( ~exchange_id, ~old_ctx,
+                   newctx(~old_ctx, ~prior_local_pair, ~prior_peer_pair), ~prior_local_pair
+   ),
+   VerifiedOldPremise( ~exchange_id, ~incoming_id, ~old_ctx, ~incoming_pair
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) RecordVerifiedReceipt:
+   [ VerifiedOldPremise( exchange_id, incoming_id, old_ctx, peer_pair ) ]
+  --[
+  OldVerified( exchange_id, incoming_id, old_ctx, peer_pair,
+               tempctx(old_ctx, peer_pair)
+  )
+  ]->
+   [
+   VerifiedDivergent( exchange_id, incoming_id, old_ctx, peer_pair,
+                      tempctx(old_ctx, peer_pair)
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) AbortOnOldDerived:
+   [
+   Pending( exchange_id, old_ctx, discarded_ctx, discarded_pair ),
+   VerifiedDivergent( exchange_id, incoming_id, old_ctx, peer_pair, rx_temp
+   )
+   ]
+  --[
+  PendingAborted( exchange_id, incoming_id, old_ctx, discarded_ctx,
+                  discarded_pair
+  ),
+  VerifiedTempMatches( rx_temp, tempctx(old_ctx, peer_pair) )
+  ]->
+   [
+   BusyEntry( exchange_id, incoming_id, old_ctx, peer_pair, rx_temp,
+              'empty_new', 'empty_pair'
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) ReadBusyEntry:
+   [
+   BusyEntry( exchange_id, incoming_id, old_ctx, peer_pair, rx_temp,
+              ctx_slot, pair_slot
+   )
+   ]
+  --[
+  BusyEntryRead( exchange_id, incoming_id, old_ctx, peer_pair, rx_temp,
+                 ctx_slot, pair_slot
+  )
+  ]->
+   [
+   BusyReady( exchange_id, incoming_id, old_ctx, peer_pair, rx_temp,
+              ctx_slot, pair_slot
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) DeriveNewContext:
+   [
+   Fr( ~fresh_local_pair ),
+   BusyReady( exchange_id, incoming_id, old_ctx, peer_pair, rx_temp,
+              'empty_new', 'empty_pair'
+   )
+   ]
+  --[
+  RestartDerived( exchange_id, incoming_id, old_ctx, peer_pair,
+                  ~fresh_local_pair, newctx(old_ctx, ~fresh_local_pair, peer_pair)
+  )
+  ]->
+   [
+   ReadyToSend( exchange_id, incoming_id, old_ctx, peer_pair, rx_temp,
+                ~fresh_local_pair, newctx(old_ctx, ~fresh_local_pair, peer_pair)
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) SendConvergent:
+   [
+   ReadyToSend( exchange_id, incoming_id, old_ctx, peer_pair, rx_temp,
+                local_pair, active_ctx
+   )
+   ]
+  --[ ConvergentSent( exchange_id, incoming_id, active_ctx ) ]->
+   [
+   PendingAfter( exchange_id, incoming_id, old_ctx, peer_pair, rx_temp,
+                 local_pair, active_ctx
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) ReadPending:
+   [
+   PendingAfter( exchange_id, incoming_id, old_ctx, peer_pair, rx_temp,
+                 local_pair, active_ctx
+   ),
+   BeforeSnapshot( exchange_id, old_ctx, discarded_ctx, discarded_pair )
+   ]
+  --[
+  PendingRead( exchange_id, incoming_id, old_ctx, peer_pair, local_pair,
+               active_ctx, discarded_ctx, discarded_pair, rx_temp
+  )
+  ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+restriction SingleInit:
+  "∀ #i #j. ((Init( ) @ #i) ∧ (Init( ) @ #j)) ⇒ (#i = #j)"
+  // safety formula
+
+  /*
+  expanded formula:
+  "∀ #i #j. ((Init( ) @ #i) ∧ (Init( ) @ #j)) ⇒ (#i = #j)"
+  */
+
+restriction VerifiedTemporaryContext:
+  "∀ a b #i. (VerifiedTempMatches( a, b ) @ #i) ⇒ (a = b)"
+  // safety formula
+
+  /*
+  expanded formula:
+  "∀ a b #i. (VerifiedTempMatches( a, b ) @ #i) ⇒ (a = b)"
+  */
+
+lemma t6_continuation_reachable:
+  exists-trace
+  "∃ exchange_id incoming_id old_ctx peer_pair local_pair active_ctx
+     discarded_ctx discarded_pair rx_temp #k.
+    PendingRead( exchange_id, incoming_id, old_ctx, peer_pair, local_pair,
+                 active_ctx, discarded_ctx, discarded_pair, rx_temp
+    ) @ #k"
+/*
+guarded formula characterizing all satisfying traces:
+"∃ exchange_id incoming_id old_ctx peer_pair local_pair active_ctx
+   discarded_ctx discarded_pair rx_temp #k.
+  (PendingRead( exchange_id, incoming_id, old_ctx, peer_pair, local_pair,
+                active_ctx, discarded_ctx, discarded_pair, rx_temp
+   ) @ #k)"
+*/
+by sorry
+
+lemma t6_continuation_old_receipt_and_clear:
+  all-traces
+  "∀ exchange_id incoming_id old_ctx peer_pair local_pair active_ctx
+     discarded_ctx discarded_pair rx_temp #k.
+    (PendingRead( exchange_id, incoming_id, old_ctx, peer_pair, local_pair,
+                  active_ctx, discarded_ctx, discarded_pair, rx_temp
+     ) @ #k) ⇒
+    (∃ #t1 #t2 #t3.
+      ((((((OldVerified( exchange_id, incoming_id, old_ctx, peer_pair, rx_temp
+            ) @ #t1) ∧
+           (PendingAborted( exchange_id, incoming_id, old_ctx, discarded_ctx,
+                            discarded_pair
+            ) @ #t2)) ∧
+          (BusyEntryRead( exchange_id, incoming_id, old_ctx, peer_pair, rx_temp,
+                          'empty_new', 'empty_pair'
+           ) @ #t3)) ∧
+         (#t1 < #t2)) ∧
+        (#t2 < #t3)) ∧
+       (#t3 < #k)) ∧
+      (rx_temp = tempctx(old_ctx, peer_pair)))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ exchange_id incoming_id old_ctx peer_pair local_pair active_ctx
+   discarded_ctx discarded_pair rx_temp #k.
+  (PendingRead( exchange_id, incoming_id, old_ctx, peer_pair, local_pair,
+                active_ctx, discarded_ctx, discarded_pair, rx_temp
+   ) @ #k)
+ ∧
+  ∀ #t1 #t2 #t3.
+   (OldVerified( exchange_id, incoming_id, old_ctx, peer_pair, rx_temp
+    ) @ #t1) ∧
+   (PendingAborted( exchange_id, incoming_id, old_ctx, discarded_ctx,
+                    discarded_pair
+    ) @ #t2) ∧
+   (BusyEntryRead( exchange_id, incoming_id, old_ctx, peer_pair, rx_temp,
+                   'empty_new', 'empty_pair'
+    ) @ #t3) ∧
+   (rx_temp = tempctx(old_ctx, peer_pair))
+  ⇒
+   ((¬(#t1 < #t2)) ∨ (¬(#t2 < #t3)) ∨ (¬(#t3 < #k)))"
+*/
+by sorry
+
+lemma t6_continuation_derive_and_send:
+  all-traces
+  "∀ exchange_id incoming_id old_ctx peer_pair local_pair active_ctx
+     discarded_ctx discarded_pair rx_temp #k.
+    (PendingRead( exchange_id, incoming_id, old_ctx, peer_pair, local_pair,
+                  active_ctx, discarded_ctx, discarded_pair, rx_temp
+     ) @ #k) ⇒
+    (∃ #t1 #t2.
+      ((((RestartDerived( exchange_id, incoming_id, old_ctx, peer_pair,
+                          local_pair, active_ctx
+          ) @ #t1) ∧
+         (ConvergentSent( exchange_id, incoming_id, active_ctx ) @ #t2)) ∧
+        (#t1 < #t2)) ∧
+       (#t2 < #k)) ∧
+      (active_ctx = newctx(old_ctx, local_pair, peer_pair)))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ exchange_id incoming_id old_ctx peer_pair local_pair active_ctx
+   discarded_ctx discarded_pair rx_temp #k.
+  (PendingRead( exchange_id, incoming_id, old_ctx, peer_pair, local_pair,
+                active_ctx, discarded_ctx, discarded_pair, rx_temp
+   ) @ #k)
+ ∧
+  ∀ #t1 #t2.
+   (RestartDerived( exchange_id, incoming_id, old_ctx, peer_pair,
+                    local_pair, active_ctx
+    ) @ #t1) ∧
+   (ConvergentSent( exchange_id, incoming_id, active_ctx ) @ #t2) ∧
+   (active_ctx = newctx(old_ctx, local_pair, peer_pair))
+  ⇒
+   ((¬(#t1 < #t2)) ∨ (¬(#t2 < #k)))"
+*/
+by sorry
+
+lemma t6_continuation_pair_distinct:
+  all-traces
+  "∀ exchange_id incoming_id old_ctx peer_pair local_pair active_ctx
+     discarded_ctx discarded_pair rx_temp #k.
+    (PendingRead( exchange_id, incoming_id, old_ctx, peer_pair, local_pair,
+                  active_ctx, discarded_ctx, discarded_pair, rx_temp
+     ) @ #k) ⇒
+    (¬(local_pair = discarded_pair))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ exchange_id incoming_id old_ctx peer_pair local_pair active_ctx
+   discarded_ctx discarded_pair rx_temp #k.
+  (PendingRead( exchange_id, incoming_id, old_ctx, peer_pair, local_pair,
+                active_ctx, discarded_ctx, discarded_pair, rx_temp
+   ) @ #k)
+ ∧
+  local_pair = discarded_pair"
+*/
+by sorry
+
+lemma t6_continuation_context_distinct:
+  all-traces
+  "∀ exchange_id incoming_id old_ctx peer_pair local_pair active_ctx
+     discarded_ctx discarded_pair rx_temp #k.
+    (PendingRead( exchange_id, incoming_id, old_ctx, peer_pair, local_pair,
+                  active_ctx, discarded_ctx, discarded_pair, rx_temp
+     ) @ #k) ⇒
+    (¬(active_ctx = discarded_ctx))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ exchange_id incoming_id old_ctx peer_pair local_pair active_ctx
+   discarded_ctx discarded_pair rx_temp #k.
+  (PendingRead( exchange_id, incoming_id, old_ctx, peer_pair, local_pair,
+                active_ctx, discarded_ctx, discarded_pair, rx_temp
+   ) @ #k)
+ ∧
+  active_ctx = discarded_ctx"
+*/
+simplify
+solve( PendingAfter( exchange_id, incoming_id, old_ctx, peer_pair,
+                     rx_temp, local_pair, active_ctx
+       ) ▶₀ #k )
+  case SendConvergent
+  by solve( BeforeSnapshot( ~exchange_id, ~old_ctx,
+                            newctx(~old_ctx, ~fresh_local_pair, ~incoming_pair), discarded_pair
+            ) ▶₁ #k )
+qed
+
+/* All wellformedness checks were successful. */
+
+/*
+Generated from:
+Tamarin version 1.13.0
+Maude version 3.5
+Git revision: UNKNOWN
+Compiled at: 2026-10-24 02:25:12.718891574 UTC
+*/
+
+end
+
+==============================================================================
+summary of summaries:
+
+analyzed: /work/inputs/t6_continuation.spthy
+
+  processing time: 0.05s
+  
+  t6_continuation_reachable (exists-trace): analysis incomplete (1 steps)
+  t6_continuation_old_receipt_and_clear (all-traces): analysis incomplete (1 steps)
+  t6_continuation_derive_and_send (all-traces): analysis incomplete (1 steps)
+  t6_continuation_pair_distinct (all-traces): analysis incomplete (1 steps)
+  t6_continuation_context_distinct (all-traces): verified (3 steps)
+
+==============================================================================

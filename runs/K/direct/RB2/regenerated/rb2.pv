@@ -1,0 +1,84 @@
+(* Bounded RB2: two sequential authenticated exchanges. *)
+free ch_ReadyOld, ch_PendingOld, ch_RequestWireOld, ch_AcceptedRequestOld, ch_ResponseWireOld, ch_OldExchangeCleared, ch_ReadyNew, ch_PendingNew, ch_RequestWireNew, ch_AcceptedRequestNew, ch_ResponseWireNew: channel [private].
+free old_gen, new_gen, zero_piv: bitstring.
+
+event RequestSent(bitstring, bitstring, bitstring, bitstring, bitstring, bitstring).
+event RequestAccepted(bitstring, bitstring, bitstring, bitstring, bitstring, bitstring).
+event ResponseProtected(bitstring, bitstring, bitstring, bitstring, bitstring, bitstring, bitstring).
+event ResponseAccepted(bitstring, bitstring, bitstring, bitstring, bitstring, bitstring, bitstring).
+event ContextActivated(bitstring, bitstring).
+
+query q1_run_id:bitstring, q1_token_id:bitstring, q1_request_id:bitstring, q1_context:bitstring, q1_request_piv:bitstring, q1_response_id:bitstring;
+  event(ResponseAccepted(new_gen,q1_run_id,q1_token_id,q1_request_id,q1_context,q1_request_piv,q1_response_id)).
+
+query q2_generation:bitstring, q2_run_id:bitstring, q2_token_id:bitstring, q2_request_id:bitstring, q2_context:bitstring, q2_request_piv:bitstring, q2_response_id:bitstring;
+  event(ResponseAccepted(q2_generation,q2_run_id,q2_token_id,q2_request_id,q2_context,q2_request_piv,q2_response_id)) ==> event(RequestSent(q2_generation,q2_run_id,q2_token_id,q2_request_id,q2_context,q2_request_piv)) && event(RequestAccepted(q2_generation,q2_run_id,q2_token_id,q2_request_id,q2_context,q2_request_piv)) && event(ResponseProtected(q2_generation,q2_run_id,q2_token_id,q2_request_id,q2_context,q2_request_piv,q2_response_id)).
+
+query q3_generation:bitstring, q3_run_id:bitstring, q3_token_id:bitstring, q3_request_id:bitstring, q3_context:bitstring, q3_request_piv:bitstring, q3_response_id:bitstring;
+  inj-event(ResponseAccepted(q3_generation,q3_run_id,q3_token_id,q3_request_id,q3_context,q3_request_piv,q3_response_id)) ==> inj-event(ResponseProtected(q3_generation,q3_run_id,q3_token_id,q3_request_id,q3_context,q3_request_piv,q3_response_id)) && inj-event(RequestSent(q3_generation,q3_run_id,q3_token_id,q3_request_id,q3_context,q3_request_piv)).
+
+query q4_run_id:bitstring, q4_token_id:bitstring, q4_request_id:bitstring, q4_context:bitstring, q4_request_piv:bitstring;
+  event(RequestSent(new_gen,q4_run_id,q4_token_id,q4_request_id,q4_context,q4_request_piv)) ==> event(ContextActivated(q4_run_id,q4_context)).
+
+process
+  new initial_id:bitstring;
+  new initial_context:bitstring;
+  new next_context:bitstring;
+  (
+    (out(ch_ReadyOld,(initial_id,initial_context,next_context));
+     0)
+    |
+    (in(ch_ReadyOld,(run_id_step1:bitstring,context_step1:bitstring,next_context_step1:bitstring));
+     new token_id_step1:bitstring;
+     new request_id_step1:bitstring;
+     event RequestSent(old_gen,run_id_step1,token_id_step1,request_id_step1,context_step1,zero_piv);
+     out(ch_PendingOld,(run_id_step1,token_id_step1,request_id_step1,context_step1,zero_piv,next_context_step1));
+     out(ch_RequestWireOld,(run_id_step1,token_id_step1,request_id_step1,context_step1,zero_piv));
+     0)
+    |
+    (in(ch_RequestWireOld,(run_id_step2:bitstring,token_id_step2:bitstring,request_id_step2:bitstring,context_step2:bitstring,request_piv_step2:bitstring));
+     event RequestAccepted(old_gen,run_id_step2,token_id_step2,request_id_step2,context_step2,request_piv_step2);
+     out(ch_AcceptedRequestOld,(run_id_step2,token_id_step2,request_id_step2,context_step2,request_piv_step2));
+     0)
+    |
+    (in(ch_AcceptedRequestOld,(run_id_step3:bitstring,token_id_step3:bitstring,request_id_step3:bitstring,context_step3:bitstring,request_piv_step3:bitstring));
+     new response_id_step3:bitstring;
+     event ResponseProtected(old_gen,run_id_step3,token_id_step3,request_id_step3,context_step3,request_piv_step3,response_id_step3);
+     out(ch_ResponseWireOld,(run_id_step3,token_id_step3,request_id_step3,context_step3,request_piv_step3,response_id_step3));
+     0)
+    |
+    (in(ch_PendingOld,(run_id_step4:bitstring,token_id_step4:bitstring,request_id_step4:bitstring,context_step4:bitstring,request_piv_step4:bitstring,next_context_step4:bitstring));
+     in(ch_ResponseWireOld,(=run_id_step4,=token_id_step4,=request_id_step4,=context_step4,=request_piv_step4,response_id_step4:bitstring));
+     event ResponseAccepted(old_gen,run_id_step4,token_id_step4,request_id_step4,context_step4,request_piv_step4,response_id_step4);
+     out(ch_OldExchangeCleared,(run_id_step4,next_context_step4));
+     0)
+    |
+    (in(ch_OldExchangeCleared,(run_id_step5:bitstring,next_context_step5:bitstring));
+     event ContextActivated(run_id_step5,next_context_step5);
+     out(ch_ReadyNew,(run_id_step5,next_context_step5));
+     0)
+    |
+    (in(ch_ReadyNew,(run_id_step6:bitstring,context_step6:bitstring));
+     new token_id_step6:bitstring;
+     new request_id_step6:bitstring;
+     event RequestSent(new_gen,run_id_step6,token_id_step6,request_id_step6,context_step6,zero_piv);
+     out(ch_PendingNew,(run_id_step6,token_id_step6,request_id_step6,context_step6,zero_piv));
+     out(ch_RequestWireNew,(run_id_step6,token_id_step6,request_id_step6,context_step6,zero_piv));
+     0)
+    |
+    (in(ch_RequestWireNew,(run_id_step7:bitstring,token_id_step7:bitstring,request_id_step7:bitstring,context_step7:bitstring,request_piv_step7:bitstring));
+     event RequestAccepted(new_gen,run_id_step7,token_id_step7,request_id_step7,context_step7,request_piv_step7);
+     out(ch_AcceptedRequestNew,(run_id_step7,token_id_step7,request_id_step7,context_step7,request_piv_step7));
+     0)
+    |
+    (in(ch_AcceptedRequestNew,(run_id_step8:bitstring,token_id_step8:bitstring,request_id_step8:bitstring,context_step8:bitstring,request_piv_step8:bitstring));
+     new response_id_step8:bitstring;
+     event ResponseProtected(new_gen,run_id_step8,token_id_step8,request_id_step8,context_step8,request_piv_step8,response_id_step8);
+     out(ch_ResponseWireNew,(run_id_step8,token_id_step8,request_id_step8,context_step8,request_piv_step8,response_id_step8));
+     0)
+    |
+    (in(ch_PendingNew,(run_id_step9:bitstring,token_id_step9:bitstring,request_id_step9:bitstring,context_step9:bitstring,request_piv_step9:bitstring));
+     in(ch_ResponseWireNew,(=run_id_step9,=token_id_step9,=request_id_step9,=context_step9,=request_piv_step9,response_id_step9:bitstring));
+     event ResponseAccepted(new_gen,run_id_step9,token_id_step9,request_id_step9,context_step9,request_piv_step9,response_id_step9);
+     0)
+  )

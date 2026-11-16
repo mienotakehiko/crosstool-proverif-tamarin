@@ -1,0 +1,159 @@
+theory CimPendingOld
+
+begin
+
+// Function signature and definition of the equational theory E
+
+functions: fst/1, pair/2, snd/1, tempctx/2
+equations: fst(<x.1, x.2>) = x.1, snd(<x.1, x.2>) = x.2
+
+rule (modulo E) Init:
+   [
+   Fr( ~old_ctx ), Fr( ~new_ctx ), Fr( ~local_pair ), Fr( ~incoming_pair ),
+   Fr( ~message )
+   ]
+  --[ Init( ), PendingBefore( ~old_ctx, ~new_ctx, ~old_ctx, ~local_pair )
+  ]->
+   [
+   Pending( ~old_ctx, ~new_ctx, ~old_ctx, ~local_pair ),
+   BeforeSnapshot( ~new_ctx, ~old_ctx, ~local_pair ),
+   VerifiedOldPremise( ~message, ~old_ctx, ~incoming_pair )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) RecordVerifiedReceipt:
+   [ VerifiedOldPremise( m, o, peer_pair ) ]
+  --[ OldVerified( m, o, tempctx(o, peer_pair) ) ]->
+   [ VerifiedDivergent( m, o, tempctx(o, peer_pair), peer_pair ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) AbortOnOldDerived:
+   [ Pending( o, n, src, p ), VerifiedDivergent( m, o, r, peer_pair ) ]
+  --[
+  PendingAborted( m, o, n, src, p ),
+  VerifiedTempMatches( r, tempctx(o, peer_pair) )
+  ]->
+   [ BusyEntry( m, o, r, 'empty_new', 'empty_pair' ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) ReadBusyEntry:
+   [ BeforeSnapshot( n0, i0, p0 ), BusyEntry( m, o, r, ns, ps ) ]
+  --[ BusyEntryRead( m, o, r, n0, i0, p0, ns, ps ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+restriction SingleInit:
+  "∀ #i #j. ((Init( ) @ #i) ∧ (Init( ) @ #j)) ⇒ (#i = #j)"
+  // safety formula
+
+  /*
+  expanded formula:
+  "∀ #i #j. ((Init( ) @ #i) ∧ (Init( ) @ #j)) ⇒ (#i = #j)"
+  */
+
+restriction VerifiedTemporaryContext:
+  "∀ a b #i. (VerifiedTempMatches( a, b ) @ #i) ⇒ (a = b)"
+  // safety formula
+
+  /*
+  expanded formula:
+  "∀ a b #i. (VerifiedTempMatches( a, b ) @ #i) ⇒ (a = b)"
+  */
+
+lemma pending_old_reachable:
+  exists-trace
+  "∃ m o r n0 i0 p0 ns ps #k.
+    BusyEntryRead( m, o, r, n0, i0, p0, ns, ps ) @ #k"
+/*
+guarded formula characterizing all satisfying traces:
+"∃ m o r n0 i0 p0 ns ps #k.
+  (BusyEntryRead( m, o, r, n0, i0, p0, ns, ps ) @ #k)"
+*/
+simplify
+solve( BeforeSnapshot( n0, i0, p0 ) ▶₀ #k )
+  case Init
+  solve( BusyEntry( m, o, r, ns, ps ) ▶₁ #k )
+    case AbortOnOldDerived
+    SOLVED // trace found
+  qed
+qed
+
+lemma pending_old_verified_receipt:
+  all-traces
+  "∀ m o r n0 i0 p0 ns ps #k.
+    (BusyEntryRead( m, o, r, n0, i0, p0, ns, ps ) @ #k) ⇒
+    (∃ #t1. (OldVerified( m, o, r ) @ #t1) ∧ (#t1 < #k))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ m o r n0 i0 p0 ns ps #k.
+  (BusyEntryRead( m, o, r, n0, i0, p0, ns, ps ) @ #k)
+ ∧
+  ∀ #t1. (OldVerified( m, o, r ) @ #t1) ⇒ ¬(#t1 < #k)"
+*/
+by sorry
+
+lemma pending_old_aborts_matching_update:
+  all-traces
+  "∀ m o r n0 i0 p0 ns ps #k.
+    (BusyEntryRead( m, o, r, n0, i0, p0, ns, ps ) @ #k) ⇒
+    (∃ #t1 #t2.
+      (((PendingBefore( o, n0, i0, p0 ) @ #t1) ∧
+        (PendingAborted( m, o, n0, i0, p0 ) @ #t2)) ∧
+       (#t1 < #k)) ∧
+      (#t2 < #k))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ m o r n0 i0 p0 ns ps #k.
+  (BusyEntryRead( m, o, r, n0, i0, p0, ns, ps ) @ #k)
+ ∧
+  ∀ #t1 #t2.
+   (PendingBefore( o, n0, i0, p0 ) @ #t1) ∧
+   (PendingAborted( m, o, n0, i0, p0 ) @ #t2)
+  ⇒
+   ((¬(#t1 < #k)) ∨ (¬(#t2 < #k)))"
+*/
+by sorry
+
+lemma pending_old_slots_empty:
+  all-traces
+  "∀ m o r n0 i0 p0 ns ps #k.
+    (BusyEntryRead( m, o, r, n0, i0, p0, ns, ps ) @ #k) ⇒
+    ((ns = 'empty_new') ∧ (ps = 'empty_pair'))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ m o r n0 i0 p0 ns ps #k.
+  (BusyEntryRead( m, o, r, n0, i0, p0, ns, ps ) @ #k)
+ ∧
+  ((¬(ns = 'empty_new')) ∨ (¬(ps = 'empty_pair')))"
+*/
+by sorry
+
+/* All wellformedness checks were successful. */
+
+/*
+Generated from:
+Tamarin version 1.13.0
+Maude version 3.5
+Git revision: UNKNOWN
+Compiled at: 2026-10-24 02:25:12.718891574 UTC
+*/
+
+end
+
+==============================================================================
+summary of summaries:
+
+analyzed: /work/inputs/T6/pending_old.spthy
+
+  processing time: 0.03s
+  
+  pending_old_reachable (exists-trace): verified (4 steps)
+  pending_old_verified_receipt (all-traces): analysis incomplete (1 steps)
+  pending_old_aborts_matching_update (all-traces): analysis incomplete (1 steps)
+  pending_old_slots_empty (all-traces): analysis incomplete (1 steps)
+
+==============================================================================

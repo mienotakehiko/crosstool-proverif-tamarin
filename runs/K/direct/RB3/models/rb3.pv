@@ -1,0 +1,68 @@
+(* Bounded RB3: KUDOS draft 14 section 3 and response acceptance. *)
+free ch_ChooseContext, ch_ExchangeReady, ch_Pending, ch_CanRespond, ch_ProtectedResponse: channel [private].
+free same_ctx, different_ctx, reuse_piv, own_piv, no_piv, request_zero: bitstring.
+
+event RequestAccepted(bitstring, bitstring, bitstring, bitstring, bitstring).
+event ServerSendReady(bitstring, bitstring, bitstring).
+event ResponseProtected(bitstring, bitstring, bitstring, bitstring, bitstring, bitstring, bitstring, bitstring).
+event ResponseAccepted(bitstring, bitstring, bitstring, bitstring, bitstring, bitstring, bitstring, bitstring).
+
+query q1_run_id:bitstring, q1_token_id:bitstring, q1_ctx:bitstring, q1_request_piv:bitstring;
+  event(ResponseAccepted(same_ctx,q1_run_id,q1_token_id,q1_ctx,q1_ctx,q1_request_piv,reuse_piv,no_piv)).
+
+query q2_run_id:bitstring, q2_token_id:bitstring, q2_ctx:bitstring, q2_request_piv:bitstring, q2_reply_piv:bitstring;
+  event(ResponseAccepted(same_ctx,q2_run_id,q2_token_id,q2_ctx,q2_ctx,q2_request_piv,own_piv,q2_reply_piv)).
+
+query q3_run_id:bitstring, q3_token_id:bitstring, q3_request_context:bitstring, q3_response_context:bitstring, q3_request_piv:bitstring, q3_reply_piv:bitstring;
+  event(ResponseAccepted(different_ctx,q3_run_id,q3_token_id,q3_request_context,q3_response_context,q3_request_piv,own_piv,q3_reply_piv)).
+
+query q4_scenario:bitstring, q4_run_id:bitstring, q4_token_id:bitstring, q4_request_context:bitstring, q4_response_context:bitstring, q4_request_piv:bitstring, q4_piv_mode:bitstring, q4_reply_piv:bitstring;
+  event(ResponseAccepted(q4_scenario,q4_run_id,q4_token_id,q4_request_context,q4_response_context,q4_request_piv,q4_piv_mode,q4_reply_piv)) ==> event(ResponseProtected(q4_scenario,q4_run_id,q4_token_id,q4_request_context,q4_response_context,q4_request_piv,q4_piv_mode,q4_reply_piv)).
+
+query q5_scenario:bitstring, q5_run_id:bitstring, q5_token_id:bitstring, q5_request_context:bitstring, q5_response_context:bitstring, q5_request_piv:bitstring, q5_reply_piv:bitstring;
+  event(ResponseProtected(q5_scenario,q5_run_id,q5_token_id,q5_request_context,q5_response_context,q5_request_piv,reuse_piv,q5_reply_piv)) ==> q5_request_context = q5_response_context && q5_reply_piv = no_piv.
+
+query q6_scenario:bitstring, q6_run_id:bitstring, q6_token_id:bitstring, q6_request_context:bitstring, q6_response_context:bitstring, q6_request_piv:bitstring, q6_reply_piv:bitstring;
+  event(ResponseProtected(q6_scenario,q6_run_id,q6_token_id,q6_request_context,q6_response_context,q6_request_piv,own_piv,q6_reply_piv)) ==> event(ServerSendReady(q6_run_id,q6_response_context,q6_reply_piv)).
+
+process
+  new run_id:bitstring;
+  new request_context:bitstring;
+  new new_context:bitstring;
+  new sender_ssn:bitstring;
+  (
+    (out(ch_ChooseContext,(run_id,request_context,new_context,sender_ssn));
+     0)
+    |
+    (in(ch_ChooseContext,(run_id_step1:bitstring,request_context_step1:bitstring,new_context_step1:bitstring,sender_ssn_step1:bitstring));
+     out(ch_ExchangeReady,(same_ctx,run_id_step1,request_context_step1,request_context_step1,sender_ssn_step1));
+     0)
+    |
+    (in(ch_ChooseContext,(run_id_step2:bitstring,request_context_step2:bitstring,new_context_step2:bitstring,sender_ssn_step2:bitstring));
+     out(ch_ExchangeReady,(different_ctx,run_id_step2,request_context_step2,new_context_step2,sender_ssn_step2));
+     0)
+    |
+    (in(ch_ExchangeReady,(scenario_step3:bitstring,run_id_step3:bitstring,request_context_step3:bitstring,response_context_step3:bitstring,sender_ssn_step3:bitstring));
+     new token_id_step3:bitstring;
+     event RequestAccepted(scenario_step3,run_id_step3,token_id_step3,request_context_step3,request_zero);
+     event ServerSendReady(run_id_step3,response_context_step3,sender_ssn_step3);
+     out(ch_Pending,(scenario_step3,run_id_step3,token_id_step3,request_context_step3,request_zero,response_context_step3));
+     out(ch_CanRespond,(scenario_step3,run_id_step3,token_id_step3,request_context_step3,response_context_step3,request_zero,sender_ssn_step3));
+     0)
+    |
+    (in(ch_CanRespond,(scenario_step4:bitstring,run_id_step4:bitstring,token_id_step4:bitstring,request_context_step4:bitstring,response_context_step4:bitstring,request_piv_step4:bitstring,sender_ssn_step4:bitstring));
+     event ResponseProtected(scenario_step4,run_id_step4,token_id_step4,request_context_step4,response_context_step4,request_piv_step4,own_piv,sender_ssn_step4);
+     out(ch_ProtectedResponse,(scenario_step4,run_id_step4,token_id_step4,request_context_step4,response_context_step4,request_piv_step4,own_piv,sender_ssn_step4));
+     0)
+    |
+    (in(ch_CanRespond,(scenario_step5:bitstring,run_id_step5:bitstring,token_id_step5:bitstring,request_context_step5:bitstring,response_context_step5:bitstring,request_piv_step5:bitstring,sender_ssn_step5:bitstring));
+     if request_context_step5 = response_context_step5 then
+       (event ResponseProtected(scenario_step5,run_id_step5,token_id_step5,request_context_step5,response_context_step5,request_piv_step5,reuse_piv,no_piv);
+        out(ch_ProtectedResponse,(scenario_step5,run_id_step5,token_id_step5,request_context_step5,response_context_step5,request_piv_step5,reuse_piv,no_piv));
+        0))
+    |
+    (in(ch_Pending,(scenario_step6:bitstring,run_id_step6:bitstring,token_id_step6:bitstring,request_context_step6:bitstring,request_piv_step6:bitstring,response_context_step6:bitstring));
+     in(ch_ProtectedResponse,(=scenario_step6,=run_id_step6,=token_id_step6,=request_context_step6,=response_context_step6,=request_piv_step6,piv_mode_step6:bitstring,reply_piv_step6:bitstring));
+     event ResponseAccepted(scenario_step6,run_id_step6,token_id_step6,request_context_step6,response_context_step6,request_piv_step6,piv_mode_step6,reply_piv_step6);
+     0)
+  )

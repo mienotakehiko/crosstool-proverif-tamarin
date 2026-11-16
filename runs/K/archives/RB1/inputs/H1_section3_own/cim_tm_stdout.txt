@@ -1,0 +1,14 @@
+
+==============================================================================
+summary of summaries:
+
+analyzed: /redacted-home/workspace/revision_20261111/h1h2-kit/models/H1_section3_own.spthy
+
+  output:          /redacted-home/workspace/revision_20261111/h1h2-kit/runs/full02/H1_section3_own__tm/proof.spthy
+  processing time: 0.40s
+  
+  normal (exists-trace): verified (3 steps)
+  collision (exists-trace): falsified - no trace found (10 steps)
+  no_collision (all-traces): verified (10 steps)
+
+==============================================================================

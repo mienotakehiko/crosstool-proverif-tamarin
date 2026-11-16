@@ -1,0 +1,5 @@
+10:docker build \
+11-  --build-arg TAMARIN_REF=c293106913ccf7bb41f49b0dc555a8074e8ea88c \
+12-  --file ccs26/docker/Dockerfile-eval \
+13-  --tag msr-to-pv-eval:ccs26 \
+14-  ccs26/docker

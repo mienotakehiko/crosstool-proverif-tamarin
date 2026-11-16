@@ -1,0 +1,50 @@
+[
+  {
+    "actual": "reachable",
+    "expected": "reachable",
+    "lemma": "good_reachable",
+    "raw_result": "false",
+    "rc": 0,
+    "read_ids": "stR_St_5,stR_St_5",
+    "status": "MATCH",
+    "timeout": false,
+    "trace_ids": "same",
+    "variant": "original"
+  },
+  {
+    "actual": "reachable",
+    "expected": "reachable",
+    "lemma": "good_reachable",
+    "raw_result": "false",
+    "rc": 0,
+    "read_ids": "stR_St_5,stR_St_6",
+    "status": "MATCH",
+    "timeout": false,
+    "trace_ids": "distinct",
+    "variant": "distinct_ids"
+  },
+  {
+    "actual": "reachable",
+    "expected": "reachable",
+    "lemma": "bad_reachable",
+    "raw_result": "false",
+    "rc": 0,
+    "read_ids": "stR_St_6,stR_St_6",
+    "status": "MATCH",
+    "timeout": false,
+    "trace_ids": "same",
+    "variant": "original"
+  },
+  {
+    "actual": "unreachable",
+    "expected": "unreachable",
+    "lemma": "bad_reachable",
+    "raw_result": "true",
+    "rc": 0,
+    "read_ids": "",
+    "status": "MATCH",
+    "timeout": false,
+    "trace_ids": "none",
+    "variant": "distinct_ids"
+  }
+]

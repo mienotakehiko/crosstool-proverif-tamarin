@@ -1,0 +1,149 @@
+[
+  {
+    "lemma": "rb5_block_reachable",
+    "cim_pv_archived_raw": "false",
+    "cim_reference": "same_reachability",
+    "tamarin_retest": true,
+    "pv_from_tamarin": true,
+    "translated_pv_raw": [
+      "false"
+    ],
+    "pv_diagnostic": null,
+    "exit_codes": {
+      "tamarin": 0,
+      "export": 0,
+      "proverif": 0
+    },
+    "translation_flags": {
+      "timepoints_split": false,
+      "leading_negation": false,
+      "multiple_queries": false,
+      "restriction_missing": false,
+      "axiom_missing": false,
+      "reachability_trace_present": true
+    },
+    "status": "MATCH"
+  },
+  {
+    "lemma": "rb5_send_while_active_unreachable",
+    "cim_pv_archived_raw": "true",
+    "cim_reference": "same_unreachability",
+    "tamarin_retest": true,
+    "pv_from_tamarin": true,
+    "translated_pv_raw": [
+      "true"
+    ],
+    "pv_diagnostic": null,
+    "exit_codes": {
+      "tamarin": 0,
+      "export": 0,
+      "proverif": 0
+    },
+    "translation_flags": {
+      "timepoints_split": false,
+      "leading_negation": true,
+      "multiple_queries": false,
+      "restriction_missing": false,
+      "axiom_missing": false
+    },
+    "status": "MATCH"
+  },
+  {
+    "lemma": "rb5_commit_send_reachable",
+    "cim_pv_archived_raw": "false",
+    "cim_reference": "same_reachability",
+    "tamarin_retest": true,
+    "pv_from_tamarin": true,
+    "translated_pv_raw": [
+      "false"
+    ],
+    "pv_diagnostic": null,
+    "exit_codes": {
+      "tamarin": 0,
+      "export": 0,
+      "proverif": 0
+    },
+    "translation_flags": {
+      "timepoints_split": false,
+      "leading_negation": false,
+      "multiple_queries": false,
+      "restriction_missing": false,
+      "axiom_missing": false,
+      "reachability_trace_present": true
+    },
+    "status": "MATCH"
+  },
+  {
+    "lemma": "rb5_commit_before_send",
+    "cim_pv_archived_raw": "true",
+    "cim_reference": "commit_correspondence",
+    "tamarin_retest": true,
+    "pv_from_tamarin": true,
+    "translated_pv_raw": [
+      "true"
+    ],
+    "pv_diagnostic": null,
+    "exit_codes": {
+      "tamarin": 0,
+      "export": 0,
+      "proverif": 0
+    },
+    "translation_flags": {
+      "timepoints_split": false,
+      "leading_negation": false,
+      "multiple_queries": false,
+      "restriction_missing": false,
+      "axiom_missing": false
+    },
+    "status": "MATCH"
+  },
+  {
+    "lemma": "rb5_abort_send_reachable",
+    "cim_pv_archived_raw": "false",
+    "cim_reference": "same_reachability",
+    "tamarin_retest": true,
+    "pv_from_tamarin": true,
+    "translated_pv_raw": [
+      "false"
+    ],
+    "pv_diagnostic": null,
+    "exit_codes": {
+      "tamarin": 0,
+      "export": 0,
+      "proverif": 0
+    },
+    "translation_flags": {
+      "timepoints_split": false,
+      "leading_negation": false,
+      "multiple_queries": false,
+      "restriction_missing": false,
+      "axiom_missing": false,
+      "reachability_trace_present": true
+    },
+    "status": "MATCH"
+  },
+  {
+    "lemma": "rb5_abort_before_send",
+    "cim_pv_archived_raw": "true",
+    "cim_reference": "abort_correspondence",
+    "tamarin_retest": true,
+    "pv_from_tamarin": true,
+    "translated_pv_raw": [
+      "true"
+    ],
+    "pv_diagnostic": null,
+    "exit_codes": {
+      "tamarin": 0,
+      "export": 0,
+      "proverif": 0
+    },
+    "translation_flags": {
+      "timepoints_split": false,
+      "leading_negation": false,
+      "multiple_queries": false,
+      "restriction_missing": false,
+      "axiom_missing": false
+    },
+    "status": "MATCH"
+  }
+]

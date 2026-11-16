@@ -1,0 +1,10 @@
+[
+  "/step4-tamarin-prover",
+  "+RTS",
+  "-N1",
+  "-M768m",
+  "-RTS",
+  "-d=0",
+  "--prove=bad_reachable",
+  "/kit/models/source/repeated_variable.spthy"
+]

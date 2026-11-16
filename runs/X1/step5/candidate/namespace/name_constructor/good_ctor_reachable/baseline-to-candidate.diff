@@ -1,0 +1,20 @@
+--- baseline
++++ candidate
+@@ -60,7 +60,7 @@
+         insert tSt(stR_St_1, asid, vname, vq0).
+ 
+ let rGoodCtor =
+-        get tSt(stL_St, asid, =vctor, helperVar0) in
++        get tSt(stL_St, asid, =vctor, =q0()) in
+         new rid_rGoodCtor: bitstring;
+         event eDistinctFact(rid_rGoodCtor, (stL_St, (asid, (vctor, q0()))));
+         event eGoodCtor(asid).
+@@ -72,7 +72,7 @@
+         event eGoodName(asid).
+ 
+ let rBadCtor =
+-        get tSt(stL_St, asid, =vname, helperVar0) in
++        get tSt(stL_St, asid, =vname, =q0()) in
+         new rid_rBadCtor: bitstring;
+         event eDistinctFact(rid_rBadCtor, (stL_St, (asid, (vname, q0()))));
+         event eBadCtor(asid).

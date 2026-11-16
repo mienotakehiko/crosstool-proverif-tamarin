@@ -1,0 +1,12 @@
+[
+  "/step5-tamarin-prover",
+  "+RTS",
+  "-N1",
+  "-M768m",
+  "-RTS",
+  "-d=0",
+  "-m=proverif",
+  "--lemma=bad_name_reachable",
+  "-o=/work/candidate/namespace/name_constructor/bad_name_reachable/translated.pv",
+  "/kit/models/namespace/name_constructor.spthy"
+]

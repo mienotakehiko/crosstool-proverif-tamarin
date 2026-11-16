@@ -1,0 +1,159 @@
+Linear part: No equation.
+Convergent part:
+fst((x_1,x_2)) = x_1
+snd((x_1,x_2)) = x_2
+Completing equations...
+Completed equations:
+snd((x_1,x_2)) = x_2
+fst((x_1,x_2)) = x_1
+Process 0 (that is, the initial process):
+(
+    {1}!
+    {2}new rid_rInit: bitstring;
+    {3}new stR_ReadyOld: bitstring;
+    {4}new initial_id: bitstring;
+    {5}new initial_context: bitstring;
+    {6}new next_context: bitstring;
+    {7}event eInit(rid_rInit);
+    {8}insert tReadyOld(stR_ReadyOld,initial_id,initial_context,next_context)
+) | (
+    {9}!
+    {10}get tReadyOld(stL_ReadyOld: bitstring,run_id: bitstring,context: bitstring,next_context_1: bitstring) in
+    {11}new rid_rSendRequestOld: bitstring;
+    {12}new stR_PendingOld: bitstring;
+    {13}new stR_RequestWireOld: bitstring;
+    {14}new token_id: bitstring;
+    {15}new request_id: bitstring;
+    {16}event eDistinctFact(rid_rSendRequestOld,(stL_ReadyOld,(run_id,(context,next_context_1))));
+    {17}event eRequestSent(vold_gen,run_id,token_id,request_id,context,vzero_piv);
+    {18}insert tPendingOld(stR_PendingOld,run_id,token_id,request_id,context,vzero_piv,next_context_1);
+    {19}insert tRequestWireOld(stR_RequestWireOld,run_id,token_id,request_id,context,vzero_piv)
+) | (
+    {20}!
+    {21}get tRequestWireOld(stL_RequestWireOld: bitstring,run_id_1: bitstring,token_id_1: bitstring,request_id_1: bitstring,context_1: bitstring,request_piv: bitstring) in
+    {22}new rid_rAcceptRequestOld: bitstring;
+    {23}new stR_AcceptedRequestOld: bitstring;
+    {24}event eDistinctFact(rid_rAcceptRequestOld,(stL_RequestWireOld,(run_id_1,(token_id_1,(request_id_1,(context_1,request_piv))))));
+    {25}event eRequestAccepted(vold_gen,run_id_1,token_id_1,request_id_1,context_1,request_piv);
+    {26}insert tAcceptedRequestOld(stR_AcceptedRequestOld,run_id_1,token_id_1,request_id_1,context_1,request_piv)
+) | (
+    {27}!
+    {28}get tAcceptedRequestOld(stL_AcceptedRequestOld: bitstring,run_id_2: bitstring,token_id_2: bitstring,request_id_2: bitstring,context_2: bitstring,request_piv_1: bitstring) in
+    {29}new rid_rProtectResponseOld: bitstring;
+    {30}new stR_ResponseWireOld: bitstring;
+    {31}new response_id: bitstring;
+    {32}event eDistinctFact(rid_rProtectResponseOld,(stL_AcceptedRequestOld,(run_id_2,(token_id_2,(request_id_2,(context_2,request_piv_1))))));
+    {33}event eResponseProtected(vold_gen,run_id_2,token_id_2,request_id_2,context_2,request_piv_1,response_id);
+    {34}insert tResponseWireOld(stR_ResponseWireOld,run_id_2,token_id_2,request_id_2,context_2,request_piv_1,response_id)
+) | (
+    {35}!
+    {36}get tPendingOld(stL_PendingOld: bitstring,run_id_3: bitstring,token_id_3: bitstring,request_id_3: bitstring,context_3: bitstring,request_piv_2: bitstring,next_context_2: bitstring) in
+    {37}get tResponseWireOld(stL_ResponseWireOld: bitstring,=run_id_3,=token_id_3,=request_id_3,=context_3,=request_piv_2,response_id_1: bitstring) in
+    {38}new rid_rAcceptResponseOld: bitstring;
+    {39}new stR_OldExchangeCleared: bitstring;
+    {40}event eDistinctFact(rid_rAcceptResponseOld,(stL_PendingOld,(run_id_3,(token_id_3,(request_id_3,(context_3,(request_piv_2,next_context_2)))))));
+    {41}event eDistinctFact(rid_rAcceptResponseOld,(stL_ResponseWireOld,(run_id_3,(token_id_3,(request_id_3,(context_3,(request_piv_2,response_id_1)))))));
+    {42}event eResponseAccepted(vold_gen,run_id_3,token_id_3,request_id_3,context_3,request_piv_2,response_id_1);
+    {43}insert tOldExchangeCleared(stR_OldExchangeCleared,run_id_3,next_context_2)
+) | (
+    {44}!
+    {45}get tOldExchangeCleared(stL_OldExchangeCleared: bitstring,run_id_4: bitstring,next_context_3: bitstring) in
+    {46}new rid_rActivateNewContext: bitstring;
+    {47}new stR_ReadyNew: bitstring;
+    {48}event eDistinctFact(rid_rActivateNewContext,(stL_OldExchangeCleared,(run_id_4,next_context_3)));
+    {49}event eContextActivated(run_id_4,next_context_3);
+    {50}insert tReadyNew(stR_ReadyNew,run_id_4,next_context_3)
+) | (
+    {51}!
+    {52}get tReadyNew(stL_ReadyNew: bitstring,run_id_5: bitstring,context_4: bitstring) in
+    {53}new rid_rSendRequestNew: bitstring;
+    {54}new stR_PendingNew: bitstring;
+    {55}new stR_RequestWireNew: bitstring;
+    {56}new token_id_4: bitstring;
+    {57}new request_id_4: bitstring;
+    {58}event eDistinctFact(rid_rSendRequestNew,(stL_ReadyNew,(run_id_5,context_4)));
+    {59}event eRequestSent(vnew_gen,run_id_5,token_id_4,request_id_4,context_4,vzero_piv);
+    {60}insert tPendingNew(stR_PendingNew,run_id_5,token_id_4,request_id_4,context_4,vzero_piv);
+    {61}insert tRequestWireNew(stR_RequestWireNew,run_id_5,token_id_4,request_id_4,context_4,vzero_piv)
+) | (
+    {62}!
+    {63}get tRequestWireNew(stL_RequestWireNew: bitstring,run_id_6: bitstring,token_id_5: bitstring,request_id_5: bitstring,context_5: bitstring,request_piv_3: bitstring) in
+    {64}new rid_rAcceptRequestNew: bitstring;
+    {65}new stR_AcceptedRequestNew: bitstring;
+    {66}event eDistinctFact(rid_rAcceptRequestNew,(stL_RequestWireNew,(run_id_6,(token_id_5,(request_id_5,(context_5,request_piv_3))))));
+    {67}event eRequestAccepted(vnew_gen,run_id_6,token_id_5,request_id_5,context_5,request_piv_3);
+    {68}insert tAcceptedRequestNew(stR_AcceptedRequestNew,run_id_6,token_id_5,request_id_5,context_5,request_piv_3)
+) | (
+    {69}!
+    {70}get tAcceptedRequestNew(stL_AcceptedRequestNew: bitstring,run_id_7: bitstring,token_id_6: bitstring,request_id_6: bitstring,context_6: bitstring,request_piv_4: bitstring) in
+    {71}new rid_rProtectResponseNew: bitstring;
+    {72}new stR_ResponseWireNew: bitstring;
+    {73}new response_id_2: bitstring;
+    {74}event eDistinctFact(rid_rProtectResponseNew,(stL_AcceptedRequestNew,(run_id_7,(token_id_6,(request_id_6,(context_6,request_piv_4))))));
+    {75}event eResponseProtected(vnew_gen,run_id_7,token_id_6,request_id_6,context_6,request_piv_4,response_id_2);
+    {76}insert tResponseWireNew(stR_ResponseWireNew,run_id_7,token_id_6,request_id_6,context_6,request_piv_4,response_id_2)
+) | (
+    {77}!
+    {78}get tPendingNew(stL_PendingNew: bitstring,run_id_8: bitstring,token_id_7: bitstring,request_id_7: bitstring,context_7: bitstring,request_piv_5: bitstring) in
+    {79}get tResponseWireNew(stL_ResponseWireNew: bitstring,=run_id_8,=token_id_7,=request_id_7,=context_7,=request_piv_5,response_id_3: bitstring) in
+    {80}new rid_rAcceptResponseNew: bitstring;
+    {81}event eDistinctFact(rid_rAcceptResponseNew,(stL_PendingNew,(run_id_8,(token_id_7,(request_id_7,(context_7,request_piv_5))))));
+    {82}event eDistinctFact(rid_rAcceptResponseNew,(stL_ResponseWireNew,(run_id_8,(token_id_7,(request_id_7,(context_7,(request_piv_5,response_id_3)))))));
+    {83}event eResponseAccepted(vnew_gen,run_id_8,token_id_7,request_id_7,context_7,request_piv_5,response_id_3)
+)
+
+-- Restriction event(eInit(rid_i))@i && event(eInit(rid_j))@j ==> rid_i = rid_j encoded as event(eInit(rid_i)) && event(eInit(rid_j)) ==> rid_i = rid_j in process 0.
+-- Restriction event(eDistinctFact(rid_i,x))@i && event(eDistinctFact(rid_j,x))@j ==> rid_i = rid_j encoded as event(eDistinctFact(rid_i,x)) && event(eDistinctFact(rid_j,x)) ==> rid_i = rid_j in process 0.
+-- Query event(eRequestSent(vnew_gen[],run_id_9,token_id_8,request_id_8,context_8,request_piv_6))@k ==> event(eContextActivated(run_id_9,context_8))@i1 && k > i1 encoded as event(eRequestSent(vnew_gen[],run_id_9,token_id_8,request_id_8,context_8,request_piv_6))@i ==> event(eContextActivated(run_id_9,context_8))@i_1 && i > i_1 in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query event(eRequestSent(vnew_gen[],run_id_9,token_id_8,request_id_8,context_8,request_piv_6))@k ==> event(eContextActivated(run_id_9,context_8))@i1 && k > i1
+Removing redudant clauses.
+Removing subsumed clauses modulo the equational theory.
+Starting verification.
+Clauses verified: 0. Clauses remaining: 1. Failed clauses: 0.
+goal reachable: b-event(eDistinctFact(rid_rSendRequestNew_1,(stR_ReadyNew_1,(initial_id_1,next_context_4)))) && b-event(eContextActivated(initial_id_1,next_context_4)) && b-event(eDistinctFact(rid_rActivateNewContext_1,(stR_OldExchangeCleared_1,(initial_id_1,next_context_4)))) && b-event(eDistinctFact(rid_rAcceptResponseOld_1,(stR_ResponseWireOld_1,(initial_id_1,(token_id_8,(request_id_8,(initial_context_1,(vzero_piv[],response_id_4)))))))) && b-event(eDistinctFact(rid_rAcceptResponseOld_1,(stR_PendingOld_1,(initial_id_1,(token_id_8,(request_id_8,(initial_context_1,(vzero_piv[],next_context_4)))))))) && b-event(eDistinctFact(rid_rProtectResponseOld_1,(stR_AcceptedRequestOld_1,(initial_id_1,(token_id_8,(request_id_8,(initial_context_1,vzero_piv[]))))))) && b-event(eDistinctFact(rid_rAcceptRequestOld_1,(stR_RequestWireOld_1,(initial_id_1,(token_id_8,(request_id_8,(initial_context_1,vzero_piv[]))))))) && b-event(@p_act(@occ21_1,tRequestWireOld(stR_RequestWireOld_1,initial_id_1,token_id_8,request_id_8,initial_context_1,vzero_piv[]))) && b-event(@p_act(@occ28_1,tAcceptedRequestOld(stR_AcceptedRequestOld_1,initial_id_1,token_id_8,request_id_8,initial_context_1,vzero_piv[]))) && b-event(@p_act(@occ37_1,tResponseWireOld(stR_ResponseWireOld_1,initial_id_1,token_id_8,request_id_8,initial_context_1,vzero_piv[],response_id_4))) && b-event(eDistinctFact(rid_rSendRequestOld_1,(stR_ReadyOld_1,(initial_id_1,(initial_context_1,next_context_4))))) && b-event(eInit(rid_rInit_1)) && b-event(@p_act(@occ10_1,tReadyOld(stR_ReadyOld_1,initial_id_1,initial_context_1,next_context_4))) && b-event(@p_act(@occ36_1,tPendingOld(stR_PendingOld_1,initial_id_1,token_id_8,request_id_8,initial_context_1,vzero_piv[],next_context_4))) && b-event(@p_act(@occ45_1,tOldExchangeCleared(stR_OldExchangeCleared_1,initial_id_1,next_context_4))) && b-event(@p_act(@occ52_1,tReadyNew(stR_ReadyNew_1,initial_id_1,next_context_4))) -> event(eRequestSent(vnew_gen[],initial_id_1,token_id_9,request_id_9,next_context_4,vzero_piv[]))
+The 1st, 2nd, 3rd, 4th, 5th, 6th, 7th, 8th, 9th, 10th, 11th, 12th, 13th, 14th, 15th, 16th hypotheses occur strictly before the conclusion.
+Abbreviations:
+initial_id_1 = initial_id[!1 = @sid]
+next_context_4 = next_context[!1 = @sid]
+initial_context_1 = initial_context[!1 = @sid]
+stR_ReadyOld_1 = stR_ReadyOld[!1 = @sid]
+request_id_8 = request_id[next_context_1 = next_context_4,context = initial_context_1,run_id = initial_id_1,stL_ReadyOld = stR_ReadyOld_1,!1 = @sid_1]
+token_id_8 = token_id[next_context_1 = next_context_4,context = initial_context_1,run_id = initial_id_1,stL_ReadyOld = stR_ReadyOld_1,!1 = @sid_1]
+stR_RequestWireOld_1 = stR_RequestWireOld[next_context_1 = next_context_4,context = initial_context_1,run_id = initial_id_1,stL_ReadyOld = stR_ReadyOld_1,!1 = @sid_1]
+stR_AcceptedRequestOld_1 = stR_AcceptedRequestOld[request_piv = vzero_piv[],context_1 = initial_context_1,request_id_1 = request_id_8,token_id_1 = token_id_8,run_id_1 = initial_id_1,stL_RequestWireOld = stR_RequestWireOld_1,!1 = @sid_2]
+response_id_4 = response_id[request_piv_1 = vzero_piv[],context_2 = initial_context_1,request_id_2 = request_id_8,token_id_2 = token_id_8,run_id_2 = initial_id_1,stL_AcceptedRequestOld = stR_AcceptedRequestOld_1,!1 = @sid_3]
+stR_ResponseWireOld_1 = stR_ResponseWireOld[request_piv_1 = vzero_piv[],context_2 = initial_context_1,request_id_2 = request_id_8,token_id_2 = token_id_8,run_id_2 = initial_id_1,stL_AcceptedRequestOld = stR_AcceptedRequestOld_1,!1 = @sid_3]
+stR_PendingOld_1 = stR_PendingOld[next_context_1 = next_context_4,context = initial_context_1,run_id = initial_id_1,stL_ReadyOld = stR_ReadyOld_1,!1 = @sid_1]
+stR_OldExchangeCleared_1 = stR_OldExchangeCleared[response_id_1 = response_id_4,stL_ResponseWireOld = stR_ResponseWireOld_1,next_context_2 = next_context_4,request_piv_2 = vzero_piv[],context_3 = initial_context_1,request_id_3 = request_id_8,token_id_3 = token_id_8,run_id_3 = initial_id_1,stL_PendingOld = stR_PendingOld_1,!1 = @sid_4]
+stR_ReadyNew_1 = stR_ReadyNew[next_context_3 = next_context_4,run_id_4 = initial_id_1,stL_OldExchangeCleared = stR_OldExchangeCleared_1,!1 = @sid_5]
+token_id_9 = token_id_4[context_4 = next_context_4,run_id_5 = initial_id_1,stL_ReadyNew = stR_ReadyNew_1,!1 = @sid_6]
+request_id_9 = request_id_4[context_4 = next_context_4,run_id_5 = initial_id_1,stL_ReadyNew = stR_ReadyNew_1,!1 = @sid_6]
+rid_rSendRequestNew_1 = rid_rSendRequestNew[context_4 = next_context_4,run_id_5 = initial_id_1,stL_ReadyNew = stR_ReadyNew_1,!1 = @sid_6]
+rid_rActivateNewContext_1 = rid_rActivateNewContext[next_context_3 = next_context_4,run_id_4 = initial_id_1,stL_OldExchangeCleared = stR_OldExchangeCleared_1,!1 = @sid_5]
+rid_rAcceptResponseOld_1 = rid_rAcceptResponseOld[response_id_1 = response_id_4,stL_ResponseWireOld = stR_ResponseWireOld_1,next_context_2 = next_context_4,request_piv_2 = vzero_piv[],context_3 = initial_context_1,request_id_3 = request_id_8,token_id_3 = token_id_8,run_id_3 = initial_id_1,stL_PendingOld = stR_PendingOld_1,!1 = @sid_4]
+rid_rProtectResponseOld_1 = rid_rProtectResponseOld[request_piv_1 = vzero_piv[],context_2 = initial_context_1,request_id_2 = request_id_8,token_id_2 = token_id_8,run_id_2 = initial_id_1,stL_AcceptedRequestOld = stR_AcceptedRequestOld_1,!1 = @sid_3]
+rid_rAcceptRequestOld_1 = rid_rAcceptRequestOld[request_piv = vzero_piv[],context_1 = initial_context_1,request_id_1 = request_id_8,token_id_1 = token_id_8,run_id_1 = initial_id_1,stL_RequestWireOld = stR_RequestWireOld_1,!1 = @sid_2]
+@occ21_1 = @occ21[!1 = @sid_2]
+@occ28_1 = @occ28[!1 = @sid_3]
+@occ37_1 = @occ37[!1 = @sid_4]
+rid_rSendRequestOld_1 = rid_rSendRequestOld[next_context_1 = next_context_4,context = initial_context_1,run_id = initial_id_1,stL_ReadyOld = stR_ReadyOld_1,!1 = @sid_1]
+rid_rInit_1 = rid_rInit[!1 = @sid]
+@occ10_1 = @occ10[!1 = @sid_1]
+@occ36_1 = @occ36[!1 = @sid_4]
+@occ45_1 = @occ45[!1 = @sid_5]
+@occ52_1 = @occ52[!1 = @sid_6]
+RESULT event(eRequestSent(vnew_gen[],run_id_9,token_id_8,request_id_8,context_8,request_piv_6))@k ==> event(eContextActivated(run_id_9,context_8))@i1 && k > i1 is true.
+
+--------------------------------------------------------------
+Verification summary:
+
+Query(ies):
+ - Query event(eRequestSent(vnew_gen[],run_id_9,token_id_8,request_id_8,context_8,request_piv_6))@k ==> event(eContextActivated(run_id_9,context_8))@i1 && k > i1 is true.
+Associated restriction(s):
+ - Restriction event(eInit(rid_i))@i && event(eInit(rid_j))@j ==> rid_i = rid_j encoded as event(eInit(rid_i)) && event(eInit(rid_j)) ==> rid_i = rid_j in process 0.
+ - Restriction event(eDistinctFact(rid_i,x))@i && event(eDistinctFact(rid_j,x))@j ==> rid_i = rid_j encoded as event(eDistinctFact(rid_i,x)) && event(eDistinctFact(rid_j,x)) ==> rid_i = rid_j in process 0.
+
+--------------------------------------------------------------
+

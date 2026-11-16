@@ -1,0 +1,60 @@
+theory A_noSync
+/*
+ * Stage 1, auxiliary synchronised model (E1, general chain length).
+ * Ablation copy of S_E1g: the helper lemma Sync is removed.
+ * One Winternitz chain without a checksum. The verifier counts positions
+ * upwards with the same free constructors s/z that the key generation
+ * loop uses, so every verifier state can be compared with the generator
+ * value at the same position.
+ */
+begin
+functions: ch/2, s/1, z/0
+restriction Neq: "All x y #i. Neq(x,y)@i ==> not (x = y)"
+
+rule KeyGen:
+  [ Fr(~I), Fr(~x), In(L) ] --[ Start(~I,~x), Gen(~I,z,~x) ]-> [ G(~I,L,z,~x), !Sk(~I,~x) ]
+rule GenStep:
+  [ G(I,L,p,t) ] --[ Neq(p,L), Gen(I,s(p),ch(I,t)) ]-> [ G(I,L,s(p),ch(I,t)) ]
+rule GenDone:
+  [ G(I,L,L,y) ] --[ PkAt(I,L,y) ]-> [ !Pk(I,L,y), Out(<I,L,y>) ]
+
+rule Sign:
+  [ !Sk(I,x), !Pk(I,L,y), In(a) ] --> [ S(I,z,x,a) ]
+rule SigStep:
+  [ S(I,p,t,a) ] --[ Neq(p,a) ]-> [ S(I,s(p),ch(I,t),a) ]
+rule SigEmit:
+  [ S(I,a,t,a) ] --[ Signed(I,a,t) ]-> [ Out(<I,a,t>) ]
+
+// Ghost action VSt records the verifier state together with its input.
+rule VerStart:
+  [ !Pk(I,L,y), In(<I,a,t>), Fr(~v) ]
+  --[ VSt(~v,I,a,t,a,t) ]-> [ V(~v,I,L,a,t,a,t,y) ]
+rule VerStep:
+  [ V(v,I,L,p,t,a,t0,y) ]
+  --[ Neq(p,L), VSt(v,I,s(p),ch(I,t),a,t0) ]-> [ V(v,I,L,s(p),ch(I,t),a,t0,y) ]
+rule VerAccept:
+  [ V(v,I,L,L,y,a,t0,y), !Pk(I,L,y) ]
+  --[ VSt(v,I,L,y,a,t0), AcceptV(v,I,a,t0) ]-> []
+
+lemma Auto_exec: exists-trace
+  "Ex v I a t #s #k. Signed(I,a,t)@s & AcceptV(v,I,a,t)@k"
+
+// Every generator value above position z has its predecessor on the chain.
+lemma GenPred [reuse, use_induction]:
+  "All I p u #i. Gen(I,s(p),u)@i ==> Ex t #j. Gen(I,p,t)@j & u = ch(I,t) & #j < #i"
+
+// The public key is the generator value at the top position.
+lemma PkGen [reuse, use_induction]:
+  "All I L y #i. PkAt(I,L,y)@i ==> Ex #j. Gen(I,L,y)@j"
+
+// Every verifier state after the first one has a predecessor state of the
+// same run, one position lower and one hash step shorter.
+lemma VerPred [reuse, use_induction]:
+  "All v I p u a t0 #i. VSt(v,I,s(p),u,a,t0)@i ==>
+     (s(p) = a & u = t0) | (Ex t #j. VSt(v,I,p,t,a,t0)@j & u = ch(I,t) & #j < #i)"
+
+// Synchronisation invariant: if the verifier reaches a generator value at
+// the same position, then its input was the generator value at position a.
+lemma AcceptGen:
+  "All v I a t0 #k. AcceptV(v,I,a,t0)@k ==> Ex #j. Gen(I,a,t0)@j"
+end

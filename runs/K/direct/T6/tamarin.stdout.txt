@@ -1,0 +1,15 @@
+
+==============================================================================
+summary of summaries:
+
+analyzed: results/T6.55ykxSPE/models/pending_old.spthy
+
+  output:          results/T6.55ykxSPE/tamarin.proof.spthy
+  processing time: 0.29s
+  
+  pending_old_reachable (exists-trace): verified (4 steps)
+  pending_old_verified_receipt (all-traces): verified (4 steps)
+  pending_old_aborts_matching_update (all-traces): verified (4 steps)
+  pending_old_slots_empty (all-traces): verified (8 steps)
+
+==============================================================================

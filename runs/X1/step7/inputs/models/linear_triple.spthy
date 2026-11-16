@@ -1,0 +1,23 @@
+theory linear_triple begin
+functions: z/0
+
+rule Init:
+  [ Fr(~sid) ] --[ InitOnce() ]->
+  [ St(~sid, 'three', z), St(~sid, 'three', z), St(~sid, 'three', z),
+    St(~sid, 'two', z), St(~sid, 'two', z) ]
+
+restriction OneInit:
+  "All #i #j. InitOnce() @ i & InitOnce() @ j ==> #i = #j"
+
+rule Good:
+  [ St(sid, 'three', z), St(sid, 'three', z), St(sid, 'three', z) ] --[ Good(sid) ]-> []
+
+rule Bad:
+  [ St(sid, 'two', z), St(sid, 'two', z), St(sid, 'two', z) ] --[ Bad(sid) ]-> []
+
+lemma good_reachable: exists-trace
+  "Ex sid #i. Good(sid) @ i"
+
+lemma bad_reachable: exists-trace
+  "Ex sid #i. Bad(sid) @ i"
+end

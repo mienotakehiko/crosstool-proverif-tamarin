@@ -1,0 +1,131 @@
+Process 0 (that is, the initial process):
+{1}new old_ctx: bitstring;
+{2}new new_ctx: bitstring;
+{3}new oldest_pair: bitstring;
+{4}new incoming_pair: bitstring;
+{5}new message: bitstring;
+{6}event PendingBefore(new_ctx,old_ctx,tempctx(old_ctx,oldest_pair));
+(
+    {7}out(ch_Pending, (new_ctx,old_ctx,tempctx(old_ctx,oldest_pair)))
+) | (
+    {8}out(ch_BeforeSnapshot, (new_ctx,old_ctx,tempctx(old_ctx,oldest_pair)))
+) | (
+    {9}out(ch_VerifiedNewOnlyPremise, (message,new_ctx,incoming_pair))
+) | (
+    {10}in(ch_VerifiedNewOnlyPremise, (m: bitstring,n: bitstring,peer_pair: bitstring));
+    {11}event NewVerified(m,n,tempctx(n,peer_pair));
+    {12}out(ch_VerifiedDivergent, (m,n,tempctx(n,peer_pair),peer_pair))
+) | (
+    {13}in(ch_Pending, (n_1: bitstring,b: bitstring,t0: bitstring));
+    {14}in(ch_VerifiedDivergent, (m_1: bitstring,=n_1,r: bitstring,peer_pair_1: bitstring));
+    {15}if (r = tempctx(n_1,peer_pair_1)) then
+    {16}event PendingAborted(m_1,n_1,b,t0);
+    {17}out(ch_BusyEntry, (m_1,n_1,r,empty_oldest_temp,empty_oldest_parent,empty_pending_new))
+) | (
+    {18}in(ch_BeforeSnapshot, (n0: bitstring,b0: bitstring,t0_1: bitstring));
+    {19}in(ch_BusyEntry, (m_2: bitstring,o: bitstring,r_1: bitstring,st: bitstring,sp: bitstring,sn: bitstring));
+    {20}event BusyEntryRead(m_2,o,r_1,n0,b0,t0_1,st,sp,sn)
+)
+
+-- Query not event(BusyEntryRead(m_3,o_1,r_2,n0_1,b0_1,t0_2,st_1,sp_1,sn_1)) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query not event(BusyEntryRead(m_3,o_1,r_2,n0_1,b0_1,t0_2,st_1,sp_1,sn_1))
+goal reachable: event(BusyEntryRead(message[],new_ctx[],tempctx(new_ctx[],incoming_pair[]),new_ctx[],old_ctx[],tempctx(old_ctx[],oldest_pair[]),empty_oldest_temp[],empty_oldest_parent[],empty_pending_new[]))
+
+Derivation:
+
+1. The message (new_ctx[],old_ctx[],tempctx(old_ctx[],oldest_pair[])) may be sent on channel ch_BeforeSnapshot[] at output {8}.
+mess(ch_BeforeSnapshot[],(new_ctx[],old_ctx[],tempctx(old_ctx[],oldest_pair[]))).
+
+2. The message (new_ctx[],old_ctx[],tempctx(old_ctx[],oldest_pair[])) may be sent on channel ch_Pending[] at output {7}.
+mess(ch_Pending[],(new_ctx[],old_ctx[],tempctx(old_ctx[],oldest_pair[]))).
+
+3. The message (message[],new_ctx[],incoming_pair[]) may be sent on channel ch_VerifiedNewOnlyPremise[] at output {9}.
+mess(ch_VerifiedNewOnlyPremise[],(message[],new_ctx[],incoming_pair[])).
+
+4. The message (message[],new_ctx[],incoming_pair[]) that may be sent on channel ch_VerifiedNewOnlyPremise[] by 3 may be received at input {10}.
+So the message (message[],new_ctx[],tempctx(new_ctx[],incoming_pair[]),incoming_pair[]) may be sent on channel ch_VerifiedDivergent[] at output {12}.
+mess(ch_VerifiedDivergent[],(message[],new_ctx[],tempctx(new_ctx[],incoming_pair[]),incoming_pair[])).
+
+5. The message (new_ctx[],old_ctx[],tempctx(old_ctx[],oldest_pair[])) that may be sent on channel ch_Pending[] by 2 may be received at input {13}.
+The message (message[],new_ctx[],tempctx(new_ctx[],incoming_pair[]),incoming_pair[]) that may be sent on channel ch_VerifiedDivergent[] by 4 may be received at input {14}.
+So the message (message[],new_ctx[],tempctx(new_ctx[],incoming_pair[]),empty_oldest_temp[],empty_oldest_parent[],empty_pending_new[]) may be sent on channel ch_BusyEntry[] at output {17}.
+mess(ch_BusyEntry[],(message[],new_ctx[],tempctx(new_ctx[],incoming_pair[]),empty_oldest_temp[],empty_oldest_parent[],empty_pending_new[])).
+
+6. The message (new_ctx[],old_ctx[],tempctx(old_ctx[],oldest_pair[])) that may be sent on channel ch_BeforeSnapshot[] by 1 may be received at input {18}.
+The message (message[],new_ctx[],tempctx(new_ctx[],incoming_pair[]),empty_oldest_temp[],empty_oldest_parent[],empty_pending_new[]) that may be sent on channel ch_BusyEntry[] by 5 may be received at input {19}.
+So event BusyEntryRead(message[],new_ctx[],tempctx(new_ctx[],incoming_pair[]),new_ctx[],old_ctx[],tempctx(old_ctx[],oldest_pair[]),empty_oldest_temp[],empty_oldest_parent[],empty_pending_new[]) may be executed at {20}.
+event(BusyEntryRead(message[],new_ctx[],tempctx(new_ctx[],incoming_pair[]),new_ctx[],old_ctx[],tempctx(old_ctx[],oldest_pair[]),empty_oldest_temp[],empty_oldest_parent[],empty_pending_new[])).
+
+7. By 6, event(BusyEntryRead(message[],new_ctx[],tempctx(new_ctx[],incoming_pair[]),new_ctx[],old_ctx[],tempctx(old_ctx[],oldest_pair[]),empty_oldest_temp[],empty_oldest_parent[],empty_pending_new[])).
+The goal is reached, represented in the following fact:
+event(BusyEntryRead(message[],new_ctx[],tempctx(new_ctx[],incoming_pair[]),new_ctx[],old_ctx[],tempctx(old_ctx[],oldest_pair[]),empty_oldest_temp[],empty_oldest_parent[],empty_pending_new[])).
+
+
+A more detailed output of the traces is available with
+  set traceDisplay = long.
+
+new old_ctx: bitstring creating old_ctx_1 at {1}
+
+new new_ctx: bitstring creating new_ctx_1 at {2}
+
+new oldest_pair: bitstring creating oldest_pair_1 at {3}
+
+new incoming_pair: bitstring creating incoming_pair_1 at {4}
+
+new message: bitstring creating message_1 at {5}
+
+event PendingBefore(new_ctx_1,old_ctx_1,tempctx(old_ctx_1,oldest_pair_1)) at {6}
+
+out(ch_VerifiedNewOnlyPremise, (message_1,new_ctx_1,incoming_pair_1)) at {9} received at {10}
+
+event NewVerified(message_1,new_ctx_1,tempctx(new_ctx_1,incoming_pair_1)) at {11}
+
+out(ch_Pending, (new_ctx_1,old_ctx_1,tempctx(old_ctx_1,oldest_pair_1))) at {7} received at {13}
+
+out(ch_VerifiedDivergent, (message_1,new_ctx_1,tempctx(new_ctx_1,incoming_pair_1),incoming_pair_1)) at {12} received at {14}
+
+event PendingAborted(message_1,new_ctx_1,old_ctx_1,tempctx(old_ctx_1,oldest_pair_1)) at {16}
+
+out(ch_BeforeSnapshot, (new_ctx_1,old_ctx_1,tempctx(old_ctx_1,oldest_pair_1))) at {8} received at {18}
+
+out(ch_BusyEntry, (message_1,new_ctx_1,tempctx(new_ctx_1,incoming_pair_1),empty_oldest_temp,empty_oldest_parent,empty_pending_new)) at {17} received at {19}
+
+event BusyEntryRead(message_1,new_ctx_1,tempctx(new_ctx_1,incoming_pair_1),new_ctx_1,old_ctx_1,tempctx(old_ctx_1,oldest_pair_1),empty_oldest_temp,empty_oldest_parent,empty_pending_new) at {20} (goal)
+
+The event BusyEntryRead(message_1,new_ctx_1,tempctx(new_ctx_1,incoming_pair_1),new_ctx_1,old_ctx_1,tempctx(old_ctx_1,oldest_pair_1),empty_oldest_temp,empty_oldest_parent,empty_pending_new) is executed at {20}.
+A trace has been found.
+RESULT not event(BusyEntryRead(m_3,o_1,r_2,n0_1,b0_1,t0_2,st_1,sp_1,sn_1)) is false.
+-- Query event(BusyEntryRead(m_3,o_1,r_2,n0_1,b0_1,t0_2,st_1,sp_1,sn_1)) ==> event(NewVerified(m_3,n0_1,r_2)) && o_1 = n0_1 in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query event(BusyEntryRead(m_3,o_1,r_2,n0_1,b0_1,t0_2,st_1,sp_1,sn_1)) ==> event(NewVerified(m_3,n0_1,r_2)) && o_1 = n0_1
+goal reachable: b-event(NewVerified(message[],new_ctx[],tempctx(new_ctx[],incoming_pair[]))) -> event(BusyEntryRead(message[],new_ctx[],tempctx(new_ctx[],incoming_pair[]),new_ctx[],old_ctx[],tempctx(old_ctx[],oldest_pair[]),empty_oldest_temp[],empty_oldest_parent[],empty_pending_new[]))
+RESULT event(BusyEntryRead(m_3,o_1,r_2,n0_1,b0_1,t0_2,st_1,sp_1,sn_1)) ==> event(NewVerified(m_3,n0_1,r_2)) && o_1 = n0_1 is true.
+-- Query event(BusyEntryRead(m_3,o_1,r_2,n0_1,b0_1,t0_2,st_1,sp_1,sn_1)) ==> event(PendingBefore(n0_1,b0_1,t0_2)) && event(PendingAborted(m_3,n0_1,b0_1,t0_2)) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query event(BusyEntryRead(m_3,o_1,r_2,n0_1,b0_1,t0_2,st_1,sp_1,sn_1)) ==> event(PendingBefore(n0_1,b0_1,t0_2)) && event(PendingAborted(m_3,n0_1,b0_1,t0_2))
+goal reachable: b-event(PendingAborted(message[],new_ctx[],old_ctx[],tempctx(old_ctx[],oldest_pair[]))) && b-event(PendingBefore(new_ctx[],old_ctx[],tempctx(old_ctx[],oldest_pair[]))) -> event(BusyEntryRead(message[],new_ctx[],tempctx(new_ctx[],incoming_pair[]),new_ctx[],old_ctx[],tempctx(old_ctx[],oldest_pair[]),empty_oldest_temp[],empty_oldest_parent[],empty_pending_new[]))
+RESULT event(BusyEntryRead(m_3,o_1,r_2,n0_1,b0_1,t0_2,st_1,sp_1,sn_1)) ==> event(PendingBefore(n0_1,b0_1,t0_2)) && event(PendingAborted(m_3,n0_1,b0_1,t0_2)) is true.
+-- Query event(BusyEntryRead(m_3,o_1,r_2,n0_1,b0_1,t0_2,st_1,sp_1,sn_1)) ==> st_1 = empty_oldest_temp[] && sp_1 = empty_oldest_parent[] && sn_1 = empty_pending_new[] in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query event(BusyEntryRead(m_3,o_1,r_2,n0_1,b0_1,t0_2,st_1,sp_1,sn_1)) ==> st_1 = empty_oldest_temp[] && sp_1 = empty_oldest_parent[] && sn_1 = empty_pending_new[]
+goal reachable: event(BusyEntryRead(message[],new_ctx[],tempctx(new_ctx[],incoming_pair[]),new_ctx[],old_ctx[],tempctx(old_ctx[],oldest_pair[]),empty_oldest_temp[],empty_oldest_parent[],empty_pending_new[]))
+RESULT event(BusyEntryRead(m_3,o_1,r_2,n0_1,b0_1,t0_2,st_1,sp_1,sn_1)) ==> st_1 = empty_oldest_temp[] && sp_1 = empty_oldest_parent[] && sn_1 = empty_pending_new[] is true.
+
+--------------------------------------------------------------
+Verification summary:
+
+Query not event(BusyEntryRead(m_3,o_1,r_2,n0_1,b0_1,t0_2,st_1,sp_1,sn_1)) is false.
+
+Query event(BusyEntryRead(m_3,o_1,r_2,n0_1,b0_1,t0_2,st_1,sp_1,sn_1)) ==> event(NewVerified(m_3,n0_1,r_2)) && o_1 = n0_1 is true.
+
+Query event(BusyEntryRead(m_3,o_1,r_2,n0_1,b0_1,t0_2,st_1,sp_1,sn_1)) ==> event(PendingBefore(n0_1,b0_1,t0_2)) && event(PendingAborted(m_3,n0_1,b0_1,t0_2)) is true.
+
+Query event(BusyEntryRead(m_3,o_1,r_2,n0_1,b0_1,t0_2,st_1,sp_1,sn_1)) ==> st_1 = empty_oldest_temp[] && sp_1 = empty_oldest_parent[] && sn_1 = empty_pending_new[] is true.
+
+--------------------------------------------------------------
+

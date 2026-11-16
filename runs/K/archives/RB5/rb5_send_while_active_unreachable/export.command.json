@@ -1,0 +1,1 @@
+["tamarin-prover", "-d=0", "-m=proverif", "--lemma=rb5_send_while_active_unreachable", "-o=/work/rb5_send_while_active_unreachable/translated.pv", "/work/inputs/rb5.spthy"]

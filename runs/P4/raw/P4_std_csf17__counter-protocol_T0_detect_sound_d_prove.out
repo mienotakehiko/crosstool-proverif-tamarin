@@ -1,0 +1,2328 @@
+maude tool: 'maude'
+ checking version: 3.5.1. OK.
+ checking installation: OK.
+[Theory counter_example] Theory loaded
+[Theory counter_example] Theory translated
+[Theory counter_example] Theory closed
+[Saturating Sources] Step 1 (Max 5)
+[Saturating Sources] Done
+[Saturating Sources] Step 1 (Max 5)
+[Saturating Sources] Done
+Simplifier iteration 11:
+
+The reduction-rules for
+were applied to the following constraint system.
+
+  nodes:
+    #j: instance (modulo AC) BindState_Init:
+           [ !F_AgentKey( ~ltkI ), !F_AgentKey( ~ltkB ), Fr( ~id ) ]
+          --[
+          Paired( ~id, 'I', ~ltkI, ~ltkB ), Counter( ~id, '0' ),
+          F_InvariantSource_I( ~id, ~ltkI, pk(~ltkB) )
+          ]->
+           [ St_I( ~id, ~ltkI, pk(~ltkB), 'm0', '0' ) ]
+    #t1: instance (modulo AC) I_detect:
+            [
+            St_I( ~id, ~ltkI, pk(~ltkB), <'m2', ~ni>, S(S(ic)) ),
+            In( <<'1', pk(~ltkB), pk(~ltkI), ~ni, ~nr, S(rc)>, 
+                 sign(<'1', pk(~ltkB), pk(~ltkI), ~ni, ~nr, S(rc)>, ~ltkB)>
+            )
+            ]
+           --[
+           Eq( true, true ), InEq( S(S(S(ic))), S(rc) ),
+           Detect( <pk(~ltkI), pk(~ltkB)> ), Counter( ~id, S(S(S(ic))) ),
+           Nonces( ~id, ~ni, ~nr ),
+           Session( 'I', <pk(~ltkI), pk(~ltkB)>, <~ni, ~nr>, S(rc) ),
+           Injectivity( ~id, ~ni, S(S(S(ic))) ),
+           Invariant_I( ~id, ~ltkI, pk(~ltkB) )
+           ]->
+            [
+            Remediate_Compromise( ~id, ~ltkI, pk(~ltkB), 'm0', S(S(S(ic))) ),
+            Out( <<'2', pk(~ltkI), pk(~ltkB), ~ni, ~nr, S(rc)>, 
+                  sign(<'2', pk(~ltkI), pk(~ltkB), ~ni, ~nr, S(rc)>, ~ltkI)>
+            )
+            ]
+    #vf: instance (modulo AC) isend:
+            [
+            !KU( <<'1', pk(~ltkB), pk(~ltkI), ~ni, ~nr, S(rc)>, 
+                  sign(<'1', pk(~ltkB), pk(~ltkI), ~ni, ~nr, S(rc)>, ~ltkB)>
+            )
+            ]
+           --[
+           K( <<'1', pk(~ltkB), pk(~ltkI), ~ni, ~nr, S(rc)>, 
+               sign(<'1', pk(~ltkB), pk(~ltkI), ~ni, ~nr, S(rc)>, ~ltkB)>
+           )
+           ]->
+            [
+            In( <<'1', pk(~ltkB), pk(~ltkI), ~ni, ~nr, S(rc)>, 
+                 sign(<'1', pk(~ltkB), pk(~ltkI), ~ni, ~nr, S(rc)>, ~ltkB)>
+            )
+            ]
+    #vk: instance (modulo AC) coerce:
+            [ !KD( sign(<'1', pk(~ltkB), pk(~ltkI), ~ni, ~nr, S(rc)>, ~ltkB) )
+            ]
+           --[
+           !KU( sign(<'1', pk(~ltkB), pk(~ltkI), ~ni, ~nr, S(rc)>, ~ltkB) )
+           ]->
+            [ !KU( sign(<'1', pk(~ltkB), pk(~ltkI), ~ni, ~nr, S(rc)>, ~ltkB) )
+            ]
+    #vl: instance (modulo AC) irecv:
+            [
+            Out( <<'1', pk(~ltkB), pk(~ltkI), ~ni, ~nr, S(rc)>, 
+                  sign(<'1', pk(~ltkB), pk(~ltkI), ~ni, ~nr, S(rc)>, ~ltkB)>
+            )
+            ]
+           -->
+            [
+            !KD( <<'1', pk(~ltkB), pk(~ltkI), ~ni, ~nr, S(rc)>, 
+                  sign(<'1', pk(~ltkB), pk(~ltkI), ~ni, ~nr, S(rc)>, ~ltkB)>
+            )
+            ]
+    #vr: instance (modulo AC) I_m0:
+            [ St_I( ~id, ~ltkI, pk(~ltkB), 'm0', S(S(ic)) ), Fr( ~ni ) ]
+           --[
+           Begin( 'I', <pk(~ltkI), pk(~ltkB)>, S(S(S(ic))) ),
+           Counter( <~id, 'm0'>, S(S(ic)) ), Gen( ~ni ),
+           Injectivity( ~id, S(S(ic)), ~ni ),
+           Invariant_I( ~id, ~ltkI, pk(~ltkB) )
+           ]->
+            [ St_I( ~id, ~ltkI, pk(~ltkB), <'m2', ~ni>, S(S(ic)) ), Out( ~ni )
+            ]
+    #j.1: instance (modulo AC) BindState_Resp:
+             [ !F_AgentKey( ~ltkB ), !F_AgentKey( ~ltkI ), Fr( ~id.1 ) ]
+            --[
+            Paired( ~id.1, 'R', ~ltkB, ~ltkI ), Counter( ~id.1, '0' ),
+            F_InvariantSource_R( ~id.1, ~ltkB, pk(~ltkI) )
+            ]->
+             [ St_R( ~id.1, ~ltkB, pk(~ltkI), 'm1', '0' ) ]
+    #vf.1: instance (modulo AC) Fresh:
+              [ ] --> [ Fr( ~ni ) ]
+    #vk.1: instance (modulo AC) coerce:
+              [
+              !KD( sign(<'1', pk(~ltkB), pk(~ltkI), ~ni.1, ~nr.1, S(S(ic))>,
+                        ~ltkB)
+              )
+              ]
+             --[
+             !KU( sign(<'1', pk(~ltkB), pk(~ltkI), ~ni.1, ~nr.1, S(S(ic))>,
+                       ~ltkB)
+             )
+             ]->
+              [
+              !KU( sign(<'1', pk(~ltkB), pk(~ltkI), ~ni.1, ~nr.1, S(S(ic))>,
+                        ~ltkB)
+              )
+              ]
+    #vl.1: instance (modulo AC) irecv:
+              [
+              Out( <<'1', pk(~ltkB), pk(~ltkI), ~ni.1, ~nr.1, S(S(ic))>, 
+                    sign(<'1', pk(~ltkB), pk(~ltkI), ~ni.1, ~nr.1, S(S(ic))>, ~ltkB)>
+              )
+              ]
+             -->
+              [
+              !KD( <<'1', pk(~ltkB), pk(~ltkI), ~ni.1, ~nr.1, S(S(ic))>, 
+                    sign(<'1', pk(~ltkB), pk(~ltkI), ~ni.1, ~nr.1, S(S(ic))>, ~ltkB)>
+              )
+              ]
+    #vr.1: instance (modulo AC) I_m2:
+              [
+              St_I( ~id, ~ltkI, pk(~ltkB), <'m2', ~ni.1>, S(ic) ),
+              In( <<'1', pk(~ltkB), pk(~ltkI), ~ni.1, ~nr.1, S(S(ic))>, 
+                   sign(<'1', pk(~ltkB), pk(~ltkI), ~ni.1, ~nr.1, S(S(ic))>, ~ltkB)>
+              )
+              ]
+             --[
+             Eq( true, true ), Eq( S(S(ic)), S(S(ic)) ),
+             Counter( ~id, S(S(ic)) ), Nonces( ~id, ~ni.1, ~nr.1 ),
+             Session( 'I', <pk(~ltkI), pk(~ltkB)>, <~ni.1, ~nr.1>, S(S(ic)) ),
+             Injectivity( ~id, ~ni.1, S(S(ic)) ),
+             Invariant_I( ~id, ~ltkI, pk(~ltkB) )
+             ]->
+              [
+              St_I( ~id, ~ltkI, pk(~ltkB), 'm0', S(S(ic)) ),
+              Out( <<'2', pk(~ltkI), pk(~ltkB), ~ni.1, ~nr.1, S(S(ic))>, 
+                    sign(<'2', pk(~ltkI), pk(~ltkB), ~ni.1, ~nr.1, S(S(ic))>, ~ltkI)>
+              )
+              ]
+    #vf.2: instance (modulo AC) isend:
+              [
+              !KU( <<'1', pk(~ltkB), pk(~ltkI), ~ni.1, ~nr.1, S(S(ic))>, 
+                    sign(<'1', pk(~ltkB), pk(~ltkI), ~ni.1, ~nr.1, S(S(ic))>, ~ltkB)>
+              )
+              ]
+             --[
+             K( <<'1', pk(~ltkB), pk(~ltkI), ~ni.1, ~nr.1, S(S(ic))>, 
+                 sign(<'1', pk(~ltkB), pk(~ltkI), ~ni.1, ~nr.1, S(S(ic))>, ~ltkB)>
+             )
+             ]->
+              [
+              In( <<'1', pk(~ltkB), pk(~ltkI), ~ni.1, ~nr.1, S(S(ic))>, 
+                   sign(<'1', pk(~ltkB), pk(~ltkI), ~ni.1, ~nr.1, S(S(ic))>, ~ltkB)>
+              )
+              ]
+    #vr.2: instance (modulo AC) RegisterKey:
+              [ Fr( ~ltkI ) ]
+             --[ Key( ~ltkI ) ]->
+              [ !F_AgentKey( ~ltkI ), Out( pk(~ltkI) ) ]
+    #vf.3: instance (modulo AC) Fresh:
+              [ ] --> [ Fr( ~id ) ]
+    #vr.3: instance (modulo AC) RegisterKey:
+              [ Fr( ~ltkB ) ]
+             --[ Key( ~ltkB ) ]->
+              [ !F_AgentKey( ~ltkB ), Out( pk(~ltkB) ) ]
+    #vf.4: instance (modulo AC) Fresh:
+              [ ] --> [ Fr( ~ltkI ) ]
+    #vr.4: instance (modulo AC) R_m1:
+              [ St_R( ~id.1, ~ltkB, pk(~ltkI), 'm1', rc ), Fr( ~nr ), In( ~ni ) ]
+             --[
+             Begin( 'R', <pk(~ltkI), pk(~ltkB)>, S(rc) ),
+             Counter( <~id.1, 'm1'>, rc ), Nonces( ~id.1, ~ni, ~nr ),
+             Gen( ~nr ), Injectivity( ~id.1, rc, ~nr ),
+             Invariant_R( ~id.1, ~ltkB, pk(~ltkI) )
+             ]->
+              [
+              St_R( ~id.1, ~ltkB, pk(~ltkI), <'m2', ~ni, ~nr>, S(rc) ),
+              Out( <<'1', pk(~ltkB), pk(~ltkI), ~ni, ~nr, S(rc)>, 
+                    sign(<'1', pk(~ltkB), pk(~ltkI), ~ni, ~nr, S(rc)>, ~ltkB)>
+              )
+              ]
+    #vf.5: instance (modulo AC) Fresh:
+              [ ] --> [ Fr( ~ltkB ) ]
+    #vr.5: instance (modulo AC) d_0_snd:
+              [
+              !KD( <<'1', pk(~ltkB), pk(~ltkI), ~ni, ~nr, S(rc)>, 
+                    sign(<'1', pk(~ltkB), pk(~ltkI), ~ni, ~nr, S(rc)>, ~ltkB)>
+              )
+              ]
+             -->
+              [ !KD( sign(<'1', pk(~ltkB), pk(~ltkI), ~ni, ~nr, S(rc)>, ~ltkB) )
+              ]
+    #vf.6: instance (modulo AC) Fresh:
+              [ ] --> [ Fr( ~nr ) ]
+    #vr.6: instance (modulo AC) R_m2:
+              [
+              St_R( ~id.1, ~ltkB, pk(~ltkI), <'m2', ~ni.53, nr.2>, rc ),
+              Fr( ~inj ),
+              In( <<'2', pk(~ltkI), pk(~ltkB), ~ni.53, nr.2, rc>, 
+                   sign(<'2', pk(~ltkI), pk(~ltkB), ~ni.53, nr.2, rc>, ~ltkI)>
+              )
+              ]
+             --[
+             Eq( true, true ), Completed( ~id.1 ),
+             Session( 'R', <pk(~ltkI), pk(~ltkB)>, <~ni.53, nr.2>, rc ),
+             Counter( ~id.1, rc ), Injectivity( ~id.1, nr.2, rc ),
+             Invariant_R( ~id.1, ~ltkB, pk(~ltkI) )
+             ]->
+              [ St_R( ~id.1, ~ltkB, pk(~ltkI), 'm1', rc ) ]
+    #vf.7: instance (modulo AC) isend:
+              [ !KU( ~ni ) ] --[ K( ~ni ) ]-> [ In( ~ni ) ]
+    #vr.7: instance (modulo AC) R_m1:
+              [
+              St_R( ~id.1, ~ltkB, pk(~ltkI), 'm1', S(ic) ), Fr( ~nr.1 ),
+              In( ~ni.1 )
+              ]
+             --[
+             Begin( 'R', <pk(~ltkI), pk(~ltkB)>, S(S(ic)) ),
+             Counter( <~id.1, 'm1'>, S(ic) ), Nonces( ~id.1, ~ni.1, ~nr.1 ),
+             Gen( ~nr.1 ), Injectivity( ~id.1, S(ic), ~nr.1 ),
+             Invariant_R( ~id.1, ~ltkB, pk(~ltkI) )
+             ]->
+              [
+              St_R( ~id.1, ~ltkB, pk(~ltkI), <'m2', ~ni.1, ~nr.1>, S(S(ic)) ),
+              Out( <<'1', pk(~ltkB), pk(~ltkI), ~ni.1, ~nr.1, S(S(ic))>, 
+                    sign(<'1', pk(~ltkB), pk(~ltkI), ~ni.1, ~nr.1, S(S(ic))>, ~ltkB)>
+              )
+              ]
+    #vf.8: instance (modulo AC) Fresh:
+              [ ] --> [ Fr( ~inj ) ]
+    #vr.8: instance (modulo AC) d_0_snd:
+              [
+              !KD( <<'1', pk(~ltkB), pk(~ltkI), ~ni.1, ~nr.1, S(S(ic))>, 
+                    sign(<'1', pk(~ltkB), pk(~ltkI), ~ni.1, ~nr.1, S(S(ic))>, ~ltkB)>
+              )
+              ]
+             -->
+              [
+              !KD( sign(<'1', pk(~ltkB), pk(~ltkI), ~ni.1, ~nr.1, S(S(ic))>,
+                        ~ltkB)
+              )
+              ]
+    #vf.9: instance (modulo AC) isend:
+              [
+              !KU( <<'2', pk(~ltkI), pk(~ltkB), ~ni.53, nr.2, rc>, 
+                    sign(<'2', pk(~ltkI), pk(~ltkB), ~ni.53, nr.2, rc>, ~ltkI)>
+              )
+              ]
+             --[
+             K( <<'2', pk(~ltkI), pk(~ltkB), ~ni.53, nr.2, rc>, 
+                 sign(<'2', pk(~ltkI), pk(~ltkB), ~ni.53, nr.2, rc>, ~ltkI)>
+             )
+             ]->
+              [
+              In( <<'2', pk(~ltkI), pk(~ltkB), ~ni.53, nr.2, rc>, 
+                   sign(<'2', pk(~ltkI), pk(~ltkB), ~ni.53, nr.2, rc>, ~ltkI)>
+              )
+              ]
+    #vr.9: instance (modulo AC) R_m2:
+              [
+              St_R( ~id.1, ~ltkB, pk(~ltkI), <'m2', ni.3, nr.3>, S(ic) ),
+              Fr( ~inj.1 ),
+              In( <<'2', pk(~ltkI), pk(~ltkB), ni.3, nr.3, S(ic)>, 
+                   sign(<'2', pk(~ltkI), pk(~ltkB), ni.3, nr.3, S(ic)>, ~ltkI)>
+              )
+              ]
+             --[
+             Eq( true, true ), Completed( ~id.1 ),
+             Session( 'R', <pk(~ltkI), pk(~ltkB)>, <ni.3, nr.3>, S(ic) ),
+             Counter( ~id.1, S(ic) ), Injectivity( ~id.1, nr.3, S(ic) ),
+             Invariant_R( ~id.1, ~ltkB, pk(~ltkI) )
+             ]->
+              [ St_R( ~id.1, ~ltkB, pk(~ltkI), 'm1', S(ic) ) ]
+    #vf.10: instance (modulo AC) Fresh:
+               [ ] --> [ Fr( ~id.1 ) ]
+    #vr.10: instance (modulo AC) I_m0:
+               [ St_I( ~id, ~ltkI, pk(~ltkB), 'm0', S(ic) ), Fr( ~ni.1 ) ]
+              --[
+              Begin( 'I', <pk(~ltkI), pk(~ltkB)>, S(S(ic)) ),
+              Counter( <~id, 'm0'>, S(ic) ), Gen( ~ni.1 ),
+              Injectivity( ~id, S(ic), ~ni.1 ),
+              Invariant_I( ~id, ~ltkI, pk(~ltkB) )
+              ]->
+               [ St_I( ~id, ~ltkI, pk(~ltkB), <'m2', ~ni.1>, S(ic) ), Out( ~ni.1 )
+               ]
+    #vf.11: instance (modulo AC) Fresh:
+               [ ] --> [ Fr( ~nr.1 ) ]
+    #vr.11: instance (modulo AC) I_m2:
+               [
+               St_I( ~id, ~ltkI, pk(~ltkB), <'m2', ni.4>, ic ),
+               In( <<'1', pk(~ltkB), pk(~ltkI), ni.4, nr.4, S(ic)>, 
+                    sign(<'1', pk(~ltkB), pk(~ltkI), ni.4, nr.4, S(ic)>, ~ltkB)>
+               )
+               ]
+              --[
+              Eq( true, true ), Eq( S(ic), S(ic) ), Counter( ~id, S(ic) ),
+              Nonces( ~id, ni.4, nr.4 ),
+              Session( 'I', <pk(~ltkI), pk(~ltkB)>, <ni.4, nr.4>, S(ic) ),
+              Injectivity( ~id, ni.4, S(ic) ),
+              Invariant_I( ~id, ~ltkI, pk(~ltkB) )
+              ]->
+               [
+               St_I( ~id, ~ltkI, pk(~ltkB), 'm0', S(ic) ),
+               Out( <<'2', pk(~ltkI), pk(~ltkB), ni.4, nr.4, S(ic)>, 
+                     sign(<'2', pk(~ltkI), pk(~ltkB), ni.4, nr.4, S(ic)>, ~ltkI)>
+               )
+               ]
+    #vf.12: instance (modulo AC) isend:
+               [ !KU( ~ni.1 ) ] --[ K( ~ni.1 ) ]-> [ In( ~ni.1 ) ]
+    #vf.13: instance (modulo AC) Fresh:
+               [ ] --> [ Fr( ~inj.1 ) ]
+    #vf.14: instance (modulo AC) isend:
+               [
+               !KU( <<'2', pk(~ltkI), pk(~ltkB), ni.3, nr.3, S(ic)>, 
+                     sign(<'2', pk(~ltkI), pk(~ltkB), ni.3, nr.3, S(ic)>, ~ltkI)>
+               )
+               ]
+              --[
+              K( <<'2', pk(~ltkI), pk(~ltkB), ni.3, nr.3, S(ic)>, 
+                  sign(<'2', pk(~ltkI), pk(~ltkB), ni.3, nr.3, S(ic)>, ~ltkI)>
+              )
+              ]->
+               [
+               In( <<'2', pk(~ltkI), pk(~ltkB), ni.3, nr.3, S(ic)>, 
+                    sign(<'2', pk(~ltkI), pk(~ltkB), ni.3, nr.3, S(ic)>, ~ltkI)>
+               )
+               ]
+    #vf.15: instance (modulo AC) Fresh:
+               [ ] --> [ Fr( ~ni.1 ) ]
+    #vf.16: instance (modulo AC) isend:
+               [
+               !KU( <<'1', pk(~ltkB), pk(~ltkI), ni.4, nr.4, S(ic)>, 
+                     sign(<'1', pk(~ltkB), pk(~ltkI), ni.4, nr.4, S(ic)>, ~ltkB)>
+               )
+               ]
+              --[
+              K( <<'1', pk(~ltkB), pk(~ltkI), ni.4, nr.4, S(ic)>, 
+                  sign(<'1', pk(~ltkB), pk(~ltkI), ni.4, nr.4, S(ic)>, ~ltkB)>
+              )
+              ]->
+               [
+               In( <<'1', pk(~ltkB), pk(~ltkI), ni.4, nr.4, S(ic)>, 
+                    sign(<'1', pk(~ltkB), pk(~ltkI), ni.4, nr.4, S(ic)>, ~ltkB)>
+               )
+               ]
+    #vk.40: instance (modulo AC) coerce:
+               [ !KD( sign(<'2', pk(~ltkI), pk(~ltkB), ~ni.53, nr.2, rc>, ~ltkI) )
+               ]
+              --[
+              !KU( sign(<'2', pk(~ltkI), pk(~ltkB), ~ni.53, nr.2, rc>, ~ltkI) )
+              ]->
+               [ !KU( sign(<'2', pk(~ltkI), pk(~ltkB), ~ni.53, nr.2, rc>, ~ltkI) )
+               ]
+    #vl.54: instance (modulo AC) irecv:
+               [
+               Out( <<'2', pk(~ltkI), pk(~ltkB), ~ni.53, nr.2, rc>, 
+                     sign(<'2', pk(~ltkI), pk(~ltkB), ~ni.53, nr.2, rc>, ~ltkI)>
+               )
+               ]
+              -->
+               [
+               !KD( <<'2', pk(~ltkI), pk(~ltkB), ~ni.53, nr.2, rc>, 
+                     sign(<'2', pk(~ltkI), pk(~ltkB), ~ni.53, nr.2, rc>, ~ltkI)>
+               )
+               ]
+    #vr.55: instance (modulo AC) I_detect:
+               [
+               St_I( ~id, ~ltkI, pk(~ltkB), <'m2', ~ni.53>, S(ic.57) ),
+               In( <<'1', pk(~ltkB), pk(~ltkI), ~ni.53, nr.2, rc>, 
+                    sign(<'1', pk(~ltkB), pk(~ltkI), ~ni.53, nr.2, rc>, ~ltkB)>
+               )
+               ]
+              --[
+              Eq( true, true ), InEq( S(S(ic.57)), rc ),
+              Detect( <pk(~ltkI), pk(~ltkB)> ), Counter( ~id, S(S(ic.57)) ),
+              Nonces( ~id, ~ni.53, nr.2 ),
+              Session( 'I', <pk(~ltkI), pk(~ltkB)>, <~ni.53, nr.2>, rc ),
+              Injectivity( ~id, ~ni.53, S(S(ic.57)) ),
+              Invariant_I( ~id, ~ltkI, pk(~ltkB) )
+              ]->
+               [
+               Remediate_Compromise( ~id, ~ltkI, pk(~ltkB), 'm0', S(S(ic.57)) ),
+               Out( <<'2', pk(~ltkI), pk(~ltkB), ~ni.53, nr.2, rc>, 
+                     sign(<'2', pk(~ltkI), pk(~ltkB), ~ni.53, nr.2, rc>, ~ltkI)>
+               )
+               ]
+    #vf.58: instance (modulo AC) isend:
+               [
+               !KU( <<'1', pk(~ltkB), pk(~ltkI), ~ni.53, nr.2, rc>, 
+                     sign(<'1', pk(~ltkB), pk(~ltkI), ~ni.53, nr.2, rc>, ~ltkB)>
+               )
+               ]
+              --[
+              K( <<'1', pk(~ltkB), pk(~ltkI), ~ni.53, nr.2, rc>, 
+                  sign(<'1', pk(~ltkB), pk(~ltkI), ~ni.53, nr.2, rc>, ~ltkB)>
+              )
+              ]->
+               [
+               In( <<'1', pk(~ltkB), pk(~ltkI), ~ni.53, nr.2, rc>, 
+                    sign(<'1', pk(~ltkB), pk(~ltkI), ~ni.53, nr.2, rc>, ~ltkB)>
+               )
+               ]
+    #vr.59: instance (modulo AC) d_0_snd:
+               [
+               !KD( <<'2', pk(~ltkI), pk(~ltkB), ~ni.53, nr.2, rc>, 
+                     sign(<'2', pk(~ltkI), pk(~ltkB), ~ni.53, nr.2, rc>, ~ltkI)>
+               )
+               ]
+              -->
+               [ !KD( sign(<'2', pk(~ltkI), pk(~ltkB), ~ni.53, nr.2, rc>, ~ltkI) )
+               ]
+    #vr.60: instance (modulo AC) I_m0:
+               [ St_I( ~id, ~ltkI, pk(~ltkB), 'm0', S(ic.57) ), Fr( ~ni.53 ) ]
+              --[
+              Begin( 'I', <pk(~ltkI), pk(~ltkB)>, S(S(ic.57)) ),
+              Counter( <~id, 'm0'>, S(ic.57) ), Gen( ~ni.53 ),
+              Injectivity( ~id, S(ic.57), ~ni.53 ),
+              Invariant_I( ~id, ~ltkI, pk(~ltkB) )
+              ]->
+               [
+               St_I( ~id, ~ltkI, pk(~ltkB), <'m2', ~ni.53>, S(ic.57) ),
+               Out( ~ni.53 )
+               ]
+    #vf.61: instance (modulo AC) Fresh:
+               [ ] --> [ Fr( ~ni.53 ) ]
+    #vr.62: instance (modulo AC) I_m2:
+               [
+               St_I( ~id, ~ltkI, pk(~ltkB), <'m2', ni.63>, ic.57 ),
+               In( <<'1', pk(~ltkB), pk(~ltkI), ni.63, nr.64, S(ic.57)>, 
+                    sign(<'1', pk(~ltkB), pk(~ltkI), ni.63, nr.64, S(ic.57)>, ~ltkB)>
+               )
+               ]
+              --[
+              Eq( true, true ), Eq( S(ic.57), S(ic.57) ),
+              Counter( ~id, S(ic.57) ), Nonces( ~id, ni.63, nr.64 ),
+              Session( 'I', <pk(~ltkI), pk(~ltkB)>, <ni.63, nr.64>, S(ic.57) ),
+              Injectivity( ~id, ni.63, S(ic.57) ),
+              Invariant_I( ~id, ~ltkI, pk(~ltkB) )
+              ]->
+               [
+               St_I( ~id, ~ltkI, pk(~ltkB), 'm0', S(ic.57) ),
+               Out( <<'2', pk(~ltkI), pk(~ltkB), ni.63, nr.64, S(ic.57)>, 
+                     sign(<'2', pk(~ltkI), pk(~ltkB), ni.63, nr.64, S(ic.57)>, ~ltkI)>
+               )
+               ]
+    #vf.65: instance (modulo AC) isend:
+               [
+               !KU( <<'1', pk(~ltkB), pk(~ltkI), ni.63, nr.64, S(ic.57)>, 
+                     sign(<'1', pk(~ltkB), pk(~ltkI), ni.63, nr.64, S(ic.57)>, ~ltkB)>
+               )
+               ]
+              --[
+              K( <<'1', pk(~ltkB), pk(~ltkI), ni.63, nr.64, S(ic.57)>, 
+                  sign(<'1', pk(~ltkB), pk(~ltkI), ni.63, nr.64, S(ic.57)>, ~ltkB)>
+              )
+              ]->
+               [
+               In( <<'1', pk(~ltkB), pk(~ltkI), ni.63, nr.64, S(ic.57)>, 
+                    sign(<'1', pk(~ltkB), pk(~ltkI), ni.63, nr.64, S(ic.57)>, ~ltkB)>
+               )
+               ]
+  actions:
+    !KU( <<'1', pk(~ltkB), pk(~ltkI), ~ni, ~nr, S(rc)>, 
+          sign(<'1', pk(~ltkB), pk(~ltkI), ~ni, ~nr, S(rc)>, ~ltkB)>
+    ) @ #vk.2,
+    !KU( <<'1', pk(~ltkB), pk(~ltkI), ~ni.1, ~nr.1, S(S(ic))>, 
+          sign(<'1', pk(~ltkB), pk(~ltkI), ~ni.1, ~nr.1, S(S(ic))>, ~ltkB)>
+    ) @ #vk.3,
+    !KU( <'1', pk(~ltkB), pk(~ltkI), ~ni, ~nr, S(rc)> ) @ #vk.4,
+    !KU( '1' ) @ #vk.5,
+    !KU( <'1', pk(~ltkB), pk(~ltkI), ~ni.1, ~nr.1, S(S(ic))> ) @ #vk.6,
+    !KU( <'1', pk(~ltkB), pk(~ltkI), ni.4, nr.4, S(ic)> ) @ #vk.7,
+    !KU( <pk(~ltkB), pk(~ltkI), ~ni, ~nr, S(rc)> ) @ #vk.8,
+    !KU( pk(~ltkB) ) @ #vk.9,
+    !KU( <pk(~ltkB), pk(~ltkI), ~ni.1, ~nr.1, S(S(ic))> ) @ #vk.10,
+    !KU( <pk(~ltkB), ~ni.53, nr.2, rc> ) @ #vk.11,
+    !KU( <pk(~ltkB), ni.3, nr.3, S(ic)> ) @ #vk.12,
+    !KU( <pk(~ltkB), pk(~ltkI), ni.4, nr.4, S(ic)> ) @ #vk.13,
+    !KU( <pk(~ltkI), pk(~ltkB), ~ni.53, nr.2, rc> ) @ #vk.14,
+    !KU( <pk(~ltkI), pk(~ltkB), ni.3, nr.3, S(ic)> ) @ #vk.15,
+    !KU( <'2', pk(~ltkI), pk(~ltkB), ~ni.53, nr.2, rc> ) @ #vk.16,
+    !KU( <pk(~ltkI), ~ni, ~nr, S(rc)> ) @ #vk.17,
+    !KU( pk(~ltkI) ) @ #vk.18,
+    !KU( <pk(~ltkI), ~ni.1, ~nr.1, S(S(ic))> ) @ #vk.19,
+    !KU( <pk(~ltkI), ni.4, nr.4, S(ic)> ) @ #vk.20,
+    !KU( <'2', pk(~ltkI), pk(~ltkB), ni.3, nr.3, S(ic)> ) @ #vk.21,
+    !KU( <<'2', pk(~ltkI), pk(~ltkB), ~ni.53, nr.2, rc>, 
+          sign(<'2', pk(~ltkI), pk(~ltkB), ~ni.53, nr.2, rc>, ~ltkI)>
+    ) @ #vk.22,
+    !KU( <~ni, ~nr, S(rc)> ) @ #vk.23, !KU( ~ni ) @ #vk.24,
+    !KU( <~nr, S(rc)> ) @ #vk.25, !KU( ~nr ) @ #vk.26,
+    !KU( S(rc) ) @ #vk.27, !KU( <~ni.1, ~nr.1, S(S(ic))> ) @ #vk.28,
+    !KU( ~ni.1 ) @ #vk.29, !KU( <~nr.1, S(S(ic))> ) @ #vk.30,
+    !KU( ~nr.1 ) @ #vk.31, !KU( S(S(ic)) ) @ #vk.32,
+    !KU( '2' ) @ #vk.33,
+    !KU( <<'2', pk(~ltkI), pk(~ltkB), ni.3, nr.3, S(ic)>, 
+          sign(<'2', pk(~ltkI), pk(~ltkB), ni.3, nr.3, S(ic)>, ~ltkI)>
+    ) @ #vk.34,
+    !KU( <~ni.53, nr.2, rc> ) @ #vk.35, !KU( ~ni.53 ) @ #vk.36,
+    !KU( <nr.2, rc> ) @ #vk.37, !KU( nr.2 ) @ #vk.38,
+    !KU( rc ) @ #vk.39, !KU( <ni.3, nr.3, S(ic)> ) @ #vk.41,
+    !KU( ni.3 ) @ #vk.42, !KU( <nr.3, S(ic)> ) @ #vk.43,
+    !KU( nr.3 ) @ #vk.44, !KU( S(ic) ) @ #vk.45,
+    !KU( <nr.4, S(ic)> ) @ #vk.46,
+    !KU( sign(<'2', pk(~ltkI), pk(~ltkB), ni.3, nr.3, S(ic)>, ~ltkI)
+    ) @ #vk.47,
+    !KU( <<'1', pk(~ltkB), pk(~ltkI), ni.4, nr.4, S(ic)>, 
+          sign(<'1', pk(~ltkB), pk(~ltkI), ni.4, nr.4, S(ic)>, ~ltkB)>
+    ) @ #vk.48,
+    !KU( <ni.4, nr.4, S(ic)> ) @ #vk.49, !KU( ni.4 ) @ #vk.50,
+    !KU( nr.4 ) @ #vk.51,
+    !KU( sign(<'1', pk(~ltkB), pk(~ltkI), ni.4, nr.4, S(ic)>, ~ltkB)
+    ) @ #vk.52,
+    !KU( <<'1', pk(~ltkB), pk(~ltkI), ~ni.53, nr.2, rc>, 
+          sign(<'1', pk(~ltkB), pk(~ltkI), ~ni.53, nr.2, rc>, ~ltkB)>
+    ) @ #vk.72,
+    !KU( <'1', pk(~ltkB), pk(~ltkI), ~ni.53, nr.2, rc> ) @ #vk.73,
+    !KU( <'1', pk(~ltkB), pk(~ltkI), ni.63, nr.64, S(ic.57)>
+    ) @ #vk.75,
+    !KU( <pk(~ltkB), pk(~ltkI), ~ni.53, nr.2, rc> ) @ #vk.76,
+    !KU( <pk(~ltkB), pk(~ltkI), ni.63, nr.64, S(ic.57)> ) @ #vk.78,
+    !KU( <pk(~ltkI), ~ni.53, nr.2, rc> ) @ #vk.79,
+    !KU( <pk(~ltkI), ni.63, nr.64, S(ic.57)> ) @ #vk.81,
+    !KU( sign(<'1', pk(~ltkB), pk(~ltkI), ~ni.53, nr.2, rc>, ~ltkB)
+    ) @ #vk.87,
+    !KU( <<'1', pk(~ltkB), pk(~ltkI), ni.63, nr.64, S(ic.57)>, 
+          sign(<'1', pk(~ltkB), pk(~ltkI), ni.63, nr.64, S(ic.57)>, ~ltkB)>
+    ) @ #vk.88,
+    !KU( <ni.63, nr.64, S(ic.57)> ) @ #vk.89, !KU( ni.63 ) @ #vk.90,
+    !KU( <nr.64, S(ic.57)> ) @ #vk.91, !KU( nr.64 ) @ #vk.92,
+    !KU( S(ic.57) ) @ #vk.93,
+    !KU( sign(<'1', pk(~ltkB), pk(~ltkI), ni.63, nr.64, S(ic.57)>,
+              ~ltkB)
+    ) @ #vk.94
+  edges:
+    (#vf, 0) >--> (#t1, 1), (#vl, 0) >--> (#vr.5, 0),
+    (#vr, 0) >--> (#t1, 0), (#vf.1, 0) >--> (#vr, 1),
+    (#vl.1, 0) >--> (#vr.8, 0), (#vr.1, 0) >--> (#vr, 0),
+    (#vf.2, 0) >--> (#vr.1, 1), (#vr.2, 0) >--> (#j, 0),
+    (#vr.2, 0) >--> (#j.1, 1), (#vf.3, 0) >--> (#j, 2),
+    (#vr.3, 0) >--> (#j, 1), (#vr.3, 0) >--> (#j.1, 0),
+    (#vf.4, 0) >--> (#vr.2, 0), (#vr.4, 1) >--> (#vl, 0),
+    (#vf.5, 0) >--> (#vr.3, 0), (#vr.5, 0) >--> (#vk, 0),
+    (#vf.6, 0) >--> (#vr.4, 1), (#vr.6, 0) >--> (#vr.4, 0),
+    (#vf.7, 0) >--> (#vr.4, 2), (#vr.7, 1) >--> (#vl.1, 0),
+    (#vf.8, 0) >--> (#vr.6, 1), (#vr.8, 0) >--> (#vk.1, 0),
+    (#vf.9, 0) >--> (#vr.6, 2), (#vr.9, 0) >--> (#vr.7, 0),
+    (#vf.10, 0) >--> (#j.1, 2), (#vr.10, 0) >--> (#vr.1, 0),
+    (#vf.11, 0) >--> (#vr.7, 1), (#vr.11, 0) >--> (#vr.10, 0),
+    (#vf.12, 0) >--> (#vr.7, 2), (#vf.13, 0) >--> (#vr.9, 1),
+    (#vf.14, 0) >--> (#vr.9, 2), (#vf.15, 0) >--> (#vr.10, 1),
+    (#vf.16, 0) >--> (#vr.11, 1), (#vl.54, 0) >--> (#vr.59, 0),
+    (#vr.55, 1) >--> (#vl.54, 0), (#vf.58, 0) >--> (#vr.55, 1),
+    (#vr.59, 0) >--> (#vk.40, 0), (#vr.60, 0) >--> (#vr.55, 0),
+    (#vf.61, 0) >--> (#vr.60, 1), (#vr.62, 0) >--> (#vr.60, 0),
+    (#vf.65, 0) >--> (#vr.62, 1)
+  less:
+    #j < #t1: induced by fresh value, #j < #vr: induced by fresh value,
+    #j < #vr.1: induced by fresh value,
+    #j < #vr.10: induced by fresh value,
+    #j < #vr.11: induced by fresh value,
+    #j < #vr.55: induced by fresh value,
+    #j < #vr.60: induced by fresh value,
+    #j < #vr.62: induced by fresh value,
+    #vk < #vk.2: induced by adversary,
+    #vl < #vk.2: induced by normal form condition,
+    #vr < #t1: induced by fresh value,
+    #vr < #vf: induced by fresh value,
+    #vr < #vk: induced by fresh value,
+    #vr < #vl: induced by fresh value,
+    #vr < #vr.4: induced by fresh value,
+    #vr < #vr.5: induced by fresh value,
+    #vr < #vf.7: induced by fresh value,
+    #j.1 < #vr.4: induced by fresh value,
+    #j.1 < #vr.6: induced by fresh value,
+    #j.1 < #vr.7: induced by fresh value,
+    #j.1 < #vr.9: induced by fresh value,
+    #vk.1 < #vk.3: induced by adversary,
+    #vl.1 < #vk.3: induced by normal form condition,
+    #vr.1 < #vr: induced by injective facts,
+    #vk.2 < #vf: induced by adversary,
+    #vr.2 < #j: induced by fresh value,
+    #vr.2 < #t1: induced by fresh value,
+    #vr.2 < #vf: induced by fresh value,
+    #vr.2 < #vk: induced by fresh value,
+    #vr.2 < #vl: induced by fresh value,
+    #vr.2 < #vr: induced by fresh value,
+    #vr.2 < #j.1: induced by fresh value,
+    #vr.2 < #vk.1: induced by fresh value,
+    #vr.2 < #vl.1: induced by fresh value,
+    #vr.2 < #vr.1: induced by fresh value,
+    #vr.2 < #vf.2: induced by fresh value,
+    #vr.2 < #vr.4: induced by fresh value,
+    #vr.2 < #vr.5: induced by fresh value,
+    #vr.2 < #vr.6: induced by fresh value,
+    #vr.2 < #vr.7: induced by fresh value,
+    #vr.2 < #vr.8: induced by fresh value,
+    #vr.2 < #vf.9: induced by fresh value,
+    #vr.2 < #vr.9: induced by fresh value,
+    #vr.2 < #vr.10: induced by fresh value,
+    #vr.2 < #vr.11: induced by fresh value,
+    #vr.2 < #vf.14: induced by fresh value,
+    #vr.2 < #vf.16: induced by fresh value,
+    #vr.2 < #vk.40: induced by fresh value,
+    #vr.2 < #vl.54: induced by fresh value,
+    #vr.2 < #vr.55: induced by fresh value,
+    #vr.2 < #vf.58: induced by fresh value,
+    #vr.2 < #vr.59: induced by fresh value,
+    #vr.2 < #vr.60: induced by fresh value,
+    #vr.2 < #vr.62: induced by fresh value,
+    #vr.2 < #vf.65: induced by fresh value,
+    #vk.3 < #vf.2: induced by adversary,
+    #vr.3 < #j: induced by fresh value,
+    #vr.3 < #t1: induced by fresh value,
+    #vr.3 < #vf: induced by fresh value,
+    #vr.3 < #vk: induced by fresh value,
+    #vr.3 < #vl: induced by fresh value,
+    #vr.3 < #vr: induced by fresh value,
+    #vr.3 < #j.1: induced by fresh value,
+    #vr.3 < #vk.1: induced by fresh value,
+    #vr.3 < #vl.1: induced by fresh value,
+    #vr.3 < #vr.1: induced by fresh value,
+    #vr.3 < #vf.2: induced by fresh value,
+    #vr.3 < #vr.4: induced by fresh value,
+    #vr.3 < #vr.5: induced by fresh value,
+    #vr.3 < #vr.6: induced by fresh value,
+    #vr.3 < #vr.7: induced by fresh value,
+    #vr.3 < #vr.8: induced by fresh value,
+    #vr.3 < #vf.9: induced by fresh value,
+    #vr.3 < #vr.9: induced by fresh value,
+    #vr.3 < #vr.10: induced by fresh value,
+    #vr.3 < #vr.11: induced by fresh value,
+    #vr.3 < #vf.14: induced by fresh value,
+    #vr.3 < #vf.16: induced by fresh value,
+    #vr.3 < #vk.40: induced by fresh value,
+    #vr.3 < #vl.54: induced by fresh value,
+    #vr.3 < #vr.55: induced by fresh value,
+    #vr.3 < #vf.58: induced by fresh value,
+    #vr.3 < #vr.59: induced by fresh value,
+    #vr.3 < #vr.60: induced by fresh value,
+    #vr.3 < #vr.62: induced by fresh value,
+    #vr.3 < #vf.65: induced by fresh value,
+    #vk.4 < #vk.2: induced by adversary,
+    #vr.4 < #t1: induced by fresh value,
+    #vr.4 < #vf: induced by fresh value,
+    #vr.4 < #vk: induced by fresh value,
+    #vr.4 < #vl: induced by fresh value,
+    #vr.4 < #vr.5: induced by fresh value,
+    #vk.5 < #vk.4: induced by adversary,
+    #vk.5 < #vk.6: induced by adversary,
+    #vk.5 < #vk.7: induced by adversary,
+    #vk.5 < #vk.73: induced by adversary,
+    #vk.5 < #vk.75: induced by adversary,
+    #vr.5 < #vk: induced by normal form condition,
+    #vk.6 < #vk.3: induced by adversary,
+    #vk.7 < #vk.48: induced by adversary,
+    #vr.7 < #vk.1: induced by fresh value,
+    #vr.7 < #vl.1: induced by fresh value,
+    #vr.7 < #vr.1: induced by fresh value,
+    #vr.7 < #vf.2: induced by fresh value,
+    #vr.7 < #vr.6: induced by injective facts,
+    #vr.7 < #vr.8: induced by fresh value,
+    #vk.8 < #vk.4: induced by adversary,
+    #vr.8 < #vk.1: induced by normal form condition,
+    #vk.9 < #vk.8: induced by adversary,
+    #vk.9 < #vk.10: induced by adversary,
+    #vk.9 < #vk.11: induced by adversary,
+    #vk.9 < #vk.12: induced by adversary,
+    #vk.9 < #vk.13: induced by adversary,
+    #vk.9 < #vk.76: induced by adversary,
+    #vk.9 < #vk.78: induced by adversary,
+    #vk.10 < #vk.6: induced by adversary,
+    #vr.10 < #vr: induced by injective facts,
+    #vr.10 < #vk.1: induced by fresh value,
+    #vr.10 < #vl.1: induced by fresh value,
+    #vr.10 < #vr.1: induced by fresh value,
+    #vr.10 < #vf.2: induced by fresh value,
+    #vr.10 < #vr.7: induced by fresh value,
+    #vr.10 < #vr.8: induced by fresh value,
+    #vr.10 < #vf.12: induced by fresh value,
+    #vk.11 < #vk.14: induced by adversary,
+    #vr.11 < #vr: induced by injective facts,
+    #vr.11 < #vr.1: induced by injective facts,
+    #vr.11 < #vr.10: induced by injective facts,
+    #vk.12 < #vk.15: induced by adversary,
+    #vk.13 < #vk.7: induced by adversary,
+    #vk.14 < #vk.16: induced by adversary,
+    #vk.15 < #vk.21: induced by adversary,
+    #vk.16 < #vk.22: induced by adversary,
+    #vk.17 < #vk.8: induced by adversary,
+    #vk.18 < #vk.14: induced by adversary,
+    #vk.18 < #vk.15: induced by adversary,
+    #vk.18 < #vk.17: induced by adversary,
+    #vk.18 < #vk.19: induced by adversary,
+    #vk.18 < #vk.20: induced by adversary,
+    #vk.18 < #vk.79: induced by adversary,
+    #vk.18 < #vk.81: induced by adversary,
+    #vk.19 < #vk.10: induced by adversary,
+    #vk.20 < #vk.13: induced by adversary,
+    #vk.21 < #vk.34: induced by adversary,
+    #vk.22 < #vf.9: induced by adversary,
+    #vk.23 < #vk.17: induced by adversary,
+    #vk.24 < #vf.7: induced by adversary,
+    #vk.24 < #vk.23: induced by adversary,
+    #vk.25 < #vk.23: induced by adversary,
+    #vk.26 < #vk.25: induced by adversary,
+    #vk.27 < #vk.25: induced by adversary,
+    #vk.28 < #vk.19: induced by adversary,
+    #vk.29 < #vf.12: induced by adversary,
+    #vk.29 < #vk.28: induced by adversary,
+    #vk.30 < #vk.28: induced by adversary,
+    #vk.31 < #vk.30: induced by adversary,
+    #vk.32 < #vk.30: induced by adversary,
+    #vk.33 < #vk.16: induced by adversary,
+    #vk.33 < #vk.21: induced by adversary,
+    #vk.34 < #vf.14: induced by adversary,
+    #vk.35 < #vk.11: induced by adversary,
+    #vk.35 < #vk.79: induced by adversary,
+    #vk.36 < #vk.35: induced by adversary,
+    #vk.37 < #vk.35: induced by adversary,
+    #vk.38 < #vk.37: induced by adversary,
+    #vk.39 < #vk.37: induced by adversary,
+    #vk.40 < #vk.22: induced by adversary,
+    #vk.41 < #vk.12: induced by adversary,
+    #vk.42 < #vk.41: induced by adversary,
+    #vk.43 < #vk.41: induced by adversary,
+    #vk.44 < #vk.43: induced by adversary,
+    #vk.45 < #vk.43: induced by adversary,
+    #vk.45 < #vk.46: induced by adversary,
+    #vk.46 < #vk.49: induced by adversary,
+    #vk.47 < #vk.34: induced by adversary,
+    #vk.48 < #vf.16: induced by adversary,
+    #vk.49 < #vk.20: induced by adversary,
+    #vk.50 < #vk.49: induced by adversary,
+    #vk.51 < #vk.46: induced by adversary,
+    #vk.52 < #vk.48: induced by adversary,
+    #vr.55 < #vr: induced by formula,
+    #vr.55 < #vr.1: induced by formula,
+    #vr.55 < #vr.10: induced by formula,
+    #vr.55 < #vr.11: induced by formula,
+    #vr.59 < #vk.40: induced by normal form condition,
+    #vr.60 < #vr.1: induced by formula,
+    #vr.60 < #vr.6: induced by fresh value,
+    #vr.60 < #vf.9: induced by fresh value,
+    #vr.60 < #vr.11: induced by formula,
+    #vr.60 < #vk.40: induced by fresh value,
+    #vr.60 < #vl.54: induced by fresh value,
+    #vr.60 < #vr.55: induced by fresh value,
+    #vr.60 < #vf.58: induced by fresh value,
+    #vr.60 < #vr.59: induced by fresh value,
+    #vr.62 < #vr: induced by formula,
+    #vr.62 < #vr.10: induced by formula,
+    #vr.62 < #vr.60: induced by injective facts,
+    #vk.72 < #vf.58: induced by adversary,
+    #vk.73 < #vk.72: induced by adversary,
+    #vk.75 < #vk.88: induced by adversary,
+    #vk.76 < #vk.73: induced by adversary,
+    #vk.78 < #vk.75: induced by adversary,
+    #vk.79 < #vk.76: induced by adversary,
+    #vk.81 < #vk.78: induced by adversary,
+    #vk.87 < #vk.72: induced by adversary,
+    #vk.88 < #vf.65: induced by adversary,
+    #vk.89 < #vk.81: induced by adversary,
+    #vk.90 < #vk.89: induced by adversary,
+    #vk.91 < #vk.89: induced by adversary,
+    #vk.92 < #vk.91: induced by adversary,
+    #vk.93 < #vk.91: induced by adversary,
+    #vk.94 < #vk.88: induced by adversary
+  unsolved constraints:
+    !KU( <<'1', pk(~ltkB), pk(~ltkI), ~ni, ~nr, S(rc)>, 
+          sign(<'1', pk(~ltkB), pk(~ltkI), ~ni, ~nr, S(rc)>, ~ltkB)>
+    ) @ #vk.2 // nr: 3" (currently deducible)"
+    
+    !KU( <<'1', pk(~ltkB), pk(~ltkI), ~ni.1, ~nr.1, S(S(ic))>, 
+          sign(<'1', pk(~ltkB), pk(~ltkI), ~ni.1, ~nr.1, S(S(ic))>, ~ltkB)>
+    ) @ #vk.3 // nr: 22" (currently deducible)"
+    
+    !KU( <'1', pk(~ltkB), pk(~ltkI), ~ni, ~nr, S(rc)>
+    ) @ #vk.4 // nr: 4" (currently deducible)"
+    
+    !KU( '1' ) @ #vk.5 // nr: 5" (currently deducible)"
+    
+    !KU( <'1', pk(~ltkB), pk(~ltkI), ~ni.1, ~nr.1, S(S(ic))>
+    ) @ #vk.6 // nr: 23" (currently deducible)"
+    
+    !KU( <'1', pk(~ltkB), pk(~ltkI), ni.4, nr.4, S(ic)>
+    ) @ #vk.7 // nr: 102" (useful2)"
+    
+    !KU( <pk(~ltkB), pk(~ltkI), ~ni, ~nr, S(rc)>
+    ) @ #vk.8 // nr: 6" (currently deducible)"
+    
+    !KU( pk(~ltkB) ) @ #vk.9 // nr: 16" (currently deducible)"
+    
+    !KU( <pk(~ltkB), pk(~ltkI), ~ni.1, ~nr.1, S(S(ic))>
+    ) @ #vk.10 // nr: 25" (currently deducible)"
+    
+    !KU( <pk(~ltkB), ~ni.53, nr.2, rc>
+    ) @ #vk.11 // nr: 55" (currently deducible)"
+    
+    !KU( <pk(~ltkB), ni.3, nr.3, S(ic)>
+    ) @ #vk.12 // nr: 79" (useful2)"
+    
+    !KU( <pk(~ltkB), pk(~ltkI), ni.4, nr.4, S(ic)>
+    ) @ #vk.13 // nr: 104" (useful2)"
+    
+    !KU( <pk(~ltkI), pk(~ltkB), ~ni.53, nr.2, rc>
+    ) @ #vk.14 // nr: 53" (currently deducible)"
+    
+    !KU( <pk(~ltkI), pk(~ltkB), ni.3, nr.3, S(ic)>
+    ) @ #vk.15 // nr: 77" (useful2)"
+    
+    !KU( <'2', pk(~ltkI), pk(~ltkB), ~ni.53, nr.2, rc>
+    ) @ #vk.16 // nr: 51" (currently deducible)"
+    
+    !KU( <pk(~ltkI), ~ni, ~nr, S(rc)>
+    ) @ #vk.17 // nr: 8" (currently deducible)"
+    
+    !KU( pk(~ltkI) ) @ #vk.18 // nr: 9" (currently deducible)"
+    
+    !KU( <pk(~ltkI), ~ni.1, ~nr.1, S(S(ic))>
+    ) @ #vk.19 // nr: 27" (currently deducible)"
+    
+    !KU( <pk(~ltkI), ni.4, nr.4, S(ic)>
+    ) @ #vk.20 // nr: 106" (useful2)"
+    
+    !KU( <'2', pk(~ltkI), pk(~ltkB), ni.3, nr.3, S(ic)>
+    ) @ #vk.21 // nr: 75" (useful2)"
+    
+    !KU( <<'2', pk(~ltkI), pk(~ltkB), ~ni.53, nr.2, rc>, 
+          sign(<'2', pk(~ltkI), pk(~ltkB), ~ni.53, nr.2, rc>, ~ltkI)>
+    ) @ #vk.22 // nr: 50" (currently deducible)"
+    
+    !KU( <~ni, ~nr, S(rc)> ) @ #vk.23 // nr: 10" (currently deducible)"
+    
+    !KU( ~ni ) @ #vk.24 // nr: 40" (currently deducible)"
+    
+    !KU( <~nr, S(rc)> ) @ #vk.25 // nr: 12" (currently deducible)"
+    
+    !KU( ~nr ) @ #vk.26 // nr: 67" (currently deducible)"
+    
+    !KU( S(rc) ) @ #vk.27 // nr: 68" (currently deducible)"
+    
+    !KU( <~ni.1, ~nr.1, S(S(ic))>
+    ) @ #vk.28 // nr: 29" (currently deducible)"
+    
+    !KU( ~ni.1 ) @ #vk.29 // nr: 119" (currently deducible)"
+    
+    !KU( <~nr.1, S(S(ic))> ) @ #vk.30 // nr: 31" (currently deducible)"
+    
+    !KU( ~nr.1 ) @ #vk.31 // nr: 91" (currently deducible)"
+    
+    !KU( S(S(ic)) ) @ #vk.32 // nr: 33" (currently deducible)"
+    
+    !KU( '2' ) @ #vk.33 // nr: 52" (currently deducible)"
+    
+    !KU( <<'2', pk(~ltkI), pk(~ltkB), ni.3, nr.3, S(ic)>, 
+          sign(<'2', pk(~ltkI), pk(~ltkB), ni.3, nr.3, S(ic)>, ~ltkI)>
+    ) @ #vk.34 // nr: 74" (useful2)"
+    
+    !KU( <~ni.53, nr.2, rc> ) @ #vk.35 // nr: 57" (useful2)"
+    
+    !KU( ~ni.53 ) @ #vk.36 // nr: 148" (currently deducible)"
+    
+    !KU( <nr.2, rc> ) @ #vk.37 // nr: 59" (probably constructible)"
+    
+    !KU( nr.2 ) @ #vk.38 // nr: 60" (probably constructible)"
+    
+    !KU( rc ) @ #vk.39 // nr: 61" (probably constructible)"
+    
+    !KU( <ni.3, nr.3, S(ic)>
+    ) @ #vk.41 // nr: 81" (probably constructible)"
+    
+    !KU( ni.3 ) @ #vk.42 // nr: 82" (probably constructible)"
+    
+    !KU( <nr.3, S(ic)> ) @ #vk.43 // nr: 83" (probably constructible)"
+    
+    !KU( nr.3 ) @ #vk.44 // nr: 84" (probably constructible)"
+    
+    !KU( S(ic) ) @ #vk.45 // nr: 112" (probably constructible)"
+    
+    !KU( <nr.4, S(ic)> ) @ #vk.46 // nr: 110" (probably constructible)"
+    
+    !KU( sign(<'2', pk(~ltkI), pk(~ltkB), ni.3, nr.3, S(ic)>, ~ltkI)
+    ) @ #vk.47 // nr: 86" (useful2)"
+    
+    !KU( <<'1', pk(~ltkB), pk(~ltkI), ni.4, nr.4, S(ic)>, 
+          sign(<'1', pk(~ltkB), pk(~ltkI), ni.4, nr.4, S(ic)>, ~ltkB)>
+    ) @ #vk.48 // nr: 101" (useful2)"
+    
+    !KU( <ni.4, nr.4, S(ic)>
+    ) @ #vk.49 // nr: 108" (probably constructible)"
+    
+    !KU( ni.4 ) @ #vk.50 // nr: 109" (probably constructible)"
+    
+    !KU( nr.4 ) @ #vk.51 // nr: 111" (probably constructible)"
+    
+    !KU( sign(<'1', pk(~ltkB), pk(~ltkI), ni.4, nr.4, S(ic)>, ~ltkB)
+    ) @ #vk.52 // nr: 113" (useful2)"
+    
+    !KU( <<'1', pk(~ltkB), pk(~ltkI), ~ni.53, nr.2, rc>, 
+          sign(<'1', pk(~ltkB), pk(~ltkI), ~ni.53, nr.2, rc>, ~ltkB)>
+    ) @ #vk.72 // nr: 137" (useful2)"
+    
+    !KU( <'1', pk(~ltkB), pk(~ltkI), ~ni.53, nr.2, rc>
+    ) @ #vk.73 // nr: 138" (useful2)"
+    
+    !KU( <'1', pk(~ltkB), pk(~ltkI), ni.63, nr.64, S(ic.57)>
+    ) @ #vk.75 // nr: 140" (useful2)"
+    
+    !KU( <pk(~ltkB), pk(~ltkI), ~ni.53, nr.2, rc>
+    ) @ #vk.76 // nr: 141" (useful2)"
+    
+    !KU( <pk(~ltkB), pk(~ltkI), ni.63, nr.64, S(ic.57)>
+    ) @ #vk.78 // nr: 143" (useful2)"
+    
+    !KU( <pk(~ltkI), ~ni.53, nr.2, rc>
+    ) @ #vk.79 // nr: 144" (useful2)"
+    
+    !KU( <pk(~ltkI), ni.63, nr.64, S(ic.57)>
+    ) @ #vk.81 // nr: 146" (useful2)"
+    
+    !KU( sign(<'1', pk(~ltkB), pk(~ltkI), ~ni.53, nr.2, rc>, ~ltkB)
+    ) @ #vk.87 // nr: 152" (useful2)"
+    
+    !KU( <<'1', pk(~ltkB), pk(~ltkI), ni.63, nr.64, S(ic.57)>, 
+          sign(<'1', pk(~ltkB), pk(~ltkI), ni.63, nr.64, S(ic.57)>, ~ltkB)>
+    ) @ #vk.88 // nr: 153" (useful2)"
+    
+    !KU( <ni.63, nr.64, S(ic.57)>
+    ) @ #vk.89 // nr: 154" (probably constructible)"
+    
+    !KU( ni.63 ) @ #vk.90 // nr: 155" (probably constructible)"
+    
+    !KU( <nr.64, S(ic.57)>
+    ) @ #vk.91 // nr: 156" (probably constructible)"
+    
+    !KU( nr.64 ) @ #vk.92 // nr: 157" (probably constructible)"
+    
+    !KU( S(ic.57) ) @ #vk.93 // nr: 158" (probably constructible)"
+    
+    !KU( sign(<'1', pk(~ltkB), pk(~ltkI), ni.63, nr.64, S(ic.57)>,
+              ~ltkB)
+    ) @ #vk.94 // nr: 159" (useful2)"
+    
+    St_R( ~id.1, ~ltkB, pk(~ltkI), <'m2', ~ni.53, nr.2>, rc
+    ) ▶₀ #vr.6 // nr: 64 (from rule R_m2) (loop breaker)" (loop breaker)"
+    
+    St_R( ~id.1, ~ltkB, pk(~ltkI), <'m2', ni.3, nr.3>, S(ic)
+    ) ▶₀ #vr.9 // nr: 88 (from rule R_m2) (loop breaker)" (loop breaker)"
+    
+    St_I( ~id, ~ltkI, pk(~ltkB), <'m2', ni.4>, ic
+    ) ▶₀ #vr.11 // nr: 116 (from rule I_m2) (loop breaker)" (loop breaker)"
+    
+    St_I( ~id, ~ltkI, pk(~ltkB), <'m2', ni.63>, ic.57
+    ) ▶₀ #vr.62 // nr: 162 (from rule I_m2) (loop breaker)" (loop breaker)"
+  last: none
+  
+  formulas:
+    ¬(S(S(ic.57)) = rc)
+    
+    ¬(S(S(S(ic))) = S(rc))
+    
+    ∀ #t0. (Compromise( pk(~ltkB) ) @ #t0) ⇒ ¬(#t0 < #t1)
+    
+    ∀ #t0. (Compromise( pk(~ltkI) ) @ #t0) ⇒ ¬(#t0 < #t1)
+  
+  subterms:
+  
+  equations:
+    subst:
+      ~id  <~ {~id.56}
+      #j  <~ {#j.66}
+      #vr.2  <~ {#vr.68}
+      #vf.3  <~ {#vf.67}
+      #vr.3  <~ {#vr.70}
+      #vf.4  <~ {#vf.69}
+      #vf.5  <~ {#vf.71}
+      #vk.5  <~ {#vk.74}
+      #vk.9  <~ {#vk.77}
+      #vk.18  <~ {#vk.80}
+      #vk.35  <~ {#vk.82}
+      #vk.36  <~ {#vk.83}
+      #vk.37  <~ {#vk.84}
+      #vk.38  <~ {#vk.85}
+      #vk.39  <~ {#vk.86}
+      ~ni.53  <~ {ni.2}
+    conj:
+  
+  lemmas:
+    ∀ id c #i #j.
+     (Counter( id, c ) @ #i) ∧ (Counter( id, c ) @ #j) ⇒ #i = #j
+    
+    ∀ id n1 n2 n3 #i #j on1 on2 #k.
+     (Injectivity( id, n1, n2 ) @ #i) ∧
+     (Injectivity( id, n2, n3 ) @ #j) ∧
+     (Injectivity( id, on1, on2 ) @ #k)
+    ⇒
+     ((¬(#k < #j)) ∨ (¬(#i < #k)))
+    
+    ∀ id ni nr #i #j.
+     (Nonces( id, ni, nr ) @ #i) ∧ (Gen( ni ) @ #j) ⇒ #j < #i
+    
+    ∀ id ni nr #i #j.
+     (Nonces( id, ni, nr ) @ #i) ∧ (Nonces( id, ni, nr ) @ #j) ⇒ #i = #j
+    
+    ∀ id1 id2 role ki kr #i #j.
+     (Paired( id1, role, ki, kr ) @ #i) ∧
+     (Paired( id2, role, ki, kr ) @ #j)
+    ⇒
+     #i = #j
+    
+    ∀ role pks ni nr c #i #j.
+     (Session( role, pks, <ni, nr>, c ) @ #i) ∧ (Gen( nr ) @ #j)
+    ⇒
+     #j < #i
+    
+    ∀ role pks ni nr c #i #j.
+     (Session( role, pks, <ni, nr>, c ) @ #i) ∧ (Gen( ni ) @ #j)
+    ⇒
+     #j < #i
+    
+    ∀ x y #i. (Eq( x, y ) @ #i) ⇒ x = y
+    
+    ∀ x y #i. (InEq( x, y ) @ #i) ⇒ ¬(x = y)
+  
+  allowed cases: refined
+  
+  solved formulas:
+    #j = #j
+    
+    #t1 = #t1
+    
+    #vr = #vr
+    
+    #j.1 = #j.1
+    
+    #vr.1 = #vr.1
+    
+    #vr.4 = #vr.4
+    
+    #vr.6 = #vr.6
+    
+    #vr.7 = #vr.7
+    
+    #vr.9 = #vr.9
+    
+    #vr.10 = #vr.10
+    
+    #vr.11 = #vr.11
+    
+    #vr.55 = #vr.55
+    
+    #vr.60 = #vr.60
+    
+    #vr.62 = #vr.62
+    
+    S(ic) = S(ic)
+    
+    S(ic.57) = S(ic.57)
+    
+    S(S(ic)) = S(S(ic))
+    
+    true = true
+    
+    #vr < #t1
+    
+    #vr < #vr.4
+    
+    #vr.4 < #t1
+    
+    #vr.7 < #vr.1
+    
+    #vr.7 < #vr.6
+    
+    #vr.10 < #vr.1
+    
+    #vr.10 < #vr.7
+    
+    #vr.55 < #vr
+    
+    #vr.55 < #vr.1
+    
+    #vr.55 < #vr.10
+    
+    #vr.55 < #vr.11
+    
+    #vr.60 < #vr.1
+    
+    #vr.60 < #vr.6
+    
+    #vr.60 < #vr.11
+    
+    #vr.60 < #vr.55
+    
+    #vr.62 < #vr
+    
+    #vr.62 < #vr.10
+    
+    ((#vr = #vr.55) ∨ (#vr.55 < #vr))
+    
+    ((#vr = #vr.60) ∨ (#vr.60 < #vr))
+    
+    ((#vr = #vr.62) ∨ (#vr.62 < #vr))
+    
+    ((#vr.1 = #vr.55) ∨ (#vr.55 < #vr.1))
+    
+    ((#vr.1 = #vr.60) ∨ (#vr.60 < #vr.1))
+    
+    ((#vr.1 = #vr.62) ∨ (#vr.62 < #vr.1))
+    
+    ((#vr.6 = #vr.7) ∨ (#vr.7 < #vr.6))
+    
+    ((#vr.6 = #vr.9) ∨ (#vr.9 < #vr.6))
+    
+    ((#vr.10 = #vr.55) ∨ (#vr.55 < #vr.10))
+    
+    ((#vr.10 = #vr.60) ∨ (#vr.60 < #vr.10))
+    
+    ((#vr.10 = #vr.62) ∨ (#vr.62 < #vr.10))
+    
+    ((#vr.11 = #vr.55) ∨ (#vr.55 < #vr.11))
+    
+    ((#vr.11 = #vr.60) ∨ (#vr.60 < #vr.11))
+    
+    ((#vr.11 = #vr.62) ∨ (#vr.62 < #vr.11))
+    
+    ((¬(#t1 < #t1)) ∨ (¬(#vr < #t1)))
+    
+    ((¬(#t1 < #vr)) ∨ (¬(#vr.1 < #t1)))
+    
+    ((¬(#t1 < #vr.1)) ∨ (¬(#vr.10 < #t1)))
+    
+    ((¬(#t1 < #vr.10)) ∨ (¬(#vr.11 < #t1)))
+    
+    ((¬(#t1 < #vr.55)) ∨ (¬(#vr.60 < #t1)))
+    
+    ((¬(#t1 < #vr.60)) ∨ (¬(#vr.62 < #t1)))
+    
+    ((¬(#vr < #t1)) ∨ (¬(#vr < #vr)))
+    
+    ((¬(#vr < #vr)) ∨ (¬(#vr.1 < #vr)))
+    
+    ((¬(#vr < #vr.1)) ∨ (¬(#vr.10 < #vr)))
+    
+    ((¬(#vr < #vr.10)) ∨ (¬(#vr.11 < #vr)))
+    
+    ((¬(#vr < #vr.55)) ∨ (¬(#vr.60 < #vr)))
+    
+    ((¬(#vr < #vr.60)) ∨ (¬(#vr.62 < #vr)))
+    
+    ((¬(#vr.1 < #t1)) ∨ (¬(#vr < #vr.1)))
+    
+    ((¬(#vr.1 < #vr)) ∨ (¬(#vr.1 < #vr.1)))
+    
+    ((¬(#vr.1 < #vr.1)) ∨ (¬(#vr.10 < #vr.1)))
+    
+    ((¬(#vr.1 < #vr.10)) ∨ (¬(#vr.11 < #vr.1)))
+    
+    ((¬(#vr.1 < #vr.55)) ∨ (¬(#vr.60 < #vr.1)))
+    
+    ((¬(#vr.1 < #vr.60)) ∨ (¬(#vr.62 < #vr.1)))
+    
+    ((¬(#vr.4 < #vr.4)) ∨ (¬(#vr.6 < #vr.4)))
+    
+    ((¬(#vr.4 < #vr.7)) ∨ (¬(#vr.9 < #vr.4)))
+    
+    ((¬(#vr.6 < #vr.4)) ∨ (¬(#vr.6 < #vr.6)))
+    
+    ((¬(#vr.6 < #vr.7)) ∨ (¬(#vr.9 < #vr.6)))
+    
+    ((¬(#vr.7 < #vr.4)) ∨ (¬(#vr.6 < #vr.7)))
+    
+    ((¬(#vr.7 < #vr.7)) ∨ (¬(#vr.9 < #vr.7)))
+    
+    ((¬(#vr.9 < #vr.4)) ∨ (¬(#vr.6 < #vr.9)))
+    
+    ((¬(#vr.9 < #vr.7)) ∨ (¬(#vr.9 < #vr.9)))
+    
+    ((¬(#vr.10 < #t1)) ∨ (¬(#vr < #vr.10)))
+    
+    ((¬(#vr.10 < #vr)) ∨ (¬(#vr.1 < #vr.10)))
+    
+    ((¬(#vr.10 < #vr.1)) ∨ (¬(#vr.10 < #vr.10)))
+    
+    ((¬(#vr.10 < #vr.10)) ∨ (¬(#vr.11 < #vr.10)))
+    
+    ((¬(#vr.10 < #vr.55)) ∨ (¬(#vr.60 < #vr.10)))
+    
+    ((¬(#vr.10 < #vr.60)) ∨ (¬(#vr.62 < #vr.10)))
+    
+    ((¬(#vr.11 < #t1)) ∨ (¬(#vr < #vr.11)))
+    
+    ((¬(#vr.11 < #vr)) ∨ (¬(#vr.1 < #vr.11)))
+    
+    ((¬(#vr.11 < #vr.1)) ∨ (¬(#vr.10 < #vr.11)))
+    
+    ((¬(#vr.11 < #vr.10)) ∨ (¬(#vr.11 < #vr.11)))
+    
+    ((¬(#vr.11 < #vr.55)) ∨ (¬(#vr.60 < #vr.11)))
+    
+    ((¬(#vr.11 < #vr.60)) ∨ (¬(#vr.62 < #vr.11)))
+    
+    ((¬(#vr.55 < #t1)) ∨ (¬(#vr < #vr.55)))
+    
+    ((¬(#vr.55 < #vr)) ∨ (¬(#vr.1 < #vr.55)))
+    
+    ((¬(#vr.55 < #vr.1)) ∨ (¬(#vr.10 < #vr.55)))
+    
+    ((¬(#vr.55 < #vr.10)) ∨ (¬(#vr.11 < #vr.55)))
+    
+    ((¬(#vr.55 < #vr.55)) ∨ (¬(#vr.60 < #vr.55)))
+    
+    ((¬(#vr.55 < #vr.60)) ∨ (¬(#vr.62 < #vr.55)))
+    
+    ((¬(#vr.60 < #t1)) ∨ (¬(#vr < #vr.60)))
+    
+    ((¬(#vr.60 < #vr)) ∨ (¬(#vr.1 < #vr.60)))
+    
+    ((¬(#vr.60 < #vr.1)) ∨ (¬(#vr.10 < #vr.60)))
+    
+    ((¬(#vr.60 < #vr.10)) ∨ (¬(#vr.11 < #vr.60)))
+    
+    ((¬(#vr.60 < #vr.55)) ∨ (¬(#vr.60 < #vr.60)))
+    
+    ((¬(#vr.60 < #vr.60)) ∨ (¬(#vr.62 < #vr.60)))
+    
+    ((¬(#vr.62 < #t1)) ∨ (¬(#vr < #vr.62)))
+    
+    ((¬(#vr.62 < #vr)) ∨ (¬(#vr.1 < #vr.62)))
+    
+    ((¬(#vr.62 < #vr.1)) ∨ (¬(#vr.10 < #vr.62)))
+    
+    ((¬(#vr.62 < #vr.10)) ∨ (¬(#vr.11 < #vr.62)))
+    
+    ((¬(#vr.62 < #vr.55)) ∨ (¬(#vr.60 < #vr.62)))
+    
+    ((¬(#vr.62 < #vr.60)) ∨ (¬(#vr.62 < #vr.62)))
+    
+    ⊤
+    
+    ¬(#vr < #vr.55)
+    
+    ¬(#vr < #vr.60)
+    
+    ¬(#vr < #vr.62)
+    
+    ¬(#vr.1 < #vr.55)
+    
+    ¬(#vr.1 < #vr.60)
+    
+    ¬(#vr.1 < #vr.62)
+    
+    ¬(#vr.6 < #vr.7)
+    
+    ¬(#vr.6 < #vr.9)
+    
+    ¬(#vr.10 < #vr.55)
+    
+    ¬(#vr.10 < #vr.60)
+    
+    ¬(#vr.10 < #vr.62)
+    
+    ¬(#vr.11 < #vr.55)
+    
+    ¬(#vr.11 < #vr.60)
+    
+    ¬(#vr.11 < #vr.62)
+    
+    ∃ ki kr #t1.
+     (Detect( <ki, kr> ) @ #t1)
+    ∧
+     (∀ #t0. (Compromise( ki ) @ #t0) ⇒ ¬(#t0 < #t1)) ∧
+     (∀ #t0. (Compromise( kr ) @ #t0) ⇒ ¬(#t0 < #t1))
+  
+  unsolved constraints:
+    !KU( <<'1', pk(~ltkB), pk(~ltkI), ~ni, ~nr, S(rc)>, 
+          sign(<'1', pk(~ltkB), pk(~ltkI), ~ni, ~nr, S(rc)>, ~ltkB)>
+    ) @ #vk.2 // nr: 3" (currently deducible)"
+    
+    !KU( <<'1', pk(~ltkB), pk(~ltkI), ~ni.1, ~nr.1, S(S(ic))>, 
+          sign(<'1', pk(~ltkB), pk(~ltkI), ~ni.1, ~nr.1, S(S(ic))>, ~ltkB)>
+    ) @ #vk.3 // nr: 22" (currently deducible)"
+    
+    !KU( <'1', pk(~ltkB), pk(~ltkI), ~ni, ~nr, S(rc)>
+    ) @ #vk.4 // nr: 4" (currently deducible)"
+    
+    !KU( '1' ) @ #vk.5 // nr: 5" (currently deducible)"
+    
+    !KU( <'1', pk(~ltkB), pk(~ltkI), ~ni.1, ~nr.1, S(S(ic))>
+    ) @ #vk.6 // nr: 23" (currently deducible)"
+    
+    !KU( <'1', pk(~ltkB), pk(~ltkI), ni.4, nr.4, S(ic)>
+    ) @ #vk.7 // nr: 102" (useful2)"
+    
+    !KU( <pk(~ltkB), pk(~ltkI), ~ni, ~nr, S(rc)>
+    ) @ #vk.8 // nr: 6" (currently deducible)"
+    
+    !KU( pk(~ltkB) ) @ #vk.9 // nr: 16" (currently deducible)"
+    
+    !KU( <pk(~ltkB), pk(~ltkI), ~ni.1, ~nr.1, S(S(ic))>
+    ) @ #vk.10 // nr: 25" (currently deducible)"
+    
+    !KU( <pk(~ltkB), ~ni.53, nr.2, rc>
+    ) @ #vk.11 // nr: 55" (currently deducible)"
+    
+    !KU( <pk(~ltkB), ni.3, nr.3, S(ic)>
+    ) @ #vk.12 // nr: 79" (useful2)"
+    
+    !KU( <pk(~ltkB), pk(~ltkI), ni.4, nr.4, S(ic)>
+    ) @ #vk.13 // nr: 104" (useful2)"
+    
+    !KU( <pk(~ltkI), pk(~ltkB), ~ni.53, nr.2, rc>
+    ) @ #vk.14 // nr: 53" (currently deducible)"
+    
+    !KU( <pk(~ltkI), pk(~ltkB), ni.3, nr.3, S(ic)>
+    ) @ #vk.15 // nr: 77" (useful2)"
+    
+    !KU( <'2', pk(~ltkI), pk(~ltkB), ~ni.53, nr.2, rc>
+    ) @ #vk.16 // nr: 51" (currently deducible)"
+    
+    !KU( <pk(~ltkI), ~ni, ~nr, S(rc)>
+    ) @ #vk.17 // nr: 8" (currently deducible)"
+    
+    !KU( pk(~ltkI) ) @ #vk.18 // nr: 9" (currently deducible)"
+    
+    !KU( <pk(~ltkI), ~ni.1, ~nr.1, S(S(ic))>
+    ) @ #vk.19 // nr: 27" (currently deducible)"
+    
+    !KU( <pk(~ltkI), ni.4, nr.4, S(ic)>
+    ) @ #vk.20 // nr: 106" (useful2)"
+    
+    !KU( <'2', pk(~ltkI), pk(~ltkB), ni.3, nr.3, S(ic)>
+    ) @ #vk.21 // nr: 75" (useful2)"
+    
+    !KU( <<'2', pk(~ltkI), pk(~ltkB), ~ni.53, nr.2, rc>, 
+          sign(<'2', pk(~ltkI), pk(~ltkB), ~ni.53, nr.2, rc>, ~ltkI)>
+    ) @ #vk.22 // nr: 50" (currently deducible)"
+    
+    !KU( <~ni, ~nr, S(rc)> ) @ #vk.23 // nr: 10" (currently deducible)"
+    
+    !KU( ~ni ) @ #vk.24 // nr: 40" (currently deducible)"
+    
+    !KU( <~nr, S(rc)> ) @ #vk.25 // nr: 12" (currently deducible)"
+    
+    !KU( ~nr ) @ #vk.26 // nr: 67" (currently deducible)"
+    
+    !KU( S(rc) ) @ #vk.27 // nr: 68" (currently deducible)"
+    
+    !KU( <~ni.1, ~nr.1, S(S(ic))>
+    ) @ #vk.28 // nr: 29" (currently deducible)"
+    
+    !KU( ~ni.1 ) @ #vk.29 // nr: 119" (currently deducible)"
+    
+    !KU( <~nr.1, S(S(ic))> ) @ #vk.30 // nr: 31" (currently deducible)"
+    
+    !KU( ~nr.1 ) @ #vk.31 // nr: 91" (currently deducible)"
+    
+    !KU( S(S(ic)) ) @ #vk.32 // nr: 33" (currently deducible)"
+    
+    !KU( '2' ) @ #vk.33 // nr: 52" (currently deducible)"
+    
+    !KU( <<'2', pk(~ltkI), pk(~ltkB), ni.3, nr.3, S(ic)>, 
+          sign(<'2', pk(~ltkI), pk(~ltkB), ni.3, nr.3, S(ic)>, ~ltkI)>
+    ) @ #vk.34 // nr: 74" (useful2)"
+    
+    !KU( <~ni.53, nr.2, rc> ) @ #vk.35 // nr: 57" (useful2)"
+    
+    !KU( ~ni.53 ) @ #vk.36 // nr: 148" (currently deducible)"
+    
+    !KU( <nr.2, rc> ) @ #vk.37 // nr: 59" (probably constructible)"
+    
+    !KU( nr.2 ) @ #vk.38 // nr: 60" (probably constructible)"
+    
+    !KU( rc ) @ #vk.39 // nr: 61" (probably constructible)"
+    
+    !KU( <ni.3, nr.3, S(ic)>
+    ) @ #vk.41 // nr: 81" (probably constructible)"
+    
+    !KU( ni.3 ) @ #vk.42 // nr: 82" (probably constructible)"
+    
+    !KU( <nr.3, S(ic)> ) @ #vk.43 // nr: 83" (probably constructible)"
+    
+    !KU( nr.3 ) @ #vk.44 // nr: 84" (probably constructible)"
+    
+    !KU( S(ic) ) @ #vk.45 // nr: 112" (probably constructible)"
+    
+    !KU( <nr.4, S(ic)> ) @ #vk.46 // nr: 110" (probably constructible)"
+    
+    !KU( sign(<'2', pk(~ltkI), pk(~ltkB), ni.3, nr.3, S(ic)>, ~ltkI)
+    ) @ #vk.47 // nr: 86" (useful2)"
+    
+    !KU( <<'1', pk(~ltkB), pk(~ltkI), ni.4, nr.4, S(ic)>, 
+          sign(<'1', pk(~ltkB), pk(~ltkI), ni.4, nr.4, S(ic)>, ~ltkB)>
+    ) @ #vk.48 // nr: 101" (useful2)"
+    
+    !KU( <ni.4, nr.4, S(ic)>
+    ) @ #vk.49 // nr: 108" (probably constructible)"
+    
+    !KU( ni.4 ) @ #vk.50 // nr: 109" (probably constructible)"
+    
+    !KU( nr.4 ) @ #vk.51 // nr: 111" (probably constructible)"
+    
+    !KU( sign(<'1', pk(~ltkB), pk(~ltkI), ni.4, nr.4, S(ic)>, ~ltkB)
+    ) @ #vk.52 // nr: 113" (useful2)"
+    
+    !KU( <<'1', pk(~ltkB), pk(~ltkI), ~ni.53, nr.2, rc>, 
+          sign(<'1', pk(~ltkB), pk(~ltkI), ~ni.53, nr.2, rc>, ~ltkB)>
+    ) @ #vk.72 // nr: 137" (useful2)"
+    
+    !KU( <'1', pk(~ltkB), pk(~ltkI), ~ni.53, nr.2, rc>
+    ) @ #vk.73 // nr: 138" (useful2)"
+    
+    !KU( <'1', pk(~ltkB), pk(~ltkI), ni.63, nr.64, S(ic.57)>
+    ) @ #vk.75 // nr: 140" (useful2)"
+    
+    !KU( <pk(~ltkB), pk(~ltkI), ~ni.53, nr.2, rc>
+    ) @ #vk.76 // nr: 141" (useful2)"
+    
+    !KU( <pk(~ltkB), pk(~ltkI), ni.63, nr.64, S(ic.57)>
+    ) @ #vk.78 // nr: 143" (useful2)"
+    
+    !KU( <pk(~ltkI), ~ni.53, nr.2, rc>
+    ) @ #vk.79 // nr: 144" (useful2)"
+    
+    !KU( <pk(~ltkI), ni.63, nr.64, S(ic.57)>
+    ) @ #vk.81 // nr: 146" (useful2)"
+    
+    !KU( sign(<'1', pk(~ltkB), pk(~ltkI), ~ni.53, nr.2, rc>, ~ltkB)
+    ) @ #vk.87 // nr: 152" (useful2)"
+    
+    !KU( <<'1', pk(~ltkB), pk(~ltkI), ni.63, nr.64, S(ic.57)>, 
+          sign(<'1', pk(~ltkB), pk(~ltkI), ni.63, nr.64, S(ic.57)>, ~ltkB)>
+    ) @ #vk.88 // nr: 153" (useful2)"
+    
+    !KU( <ni.63, nr.64, S(ic.57)>
+    ) @ #vk.89 // nr: 154" (probably constructible)"
+    
+    !KU( ni.63 ) @ #vk.90 // nr: 155" (probably constructible)"
+    
+    !KU( <nr.64, S(ic.57)>
+    ) @ #vk.91 // nr: 156" (probably constructible)"
+    
+    !KU( nr.64 ) @ #vk.92 // nr: 157" (probably constructible)"
+    
+    !KU( S(ic.57) ) @ #vk.93 // nr: 158" (probably constructible)"
+    
+    !KU( sign(<'1', pk(~ltkB), pk(~ltkI), ni.63, nr.64, S(ic.57)>,
+              ~ltkB)
+    ) @ #vk.94 // nr: 159" (useful2)"
+    
+    St_R( ~id.1, ~ltkB, pk(~ltkI), <'m2', ~ni.53, nr.2>, rc
+    ) ▶₀ #vr.6 // nr: 64 (from rule R_m2) (loop breaker)" (loop breaker)"
+    
+    St_R( ~id.1, ~ltkB, pk(~ltkI), <'m2', ni.3, nr.3>, S(ic)
+    ) ▶₀ #vr.9 // nr: 88 (from rule R_m2) (loop breaker)" (loop breaker)"
+    
+    St_I( ~id, ~ltkI, pk(~ltkB), <'m2', ni.4>, ic
+    ) ▶₀ #vr.11 // nr: 116 (from rule I_m2) (loop breaker)" (loop breaker)"
+    
+    St_I( ~id, ~ltkI, pk(~ltkB), <'m2', ni.63>, ic.57
+    ) ▶₀ #vr.62 // nr: 162 (from rule I_m2) (loop breaker)" (loop breaker)"
+  
+  solved constraints:
+    F_InvariantSource_I( ~id, ~ltkI, pk(~ltkB)
+    ) @ #j // nr: 21 (from rule BindState_Init)" (useful2)"
+    
+    Detect( <pk(~ltkI), pk(~ltkB)>
+    ) @ #t1 // nr: 0 (from rule I_detect)" (useful2)"
+    
+    !KU( sign(<'1', pk(~ltkB), pk(~ltkI), ~ni, ~nr, S(rc)>, ~ltkB)
+    ) @ #vk // nr: 20 (from rule Coerce)" (currently deducible)"
+    
+    F_InvariantSource_R( ~id.1, ~ltkB, pk(~ltkI)
+    ) @ #j.1 // nr: 48 (from rule BindState_Resp)" (useful2)"
+    
+    !KU( sign(<'1', pk(~ltkB), pk(~ltkI), ~ni.1, ~nr.1, S(S(ic))>,
+              ~ltkB)
+    ) @ #vk.1 // nr: 34 (from rule Coerce)" (currently deducible)"
+    
+    !KU( sign(<'2', pk(~ltkI), pk(~ltkB), ~ni.53, nr.2, rc>, ~ltkI)
+    ) @ #vk.40 // nr: 62 (from rule Coerce)" (currently deducible)"
+    
+    !F_AgentKey( ~ltkI
+    ) ▶₀ #j // nr: 38 (from rule BindState_Init)" (useful2)"
+    
+    !F_AgentKey( ~ltkB
+    ) ▶₁ #j // nr: 39 (from rule BindState_Init)" (useful2)"
+    
+    St_I( ~id, ~ltkI, pk(~ltkB), <'m2', ~ni>, S(S(ic))
+    ) ▶₀ #t1 // nr: 2 (from rule I_detect)" (useful2)"
+    
+    St_I( ~id, ~ltkI, pk(~ltkB), 'm0', S(S(ic))
+    ) ▶₀ #vr // nr: 36 (from rule I_m0)" (useful2)"
+    
+    !F_AgentKey( ~ltkB
+    ) ▶₀ #j.1 // nr: 65 (from rule BindState_Resp)" (useful2)"
+    
+    !F_AgentKey( ~ltkI
+    ) ▶₁ #j.1 // nr: 66 (from rule BindState_Resp)" (useful2)"
+    
+    St_I( ~id, ~ltkI, pk(~ltkB), <'m2', ~ni.1>, S(ic)
+    ) ▶₀ #vr.1 // nr: 37 (from rule I_m2) (loop breaker)" (loop breaker)"
+    
+    St_R( ~id.1, ~ltkB, pk(~ltkI), 'm1', rc
+    ) ▶₀ #vr.4 // nr: 63 (from rule R_m1)" (useful2)"
+    
+    St_R( ~id.1, ~ltkB, pk(~ltkI), 'm1', S(ic)
+    ) ▶₀ #vr.7 // nr: 87 (from rule R_m1)" (useful2)"
+    
+    St_I( ~id, ~ltkI, pk(~ltkB), 'm0', S(ic)
+    ) ▶₀ #vr.10 // nr: 115 (from rule I_m0)" (useful2)"
+    
+    St_I( ~id, ~ltkI, pk(~ltkB), <'m2', ~ni.53>, S(ic.57)
+    ) ▶₀ #vr.55 // nr: 160 (from rule I_detect)" (useful2)"
+    
+    St_I( ~id, ~ltkI, pk(~ltkB), 'm0', S(ic.57)
+    ) ▶₀ #vr.60 // nr: 161 (from rule I_m0)" (useful2)"
+    
+     (#vr = #vr.55)  ∥ (#vr.55 < #vr) // nr: 194" (useful2)"
+    
+     (#vr = #vr.60)  ∥ (#vr.60 < #vr) // nr: 195" (useful2)"
+    
+     (#vr = #vr.62)  ∥ (#vr.62 < #vr) // nr: 196" (useful2)"
+    
+     (#vr.1 = #vr.55)  ∥ (#vr.55 < #vr.1) // nr: 197" (useful2)"
+    
+     (#vr.1 = #vr.60)  ∥ (#vr.60 < #vr.1) // nr: 198" (useful2)"
+    
+     (#vr.1 = #vr.62)  ∥ (#vr.62 < #vr.1) // nr: 199" (useful2)"
+    
+     (#vr.6 = #vr.7)  ∥ (#vr.7 < #vr.6) // nr: 98" (useful2)"
+    
+     (#vr.6 = #vr.9)  ∥ (#vr.9 < #vr.6) // nr: 99" (useful2)"
+    
+     (#vr.10 = #vr.55)  ∥ (#vr.55 < #vr.10) // nr: 200" (useful2)"
+    
+     (#vr.10 = #vr.60)  ∥ (#vr.60 < #vr.10) // nr: 201" (useful2)"
+    
+     (#vr.10 = #vr.62)  ∥ (#vr.62 < #vr.10) // nr: 202" (useful2)"
+    
+     (#vr.11 = #vr.55)  ∥ (#vr.55 < #vr.11) // nr: 203" (useful2)"
+    
+     (#vr.11 = #vr.60)  ∥ (#vr.60 < #vr.11) // nr: 204" (useful2)"
+    
+     (#vr.11 = #vr.62)  ∥ (#vr.62 < #vr.11) // nr: 205" (useful2)"
+    
+     (¬(#t1 < #t1))  ∥ (¬(#vr < #t1)) // nr: 41" (useful2)"
+    
+     (¬(#t1 < #vr))  ∥ (¬(#vr.1 < #t1)) // nr: 44" (useful2)"
+    
+     (¬(#t1 < #vr.1))  ∥ (¬(#vr.10 < #t1)) // nr: 125" (useful2)"
+    
+     (¬(#t1 < #vr.10))  ∥ (¬(#vr.11 < #t1)) // nr: 130" (useful2)"
+    
+     (¬(#t1 < #vr.55))  ∥ (¬(#vr.60 < #t1)) // nr: 184" (useful2)"
+    
+     (¬(#t1 < #vr.60))  ∥ (¬(#vr.62 < #t1)) // nr: 189" (useful2)"
+    
+     (¬(#vr < #t1))  ∥ (¬(#vr < #vr)) // nr: 42" (useful2)"
+    
+     (¬(#vr < #vr))  ∥ (¬(#vr.1 < #vr)) // nr: 45" (useful2)"
+    
+     (¬(#vr < #vr.1))  ∥ (¬(#vr.10 < #vr)) // nr: 126" (useful2)"
+    
+     (¬(#vr < #vr.10))  ∥ (¬(#vr.11 < #vr)) // nr: 131" (useful2)"
+    
+     (¬(#vr < #vr.55))  ∥ (¬(#vr.60 < #vr)) // nr: 185" (useful2)"
+    
+     (¬(#vr < #vr.60))  ∥ (¬(#vr.62 < #vr)) // nr: 190" (useful2)"
+    
+     (¬(#vr.1 < #t1))  ∥ (¬(#vr < #vr.1)) // nr: 43" (useful2)"
+    
+     (¬(#vr.1 < #vr))  ∥ (¬(#vr.1 < #vr.1)) // nr: 46" (useful2)"
+    
+     (¬(#vr.1 < #vr.1))  ∥ (¬(#vr.10 < #vr.1)) // nr: 127" (useful2)"
+    
+     (¬(#vr.1 < #vr.10))  ∥ (¬(#vr.11 < #vr.1)) // nr: 132" (useful2)"
+    
+     (¬(#vr.1 < #vr.55))  ∥ (¬(#vr.60 < #vr.1)) // nr: 186" (useful2)"
+    
+     (¬(#vr.1 < #vr.60))  ∥ (¬(#vr.62 < #vr.1)) // nr: 191" (useful2)"
+    
+     (¬(#vr.4 < #vr.4))  ∥ (¬(#vr.6 < #vr.4)) // nr: 69" (useful2)"
+    
+     (¬(#vr.4 < #vr.7))  ∥ (¬(#vr.9 < #vr.4)) // nr: 96" (useful2)"
+    
+     (¬(#vr.6 < #vr.4))  ∥ (¬(#vr.6 < #vr.6)) // nr: 70" (useful2)"
+    
+     (¬(#vr.6 < #vr.7))  ∥ (¬(#vr.9 < #vr.6)) // nr: 97" (useful2)"
+    
+     (¬(#vr.7 < #vr.4))  ∥ (¬(#vr.6 < #vr.7)) // nr: 94" (useful2)"
+    
+     (¬(#vr.7 < #vr.7))  ∥ (¬(#vr.9 < #vr.7)) // nr: 92" (useful2)"
+    
+     (¬(#vr.9 < #vr.4))  ∥ (¬(#vr.6 < #vr.9)) // nr: 95" (useful2)"
+    
+     (¬(#vr.9 < #vr.7))  ∥ (¬(#vr.9 < #vr.9)) // nr: 93" (useful2)"
+    
+     (¬(#vr.10 < #t1))  ∥ (¬(#vr < #vr.10)) // nr: 121" (useful2)"
+    
+     (¬(#vr.10 < #vr))  ∥ (¬(#vr.1 < #vr.10)) // nr: 123" (useful2)"
+    
+     (¬(#vr.10 < #vr.1))  ∥ (¬(#vr.10 < #vr.10)) // nr: 128" (useful2)"
+    
+     (¬(#vr.10 < #vr.10))  ∥ (¬(#vr.11 < #vr.10)) // nr: 133" (useful2)"
+    
+     (¬(#vr.10 < #vr.55))  ∥ (¬(#vr.60 < #vr.10)) // nr: 187" (useful2)"
+    
+     (¬(#vr.10 < #vr.60))  ∥ (¬(#vr.62 < #vr.10)) // nr: 192" (useful2)"
+    
+     (¬(#vr.11 < #t1))  ∥ (¬(#vr < #vr.11)) // nr: 122" (useful2)"
+    
+     (¬(#vr.11 < #vr))  ∥ (¬(#vr.1 < #vr.11)) // nr: 124" (useful2)"
+    
+     (¬(#vr.11 < #vr.1))  ∥ (¬(#vr.10 < #vr.11)) // nr: 129" (useful2)"
+    
+     (¬(#vr.11 < #vr.10))  ∥ (¬(#vr.11 < #vr.11)) // nr: 134" (useful2)"
+    
+     (¬(#vr.11 < #vr.55))  ∥ (¬(#vr.60 < #vr.11)) // nr: 188" (useful2)"
+    
+     (¬(#vr.11 < #vr.60))  ∥ (¬(#vr.62 < #vr.11)) // nr: 193" (useful2)"
+    
+     (¬(#vr.55 < #t1))  ∥ (¬(#vr < #vr.55)) // nr: 172" (useful2)"
+    
+     (¬(#vr.55 < #vr))  ∥ (¬(#vr.1 < #vr.55)) // nr: 175" (useful2)"
+    
+     (¬(#vr.55 < #vr.1))  ∥ (¬(#vr.10 < #vr.55)) // nr: 178" (useful2)"
+    
+     (¬(#vr.55 < #vr.10))  ∥ (¬(#vr.11 < #vr.55)) // nr: 181" (useful2)"
+    
+     (¬(#vr.55 < #vr.55))  ∥ (¬(#vr.60 < #vr.55)) // nr: 166" (useful2)"
+    
+     (¬(#vr.55 < #vr.60))  ∥ (¬(#vr.62 < #vr.55)) // nr: 169" (useful2)"
+    
+     (¬(#vr.60 < #t1))  ∥ (¬(#vr < #vr.60)) // nr: 173" (useful2)"
+    
+     (¬(#vr.60 < #vr))  ∥ (¬(#vr.1 < #vr.60)) // nr: 176" (useful2)"
+    
+     (¬(#vr.60 < #vr.1))  ∥ (¬(#vr.10 < #vr.60)) // nr: 179" (useful2)"
+    
+     (¬(#vr.60 < #vr.10))  ∥ (¬(#vr.11 < #vr.60)) // nr: 182" (useful2)"
+    
+     (¬(#vr.60 < #vr.55))  ∥ (¬(#vr.60 < #vr.60)) // nr: 167" (useful2)"
+    
+     (¬(#vr.60 < #vr.60))  ∥ (¬(#vr.62 < #vr.60)) // nr: 170" (useful2)"
+    
+     (¬(#vr.62 < #t1))  ∥ (¬(#vr < #vr.62)) // nr: 174" (useful2)"
+    
+     (¬(#vr.62 < #vr))  ∥ (¬(#vr.1 < #vr.62)) // nr: 177" (useful2)"
+    
+     (¬(#vr.62 < #vr.1))  ∥ (¬(#vr.10 < #vr.62)) // nr: 180" (useful2)"
+    
+     (¬(#vr.62 < #vr.10))  ∥ (¬(#vr.11 < #vr.62)) // nr: 183" (useful2)"
+    
+     (¬(#vr.62 < #vr.55))  ∥ (¬(#vr.60 < #vr.62)) // nr: 168" (useful2)"
+    
+     (¬(#vr.62 < #vr.60))  ∥ (¬(#vr.62 < #vr.62)) // nr: 171" (useful2)"
+theory counter_example
+
+begin
+
+// Function signature and definition of the equational theory E
+
+functions: S/1, fst/1, h/1, pair/2, pk/1, sign/2, snd/1, true/0, verify/3
+equations:
+    fst(<x.1, x.2>) = x.1,
+    snd(<x.1, x.2>) = x.2,
+    verify(sign(x.1, x.2), x.1, pk(x.2)) = true
+
+heuristic: I
+
+/* looping facts with injective instances: St_I/5, St_R/5 */
+
+restriction Eq_testing:
+  "∀ x y #i. (Eq( x, y ) @ #i) ⇒ (x = y)"
+  // safety formula
+
+  /*
+  expanded formula:
+  "∀ x y #i. (Eq( x, y ) @ #i) ⇒ (x = y)"
+  */
+
+restriction InEq_testing:
+  "∀ x y #i. (InEq( x, y ) @ #i) ⇒ (¬(x = y))"
+  // safety formula
+
+  /*
+  expanded formula:
+  "∀ x y #i. (InEq( x, y ) @ #i) ⇒ (¬(x = y))"
+  */
+
+restriction pairings_unique:
+  "∀ id1 id2 role ki kr #i #j.
+    ((Paired( id1, role, ki, kr ) @ #i) ∧
+     (Paired( id2, role, ki, kr ) @ #j)) ⇒
+    (#i = #j)"
+  // safety formula
+
+  /*
+  expanded formula:
+  "∀ id1 id2 role ki kr #i #j.
+    ((Paired( id1, role, ki, kr ) @ #i) ∧
+     (Paired( id2, role, ki, kr ) @ #j)) ⇒
+    (#i = #j)"
+  */
+
+rule (modulo E) RegisterKey:
+   [ Fr( ~ltkA ) ]
+  --[ Key( ~ltkA ) ]->
+   [ !F_AgentKey( ~ltkA ), Out( pk(~ltkA) ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) CompromiseKey:
+   [ !F_AgentKey( ~ltk ) ] --[ Compromise( pk(~ltk) ) ]-> [ Out( ~ltk ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) BindState_Init:
+   [ !F_AgentKey( ~ltkA ), !F_AgentKey( ~ltkB ), Fr( ~id ) ]
+  --[
+  Paired( ~id, 'I', ~ltkA, ~ltkB ), Counter( ~id, '0' ),
+  F_InvariantSource_I( ~id, ~ltkA, pk(~ltkB) )
+  ]->
+   [ St_I( ~id, ~ltkA, pk(~ltkB), 'm0', '0' ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) BindState_Resp:
+   [ !F_AgentKey( ~ltkA ), !F_AgentKey( ~ltkB ), Fr( ~id ) ]
+  --[
+  Paired( ~id, 'R', ~ltkA, ~ltkB ), Counter( ~id, '0' ),
+  F_InvariantSource_R( ~id, ~ltkA, pk(~ltkB) )
+  ]->
+   [ St_R( ~id, ~ltkA, pk(~ltkB), 'm1', '0' ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) I_m0:
+   [ St_I( ~id, ~ltkI, pkR, 'm0', ic ), Fr( ~ni ) ]
+  --[
+  Begin( 'I', <pk(~ltkI), pkR>, S(ic) ), Counter( <~id, 'm0'>, ic ),
+  Gen( ~ni ), Injectivity( ~id, ic, ~ni ), Invariant_I( ~id, ~ltkI, pkR )
+  ]->
+   [ St_I( ~id, ~ltkI, pkR, <'m2', ~ni>, ic ), Out( ~ni ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) R_m1:
+   [ St_R( ~id, ~ltkR, pkI, 'm1', rc ), Fr( ~nr ), In( ni ) ]
+  --[
+  Begin( 'R', <pkI, pk(~ltkR)>, S(rc) ), Counter( <~id, 'm1'>, rc ),
+  Nonces( ~id, ni, ~nr ), Gen( ~nr ), Injectivity( ~id, rc, ~nr ),
+  Invariant_R( ~id, ~ltkR, pkI )
+  ]->
+   [
+   St_R( ~id, ~ltkR, pkI, <'m2', ni, ~nr>, S(rc) ),
+   Out( <<'1', pk(~ltkR), pkI, ni, ~nr, S(rc)>, 
+         sign(<'1', pk(~ltkR), pkI, ni, ~nr, S(rc)>, ~ltkR)>
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) I_m2:
+   [
+   St_I( ~id, ~ltkI, pkR, <'m2', ni>, ic ),
+   In( <<'1', pkR, pk(~ltkI), ni, nr, src>, sig> )
+   ]
+  --[
+  Eq( verify(sig, <'1', pkR, pk(~ltkI), ni, nr, src>, pkR), true ),
+  Eq( S(ic), src ), Counter( ~id, S(ic) ), Nonces( ~id, ni, nr ),
+  Session( 'I', <pk(~ltkI), pkR>, <ni, nr>, src ),
+  Injectivity( ~id, ni, S(ic) ), Invariant_I( ~id, ~ltkI, pkR )
+  ]->
+   [
+   St_I( ~id, ~ltkI, pkR, 'm0', S(ic) ),
+   Out( <<'2', pk(~ltkI), pkR, ni, nr, src>, 
+         sign(<'2', pk(~ltkI), pkR, ni, nr, src>, ~ltkI)>
+   )
+   ]
+
+  // loop breaker: [0]
+  /*
+  rule (modulo AC) I_m2:
+     [
+     St_I( ~id, ~ltkI, pkR, <'m2', ni>, ic ),
+     In( <<'1', pkR, pk(~ltkI), ni, nr, src>, sig> )
+     ]
+    --[
+    Eq( z, true ), Eq( S(ic), src ), Counter( ~id, S(ic) ),
+    Nonces( ~id, ni, nr ), Session( 'I', <pk(~ltkI), pkR>, <ni, nr>, src ),
+    Injectivity( ~id, ni, S(ic) ), Invariant_I( ~id, ~ltkI, pkR )
+    ]->
+     [
+     St_I( ~id, ~ltkI, pkR, 'm0', S(ic) ),
+     Out( <<'2', pk(~ltkI), pkR, ni, nr, src>, 
+           sign(<'2', pk(~ltkI), pkR, ni, nr, src>, ~ltkI)>
+     )
+     ]
+    variants (modulo AC)
+    1. ~ltkI = ~ltkI.21
+       ni    = ni.23
+       nr    = nr.24
+       pkR   = pkR.25
+       sig   = sig.26
+       src   = src.27
+       z     = verify(sig.26, <'1', pkR.25, pk(~ltkI.21), ni.23, nr.24, src.27>,
+                      pkR.25)
+    
+    2. ~ltkI = ~ltkI.71
+       ni    = ni.73
+       nr    = nr.74
+       pkR   = pk(x.139)
+       sig   = sign(<'1', pk(x.139), pk(~ltkI.71), ni.73, nr.74, src.77>, x.139)
+       src   = src.77
+       z     = true
+    // loop breaker: [0]
+  */
+
+rule (modulo E) I_detect:
+   [
+   St_I( ~id, ~ltkI, pkR, <'m2', ni>, ic ),
+   In( <<'1', pkR, pk(~ltkI), ni, nr, src>, sig> )
+   ]
+  --[
+  Eq( verify(sig, <'1', pkR, pk(~ltkI), ni, nr, src>, pkR), true ),
+  InEq( S(ic), src ), Detect( <pk(~ltkI), pkR> ), Counter( ~id, S(ic) ),
+  Nonces( ~id, ni, nr ), Session( 'I', <pk(~ltkI), pkR>, <ni, nr>, src ),
+  Injectivity( ~id, ni, S(ic) ), Invariant_I( ~id, ~ltkI, pkR )
+  ]->
+   [
+   Remediate_Compromise( ~id, ~ltkI, pkR, 'm0', S(ic) ),
+   Out( <<'2', pk(~ltkI), pkR, ni, nr, src>, 
+         sign(<'2', pk(~ltkI), pkR, ni, nr, src>, ~ltkI)>
+   )
+   ]
+
+  /*
+  rule (modulo AC) I_detect:
+     [
+     St_I( ~id, ~ltkI, pkR, <'m2', ni>, ic ),
+     In( <<'1', pkR, pk(~ltkI), ni, nr, src>, sig> )
+     ]
+    --[
+    Eq( z, true ), InEq( S(ic), src ), Detect( <pk(~ltkI), pkR> ),
+    Counter( ~id, S(ic) ), Nonces( ~id, ni, nr ),
+    Session( 'I', <pk(~ltkI), pkR>, <ni, nr>, src ),
+    Injectivity( ~id, ni, S(ic) ), Invariant_I( ~id, ~ltkI, pkR )
+    ]->
+     [
+     Remediate_Compromise( ~id, ~ltkI, pkR, 'm0', S(ic) ),
+     Out( <<'2', pk(~ltkI), pkR, ni, nr, src>, 
+           sign(<'2', pk(~ltkI), pkR, ni, nr, src>, ~ltkI)>
+     )
+     ]
+    variants (modulo AC)
+    1. ~ltkI = ~ltkI.21
+       ni    = ni.23
+       nr    = nr.24
+       pkR   = pkR.25
+       sig   = sig.26
+       src   = src.27
+       z     = verify(sig.26, <'1', pkR.25, pk(~ltkI.21), ni.23, nr.24, src.27>,
+                      pkR.25)
+    
+    2. ~ltkI = ~ltkI.71
+       ni    = ni.73
+       nr    = nr.74
+       pkR   = pk(x.139)
+       sig   = sign(<'1', pk(x.139), pk(~ltkI.71), ni.73, nr.74, src.77>, x.139)
+       src   = src.77
+       z     = true
+  */
+
+rule (modulo E) R_m2:
+   [
+   St_R( ~id, ~ltkR, pkI, <'m2', ni, nr>, src ), Fr( ~inj ),
+   In( <<'2', pkI, pk(~ltkR), ni, nr, src>, sig> )
+   ]
+  --[
+  Eq( verify(sig, <'2', pkI, pk(~ltkR), ni, nr, src>, pkI), true ),
+  Completed( ~id ), Session( 'R', <pkI, pk(~ltkR)>, <ni, nr>, src ),
+  Counter( ~id, src ), Injectivity( ~id, nr, src ),
+  Invariant_R( ~id, ~ltkR, pkI )
+  ]->
+   [ St_R( ~id, ~ltkR, pkI, 'm1', src ) ]
+
+  // loop breaker: [0]
+  /*
+  rule (modulo AC) R_m2:
+     [
+     St_R( ~id, ~ltkR, pkI, <'m2', ni, nr>, src ), Fr( ~inj ),
+     In( <<'2', pkI, pk(~ltkR), ni, nr, src>, sig> )
+     ]
+    --[
+    Eq( z, true ), Completed( ~id ),
+    Session( 'R', <pkI, pk(~ltkR)>, <ni, nr>, src ), Counter( ~id, src ),
+    Injectivity( ~id, nr, src ), Invariant_R( ~id, ~ltkR, pkI )
+    ]->
+     [ St_R( ~id, ~ltkR, pkI, 'm1', src ) ]
+    variants (modulo AC)
+    1. ~ltkR = ~ltkR.19
+       ni    = ni.20
+       nr    = nr.21
+       pkI   = pkI.22
+       sig   = sig.23
+       src   = src.24
+       z     = verify(sig.23, <'2', pkI.22, pk(~ltkR.19), ni.20, nr.21, src.24>,
+                      pkI.22)
+    
+    2. ~ltkR = ~ltkR.50
+       ni    = ni.51
+       nr    = nr.52
+       pkI   = pk(x.96)
+       sig   = sign(<'2', pk(x.96), pk(~ltkR.50), ni.51, nr.52, src.55>, x.96)
+       src   = src.55
+       z     = true
+    // loop breaker: [0]
+  */
+
+lemma invariant_sources [sources]:
+  all-traces
+  "(∀ id ka kb #i.
+     (Invariant_I( id, ka, kb ) @ #i) ⇒
+     (∃ #j. (F_InvariantSource_I( id, ka, kb ) @ #j) ∧ (#j < #i))) ∧
+   (∀ id ka kb #i.
+     (Invariant_R( id, ka, kb ) @ #i) ⇒
+     (∃ #j. (F_InvariantSource_R( id, ka, kb ) @ #j) ∧ (#j < #i)))"
+/*
+guarded formula characterizing all counter-examples:
+"((∃ id ka kb #i.
+    (Invariant_I( id, ka, kb ) @ #i)
+   ∧
+    ∀ #j. (F_InvariantSource_I( id, ka, kb ) @ #j) ⇒ ¬(#j < #i)) ∨
+  (∃ id ka kb #i.
+    (Invariant_R( id, ka, kb ) @ #i)
+   ∧
+    ∀ #j. (F_InvariantSource_R( id, ka, kb ) @ #j) ⇒ ¬(#j < #i)))"
+*/
+by sorry
+
+lemma count_unique [reuse, use_induction]:
+  all-traces
+  "∀ id c #i #j.
+    ((Counter( id, c ) @ #i) ∧ (Counter( id, c ) @ #j)) ⇒ (#i = #j)"
+/*
+guarded formula characterizing all counter-examples:
+"∃ id c #i #j.
+  (Counter( id, c ) @ #i) ∧ (Counter( id, c ) @ #j) ∧ ¬(#i = #j)"
+*/
+by sorry
+
+lemma nonces_unique [reuse, use_induction]:
+  all-traces
+  "∀ id ni nr #i #j.
+    ((Nonces( id, ni, nr ) @ #i) ∧ (Nonces( id, ni, nr ) @ #j)) ⇒ (#i = #j)"
+/*
+guarded formula characterizing all counter-examples:
+"∃ id ni nr #i #j.
+  (Nonces( id, ni, nr ) @ #i) ∧ (Nonces( id, ni, nr ) @ #j) ∧ ¬(#i = #j)"
+*/
+by sorry
+
+lemma force_nonce_ordering [reuse]:
+  all-traces
+  "((∀ role pks ni nr c #i #j.
+      ((Session( role, pks, <ni, nr>, c ) @ #i) ∧ (Gen( ni ) @ #j)) ⇒
+      (#j < #i)) ∧
+    (∀ role pks ni nr c #i #j.
+      ((Session( role, pks, <ni, nr>, c ) @ #i) ∧ (Gen( nr ) @ #j)) ⇒
+      (#j < #i))) ∧
+   (∀ id ni nr #i #j.
+     ((Nonces( id, ni, nr ) @ #i) ∧ (Gen( ni ) @ #j)) ⇒ (#j < #i))"
+/*
+guarded formula characterizing all counter-examples:
+"((∃ role pks ni nr c #i #j.
+    (Session( role, pks, <ni, nr>, c ) @ #i) ∧ (Gen( ni ) @ #j)
+   ∧
+    ¬(#j < #i)) ∨
+  (∃ role pks ni nr c #i #j.
+    (Session( role, pks, <ni, nr>, c ) @ #i) ∧ (Gen( nr ) @ #j)
+   ∧
+    ¬(#j < #i)) ∨
+  (∃ id ni nr #i #j.
+    (Nonces( id, ni, nr ) @ #i) ∧ (Gen( ni ) @ #j) ∧ ¬(#j < #i)))"
+*/
+by sorry
+
+lemma exists_session:
+  exists-trace
+  "∃ pks nonces c #t0 #t1.
+    ((((#t0 < #t1) ∧ (Session( 'I', pks, nonces, c ) @ #t0)) ∧
+      (Session( 'R', pks, nonces, c ) @ #t1)) ∧
+     (¬(∃ #k key. Compromise( key ) @ #k))) ∧
+    (¬(∃ #k. Detect( pks ) @ #k))"
+/*
+guarded formula characterizing all satisfying traces:
+"∃ pks nonces c #t0 #t1.
+  (Session( 'I', pks, nonces, c ) @ #t0) ∧
+  (Session( 'R', pks, nonces, c ) @ #t1)
+ ∧
+  (#t0 < #t1) ∧
+  (∀ #k key. (Compromise( key ) @ #k) ⇒ ⊥) ∧
+  (∀ #k. (Detect( pks ) @ #k) ⇒ ⊥)"
+*/
+by sorry
+
+lemma exists_second_session:
+  exists-trace
+  "∃ pks nonces nonces2 c #t0 #t1 #t2 #t3.
+    ((((((((#t0 < #t2) ∧ (#t1 < #t3)) ∧ (c = S('0'))) ∧
+         (Session( 'I', pks, nonces, c ) @ #t0)) ∧
+        (Session( 'R', pks, nonces, c ) @ #t1)) ∧
+       (Session( 'I', pks, nonces2, S(c) ) @ #t2)) ∧
+      (Session( 'R', pks, nonces2, S(c) ) @ #t3)) ∧
+     (¬(∃ #k key. Compromise( key ) @ #k))) ∧
+    (¬(∃ #k. Detect( pks ) @ #k))"
+/*
+guarded formula characterizing all satisfying traces:
+"∃ pks nonces nonces2 c #t0 #t1 #t2 #t3.
+  (c = S('0')) ∧
+  (Session( 'I', pks, nonces, c ) @ #t0) ∧
+  (Session( 'R', pks, nonces, c ) @ #t1) ∧
+  (Session( 'I', pks, nonces2, S(c) ) @ #t2) ∧
+  (Session( 'R', pks, nonces2, S(c) ) @ #t3)
+ ∧
+  (#t0 < #t2) ∧
+  (#t1 < #t3) ∧
+  (∀ #k key. (Compromise( key ) @ #k) ⇒ ⊥) ∧
+  (∀ #k. (Detect( pks ) @ #k) ⇒ ⊥)"
+*/
+by sorry
+
+lemma exists_detect_no_R_compromise:
+  exists-trace
+  "∃ ki kr #i.
+    (Detect( <ki, kr> ) @ #i) ∧ (¬(∃ #j. Compromise( kr ) @ #j))"
+/*
+guarded formula characterizing all satisfying traces:
+"∃ ki kr #i.
+  (Detect( <ki, kr> ) @ #i) ∧ ∀ #j. (Compromise( kr ) @ #j) ⇒ ⊥"
+*/
+by sorry
+
+lemma exists_detect_no_I_compromise:
+  exists-trace
+  "∃ ki kr #i.
+    (Detect( <ki, kr> ) @ #i) ∧ (¬(∃ #j. Compromise( ki ) @ #j))"
+/*
+guarded formula characterizing all satisfying traces:
+"∃ ki kr #i.
+  (Detect( <ki, kr> ) @ #i) ∧ ∀ #j. (Compromise( ki ) @ #j) ⇒ ⊥"
+*/
+by sorry
+
+lemma injectivity [reuse]:
+  all-traces
+  "∀ id n1 n2 n3 #i #j on1 on2 #k.
+    ((((Injectivity( id, n1, n2 ) @ #i) ∧ (Injectivity( id, n2, n3 ) @ #j)) ∧
+      (Injectivity( id, on1, on2 ) @ #k)) ∧
+     (#k < #j)) ⇒
+    (¬(#i < #k))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ id n1 n2 n3 #i #j on1 on2 #k.
+  (Injectivity( id, n1, n2 ) @ #i) ∧
+  (Injectivity( id, n2, n3 ) @ #j) ∧
+  (Injectivity( id, on1, on2 ) @ #k)
+ ∧
+  (#k < #j) ∧ (#i < #k)"
+*/
+by sorry
+
+lemma detect_sound:
+  all-traces
+  "∀ ki kr #t1.
+    (Detect( <ki, kr> ) @ #t1) ⇒
+    ((∃ #t0. (#t0 < #t1) ∧ (Compromise( ki ) @ #t0)) ∨
+     (∃ #t0. (#t0 < #t1) ∧ (Compromise( kr ) @ #t0)))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ ki kr #t1.
+  (Detect( <ki, kr> ) @ #t1)
+ ∧
+  (∀ #t0. (Compromise( ki ) @ #t0) ⇒ ¬(#t0 < #t1)) ∧
+  (∀ #t0. (Compromise( kr ) @ #t0) ⇒ ¬(#t0 < #t1))"
+*/
+simplify
+solve( St_I( ~id, ~ltkI, pk(x), <'m2', ni>, ic ) ▶₀ #t1 )
+  case I_m0_case_1
+  solve( !KU( sign(<'1', pk(~ltkB), pk(~ltkI), ~ni, nr, src>, ~ltkB)
+         ) @ #vk.12 )
+    case R_m1_case_1
+    by contradiction /* from formulas */
+  next
+    case R_m1_case_2
+    solve( !KU( sign(<'2', pk(~ltkI), pk(~ltkB), ni.1, nr.1, rc>, ~ltkI)
+           ) @ #vk.23 )
+      case I_detect
+      by contradiction /* cyclic */
+    next
+      case I_m2
+      by contradiction /* cyclic */
+    next
+      case c_sign
+      solve( !KU( ~ltkI ) @ #vk.24 )
+        case CompromiseKey
+        by contradiction /* from formulas */
+      qed
+    qed
+  next
+    case c_sign
+    solve( !KU( ~ltkB ) @ #vk.13 )
+      case CompromiseKey
+      by contradiction /* from formulas */
+    qed
+  qed
+next
+  case I_m0_case_2
+  solve( !KU( sign(<'1', pk(~ltkB), pk(~ltkI), ~ni, nr, src>, ~ltkB)
+         ) @ #vk.15 )
+    case R_m1_case_1
+    solve( !KU( sign(<'1', pk(~ltkB), pk(~ltkI), ni.1, nr.1, S(ic)>, ~ltkB)
+           ) @ #vk.22 )
+      case R_m1
+      by contradiction /* cyclic */
+    next
+      case c_sign
+      solve( !KU( ~ltkB ) @ #vk.23 )
+        case CompromiseKey
+        by contradiction /* from formulas */
+      qed
+    qed
+  next
+    case R_m1_case_2
+    solve( !KU( sign(<'1', pk(~ltkB), pk(~ltkI), ni.1, nr.1, S(ic)>, ~ltkB)
+           ) @ #vk.24 )
+      case R_m1_case_1
+      solve( St_I( ~id, ~ltkI, pk(~ltkB), <'m2', ni.1>, '0' ) ▶₀ #vr.1 )
+        case I_m0
+        solve( !KU( sign(<'2', pk(~ltkI), pk(~ltkB), ni.2, nr.2, rc>, ~ltkI)
+               ) @ #vk.33 )
+          case I_detect
+          by contradiction /* cyclic */
+        next
+          case I_m2
+          solve( (#vr.10 = #vr.1)  ∥ (#vr.1 < #vr.10) )
+            case case_1
+            by contradiction /* from formulas */
+          next
+            case case_2
+            by contradiction /* cyclic */
+          qed
+        next
+          case c_sign
+          solve( !KU( ~ltkI ) @ #vk.34 )
+            case CompromiseKey
+            by contradiction /* from formulas */
+          qed
+        qed
+      qed
+    next
+      case R_m1_case_2
+      solve( St_I( ~id, ~ltkI, pk(~ltkB), <'m2', ni.1>, ic ) ▶₀ #vr.1 )
+        case I_m0
+        solve( !KU( sign(<'2', pk(~ltkI), pk(~ltkB), ni.2, nr.2, rc>, ~ltkI)
+               ) @ #vk.40 )
+          case I_detect_case_1
+          solve( St_R( ~id.1, ~ltkB, pk(~ltkI), <'m2', ~ni.2, nr.2>, rc
+                 ) ▶₀ #vr.6 )
+            case R_m1_case_1
+            by contradiction /* cyclic */
+          next
+            case R_m1_case_2
+            by contradiction /* cyclic */
+          qed
+        next
+          case I_detect_case_2
+          solve( St_R( ~id.1, ~ltkB, pk(~ltkI), <'m2', ~ni.2, nr.2>, rc
+                 ) ▶₀ #vr.6 )
+            case R_m1_case_1
+            by contradiction /* cyclic */
+          next
+            case R_m1_case_2
+            by contradiction /* cyclic */
+          qed
+        next
+          case I_m2
+          solve( (¬(#vr.12 < #vr.1))  ∥ (¬(#vr.10 < #vr.12)) )
+            case case_1
+            solve( (¬(#vr.12 < #vr.10))  ∥ (¬(#vr.11 < #vr.12)) )
+              case case_1
+              solve( (#vr.1 = #vr.12)  ∥ (#vr.12 < #vr.1) )
+                case case_1
+                by contradiction /* from formulas */
+              next
+                case case_2
+                by contradiction /* cyclic */
+              qed
+            next
+              case case_2
+              solve( (#vr.1 = #vr.12)  ∥ (#vr.12 < #vr.1) )
+                case case_1
+                by contradiction /* from formulas */
+              next
+                case case_2
+                by contradiction /* from formulas */
+              qed
+            qed
+          next
+            case case_2
+            solve( (#vr.11 = #vr.12)  ∥ (#vr.12 < #vr.11) )
+              case case_2
+              solve( St_R( ~id.1, ~ltkB, pk(~ltkI), <'m2', ni.2, nr.2>, S(ic.1)
+                     ) ▶₀ #vr.6 )
+                case R_m1_case_1
+                by contradiction /* cyclic */
+              next
+                case R_m1_case_2
+                by contradiction /* cyclic */
+              qed
+            qed
+          qed
+        next
+          case c_sign
+          solve( !KU( ~ltkI ) @ #vk.53 )
+            case CompromiseKey
+            by contradiction /* from formulas */
+          qed
+        qed
+      qed
+    next
+      case c_sign
+      solve( !KU( ~ltkB ) @ #vk.34 )
+        case CompromiseKey
+        by contradiction /* from formulas */
+      qed
+    qed
+  next
+    case c_sign
+    solve( !KU( ~ltkB ) @ #vk.23 )
+      case CompromiseKey
+      by contradiction /* from formulas */
+    qed
+  qed
+qed
+
+lemma correct_dolevyao:
+  all-traces
+  "∀ pks nonces c #t1.
+    ((Session( 'R', pks, nonces, c ) @ #t1) ∧
+     (¬(∃ k #tc. Compromise( k ) @ #tc))) ⇒
+    (∃ #t0. (#t0 < #t1) ∧ (Session( 'I', pks, nonces, c ) @ #t0))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ pks nonces c #t1.
+  (Session( 'R', pks, nonces, c ) @ #t1)
+ ∧
+  (∀ k #tc. (Compromise( k ) @ #tc) ⇒ ⊥) ∧
+  (∀ #t0. (Session( 'I', pks, nonces, c ) @ #t0) ⇒ ¬(#t0 < #t1))"
+*/
+by sorry
+
+lemma unmatching_implies_detect_with_R_uncompromised [use_induction]:
+  all-traces
+  "∀ keys nonces1 nonces2 c1 c2 #t1 #t2 #t3.
+    (((((#t1 < #t3) ∧ (Begin( 'R', keys, c2 ) @ #t3)) ∧
+       (Session( 'I', keys, nonces2, c2 ) @ #t2)) ∧
+      (¬(Detect( keys ) @ #t2))) ∧
+     (Session( 'R', keys, nonces1, c1 ) @ #t1)) ⇒
+    ((∃ #t0. Session( 'I', keys, nonces1, c1 ) @ #t0) ∨
+     (∃ i r #tc. (keys = <i, r>) ∧ (Compromise( i ) @ #tc)))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ keys nonces1 nonces2 c1 c2 #t1 #t2 #t3.
+  (Begin( 'R', keys, c2 ) @ #t3) ∧
+  (Session( 'I', keys, nonces2, c2 ) @ #t2) ∧
+  (Session( 'R', keys, nonces1, c1 ) @ #t1)
+ ∧
+  (#t1 < #t3) ∧
+  (¬(Detect( keys ) @ #t2)) ∧
+  (∀ #t0. (Session( 'I', keys, nonces1, c1 ) @ #t0) ⇒ ⊥) ∧
+  (∀ i r #tc. (keys = <i, r>) ∧ (Compromise( i ) @ #tc) ⇒ ⊥)"
+*/
+by sorry
+
+/* All wellformedness checks were successful. */
+
+/*
+Generated from:
+Tamarin version 1.12.0
+Maude version 3.5.1
+Git revision: 82780bbaf3328a45f624ddb41e51bf75425f851c (with uncommited changes), branch: master
+Compiled at: 2026-03-07 14:22:39.174278293 UTC
+*/
+
+end
+
+==============================================================================
+summary of summaries:
+
+analyzed: corpus/csf17__counter-protocol.spthy
+
+  processing time: 1.12s
+  
+  invariant_sources (all-traces): analysis incomplete (1 steps)
+  count_unique (all-traces): analysis incomplete (1 steps)
+  nonces_unique (all-traces): analysis incomplete (1 steps)
+  force_nonce_ordering (all-traces): analysis incomplete (1 steps)
+  exists_session (exists-trace): analysis incomplete (1 steps)
+  exists_second_session (exists-trace): analysis incomplete (1 steps)
+  exists_detect_no_R_compromise (exists-trace): analysis incomplete (1 steps)
+  exists_detect_no_I_compromise (exists-trace): analysis incomplete (1 steps)
+  injectivity (all-traces): analysis incomplete (1 steps)
+  detect_sound (all-traces): verified (51 steps)
+  correct_dolevyao (all-traces): analysis incomplete (1 steps)
+  unmatching_implies_detect_with_R_uncompromised (all-traces): analysis incomplete (1 steps)
+
+==============================================================================

@@ -1,0 +1,53 @@
+suite	case	lemma	expected_native	saved_export	native	translated	pv_raw	native_rc	export_rc	pv_rc	status	review
+initial	constant_once	honest_reachable	reachable	reachable	reachable	reachable	false	0	0	0	MATCH	
+initial	constant_once	bad_reachable	unreachable	unreachable	unreachable	unreachable	true	0	0	0	MATCH	
+initial	constant_once	repeat_reachable	unreachable	unreachable	unreachable	unreachable	true	0	0	0	MATCH	
+initial	constant_once	single_consumption	holds	holds	holds	holds	true	0	0	0	MATCH	
+initial	constant_repeat	honest_reachable	reachable	reachable	reachable	reachable	false	0	0	0	MATCH	
+initial	constant_repeat	bad_reachable	unreachable	unreachable	unreachable	unreachable	true	0	0	0	MATCH	
+initial	constant_repeat	repeat_reachable	reachable	reachable	reachable	reachable	false	0	0	0	MATCH	
+initial	constant_repeat	single_consumption	holds	holds	holds	holds	true	0	0	0	MATCH	
+initial	constructor_once	honest_reachable	reachable	reachable	reachable	reachable	false	0	0	0	MATCH	
+initial	constructor_once	bad_reachable	unreachable	unreachable	unreachable	unreachable	true	0	0	0	MATCH	
+initial	constructor_once	repeat_reachable	unreachable	unreachable	unreachable	unreachable	true	0	0	0	MATCH	
+initial	constructor_once	single_consumption	holds	holds	holds	holds	true	0	0	0	MATCH	
+initial	constructor_repeat	honest_reachable	reachable	reachable	reachable	reachable	false	0	0	0	MATCH	
+initial	constructor_repeat	bad_reachable	unreachable	unreachable	unreachable	unreachable	true	0	0	0	MATCH	
+initial	constructor_repeat	repeat_reachable	reachable	reachable	reachable	reachable	false	0	0	0	MATCH	
+initial	constructor_repeat	single_consumption	holds	holds	holds	holds	true	0	0	0	MATCH	
+zero_argument	nullary_once	honest_reachable	reachable	reachable	reachable	reachable	false	0	0	0	MATCH	
+zero_argument	nullary_once	bad_reachable	unreachable	reachable	unreachable	reachable	false	0	0	0	DIFFERENT	
+zero_argument	nullary_once	repeat_reachable	unreachable	reachable	unreachable	reachable	false	0	0	0	DIFFERENT	
+zero_argument	nullary_once	single_consumption	holds	holds	holds	holds	true	0	0	0	MATCH	
+zero_argument	nullary_repeat	honest_reachable	reachable	reachable	reachable	reachable	false	0	0	0	MATCH	
+zero_argument	nullary_repeat	bad_reachable	unreachable	reachable	unreachable	reachable	false	0	0	0	DIFFERENT	
+zero_argument	nullary_repeat	repeat_reachable	reachable	reachable	reachable	reachable	false	0	0	0	MATCH	
+zero_argument	nullary_repeat	single_consumption	holds	holds	holds	holds	true	0	0	0	MATCH	
+zero_argument	successor_once	honest_reachable	reachable	reachable	reachable	reachable	false	0	0	0	MATCH	
+zero_argument	successor_once	bad_reachable	unreachable	reachable	unreachable	reachable	false	0	0	0	DIFFERENT	
+zero_argument	successor_once	repeat_reachable	unreachable	reachable	unreachable	reachable	false	0	0	0	DIFFERENT	
+zero_argument	successor_once	single_consumption	holds	holds	holds	holds	true	0	0	0	MATCH	
+zero_argument	successor_repeat	honest_reachable	reachable	reachable	reachable	reachable	false	0	0	0	MATCH	
+zero_argument	successor_repeat	bad_reachable	unreachable	reachable	unreachable	reachable	false	0	0	0	DIFFERENT	
+zero_argument	successor_repeat	repeat_reachable	reachable	reachable	reachable	reachable	false	0	0	0	MATCH	
+zero_argument	successor_repeat	single_consumption	holds	holds	holds	holds	true	0	0	0	MATCH	
+source	nested_nullary	good_reachable	reachable	reachable	reachable	reachable	false	0	0	0	MATCH	
+source	nested_nullary	bad_reachable	unreachable	reachable	unreachable	reachable	false	0	0	0	DIFFERENT	
+source	nested_successor	good_reachable	reachable	reachable	reachable	reachable	false	0	0	0	MATCH	
+source	nested_successor	bad_reachable	unreachable	reachable	unreachable	reachable	false	0	0	0	DIFFERENT	
+source	mixed_public_leaf	good_reachable	reachable	reachable	reachable	reachable	false	0	0	0	MATCH	
+source	mixed_public_leaf	bad_reachable	unreachable	unreachable	unreachable	unreachable	true	0	0	0	MATCH	
+source	variable_shape	good_reachable	reachable	reachable	reachable	reachable	false	0	0	0	MATCH	
+source	variable_shape	bad_reachable	unreachable	unreachable	unreachable	unreachable	true	0	0	0	MATCH	
+source	repeated_variable	good_reachable	reachable	reachable	reachable	reachable	false	0	0	0	MATCH	
+source	repeated_variable	bad_reachable	unreachable	unreachable	unreachable	unreachable	true	0	0	0	MATCH	
+source	nonground_nested	good_reachable	reachable	reachable	reachable	reachable	false	0	0	0	MATCH	
+source	nonground_nested	bad_reachable	unreachable	unreachable	unreachable	unreachable	true	0	0	0	MATCH	
+source	ground_pair	good_reachable	reachable	reachable	reachable	reachable	false	0	0	0	MATCH	
+source	ground_pair	bad_reachable	unreachable	reachable	unreachable	reachable	false	0	0	0	DIFFERENT	
+source	shared_premises	good_reachable	reachable	reachable	reachable	reachable	false	0	0	0	MATCH	
+source	shared_premises	bad_reachable	unreachable	unreachable	unreachable	unreachable	true	0	0	0	MATCH	
+variable_controls	repeated_equality	good_reachable	reachable		reachable	reachable	false	0	0	0	MATCH	
+variable_controls	repeated_equality	bad_reachable	unreachable		unreachable	unreachable	true	0	0	0	MATCH	
+variable_controls	shared_equality	good_reachable	reachable		reachable	reachable	false	0	0	0	MATCH	
+variable_controls	shared_equality	bad_reachable	unreachable		unreachable	unreachable	true	0	0	0	MATCH	

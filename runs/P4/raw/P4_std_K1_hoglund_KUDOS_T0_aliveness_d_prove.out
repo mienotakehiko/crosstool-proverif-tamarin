@@ -1,0 +1,203 @@
+maude tool: 'maude'
+ checking version: 3.5.1. OK.
+ checking installation: OK.
+[Theory kudos] Theory loaded
+[Theory kudos] Theory translated
+[Theory kudos] Theory closed
+[Saturating Sources] Step 1 (Max 5)
+[Saturating Sources] Done
+theory kudos
+
+begin
+
+// Function signature and definition of the equational theory E
+
+functions: check/3, f/2, fst/1, g/4, pair/2, prot/2, snd/1, true/0
+equations:
+    check(m, prot(m, k), k) = true,
+    fst(<x.1, x.2>) = x.1,
+    snd(<x.1, x.2>) = x.2
+
+rule (modulo E) system_init:
+   [ Fr( ~master_secret ) ]
+  -->
+   [
+   !Context( $A, ~master_secret, $X, $Y ),
+   !Context( $B, ~master_secret, $Y, $X )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) initiator_start:
+   [ !Context( $I, s, $I_s, $I_r ), Fr( ~n1 ) ]
+  -->
+   [
+   Out( <$I_s, ~n1, prot(<~n1, $I_s>, g(f(s, ~n1), ~n1, $I_s, 'Key'))> ),
+   I1( ~n1 )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) responder_reply:
+   [
+   In( <$R_r, n1, prot(<n1, $R_r>, g(f(s, n1), n1, $R_r, 'Key'))> ),
+   !Context( $R, s, $R_s, $R_r ), Fr( ~n2 )
+   ]
+  --[
+  Secret( f(s, <n1, ~n2>) ),
+  Secret( g(f(s, <n1, ~n2>), <n1, ~n2>, $R_s, 'Key') ),
+  Secret( g(f(s, <n1, ~n2>), <n1, ~n2>, $R_r, 'Key') ),
+  Secret( g(f(s, <n1, ~n2>), <n1, ~n2>, 'emptybytestring', 'IV') ),
+  Running( $R_s, $R_r,
+           <f(s, <n1, ~n2>), g(f(s, <n1, ~n2>), <n1, ~n2>, $R_s, 'Key'), 
+            g(f(s, <n1, ~n2>), <n1, ~n2>, $R_r, 'Key'), 
+            g(f(s, <n1, ~n2>), <n1, ~n2>, 'emptybytestring', 'IV')>
+  )
+  ]->
+   [
+   Out( <~n2, prot(<~n2, $R_r>, g(f(s, <n1, ~n2>), <n1, ~n2>, $R_s, 'Key'))>
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) initiator_finish:
+   [ I1( n1 ), In( <n2, protection> ), !Context( $I, s, $I_s, $I_r ) ]
+  --[
+  R3( s, $I_s, $I_r, n1, n2 ),
+  Eq( check(<n2, $I_s>, protection,
+            g(f(s, <n1, n2>), <n1, n2>, $I_r, 'Key')),
+      true
+  ),
+  Secret( f(s, <n1, n2>) ),
+  Secret( g(f(s, <n1, n2>), <n1, n2>, $I_s, 'Key') ),
+  Secret( g(f(s, <n1, n2>), <n1, n2>, $I_r, 'Key') ),
+  Secret( g(f(s, <n1, n2>), <n1, n2>, 'emptybytestring', 'IV') ),
+  Commit( $I_s, $I_r,
+          <f(s, <n1, n2>), g(f(s, <n1, n2>), <n1, n2>, $I_r, 'Key'), 
+           g(f(s, <n1, n2>), <n1, n2>, $I_s, 'Key'), 
+           g(f(s, <n1, n2>), <n1, n2>, 'emptybytestring', 'IV')>
+  )
+  ]->
+   [ ]
+
+  /*
+  rule (modulo AC) initiator_finish:
+     [ I1( n1 ), In( <n2, protection> ), !Context( $I, s, $I_s, $I_r ) ]
+    --[
+    R3( s, $I_s, $I_r, n1, n2 ), Eq( z, true ), Secret( f(s, <n1, n2>) ),
+    Secret( g(f(s, <n1, n2>), <n1, n2>, $I_s, 'Key') ),
+    Secret( g(f(s, <n1, n2>), <n1, n2>, $I_r, 'Key') ),
+    Secret( g(f(s, <n1, n2>), <n1, n2>, 'emptybytestring', 'IV') ),
+    Commit( $I_s, $I_r,
+            <f(s, <n1, n2>), g(f(s, <n1, n2>), <n1, n2>, $I_r, 'Key'), 
+             g(f(s, <n1, n2>), <n1, n2>, $I_s, 'Key'), 
+             g(f(s, <n1, n2>), <n1, n2>, 'emptybytestring', 'IV')>
+    )
+    ]->
+     [ ]
+    variants (modulo AC)
+    1. $I_r  = $I_r.15
+       $I_s  = $I_s.16
+       n1    = n1.17
+       n2    = n2.18
+       protection
+             = protection.19
+       s     = s.20
+       z     = check(<n2.18, $I_s.16>, protection.19,
+                     g(f(s.20, <n1.17, n2.18>), <n1.17, n2.18>, $I_r.15, 'Key'))
+    
+    2. $I_r  = $I_r.15
+       $I_s  = $I_s.16
+       n1    = n1.17
+       n2    = n2.18
+       protection
+             = prot(<n2.18, $I_s.16>,
+                    g(f(s.20, <n1.17, n2.18>), <n1.17, n2.18>, $I_r.15, 'Key'))
+       s     = s.20
+       z     = true
+  */
+
+restriction Equality:
+  "∀ x y #i. (Eq( x, y ) @ #i) ⇒ (x = y)"
+  // safety formula
+
+  /*
+  expanded formula:
+  "∀ x y #i. (Eq( x, y ) @ #i) ⇒ (x = y)"
+  */
+
+lemma aliveness:
+  exists-trace
+  "∃ s I_s I_r n1 n2 #i. (R3( s, I_s, I_r, n1, n2 ) @ #i) ∧ (¬(I_s = I_r))"
+/*
+guarded formula characterizing all satisfying traces:
+"∃ s I_s I_r n1 n2 #i. (R3( s, I_s, I_r, n1, n2 ) @ #i) ∧ ¬(I_s = I_r)"
+*/
+simplify
+solve( I1( n1 ) ▶₀ #i )
+  case initiator_start_case_1
+  solve( !Context( $I, s, $I_s, $I_r ) ▶₂ #i )
+    case system_init_case_1
+    solve( !KU( prot(<n2, $I_s>,
+                     g(f(~master_secret, <~n1, n2>), <~n1, n2>, $I_r, 'Key'))
+           ) @ #vk.2 )
+      case responder_reply_case_2
+      solve( !KU( prot(<~n1, $I_s>,
+                       g(f(~master_secret, ~n1), ~n1, $I_s, 'Key'))
+             ) @ #vk.7 )
+        case initiator_start
+        solve( !KU( ~n1 ) @ #vk.7 )
+          case initiator_start
+          solve( !KU( ~n2 ) @ #vk.6 )
+            case responder_reply
+            SOLVED // trace found
+          qed
+        qed
+      qed
+    qed
+  qed
+qed
+
+lemma secrecy:
+  all-traces "∀ s #i. (Secret( s ) @ #i) ⇒ (¬(∃ #j. K( s ) @ #j))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ s #i. (Secret( s ) @ #i) ∧ ∃ #j. (K( s ) @ #j)"
+*/
+by sorry
+
+lemma noninjective_agreement:
+  all-traces
+  "∀ I R t #i. (Commit( I, R, t ) @ #i) ⇒ (∃ #j. Running( R, I, t ) @ #j)"
+/*
+guarded formula characterizing all counter-examples:
+"∃ I R t #i.
+  (Commit( I, R, t ) @ #i) ∧ ∀ #j. (Running( R, I, t ) @ #j) ⇒ ⊥"
+*/
+by sorry
+
+/* All wellformedness checks were successful. */
+
+/*
+Generated from:
+Tamarin version 1.12.0
+Maude version 3.5.1
+Git revision: 82780bbaf3328a45f624ddb41e51bf75425f851c (with uncommited changes), branch: master
+Compiled at: 2026-03-07 14:22:39.174278293 UTC
+*/
+
+end
+
+==============================================================================
+summary of summaries:
+
+analyzed: corpus/K1_hoglund_KUDOS.spthy
+
+  processing time: 0.20s
+  
+  aliveness (exists-trace): verified (8 steps)
+  secrecy (all-traces): analysis incomplete (1 steps)
+  noninjective_agreement (all-traces): analysis incomplete (1 steps)
+
+==============================================================================

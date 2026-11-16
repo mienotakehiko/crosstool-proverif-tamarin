@@ -1,0 +1,1 @@
+["tamarin-prover", "-d=0", "-m=proverif", "--lemma=pending_new_slots_empty", "-o=/work/T7/slots_empty/translated.pv", "/work/inputs/T7/pending_new.spthy"]

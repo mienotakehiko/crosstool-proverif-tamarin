@@ -1,0 +1,15 @@
+
+==============================================================================
+summary of summaries:
+
+analyzed: results/REFRESH.f69BHxCr/models/busy_refresh.spthy
+
+  output:          results/REFRESH.f69BHxCr/tamarin.proof.spthy
+  processing time: 0.14s
+  
+  refresh_reachable (exists-trace): verified (4 steps)
+  refresh_parent_and_context (all-traces): verified (4 steps)
+  refresh_temp_distinct (all-traces): verified (3 steps)
+  refresh_pair_distinct (all-traces): verified (3 steps)
+
+==============================================================================

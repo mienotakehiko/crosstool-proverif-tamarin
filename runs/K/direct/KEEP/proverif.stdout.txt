@@ -1,0 +1,63 @@
+Process 0 (that is, the initial process):
+{1}new initial_context: bitstring;
+{2}new initial_counter: bitstring;
+{3}event BusyBefore(initial_context,initial_counter);
+(
+    {4}out(ch_BusyUsable, (initial_context,initial_counter))
+) | (
+    {5}in(ch_BusyUsable, (c: bitstring,p: bitstring));
+    {6}event BusyKept(c,succ(p))
+)
+
+-- Query not event(BusyKept(c_1,n)) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query not event(BusyKept(c_1,n))
+goal reachable: event(BusyKept(initial_context[],succ(initial_counter[])))
+
+Derivation:
+
+1. The message (initial_context[],initial_counter[]) may be sent on channel ch_BusyUsable[] at output {4}.
+mess(ch_BusyUsable[],(initial_context[],initial_counter[])).
+
+2. The message (initial_context[],initial_counter[]) that may be sent on channel ch_BusyUsable[] by 1 may be received at input {5}.
+So event BusyKept(initial_context[],succ(initial_counter[])) may be executed at {6}.
+event(BusyKept(initial_context[],succ(initial_counter[]))).
+
+3. By 2, event(BusyKept(initial_context[],succ(initial_counter[]))).
+The goal is reached, represented in the following fact:
+event(BusyKept(initial_context[],succ(initial_counter[]))).
+
+
+A more detailed output of the traces is available with
+  set traceDisplay = long.
+
+new initial_context: bitstring creating initial_context_1 at {1}
+
+new initial_counter: bitstring creating initial_counter_1 at {2}
+
+event BusyBefore(initial_context_1,initial_counter_1) at {3}
+
+out(ch_BusyUsable, (initial_context_1,initial_counter_1)) at {4} received at {5}
+
+event BusyKept(initial_context_1,succ(initial_counter_1)) at {6} (goal)
+
+The event BusyKept(initial_context_1,succ(initial_counter_1)) is executed at {6}.
+A trace has been found.
+RESULT not event(BusyKept(c_1,n)) is false.
+-- Query event(BusyKept(c_1,n)) ==> event(BusyBefore(c_1,p_1)) && n = succ(p_1) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query event(BusyKept(c_1,n)) ==> event(BusyBefore(c_1,p_1)) && n = succ(p_1)
+goal reachable: b-event(BusyBefore(initial_context[],initial_counter[])) -> event(BusyKept(initial_context[],succ(initial_counter[])))
+RESULT event(BusyKept(c_1,n)) ==> event(BusyBefore(c_1,p_1)) && n = succ(p_1) is true.
+
+--------------------------------------------------------------
+Verification summary:
+
+Query not event(BusyKept(c_1,n)) is false.
+
+Query event(BusyKept(c_1,n)) ==> event(BusyBefore(c_1,p_1)) && n = succ(p_1) is true.
+
+--------------------------------------------------------------
+

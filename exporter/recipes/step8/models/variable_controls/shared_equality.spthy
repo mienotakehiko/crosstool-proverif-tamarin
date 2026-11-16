@@ -1,0 +1,23 @@
+theory shared_equality begin
+functions: z/0, s/1, f/1
+
+rule Init:
+ [ Fr(~sid) ] --[ InitOnce() ]->
+ [ StGood(~sid,f(z)), AuxGood(~sid,z),
+   StBad(~sid,f(z)), AuxBad(~sid,s(z)) ]
+
+restriction OneInit:
+ "All #i #j. InitOnce()@i & InitOnce()@j ==> #i = #j"
+
+rule Good:
+ [ StGood(sid,f(x)), AuxGood(sid,x) ] --[ Good(sid) ]-> []
+
+rule Bad:
+ [ StBad(sid,f(x)), AuxBad(sid,x) ] --[ Bad(sid) ]-> []
+
+lemma good_reachable: exists-trace
+ "Ex sid #i. Good(sid)@i"
+
+lemma bad_reachable: exists-trace
+ "Ex sid #i. Bad(sid)@i"
+end

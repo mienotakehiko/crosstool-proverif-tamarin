@@ -1,0 +1,10 @@
+maude tool: 'maude'
+ checking version: 3.5. OK.
+ checking installation: OK.
+[Theory constant_repeat] Theory loaded
+[Theory constant_repeat] Theory translated
+[Theory constant_repeat] No Deconstruction Chain checks started
+[Theory constant_repeat] No Deconstruction Chain checks ended
+[Theory constant_repeat] Theory closed
+[Saturating Sources] Step 1 (Max 5)
+[Saturating Sources] Done

@@ -1,0 +1,7 @@
+# Exporter regression
+
+The controlled regression begins at Tamarin fork commit `c293106913ccf7bb41f49b0dc555a8074e8ea88c`. B0 is the rebuilt unmodified exporter. B1 adds the [leafless-pattern patch](patches/leafless_ground_candidate.patch). B2 uses the [combined patch](patches/all-translator-fixes.patch), equivalent to applying the B1 patch followed by the [row-identity guard patch](patches/row-id-guards.patch). See the [upstream license](patches/TAMARIN-LICENSE).
+
+The [build and run metadata](../runs/X1/provenance.json) identify the base commit, recorded binary hashes and original archives. The build logs are under [step3](../runs/X1/step3/) and [step7](../runs/X1/step7/). The [recipes](recipes/) retain the build and regression inputs and scripts from Steps 3, 7 and 8. The builds used a fixed local runtime and shared dependencies. The archived evidence establishes the recorded build identities and stage results. Independent bit-for-bit reconstruction would also require the exact source and runtime of each build.
+
+Run `python3 -B exporter/index_regression.py` to rebuild the 540-row index from archived per-build summaries, exit codes and stage metadata. The main regression models are in the [Step 8 inputs](../runs/X1/step8/inputs/models/). The [comparison table](../runs/X1/comparison.tsv) reports the 49/60, 59/60 and 60/60 agreements. The pre-regression probes and the focused intervention are recorded in their own cohorts.

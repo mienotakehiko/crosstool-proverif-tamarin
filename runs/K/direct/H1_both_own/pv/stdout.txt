@@ -1,0 +1,77 @@
+Process 0 (that is, the initial process):
+{1}new parent: bitstring;
+{2}new input_a: bitstring;
+{3}new input_b: bitstring;
+{4}new m1: bitstring;
+{5}new m2: bitstring;
+{6}event RequestState(client,zero);
+{7}event ContextStep(key(kdf(parent,xn(input_a,input_b)),server),nce(server,zero,civ(kdf(parent,xn(input_a,input_b)))));
+{8}event AeadUse(key(kdf(parent,xn(input_a,input_b)),server),nce(server,zero,civ(kdf(parent,xn(input_a,input_b)))),m1);
+{9}event RequestState(client,zero);
+{10}event ContextStep(key(kdf(parent,xn(input_a,input_b)),server),nce(server,succ(zero),civ(kdf(parent,xn(input_a,input_b)))));
+{11}event AeadUse(key(kdf(parent,xn(input_a,input_b)),server),nce(server,succ(zero),civ(kdf(parent,xn(input_a,input_b)))),m2);
+{12}event Normal
+
+-- Query event(AeadUse(k,n,x)) && event(AeadUse(k,n,y)) ==> x = y in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query event(AeadUse(k,n,x)) && event(AeadUse(k,n,y)) ==> x = y
+goal reachable: event(AeadUse(key(kdf(parent[],xn(input_a[],input_b[])),server[]),nce(server[],zero[],civ(kdf(parent[],xn(input_a[],input_b[])))),m1[])) && event(AeadUse(key(kdf(parent[],xn(input_a[],input_b[])),server[]),nce(server[],zero[],civ(kdf(parent[],xn(input_a[],input_b[])))),m1[]))
+goal reachable: event(AeadUse(key(kdf(parent[],xn(input_a[],input_b[])),server[]),nce(server[],succ(zero[]),civ(kdf(parent[],xn(input_a[],input_b[])))),m2[])) && event(AeadUse(key(kdf(parent[],xn(input_a[],input_b[])),server[]),nce(server[],succ(zero[]),civ(kdf(parent[],xn(input_a[],input_b[])))),m2[]))
+RESULT event(AeadUse(k,n,x)) && event(AeadUse(k,n,y)) ==> x = y is true.
+-- Query not event(Normal) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query not event(Normal)
+goal reachable: event(Normal)
+
+Derivation:
+
+1. Event Normal may be executed at {12}.
+event(Normal).
+
+2. By 1, event(Normal).
+The goal is reached, represented in the following fact:
+event(Normal).
+
+
+A more detailed output of the traces is available with
+  set traceDisplay = long.
+
+new parent: bitstring creating parent_1 at {1}
+
+new input_a: bitstring creating input_a_1 at {2}
+
+new input_b: bitstring creating input_b_1 at {3}
+
+new m1: bitstring creating m1_1 at {4}
+
+new m2: bitstring creating m2_1 at {5}
+
+event RequestState(client,zero) at {6}
+
+event ContextStep(key(kdf(parent_1,xn(input_a_1,input_b_1)),server),nce(server,zero,civ(kdf(parent_1,xn(input_a_1,input_b_1))))) at {7}
+
+event AeadUse(key(kdf(parent_1,xn(input_a_1,input_b_1)),server),nce(server,zero,civ(kdf(parent_1,xn(input_a_1,input_b_1)))),m1_1) at {8}
+
+event RequestState(client,zero) at {9}
+
+event ContextStep(key(kdf(parent_1,xn(input_a_1,input_b_1)),server),nce(server,succ(zero),civ(kdf(parent_1,xn(input_a_1,input_b_1))))) at {10}
+
+event AeadUse(key(kdf(parent_1,xn(input_a_1,input_b_1)),server),nce(server,succ(zero),civ(kdf(parent_1,xn(input_a_1,input_b_1)))),m2_1) at {11}
+
+event Normal at {12} (goal)
+
+The event Normal is executed at {12}.
+A trace has been found.
+RESULT not event(Normal) is false.
+
+--------------------------------------------------------------
+Verification summary:
+
+Query event(AeadUse(k,n,x)) && event(AeadUse(k,n,y)) ==> x = y is true.
+
+Query not event(Normal) is false.
+
+--------------------------------------------------------------
+

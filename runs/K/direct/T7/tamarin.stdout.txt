@@ -1,0 +1,15 @@
+
+==============================================================================
+summary of summaries:
+
+analyzed: results/T7.P8BQhq8G/models/pending_new.spthy
+
+  output:          results/T7.P8BQhq8G/tamarin.proof.spthy
+  processing time: 0.32s
+  
+  pending_new_reachable (exists-trace): verified (4 steps)
+  pending_new_receipt_and_promotion (all-traces): verified (4 steps)
+  pending_new_aborts_matching_update (all-traces): verified (4 steps)
+  pending_new_slots_empty (all-traces): verified (11 steps)
+
+==============================================================================

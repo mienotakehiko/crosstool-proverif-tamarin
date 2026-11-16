@@ -1,0 +1,15 @@
+case	lemma	cim_pv_archived_raw	tamarin_retest	pv_from_tamarin	status
+KEEP	busy_keep_reachable	false	True	True	MATCH
+KEEP	busy_keep_continues	true	True	True	MATCH
+REFRESH	refresh_reachable	false	True	True	MATCH
+REFRESH	refresh_parent_and_context	true	True	True	MATCH
+REFRESH	refresh_temp_distinct	true	True	True	MATCH
+REFRESH	refresh_pair_distinct	true	True	True	MATCH
+T6	pending_old_reachable	false	True	True	MATCH
+T6	pending_old_verified_receipt	true	True	True	MATCH
+T6	pending_old_aborts_matching_update	true	True	True	MATCH
+T6	pending_old_slots_empty	true	True	True	MATCH
+T7	pending_new_reachable	false	True	True	MATCH
+T7	pending_new_receipt_and_promotion	true	True	True	MATCH
+T7	pending_new_aborts_matching_update	true	True	True	MATCH
+T7	pending_new_slots_empty	true	True	True	MATCH

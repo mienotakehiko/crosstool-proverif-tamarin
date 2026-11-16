@@ -1,0 +1,281 @@
+{
+  "pass": true,
+  "checks": {
+    "tool_exit_codes_zero": true,
+    "proverif_query_statements_match": true,
+    "proverif_expected_verdicts": true,
+    "tamarin_expected_verdicts": true,
+    "tamarin_proof_closed": true,
+    "proverif_commit_witness": true,
+    "tamarin_commit_witness": true,
+    "observed_witnesses_agree": true
+  },
+  "proverif_verdicts": [
+    "false",
+    "true",
+    "true"
+  ],
+  "tamarin_verdicts": {
+    "rb4_commit_reachable": "verified",
+    "rb4_request_response_binding": "verified",
+    "rb4_unique_commit_per_request": "verified"
+  },
+  "wall_seconds": {
+    "proverif": 0.007,
+    "tamarin": 0.483
+  },
+  "tamarin_processing_seconds": 0.45,
+  "observed_events": {
+    "proverif": {
+      "BranchRequestSent": [
+        "run_id_1",
+        "token_id_step1_2",
+        "x_client",
+        "client_nonce_step1_2"
+      ],
+      "BranchRequestAccepted": [
+        "run_id_1",
+        "token_id_step1_2",
+        "x_client",
+        "client_nonce_step1_2"
+      ],
+      "KudosDerived": [
+        "run_id_1",
+        "token_id_step1_2",
+        "x_client",
+        "client_nonce_step1_2",
+        "x_server",
+        "server_nonce_step3_2",
+        [
+          "rb4_context",
+          "parent_context_1",
+          "x_client",
+          "client_nonce_step1_2",
+          "x_server",
+          "server_nonce_step3_2"
+        ]
+      ],
+      "ConvergenceResponseSent": [
+        "run_id_1",
+        "token_id_step1_2",
+        "x_client",
+        "client_nonce_step1_2",
+        "x_server",
+        "server_nonce_step3_2",
+        [
+          "rb4_context",
+          "parent_context_1",
+          "x_client",
+          "client_nonce_step1_2",
+          "x_server",
+          "server_nonce_step3_2"
+        ]
+      ],
+      "KudosCommit": [
+        "run_id_1",
+        "token_id_step1_2",
+        "x_client",
+        "client_nonce_step1_2",
+        "x_server",
+        "server_nonce_step3_2",
+        [
+          "rb4_context",
+          "parent_context_1",
+          "x_client",
+          "client_nonce_step1_2",
+          "x_server",
+          "server_nonce_step3_2"
+        ]
+      ]
+    },
+    "tamarin": {
+      "KudosCommit": [
+        "~run_id",
+        "~token_id",
+        "x_client",
+        "~client_nonce",
+        "x_server",
+        "~server_nonce",
+        [
+          "rb4_context",
+          "~parent_context",
+          "x_client",
+          "~client_nonce",
+          "x_server",
+          "~server_nonce"
+        ]
+      ],
+      "BranchRequestSent": [
+        "~run_id",
+        "~token_id",
+        "x_client",
+        "~client_nonce"
+      ],
+      "ConvergenceResponseSent": [
+        "~run_id",
+        "~token_id",
+        "x_client",
+        "~client_nonce",
+        "x_server",
+        "~server_nonce",
+        [
+          "rb4_context",
+          "~parent_context",
+          "x_client",
+          "~client_nonce",
+          "x_server",
+          "~server_nonce"
+        ]
+      ],
+      "KudosDerived": [
+        "~run_id",
+        "~token_id",
+        "x_client",
+        "~client_nonce",
+        "x_server",
+        "~server_nonce",
+        [
+          "rb4_context",
+          "~parent_context",
+          "x_client",
+          "~client_nonce",
+          "x_server",
+          "~server_nonce"
+        ]
+      ],
+      "BranchRequestAccepted": [
+        "~run_id",
+        "~token_id",
+        "x_client",
+        "~client_nonce"
+      ]
+    }
+  },
+  "normalized_events": {
+    "proverif": {
+      "BranchRequestSent": [
+        "exchange",
+        "request_token",
+        "x_client",
+        "initiator_nonce"
+      ],
+      "BranchRequestAccepted": [
+        "exchange",
+        "request_token",
+        "x_client",
+        "initiator_nonce"
+      ],
+      "KudosDerived": [
+        "exchange",
+        "request_token",
+        "x_client",
+        "initiator_nonce",
+        "x_server",
+        "responder_nonce",
+        [
+          "rb4_context",
+          "parent_context",
+          "x_client",
+          "initiator_nonce",
+          "x_server",
+          "responder_nonce"
+        ]
+      ],
+      "ConvergenceResponseSent": [
+        "exchange",
+        "request_token",
+        "x_client",
+        "initiator_nonce",
+        "x_server",
+        "responder_nonce",
+        [
+          "rb4_context",
+          "parent_context",
+          "x_client",
+          "initiator_nonce",
+          "x_server",
+          "responder_nonce"
+        ]
+      ],
+      "KudosCommit": [
+        "exchange",
+        "request_token",
+        "x_client",
+        "initiator_nonce",
+        "x_server",
+        "responder_nonce",
+        [
+          "rb4_context",
+          "parent_context",
+          "x_client",
+          "initiator_nonce",
+          "x_server",
+          "responder_nonce"
+        ]
+      ]
+    },
+    "tamarin": {
+      "BranchRequestSent": [
+        "exchange",
+        "request_token",
+        "x_client",
+        "initiator_nonce"
+      ],
+      "BranchRequestAccepted": [
+        "exchange",
+        "request_token",
+        "x_client",
+        "initiator_nonce"
+      ],
+      "KudosDerived": [
+        "exchange",
+        "request_token",
+        "x_client",
+        "initiator_nonce",
+        "x_server",
+        "responder_nonce",
+        [
+          "rb4_context",
+          "parent_context",
+          "x_client",
+          "initiator_nonce",
+          "x_server",
+          "responder_nonce"
+        ]
+      ],
+      "ConvergenceResponseSent": [
+        "exchange",
+        "request_token",
+        "x_client",
+        "initiator_nonce",
+        "x_server",
+        "responder_nonce",
+        [
+          "rb4_context",
+          "parent_context",
+          "x_client",
+          "initiator_nonce",
+          "x_server",
+          "responder_nonce"
+        ]
+      ],
+      "KudosCommit": [
+        "exchange",
+        "request_token",
+        "x_client",
+        "initiator_nonce",
+        "x_server",
+        "responder_nonce",
+        [
+          "rb4_context",
+          "parent_context",
+          "x_client",
+          "initiator_nonce",
+          "x_server",
+          "responder_nonce"
+        ]
+      ]
+    }
+  },
+  "errors": {}
+}

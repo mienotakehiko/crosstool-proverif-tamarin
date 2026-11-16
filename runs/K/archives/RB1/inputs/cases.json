@@ -1,0 +1,18 @@
+[
+  {
+    "case": "H1_section3_own",
+    "expected": {
+      "normal": true,
+      "collision": false,
+      "no_collision": true
+    }
+  },
+  {
+    "case": "H1_both_own",
+    "expected": {
+      "normal": true,
+      "collision": false,
+      "no_collision": true
+    }
+  }
+]

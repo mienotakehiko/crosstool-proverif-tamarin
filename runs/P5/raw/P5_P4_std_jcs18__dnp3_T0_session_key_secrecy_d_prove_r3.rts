@@ -1,0 +1,25 @@
+'tamarin-prover' '--with-maude=maude' '--derivcheck-timeout=0' '--prove=session_key_secrecy' 'corpus/jcs18__dnp3.spthy' +RTS '-N' '-M56g' '-A64m' '-qg' '-N4' '-sresults/out/P5_P4_std_jcs18__dnp3_T0_session_key_secrecy_d_prove_r3.rts' 
+ 207,887,363,880 bytes allocated in the heap
+   5,806,345,280 bytes copied during GC
+     386,582,072 bytes maximum residency (15 sample(s))
+       1,022,408 bytes maximum slop
+            1259 MiB total memory in use (0 MiB lost due to fragmentation)
+
+                                     Tot time (elapsed)  Avg pause  Max pause
+  Gen  0       800 colls,     0 par    0.965s   5.405s     0.0068s    0.0264s
+  Gen  1        15 colls,     0 par    0.152s   1.624s     0.1083s    0.3000s
+
+  TASKS: 10 (1 bound, 9 peak workers (9 total), using -N4)
+
+  SPARKS: 1484 (578 converted, 0 overflowed, 0 dud, 22 GC'd, 884 fizzled)
+
+  INIT    time    0.003s  (  0.003s elapsed)
+  MUT     time   69.727s  ( 45.618s elapsed)
+  GC      time    1.116s  (  7.028s elapsed)
+  EXIT    time    0.025s  (  0.001s elapsed)
+  Total   time   70.872s  ( 52.650s elapsed)
+
+  Alloc rate    2,981,436,027 bytes per MUT second
+
+  Productivity  98.4% of total user, 86.6% of total elapsed
+

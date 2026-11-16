@@ -1,0 +1,25 @@
+'tamarin-cyclic' '--with-maude=maude35' '--derivcheck-timeout=0' '--prove=update_key_sourced' 'corpus/jcs18__dnp3.spthy' +RTS '-N' '-M56g' '-A64m' '-qg' '-N4' '-sresults/out/P5_P4_cyc_jcs18__dnp3_T0_update_key_sourced_d_prove_r3.rts' 
+  22,374,885,696 bytes allocated in the heap
+   2,554,784,648 bytes copied during GC
+     139,789,496 bytes maximum residency (15 sample(s))
+         478,024 bytes maximum slop
+             612 MiB total memory in use (0 MiB lost due to fragmentation)
+
+                                     Tot time (elapsed)  Avg pause  Max pause
+  Gen  0        72 colls,     0 par    0.550s   2.127s     0.0295s    0.0510s
+  Gen  1        15 colls,     0 par    0.138s   1.084s     0.0723s    0.1338s
+
+  TASKS: 10 (1 bound, 9 peak workers (9 total), using -N4)
+
+  SPARKS: 363 (268 converted, 0 overflowed, 0 dud, 0 GC'd, 95 fizzled)
+
+  INIT    time    0.003s  (  0.002s elapsed)
+  MUT     time   12.848s  (  3.174s elapsed)
+  GC      time    0.688s  (  3.212s elapsed)
+  EXIT    time    0.009s  (  0.002s elapsed)
+  Total   time   13.548s  (  6.390s elapsed)
+
+  Alloc rate    1,741,467,971 bytes per MUT second
+
+  Productivity  94.8% of total user, 49.7% of total elapsed
+

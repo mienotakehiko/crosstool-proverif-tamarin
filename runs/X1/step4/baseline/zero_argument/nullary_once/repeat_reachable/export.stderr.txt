@@ -1,0 +1,7 @@
+maude tool: 'maude'
+ checking version: 3.5. OK.
+ checking installation: OK.
+[Theory nullary_once] Theory loaded
+[Theory nullary_once] Theory translated
+[Theory nullary_once] No Deconstruction Chain checks started
+[Theory nullary_once] No Deconstruction Chain checks ended

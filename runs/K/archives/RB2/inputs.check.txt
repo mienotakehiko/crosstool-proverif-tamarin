@@ -1,0 +1,6 @@
+./cim_comparison.json: OK
+./cim_pv_stdout.txt: OK
+./cim_tm_stdout.txt: OK
+./rb1_tool_sha256.txt: OK
+./rb2.pv: OK
+./rb2.spthy: OK

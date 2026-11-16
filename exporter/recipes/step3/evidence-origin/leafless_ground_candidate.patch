@@ -1,0 +1,13 @@
+--- a/lib/export/src/Export/ProVerif/Rule.hs
++++ b/lib/export/src/Export/ProVerif/Rule.hs
+@@ -720,6 +720,10 @@
+         (text "=" <> (text . showAtom True $ show l), helperVars)
+   Lit l ->
+     (text . showAtom True $ show l, helperVars)
++  -- Candidate: preserve leafless ground patterns, including nullary symbols.
++  -- Not a general equational-pattern repair; requires compiled regression tests.
++  _ | null (lits t) ->
++    (text "=" <> translateTerm S.empty False t, helperVars)
+   _ ->
+     (varDoc, newHelperVars)
+     where

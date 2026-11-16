@@ -1,0 +1,1247 @@
+maude tool: 'maude'
+ checking version: 3.5.1. OK.
+ checking installation: OK.
+[Theory LMS_LS6_V0_spec] Theory loaded
+[Theory LMS_LS6_V0_spec] Theory translated
+[Theory LMS_LS6_V0_spec] Theory closed
+[Saturating Sources] Step 1 (Max 5)
+[Saturating Sources] Done
+theory LMS_LS6_V0_spec
+
+begin
+
+// Function signature and definition of the equational theory E
+
+functions: ch/3, fst/1, hn/4, pair/2, pblc/4, prf/3[private,constructor],
+           s/1, snd/1, z/0
+equations: fst(<x.1, x.2>) = x.1, snd(<x.1, x.2>) = x.2
+
+/* looping facts with injective instances: St/2 */
+
+rule (modulo E) KeyGen:
+   [ Fr( ~I ), Fr( ~sd ) ]
+  --[ KeyGen( ~I ) ]->
+   [
+   !Sk( ~I, ~sd ), St( ~I, z ),
+   !Root( ~I,
+          hn(~I, '1', 'dintr',
+             <
+              hn(~I, '2', 'dintr',
+                 <
+                  hn(~I, '4', 'dleaf',
+                     pblc(~I, z, 'dpblc',
+                          <ch(~I, 'm', ch(~I, 'm', ch(~I, 'm', prf(~sd, z, 'm')))), 
+                           ch(~I, 'k', ch(~I, 'k', ch(~I, 'k', prf(~sd, z, 'k'))))>)), 
+                  hn(~I, '5', 'dleaf',
+                     pblc(~I, s(z), 'dpblc',
+                          <ch(~I, 'm', ch(~I, 'm', ch(~I, 'm', prf(~sd, s(z), 'm')))), 
+                           ch(~I, 'k', ch(~I, 'k', ch(~I, 'k', prf(~sd, s(z), 'k'))))>))
+                 >), 
+              hn(~I, '3', 'dintr',
+                 <
+                  hn(~I, '6', 'dleaf',
+                     pblc(~I, s(s(z)), 'dpblc',
+                          <ch(~I, 'm', ch(~I, 'm', ch(~I, 'm', prf(~sd, s(s(z)), 'm')))), 
+                           ch(~I, 'k', ch(~I, 'k', ch(~I, 'k', prf(~sd, s(s(z)), 'k'))))>)), 
+                  hn(~I, '7', 'dleaf',
+                     pblc(~I, s(s(s(z))), 'dpblc',
+                          <ch(~I, 'm', ch(~I, 'm', ch(~I, 'm', prf(~sd, s(s(s(z))), 'm')))), 
+                           ch(~I, 'k', ch(~I, 'k', ch(~I, 'k', prf(~sd, s(s(s(z))), 'k'))))>))
+                 >)
+             >)
+   ),
+   Out( <~I, 
+         hn(~I, '1', 'dintr',
+            <
+             hn(~I, '2', 'dintr',
+                <
+                 hn(~I, '4', 'dleaf',
+                    pblc(~I, z, 'dpblc',
+                         <ch(~I, 'm', ch(~I, 'm', ch(~I, 'm', prf(~sd, z, 'm')))), 
+                          ch(~I, 'k', ch(~I, 'k', ch(~I, 'k', prf(~sd, z, 'k'))))>)), 
+                 hn(~I, '5', 'dleaf',
+                    pblc(~I, s(z), 'dpblc',
+                         <ch(~I, 'm', ch(~I, 'm', ch(~I, 'm', prf(~sd, s(z), 'm')))), 
+                          ch(~I, 'k', ch(~I, 'k', ch(~I, 'k', prf(~sd, s(z), 'k'))))>))
+                >), 
+             hn(~I, '3', 'dintr',
+                <
+                 hn(~I, '6', 'dleaf',
+                    pblc(~I, s(s(z)), 'dpblc',
+                         <ch(~I, 'm', ch(~I, 'm', ch(~I, 'm', prf(~sd, s(s(z)), 'm')))), 
+                          ch(~I, 'k', ch(~I, 'k', ch(~I, 'k', prf(~sd, s(s(z)), 'k'))))>)), 
+                 hn(~I, '7', 'dleaf',
+                    pblc(~I, s(s(s(z))), 'dpblc',
+                         <ch(~I, 'm', ch(~I, 'm', ch(~I, 'm', prf(~sd, s(s(s(z))), 'm')))), 
+                          ch(~I, 'k', ch(~I, 'k', ch(~I, 'k', prf(~sd, s(s(s(z))), 'k'))))>))
+                >)
+            >)
+        >
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q0_a0:
+   [ St( I, z ), !Sk( I, sd ), In( <'sign', z> ) ]
+  --[ Sign( I, z, z ) ]->
+   [
+   St( I, s(z) ),
+   Out( <I, z, z, prf(sd, z, 'm'), 
+         ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, z, 'k')))), 
+         hn(I, '5', 'dleaf',
+            pblc(I, s(z), 'dpblc',
+                 <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(z), 'm')))), 
+                  ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(z), 'k'))))>)), 
+         hn(I, '3', 'dintr',
+            <
+             hn(I, '6', 'dleaf',
+                pblc(I, s(s(z)), 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(s(z)), 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(s(z)), 'k'))))>)), 
+             hn(I, '7', 'dleaf',
+                pblc(I, s(s(s(z))), 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(s(s(z))), 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(s(s(z))), 'k'))))>))
+            >)
+        >
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q0_a1:
+   [ St( I, z ), !Sk( I, sd ), In( <'sign', s(z)> ) ]
+  --[ Sign( I, z, s(z) ) ]->
+   [
+   St( I, s(z) ),
+   Out( <I, z, s(z), ch(I, 'm', prf(sd, z, 'm')), 
+         ch(I, 'k', ch(I, 'k', prf(sd, z, 'k'))), 
+         hn(I, '5', 'dleaf',
+            pblc(I, s(z), 'dpblc',
+                 <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(z), 'm')))), 
+                  ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(z), 'k'))))>)), 
+         hn(I, '3', 'dintr',
+            <
+             hn(I, '6', 'dleaf',
+                pblc(I, s(s(z)), 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(s(z)), 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(s(z)), 'k'))))>)), 
+             hn(I, '7', 'dleaf',
+                pblc(I, s(s(s(z))), 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(s(s(z))), 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(s(s(z))), 'k'))))>))
+            >)
+        >
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q0_a2:
+   [ St( I, z ), !Sk( I, sd ), In( <'sign', s(s(z))> ) ]
+  --[ Sign( I, z, s(s(z)) ) ]->
+   [
+   St( I, s(z) ),
+   Out( <I, z, s(s(z)), ch(I, 'm', ch(I, 'm', prf(sd, z, 'm'))), 
+         ch(I, 'k', prf(sd, z, 'k')), 
+         hn(I, '5', 'dleaf',
+            pblc(I, s(z), 'dpblc',
+                 <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(z), 'm')))), 
+                  ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(z), 'k'))))>)), 
+         hn(I, '3', 'dintr',
+            <
+             hn(I, '6', 'dleaf',
+                pblc(I, s(s(z)), 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(s(z)), 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(s(z)), 'k'))))>)), 
+             hn(I, '7', 'dleaf',
+                pblc(I, s(s(s(z))), 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(s(s(z))), 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(s(s(z))), 'k'))))>))
+            >)
+        >
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q0_a3:
+   [ St( I, z ), !Sk( I, sd ), In( <'sign', s(s(s(z)))> ) ]
+  --[ Sign( I, z, s(s(s(z))) ) ]->
+   [
+   St( I, s(z) ),
+   Out( <I, z, s(s(s(z))), 
+         ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, z, 'm')))), prf(sd, z, 'k'), 
+         hn(I, '5', 'dleaf',
+            pblc(I, s(z), 'dpblc',
+                 <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(z), 'm')))), 
+                  ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(z), 'k'))))>)), 
+         hn(I, '3', 'dintr',
+            <
+             hn(I, '6', 'dleaf',
+                pblc(I, s(s(z)), 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(s(z)), 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(s(z)), 'k'))))>)), 
+             hn(I, '7', 'dleaf',
+                pblc(I, s(s(s(z))), 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(s(s(z))), 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(s(s(z))), 'k'))))>))
+            >)
+        >
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q1_a0:
+   [ St( I, s(z) ), !Sk( I, sd ), In( <'sign', z> ) ]
+  --[ Sign( I, s(z), z ) ]->
+   [
+   St( I, s(s(z)) ),
+   Out( <I, s(z), z, prf(sd, s(z), 'm'), 
+         ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(z), 'k')))), 
+         hn(I, '4', 'dleaf',
+            pblc(I, z, 'dpblc',
+                 <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, z, 'm')))), 
+                  ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, z, 'k'))))>)), 
+         hn(I, '3', 'dintr',
+            <
+             hn(I, '6', 'dleaf',
+                pblc(I, s(s(z)), 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(s(z)), 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(s(z)), 'k'))))>)), 
+             hn(I, '7', 'dleaf',
+                pblc(I, s(s(s(z))), 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(s(s(z))), 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(s(s(z))), 'k'))))>))
+            >)
+        >
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q1_a1:
+   [ St( I, s(z) ), !Sk( I, sd ), In( <'sign', s(z)> ) ]
+  --[ Sign( I, s(z), s(z) ) ]->
+   [
+   St( I, s(s(z)) ),
+   Out( <I, s(z), s(z), ch(I, 'm', prf(sd, s(z), 'm')), 
+         ch(I, 'k', ch(I, 'k', prf(sd, s(z), 'k'))), 
+         hn(I, '4', 'dleaf',
+            pblc(I, z, 'dpblc',
+                 <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, z, 'm')))), 
+                  ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, z, 'k'))))>)), 
+         hn(I, '3', 'dintr',
+            <
+             hn(I, '6', 'dleaf',
+                pblc(I, s(s(z)), 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(s(z)), 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(s(z)), 'k'))))>)), 
+             hn(I, '7', 'dleaf',
+                pblc(I, s(s(s(z))), 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(s(s(z))), 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(s(s(z))), 'k'))))>))
+            >)
+        >
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q1_a2:
+   [ St( I, s(z) ), !Sk( I, sd ), In( <'sign', s(s(z))> ) ]
+  --[ Sign( I, s(z), s(s(z)) ) ]->
+   [
+   St( I, s(s(z)) ),
+   Out( <I, s(z), s(s(z)), ch(I, 'm', ch(I, 'm', prf(sd, s(z), 'm'))), 
+         ch(I, 'k', prf(sd, s(z), 'k')), 
+         hn(I, '4', 'dleaf',
+            pblc(I, z, 'dpblc',
+                 <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, z, 'm')))), 
+                  ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, z, 'k'))))>)), 
+         hn(I, '3', 'dintr',
+            <
+             hn(I, '6', 'dleaf',
+                pblc(I, s(s(z)), 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(s(z)), 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(s(z)), 'k'))))>)), 
+             hn(I, '7', 'dleaf',
+                pblc(I, s(s(s(z))), 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(s(s(z))), 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(s(s(z))), 'k'))))>))
+            >)
+        >
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q1_a3:
+   [ St( I, s(z) ), !Sk( I, sd ), In( <'sign', s(s(s(z)))> ) ]
+  --[ Sign( I, s(z), s(s(s(z))) ) ]->
+   [
+   St( I, s(s(z)) ),
+   Out( <I, s(z), s(s(s(z))), 
+         ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(z), 'm')))), 
+         prf(sd, s(z), 'k'), 
+         hn(I, '4', 'dleaf',
+            pblc(I, z, 'dpblc',
+                 <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, z, 'm')))), 
+                  ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, z, 'k'))))>)), 
+         hn(I, '3', 'dintr',
+            <
+             hn(I, '6', 'dleaf',
+                pblc(I, s(s(z)), 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(s(z)), 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(s(z)), 'k'))))>)), 
+             hn(I, '7', 'dleaf',
+                pblc(I, s(s(s(z))), 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(s(s(z))), 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(s(s(z))), 'k'))))>))
+            >)
+        >
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q2_a0:
+   [ St( I, s(s(z)) ), !Sk( I, sd ), In( <'sign', z> ) ]
+  --[ Sign( I, s(s(z)), z ) ]->
+   [
+   St( I, s(s(s(z))) ),
+   Out( <I, s(s(z)), z, prf(sd, s(s(z)), 'm'), 
+         ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(s(z)), 'k')))), 
+         hn(I, '7', 'dleaf',
+            pblc(I, s(s(s(z))), 'dpblc',
+                 <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(s(s(z))), 'm')))), 
+                  ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(s(s(z))), 'k'))))>)), 
+         hn(I, '2', 'dintr',
+            <
+             hn(I, '4', 'dleaf',
+                pblc(I, z, 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, z, 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, z, 'k'))))>)), 
+             hn(I, '5', 'dleaf',
+                pblc(I, s(z), 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(z), 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(z), 'k'))))>))
+            >)
+        >
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q2_a1:
+   [ St( I, s(s(z)) ), !Sk( I, sd ), In( <'sign', s(z)> ) ]
+  --[ Sign( I, s(s(z)), s(z) ) ]->
+   [
+   St( I, s(s(s(z))) ),
+   Out( <I, s(s(z)), s(z), ch(I, 'm', prf(sd, s(s(z)), 'm')), 
+         ch(I, 'k', ch(I, 'k', prf(sd, s(s(z)), 'k'))), 
+         hn(I, '7', 'dleaf',
+            pblc(I, s(s(s(z))), 'dpblc',
+                 <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(s(s(z))), 'm')))), 
+                  ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(s(s(z))), 'k'))))>)), 
+         hn(I, '2', 'dintr',
+            <
+             hn(I, '4', 'dleaf',
+                pblc(I, z, 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, z, 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, z, 'k'))))>)), 
+             hn(I, '5', 'dleaf',
+                pblc(I, s(z), 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(z), 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(z), 'k'))))>))
+            >)
+        >
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q2_a2:
+   [ St( I, s(s(z)) ), !Sk( I, sd ), In( <'sign', s(s(z))> ) ]
+  --[ Sign( I, s(s(z)), s(s(z)) ) ]->
+   [
+   St( I, s(s(s(z))) ),
+   Out( <I, s(s(z)), s(s(z)), 
+         ch(I, 'm', ch(I, 'm', prf(sd, s(s(z)), 'm'))), 
+         ch(I, 'k', prf(sd, s(s(z)), 'k')), 
+         hn(I, '7', 'dleaf',
+            pblc(I, s(s(s(z))), 'dpblc',
+                 <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(s(s(z))), 'm')))), 
+                  ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(s(s(z))), 'k'))))>)), 
+         hn(I, '2', 'dintr',
+            <
+             hn(I, '4', 'dleaf',
+                pblc(I, z, 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, z, 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, z, 'k'))))>)), 
+             hn(I, '5', 'dleaf',
+                pblc(I, s(z), 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(z), 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(z), 'k'))))>))
+            >)
+        >
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q2_a3:
+   [ St( I, s(s(z)) ), !Sk( I, sd ), In( <'sign', s(s(s(z)))> ) ]
+  --[ Sign( I, s(s(z)), s(s(s(z))) ) ]->
+   [
+   St( I, s(s(s(z))) ),
+   Out( <I, s(s(z)), s(s(s(z))), 
+         ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(s(z)), 'm')))), 
+         prf(sd, s(s(z)), 'k'), 
+         hn(I, '7', 'dleaf',
+            pblc(I, s(s(s(z))), 'dpblc',
+                 <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(s(s(z))), 'm')))), 
+                  ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(s(s(z))), 'k'))))>)), 
+         hn(I, '2', 'dintr',
+            <
+             hn(I, '4', 'dleaf',
+                pblc(I, z, 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, z, 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, z, 'k'))))>)), 
+             hn(I, '5', 'dleaf',
+                pblc(I, s(z), 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(z), 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(z), 'k'))))>))
+            >)
+        >
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q3_a0:
+   [ St( I, s(s(s(z))) ), !Sk( I, sd ), In( <'sign', z> ) ]
+  --[ Sign( I, s(s(s(z))), z ) ]->
+   [
+   St( I, s(s(s(s(z)))) ),
+   Out( <I, s(s(s(z))), z, prf(sd, s(s(s(z))), 'm'), 
+         ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(s(s(z))), 'k')))), 
+         hn(I, '6', 'dleaf',
+            pblc(I, s(s(z)), 'dpblc',
+                 <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(s(z)), 'm')))), 
+                  ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(s(z)), 'k'))))>)), 
+         hn(I, '2', 'dintr',
+            <
+             hn(I, '4', 'dleaf',
+                pblc(I, z, 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, z, 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, z, 'k'))))>)), 
+             hn(I, '5', 'dleaf',
+                pblc(I, s(z), 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(z), 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(z), 'k'))))>))
+            >)
+        >
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q3_a1:
+   [ St( I, s(s(s(z))) ), !Sk( I, sd ), In( <'sign', s(z)> ) ]
+  --[ Sign( I, s(s(s(z))), s(z) ) ]->
+   [
+   St( I, s(s(s(s(z)))) ),
+   Out( <I, s(s(s(z))), s(z), ch(I, 'm', prf(sd, s(s(s(z))), 'm')), 
+         ch(I, 'k', ch(I, 'k', prf(sd, s(s(s(z))), 'k'))), 
+         hn(I, '6', 'dleaf',
+            pblc(I, s(s(z)), 'dpblc',
+                 <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(s(z)), 'm')))), 
+                  ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(s(z)), 'k'))))>)), 
+         hn(I, '2', 'dintr',
+            <
+             hn(I, '4', 'dleaf',
+                pblc(I, z, 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, z, 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, z, 'k'))))>)), 
+             hn(I, '5', 'dleaf',
+                pblc(I, s(z), 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(z), 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(z), 'k'))))>))
+            >)
+        >
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q3_a2:
+   [ St( I, s(s(s(z))) ), !Sk( I, sd ), In( <'sign', s(s(z))> ) ]
+  --[ Sign( I, s(s(s(z))), s(s(z)) ) ]->
+   [
+   St( I, s(s(s(s(z)))) ),
+   Out( <I, s(s(s(z))), s(s(z)), 
+         ch(I, 'm', ch(I, 'm', prf(sd, s(s(s(z))), 'm'))), 
+         ch(I, 'k', prf(sd, s(s(s(z))), 'k')), 
+         hn(I, '6', 'dleaf',
+            pblc(I, s(s(z)), 'dpblc',
+                 <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(s(z)), 'm')))), 
+                  ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(s(z)), 'k'))))>)), 
+         hn(I, '2', 'dintr',
+            <
+             hn(I, '4', 'dleaf',
+                pblc(I, z, 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, z, 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, z, 'k'))))>)), 
+             hn(I, '5', 'dleaf',
+                pblc(I, s(z), 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(z), 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(z), 'k'))))>))
+            >)
+        >
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q3_a3:
+   [ St( I, s(s(s(z))) ), !Sk( I, sd ), In( <'sign', s(s(s(z)))> ) ]
+  --[ Sign( I, s(s(s(z))), s(s(s(z))) ) ]->
+   [
+   St( I, s(s(s(s(z)))) ),
+   Out( <I, s(s(s(z))), s(s(s(z))), 
+         ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(s(s(z))), 'm')))), 
+         prf(sd, s(s(s(z))), 'k'), 
+         hn(I, '6', 'dleaf',
+            pblc(I, s(s(z)), 'dpblc',
+                 <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(s(z)), 'm')))), 
+                  ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(s(z)), 'k'))))>)), 
+         hn(I, '2', 'dintr',
+            <
+             hn(I, '4', 'dleaf',
+                pblc(I, z, 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, z, 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, z, 'k'))))>)), 
+             hn(I, '5', 'dleaf',
+                pblc(I, s(z), 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(z), 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(z), 'k'))))>))
+            >)
+        >
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) RevealSeed:
+   [ !Sk( I, sd ) ] --[ RevealSeed( I ) ]-> [ Out( sd ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_q0_a0:
+   [
+   !Root( I,
+          hn(I, '1', 'dintr',
+             <
+              hn(I, '2', 'dintr',
+                 <
+                  hn(I, '4', 'dleaf',
+                     pblc(I, z, 'dpblc', <ch(I, 'm', ch(I, 'm', ch(I, 'm', sm))), sk>)), 
+                  p1>), 
+              p2>)
+   ),
+   In( <I, z, z, sm, sk, p1, p2> )
+   ]
+  --[ Accept( I, z, z ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_q0_a1:
+   [
+   !Root( I,
+          hn(I, '1', 'dintr',
+             <
+              hn(I, '2', 'dintr',
+                 <
+                  hn(I, '4', 'dleaf',
+                     pblc(I, z, 'dpblc', <ch(I, 'm', ch(I, 'm', sm)), ch(I, 'k', sk)>)), 
+                  p1>), 
+              p2>)
+   ),
+   In( <I, z, s(z), sm, sk, p1, p2> )
+   ]
+  --[ Accept( I, z, s(z) ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_q0_a2:
+   [
+   !Root( I,
+          hn(I, '1', 'dintr',
+             <
+              hn(I, '2', 'dintr',
+                 <
+                  hn(I, '4', 'dleaf',
+                     pblc(I, z, 'dpblc', <ch(I, 'm', sm), ch(I, 'k', ch(I, 'k', sk))>)), 
+                  p1>), 
+              p2>)
+   ),
+   In( <I, z, s(s(z)), sm, sk, p1, p2> )
+   ]
+  --[ Accept( I, z, s(s(z)) ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_q0_a3:
+   [
+   !Root( I,
+          hn(I, '1', 'dintr',
+             <
+              hn(I, '2', 'dintr',
+                 <
+                  hn(I, '4', 'dleaf',
+                     pblc(I, z, 'dpblc', <sm, ch(I, 'k', ch(I, 'k', ch(I, 'k', sk)))>)), 
+                  p1>), 
+              p2>)
+   ),
+   In( <I, z, s(s(s(z))), sm, sk, p1, p2> )
+   ]
+  --[ Accept( I, z, s(s(s(z))) ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_q1_a0:
+   [
+   !Root( I,
+          hn(I, '1', 'dintr',
+             <
+              hn(I, '2', 'dintr',
+                 <p1, 
+                  hn(I, '5', 'dleaf',
+                     pblc(I, s(z), 'dpblc', <ch(I, 'm', ch(I, 'm', ch(I, 'm', sm))), sk>))
+                 >), 
+              p2>)
+   ),
+   In( <I, s(z), z, sm, sk, p1, p2> )
+   ]
+  --[ Accept( I, s(z), z ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_q1_a1:
+   [
+   !Root( I,
+          hn(I, '1', 'dintr',
+             <
+              hn(I, '2', 'dintr',
+                 <p1, 
+                  hn(I, '5', 'dleaf',
+                     pblc(I, s(z), 'dpblc', <ch(I, 'm', ch(I, 'm', sm)), ch(I, 'k', sk)>))
+                 >), 
+              p2>)
+   ),
+   In( <I, s(z), s(z), sm, sk, p1, p2> )
+   ]
+  --[ Accept( I, s(z), s(z) ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_q1_a2:
+   [
+   !Root( I,
+          hn(I, '1', 'dintr',
+             <
+              hn(I, '2', 'dintr',
+                 <p1, 
+                  hn(I, '5', 'dleaf',
+                     pblc(I, s(z), 'dpblc', <ch(I, 'm', sm), ch(I, 'k', ch(I, 'k', sk))>))
+                 >), 
+              p2>)
+   ),
+   In( <I, s(z), s(s(z)), sm, sk, p1, p2> )
+   ]
+  --[ Accept( I, s(z), s(s(z)) ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_q1_a3:
+   [
+   !Root( I,
+          hn(I, '1', 'dintr',
+             <
+              hn(I, '2', 'dintr',
+                 <p1, 
+                  hn(I, '5', 'dleaf',
+                     pblc(I, s(z), 'dpblc', <sm, ch(I, 'k', ch(I, 'k', ch(I, 'k', sk)))>))
+                 >), 
+              p2>)
+   ),
+   In( <I, s(z), s(s(s(z))), sm, sk, p1, p2> )
+   ]
+  --[ Accept( I, s(z), s(s(s(z))) ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_q2_a0:
+   [
+   !Root( I,
+          hn(I, '1', 'dintr',
+             <p2, 
+              hn(I, '3', 'dintr',
+                 <
+                  hn(I, '6', 'dleaf',
+                     pblc(I, s(s(z)), 'dpblc',
+                          <ch(I, 'm', ch(I, 'm', ch(I, 'm', sm))), sk>)), 
+                  p1>)
+             >)
+   ),
+   In( <I, s(s(z)), z, sm, sk, p1, p2> )
+   ]
+  --[ Accept( I, s(s(z)), z ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_q2_a1:
+   [
+   !Root( I,
+          hn(I, '1', 'dintr',
+             <p2, 
+              hn(I, '3', 'dintr',
+                 <
+                  hn(I, '6', 'dleaf',
+                     pblc(I, s(s(z)), 'dpblc',
+                          <ch(I, 'm', ch(I, 'm', sm)), ch(I, 'k', sk)>)), 
+                  p1>)
+             >)
+   ),
+   In( <I, s(s(z)), s(z), sm, sk, p1, p2> )
+   ]
+  --[ Accept( I, s(s(z)), s(z) ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_q2_a2:
+   [
+   !Root( I,
+          hn(I, '1', 'dintr',
+             <p2, 
+              hn(I, '3', 'dintr',
+                 <
+                  hn(I, '6', 'dleaf',
+                     pblc(I, s(s(z)), 'dpblc',
+                          <ch(I, 'm', sm), ch(I, 'k', ch(I, 'k', sk))>)), 
+                  p1>)
+             >)
+   ),
+   In( <I, s(s(z)), s(s(z)), sm, sk, p1, p2> )
+   ]
+  --[ Accept( I, s(s(z)), s(s(z)) ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_q2_a3:
+   [
+   !Root( I,
+          hn(I, '1', 'dintr',
+             <p2, 
+              hn(I, '3', 'dintr',
+                 <
+                  hn(I, '6', 'dleaf',
+                     pblc(I, s(s(z)), 'dpblc',
+                          <sm, ch(I, 'k', ch(I, 'k', ch(I, 'k', sk)))>)), 
+                  p1>)
+             >)
+   ),
+   In( <I, s(s(z)), s(s(s(z))), sm, sk, p1, p2> )
+   ]
+  --[ Accept( I, s(s(z)), s(s(s(z))) ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_q3_a0:
+   [
+   !Root( I,
+          hn(I, '1', 'dintr',
+             <p2, 
+              hn(I, '3', 'dintr',
+                 <p1, 
+                  hn(I, '7', 'dleaf',
+                     pblc(I, s(s(s(z))), 'dpblc',
+                          <ch(I, 'm', ch(I, 'm', ch(I, 'm', sm))), sk>))
+                 >)
+             >)
+   ),
+   In( <I, s(s(s(z))), z, sm, sk, p1, p2> )
+   ]
+  --[ Accept( I, s(s(s(z))), z ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_q3_a1:
+   [
+   !Root( I,
+          hn(I, '1', 'dintr',
+             <p2, 
+              hn(I, '3', 'dintr',
+                 <p1, 
+                  hn(I, '7', 'dleaf',
+                     pblc(I, s(s(s(z))), 'dpblc',
+                          <ch(I, 'm', ch(I, 'm', sm)), ch(I, 'k', sk)>))
+                 >)
+             >)
+   ),
+   In( <I, s(s(s(z))), s(z), sm, sk, p1, p2> )
+   ]
+  --[ Accept( I, s(s(s(z))), s(z) ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_q3_a2:
+   [
+   !Root( I,
+          hn(I, '1', 'dintr',
+             <p2, 
+              hn(I, '3', 'dintr',
+                 <p1, 
+                  hn(I, '7', 'dleaf',
+                     pblc(I, s(s(s(z))), 'dpblc',
+                          <ch(I, 'm', sm), ch(I, 'k', ch(I, 'k', sk))>))
+                 >)
+             >)
+   ),
+   In( <I, s(s(s(z))), s(s(z)), sm, sk, p1, p2> )
+   ]
+  --[ Accept( I, s(s(s(z))), s(s(z)) ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_q3_a3:
+   [
+   !Root( I,
+          hn(I, '1', 'dintr',
+             <p2, 
+              hn(I, '3', 'dintr',
+                 <p1, 
+                  hn(I, '7', 'dleaf',
+                     pblc(I, s(s(s(z))), 'dpblc',
+                          <sm, ch(I, 'k', ch(I, 'k', ch(I, 'k', sk)))>))
+                 >)
+             >)
+   ),
+   In( <I, s(s(s(z))), s(s(s(z))), sm, sk, p1, p2> )
+   ]
+  --[ Accept( I, s(s(s(z))), s(s(s(z))) ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+lemma exec:
+  exists-trace
+  "∃ I q a #s #k.
+    ((Sign( I, q, a ) @ #s) ∧ (Accept( I, q, a ) @ #k)) ∧
+    (¬(∃ #r. RevealSeed( I ) @ #r))"
+/*
+guarded formula characterizing all satisfying traces:
+"∃ I q a #s #k.
+  (Sign( I, q, a ) @ #s) ∧ (Accept( I, q, a ) @ #k)
+ ∧
+  ∀ #r. (RevealSeed( I ) @ #r) ⇒ ⊥"
+*/
+by sorry
+
+lemma LS1:
+  all-traces
+  "∀ I q a #k.
+    (Accept( I, q, a ) @ #k) ⇒
+    ((∃ #s. Sign( I, q, a ) @ #s) ∨ (∃ #r. RevealSeed( I ) @ #r))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ I q a #k.
+  (Accept( I, q, a ) @ #k)
+ ∧
+  (∀ #s. (Sign( I, q, a ) @ #s) ⇒ ⊥) ∧ (∀ #r. (RevealSeed( I ) @ #r) ⇒ ⊥)"
+*/
+by sorry
+
+lemma LS6_bind:
+  all-traces
+  "∀ I q a #k.
+    (Accept( I, q, a ) @ #k) ⇒
+    ((∃ b #s. Sign( I, q, b ) @ #s) ∨ (∃ #r. RevealSeed( I ) @ #r))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ I q a #k.
+  (Accept( I, q, a ) @ #k)
+ ∧
+  (∀ b #s. (Sign( I, q, b ) @ #s) ⇒ ⊥) ∧
+  (∀ #r. (RevealSeed( I ) @ #r) ⇒ ⊥)"
+*/
+by sorry
+
+lemma LS1_q0_a0:
+  all-traces
+  "∀ I #k.
+    (Accept( I, z, z ) @ #k) ⇒
+    ((∃ #s. Sign( I, z, z ) @ #s) ∨ (∃ #r. RevealSeed( I ) @ #r))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ I #k.
+  (Accept( I, z, z ) @ #k)
+ ∧
+  (∀ #s. (Sign( I, z, z ) @ #s) ⇒ ⊥) ∧ (∀ #r. (RevealSeed( I ) @ #r) ⇒ ⊥)"
+*/
+by sorry
+
+lemma LS1_q0_a1:
+  all-traces
+  "∀ I #k.
+    (Accept( I, z, s(z) ) @ #k) ⇒
+    ((∃ #s. Sign( I, z, s(z) ) @ #s) ∨ (∃ #r. RevealSeed( I ) @ #r))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ I #k.
+  (Accept( I, z, s(z) ) @ #k)
+ ∧
+  (∀ #s. (Sign( I, z, s(z) ) @ #s) ⇒ ⊥) ∧
+  (∀ #r. (RevealSeed( I ) @ #r) ⇒ ⊥)"
+*/
+by sorry
+
+lemma LS1_q0_a2:
+  all-traces
+  "∀ I #k.
+    (Accept( I, z, s(s(z)) ) @ #k) ⇒
+    ((∃ #s. Sign( I, z, s(s(z)) ) @ #s) ∨ (∃ #r. RevealSeed( I ) @ #r))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ I #k.
+  (Accept( I, z, s(s(z)) ) @ #k)
+ ∧
+  (∀ #s. (Sign( I, z, s(s(z)) ) @ #s) ⇒ ⊥) ∧
+  (∀ #r. (RevealSeed( I ) @ #r) ⇒ ⊥)"
+*/
+by sorry
+
+lemma LS1_q0_a3:
+  all-traces
+  "∀ I #k.
+    (Accept( I, z, s(s(s(z))) ) @ #k) ⇒
+    ((∃ #s. Sign( I, z, s(s(s(z))) ) @ #s) ∨ (∃ #r. RevealSeed( I ) @ #r))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ I #k.
+  (Accept( I, z, s(s(s(z))) ) @ #k)
+ ∧
+  (∀ #s. (Sign( I, z, s(s(s(z))) ) @ #s) ⇒ ⊥) ∧
+  (∀ #r. (RevealSeed( I ) @ #r) ⇒ ⊥)"
+*/
+by sorry
+
+lemma LS1_q1_a0:
+  all-traces
+  "∀ I #k.
+    (Accept( I, s(z), z ) @ #k) ⇒
+    ((∃ #s. Sign( I, s(z), z ) @ #s) ∨ (∃ #r. RevealSeed( I ) @ #r))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ I #k.
+  (Accept( I, s(z), z ) @ #k)
+ ∧
+  (∀ #s. (Sign( I, s(z), z ) @ #s) ⇒ ⊥) ∧
+  (∀ #r. (RevealSeed( I ) @ #r) ⇒ ⊥)"
+*/
+by sorry
+
+lemma LS1_q1_a1:
+  all-traces
+  "∀ I #k.
+    (Accept( I, s(z), s(z) ) @ #k) ⇒
+    ((∃ #s. Sign( I, s(z), s(z) ) @ #s) ∨ (∃ #r. RevealSeed( I ) @ #r))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ I #k.
+  (Accept( I, s(z), s(z) ) @ #k)
+ ∧
+  (∀ #s. (Sign( I, s(z), s(z) ) @ #s) ⇒ ⊥) ∧
+  (∀ #r. (RevealSeed( I ) @ #r) ⇒ ⊥)"
+*/
+by sorry
+
+lemma LS1_q1_a2:
+  all-traces
+  "∀ I #k.
+    (Accept( I, s(z), s(s(z)) ) @ #k) ⇒
+    ((∃ #s. Sign( I, s(z), s(s(z)) ) @ #s) ∨ (∃ #r. RevealSeed( I ) @ #r))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ I #k.
+  (Accept( I, s(z), s(s(z)) ) @ #k)
+ ∧
+  (∀ #s. (Sign( I, s(z), s(s(z)) ) @ #s) ⇒ ⊥) ∧
+  (∀ #r. (RevealSeed( I ) @ #r) ⇒ ⊥)"
+*/
+by sorry
+
+lemma LS1_q1_a3:
+  all-traces
+  "∀ I #k.
+    (Accept( I, s(z), s(s(s(z))) ) @ #k) ⇒
+    ((∃ #s. Sign( I, s(z), s(s(s(z))) ) @ #s) ∨
+     (∃ #r. RevealSeed( I ) @ #r))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ I #k.
+  (Accept( I, s(z), s(s(s(z))) ) @ #k)
+ ∧
+  (∀ #s. (Sign( I, s(z), s(s(s(z))) ) @ #s) ⇒ ⊥) ∧
+  (∀ #r. (RevealSeed( I ) @ #r) ⇒ ⊥)"
+*/
+by sorry
+
+lemma LS1_q2_a0:
+  all-traces
+  "∀ I #k.
+    (Accept( I, s(s(z)), z ) @ #k) ⇒
+    ((∃ #s. Sign( I, s(s(z)), z ) @ #s) ∨ (∃ #r. RevealSeed( I ) @ #r))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ I #k.
+  (Accept( I, s(s(z)), z ) @ #k)
+ ∧
+  (∀ #s. (Sign( I, s(s(z)), z ) @ #s) ⇒ ⊥) ∧
+  (∀ #r. (RevealSeed( I ) @ #r) ⇒ ⊥)"
+*/
+simplify
+solve( Accept( I, s(s(z)), z ) @ #k )
+  case Verify_q2_a0
+  solve( !Root( I,
+                hn(I, '1', 'dintr',
+                   <p2, 
+                    hn(I, '3', 'dintr',
+                       <
+                        hn(I, '6', 'dleaf',
+                           pblc(I, s(s(z)), 'dpblc',
+                                <ch(I, 'm', ch(I, 'm', ch(I, 'm', sm))), sk>)), 
+                        p1>)
+                   >)
+         ) ▶₀ #k )
+    case KeyGen
+    solve( !KU( prf(~sd, s(s(z)), 'm') ) @ #vk.7 )
+      case Sign_q2_a0_case_01
+      by contradiction /* from formulas */
+    next
+      case Sign_q2_a0_case_02
+      by contradiction /* from formulas */
+    next
+      case Sign_q2_a0_case_03
+      by contradiction /* from formulas */
+    next
+      case Sign_q2_a0_case_04
+      by contradiction /* from formulas */
+    next
+      case Sign_q2_a0_case_05
+      by contradiction /* from formulas */
+    next
+      case Sign_q2_a0_case_06
+      by contradiction /* from formulas */
+    next
+      case Sign_q2_a0_case_07
+      by contradiction /* from formulas */
+    next
+      case Sign_q2_a0_case_08
+      by contradiction /* from formulas */
+    next
+      case Sign_q2_a0_case_09
+      by contradiction /* from formulas */
+    next
+      case Sign_q2_a0_case_10
+      by contradiction /* from formulas */
+    next
+      case Sign_q2_a0_case_11
+      by contradiction /* from formulas */
+    next
+      case Sign_q2_a0_case_12
+      by contradiction /* from formulas */
+    next
+      case Sign_q2_a0_case_13
+      by contradiction /* from formulas */
+    next
+      case Sign_q2_a0_case_14
+      by contradiction /* from formulas */
+    next
+      case Sign_q2_a0_case_15
+      by contradiction /* from formulas */
+    next
+      case Sign_q2_a0_case_16
+      by contradiction /* from formulas */
+    qed
+  qed
+qed
+
+lemma LS1_q2_a1:
+  all-traces
+  "∀ I #k.
+    (Accept( I, s(s(z)), s(z) ) @ #k) ⇒
+    ((∃ #s. Sign( I, s(s(z)), s(z) ) @ #s) ∨ (∃ #r. RevealSeed( I ) @ #r))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ I #k.
+  (Accept( I, s(s(z)), s(z) ) @ #k)
+ ∧
+  (∀ #s. (Sign( I, s(s(z)), s(z) ) @ #s) ⇒ ⊥) ∧
+  (∀ #r. (RevealSeed( I ) @ #r) ⇒ ⊥)"
+*/
+by sorry
+
+lemma LS1_q2_a2:
+  all-traces
+  "∀ I #k.
+    (Accept( I, s(s(z)), s(s(z)) ) @ #k) ⇒
+    ((∃ #s. Sign( I, s(s(z)), s(s(z)) ) @ #s) ∨
+     (∃ #r. RevealSeed( I ) @ #r))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ I #k.
+  (Accept( I, s(s(z)), s(s(z)) ) @ #k)
+ ∧
+  (∀ #s. (Sign( I, s(s(z)), s(s(z)) ) @ #s) ⇒ ⊥) ∧
+  (∀ #r. (RevealSeed( I ) @ #r) ⇒ ⊥)"
+*/
+by sorry
+
+lemma LS1_q2_a3:
+  all-traces
+  "∀ I #k.
+    (Accept( I, s(s(z)), s(s(s(z))) ) @ #k) ⇒
+    ((∃ #s. Sign( I, s(s(z)), s(s(s(z))) ) @ #s) ∨
+     (∃ #r. RevealSeed( I ) @ #r))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ I #k.
+  (Accept( I, s(s(z)), s(s(s(z))) ) @ #k)
+ ∧
+  (∀ #s. (Sign( I, s(s(z)), s(s(s(z))) ) @ #s) ⇒ ⊥) ∧
+  (∀ #r. (RevealSeed( I ) @ #r) ⇒ ⊥)"
+*/
+by sorry
+
+lemma LS1_q3_a0:
+  all-traces
+  "∀ I #k.
+    (Accept( I, s(s(s(z))), z ) @ #k) ⇒
+    ((∃ #s. Sign( I, s(s(s(z))), z ) @ #s) ∨ (∃ #r. RevealSeed( I ) @ #r))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ I #k.
+  (Accept( I, s(s(s(z))), z ) @ #k)
+ ∧
+  (∀ #s. (Sign( I, s(s(s(z))), z ) @ #s) ⇒ ⊥) ∧
+  (∀ #r. (RevealSeed( I ) @ #r) ⇒ ⊥)"
+*/
+by sorry
+
+lemma LS1_q3_a1:
+  all-traces
+  "∀ I #k.
+    (Accept( I, s(s(s(z))), s(z) ) @ #k) ⇒
+    ((∃ #s. Sign( I, s(s(s(z))), s(z) ) @ #s) ∨
+     (∃ #r. RevealSeed( I ) @ #r))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ I #k.
+  (Accept( I, s(s(s(z))), s(z) ) @ #k)
+ ∧
+  (∀ #s. (Sign( I, s(s(s(z))), s(z) ) @ #s) ⇒ ⊥) ∧
+  (∀ #r. (RevealSeed( I ) @ #r) ⇒ ⊥)"
+*/
+by sorry
+
+lemma LS1_q3_a2:
+  all-traces
+  "∀ I #k.
+    (Accept( I, s(s(s(z))), s(s(z)) ) @ #k) ⇒
+    ((∃ #s. Sign( I, s(s(s(z))), s(s(z)) ) @ #s) ∨
+     (∃ #r. RevealSeed( I ) @ #r))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ I #k.
+  (Accept( I, s(s(s(z))), s(s(z)) ) @ #k)
+ ∧
+  (∀ #s. (Sign( I, s(s(s(z))), s(s(z)) ) @ #s) ⇒ ⊥) ∧
+  (∀ #r. (RevealSeed( I ) @ #r) ⇒ ⊥)"
+*/
+by sorry
+
+lemma LS1_q3_a3:
+  all-traces
+  "∀ I #k.
+    (Accept( I, s(s(s(z))), s(s(s(z))) ) @ #k) ⇒
+    ((∃ #s. Sign( I, s(s(s(z))), s(s(s(z))) ) @ #s) ∨
+     (∃ #r. RevealSeed( I ) @ #r))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ I #k.
+  (Accept( I, s(s(s(z))), s(s(s(z))) ) @ #k)
+ ∧
+  (∀ #s. (Sign( I, s(s(s(z))), s(s(s(z))) ) @ #s) ⇒ ⊥) ∧
+  (∀ #r. (RevealSeed( I ) @ #r) ⇒ ⊥)"
+*/
+by sorry
+
+/* All wellformedness checks were successful. */
+
+/*
+Generated from:
+Tamarin version 1.12.0
+Maude version 3.5.1
+Git revision: UNKNOWN, branch: UNKNOWN
+Compiled at: 2026-03-08 10:05:47.616272992 UTC
+*/
+
+end
+
+==============================================================================
+summary of summaries:
+
+analyzed: variants/LMS_LS6_V0_spec__T0.spthy
+
+  processing time: 100.16s
+  
+  exec (exists-trace): analysis incomplete (1 steps)
+  LS1 (all-traces): analysis incomplete (1 steps)
+  LS6_bind (all-traces): analysis incomplete (1 steps)
+  LS1_q0_a0 (all-traces): analysis incomplete (1 steps)
+  LS1_q0_a1 (all-traces): analysis incomplete (1 steps)
+  LS1_q0_a2 (all-traces): analysis incomplete (1 steps)
+  LS1_q0_a3 (all-traces): analysis incomplete (1 steps)
+  LS1_q1_a0 (all-traces): analysis incomplete (1 steps)
+  LS1_q1_a1 (all-traces): analysis incomplete (1 steps)
+  LS1_q1_a2 (all-traces): analysis incomplete (1 steps)
+  LS1_q1_a3 (all-traces): analysis incomplete (1 steps)
+  LS1_q2_a0 (all-traces): verified (20 steps)
+  LS1_q2_a1 (all-traces): analysis incomplete (1 steps)
+  LS1_q2_a2 (all-traces): analysis incomplete (1 steps)
+  LS1_q2_a3 (all-traces): analysis incomplete (1 steps)
+  LS1_q3_a0 (all-traces): analysis incomplete (1 steps)
+  LS1_q3_a1 (all-traces): analysis incomplete (1 steps)
+  LS1_q3_a2 (all-traces): analysis incomplete (1 steps)
+  LS1_q3_a3 (all-traces): analysis incomplete (1 steps)
+
+==============================================================================

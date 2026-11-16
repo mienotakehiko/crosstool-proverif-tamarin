@@ -1,0 +1,163 @@
+Process 0 (that is, the initial process):
+{1}new run_id: bitstring;
+{2}new parent_context: bitstring;
+(
+    {3}out(ch_ClientReady, (run_id,parent_context))
+) | (
+    {4}out(ch_ServerReady, (run_id,parent_context))
+) | (
+    {5}in(ch_ClientReady, (run_id_step1: bitstring,parent_context_step1: bitstring));
+    {6}new token_id_step1: bitstring;
+    {7}new client_nonce_step1: bitstring;
+    {8}event BranchRequestSent(run_id_step1,token_id_step1,x_client,client_nonce_step1);
+    {9}out(ch_ClientPending, (run_id_step1,parent_context_step1,token_id_step1,x_client,client_nonce_step1));
+    {10}out(ch_BranchRequest, (run_id_step1,token_id_step1,x_client,client_nonce_step1))
+) | (
+    {11}in(ch_ServerReady, (run_id_step2: bitstring,parent_context_step2: bitstring));
+    {12}in(ch_BranchRequest, (=run_id_step2,token_id_step2: bitstring,client_x_step2: bitstring,client_nonce_step2: bitstring));
+    {13}event BranchRequestAccepted(run_id_step2,token_id_step2,client_x_step2,client_nonce_step2);
+    {14}out(ch_ServerAccepted, (run_id_step2,parent_context_step2,token_id_step2,client_x_step2,client_nonce_step2))
+) | (
+    {15}in(ch_ServerAccepted, (run_id_step3: bitstring,parent_context_step3: bitstring,token_id_step3: bitstring,client_x_step3: bitstring,client_nonce_step3: bitstring));
+    {16}new server_nonce_step3: bitstring;
+    {17}event KudosDerived(run_id_step3,token_id_step3,client_x_step3,client_nonce_step3,x_server,server_nonce_step3,rb4_context(parent_context_step3,client_x_step3,client_nonce_step3,x_server,server_nonce_step3));
+    {18}out(ch_ServerPrepared, (run_id_step3,token_id_step3,client_x_step3,client_nonce_step3,x_server,server_nonce_step3,rb4_context(parent_context_step3,client_x_step3,client_nonce_step3,x_server,server_nonce_step3)))
+) | (
+    {19}in(ch_ServerPrepared, (run_id_step4: bitstring,token_id_step4: bitstring,client_x_step4: bitstring,client_nonce_step4: bitstring,server_x_step4: bitstring,server_nonce_step4: bitstring,next_context_step4: bitstring));
+    {20}event ConvergenceResponseSent(run_id_step4,token_id_step4,client_x_step4,client_nonce_step4,server_x_step4,server_nonce_step4,next_context_step4);
+    {21}out(ch_ConvergenceResponse, (run_id_step4,token_id_step4,client_x_step4,client_nonce_step4,server_x_step4,server_nonce_step4,next_context_step4))
+) | (
+    {22}in(ch_ClientPending, (run_id_step5: bitstring,parent_context_step5: bitstring,token_id_step5: bitstring,client_x_step5: bitstring,client_nonce_step5: bitstring));
+    {23}in(ch_ConvergenceResponse, (=run_id_step5,=token_id_step5,=client_x_step5,=client_nonce_step5,server_x_step5: bitstring,server_nonce_step5: bitstring,next_context_step5: bitstring));
+    {24}if (next_context_step5 = rb4_context(parent_context_step5,client_x_step5,client_nonce_step5,server_x_step5,server_nonce_step5)) then
+    {25}event KudosCommit(run_id_step5,token_id_step5,client_x_step5,client_nonce_step5,server_x_step5,server_nonce_step5,next_context_step5)
+)
+
+-- Query not event(KudosCommit(q1_run_id,q1_token_id,q1_client_x,q1_client_nonce,q1_server_x,q1_server_nonce,q1_next_context)) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query not event(KudosCommit(q1_run_id,q1_token_id,q1_client_x,q1_client_nonce,q1_server_x,q1_server_nonce,q1_next_context))
+goal reachable: event(KudosCommit(run_id[],token_id_step1_1,x_client[],client_nonce_step1_1,x_server[],server_nonce_step3_1,rb4_context(parent_context[],x_client[],client_nonce_step1_1,x_server[],server_nonce_step3_1)))
+Abbreviations:
+token_id_step1_1 = token_id_step1[parent_context_step1 = parent_context[],run_id_step1 = run_id[]]
+client_nonce_step1_1 = client_nonce_step1[parent_context_step1 = parent_context[],run_id_step1 = run_id[]]
+server_nonce_step3_1 = server_nonce_step3[client_nonce_step3 = client_nonce_step1_1,client_x_step3 = x_client[],token_id_step3 = token_id_step1_1,parent_context_step3 = parent_context[],run_id_step3 = run_id[]]
+
+Derivation:
+Abbreviations:
+token_id_step1_1 = token_id_step1[parent_context_step1 = parent_context[],run_id_step1 = run_id[]]
+client_nonce_step1_1 = client_nonce_step1[parent_context_step1 = parent_context[],run_id_step1 = run_id[]]
+server_nonce_step3_1 = server_nonce_step3[client_nonce_step3 = client_nonce_step1_1,client_x_step3 = x_client[],token_id_step3 = token_id_step1_1,parent_context_step3 = parent_context[],run_id_step3 = run_id[]]
+
+1. The message (run_id[],parent_context[]) may be sent on channel ch_ClientReady[] at output {3}.
+mess(ch_ClientReady[],(run_id[],parent_context[])).
+
+2. The message (run_id[],parent_context[]) that may be sent on channel ch_ClientReady[] by 1 may be received at input {5}.
+So the message (run_id[],parent_context[],token_id_step1_1,x_client[],client_nonce_step1_1) may be sent on channel ch_ClientPending[] at output {9}.
+mess(ch_ClientPending[],(run_id[],parent_context[],token_id_step1_1,x_client[],client_nonce_step1_1)).
+
+3. The message (run_id[],parent_context[]) may be sent on channel ch_ServerReady[] at output {4}.
+mess(ch_ServerReady[],(run_id[],parent_context[])).
+
+4. The message (run_id[],parent_context[]) that may be sent on channel ch_ClientReady[] by 1 may be received at input {5}.
+So the message (run_id[],token_id_step1_1,x_client[],client_nonce_step1_1) may be sent on channel ch_BranchRequest[] at output {10}.
+mess(ch_BranchRequest[],(run_id[],token_id_step1_1,x_client[],client_nonce_step1_1)).
+
+5. The message (run_id[],parent_context[]) that may be sent on channel ch_ServerReady[] by 3 may be received at input {11}.
+The message (run_id[],token_id_step1_1,x_client[],client_nonce_step1_1) that may be sent on channel ch_BranchRequest[] by 4 may be received at input {12}.
+So the message (run_id[],parent_context[],token_id_step1_1,x_client[],client_nonce_step1_1) may be sent on channel ch_ServerAccepted[] at output {14}.
+mess(ch_ServerAccepted[],(run_id[],parent_context[],token_id_step1_1,x_client[],client_nonce_step1_1)).
+
+6. The message (run_id[],parent_context[],token_id_step1_1,x_client[],client_nonce_step1_1) that may be sent on channel ch_ServerAccepted[] by 5 may be received at input {15}.
+So the message (run_id[],token_id_step1_1,x_client[],client_nonce_step1_1,x_server[],server_nonce_step3_1,rb4_context(parent_context[],x_client[],client_nonce_step1_1,x_server[],server_nonce_step3_1)) may be sent on channel ch_ServerPrepared[] at output {18}.
+mess(ch_ServerPrepared[],(run_id[],token_id_step1_1,x_client[],client_nonce_step1_1,x_server[],server_nonce_step3_1,rb4_context(parent_context[],x_client[],client_nonce_step1_1,x_server[],server_nonce_step3_1))).
+
+7. The message (run_id[],token_id_step1_1,x_client[],client_nonce_step1_1,x_server[],server_nonce_step3_1,rb4_context(parent_context[],x_client[],client_nonce_step1_1,x_server[],server_nonce_step3_1)) that may be sent on channel ch_ServerPrepared[] by 6 may be received at input {19}.
+So the message (run_id[],token_id_step1_1,x_client[],client_nonce_step1_1,x_server[],server_nonce_step3_1,rb4_context(parent_context[],x_client[],client_nonce_step1_1,x_server[],server_nonce_step3_1)) may be sent on channel ch_ConvergenceResponse[] at output {21}.
+mess(ch_ConvergenceResponse[],(run_id[],token_id_step1_1,x_client[],client_nonce_step1_1,x_server[],server_nonce_step3_1,rb4_context(parent_context[],x_client[],client_nonce_step1_1,x_server[],server_nonce_step3_1))).
+
+8. The message (run_id[],parent_context[],token_id_step1_1,x_client[],client_nonce_step1_1) that may be sent on channel ch_ClientPending[] by 2 may be received at input {22}.
+The message (run_id[],token_id_step1_1,x_client[],client_nonce_step1_1,x_server[],server_nonce_step3_1,rb4_context(parent_context[],x_client[],client_nonce_step1_1,x_server[],server_nonce_step3_1)) that may be sent on channel ch_ConvergenceResponse[] by 7 may be received at input {23}.
+So event KudosCommit(run_id[],token_id_step1_1,x_client[],client_nonce_step1_1,x_server[],server_nonce_step3_1,rb4_context(parent_context[],x_client[],client_nonce_step1_1,x_server[],server_nonce_step3_1)) may be executed at {25}.
+event(KudosCommit(run_id[],token_id_step1_1,x_client[],client_nonce_step1_1,x_server[],server_nonce_step3_1,rb4_context(parent_context[],x_client[],client_nonce_step1_1,x_server[],server_nonce_step3_1))).
+
+9. By 8, event(KudosCommit(run_id[],token_id_step1_1,x_client[],client_nonce_step1_1,x_server[],server_nonce_step3_1,rb4_context(parent_context[],x_client[],client_nonce_step1_1,x_server[],server_nonce_step3_1))).
+The goal is reached, represented in the following fact:
+event(KudosCommit(run_id[],token_id_step1_1,x_client[],client_nonce_step1_1,x_server[],server_nonce_step3_1,rb4_context(parent_context[],x_client[],client_nonce_step1_1,x_server[],server_nonce_step3_1))).
+
+
+A more detailed output of the traces is available with
+  set traceDisplay = long.
+
+new run_id: bitstring creating run_id_1 at {1}
+
+new parent_context: bitstring creating parent_context_1 at {2}
+
+out(ch_ClientReady, (run_id_1,parent_context_1)) at {3} received at {5}
+
+new token_id_step1: bitstring creating token_id_step1_2 at {6}
+
+new client_nonce_step1: bitstring creating client_nonce_step1_2 at {7}
+
+event BranchRequestSent(run_id_1,token_id_step1_2,x_client,client_nonce_step1_2) at {8}
+
+out(ch_ServerReady, (run_id_1,parent_context_1)) at {4} received at {11}
+
+out(ch_ClientPending, (run_id_1,parent_context_1,token_id_step1_2,x_client,client_nonce_step1_2)) at {9} received at {22}
+
+out(ch_BranchRequest, (run_id_1,token_id_step1_2,x_client,client_nonce_step1_2)) at {10} received at {12}
+
+event BranchRequestAccepted(run_id_1,token_id_step1_2,x_client,client_nonce_step1_2) at {13}
+
+out(ch_ServerAccepted, (run_id_1,parent_context_1,token_id_step1_2,x_client,client_nonce_step1_2)) at {14} received at {15}
+
+new server_nonce_step3: bitstring creating server_nonce_step3_2 at {16}
+
+event KudosDerived(run_id_1,token_id_step1_2,x_client,client_nonce_step1_2,x_server,server_nonce_step3_2,rb4_context(parent_context_1,x_client,client_nonce_step1_2,x_server,server_nonce_step3_2)) at {17}
+
+out(ch_ServerPrepared, (run_id_1,token_id_step1_2,x_client,client_nonce_step1_2,x_server,server_nonce_step3_2,rb4_context(parent_context_1,x_client,client_nonce_step1_2,x_server,server_nonce_step3_2))) at {18} received at {19}
+
+event ConvergenceResponseSent(run_id_1,token_id_step1_2,x_client,client_nonce_step1_2,x_server,server_nonce_step3_2,rb4_context(parent_context_1,x_client,client_nonce_step1_2,x_server,server_nonce_step3_2)) at {20}
+
+out(ch_ConvergenceResponse, (run_id_1,token_id_step1_2,x_client,client_nonce_step1_2,x_server,server_nonce_step3_2,rb4_context(parent_context_1,x_client,client_nonce_step1_2,x_server,server_nonce_step3_2))) at {21} received at {23}
+
+event KudosCommit(run_id_1,token_id_step1_2,x_client,client_nonce_step1_2,x_server,server_nonce_step3_2,rb4_context(parent_context_1,x_client,client_nonce_step1_2,x_server,server_nonce_step3_2)) at {25} (goal)
+
+The event KudosCommit(run_id_1,token_id_step1_2,x_client,client_nonce_step1_2,x_server,server_nonce_step3_2,rb4_context(parent_context_1,x_client,client_nonce_step1_2,x_server,server_nonce_step3_2)) is executed at {25}.
+A trace has been found.
+RESULT not event(KudosCommit(q1_run_id,q1_token_id,q1_client_x,q1_client_nonce,q1_server_x,q1_server_nonce,q1_next_context)) is false.
+-- Query event(KudosCommit(q2_run_id,q2_token_id,q2_client_x,q2_client_nonce,q2_server_x,q2_server_nonce,q2_next_context)) ==> event(BranchRequestSent(q2_run_id,q2_token_id,q2_client_x,q2_client_nonce)) && event(BranchRequestAccepted(q2_run_id,q2_token_id,q2_client_x,q2_client_nonce)) && event(KudosDerived(q2_run_id,q2_token_id,q2_client_x,q2_client_nonce,q2_server_x,q2_server_nonce,q2_next_context)) && event(ConvergenceResponseSent(q2_run_id,q2_token_id,q2_client_x,q2_client_nonce,q2_server_x,q2_server_nonce,q2_next_context)) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query event(KudosCommit(q2_run_id,q2_token_id,q2_client_x,q2_client_nonce,q2_server_x,q2_server_nonce,q2_next_context)) ==> event(BranchRequestSent(q2_run_id,q2_token_id,q2_client_x,q2_client_nonce)) && event(BranchRequestAccepted(q2_run_id,q2_token_id,q2_client_x,q2_client_nonce)) && event(KudosDerived(q2_run_id,q2_token_id,q2_client_x,q2_client_nonce,q2_server_x,q2_server_nonce,q2_next_context)) && event(ConvergenceResponseSent(q2_run_id,q2_token_id,q2_client_x,q2_client_nonce,q2_server_x,q2_server_nonce,q2_next_context))
+goal reachable: b-event(ConvergenceResponseSent(run_id[],token_id_step1_1,x_client[],client_nonce_step1_1,x_server[],server_nonce_step3_1,rb4_context(parent_context[],x_client[],client_nonce_step1_1,x_server[],server_nonce_step3_1))) && b-event(KudosDerived(run_id[],token_id_step1_1,x_client[],client_nonce_step1_1,x_server[],server_nonce_step3_1,rb4_context(parent_context[],x_client[],client_nonce_step1_1,x_server[],server_nonce_step3_1))) && b-event(BranchRequestAccepted(run_id[],token_id_step1_1,x_client[],client_nonce_step1_1)) && b-event(BranchRequestSent(run_id[],token_id_step1_1,x_client[],client_nonce_step1_1)) -> event(KudosCommit(run_id[],token_id_step1_1,x_client[],client_nonce_step1_1,x_server[],server_nonce_step3_1,rb4_context(parent_context[],x_client[],client_nonce_step1_1,x_server[],server_nonce_step3_1)))
+Abbreviations:
+token_id_step1_1 = token_id_step1[parent_context_step1 = parent_context[],run_id_step1 = run_id[]]
+client_nonce_step1_1 = client_nonce_step1[parent_context_step1 = parent_context[],run_id_step1 = run_id[]]
+server_nonce_step3_1 = server_nonce_step3[client_nonce_step3 = client_nonce_step1_1,client_x_step3 = x_client[],token_id_step3 = token_id_step1_1,parent_context_step3 = parent_context[],run_id_step3 = run_id[]]
+RESULT event(KudosCommit(q2_run_id,q2_token_id,q2_client_x,q2_client_nonce,q2_server_x,q2_server_nonce,q2_next_context)) ==> event(BranchRequestSent(q2_run_id,q2_token_id,q2_client_x,q2_client_nonce)) && event(BranchRequestAccepted(q2_run_id,q2_token_id,q2_client_x,q2_client_nonce)) && event(KudosDerived(q2_run_id,q2_token_id,q2_client_x,q2_client_nonce,q2_server_x,q2_server_nonce,q2_next_context)) && event(ConvergenceResponseSent(q2_run_id,q2_token_id,q2_client_x,q2_client_nonce,q2_server_x,q2_server_nonce,q2_next_context)) is true.
+-- Query inj-event(KudosCommit(q3_run_id,q3_token_id,q3_client_x,q3_client_nonce,q3_server_x,q3_server_nonce,q3_next_context)) ==> inj-event(BranchRequestSent(q3_run_id,q3_token_id,q3_client_x,q3_client_nonce)) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query inj-event(KudosCommit(q3_run_id,q3_token_id,q3_client_x,q3_client_nonce,q3_server_x,q3_server_nonce,q3_next_context)) ==> inj-event(BranchRequestSent(q3_run_id,q3_token_id,q3_client_x,q3_client_nonce))
+goal reachable: b-inj-event(BranchRequestSent(run_id[],token_id_step1_1,x_client[],client_nonce_step1_1),@occ8_1) -> inj-event(KudosCommit(run_id[],token_id_step1_1,x_client[],client_nonce_step1_1,x_server[],server_nonce_step3_1,rb4_context(parent_context[],x_client[],client_nonce_step1_1,x_server[],server_nonce_step3_1)),@occ25_1)
+The hypothesis occurs strictly before the conclusion.
+Abbreviations:
+token_id_step1_1 = token_id_step1[parent_context_step1 = parent_context[],run_id_step1 = run_id[]]
+client_nonce_step1_1 = client_nonce_step1[parent_context_step1 = parent_context[],run_id_step1 = run_id[]]
+server_nonce_step3_1 = server_nonce_step3[client_nonce_step3 = client_nonce_step1_1,client_x_step3 = x_client[],token_id_step3 = token_id_step1_1,parent_context_step3 = parent_context[],run_id_step3 = run_id[]]
+@occ25_1 = @occ25[next_context_step5 = rb4_context(parent_context[],x_client[],client_nonce_step1_1,x_server[],server_nonce_step3_1),server_nonce_step5 = server_nonce_step3_1,server_x_step5 = x_server[],client_nonce_step5 = client_nonce_step1_1,client_x_step5 = x_client[],token_id_step5 = token_id_step1_1,parent_context_step5 = parent_context[],run_id_step5 = run_id[]]
+@occ8_1 = @occ8[parent_context_step1 = parent_context[],run_id_step1 = run_id[]]
+RESULT inj-event(KudosCommit(q3_run_id,q3_token_id,q3_client_x,q3_client_nonce,q3_server_x,q3_server_nonce,q3_next_context)) ==> inj-event(BranchRequestSent(q3_run_id,q3_token_id,q3_client_x,q3_client_nonce)) is true.
+
+--------------------------------------------------------------
+Verification summary:
+
+Query not event(KudosCommit(q1_run_id,q1_token_id,q1_client_x,q1_client_nonce,q1_server_x,q1_server_nonce,q1_next_context)) is false.
+
+Query event(KudosCommit(q2_run_id,q2_token_id,q2_client_x,q2_client_nonce,q2_server_x,q2_server_nonce,q2_next_context)) ==> event(BranchRequestSent(q2_run_id,q2_token_id,q2_client_x,q2_client_nonce)) && event(BranchRequestAccepted(q2_run_id,q2_token_id,q2_client_x,q2_client_nonce)) && event(KudosDerived(q2_run_id,q2_token_id,q2_client_x,q2_client_nonce,q2_server_x,q2_server_nonce,q2_next_context)) && event(ConvergenceResponseSent(q2_run_id,q2_token_id,q2_client_x,q2_client_nonce,q2_server_x,q2_server_nonce,q2_next_context)) is true.
+
+Query inj-event(KudosCommit(q3_run_id,q3_token_id,q3_client_x,q3_client_nonce,q3_server_x,q3_server_nonce,q3_next_context)) ==> inj-event(BranchRequestSent(q3_run_id,q3_token_id,q3_client_x,q3_client_nonce)) is true.
+
+--------------------------------------------------------------
+

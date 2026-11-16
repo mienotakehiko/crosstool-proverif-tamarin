@@ -1,0 +1,930 @@
+set preciseActions = true.
+
+(* Free names *)
+free publicChannel:channel.
+free v1:bitstring.
+free v2:bitstring.
+free v3:bitstring.
+free v4:bitstring.
+free v5:bitstring.
+free v6:bitstring.
+free v7:bitstring.
+free vdintr:bitstring.
+free vdleaf:bitstring.
+free vdpblc:bitstring.
+free vk:bitstring.
+free vm:bitstring.
+free vsign:bitstring.
+
+(* Functions *)
+fun ch(bitstring,bitstring,bitstring):bitstring.
+fun fst(bitstring):bitstring.
+fun hn(bitstring,bitstring,bitstring,bitstring):bitstring.
+fun pair(bitstring,bitstring):bitstring.
+fun pblc(bitstring,bitstring,bitstring,bitstring):bitstring.
+fun prf(bitstring,bitstring,bitstring):bitstring[private].
+fun s(bitstring):bitstring.
+fun snd(bitstring):bitstring.
+fun z():bitstring.
+
+(* Equations *)
+equation forall x_1:bitstring, x_2:bitstring; fst((x_1, x_2)) = x_1.
+equation forall x_1:bitstring, x_2:bitstring; snd((x_1, x_2)) = x_2.
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_I_104((var_I, (s(z()), (s(z()), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_I[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_I_122((var_I, (s(z()), (s(s(z())), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_I[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_I_139((var_I, (s(z()), (s(s(s(z()))), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_I[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_I_156((var_I, (s(s(z())), (z(), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_I[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_I_16((var_I, (z(), (z(), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_I[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_I_174((var_I, (s(s(z())), (s(z()), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_I[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_I_192((var_I, (s(s(z())), (s(s(z())), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_I[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_I_209((var_I, (s(s(z())), (s(s(s(z()))), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_I[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_I_226((var_I, (s(s(s(z()))), (z(), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_I[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_I_244((var_I, (s(s(s(z()))), (s(z()), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_I[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_I_262((var_I, (s(s(s(z()))), (s(s(z())), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_I[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_I_279((var_I, (s(s(s(z()))), (s(s(s(z()))), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_I[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_I_34((var_I, (z(), (s(z()), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_I[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_I_52((var_I, (z(), (s(s(z())), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_I[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_I_69((var_I, (z(), (s(s(s(z()))), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_I[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_I_86((var_I, (s(z()), (z(), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_I[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p1_107((var_I, (s(z()), (s(z()), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_p1[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p1_125((var_I, (s(z()), (s(s(z())), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_p1[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p1_142((var_I, (s(z()), (s(s(s(z()))), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_p1[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p1_159((var_I, (s(s(z())), (z(), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_p1[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p1_177((var_I, (s(s(z())), (s(z()), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_p1[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p1_19((var_I, (z(), (z(), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_p1[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p1_195((var_I, (s(s(z())), (s(s(z())), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_p1[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p1_212((var_I, (s(s(z())), (s(s(s(z()))), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_p1[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p1_229((var_I, (s(s(s(z()))), (z(), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_p1[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p1_247((var_I, (s(s(s(z()))), (s(z()), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_p1[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p1_265((var_I, (s(s(s(z()))), (s(s(z())), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_p1[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p1_282((var_I, (s(s(s(z()))), (s(s(s(z()))), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_p1[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p1_37((var_I, (z(), (s(z()), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_p1[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p1_55((var_I, (z(), (s(s(z())), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_p1[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p1_72((var_I, (z(), (s(s(s(z()))), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_p1[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p1_89((var_I, (s(z()), (z(), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_p1[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p2_108((var_I, (s(z()), (s(z()), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_p2[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p2_126((var_I, (s(z()), (s(s(z())), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_p2[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p2_143((var_I, (s(z()), (s(s(s(z()))), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_p2[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p2_160((var_I, (s(s(z())), (z(), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_p2[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p2_178((var_I, (s(s(z())), (s(z()), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_p2[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p2_196((var_I, (s(s(z())), (s(s(z())), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_p2[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p2_20((var_I, (z(), (z(), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_p2[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p2_213((var_I, (s(s(z())), (s(s(s(z()))), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_p2[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p2_230((var_I, (s(s(s(z()))), (z(), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_p2[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p2_248((var_I, (s(s(s(z()))), (s(z()), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_p2[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p2_266((var_I, (s(s(s(z()))), (s(s(z())), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_p2[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p2_283((var_I, (s(s(s(z()))), (s(s(s(z()))), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_p2[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p2_38((var_I, (z(), (s(z()), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_p2[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p2_56((var_I, (z(), (s(s(z())), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_p2[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p2_73((var_I, (z(), (s(s(s(z()))), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_p2[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p2_90((var_I, (s(z()), (z(), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_p2[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sk_106((var_I, (s(z()), (s(z()), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_sk[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sk_124((var_I, (s(z()), (s(s(z())), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_sk[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sk_141((var_I, (s(z()), (s(s(s(z()))), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_sk[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sk_158((var_I, (s(s(z())), (z(), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_sk[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sk_176((var_I, (s(s(z())), (s(z()), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_sk[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sk_18((var_I, (z(), (z(), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_sk[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sk_194((var_I, (s(s(z())), (s(s(z())), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_sk[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sk_211((var_I, (s(s(z())), (s(s(s(z()))), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_sk[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sk_228((var_I, (s(s(s(z()))), (z(), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_sk[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sk_246((var_I, (s(s(s(z()))), (s(z()), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_sk[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sk_264((var_I, (s(s(s(z()))), (s(s(z())), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_sk[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sk_281((var_I, (s(s(s(z()))), (s(s(s(z()))), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_sk[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sk_36((var_I, (z(), (s(z()), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_sk[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sk_54((var_I, (z(), (s(s(z())), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_sk[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sk_71((var_I, (z(), (s(s(s(z()))), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_sk[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sk_88((var_I, (s(z()), (z(), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_sk[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sm_105((var_I, (s(z()), (s(z()), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_sm[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sm_123((var_I, (s(z()), (s(s(z())), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_sm[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sm_140((var_I, (s(z()), (s(s(s(z()))), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_sm[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sm_157((var_I, (s(s(z())), (z(), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_sm[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sm_17((var_I, (z(), (z(), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_sm[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sm_175((var_I, (s(s(z())), (s(z()), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_sm[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sm_193((var_I, (s(s(z())), (s(s(z())), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_sm[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sm_210((var_I, (s(s(z())), (s(s(s(z()))), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_sm[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sm_227((var_I, (s(s(s(z()))), (z(), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_sm[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sm_245((var_I, (s(s(s(z()))), (s(z()), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_sm[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sm_263((var_I, (s(s(s(z()))), (s(s(z())), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_sm[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sm_280((var_I, (s(s(s(z()))), (s(s(s(z()))), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_sm[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sm_35((var_I, (z(), (s(z()), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_sm[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sm_53((var_I, (z(), (s(s(z())), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_sm[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sm_70((var_I, (z(), (s(s(s(z()))), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_sm[private].
+reduc forall var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sm_87((var_I, (s(z()), (z(), (var_sm, (var_sk, (var_p1, var_p2))))))) = var_sm[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v4:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_I_57(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (hn(var_I, var_v4, var_vdleaf, pblc(var_I, z(), var_vdpblc, (var_sm, ch(var_I, var_vk, ch(var_I, var_vk, ch(var_I, var_vk, var_sk)))))), var_p1)), var_p2))) = var_I[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v4:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p1_67(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (hn(var_I, var_v4, var_vdleaf, pblc(var_I, z(), var_vdpblc, (var_sm, ch(var_I, var_vk, ch(var_I, var_vk, ch(var_I, var_vk, var_sk)))))), var_p1)), var_p2))) = var_p1[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v4:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p2_68(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (hn(var_I, var_v4, var_vdleaf, pblc(var_I, z(), var_vdpblc, (var_sm, ch(var_I, var_vk, ch(var_I, var_vk, ch(var_I, var_vk, var_sk)))))), var_p1)), var_p2))) = var_p2[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v4:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sk_66(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (hn(var_I, var_v4, var_vdleaf, pblc(var_I, z(), var_vdpblc, (var_sm, ch(var_I, var_vk, ch(var_I, var_vk, ch(var_I, var_vk, var_sk)))))), var_p1)), var_p2))) = var_sk[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v4:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sm_64(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (hn(var_I, var_v4, var_vdleaf, pblc(var_I, z(), var_vdpblc, (var_sm, ch(var_I, var_vk, ch(var_I, var_vk, ch(var_I, var_vk, var_sk)))))), var_p1)), var_p2))) = var_sm[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v4:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_v1_58(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (hn(var_I, var_v4, var_vdleaf, pblc(var_I, z(), var_vdpblc, (var_sm, ch(var_I, var_vk, ch(var_I, var_vk, ch(var_I, var_vk, var_sk)))))), var_p1)), var_p2))) = var_v1[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v4:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_v2_60(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (hn(var_I, var_v4, var_vdleaf, pblc(var_I, z(), var_vdpblc, (var_sm, ch(var_I, var_vk, ch(var_I, var_vk, ch(var_I, var_vk, var_sk)))))), var_p1)), var_p2))) = var_v2[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v4:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_v4_61(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (hn(var_I, var_v4, var_vdleaf, pblc(var_I, z(), var_vdpblc, (var_sm, ch(var_I, var_vk, ch(var_I, var_vk, ch(var_I, var_vk, var_sk)))))), var_p1)), var_p2))) = var_v4[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v4:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vdintr_59(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (hn(var_I, var_v4, var_vdleaf, pblc(var_I, z(), var_vdpblc, (var_sm, ch(var_I, var_vk, ch(var_I, var_vk, ch(var_I, var_vk, var_sk)))))), var_p1)), var_p2))) = var_vdintr[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v4:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vdleaf_62(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (hn(var_I, var_v4, var_vdleaf, pblc(var_I, z(), var_vdpblc, (var_sm, ch(var_I, var_vk, ch(var_I, var_vk, ch(var_I, var_vk, var_sk)))))), var_p1)), var_p2))) = var_vdleaf[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v4:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vdpblc_63(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (hn(var_I, var_v4, var_vdleaf, pblc(var_I, z(), var_vdpblc, (var_sm, ch(var_I, var_vk, ch(var_I, var_vk, ch(var_I, var_vk, var_sk)))))), var_p1)), var_p2))) = var_vdpblc[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v4:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vk_65(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (hn(var_I, var_v4, var_vdleaf, pblc(var_I, z(), var_vdpblc, (var_sm, ch(var_I, var_vk, ch(var_I, var_vk, ch(var_I, var_vk, var_sk)))))), var_p1)), var_p2))) = var_vk[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v4:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_I_21(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (hn(var_I, var_v4, var_vdleaf, pblc(var_I, z(), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, var_sm)), ch(var_I, var_vk, var_sk)))), var_p1)), var_p2))) = var_I[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v4:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_I_39(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (hn(var_I, var_v4, var_vdleaf, pblc(var_I, z(), var_vdpblc, (ch(var_I, var_vm, var_sm), ch(var_I, var_vk, ch(var_I, var_vk, var_sk))))), var_p1)), var_p2))) = var_I[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v4:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p1_32(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (hn(var_I, var_v4, var_vdleaf, pblc(var_I, z(), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, var_sm)), ch(var_I, var_vk, var_sk)))), var_p1)), var_p2))) = var_p1[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v4:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p1_50(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (hn(var_I, var_v4, var_vdleaf, pblc(var_I, z(), var_vdpblc, (ch(var_I, var_vm, var_sm), ch(var_I, var_vk, ch(var_I, var_vk, var_sk))))), var_p1)), var_p2))) = var_p1[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v4:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p2_33(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (hn(var_I, var_v4, var_vdleaf, pblc(var_I, z(), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, var_sm)), ch(var_I, var_vk, var_sk)))), var_p1)), var_p2))) = var_p2[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v4:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p2_51(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (hn(var_I, var_v4, var_vdleaf, pblc(var_I, z(), var_vdpblc, (ch(var_I, var_vm, var_sm), ch(var_I, var_vk, ch(var_I, var_vk, var_sk))))), var_p1)), var_p2))) = var_p2[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v4:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sk_31(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (hn(var_I, var_v4, var_vdleaf, pblc(var_I, z(), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, var_sm)), ch(var_I, var_vk, var_sk)))), var_p1)), var_p2))) = var_sk[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v4:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sk_49(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (hn(var_I, var_v4, var_vdleaf, pblc(var_I, z(), var_vdpblc, (ch(var_I, var_vm, var_sm), ch(var_I, var_vk, ch(var_I, var_vk, var_sk))))), var_p1)), var_p2))) = var_sk[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v4:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sm_29(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (hn(var_I, var_v4, var_vdleaf, pblc(var_I, z(), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, var_sm)), ch(var_I, var_vk, var_sk)))), var_p1)), var_p2))) = var_sm[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v4:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sm_47(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (hn(var_I, var_v4, var_vdleaf, pblc(var_I, z(), var_vdpblc, (ch(var_I, var_vm, var_sm), ch(var_I, var_vk, ch(var_I, var_vk, var_sk))))), var_p1)), var_p2))) = var_sm[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v4:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_v1_22(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (hn(var_I, var_v4, var_vdleaf, pblc(var_I, z(), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, var_sm)), ch(var_I, var_vk, var_sk)))), var_p1)), var_p2))) = var_v1[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v4:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_v1_40(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (hn(var_I, var_v4, var_vdleaf, pblc(var_I, z(), var_vdpblc, (ch(var_I, var_vm, var_sm), ch(var_I, var_vk, ch(var_I, var_vk, var_sk))))), var_p1)), var_p2))) = var_v1[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v4:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_v2_24(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (hn(var_I, var_v4, var_vdleaf, pblc(var_I, z(), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, var_sm)), ch(var_I, var_vk, var_sk)))), var_p1)), var_p2))) = var_v2[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v4:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_v2_42(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (hn(var_I, var_v4, var_vdleaf, pblc(var_I, z(), var_vdpblc, (ch(var_I, var_vm, var_sm), ch(var_I, var_vk, ch(var_I, var_vk, var_sk))))), var_p1)), var_p2))) = var_v2[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v4:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_v4_25(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (hn(var_I, var_v4, var_vdleaf, pblc(var_I, z(), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, var_sm)), ch(var_I, var_vk, var_sk)))), var_p1)), var_p2))) = var_v4[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v4:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_v4_43(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (hn(var_I, var_v4, var_vdleaf, pblc(var_I, z(), var_vdpblc, (ch(var_I, var_vm, var_sm), ch(var_I, var_vk, ch(var_I, var_vk, var_sk))))), var_p1)), var_p2))) = var_v4[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v4:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vdintr_23(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (hn(var_I, var_v4, var_vdleaf, pblc(var_I, z(), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, var_sm)), ch(var_I, var_vk, var_sk)))), var_p1)), var_p2))) = var_vdintr[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v4:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vdintr_41(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (hn(var_I, var_v4, var_vdleaf, pblc(var_I, z(), var_vdpblc, (ch(var_I, var_vm, var_sm), ch(var_I, var_vk, ch(var_I, var_vk, var_sk))))), var_p1)), var_p2))) = var_vdintr[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v4:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vdleaf_26(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (hn(var_I, var_v4, var_vdleaf, pblc(var_I, z(), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, var_sm)), ch(var_I, var_vk, var_sk)))), var_p1)), var_p2))) = var_vdleaf[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v4:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vdleaf_44(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (hn(var_I, var_v4, var_vdleaf, pblc(var_I, z(), var_vdpblc, (ch(var_I, var_vm, var_sm), ch(var_I, var_vk, ch(var_I, var_vk, var_sk))))), var_p1)), var_p2))) = var_vdleaf[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v4:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vdpblc_27(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (hn(var_I, var_v4, var_vdleaf, pblc(var_I, z(), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, var_sm)), ch(var_I, var_vk, var_sk)))), var_p1)), var_p2))) = var_vdpblc[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v4:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vdpblc_45(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (hn(var_I, var_v4, var_vdleaf, pblc(var_I, z(), var_vdpblc, (ch(var_I, var_vm, var_sm), ch(var_I, var_vk, ch(var_I, var_vk, var_sk))))), var_p1)), var_p2))) = var_vdpblc[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v4:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vk_30(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (hn(var_I, var_v4, var_vdleaf, pblc(var_I, z(), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, var_sm)), ch(var_I, var_vk, var_sk)))), var_p1)), var_p2))) = var_vk[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v4:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vk_48(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (hn(var_I, var_v4, var_vdleaf, pblc(var_I, z(), var_vdpblc, (ch(var_I, var_vm, var_sm), ch(var_I, var_vk, ch(var_I, var_vk, var_sk))))), var_p1)), var_p2))) = var_vk[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v4:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vm_28(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (hn(var_I, var_v4, var_vdleaf, pblc(var_I, z(), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, var_sm)), ch(var_I, var_vk, var_sk)))), var_p1)), var_p2))) = var_vm[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v4:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vm_46(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (hn(var_I, var_v4, var_vdleaf, pblc(var_I, z(), var_vdpblc, (ch(var_I, var_vm, var_sm), ch(var_I, var_vk, ch(var_I, var_vk, var_sk))))), var_p1)), var_p2))) = var_vm[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v4:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_I_4(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (hn(var_I, var_v4, var_vdleaf, pblc(var_I, z(), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, ch(var_I, var_vm, var_sm))), var_sk))), var_p1)), var_p2))) = var_I[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v4:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p1_14(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (hn(var_I, var_v4, var_vdleaf, pblc(var_I, z(), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, ch(var_I, var_vm, var_sm))), var_sk))), var_p1)), var_p2))) = var_p1[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v4:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p2_15(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (hn(var_I, var_v4, var_vdleaf, pblc(var_I, z(), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, ch(var_I, var_vm, var_sm))), var_sk))), var_p1)), var_p2))) = var_p2[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v4:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sk_13(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (hn(var_I, var_v4, var_vdleaf, pblc(var_I, z(), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, ch(var_I, var_vm, var_sm))), var_sk))), var_p1)), var_p2))) = var_sk[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v4:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sm_12(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (hn(var_I, var_v4, var_vdleaf, pblc(var_I, z(), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, ch(var_I, var_vm, var_sm))), var_sk))), var_p1)), var_p2))) = var_sm[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v4:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_v1_5(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (hn(var_I, var_v4, var_vdleaf, pblc(var_I, z(), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, ch(var_I, var_vm, var_sm))), var_sk))), var_p1)), var_p2))) = var_v1[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v4:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_v2_7(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (hn(var_I, var_v4, var_vdleaf, pblc(var_I, z(), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, ch(var_I, var_vm, var_sm))), var_sk))), var_p1)), var_p2))) = var_v2[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v4:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_v4_8(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (hn(var_I, var_v4, var_vdleaf, pblc(var_I, z(), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, ch(var_I, var_vm, var_sm))), var_sk))), var_p1)), var_p2))) = var_v4[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v4:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vdintr_6(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (hn(var_I, var_v4, var_vdleaf, pblc(var_I, z(), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, ch(var_I, var_vm, var_sm))), var_sk))), var_p1)), var_p2))) = var_vdintr[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v4:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vdleaf_9(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (hn(var_I, var_v4, var_vdleaf, pblc(var_I, z(), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, ch(var_I, var_vm, var_sm))), var_sk))), var_p1)), var_p2))) = var_vdleaf[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v4:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vdpblc_10(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (hn(var_I, var_v4, var_vdleaf, pblc(var_I, z(), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, ch(var_I, var_vm, var_sm))), var_sk))), var_p1)), var_p2))) = var_vdpblc[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v4:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vm_11(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (hn(var_I, var_v4, var_vdleaf, pblc(var_I, z(), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, ch(var_I, var_vm, var_sm))), var_sk))), var_p1)), var_p2))) = var_vm[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v5:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_I_127(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (var_p1, hn(var_I, var_v5, var_vdleaf, pblc(var_I, s(z()), var_vdpblc, (var_sm, ch(var_I, var_vk, ch(var_I, var_vk, ch(var_I, var_vk, var_sk)))))))), var_p2))) = var_I[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v5:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p1_131(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (var_p1, hn(var_I, var_v5, var_vdleaf, pblc(var_I, s(z()), var_vdpblc, (var_sm, ch(var_I, var_vk, ch(var_I, var_vk, ch(var_I, var_vk, var_sk)))))))), var_p2))) = var_p1[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v5:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p2_138(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (var_p1, hn(var_I, var_v5, var_vdleaf, pblc(var_I, s(z()), var_vdpblc, (var_sm, ch(var_I, var_vk, ch(var_I, var_vk, ch(var_I, var_vk, var_sk)))))))), var_p2))) = var_p2[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v5:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sk_137(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (var_p1, hn(var_I, var_v5, var_vdleaf, pblc(var_I, s(z()), var_vdpblc, (var_sm, ch(var_I, var_vk, ch(var_I, var_vk, ch(var_I, var_vk, var_sk)))))))), var_p2))) = var_sk[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v5:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sm_135(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (var_p1, hn(var_I, var_v5, var_vdleaf, pblc(var_I, s(z()), var_vdpblc, (var_sm, ch(var_I, var_vk, ch(var_I, var_vk, ch(var_I, var_vk, var_sk)))))))), var_p2))) = var_sm[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v5:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_v1_128(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (var_p1, hn(var_I, var_v5, var_vdleaf, pblc(var_I, s(z()), var_vdpblc, (var_sm, ch(var_I, var_vk, ch(var_I, var_vk, ch(var_I, var_vk, var_sk)))))))), var_p2))) = var_v1[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v5:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_v2_130(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (var_p1, hn(var_I, var_v5, var_vdleaf, pblc(var_I, s(z()), var_vdpblc, (var_sm, ch(var_I, var_vk, ch(var_I, var_vk, ch(var_I, var_vk, var_sk)))))))), var_p2))) = var_v2[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v5:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_v5_132(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (var_p1, hn(var_I, var_v5, var_vdleaf, pblc(var_I, s(z()), var_vdpblc, (var_sm, ch(var_I, var_vk, ch(var_I, var_vk, ch(var_I, var_vk, var_sk)))))))), var_p2))) = var_v5[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v5:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vdintr_129(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (var_p1, hn(var_I, var_v5, var_vdleaf, pblc(var_I, s(z()), var_vdpblc, (var_sm, ch(var_I, var_vk, ch(var_I, var_vk, ch(var_I, var_vk, var_sk)))))))), var_p2))) = var_vdintr[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v5:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vdleaf_133(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (var_p1, hn(var_I, var_v5, var_vdleaf, pblc(var_I, s(z()), var_vdpblc, (var_sm, ch(var_I, var_vk, ch(var_I, var_vk, ch(var_I, var_vk, var_sk)))))))), var_p2))) = var_vdleaf[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v5:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vdpblc_134(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (var_p1, hn(var_I, var_v5, var_vdleaf, pblc(var_I, s(z()), var_vdpblc, (var_sm, ch(var_I, var_vk, ch(var_I, var_vk, ch(var_I, var_vk, var_sk)))))))), var_p2))) = var_vdpblc[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v5:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vk_136(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (var_p1, hn(var_I, var_v5, var_vdleaf, pblc(var_I, s(z()), var_vdpblc, (var_sm, ch(var_I, var_vk, ch(var_I, var_vk, ch(var_I, var_vk, var_sk)))))))), var_p2))) = var_vk[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v5:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_I_109(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (var_p1, hn(var_I, var_v5, var_vdleaf, pblc(var_I, s(z()), var_vdpblc, (ch(var_I, var_vm, var_sm), ch(var_I, var_vk, ch(var_I, var_vk, var_sk))))))), var_p2))) = var_I[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v5:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_I_91(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (var_p1, hn(var_I, var_v5, var_vdleaf, pblc(var_I, s(z()), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, var_sm)), ch(var_I, var_vk, var_sk)))))), var_p2))) = var_I[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v5:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p1_113(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (var_p1, hn(var_I, var_v5, var_vdleaf, pblc(var_I, s(z()), var_vdpblc, (ch(var_I, var_vm, var_sm), ch(var_I, var_vk, ch(var_I, var_vk, var_sk))))))), var_p2))) = var_p1[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v5:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p1_95(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (var_p1, hn(var_I, var_v5, var_vdleaf, pblc(var_I, s(z()), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, var_sm)), ch(var_I, var_vk, var_sk)))))), var_p2))) = var_p1[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v5:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p2_103(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (var_p1, hn(var_I, var_v5, var_vdleaf, pblc(var_I, s(z()), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, var_sm)), ch(var_I, var_vk, var_sk)))))), var_p2))) = var_p2[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v5:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p2_121(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (var_p1, hn(var_I, var_v5, var_vdleaf, pblc(var_I, s(z()), var_vdpblc, (ch(var_I, var_vm, var_sm), ch(var_I, var_vk, ch(var_I, var_vk, var_sk))))))), var_p2))) = var_p2[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v5:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sk_102(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (var_p1, hn(var_I, var_v5, var_vdleaf, pblc(var_I, s(z()), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, var_sm)), ch(var_I, var_vk, var_sk)))))), var_p2))) = var_sk[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v5:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sk_120(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (var_p1, hn(var_I, var_v5, var_vdleaf, pblc(var_I, s(z()), var_vdpblc, (ch(var_I, var_vm, var_sm), ch(var_I, var_vk, ch(var_I, var_vk, var_sk))))))), var_p2))) = var_sk[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v5:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sm_100(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (var_p1, hn(var_I, var_v5, var_vdleaf, pblc(var_I, s(z()), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, var_sm)), ch(var_I, var_vk, var_sk)))))), var_p2))) = var_sm[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v5:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sm_118(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (var_p1, hn(var_I, var_v5, var_vdleaf, pblc(var_I, s(z()), var_vdpblc, (ch(var_I, var_vm, var_sm), ch(var_I, var_vk, ch(var_I, var_vk, var_sk))))))), var_p2))) = var_sm[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v5:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_v1_110(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (var_p1, hn(var_I, var_v5, var_vdleaf, pblc(var_I, s(z()), var_vdpblc, (ch(var_I, var_vm, var_sm), ch(var_I, var_vk, ch(var_I, var_vk, var_sk))))))), var_p2))) = var_v1[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v5:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_v1_92(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (var_p1, hn(var_I, var_v5, var_vdleaf, pblc(var_I, s(z()), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, var_sm)), ch(var_I, var_vk, var_sk)))))), var_p2))) = var_v1[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v5:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_v2_112(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (var_p1, hn(var_I, var_v5, var_vdleaf, pblc(var_I, s(z()), var_vdpblc, (ch(var_I, var_vm, var_sm), ch(var_I, var_vk, ch(var_I, var_vk, var_sk))))))), var_p2))) = var_v2[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v5:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_v2_94(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (var_p1, hn(var_I, var_v5, var_vdleaf, pblc(var_I, s(z()), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, var_sm)), ch(var_I, var_vk, var_sk)))))), var_p2))) = var_v2[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v5:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_v5_114(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (var_p1, hn(var_I, var_v5, var_vdleaf, pblc(var_I, s(z()), var_vdpblc, (ch(var_I, var_vm, var_sm), ch(var_I, var_vk, ch(var_I, var_vk, var_sk))))))), var_p2))) = var_v5[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v5:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_v5_96(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (var_p1, hn(var_I, var_v5, var_vdleaf, pblc(var_I, s(z()), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, var_sm)), ch(var_I, var_vk, var_sk)))))), var_p2))) = var_v5[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v5:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vdintr_111(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (var_p1, hn(var_I, var_v5, var_vdleaf, pblc(var_I, s(z()), var_vdpblc, (ch(var_I, var_vm, var_sm), ch(var_I, var_vk, ch(var_I, var_vk, var_sk))))))), var_p2))) = var_vdintr[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v5:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vdintr_93(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (var_p1, hn(var_I, var_v5, var_vdleaf, pblc(var_I, s(z()), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, var_sm)), ch(var_I, var_vk, var_sk)))))), var_p2))) = var_vdintr[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v5:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vdleaf_115(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (var_p1, hn(var_I, var_v5, var_vdleaf, pblc(var_I, s(z()), var_vdpblc, (ch(var_I, var_vm, var_sm), ch(var_I, var_vk, ch(var_I, var_vk, var_sk))))))), var_p2))) = var_vdleaf[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v5:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vdleaf_97(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (var_p1, hn(var_I, var_v5, var_vdleaf, pblc(var_I, s(z()), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, var_sm)), ch(var_I, var_vk, var_sk)))))), var_p2))) = var_vdleaf[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v5:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vdpblc_116(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (var_p1, hn(var_I, var_v5, var_vdleaf, pblc(var_I, s(z()), var_vdpblc, (ch(var_I, var_vm, var_sm), ch(var_I, var_vk, ch(var_I, var_vk, var_sk))))))), var_p2))) = var_vdpblc[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v5:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vdpblc_98(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (var_p1, hn(var_I, var_v5, var_vdleaf, pblc(var_I, s(z()), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, var_sm)), ch(var_I, var_vk, var_sk)))))), var_p2))) = var_vdpblc[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v5:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vk_101(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (var_p1, hn(var_I, var_v5, var_vdleaf, pblc(var_I, s(z()), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, var_sm)), ch(var_I, var_vk, var_sk)))))), var_p2))) = var_vk[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v5:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vk_119(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (var_p1, hn(var_I, var_v5, var_vdleaf, pblc(var_I, s(z()), var_vdpblc, (ch(var_I, var_vm, var_sm), ch(var_I, var_vk, ch(var_I, var_vk, var_sk))))))), var_p2))) = var_vk[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v5:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vm_117(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (var_p1, hn(var_I, var_v5, var_vdleaf, pblc(var_I, s(z()), var_vdpblc, (ch(var_I, var_vm, var_sm), ch(var_I, var_vk, ch(var_I, var_vk, var_sk))))))), var_p2))) = var_vm[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v5:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vm_99(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (var_p1, hn(var_I, var_v5, var_vdleaf, pblc(var_I, s(z()), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, var_sm)), ch(var_I, var_vk, var_sk)))))), var_p2))) = var_vm[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v5:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_I_74(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (var_p1, hn(var_I, var_v5, var_vdleaf, pblc(var_I, s(z()), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, ch(var_I, var_vm, var_sm))), var_sk))))), var_p2))) = var_I[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v5:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p1_78(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (var_p1, hn(var_I, var_v5, var_vdleaf, pblc(var_I, s(z()), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, ch(var_I, var_vm, var_sm))), var_sk))))), var_p2))) = var_p1[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v5:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p2_85(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (var_p1, hn(var_I, var_v5, var_vdleaf, pblc(var_I, s(z()), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, ch(var_I, var_vm, var_sm))), var_sk))))), var_p2))) = var_p2[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v5:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sk_84(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (var_p1, hn(var_I, var_v5, var_vdleaf, pblc(var_I, s(z()), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, ch(var_I, var_vm, var_sm))), var_sk))))), var_p2))) = var_sk[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v5:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sm_83(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (var_p1, hn(var_I, var_v5, var_vdleaf, pblc(var_I, s(z()), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, ch(var_I, var_vm, var_sm))), var_sk))))), var_p2))) = var_sm[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v5:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_v1_75(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (var_p1, hn(var_I, var_v5, var_vdleaf, pblc(var_I, s(z()), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, ch(var_I, var_vm, var_sm))), var_sk))))), var_p2))) = var_v1[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v5:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_v2_77(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (var_p1, hn(var_I, var_v5, var_vdleaf, pblc(var_I, s(z()), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, ch(var_I, var_vm, var_sm))), var_sk))))), var_p2))) = var_v2[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v5:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_v5_79(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (var_p1, hn(var_I, var_v5, var_vdleaf, pblc(var_I, s(z()), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, ch(var_I, var_vm, var_sm))), var_sk))))), var_p2))) = var_v5[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v5:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vdintr_76(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (var_p1, hn(var_I, var_v5, var_vdleaf, pblc(var_I, s(z()), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, ch(var_I, var_vm, var_sm))), var_sk))))), var_p2))) = var_vdintr[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v5:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vdleaf_80(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (var_p1, hn(var_I, var_v5, var_vdleaf, pblc(var_I, s(z()), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, ch(var_I, var_vm, var_sm))), var_sk))))), var_p2))) = var_vdleaf[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v5:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vdpblc_81(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (var_p1, hn(var_I, var_v5, var_vdleaf, pblc(var_I, s(z()), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, ch(var_I, var_vm, var_sm))), var_sk))))), var_p2))) = var_vdpblc[private].
+reduc forall var_v1:bitstring, var_v2:bitstring, var_v5:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vm_82(hn(var_I, var_v1, var_vdintr, (hn(var_I, var_v2, var_vdintr, (var_p1, hn(var_I, var_v5, var_vdleaf, pblc(var_I, s(z()), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, ch(var_I, var_vm, var_sm))), var_sk))))), var_p2))) = var_vm[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v6:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_I_197(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (hn(var_I, var_v6, var_vdleaf, pblc(var_I, s(s(z())), var_vdpblc, (var_sm, ch(var_I, var_vk, ch(var_I, var_vk, ch(var_I, var_vk, var_sk)))))), var_p1))))) = var_I[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v6:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p1_208(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (hn(var_I, var_v6, var_vdleaf, pblc(var_I, s(s(z())), var_vdpblc, (var_sm, ch(var_I, var_vk, ch(var_I, var_vk, ch(var_I, var_vk, var_sk)))))), var_p1))))) = var_p1[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v6:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p2_200(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (hn(var_I, var_v6, var_vdleaf, pblc(var_I, s(s(z())), var_vdpblc, (var_sm, ch(var_I, var_vk, ch(var_I, var_vk, ch(var_I, var_vk, var_sk)))))), var_p1))))) = var_p2[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v6:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sk_207(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (hn(var_I, var_v6, var_vdleaf, pblc(var_I, s(s(z())), var_vdpblc, (var_sm, ch(var_I, var_vk, ch(var_I, var_vk, ch(var_I, var_vk, var_sk)))))), var_p1))))) = var_sk[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v6:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sm_205(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (hn(var_I, var_v6, var_vdleaf, pblc(var_I, s(s(z())), var_vdpblc, (var_sm, ch(var_I, var_vk, ch(var_I, var_vk, ch(var_I, var_vk, var_sk)))))), var_p1))))) = var_sm[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v6:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_v1_198(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (hn(var_I, var_v6, var_vdleaf, pblc(var_I, s(s(z())), var_vdpblc, (var_sm, ch(var_I, var_vk, ch(var_I, var_vk, ch(var_I, var_vk, var_sk)))))), var_p1))))) = var_v1[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v6:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_v3_201(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (hn(var_I, var_v6, var_vdleaf, pblc(var_I, s(s(z())), var_vdpblc, (var_sm, ch(var_I, var_vk, ch(var_I, var_vk, ch(var_I, var_vk, var_sk)))))), var_p1))))) = var_v3[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v6:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_v6_202(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (hn(var_I, var_v6, var_vdleaf, pblc(var_I, s(s(z())), var_vdpblc, (var_sm, ch(var_I, var_vk, ch(var_I, var_vk, ch(var_I, var_vk, var_sk)))))), var_p1))))) = var_v6[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v6:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vdintr_199(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (hn(var_I, var_v6, var_vdleaf, pblc(var_I, s(s(z())), var_vdpblc, (var_sm, ch(var_I, var_vk, ch(var_I, var_vk, ch(var_I, var_vk, var_sk)))))), var_p1))))) = var_vdintr[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v6:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vdleaf_203(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (hn(var_I, var_v6, var_vdleaf, pblc(var_I, s(s(z())), var_vdpblc, (var_sm, ch(var_I, var_vk, ch(var_I, var_vk, ch(var_I, var_vk, var_sk)))))), var_p1))))) = var_vdleaf[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v6:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vdpblc_204(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (hn(var_I, var_v6, var_vdleaf, pblc(var_I, s(s(z())), var_vdpblc, (var_sm, ch(var_I, var_vk, ch(var_I, var_vk, ch(var_I, var_vk, var_sk)))))), var_p1))))) = var_vdpblc[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v6:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vk_206(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (hn(var_I, var_v6, var_vdleaf, pblc(var_I, s(s(z())), var_vdpblc, (var_sm, ch(var_I, var_vk, ch(var_I, var_vk, ch(var_I, var_vk, var_sk)))))), var_p1))))) = var_vk[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v6:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_I_161(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (hn(var_I, var_v6, var_vdleaf, pblc(var_I, s(s(z())), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, var_sm)), ch(var_I, var_vk, var_sk)))), var_p1))))) = var_I[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v6:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_I_179(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (hn(var_I, var_v6, var_vdleaf, pblc(var_I, s(s(z())), var_vdpblc, (ch(var_I, var_vm, var_sm), ch(var_I, var_vk, ch(var_I, var_vk, var_sk))))), var_p1))))) = var_I[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v6:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p1_173(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (hn(var_I, var_v6, var_vdleaf, pblc(var_I, s(s(z())), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, var_sm)), ch(var_I, var_vk, var_sk)))), var_p1))))) = var_p1[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v6:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p1_191(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (hn(var_I, var_v6, var_vdleaf, pblc(var_I, s(s(z())), var_vdpblc, (ch(var_I, var_vm, var_sm), ch(var_I, var_vk, ch(var_I, var_vk, var_sk))))), var_p1))))) = var_p1[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v6:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p2_164(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (hn(var_I, var_v6, var_vdleaf, pblc(var_I, s(s(z())), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, var_sm)), ch(var_I, var_vk, var_sk)))), var_p1))))) = var_p2[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v6:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p2_182(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (hn(var_I, var_v6, var_vdleaf, pblc(var_I, s(s(z())), var_vdpblc, (ch(var_I, var_vm, var_sm), ch(var_I, var_vk, ch(var_I, var_vk, var_sk))))), var_p1))))) = var_p2[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v6:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sk_172(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (hn(var_I, var_v6, var_vdleaf, pblc(var_I, s(s(z())), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, var_sm)), ch(var_I, var_vk, var_sk)))), var_p1))))) = var_sk[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v6:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sk_190(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (hn(var_I, var_v6, var_vdleaf, pblc(var_I, s(s(z())), var_vdpblc, (ch(var_I, var_vm, var_sm), ch(var_I, var_vk, ch(var_I, var_vk, var_sk))))), var_p1))))) = var_sk[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v6:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sm_170(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (hn(var_I, var_v6, var_vdleaf, pblc(var_I, s(s(z())), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, var_sm)), ch(var_I, var_vk, var_sk)))), var_p1))))) = var_sm[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v6:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sm_188(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (hn(var_I, var_v6, var_vdleaf, pblc(var_I, s(s(z())), var_vdpblc, (ch(var_I, var_vm, var_sm), ch(var_I, var_vk, ch(var_I, var_vk, var_sk))))), var_p1))))) = var_sm[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v6:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_v1_162(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (hn(var_I, var_v6, var_vdleaf, pblc(var_I, s(s(z())), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, var_sm)), ch(var_I, var_vk, var_sk)))), var_p1))))) = var_v1[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v6:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_v1_180(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (hn(var_I, var_v6, var_vdleaf, pblc(var_I, s(s(z())), var_vdpblc, (ch(var_I, var_vm, var_sm), ch(var_I, var_vk, ch(var_I, var_vk, var_sk))))), var_p1))))) = var_v1[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v6:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_v3_165(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (hn(var_I, var_v6, var_vdleaf, pblc(var_I, s(s(z())), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, var_sm)), ch(var_I, var_vk, var_sk)))), var_p1))))) = var_v3[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v6:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_v3_183(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (hn(var_I, var_v6, var_vdleaf, pblc(var_I, s(s(z())), var_vdpblc, (ch(var_I, var_vm, var_sm), ch(var_I, var_vk, ch(var_I, var_vk, var_sk))))), var_p1))))) = var_v3[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v6:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_v6_166(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (hn(var_I, var_v6, var_vdleaf, pblc(var_I, s(s(z())), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, var_sm)), ch(var_I, var_vk, var_sk)))), var_p1))))) = var_v6[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v6:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_v6_184(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (hn(var_I, var_v6, var_vdleaf, pblc(var_I, s(s(z())), var_vdpblc, (ch(var_I, var_vm, var_sm), ch(var_I, var_vk, ch(var_I, var_vk, var_sk))))), var_p1))))) = var_v6[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v6:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vdintr_163(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (hn(var_I, var_v6, var_vdleaf, pblc(var_I, s(s(z())), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, var_sm)), ch(var_I, var_vk, var_sk)))), var_p1))))) = var_vdintr[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v6:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vdintr_181(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (hn(var_I, var_v6, var_vdleaf, pblc(var_I, s(s(z())), var_vdpblc, (ch(var_I, var_vm, var_sm), ch(var_I, var_vk, ch(var_I, var_vk, var_sk))))), var_p1))))) = var_vdintr[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v6:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vdleaf_167(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (hn(var_I, var_v6, var_vdleaf, pblc(var_I, s(s(z())), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, var_sm)), ch(var_I, var_vk, var_sk)))), var_p1))))) = var_vdleaf[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v6:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vdleaf_185(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (hn(var_I, var_v6, var_vdleaf, pblc(var_I, s(s(z())), var_vdpblc, (ch(var_I, var_vm, var_sm), ch(var_I, var_vk, ch(var_I, var_vk, var_sk))))), var_p1))))) = var_vdleaf[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v6:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vdpblc_168(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (hn(var_I, var_v6, var_vdleaf, pblc(var_I, s(s(z())), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, var_sm)), ch(var_I, var_vk, var_sk)))), var_p1))))) = var_vdpblc[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v6:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vdpblc_186(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (hn(var_I, var_v6, var_vdleaf, pblc(var_I, s(s(z())), var_vdpblc, (ch(var_I, var_vm, var_sm), ch(var_I, var_vk, ch(var_I, var_vk, var_sk))))), var_p1))))) = var_vdpblc[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v6:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vk_171(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (hn(var_I, var_v6, var_vdleaf, pblc(var_I, s(s(z())), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, var_sm)), ch(var_I, var_vk, var_sk)))), var_p1))))) = var_vk[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v6:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vk_189(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (hn(var_I, var_v6, var_vdleaf, pblc(var_I, s(s(z())), var_vdpblc, (ch(var_I, var_vm, var_sm), ch(var_I, var_vk, ch(var_I, var_vk, var_sk))))), var_p1))))) = var_vk[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v6:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vm_169(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (hn(var_I, var_v6, var_vdleaf, pblc(var_I, s(s(z())), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, var_sm)), ch(var_I, var_vk, var_sk)))), var_p1))))) = var_vm[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v6:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vm_187(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (hn(var_I, var_v6, var_vdleaf, pblc(var_I, s(s(z())), var_vdpblc, (ch(var_I, var_vm, var_sm), ch(var_I, var_vk, ch(var_I, var_vk, var_sk))))), var_p1))))) = var_vm[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v6:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_I_144(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (hn(var_I, var_v6, var_vdleaf, pblc(var_I, s(s(z())), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, ch(var_I, var_vm, var_sm))), var_sk))), var_p1))))) = var_I[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v6:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p1_155(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (hn(var_I, var_v6, var_vdleaf, pblc(var_I, s(s(z())), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, ch(var_I, var_vm, var_sm))), var_sk))), var_p1))))) = var_p1[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v6:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p2_147(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (hn(var_I, var_v6, var_vdleaf, pblc(var_I, s(s(z())), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, ch(var_I, var_vm, var_sm))), var_sk))), var_p1))))) = var_p2[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v6:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sk_154(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (hn(var_I, var_v6, var_vdleaf, pblc(var_I, s(s(z())), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, ch(var_I, var_vm, var_sm))), var_sk))), var_p1))))) = var_sk[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v6:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sm_153(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (hn(var_I, var_v6, var_vdleaf, pblc(var_I, s(s(z())), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, ch(var_I, var_vm, var_sm))), var_sk))), var_p1))))) = var_sm[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v6:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_v1_145(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (hn(var_I, var_v6, var_vdleaf, pblc(var_I, s(s(z())), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, ch(var_I, var_vm, var_sm))), var_sk))), var_p1))))) = var_v1[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v6:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_v3_148(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (hn(var_I, var_v6, var_vdleaf, pblc(var_I, s(s(z())), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, ch(var_I, var_vm, var_sm))), var_sk))), var_p1))))) = var_v3[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v6:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_v6_149(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (hn(var_I, var_v6, var_vdleaf, pblc(var_I, s(s(z())), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, ch(var_I, var_vm, var_sm))), var_sk))), var_p1))))) = var_v6[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v6:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vdintr_146(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (hn(var_I, var_v6, var_vdleaf, pblc(var_I, s(s(z())), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, ch(var_I, var_vm, var_sm))), var_sk))), var_p1))))) = var_vdintr[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v6:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vdleaf_150(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (hn(var_I, var_v6, var_vdleaf, pblc(var_I, s(s(z())), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, ch(var_I, var_vm, var_sm))), var_sk))), var_p1))))) = var_vdleaf[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v6:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vdpblc_151(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (hn(var_I, var_v6, var_vdleaf, pblc(var_I, s(s(z())), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, ch(var_I, var_vm, var_sm))), var_sk))), var_p1))))) = var_vdpblc[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v6:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vm_152(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (hn(var_I, var_v6, var_vdleaf, pblc(var_I, s(s(z())), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, ch(var_I, var_vm, var_sm))), var_sk))), var_p1))))) = var_vm[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v7:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_I_267(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (var_p1, hn(var_I, var_v7, var_vdleaf, pblc(var_I, s(s(s(z()))), var_vdpblc, (var_sm, ch(var_I, var_vk, ch(var_I, var_vk, ch(var_I, var_vk, var_sk))))))))))) = var_I[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v7:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p1_272(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (var_p1, hn(var_I, var_v7, var_vdleaf, pblc(var_I, s(s(s(z()))), var_vdpblc, (var_sm, ch(var_I, var_vk, ch(var_I, var_vk, ch(var_I, var_vk, var_sk))))))))))) = var_p1[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v7:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p2_270(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (var_p1, hn(var_I, var_v7, var_vdleaf, pblc(var_I, s(s(s(z()))), var_vdpblc, (var_sm, ch(var_I, var_vk, ch(var_I, var_vk, ch(var_I, var_vk, var_sk))))))))))) = var_p2[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v7:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sk_278(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (var_p1, hn(var_I, var_v7, var_vdleaf, pblc(var_I, s(s(s(z()))), var_vdpblc, (var_sm, ch(var_I, var_vk, ch(var_I, var_vk, ch(var_I, var_vk, var_sk))))))))))) = var_sk[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v7:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sm_276(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (var_p1, hn(var_I, var_v7, var_vdleaf, pblc(var_I, s(s(s(z()))), var_vdpblc, (var_sm, ch(var_I, var_vk, ch(var_I, var_vk, ch(var_I, var_vk, var_sk))))))))))) = var_sm[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v7:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_v1_268(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (var_p1, hn(var_I, var_v7, var_vdleaf, pblc(var_I, s(s(s(z()))), var_vdpblc, (var_sm, ch(var_I, var_vk, ch(var_I, var_vk, ch(var_I, var_vk, var_sk))))))))))) = var_v1[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v7:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_v3_271(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (var_p1, hn(var_I, var_v7, var_vdleaf, pblc(var_I, s(s(s(z()))), var_vdpblc, (var_sm, ch(var_I, var_vk, ch(var_I, var_vk, ch(var_I, var_vk, var_sk))))))))))) = var_v3[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v7:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_v7_273(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (var_p1, hn(var_I, var_v7, var_vdleaf, pblc(var_I, s(s(s(z()))), var_vdpblc, (var_sm, ch(var_I, var_vk, ch(var_I, var_vk, ch(var_I, var_vk, var_sk))))))))))) = var_v7[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v7:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vdintr_269(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (var_p1, hn(var_I, var_v7, var_vdleaf, pblc(var_I, s(s(s(z()))), var_vdpblc, (var_sm, ch(var_I, var_vk, ch(var_I, var_vk, ch(var_I, var_vk, var_sk))))))))))) = var_vdintr[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v7:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vdleaf_274(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (var_p1, hn(var_I, var_v7, var_vdleaf, pblc(var_I, s(s(s(z()))), var_vdpblc, (var_sm, ch(var_I, var_vk, ch(var_I, var_vk, ch(var_I, var_vk, var_sk))))))))))) = var_vdleaf[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v7:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vdpblc_275(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (var_p1, hn(var_I, var_v7, var_vdleaf, pblc(var_I, s(s(s(z()))), var_vdpblc, (var_sm, ch(var_I, var_vk, ch(var_I, var_vk, ch(var_I, var_vk, var_sk))))))))))) = var_vdpblc[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v7:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vk_277(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (var_p1, hn(var_I, var_v7, var_vdleaf, pblc(var_I, s(s(s(z()))), var_vdpblc, (var_sm, ch(var_I, var_vk, ch(var_I, var_vk, ch(var_I, var_vk, var_sk))))))))))) = var_vk[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v7:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_I_231(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (var_p1, hn(var_I, var_v7, var_vdleaf, pblc(var_I, s(s(s(z()))), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, var_sm)), ch(var_I, var_vk, var_sk))))))))) = var_I[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v7:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_I_249(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (var_p1, hn(var_I, var_v7, var_vdleaf, pblc(var_I, s(s(s(z()))), var_vdpblc, (ch(var_I, var_vm, var_sm), ch(var_I, var_vk, ch(var_I, var_vk, var_sk)))))))))) = var_I[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v7:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p1_236(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (var_p1, hn(var_I, var_v7, var_vdleaf, pblc(var_I, s(s(s(z()))), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, var_sm)), ch(var_I, var_vk, var_sk))))))))) = var_p1[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v7:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p1_254(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (var_p1, hn(var_I, var_v7, var_vdleaf, pblc(var_I, s(s(s(z()))), var_vdpblc, (ch(var_I, var_vm, var_sm), ch(var_I, var_vk, ch(var_I, var_vk, var_sk)))))))))) = var_p1[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v7:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p2_234(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (var_p1, hn(var_I, var_v7, var_vdleaf, pblc(var_I, s(s(s(z()))), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, var_sm)), ch(var_I, var_vk, var_sk))))))))) = var_p2[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v7:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p2_252(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (var_p1, hn(var_I, var_v7, var_vdleaf, pblc(var_I, s(s(s(z()))), var_vdpblc, (ch(var_I, var_vm, var_sm), ch(var_I, var_vk, ch(var_I, var_vk, var_sk)))))))))) = var_p2[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v7:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sk_243(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (var_p1, hn(var_I, var_v7, var_vdleaf, pblc(var_I, s(s(s(z()))), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, var_sm)), ch(var_I, var_vk, var_sk))))))))) = var_sk[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v7:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sk_261(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (var_p1, hn(var_I, var_v7, var_vdleaf, pblc(var_I, s(s(s(z()))), var_vdpblc, (ch(var_I, var_vm, var_sm), ch(var_I, var_vk, ch(var_I, var_vk, var_sk)))))))))) = var_sk[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v7:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sm_241(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (var_p1, hn(var_I, var_v7, var_vdleaf, pblc(var_I, s(s(s(z()))), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, var_sm)), ch(var_I, var_vk, var_sk))))))))) = var_sm[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v7:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sm_259(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (var_p1, hn(var_I, var_v7, var_vdleaf, pblc(var_I, s(s(s(z()))), var_vdpblc, (ch(var_I, var_vm, var_sm), ch(var_I, var_vk, ch(var_I, var_vk, var_sk)))))))))) = var_sm[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v7:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_v1_232(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (var_p1, hn(var_I, var_v7, var_vdleaf, pblc(var_I, s(s(s(z()))), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, var_sm)), ch(var_I, var_vk, var_sk))))))))) = var_v1[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v7:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_v1_250(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (var_p1, hn(var_I, var_v7, var_vdleaf, pblc(var_I, s(s(s(z()))), var_vdpblc, (ch(var_I, var_vm, var_sm), ch(var_I, var_vk, ch(var_I, var_vk, var_sk)))))))))) = var_v1[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v7:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_v3_235(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (var_p1, hn(var_I, var_v7, var_vdleaf, pblc(var_I, s(s(s(z()))), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, var_sm)), ch(var_I, var_vk, var_sk))))))))) = var_v3[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v7:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_v3_253(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (var_p1, hn(var_I, var_v7, var_vdleaf, pblc(var_I, s(s(s(z()))), var_vdpblc, (ch(var_I, var_vm, var_sm), ch(var_I, var_vk, ch(var_I, var_vk, var_sk)))))))))) = var_v3[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v7:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_v7_237(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (var_p1, hn(var_I, var_v7, var_vdleaf, pblc(var_I, s(s(s(z()))), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, var_sm)), ch(var_I, var_vk, var_sk))))))))) = var_v7[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v7:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_v7_255(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (var_p1, hn(var_I, var_v7, var_vdleaf, pblc(var_I, s(s(s(z()))), var_vdpblc, (ch(var_I, var_vm, var_sm), ch(var_I, var_vk, ch(var_I, var_vk, var_sk)))))))))) = var_v7[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v7:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vdintr_233(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (var_p1, hn(var_I, var_v7, var_vdleaf, pblc(var_I, s(s(s(z()))), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, var_sm)), ch(var_I, var_vk, var_sk))))))))) = var_vdintr[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v7:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vdintr_251(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (var_p1, hn(var_I, var_v7, var_vdleaf, pblc(var_I, s(s(s(z()))), var_vdpblc, (ch(var_I, var_vm, var_sm), ch(var_I, var_vk, ch(var_I, var_vk, var_sk)))))))))) = var_vdintr[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v7:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vdleaf_238(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (var_p1, hn(var_I, var_v7, var_vdleaf, pblc(var_I, s(s(s(z()))), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, var_sm)), ch(var_I, var_vk, var_sk))))))))) = var_vdleaf[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v7:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vdleaf_256(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (var_p1, hn(var_I, var_v7, var_vdleaf, pblc(var_I, s(s(s(z()))), var_vdpblc, (ch(var_I, var_vm, var_sm), ch(var_I, var_vk, ch(var_I, var_vk, var_sk)))))))))) = var_vdleaf[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v7:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vdpblc_239(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (var_p1, hn(var_I, var_v7, var_vdleaf, pblc(var_I, s(s(s(z()))), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, var_sm)), ch(var_I, var_vk, var_sk))))))))) = var_vdpblc[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v7:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vdpblc_257(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (var_p1, hn(var_I, var_v7, var_vdleaf, pblc(var_I, s(s(s(z()))), var_vdpblc, (ch(var_I, var_vm, var_sm), ch(var_I, var_vk, ch(var_I, var_vk, var_sk)))))))))) = var_vdpblc[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v7:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vk_242(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (var_p1, hn(var_I, var_v7, var_vdleaf, pblc(var_I, s(s(s(z()))), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, var_sm)), ch(var_I, var_vk, var_sk))))))))) = var_vk[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v7:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vk_260(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (var_p1, hn(var_I, var_v7, var_vdleaf, pblc(var_I, s(s(s(z()))), var_vdpblc, (ch(var_I, var_vm, var_sm), ch(var_I, var_vk, ch(var_I, var_vk, var_sk)))))))))) = var_vk[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v7:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vm_240(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (var_p1, hn(var_I, var_v7, var_vdleaf, pblc(var_I, s(s(s(z()))), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, var_sm)), ch(var_I, var_vk, var_sk))))))))) = var_vm[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v7:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vk:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vm_258(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (var_p1, hn(var_I, var_v7, var_vdleaf, pblc(var_I, s(s(s(z()))), var_vdpblc, (ch(var_I, var_vm, var_sm), ch(var_I, var_vk, ch(var_I, var_vk, var_sk)))))))))) = var_vm[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v7:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_I_214(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (var_p1, hn(var_I, var_v7, var_vdleaf, pblc(var_I, s(s(s(z()))), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, ch(var_I, var_vm, var_sm))), var_sk)))))))) = var_I[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v7:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p1_219(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (var_p1, hn(var_I, var_v7, var_vdleaf, pblc(var_I, s(s(s(z()))), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, ch(var_I, var_vm, var_sm))), var_sk)))))))) = var_p1[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v7:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_p2_217(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (var_p1, hn(var_I, var_v7, var_vdleaf, pblc(var_I, s(s(s(z()))), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, ch(var_I, var_vm, var_sm))), var_sk)))))))) = var_p2[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v7:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sk_225(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (var_p1, hn(var_I, var_v7, var_vdleaf, pblc(var_I, s(s(s(z()))), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, ch(var_I, var_vm, var_sm))), var_sk)))))))) = var_sk[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v7:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sm_224(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (var_p1, hn(var_I, var_v7, var_vdleaf, pblc(var_I, s(s(s(z()))), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, ch(var_I, var_vm, var_sm))), var_sk)))))))) = var_sm[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v7:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_v1_215(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (var_p1, hn(var_I, var_v7, var_vdleaf, pblc(var_I, s(s(s(z()))), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, ch(var_I, var_vm, var_sm))), var_sk)))))))) = var_v1[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v7:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_v3_218(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (var_p1, hn(var_I, var_v7, var_vdleaf, pblc(var_I, s(s(s(z()))), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, ch(var_I, var_vm, var_sm))), var_sk)))))))) = var_v3[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v7:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_v7_220(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (var_p1, hn(var_I, var_v7, var_vdleaf, pblc(var_I, s(s(s(z()))), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, ch(var_I, var_vm, var_sm))), var_sk)))))))) = var_v7[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v7:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vdintr_216(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (var_p1, hn(var_I, var_v7, var_vdleaf, pblc(var_I, s(s(s(z()))), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, ch(var_I, var_vm, var_sm))), var_sk)))))))) = var_vdintr[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v7:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vdleaf_221(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (var_p1, hn(var_I, var_v7, var_vdleaf, pblc(var_I, s(s(s(z()))), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, ch(var_I, var_vm, var_sm))), var_sk)))))))) = var_vdleaf[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v7:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vdpblc_222(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (var_p1, hn(var_I, var_v7, var_vdleaf, pblc(var_I, s(s(s(z()))), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, ch(var_I, var_vm, var_sm))), var_sk)))))))) = var_vdpblc[private].
+reduc forall var_v1:bitstring, var_v3:bitstring, var_v7:bitstring, var_vdintr:bitstring, var_vdleaf:bitstring, var_vdpblc:bitstring, var_vm:bitstring, var_I:bitstring, var_p1:bitstring, var_p2:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_vm_223(hn(var_I, var_v1, var_vdintr, (var_p2, hn(var_I, var_v3, var_vdintr, (var_p1, hn(var_I, var_v7, var_vdleaf, pblc(var_I, s(s(s(z()))), var_vdpblc, (ch(var_I, var_vm, ch(var_I, var_vm, ch(var_I, var_vm, var_sm))), var_sk)))))))) = var_vm[private].
+reduc forall var_vsign:bitstring; g_var_vsign_0((var_vsign, z())) = var_vsign[private].
+reduc forall var_vsign:bitstring; g_var_vsign_1((var_vsign, s(z()))) = var_vsign[private].
+reduc forall var_vsign:bitstring; g_var_vsign_2((var_vsign, s(s(z())))) = var_vsign[private].
+reduc forall var_vsign:bitstring; g_var_vsign_3((var_vsign, s(s(s(z()))))) = var_vsign[private].
+
+(* Events *)
+event eAccept(bitstring, bitstring, bitstring).
+event eDistinctFact(bitstring, bitstring).
+event eKeyGen(bitstring).
+event eRevealSeed(bitstring).
+event eSign(bitstring, bitstring, bitstring).
+
+(* Tables *)
+table tRoot(bitstring, bitstring).
+table tSk(bitstring, bitstring).
+table tSt(bitstring, bitstring, bitstring).
+
+(* Restrictions *)
+
+(* DistinctFact *)
+
+restriction rid_i:bitstring, rid_j:bitstring, x:bitstring, i:time,
+            j:time;
+  event(eDistinctFact( rid_i, x ))@i && event(eDistinctFact( rid_j, x ))@j
+  ==> rid_i = rid_j.
+
+(* Queries *)
+
+(* LS1_q1_a0 *)
+
+query I:bitstring, k:time, r:time, sign_time:time;
+  event(eAccept( I, s(z), z ))@k
+  ==> event(eSign( I, s(z), z ))@sign_time || event(eRevealSeed( I ))@r.
+
+(* Processes *)
+
+let rKeyGen =
+        new stR_St: bitstring;
+        new I: bitstring;
+        new sd: bitstring;
+        event eKeyGen(I);
+        insert tSk(I, sd);
+        insert tSt(stR_St, I, z());
+        insert tRoot(I,
+                     hn(I, v1, vdintr, (hn(I, v2, vdintr, (hn(I, v4, vdleaf, pblc(I, z(), vdpblc, (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, z(), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, z(), vk))))))), hn(I, v5, vdleaf, pblc(I, s(z()), vdpblc, (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, s(z()), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, s(z()), vk))))))))), hn(I, v3, vdintr, (hn(I, v6, vdleaf, pblc(I, s(s(z())), vdpblc, (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, s(s(z())), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, s(s(z())), vk))))))), hn(I, v7, vdleaf, pblc(I, s(s(s(z()))), vdpblc, (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, s(s(s(z()))), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, s(s(s(z()))), vk))))))))))));
+        out(publicChannel, (I, hn(I, v1, vdintr, (hn(I, v2, vdintr, (hn(I, v4, vdleaf, pblc(I, z(), vdpblc, (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, z(), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, z(), vk))))))), hn(I, v5, vdleaf, pblc(I, s(z()), vdpblc, (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, s(z()), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, s(z()), vk))))))))), hn(I, v3, vdintr, (hn(I, v6, vdleaf, pblc(I, s(s(z())), vdpblc, (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, s(s(z())), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, s(s(z())), vk))))))), hn(I, v7, vdleaf, pblc(I, s(s(s(z()))), vdpblc, (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, s(s(s(z()))), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, s(s(s(z()))), vk))))))))))))).
+
+let rSign_q0_a0 =
+        get tSt(stL_St, I, helperVar0) in
+        get tSk(=I, sd) in
+        in(publicChannel, helperVar1: bitstring);
+        let (=vsign) = g_var_vsign_0(helperVar1) in
+        new rid_rSign_q0_a0: bitstring;
+        new stR_St: bitstring;
+        event eDistinctFact(rid_rSign_q0_a0, (stL_St, (I, z())));
+        event eSign(I, z(), z());
+        insert tSt(stR_St, I, s(z()));
+        out(publicChannel, (I, (z(), (z(), (prf(sd, z(), vm), (ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, z(), vk)))), (hn(I, v5, vdleaf, pblc(I, s(z()), vdpblc, (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, s(z()), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, s(z()), vk))))))), hn(I, v3, vdintr, (hn(I, v6, vdleaf, pblc(I, s(s(z())), vdpblc, (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, s(s(z())), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, s(s(z())), vk))))))), hn(I, v7, vdleaf, pblc(I, s(s(s(z()))), vdpblc, (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, s(s(s(z()))), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, s(s(s(z()))), vk)))))))))))))))).
+
+let rSign_q0_a1 =
+        get tSt(stL_St, I, helperVar0) in
+        get tSk(=I, sd) in
+        in(publicChannel, helperVar1: bitstring);
+        let (=vsign) = g_var_vsign_1(helperVar1) in
+        new rid_rSign_q0_a1: bitstring;
+        new stR_St: bitstring;
+        event eDistinctFact(rid_rSign_q0_a1, (stL_St, (I, z())));
+        event eSign(I, z(), s(z()));
+        insert tSt(stR_St, I, s(z()));
+        out(publicChannel, (I, (z(), (s(z()), (ch(I, vm, prf(sd, z(), vm)), (ch(I, vk, ch(I, vk, prf(sd, z(), vk))), (hn(I, v5, vdleaf, pblc(I, s(z()), vdpblc, (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, s(z()), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, s(z()), vk))))))), hn(I, v3, vdintr, (hn(I, v6, vdleaf, pblc(I, s(s(z())), vdpblc, (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, s(s(z())), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, s(s(z())), vk))))))), hn(I, v7, vdleaf, pblc(I, s(s(s(z()))), vdpblc, (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, s(s(s(z()))), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, s(s(s(z()))), vk)))))))))))))))).
+
+let rSign_q0_a2 =
+        get tSt(stL_St, I, helperVar0) in
+        get tSk(=I, sd) in
+        in(publicChannel, helperVar1: bitstring);
+        let (=vsign) = g_var_vsign_2(helperVar1) in
+        new rid_rSign_q0_a2: bitstring;
+        new stR_St: bitstring;
+        event eDistinctFact(rid_rSign_q0_a2, (stL_St, (I, z())));
+        event eSign(I, z(), s(s(z())));
+        insert tSt(stR_St, I, s(z()));
+        out(publicChannel, (I, (z(), (s(s(z())), (ch(I, vm, ch(I, vm, prf(sd, z(), vm))), (ch(I, vk, prf(sd, z(), vk)), (hn(I, v5, vdleaf, pblc(I, s(z()), vdpblc, (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, s(z()), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, s(z()), vk))))))), hn(I, v3, vdintr, (hn(I, v6, vdleaf, pblc(I, s(s(z())), vdpblc, (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, s(s(z())), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, s(s(z())), vk))))))), hn(I, v7, vdleaf, pblc(I, s(s(s(z()))), vdpblc, (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, s(s(s(z()))), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, s(s(s(z()))), vk)))))))))))))))).
+
+let rSign_q0_a3 =
+        get tSt(stL_St, I, helperVar0) in
+        get tSk(=I, sd) in
+        in(publicChannel, helperVar1: bitstring);
+        let (=vsign) = g_var_vsign_3(helperVar1) in
+        new rid_rSign_q0_a3: bitstring;
+        new stR_St: bitstring;
+        event eDistinctFact(rid_rSign_q0_a3, (stL_St, (I, z())));
+        event eSign(I, z(), s(s(s(z()))));
+        insert tSt(stR_St, I, s(z()));
+        out(publicChannel, (I, (z(), (s(s(s(z()))), (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, z(), vm)))), (prf(sd, z(), vk), (hn(I, v5, vdleaf, pblc(I, s(z()), vdpblc, (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, s(z()), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, s(z()), vk))))))), hn(I, v3, vdintr, (hn(I, v6, vdleaf, pblc(I, s(s(z())), vdpblc, (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, s(s(z())), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, s(s(z())), vk))))))), hn(I, v7, vdleaf, pblc(I, s(s(s(z()))), vdpblc, (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, s(s(s(z()))), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, s(s(s(z()))), vk)))))))))))))))).
+
+let rSign_q1_a0 =
+        get tSt(stL_St, I, helperVar0) in
+        get tSk(=I, sd) in
+        in(publicChannel, helperVar1: bitstring);
+        let (=vsign) = g_var_vsign_0(helperVar1) in
+        new rid_rSign_q1_a0: bitstring;
+        new stR_St: bitstring;
+        event eDistinctFact(rid_rSign_q1_a0, (stL_St, (I, s(z()))));
+        event eSign(I, s(z()), z());
+        insert tSt(stR_St, I, s(s(z())));
+        out(publicChannel, (I, (s(z()), (z(), (prf(sd, s(z()), vm), (ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, s(z()), vk)))), (hn(I, v4, vdleaf, pblc(I, z(), vdpblc, (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, z(), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, z(), vk))))))), hn(I, v3, vdintr, (hn(I, v6, vdleaf, pblc(I, s(s(z())), vdpblc, (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, s(s(z())), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, s(s(z())), vk))))))), hn(I, v7, vdleaf, pblc(I, s(s(s(z()))), vdpblc, (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, s(s(s(z()))), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, s(s(s(z()))), vk)))))))))))))))).
+
+let rSign_q1_a1 =
+        get tSt(stL_St, I, helperVar0) in
+        get tSk(=I, sd) in
+        in(publicChannel, helperVar1: bitstring);
+        let (=vsign) = g_var_vsign_1(helperVar1) in
+        new rid_rSign_q1_a1: bitstring;
+        new stR_St: bitstring;
+        event eDistinctFact(rid_rSign_q1_a1, (stL_St, (I, s(z()))));
+        event eSign(I, s(z()), s(z()));
+        insert tSt(stR_St, I, s(s(z())));
+        out(publicChannel, (I, (s(z()), (s(z()), (ch(I, vm, prf(sd, s(z()), vm)), (ch(I, vk, ch(I, vk, prf(sd, s(z()), vk))), (hn(I, v4, vdleaf, pblc(I, z(), vdpblc, (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, z(), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, z(), vk))))))), hn(I, v3, vdintr, (hn(I, v6, vdleaf, pblc(I, s(s(z())), vdpblc, (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, s(s(z())), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, s(s(z())), vk))))))), hn(I, v7, vdleaf, pblc(I, s(s(s(z()))), vdpblc, (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, s(s(s(z()))), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, s(s(s(z()))), vk)))))))))))))))).
+
+let rSign_q1_a2 =
+        get tSt(stL_St, I, helperVar0) in
+        get tSk(=I, sd) in
+        in(publicChannel, helperVar1: bitstring);
+        let (=vsign) = g_var_vsign_2(helperVar1) in
+        new rid_rSign_q1_a2: bitstring;
+        new stR_St: bitstring;
+        event eDistinctFact(rid_rSign_q1_a2, (stL_St, (I, s(z()))));
+        event eSign(I, s(z()), s(s(z())));
+        insert tSt(stR_St, I, s(s(z())));
+        out(publicChannel, (I, (s(z()), (s(s(z())), (ch(I, vm, ch(I, vm, prf(sd, s(z()), vm))), (ch(I, vk, prf(sd, s(z()), vk)), (hn(I, v4, vdleaf, pblc(I, z(), vdpblc, (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, z(), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, z(), vk))))))), hn(I, v3, vdintr, (hn(I, v6, vdleaf, pblc(I, s(s(z())), vdpblc, (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, s(s(z())), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, s(s(z())), vk))))))), hn(I, v7, vdleaf, pblc(I, s(s(s(z()))), vdpblc, (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, s(s(s(z()))), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, s(s(s(z()))), vk)))))))))))))))).
+
+let rSign_q1_a3 =
+        get tSt(stL_St, I, helperVar0) in
+        get tSk(=I, sd) in
+        in(publicChannel, helperVar1: bitstring);
+        let (=vsign) = g_var_vsign_3(helperVar1) in
+        new rid_rSign_q1_a3: bitstring;
+        new stR_St: bitstring;
+        event eDistinctFact(rid_rSign_q1_a3, (stL_St, (I, s(z()))));
+        event eSign(I, s(z()), s(s(s(z()))));
+        insert tSt(stR_St, I, s(s(z())));
+        out(publicChannel, (I, (s(z()), (s(s(s(z()))), (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, s(z()), vm)))), (prf(sd, s(z()), vk), (hn(I, v4, vdleaf, pblc(I, z(), vdpblc, (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, z(), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, z(), vk))))))), hn(I, v3, vdintr, (hn(I, v6, vdleaf, pblc(I, s(s(z())), vdpblc, (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, s(s(z())), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, s(s(z())), vk))))))), hn(I, v7, vdleaf, pblc(I, s(s(s(z()))), vdpblc, (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, s(s(s(z()))), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, s(s(s(z()))), vk)))))))))))))))).
+
+let rSign_q2_a0 =
+        get tSt(stL_St, I, helperVar0) in
+        get tSk(=I, sd) in
+        in(publicChannel, helperVar1: bitstring);
+        let (=vsign) = g_var_vsign_0(helperVar1) in
+        new rid_rSign_q2_a0: bitstring;
+        new stR_St: bitstring;
+        event eDistinctFact(rid_rSign_q2_a0, (stL_St, (I, s(s(z())))));
+        event eSign(I, s(s(z())), z());
+        insert tSt(stR_St, I, s(s(s(z()))));
+        out(publicChannel, (I, (s(s(z())), (z(), (prf(sd, s(s(z())), vm), (ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, s(s(z())), vk)))), (hn(I, v7, vdleaf, pblc(I, s(s(s(z()))), vdpblc, (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, s(s(s(z()))), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, s(s(s(z()))), vk))))))), hn(I, v2, vdintr, (hn(I, v4, vdleaf, pblc(I, z(), vdpblc, (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, z(), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, z(), vk))))))), hn(I, v5, vdleaf, pblc(I, s(z()), vdpblc, (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, s(z()), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, s(z()), vk)))))))))))))))).
+
+let rSign_q2_a1 =
+        get tSt(stL_St, I, helperVar0) in
+        get tSk(=I, sd) in
+        in(publicChannel, helperVar1: bitstring);
+        let (=vsign) = g_var_vsign_1(helperVar1) in
+        new rid_rSign_q2_a1: bitstring;
+        new stR_St: bitstring;
+        event eDistinctFact(rid_rSign_q2_a1, (stL_St, (I, s(s(z())))));
+        event eSign(I, s(s(z())), s(z()));
+        insert tSt(stR_St, I, s(s(s(z()))));
+        out(publicChannel, (I, (s(s(z())), (s(z()), (ch(I, vm, prf(sd, s(s(z())), vm)), (ch(I, vk, ch(I, vk, prf(sd, s(s(z())), vk))), (hn(I, v7, vdleaf, pblc(I, s(s(s(z()))), vdpblc, (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, s(s(s(z()))), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, s(s(s(z()))), vk))))))), hn(I, v2, vdintr, (hn(I, v4, vdleaf, pblc(I, z(), vdpblc, (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, z(), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, z(), vk))))))), hn(I, v5, vdleaf, pblc(I, s(z()), vdpblc, (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, s(z()), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, s(z()), vk)))))))))))))))).
+
+let rSign_q2_a2 =
+        get tSt(stL_St, I, helperVar0) in
+        get tSk(=I, sd) in
+        in(publicChannel, helperVar1: bitstring);
+        let (=vsign) = g_var_vsign_2(helperVar1) in
+        new rid_rSign_q2_a2: bitstring;
+        new stR_St: bitstring;
+        event eDistinctFact(rid_rSign_q2_a2, (stL_St, (I, s(s(z())))));
+        event eSign(I, s(s(z())), s(s(z())));
+        insert tSt(stR_St, I, s(s(s(z()))));
+        out(publicChannel, (I, (s(s(z())), (s(s(z())), (ch(I, vm, ch(I, vm, prf(sd, s(s(z())), vm))), (ch(I, vk, prf(sd, s(s(z())), vk)), (hn(I, v7, vdleaf, pblc(I, s(s(s(z()))), vdpblc, (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, s(s(s(z()))), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, s(s(s(z()))), vk))))))), hn(I, v2, vdintr, (hn(I, v4, vdleaf, pblc(I, z(), vdpblc, (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, z(), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, z(), vk))))))), hn(I, v5, vdleaf, pblc(I, s(z()), vdpblc, (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, s(z()), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, s(z()), vk)))))))))))))))).
+
+let rSign_q2_a3 =
+        get tSt(stL_St, I, helperVar0) in
+        get tSk(=I, sd) in
+        in(publicChannel, helperVar1: bitstring);
+        let (=vsign) = g_var_vsign_3(helperVar1) in
+        new rid_rSign_q2_a3: bitstring;
+        new stR_St: bitstring;
+        event eDistinctFact(rid_rSign_q2_a3, (stL_St, (I, s(s(z())))));
+        event eSign(I, s(s(z())), s(s(s(z()))));
+        insert tSt(stR_St, I, s(s(s(z()))));
+        out(publicChannel, (I, (s(s(z())), (s(s(s(z()))), (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, s(s(z())), vm)))), (prf(sd, s(s(z())), vk), (hn(I, v7, vdleaf, pblc(I, s(s(s(z()))), vdpblc, (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, s(s(s(z()))), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, s(s(s(z()))), vk))))))), hn(I, v2, vdintr, (hn(I, v4, vdleaf, pblc(I, z(), vdpblc, (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, z(), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, z(), vk))))))), hn(I, v5, vdleaf, pblc(I, s(z()), vdpblc, (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, s(z()), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, s(z()), vk)))))))))))))))).
+
+let rSign_q3_a0 =
+        get tSt(stL_St, I, helperVar0) in
+        get tSk(=I, sd) in
+        in(publicChannel, helperVar1: bitstring);
+        let (=vsign) = g_var_vsign_0(helperVar1) in
+        new rid_rSign_q3_a0: bitstring;
+        new stR_St: bitstring;
+        event eDistinctFact(rid_rSign_q3_a0, (stL_St, (I, s(s(s(z()))))));
+        event eSign(I, s(s(s(z()))), z());
+        insert tSt(stR_St, I, s(s(s(s(z())))));
+        out(publicChannel, (I, (s(s(s(z()))), (z(), (prf(sd, s(s(s(z()))), vm), (ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, s(s(s(z()))), vk)))), (hn(I, v6, vdleaf, pblc(I, s(s(z())), vdpblc, (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, s(s(z())), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, s(s(z())), vk))))))), hn(I, v2, vdintr, (hn(I, v4, vdleaf, pblc(I, z(), vdpblc, (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, z(), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, z(), vk))))))), hn(I, v5, vdleaf, pblc(I, s(z()), vdpblc, (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, s(z()), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, s(z()), vk)))))))))))))))).
+
+let rSign_q3_a1 =
+        get tSt(stL_St, I, helperVar0) in
+        get tSk(=I, sd) in
+        in(publicChannel, helperVar1: bitstring);
+        let (=vsign) = g_var_vsign_1(helperVar1) in
+        new rid_rSign_q3_a1: bitstring;
+        new stR_St: bitstring;
+        event eDistinctFact(rid_rSign_q3_a1, (stL_St, (I, s(s(s(z()))))));
+        event eSign(I, s(s(s(z()))), s(z()));
+        insert tSt(stR_St, I, s(s(s(s(z())))));
+        out(publicChannel, (I, (s(s(s(z()))), (s(z()), (ch(I, vm, prf(sd, s(s(s(z()))), vm)), (ch(I, vk, ch(I, vk, prf(sd, s(s(s(z()))), vk))), (hn(I, v6, vdleaf, pblc(I, s(s(z())), vdpblc, (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, s(s(z())), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, s(s(z())), vk))))))), hn(I, v2, vdintr, (hn(I, v4, vdleaf, pblc(I, z(), vdpblc, (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, z(), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, z(), vk))))))), hn(I, v5, vdleaf, pblc(I, s(z()), vdpblc, (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, s(z()), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, s(z()), vk)))))))))))))))).
+
+let rSign_q3_a2 =
+        get tSt(stL_St, I, helperVar0) in
+        get tSk(=I, sd) in
+        in(publicChannel, helperVar1: bitstring);
+        let (=vsign) = g_var_vsign_2(helperVar1) in
+        new rid_rSign_q3_a2: bitstring;
+        new stR_St: bitstring;
+        event eDistinctFact(rid_rSign_q3_a2, (stL_St, (I, s(s(s(z()))))));
+        event eSign(I, s(s(s(z()))), s(s(z())));
+        insert tSt(stR_St, I, s(s(s(s(z())))));
+        out(publicChannel, (I, (s(s(s(z()))), (s(s(z())), (ch(I, vm, ch(I, vm, prf(sd, s(s(s(z()))), vm))), (ch(I, vk, prf(sd, s(s(s(z()))), vk)), (hn(I, v6, vdleaf, pblc(I, s(s(z())), vdpblc, (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, s(s(z())), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, s(s(z())), vk))))))), hn(I, v2, vdintr, (hn(I, v4, vdleaf, pblc(I, z(), vdpblc, (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, z(), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, z(), vk))))))), hn(I, v5, vdleaf, pblc(I, s(z()), vdpblc, (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, s(z()), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, s(z()), vk)))))))))))))))).
+
+let rSign_q3_a3 =
+        get tSt(stL_St, I, helperVar0) in
+        get tSk(=I, sd) in
+        in(publicChannel, helperVar1: bitstring);
+        let (=vsign) = g_var_vsign_3(helperVar1) in
+        new rid_rSign_q3_a3: bitstring;
+        new stR_St: bitstring;
+        event eDistinctFact(rid_rSign_q3_a3, (stL_St, (I, s(s(s(z()))))));
+        event eSign(I, s(s(s(z()))), s(s(s(z()))));
+        insert tSt(stR_St, I, s(s(s(s(z())))));
+        out(publicChannel, (I, (s(s(s(z()))), (s(s(s(z()))), (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, s(s(s(z()))), vm)))), (prf(sd, s(s(s(z()))), vk), (hn(I, v6, vdleaf, pblc(I, s(s(z())), vdpblc, (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, s(s(z())), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, s(s(z())), vk))))))), hn(I, v2, vdintr, (hn(I, v4, vdleaf, pblc(I, z(), vdpblc, (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, z(), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, z(), vk))))))), hn(I, v5, vdleaf, pblc(I, s(z()), vdpblc, (ch(I, vm, ch(I, vm, ch(I, vm, prf(sd, s(z()), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sd, s(z()), vk)))))))))))))))).
+
+let rRevealSeed =
+        get tSk(I, sd) in
+        event eRevealSeed(I);
+        out(publicChannel, sd).
+
+let rVerify_q0_a0 =
+        get tRoot(I, helperVar0) in
+        let (=I) = g_var_I_4(helperVar0) in
+        let (=v1) = g_var_v1_5(helperVar0) in
+        let (=vdintr) = g_var_vdintr_6(helperVar0) in
+        let (=v2) = g_var_v2_7(helperVar0) in
+        let (=v4) = g_var_v4_8(helperVar0) in
+        let (=vdleaf) = g_var_vdleaf_9(helperVar0) in
+        let (=vdpblc) = g_var_vdpblc_10(helperVar0) in
+        let (=vm) = g_var_vm_11(helperVar0) in
+        let sm = g_var_sm_12(helperVar0) in
+        let sk = g_var_sk_13(helperVar0) in
+        let p1 = g_var_p1_14(helperVar0) in
+        let p2 = g_var_p2_15(helperVar0) in
+        in(publicChannel, helperVar1: bitstring);
+        let (=I) = g_var_I_16(helperVar1) in
+        let (=sm) = g_var_sm_17(helperVar1) in
+        let (=sk) = g_var_sk_18(helperVar1) in
+        let (=p1) = g_var_p1_19(helperVar1) in
+        let (=p2) = g_var_p2_20(helperVar1) in
+        event eAccept(I, z(), z()).
+
+let rVerify_q0_a1 =
+        get tRoot(I, helperVar0) in
+        let (=I) = g_var_I_21(helperVar0) in
+        let (=v1) = g_var_v1_22(helperVar0) in
+        let (=vdintr) = g_var_vdintr_23(helperVar0) in
+        let (=v2) = g_var_v2_24(helperVar0) in
+        let (=v4) = g_var_v4_25(helperVar0) in
+        let (=vdleaf) = g_var_vdleaf_26(helperVar0) in
+        let (=vdpblc) = g_var_vdpblc_27(helperVar0) in
+        let (=vm) = g_var_vm_28(helperVar0) in
+        let sm = g_var_sm_29(helperVar0) in
+        let (=vk) = g_var_vk_30(helperVar0) in
+        let sk = g_var_sk_31(helperVar0) in
+        let p1 = g_var_p1_32(helperVar0) in
+        let p2 = g_var_p2_33(helperVar0) in
+        in(publicChannel, helperVar1: bitstring);
+        let (=I) = g_var_I_34(helperVar1) in
+        let (=sm) = g_var_sm_35(helperVar1) in
+        let (=sk) = g_var_sk_36(helperVar1) in
+        let (=p1) = g_var_p1_37(helperVar1) in
+        let (=p2) = g_var_p2_38(helperVar1) in
+        event eAccept(I, z(), s(z())).
+
+let rVerify_q0_a2 =
+        get tRoot(I, helperVar0) in
+        let (=I) = g_var_I_39(helperVar0) in
+        let (=v1) = g_var_v1_40(helperVar0) in
+        let (=vdintr) = g_var_vdintr_41(helperVar0) in
+        let (=v2) = g_var_v2_42(helperVar0) in
+        let (=v4) = g_var_v4_43(helperVar0) in
+        let (=vdleaf) = g_var_vdleaf_44(helperVar0) in
+        let (=vdpblc) = g_var_vdpblc_45(helperVar0) in
+        let (=vm) = g_var_vm_46(helperVar0) in
+        let sm = g_var_sm_47(helperVar0) in
+        let (=vk) = g_var_vk_48(helperVar0) in
+        let sk = g_var_sk_49(helperVar0) in
+        let p1 = g_var_p1_50(helperVar0) in
+        let p2 = g_var_p2_51(helperVar0) in
+        in(publicChannel, helperVar1: bitstring);
+        let (=I) = g_var_I_52(helperVar1) in
+        let (=sm) = g_var_sm_53(helperVar1) in
+        let (=sk) = g_var_sk_54(helperVar1) in
+        let (=p1) = g_var_p1_55(helperVar1) in
+        let (=p2) = g_var_p2_56(helperVar1) in
+        event eAccept(I, z(), s(s(z()))).
+
+let rVerify_q0_a3 =
+        get tRoot(I, helperVar0) in
+        let (=I) = g_var_I_57(helperVar0) in
+        let (=v1) = g_var_v1_58(helperVar0) in
+        let (=vdintr) = g_var_vdintr_59(helperVar0) in
+        let (=v2) = g_var_v2_60(helperVar0) in
+        let (=v4) = g_var_v4_61(helperVar0) in
+        let (=vdleaf) = g_var_vdleaf_62(helperVar0) in
+        let (=vdpblc) = g_var_vdpblc_63(helperVar0) in
+        let sm = g_var_sm_64(helperVar0) in
+        let (=vk) = g_var_vk_65(helperVar0) in
+        let sk = g_var_sk_66(helperVar0) in
+        let p1 = g_var_p1_67(helperVar0) in
+        let p2 = g_var_p2_68(helperVar0) in
+        in(publicChannel, helperVar1: bitstring);
+        let (=I) = g_var_I_69(helperVar1) in
+        let (=sm) = g_var_sm_70(helperVar1) in
+        let (=sk) = g_var_sk_71(helperVar1) in
+        let (=p1) = g_var_p1_72(helperVar1) in
+        let (=p2) = g_var_p2_73(helperVar1) in
+        event eAccept(I, z(), s(s(s(z())))).
+
+let rVerify_q1_a0 =
+        get tRoot(I, helperVar0) in
+        let (=I) = g_var_I_74(helperVar0) in
+        let (=v1) = g_var_v1_75(helperVar0) in
+        let (=vdintr) = g_var_vdintr_76(helperVar0) in
+        let (=v2) = g_var_v2_77(helperVar0) in
+        let p1 = g_var_p1_78(helperVar0) in
+        let (=v5) = g_var_v5_79(helperVar0) in
+        let (=vdleaf) = g_var_vdleaf_80(helperVar0) in
+        let (=vdpblc) = g_var_vdpblc_81(helperVar0) in
+        let (=vm) = g_var_vm_82(helperVar0) in
+        let sm = g_var_sm_83(helperVar0) in
+        let sk = g_var_sk_84(helperVar0) in
+        let p2 = g_var_p2_85(helperVar0) in
+        in(publicChannel, helperVar1: bitstring);
+        let (=I) = g_var_I_86(helperVar1) in
+        let (=sm) = g_var_sm_87(helperVar1) in
+        let (=sk) = g_var_sk_88(helperVar1) in
+        let (=p1) = g_var_p1_89(helperVar1) in
+        let (=p2) = g_var_p2_90(helperVar1) in
+        event eAccept(I, s(z()), z()).
+
+let rVerify_q1_a1 =
+        get tRoot(I, helperVar0) in
+        let (=I) = g_var_I_91(helperVar0) in
+        let (=v1) = g_var_v1_92(helperVar0) in
+        let (=vdintr) = g_var_vdintr_93(helperVar0) in
+        let (=v2) = g_var_v2_94(helperVar0) in
+        let p1 = g_var_p1_95(helperVar0) in
+        let (=v5) = g_var_v5_96(helperVar0) in
+        let (=vdleaf) = g_var_vdleaf_97(helperVar0) in
+        let (=vdpblc) = g_var_vdpblc_98(helperVar0) in
+        let (=vm) = g_var_vm_99(helperVar0) in
+        let sm = g_var_sm_100(helperVar0) in
+        let (=vk) = g_var_vk_101(helperVar0) in
+        let sk = g_var_sk_102(helperVar0) in
+        let p2 = g_var_p2_103(helperVar0) in
+        in(publicChannel, helperVar1: bitstring);
+        let (=I) = g_var_I_104(helperVar1) in
+        let (=sm) = g_var_sm_105(helperVar1) in
+        let (=sk) = g_var_sk_106(helperVar1) in
+        let (=p1) = g_var_p1_107(helperVar1) in
+        let (=p2) = g_var_p2_108(helperVar1) in
+        event eAccept(I, s(z()), s(z())).
+
+let rVerify_q1_a2 =
+        get tRoot(I, helperVar0) in
+        let (=I) = g_var_I_109(helperVar0) in
+        let (=v1) = g_var_v1_110(helperVar0) in
+        let (=vdintr) = g_var_vdintr_111(helperVar0) in
+        let (=v2) = g_var_v2_112(helperVar0) in
+        let p1 = g_var_p1_113(helperVar0) in
+        let (=v5) = g_var_v5_114(helperVar0) in
+        let (=vdleaf) = g_var_vdleaf_115(helperVar0) in
+        let (=vdpblc) = g_var_vdpblc_116(helperVar0) in
+        let (=vm) = g_var_vm_117(helperVar0) in
+        let sm = g_var_sm_118(helperVar0) in
+        let (=vk) = g_var_vk_119(helperVar0) in
+        let sk = g_var_sk_120(helperVar0) in
+        let p2 = g_var_p2_121(helperVar0) in
+        in(publicChannel, helperVar1: bitstring);
+        let (=I) = g_var_I_122(helperVar1) in
+        let (=sm) = g_var_sm_123(helperVar1) in
+        let (=sk) = g_var_sk_124(helperVar1) in
+        let (=p1) = g_var_p1_125(helperVar1) in
+        let (=p2) = g_var_p2_126(helperVar1) in
+        event eAccept(I, s(z()), s(s(z()))).
+
+let rVerify_q1_a3 =
+        get tRoot(I, helperVar0) in
+        let (=I) = g_var_I_127(helperVar0) in
+        let (=v1) = g_var_v1_128(helperVar0) in
+        let (=vdintr) = g_var_vdintr_129(helperVar0) in
+        let (=v2) = g_var_v2_130(helperVar0) in
+        let p1 = g_var_p1_131(helperVar0) in
+        let (=v5) = g_var_v5_132(helperVar0) in
+        let (=vdleaf) = g_var_vdleaf_133(helperVar0) in
+        let (=vdpblc) = g_var_vdpblc_134(helperVar0) in
+        let sm = g_var_sm_135(helperVar0) in
+        let (=vk) = g_var_vk_136(helperVar0) in
+        let sk = g_var_sk_137(helperVar0) in
+        let p2 = g_var_p2_138(helperVar0) in
+        in(publicChannel, helperVar1: bitstring);
+        let (=I) = g_var_I_139(helperVar1) in
+        let (=sm) = g_var_sm_140(helperVar1) in
+        let (=sk) = g_var_sk_141(helperVar1) in
+        let (=p1) = g_var_p1_142(helperVar1) in
+        let (=p2) = g_var_p2_143(helperVar1) in
+        event eAccept(I, s(z()), s(s(s(z())))).
+
+let rVerify_q2_a0 =
+        get tRoot(I, helperVar0) in
+        let (=I) = g_var_I_144(helperVar0) in
+        let (=v1) = g_var_v1_145(helperVar0) in
+        let (=vdintr) = g_var_vdintr_146(helperVar0) in
+        let p2 = g_var_p2_147(helperVar0) in
+        let (=v3) = g_var_v3_148(helperVar0) in
+        let (=v6) = g_var_v6_149(helperVar0) in
+        let (=vdleaf) = g_var_vdleaf_150(helperVar0) in
+        let (=vdpblc) = g_var_vdpblc_151(helperVar0) in
+        let (=vm) = g_var_vm_152(helperVar0) in
+        let sm = g_var_sm_153(helperVar0) in
+        let sk = g_var_sk_154(helperVar0) in
+        let p1 = g_var_p1_155(helperVar0) in
+        in(publicChannel, helperVar1: bitstring);
+        let (=I) = g_var_I_156(helperVar1) in
+        let (=sm) = g_var_sm_157(helperVar1) in
+        let (=sk) = g_var_sk_158(helperVar1) in
+        let (=p1) = g_var_p1_159(helperVar1) in
+        let (=p2) = g_var_p2_160(helperVar1) in
+        event eAccept(I, s(s(z())), z()).
+
+let rVerify_q2_a1 =
+        get tRoot(I, helperVar0) in
+        let (=I) = g_var_I_161(helperVar0) in
+        let (=v1) = g_var_v1_162(helperVar0) in
+        let (=vdintr) = g_var_vdintr_163(helperVar0) in
+        let p2 = g_var_p2_164(helperVar0) in
+        let (=v3) = g_var_v3_165(helperVar0) in
+        let (=v6) = g_var_v6_166(helperVar0) in
+        let (=vdleaf) = g_var_vdleaf_167(helperVar0) in
+        let (=vdpblc) = g_var_vdpblc_168(helperVar0) in
+        let (=vm) = g_var_vm_169(helperVar0) in
+        let sm = g_var_sm_170(helperVar0) in
+        let (=vk) = g_var_vk_171(helperVar0) in
+        let sk = g_var_sk_172(helperVar0) in
+        let p1 = g_var_p1_173(helperVar0) in
+        in(publicChannel, helperVar1: bitstring);
+        let (=I) = g_var_I_174(helperVar1) in
+        let (=sm) = g_var_sm_175(helperVar1) in
+        let (=sk) = g_var_sk_176(helperVar1) in
+        let (=p1) = g_var_p1_177(helperVar1) in
+        let (=p2) = g_var_p2_178(helperVar1) in
+        event eAccept(I, s(s(z())), s(z())).
+
+let rVerify_q2_a2 =
+        get tRoot(I, helperVar0) in
+        let (=I) = g_var_I_179(helperVar0) in
+        let (=v1) = g_var_v1_180(helperVar0) in
+        let (=vdintr) = g_var_vdintr_181(helperVar0) in
+        let p2 = g_var_p2_182(helperVar0) in
+        let (=v3) = g_var_v3_183(helperVar0) in
+        let (=v6) = g_var_v6_184(helperVar0) in
+        let (=vdleaf) = g_var_vdleaf_185(helperVar0) in
+        let (=vdpblc) = g_var_vdpblc_186(helperVar0) in
+        let (=vm) = g_var_vm_187(helperVar0) in
+        let sm = g_var_sm_188(helperVar0) in
+        let (=vk) = g_var_vk_189(helperVar0) in
+        let sk = g_var_sk_190(helperVar0) in
+        let p1 = g_var_p1_191(helperVar0) in
+        in(publicChannel, helperVar1: bitstring);
+        let (=I) = g_var_I_192(helperVar1) in
+        let (=sm) = g_var_sm_193(helperVar1) in
+        let (=sk) = g_var_sk_194(helperVar1) in
+        let (=p1) = g_var_p1_195(helperVar1) in
+        let (=p2) = g_var_p2_196(helperVar1) in
+        event eAccept(I, s(s(z())), s(s(z()))).
+
+let rVerify_q2_a3 =
+        get tRoot(I, helperVar0) in
+        let (=I) = g_var_I_197(helperVar0) in
+        let (=v1) = g_var_v1_198(helperVar0) in
+        let (=vdintr) = g_var_vdintr_199(helperVar0) in
+        let p2 = g_var_p2_200(helperVar0) in
+        let (=v3) = g_var_v3_201(helperVar0) in
+        let (=v6) = g_var_v6_202(helperVar0) in
+        let (=vdleaf) = g_var_vdleaf_203(helperVar0) in
+        let (=vdpblc) = g_var_vdpblc_204(helperVar0) in
+        let sm = g_var_sm_205(helperVar0) in
+        let (=vk) = g_var_vk_206(helperVar0) in
+        let sk = g_var_sk_207(helperVar0) in
+        let p1 = g_var_p1_208(helperVar0) in
+        in(publicChannel, helperVar1: bitstring);
+        let (=I) = g_var_I_209(helperVar1) in
+        let (=sm) = g_var_sm_210(helperVar1) in
+        let (=sk) = g_var_sk_211(helperVar1) in
+        let (=p1) = g_var_p1_212(helperVar1) in
+        let (=p2) = g_var_p2_213(helperVar1) in
+        event eAccept(I, s(s(z())), s(s(s(z())))).
+
+let rVerify_q3_a0 =
+        get tRoot(I, helperVar0) in
+        let (=I) = g_var_I_214(helperVar0) in
+        let (=v1) = g_var_v1_215(helperVar0) in
+        let (=vdintr) = g_var_vdintr_216(helperVar0) in
+        let p2 = g_var_p2_217(helperVar0) in
+        let (=v3) = g_var_v3_218(helperVar0) in
+        let p1 = g_var_p1_219(helperVar0) in
+        let (=v7) = g_var_v7_220(helperVar0) in
+        let (=vdleaf) = g_var_vdleaf_221(helperVar0) in
+        let (=vdpblc) = g_var_vdpblc_222(helperVar0) in
+        let (=vm) = g_var_vm_223(helperVar0) in
+        let sm = g_var_sm_224(helperVar0) in
+        let sk = g_var_sk_225(helperVar0) in
+        in(publicChannel, helperVar1: bitstring);
+        let (=I) = g_var_I_226(helperVar1) in
+        let (=sm) = g_var_sm_227(helperVar1) in
+        let (=sk) = g_var_sk_228(helperVar1) in
+        let (=p1) = g_var_p1_229(helperVar1) in
+        let (=p2) = g_var_p2_230(helperVar1) in
+        event eAccept(I, s(s(s(z()))), z()).
+
+let rVerify_q3_a1 =
+        get tRoot(I, helperVar0) in
+        let (=I) = g_var_I_231(helperVar0) in
+        let (=v1) = g_var_v1_232(helperVar0) in
+        let (=vdintr) = g_var_vdintr_233(helperVar0) in
+        let p2 = g_var_p2_234(helperVar0) in
+        let (=v3) = g_var_v3_235(helperVar0) in
+        let p1 = g_var_p1_236(helperVar0) in
+        let (=v7) = g_var_v7_237(helperVar0) in
+        let (=vdleaf) = g_var_vdleaf_238(helperVar0) in
+        let (=vdpblc) = g_var_vdpblc_239(helperVar0) in
+        let (=vm) = g_var_vm_240(helperVar0) in
+        let sm = g_var_sm_241(helperVar0) in
+        let (=vk) = g_var_vk_242(helperVar0) in
+        let sk = g_var_sk_243(helperVar0) in
+        in(publicChannel, helperVar1: bitstring);
+        let (=I) = g_var_I_244(helperVar1) in
+        let (=sm) = g_var_sm_245(helperVar1) in
+        let (=sk) = g_var_sk_246(helperVar1) in
+        let (=p1) = g_var_p1_247(helperVar1) in
+        let (=p2) = g_var_p2_248(helperVar1) in
+        event eAccept(I, s(s(s(z()))), s(z())).
+
+let rVerify_q3_a2 =
+        get tRoot(I, helperVar0) in
+        let (=I) = g_var_I_249(helperVar0) in
+        let (=v1) = g_var_v1_250(helperVar0) in
+        let (=vdintr) = g_var_vdintr_251(helperVar0) in
+        let p2 = g_var_p2_252(helperVar0) in
+        let (=v3) = g_var_v3_253(helperVar0) in
+        let p1 = g_var_p1_254(helperVar0) in
+        let (=v7) = g_var_v7_255(helperVar0) in
+        let (=vdleaf) = g_var_vdleaf_256(helperVar0) in
+        let (=vdpblc) = g_var_vdpblc_257(helperVar0) in
+        let (=vm) = g_var_vm_258(helperVar0) in
+        let sm = g_var_sm_259(helperVar0) in
+        let (=vk) = g_var_vk_260(helperVar0) in
+        let sk = g_var_sk_261(helperVar0) in
+        in(publicChannel, helperVar1: bitstring);
+        let (=I) = g_var_I_262(helperVar1) in
+        let (=sm) = g_var_sm_263(helperVar1) in
+        let (=sk) = g_var_sk_264(helperVar1) in
+        let (=p1) = g_var_p1_265(helperVar1) in
+        let (=p2) = g_var_p2_266(helperVar1) in
+        event eAccept(I, s(s(s(z()))), s(s(z()))).
+
+let rVerify_q3_a3 =
+        get tRoot(I, helperVar0) in
+        let (=I) = g_var_I_267(helperVar0) in
+        let (=v1) = g_var_v1_268(helperVar0) in
+        let (=vdintr) = g_var_vdintr_269(helperVar0) in
+        let p2 = g_var_p2_270(helperVar0) in
+        let (=v3) = g_var_v3_271(helperVar0) in
+        let p1 = g_var_p1_272(helperVar0) in
+        let (=v7) = g_var_v7_273(helperVar0) in
+        let (=vdleaf) = g_var_vdleaf_274(helperVar0) in
+        let (=vdpblc) = g_var_vdpblc_275(helperVar0) in
+        let sm = g_var_sm_276(helperVar0) in
+        let (=vk) = g_var_vk_277(helperVar0) in
+        let sk = g_var_sk_278(helperVar0) in
+        in(publicChannel, helperVar1: bitstring);
+        let (=I) = g_var_I_279(helperVar1) in
+        let (=sm) = g_var_sm_280(helperVar1) in
+        let (=sk) = g_var_sk_281(helperVar1) in
+        let (=p1) = g_var_p1_282(helperVar1) in
+        let (=p2) = g_var_p2_283(helperVar1) in
+        event eAccept(I, s(s(s(z()))), s(s(s(z())))).
+
+process
+    ( !(rKeyGen) | !(rSign_q0_a0) | !(rSign_q0_a1) | !(rSign_q0_a2) | !(rSign_q0_a3) | !(rSign_q1_a0) | !(rSign_q1_a1) | !(rSign_q1_a2) | !(rSign_q1_a3) | !(rSign_q2_a0) | !(rSign_q2_a1) | !(rSign_q2_a2) | !(rSign_q2_a3) | !(rSign_q3_a0) | !(rSign_q3_a1) | !(rSign_q3_a2) | !(rSign_q3_a3) | !(rRevealSeed) | !(rVerify_q0_a0) | !(rVerify_q0_a1) | !(rVerify_q0_a2) | !(rVerify_q0_a3) | !(rVerify_q1_a0) | !(rVerify_q1_a1) | !(rVerify_q1_a2) | !(rVerify_q1_a3) | !(rVerify_q2_a0) | !(rVerify_q2_a1) | !(rVerify_q2_a2) | !(rVerify_q2_a3) | !(rVerify_q3_a0) | !(rVerify_q3_a1) | !(rVerify_q3_a2) | !(rVerify_q3_a3) )
+
+(*
+All wellformedness checks were successful.
+*)
+
+(*
+Generated from:
+Tamarin version 1.13.0
+Maude version 3.5
+Git revision: UNKNOWN
+Compiled at: 2026-10-24 02:25:12.718891574 UTC
+*)

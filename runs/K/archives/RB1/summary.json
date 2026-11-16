@@ -1,0 +1,142 @@
+[
+  {
+    "case": "H1_section3_own",
+    "lemma": "normal",
+    "cim_pv_archived_raw": "false",
+    "cim_reference": "direct",
+    "expected": true,
+    "tamarin_retest": true,
+    "pv_from_tamarin": true,
+    "pv_diagnostic": null,
+    "exit_codes": {
+      "tamarin": 0,
+      "export": 0,
+      "proverif": 0
+    },
+    "translation_flags": {
+      "timepoints_split": false,
+      "leading_negation": false,
+      "multiple_queries": false,
+      "restriction_missing": false,
+      "axiom_missing": false,
+      "reachability_trace_present": true
+    },
+    "status": "MATCH"
+  },
+  {
+    "case": "H1_section3_own",
+    "lemma": "collision",
+    "cim_pv_archived_raw": "true",
+    "cim_reference": "inverse_no_collision",
+    "expected": false,
+    "tamarin_retest": false,
+    "pv_from_tamarin": false,
+    "pv_diagnostic": null,
+    "exit_codes": {
+      "tamarin": 0,
+      "export": 0,
+      "proverif": 0
+    },
+    "translation_flags": {
+      "timepoints_split": false,
+      "leading_negation": false,
+      "multiple_queries": false,
+      "restriction_missing": false,
+      "axiom_missing": false
+    },
+    "status": "MATCH"
+  },
+  {
+    "case": "H1_section3_own",
+    "lemma": "no_collision",
+    "cim_pv_archived_raw": "true",
+    "cim_reference": "direct",
+    "expected": true,
+    "tamarin_retest": true,
+    "pv_from_tamarin": true,
+    "pv_diagnostic": null,
+    "exit_codes": {
+      "tamarin": 0,
+      "export": 0,
+      "proverif": 0
+    },
+    "translation_flags": {
+      "timepoints_split": false,
+      "leading_negation": false,
+      "multiple_queries": false,
+      "restriction_missing": false,
+      "axiom_missing": false
+    },
+    "status": "MATCH"
+  },
+  {
+    "case": "H1_both_own",
+    "lemma": "normal",
+    "cim_pv_archived_raw": "false",
+    "cim_reference": "direct",
+    "expected": true,
+    "tamarin_retest": true,
+    "pv_from_tamarin": true,
+    "pv_diagnostic": null,
+    "exit_codes": {
+      "tamarin": 0,
+      "export": 0,
+      "proverif": 0
+    },
+    "translation_flags": {
+      "timepoints_split": false,
+      "leading_negation": false,
+      "multiple_queries": false,
+      "restriction_missing": false,
+      "axiom_missing": false,
+      "reachability_trace_present": true
+    },
+    "status": "MATCH"
+  },
+  {
+    "case": "H1_both_own",
+    "lemma": "collision",
+    "cim_pv_archived_raw": "true",
+    "cim_reference": "inverse_no_collision",
+    "expected": false,
+    "tamarin_retest": false,
+    "pv_from_tamarin": false,
+    "pv_diagnostic": null,
+    "exit_codes": {
+      "tamarin": 0,
+      "export": 0,
+      "proverif": 0
+    },
+    "translation_flags": {
+      "timepoints_split": false,
+      "leading_negation": false,
+      "multiple_queries": false,
+      "restriction_missing": false,
+      "axiom_missing": false
+    },
+    "status": "MATCH"
+  },
+  {
+    "case": "H1_both_own",
+    "lemma": "no_collision",
+    "cim_pv_archived_raw": "true",
+    "cim_reference": "direct",
+    "expected": true,
+    "tamarin_retest": true,
+    "pv_from_tamarin": true,
+    "pv_diagnostic": null,
+    "exit_codes": {
+      "tamarin": 0,
+      "export": 0,
+      "proverif": 0
+    },
+    "translation_flags": {
+      "timepoints_split": false,
+      "leading_negation": false,
+      "multiple_queries": false,
+      "restriction_missing": false,
+      "axiom_missing": false
+    },
+    "status": "MATCH"
+  }
+]

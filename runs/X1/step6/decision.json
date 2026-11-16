@@ -1,0 +1,8 @@
+{
+  "DIFFERENT": 0,
+  "MATCH": 4,
+  "REVIEW": 0,
+  "diagnosis": "SUPPORTED",
+  "expected_rows": 4,
+  "rows": 4
+}

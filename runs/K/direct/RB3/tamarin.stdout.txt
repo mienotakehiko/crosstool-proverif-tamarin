@@ -1,0 +1,17 @@
+
+==============================================================================
+summary of summaries:
+
+analyzed: results/RB3.P42ywr9v/models/rb3.spthy
+
+  output:          results/RB3.P42ywr9v/tamarin.proof.spthy
+  processing time: 0.53s
+  
+  rb3_same_reuse_reachable (exists-trace): verified (4 steps)
+  rb3_same_own_reachable (exists-trace): verified (4 steps)
+  rb3_different_own_reachable (exists-trace): verified (4 steps)
+  rb3_accepted_matches_protected (all-traces): verified (7 steps)
+  rb3_reuse_requires_same (all-traces): verified (6 steps)
+  rb3_own_uses_sender_ssn (all-traces): verified (5 steps)
+
+==============================================================================

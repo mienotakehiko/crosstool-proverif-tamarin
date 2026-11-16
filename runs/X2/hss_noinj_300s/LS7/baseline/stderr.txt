@@ -1,0 +1,1 @@
+/usr/bin/timeout: sending signal TERM to command ‘/usr/local/bin/proverif’

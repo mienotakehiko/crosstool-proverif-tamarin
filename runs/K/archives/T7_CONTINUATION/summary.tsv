@@ -1,0 +1,6 @@
+lemma	cim_pv_archived_raw	tamarin_retest	pv_from_tamarin	status
+t7_continuation_reachable	false	True	True	MATCH
+t7_continuation_new_receipt_and_promotion	true	True	True	MATCH
+t7_continuation_derive_and_send	true	True	True	MATCH
+t7_continuation_parent_distinct	true	True	True	MATCH
+t7_continuation_context_distinct	true	True	True	MATCH

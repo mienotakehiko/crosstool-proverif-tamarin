@@ -1,0 +1,25 @@
+'tamarin-cyclic' '--with-maude=maude35' '--derivcheck-timeout=0' '--prove=injectivity' 'corpus/csf17__counter-protocol.spthy' +RTS '-N' '-M56g' '-A64m' '-qg' '-N4' '-sresults/out/P5_P4_cyc_csf17__counter-protocol_T0_injectivity_d_prove_r4.rts' 
+  19,383,184,224 bytes allocated in the heap
+   1,053,042,584 bytes copied during GC
+     202,625,560 bytes maximum residency (6 sample(s))
+         638,440 bytes maximum slop
+             694 MiB total memory in use (0 MiB lost due to fragmentation)
+
+                                     Tot time (elapsed)  Avg pause  Max pause
+  Gen  0        69 colls,     0 par    0.379s   1.003s     0.0145s    0.0399s
+  Gen  1         6 colls,     0 par    0.334s   0.489s     0.0816s    0.1858s
+
+  TASKS: 10 (1 bound, 9 peak workers (9 total), using -N4)
+
+  SPARKS: 1861 (657 converted, 0 overflowed, 0 dud, 104 GC'd, 1100 fizzled)
+
+  INIT    time    0.003s  (  0.002s elapsed)
+  MUT     time   13.510s  (  7.085s elapsed)
+  GC      time    0.714s  (  1.492s elapsed)
+  EXIT    time    0.001s  (  0.010s elapsed)
+  Total   time   14.227s  (  8.590s elapsed)
+
+  Alloc rate    1,434,722,980 bytes per MUT second
+
+  Productivity  95.0% of total user, 82.5% of total elapsed
+

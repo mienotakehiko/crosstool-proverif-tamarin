@@ -1,0 +1,99 @@
+set preciseActions = true.
+
+(* Free names *)
+free publicChannel:channel.
+free vctor:bitstring.
+free vname:bitstring.
+free vq0:bitstring.
+
+(* Functions *)
+fun fst(bitstring):bitstring.
+fun pair(bitstring,bitstring):bitstring.
+fun q0():bitstring.
+fun snd(bitstring):bitstring.
+
+(* Equations *)
+equation forall x_1:bitstring, x_2:bitstring; fst((x_1, x_2)) = x_1.
+equation forall x_1:bitstring, x_2:bitstring; snd((x_1, x_2)) = x_2.
+
+(* Events *)
+event eBadCtor(bitstring).
+event eBadName(bitstring).
+event eDistinctFact(bitstring, bitstring).
+event eGoodCtor(bitstring).
+event eGoodName(bitstring).
+event eInitOnce(bitstring).
+
+(* Tables *)
+table tSt(bitstring, bitstring, bitstring, bitstring).
+
+(* Restrictions *)
+
+(* OneInit *)
+
+restriction rid_i:bitstring, rid_j:bitstring, i:time, j:time;
+  event(eInitOnce( rid_i ))@i && event(eInitOnce( rid_j ))@j
+  ==> rid_i = rid_j.
+
+(* DistinctFact *)
+
+restriction rid_i:bitstring, rid_j:bitstring, x:bitstring, i:time,
+            j:time;
+  event(eDistinctFact( rid_i, x ))@i && event(eDistinctFact( rid_j, x ))@j
+  ==> rid_i = rid_j.
+
+(* Queries *)
+
+(* good_name_reachable *)
+
+query asid:bitstring, i:time; event(eGoodName( asid ))@i.
+
+(* Processes *)
+
+let rInit =
+        new rid_rInit: bitstring;
+        new stR_St: bitstring;
+        new stR_St_1: bitstring;
+        new asid: bitstring;
+        event eInitOnce(rid_rInit);
+        insert tSt(stR_St, asid, vctor, q0());
+        insert tSt(stR_St_1, asid, vname, vq0).
+
+let rGoodCtor =
+        get tSt(stL_St, asid, =vctor, =q0()) in
+        new rid_rGoodCtor: bitstring;
+        event eDistinctFact(rid_rGoodCtor, (stL_St, (asid, (vctor, q0()))));
+        event eGoodCtor(asid).
+
+let rGoodName =
+        get tSt(stL_St, asid, =vname, =vq0) in
+        new rid_rGoodName: bitstring;
+        event eDistinctFact(rid_rGoodName, (stL_St, (asid, (vname, vq0))));
+        event eGoodName(asid).
+
+let rBadCtor =
+        get tSt(stL_St, asid, =vname, =q0()) in
+        new rid_rBadCtor: bitstring;
+        event eDistinctFact(rid_rBadCtor, (stL_St, (asid, (vname, q0()))));
+        event eBadCtor(asid).
+
+let rBadName =
+        get tSt(stL_St, asid, =vctor, =vq0) in
+        new rid_rBadName: bitstring;
+        event eDistinctFact(rid_rBadName, (stL_St, (asid, (vctor, vq0))));
+        event eBadName(asid).
+
+process
+    ( !(rInit) | !(rGoodCtor) | !(rGoodName) | !(rBadCtor) | !(rBadName) )
+
+(*
+All wellformedness checks were successful.
+*)
+
+(*
+Generated from:
+Tamarin version 1.13.0
+Maude version 3.5
+Git revision: UNKNOWN
+Compiled at: 2026-11-15 05:08:08.737146731 UTC
+*)

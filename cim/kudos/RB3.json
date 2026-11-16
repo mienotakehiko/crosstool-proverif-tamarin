@@ -1,0 +1,91 @@
+{
+  "theory": "CimRb3",
+  "constants": ["same_ctx", "different_ctx", "reuse_piv", "own_piv", "no_piv", "request_zero"],
+  "init": {
+    "fresh": ["run_id", "request_context", "new_context", "sender_ssn"],
+    "produce": [["ChooseContext", "run_id", "request_context", "new_context", "sender_ssn"]]
+  },
+  "steps": [
+    {
+      "id": "UseSameContext",
+      "consume": [["ChooseContext", "run_id", "request_context", "new_context", "sender_ssn"]],
+      "produce": [["ExchangeReady", "same_ctx", "run_id", "request_context", "request_context", "sender_ssn"]]
+    },
+    {
+      "id": "UseDifferentContext",
+      "consume": [["ChooseContext", "run_id", "request_context", "new_context", "sender_ssn"]],
+      "produce": [["ExchangeReady", "different_ctx", "run_id", "request_context", "new_context", "sender_ssn"]]
+    },
+    {
+      "id": "RecordAcceptedRequest",
+      "consume": [["ExchangeReady", "scenario", "run_id", "request_context", "response_context", "sender_ssn"]],
+      "fresh": ["token_id"],
+      "emit": [
+        ["RequestAccepted", "scenario", "run_id", "token_id", "request_context", "request_zero"],
+        ["ServerSendReady", "run_id", "response_context", "sender_ssn"]
+      ],
+      "produce": [
+        ["Pending", "scenario", "run_id", "token_id", "request_context", "request_zero", "response_context"],
+        ["CanRespond", "scenario", "run_id", "token_id", "request_context", "response_context", "request_zero", "sender_ssn"]
+      ]
+    },
+    {
+      "id": "ProtectWithOwnPiv",
+      "consume": [["CanRespond", "scenario", "run_id", "token_id", "request_context", "response_context", "request_piv", "sender_ssn"]],
+      "emit": [["ResponseProtected", "scenario", "run_id", "token_id", "request_context", "response_context", "request_piv", "own_piv", "sender_ssn"]],
+      "produce": [["ProtectedResponse", "scenario", "run_id", "token_id", "request_context", "response_context", "request_piv", "own_piv", "sender_ssn"]]
+    },
+    {
+      "id": "ProtectWithRequestNonce",
+      "consume": [["CanRespond", "scenario", "run_id", "token_id", "request_context", "response_context", "request_piv", "sender_ssn"]],
+      "require_equal": ["request_context", "response_context"],
+      "emit": [["ResponseProtected", "scenario", "run_id", "token_id", "request_context", "response_context", "request_piv", "reuse_piv", "no_piv"]],
+      "produce": [["ProtectedResponse", "scenario", "run_id", "token_id", "request_context", "response_context", "request_piv", "reuse_piv", "no_piv"]]
+    },
+    {
+      "id": "AcceptResponse",
+      "consume": [
+        ["Pending", "scenario", "run_id", "token_id", "request_context", "request_piv", "response_context"],
+        ["ProtectedResponse", "scenario", "run_id", "token_id", "request_context", "response_context", "request_piv", "piv_mode", "reply_piv"]
+      ],
+      "emit": [["ResponseAccepted", "scenario", "run_id", "token_id", "request_context", "response_context", "request_piv", "piv_mode", "reply_piv"]],
+      "produce": []
+    }
+  ],
+  "properties": [
+    {
+      "id": "same_reuse_reachable",
+      "kind": "exists",
+      "observe": ["ResponseAccepted", "same_ctx", "run_id", "token_id", "ctx", "ctx", "request_piv", "reuse_piv", "no_piv"]
+    },
+    {
+      "id": "same_own_reachable",
+      "kind": "exists",
+      "observe": ["ResponseAccepted", "same_ctx", "run_id", "token_id", "ctx", "ctx", "request_piv", "own_piv", "reply_piv"]
+    },
+    {
+      "id": "different_own_reachable",
+      "kind": "exists",
+      "observe": ["ResponseAccepted", "different_ctx", "run_id", "token_id", "request_context", "response_context", "request_piv", "own_piv", "reply_piv"],
+      "different": ["request_context", "response_context"]
+    },
+    {
+      "id": "accepted_matches_protected",
+      "kind": "before",
+      "observe": ["ResponseAccepted", "scenario", "run_id", "token_id", "request_context", "response_context", "request_piv", "piv_mode", "reply_piv"],
+      "before": ["ResponseProtected", "scenario", "run_id", "token_id", "request_context", "response_context", "request_piv", "piv_mode", "reply_piv"]
+    },
+    {
+      "id": "reuse_requires_same",
+      "kind": "equal",
+      "observe": ["ResponseProtected", "scenario", "run_id", "token_id", "request_context", "response_context", "request_piv", "reuse_piv", "reply_piv"],
+      "equal": [["request_context", "response_context"], ["reply_piv", "no_piv"]]
+    },
+    {
+      "id": "own_uses_sender_ssn",
+      "kind": "before",
+      "observe": ["ResponseProtected", "scenario", "run_id", "token_id", "request_context", "response_context", "request_piv", "own_piv", "reply_piv"],
+      "before": ["ServerSendReady", "run_id", "response_context", "reply_piv"]
+    }
+  ]
+}

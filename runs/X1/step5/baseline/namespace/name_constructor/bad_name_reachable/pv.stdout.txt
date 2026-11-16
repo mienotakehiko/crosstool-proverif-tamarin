@@ -1,0 +1,66 @@
+Linear part: No equation.
+Convergent part:
+fst((x_1,x_2)) = x_1
+snd((x_1,x_2)) = x_2
+Completing equations...
+Completed equations:
+snd((x_1,x_2)) = x_2
+fst((x_1,x_2)) = x_1
+Process 0 (that is, the initial process):
+(
+    {1}!
+    {2}new rid_rInit: bitstring;
+    {3}new stR_St: bitstring;
+    {4}new stR_St_1: bitstring;
+    {5}new asid: bitstring;
+    {6}event eInitOnce(rid_rInit);
+    {7}insert tSt(stR_St,asid,vctor,q0);
+    {8}insert tSt(stR_St_1,asid,vname,vq0)
+) | (
+    {9}!
+    {10}get tSt(stL_St: bitstring,asid_1: bitstring,=vctor,helperVar0: bitstring) in
+    {11}new rid_rGoodCtor: bitstring;
+    {12}event eDistinctFact(rid_rGoodCtor,(stL_St,(asid_1,(vctor,q0))));
+    {13}event eGoodCtor(asid_1)
+) | (
+    {14}!
+    {15}get tSt(stL_St_1: bitstring,asid_2: bitstring,=vname,=vq0) in
+    {16}new rid_rGoodName: bitstring;
+    {17}event eDistinctFact(rid_rGoodName,(stL_St_1,(asid_2,(vname,vq0))));
+    {18}event eGoodName(asid_2)
+) | (
+    {19}!
+    {20}get tSt(stL_St_2: bitstring,asid_3: bitstring,=vname,helperVar0_1: bitstring) in
+    {21}new rid_rBadCtor: bitstring;
+    {22}event eDistinctFact(rid_rBadCtor,(stL_St_2,(asid_3,(vname,q0))));
+    {23}event eBadCtor(asid_3)
+) | (
+    {24}!
+    {25}get tSt(stL_St_3: bitstring,asid_4: bitstring,=vctor,=vq0) in
+    {26}new rid_rBadName: bitstring;
+    {27}event eDistinctFact(rid_rBadName,(stL_St_3,(asid_4,(vctor,vq0))));
+    {28}event eBadName(asid_4)
+)
+
+-- Restriction event(eInitOnce(rid_i))@i && event(eInitOnce(rid_j))@j ==> rid_i = rid_j encoded as event(eInitOnce(rid_i)) && event(eInitOnce(rid_j)) ==> rid_i = rid_j in process 0.
+-- Restriction event(eDistinctFact(rid_i,x))@i && event(eDistinctFact(rid_j,x))@j ==> rid_i = rid_j encoded as event(eDistinctFact(rid_i,x)) && event(eDistinctFact(rid_j,x)) ==> rid_i = rid_j in process 0.
+-- Query not event(eBadName(asid_5))@i encoded as not event(eBadName(asid_5)) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query not event(eBadName(asid_5))@i
+Removing redudant clauses.
+Removing subsumed clauses modulo the equational theory.
+Starting verification.
+RESULT not event(eBadName(asid_5))@i is true.
+
+--------------------------------------------------------------
+Verification summary:
+
+Query(ies):
+ - Query not event(eBadName(asid_5))@i is true.
+Associated restriction(s):
+ - Restriction event(eInitOnce(rid_i))@i && event(eInitOnce(rid_j))@j ==> rid_i = rid_j encoded as event(eInitOnce(rid_i)) && event(eInitOnce(rid_j)) ==> rid_i = rid_j in process 0.
+ - Restriction event(eDistinctFact(rid_i,x))@i && event(eDistinctFact(rid_j,x))@j ==> rid_i = rid_j encoded as event(eDistinctFact(rid_i,x)) && event(eDistinctFact(rid_j,x)) ==> rid_i = rid_j in process 0.
+
+--------------------------------------------------------------
+

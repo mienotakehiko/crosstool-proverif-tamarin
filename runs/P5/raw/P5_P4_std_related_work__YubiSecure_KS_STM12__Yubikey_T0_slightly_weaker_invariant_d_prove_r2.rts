@@ -1,0 +1,25 @@
+'tamarin-prover' '--with-maude=maude' '--derivcheck-timeout=0' '--prove=slightly_weaker_invariant' 'corpus/related_work__YubiSecure_KS_STM12__Yubikey.spthy' +RTS '-N' '-M56g' '-A64m' '-qg' '-N4' '-sresults/out/P5_P4_std_related_work__YubiSecure_KS_STM12__Yubikey_T0_slightly_weaker_invariant_d_prove_r2.rts' 
+  15,691,231,520 bytes allocated in the heap
+     633,185,680 bytes copied during GC
+     166,705,992 bytes maximum residency (6 sample(s))
+         480,440 bytes maximum slop
+             595 MiB total memory in use (0 MiB lost due to fragmentation)
+
+                                     Tot time (elapsed)  Avg pause  Max pause
+  Gen  0        55 colls,     0 par    0.063s   0.529s     0.0096s    0.0198s
+  Gen  1         6 colls,     0 par    0.047s   0.337s     0.0562s    0.1494s
+
+  TASKS: 10 (1 bound, 9 peak workers (9 total), using -N4)
+
+  SPARKS: 1515 (730 converted, 0 overflowed, 0 dud, 24 GC'd, 761 fizzled)
+
+  INIT    time    0.003s  (  0.002s elapsed)
+  MUT     time    6.287s  (  3.028s elapsed)
+  GC      time    0.110s  (  0.866s elapsed)
+  EXIT    time    0.010s  (  0.004s elapsed)
+  Total   time    6.409s  (  3.900s elapsed)
+
+  Alloc rate    2,495,979,072 bytes per MUT second
+
+  Productivity  98.1% of total user, 77.6% of total elapsed
+

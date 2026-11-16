@@ -1,0 +1,331 @@
+{
+  "pass": true,
+  "checks": {
+    "tool_exit_codes_zero": true,
+    "proverif_query_statements_match": true,
+    "proverif_expected_verdicts": true,
+    "tamarin_expected_verdicts": true,
+    "tamarin_proof_closed": true,
+    "proverif_two_exchange_witness": true,
+    "tamarin_two_exchange_witness": true,
+    "observed_witnesses_agree": true
+  },
+  "proverif_verdicts": [
+    "false",
+    "true",
+    "true",
+    "true"
+  ],
+  "tamarin_verdicts": {
+    "rb2_second_acceptance_reachable": "verified",
+    "rb2_request_response_binding": "verified",
+    "rb2_unique_acceptance": "verified",
+    "rb2_new_request_after_activation": "verified"
+  },
+  "wall_seconds": {
+    "proverif": 0.009,
+    "tamarin": 0.723
+  },
+  "tamarin_processing_seconds": 0.69,
+  "observed_events": {
+    "proverif": {
+      "RequestSent_old_gen": [
+        "old_gen",
+        "initial_id_1",
+        "token_id_step1_2",
+        "request_id_step1_2",
+        "initial_context_1",
+        "zero_piv"
+      ],
+      "RequestAccepted_old_gen": [
+        "old_gen",
+        "initial_id_1",
+        "token_id_step1_2",
+        "request_id_step1_2",
+        "initial_context_1",
+        "zero_piv"
+      ],
+      "ResponseProtected_old_gen": [
+        "old_gen",
+        "initial_id_1",
+        "token_id_step1_2",
+        "request_id_step1_2",
+        "initial_context_1",
+        "zero_piv",
+        "response_id_step3_2"
+      ],
+      "ResponseAccepted_old_gen": [
+        "old_gen",
+        "initial_id_1",
+        "token_id_step1_2",
+        "request_id_step1_2",
+        "initial_context_1",
+        "zero_piv",
+        "response_id_step3_2"
+      ],
+      "ContextActivated": [
+        "initial_id_1",
+        "next_context_1"
+      ],
+      "RequestSent_new_gen": [
+        "new_gen",
+        "initial_id_1",
+        "token_id_step6_2",
+        "request_id_step6_2",
+        "next_context_1",
+        "zero_piv"
+      ],
+      "RequestAccepted_new_gen": [
+        "new_gen",
+        "initial_id_1",
+        "token_id_step6_2",
+        "request_id_step6_2",
+        "next_context_1",
+        "zero_piv"
+      ],
+      "ResponseProtected_new_gen": [
+        "new_gen",
+        "initial_id_1",
+        "token_id_step6_2",
+        "request_id_step6_2",
+        "next_context_1",
+        "zero_piv",
+        "response_id_step8_2"
+      ],
+      "ResponseAccepted_new_gen": [
+        "new_gen",
+        "initial_id_1",
+        "token_id_step6_2",
+        "request_id_step6_2",
+        "next_context_1",
+        "zero_piv",
+        "response_id_step8_2"
+      ]
+    },
+    "tamarin": {
+      "ResponseAccepted_new_gen": [
+        "new_gen",
+        "~initial_id",
+        "~token_id",
+        "~request_id",
+        "~next_context",
+        "zero_piv",
+        "~response_id"
+      ],
+      "RequestSent_new_gen": [
+        "new_gen",
+        "~initial_id",
+        "~token_id",
+        "~request_id",
+        "~next_context",
+        "zero_piv"
+      ],
+      "ContextActivated": [
+        "~initial_id",
+        "~next_context"
+      ],
+      "ResponseAccepted_old_gen": [
+        "old_gen",
+        "~initial_id",
+        "~token_id.1",
+        "~request_id.1",
+        "~initial_context",
+        "zero_piv",
+        "~response_id.1"
+      ],
+      "RequestSent_old_gen": [
+        "old_gen",
+        "~initial_id",
+        "~token_id.1",
+        "~request_id.1",
+        "~initial_context",
+        "zero_piv"
+      ],
+      "ResponseProtected_old_gen": [
+        "old_gen",
+        "~initial_id",
+        "~token_id.1",
+        "~request_id.1",
+        "~initial_context",
+        "zero_piv",
+        "~response_id.1"
+      ],
+      "RequestAccepted_old_gen": [
+        "old_gen",
+        "~initial_id",
+        "~token_id.1",
+        "~request_id.1",
+        "~initial_context",
+        "zero_piv"
+      ],
+      "ResponseProtected_new_gen": [
+        "new_gen",
+        "~initial_id",
+        "~token_id",
+        "~request_id",
+        "~next_context",
+        "zero_piv",
+        "~response_id"
+      ],
+      "RequestAccepted_new_gen": [
+        "new_gen",
+        "~initial_id",
+        "~token_id",
+        "~request_id",
+        "~next_context",
+        "zero_piv"
+      ]
+    }
+  },
+  "normalized_events": {
+    "proverif": {
+      "RequestSent_old_gen": [
+        "old_gen",
+        "exchange",
+        "old_token",
+        "old_request",
+        "old_context",
+        "zero_piv"
+      ],
+      "RequestAccepted_old_gen": [
+        "old_gen",
+        "exchange",
+        "old_token",
+        "old_request",
+        "old_context",
+        "zero_piv"
+      ],
+      "ResponseProtected_old_gen": [
+        "old_gen",
+        "exchange",
+        "old_token",
+        "old_request",
+        "old_context",
+        "zero_piv",
+        "old_response"
+      ],
+      "ResponseAccepted_old_gen": [
+        "old_gen",
+        "exchange",
+        "old_token",
+        "old_request",
+        "old_context",
+        "zero_piv",
+        "old_response"
+      ],
+      "ContextActivated": [
+        "exchange",
+        "new_context"
+      ],
+      "RequestSent_new_gen": [
+        "new_gen",
+        "exchange",
+        "new_token",
+        "new_request",
+        "new_context",
+        "zero_piv"
+      ],
+      "RequestAccepted_new_gen": [
+        "new_gen",
+        "exchange",
+        "new_token",
+        "new_request",
+        "new_context",
+        "zero_piv"
+      ],
+      "ResponseProtected_new_gen": [
+        "new_gen",
+        "exchange",
+        "new_token",
+        "new_request",
+        "new_context",
+        "zero_piv",
+        "new_response"
+      ],
+      "ResponseAccepted_new_gen": [
+        "new_gen",
+        "exchange",
+        "new_token",
+        "new_request",
+        "new_context",
+        "zero_piv",
+        "new_response"
+      ]
+    },
+    "tamarin": {
+      "RequestSent_old_gen": [
+        "old_gen",
+        "exchange",
+        "old_token",
+        "old_request",
+        "old_context",
+        "zero_piv"
+      ],
+      "RequestAccepted_old_gen": [
+        "old_gen",
+        "exchange",
+        "old_token",
+        "old_request",
+        "old_context",
+        "zero_piv"
+      ],
+      "ResponseProtected_old_gen": [
+        "old_gen",
+        "exchange",
+        "old_token",
+        "old_request",
+        "old_context",
+        "zero_piv",
+        "old_response"
+      ],
+      "ResponseAccepted_old_gen": [
+        "old_gen",
+        "exchange",
+        "old_token",
+        "old_request",
+        "old_context",
+        "zero_piv",
+        "old_response"
+      ],
+      "ContextActivated": [
+        "exchange",
+        "new_context"
+      ],
+      "RequestSent_new_gen": [
+        "new_gen",
+        "exchange",
+        "new_token",
+        "new_request",
+        "new_context",
+        "zero_piv"
+      ],
+      "RequestAccepted_new_gen": [
+        "new_gen",
+        "exchange",
+        "new_token",
+        "new_request",
+        "new_context",
+        "zero_piv"
+      ],
+      "ResponseProtected_new_gen": [
+        "new_gen",
+        "exchange",
+        "new_token",
+        "new_request",
+        "new_context",
+        "zero_piv",
+        "new_response"
+      ],
+      "ResponseAccepted_new_gen": [
+        "new_gen",
+        "exchange",
+        "new_token",
+        "new_request",
+        "new_context",
+        "zero_piv",
+        "new_response"
+      ]
+    }
+  },
+  "errors": {}
+}

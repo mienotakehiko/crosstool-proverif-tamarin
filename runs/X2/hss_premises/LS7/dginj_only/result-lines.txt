@@ -1,0 +1,1 @@
+RESULT event(eHssAccept(I_31,J_30,m_16))@k ==> (event(eSignTop(I_31,J_30))@s_1 && event(eSignBot(I_31,J_30,m_16))@t) || event(eRevealTop(I_31))@r || (event(eSignTop(I_31,J_30))@s_1 && event(eRevealBot(I_31,J_30))@r) is true.

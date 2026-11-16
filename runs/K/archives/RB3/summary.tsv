@@ -1,0 +1,7 @@
+lemma	cim_pv_archived_raw	cim_reference	tamarin_retest	pv_from_tamarin	status
+rb3_same_reuse_reachable	false	same_reachability	True	True	MATCH
+rb3_same_own_reachable	false	same_reachability	True	True	MATCH
+rb3_different_own_reachable	false	reachability_with_context_inequality	True	True	MATCH
+rb3_accepted_matches_protected	true	event_binding	True	True	MATCH
+rb3_reuse_requires_same	true	context_equality_and_no_piv	True	False	DIFFERENT
+rb3_own_uses_sender_ssn	true	sender_ssn_correspondence	True	True	MATCH

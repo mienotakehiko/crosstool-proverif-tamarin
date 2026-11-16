@@ -1,0 +1,81 @@
+theory session_join
+
+begin
+
+// Function signature and definition of the equational theory E
+
+functions: fst/1, pair/2, snd/1, z/0
+equations: fst(<x.1, x.2>) = x.1, snd(<x.1, x.2>) = x.2
+
+rule (modulo E) Init:
+   [ Fr( ~sa ), Fr( ~sb ) ]
+  --[ InitOnce( ) ]->
+   [
+   St( ~sa, 'same', z ), Aux( ~sa, 'same', z ), St( ~sa, 'cross', z ),
+   Aux( ~sb, 'cross', z )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+restriction OneInit:
+  "∀ #i #j. ((InitOnce( ) @ #i) ∧ (InitOnce( ) @ #j)) ⇒ (#i = #j)"
+  // safety formula
+
+  /*
+  expanded formula:
+  "∀ #i #j. ((InitOnce( ) @ #i) ∧ (InitOnce( ) @ #j)) ⇒ (#i = #j)"
+  */
+
+rule (modulo E) Good:
+   [ St( sid, 'same', z ), Aux( sid, 'same', z ) ] --[ Good( sid ) ]-> [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Bad:
+   [ St( sid, 'cross', z ), Aux( sid, 'cross', z ) ] --[ Bad( sid ) ]-> [ ]
+
+  /* has exactly the trivial AC variant */
+
+lemma good_reachable:
+  exists-trace "∃ sid #i. Good( sid ) @ #i"
+/*
+guarded formula characterizing all satisfying traces:
+"∃ sid #i. (Good( sid ) @ #i)"
+*/
+by sorry
+
+lemma bad_reachable:
+  exists-trace "∃ sid #i. Bad( sid ) @ #i"
+/*
+guarded formula characterizing all satisfying traces:
+"∃ sid #i. (Bad( sid ) @ #i)"
+*/
+simplify
+solve( St( sid, 'cross', z ) ▶₀ #i )
+  case Init
+  by solve( Aux( ~sa, 'cross', z ) ▶₁ #i )
+qed
+
+/* All wellformedness checks were successful. */
+
+/*
+Generated from:
+Tamarin version 1.13.0
+Maude version 3.5
+Git revision: UNKNOWN
+Compiled at: 2026-11-15 04:14:35.812632891 UTC
+*/
+
+end
+
+==============================================================================
+summary of summaries:
+
+analyzed: /kit/models/sessions/session_join.spthy
+
+  processing time: 0.03s
+  
+  good_reachable (exists-trace): analysis incomplete (1 steps)
+  bad_reachable (exists-trace): falsified - no trace found (3 steps)
+
+==============================================================================

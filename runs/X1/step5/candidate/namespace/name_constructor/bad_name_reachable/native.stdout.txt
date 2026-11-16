@@ -1,0 +1,103 @@
+theory name_constructor
+
+begin
+
+// Function signature and definition of the equational theory E
+
+functions: fst/1, pair/2, q0/0, snd/1
+equations: fst(<x.1, x.2>) = x.1, snd(<x.1, x.2>) = x.2
+
+rule (modulo E) Init:
+   [ Fr( ~sid ) ]
+  --[ InitOnce( ) ]->
+   [ St( ~sid, 'ctor', q0 ), St( ~sid, 'name', 'q0' ) ]
+
+  /* has exactly the trivial AC variant */
+
+restriction OneInit:
+  "∀ #i #j. ((InitOnce( ) @ #i) ∧ (InitOnce( ) @ #j)) ⇒ (#i = #j)"
+  // safety formula
+
+  /*
+  expanded formula:
+  "∀ #i #j. ((InitOnce( ) @ #i) ∧ (InitOnce( ) @ #j)) ⇒ (#i = #j)"
+  */
+
+rule (modulo E) GoodCtor:
+   [ St( sid, 'ctor', q0 ) ] --[ GoodCtor( sid ) ]-> [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) GoodName:
+   [ St( sid, 'name', 'q0' ) ] --[ GoodName( sid ) ]-> [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) BadCtor:
+   [ St( sid, 'name', q0 ) ] --[ BadCtor( sid ) ]-> [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) BadName:
+   [ St( sid, 'ctor', 'q0' ) ] --[ BadName( sid ) ]-> [ ]
+
+  /* has exactly the trivial AC variant */
+
+lemma good_ctor_reachable:
+  exists-trace "∃ sid #i. GoodCtor( sid ) @ #i"
+/*
+guarded formula characterizing all satisfying traces:
+"∃ sid #i. (GoodCtor( sid ) @ #i)"
+*/
+by sorry
+
+lemma good_name_reachable:
+  exists-trace "∃ sid #i. GoodName( sid ) @ #i"
+/*
+guarded formula characterizing all satisfying traces:
+"∃ sid #i. (GoodName( sid ) @ #i)"
+*/
+by sorry
+
+lemma bad_ctor_reachable:
+  exists-trace "∃ sid #i. BadCtor( sid ) @ #i"
+/*
+guarded formula characterizing all satisfying traces:
+"∃ sid #i. (BadCtor( sid ) @ #i)"
+*/
+by sorry
+
+lemma bad_name_reachable:
+  exists-trace "∃ sid #i. BadName( sid ) @ #i"
+/*
+guarded formula characterizing all satisfying traces:
+"∃ sid #i. (BadName( sid ) @ #i)"
+*/
+simplify
+by solve( St( sid, 'ctor', 'q0' ) ▶₀ #i )
+
+/* All wellformedness checks were successful. */
+
+/*
+Generated from:
+Tamarin version 1.13.0
+Maude version 3.5
+Git revision: UNKNOWN
+Compiled at: 2026-11-15 04:14:35.812632891 UTC
+*/
+
+end
+
+==============================================================================
+summary of summaries:
+
+analyzed: /kit/models/namespace/name_constructor.spthy
+
+  processing time: 0.02s
+  
+  good_ctor_reachable (exists-trace): analysis incomplete (1 steps)
+  good_name_reachable (exists-trace): analysis incomplete (1 steps)
+  bad_ctor_reachable (exists-trace): analysis incomplete (1 steps)
+  bad_name_reachable (exists-trace): falsified - no trace found (2 steps)
+
+==============================================================================

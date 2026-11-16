@@ -1,0 +1,11 @@
+maude tool: 'maude35'
+ checking version: 3.5. OK.
+ checking installation: OK.
+[Theory LMOTS_E1u] Theory loaded
+[Theory LMOTS_E1u] Theory translated
+[Theory LMOTS_E1u] Theory closed
+[Saturating Sources] Step 1 (Max 5)
+[Saturating Sources] Done
+tamarin-cyclic: Heap exhausted;
+tamarin-cyclic: Current maximum heap size is 8589934592 bytes (8192 MB).
+tamarin-cyclic: Use `+RTS -M<size>' to increase it.

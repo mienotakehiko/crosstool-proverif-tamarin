@@ -1,0 +1,70 @@
+// Bounded RB2: two sequential authenticated exchanges.
+theory CimRb2
+begin
+
+rule Init:
+  [ Fr(~initial_id), Fr(~initial_context), Fr(~next_context) ]
+  --[ Init() ]->
+  [ ReadyOld(~initial_id,~initial_context,~next_context) ]
+
+rule SendRequestOld:
+  [ Fr(~token_id), Fr(~request_id), ReadyOld(run_id,context,next_context) ]
+  --[ RequestSent('old_gen',run_id,~token_id,~request_id,context,'zero_piv') ]->
+  [ PendingOld(run_id,~token_id,~request_id,context,'zero_piv',next_context), RequestWireOld(run_id,~token_id,~request_id,context,'zero_piv') ]
+
+rule AcceptRequestOld:
+  [ RequestWireOld(run_id,token_id,request_id,context,request_piv) ]
+  --[ RequestAccepted('old_gen',run_id,token_id,request_id,context,request_piv) ]->
+  [ AcceptedRequestOld(run_id,token_id,request_id,context,request_piv) ]
+
+rule ProtectResponseOld:
+  [ Fr(~response_id), AcceptedRequestOld(run_id,token_id,request_id,context,request_piv) ]
+  --[ ResponseProtected('old_gen',run_id,token_id,request_id,context,request_piv,~response_id) ]->
+  [ ResponseWireOld(run_id,token_id,request_id,context,request_piv,~response_id) ]
+
+rule AcceptResponseOld:
+  [ PendingOld(run_id,token_id,request_id,context,request_piv,next_context), ResponseWireOld(run_id,token_id,request_id,context,request_piv,response_id) ]
+  --[ ResponseAccepted('old_gen',run_id,token_id,request_id,context,request_piv,response_id) ]->
+  [ OldExchangeCleared(run_id,next_context) ]
+
+rule ActivateNewContext:
+  [ OldExchangeCleared(run_id,next_context) ]
+  --[ ContextActivated(run_id,next_context) ]->
+  [ ReadyNew(run_id,next_context) ]
+
+rule SendRequestNew:
+  [ Fr(~token_id), Fr(~request_id), ReadyNew(run_id,context) ]
+  --[ RequestSent('new_gen',run_id,~token_id,~request_id,context,'zero_piv') ]->
+  [ PendingNew(run_id,~token_id,~request_id,context,'zero_piv'), RequestWireNew(run_id,~token_id,~request_id,context,'zero_piv') ]
+
+rule AcceptRequestNew:
+  [ RequestWireNew(run_id,token_id,request_id,context,request_piv) ]
+  --[ RequestAccepted('new_gen',run_id,token_id,request_id,context,request_piv) ]->
+  [ AcceptedRequestNew(run_id,token_id,request_id,context,request_piv) ]
+
+rule ProtectResponseNew:
+  [ Fr(~response_id), AcceptedRequestNew(run_id,token_id,request_id,context,request_piv) ]
+  --[ ResponseProtected('new_gen',run_id,token_id,request_id,context,request_piv,~response_id) ]->
+  [ ResponseWireNew(run_id,token_id,request_id,context,request_piv,~response_id) ]
+
+rule AcceptResponseNew:
+  [ PendingNew(run_id,token_id,request_id,context,request_piv), ResponseWireNew(run_id,token_id,request_id,context,request_piv,response_id) ]
+  --[ ResponseAccepted('new_gen',run_id,token_id,request_id,context,request_piv,response_id) ]->
+  [  ]
+
+restriction SingleInit:
+  "All #i #j. Init()@i & Init()@j ==> #i = #j"
+
+lemma rb2_second_acceptance_reachable: exists-trace
+  "Ex run_id token_id request_id context request_piv response_id #k. ResponseAccepted('new_gen',run_id,token_id,request_id,context,request_piv,response_id)@k"
+
+lemma rb2_request_response_binding:
+  "All generation run_id token_id request_id context request_piv response_id #k. ResponseAccepted(generation,run_id,token_id,request_id,context,request_piv,response_id)@k ==> Ex #i1 #i2 #i3. RequestSent(generation,run_id,token_id,request_id,context,request_piv)@i1 & RequestAccepted(generation,run_id,token_id,request_id,context,request_piv)@i2 & ResponseProtected(generation,run_id,token_id,request_id,context,request_piv,response_id)@i3 & #i1 < #i2 & #i2 < #i3 & #i3 < #k"
+
+lemma rb2_unique_acceptance:
+  "All generation run_id token_id request_id context request_piv response_id generation_other request_id_other context_other request_piv_other response_id_other #k #j. ResponseAccepted(generation,run_id,token_id,request_id,context,request_piv,response_id)@k & ResponseAccepted(generation_other,run_id,token_id,request_id_other,context_other,request_piv_other,response_id_other)@j ==> #k = #j"
+
+lemma rb2_new_request_after_activation:
+  "All run_id token_id request_id context request_piv #k. RequestSent('new_gen',run_id,token_id,request_id,context,request_piv)@k ==> Ex #i1. ContextActivated(run_id,context)@i1 & #i1 < #k"
+
+end

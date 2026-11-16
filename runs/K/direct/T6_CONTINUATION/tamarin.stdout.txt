@@ -1,0 +1,16 @@
+
+==============================================================================
+summary of summaries:
+
+analyzed: results/T6_CONTINUATION.aV9act2B/models/t6_continuation.spthy
+
+  output:          results/T6_CONTINUATION.aV9act2B/tamarin.proof.spthy
+  processing time: 0.67s
+  
+  t6_continuation_reachable (exists-trace): verified (4 steps)
+  t6_continuation_old_receipt_and_clear (all-traces): verified (4 steps)
+  t6_continuation_derive_and_send (all-traces): verified (3 steps)
+  t6_continuation_pair_distinct (all-traces): verified (3 steps)
+  t6_continuation_context_distinct (all-traces): verified (3 steps)
+
+==============================================================================

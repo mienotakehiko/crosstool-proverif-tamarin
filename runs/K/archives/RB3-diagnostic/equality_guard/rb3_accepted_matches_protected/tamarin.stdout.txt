@@ -1,0 +1,313 @@
+theory CimRb3
+
+begin
+
+// Function signature and definition of the equational theory E
+
+functions: fst/1, pair/2, snd/1
+equations: fst(<x.1, x.2>) = x.1, snd(<x.1, x.2>) = x.2
+
+rule (modulo E) Init:
+   [
+   Fr( ~run_id ), Fr( ~request_context ), Fr( ~new_context ),
+   Fr( ~sender_ssn )
+   ]
+  --[ Init( ) ]->
+   [ ChooseContext( ~run_id, ~request_context, ~new_context, ~sender_ssn ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) UseSameContext:
+   [ ChooseContext( run_id, request_context, new_context, sender_ssn ) ]
+  -->
+   [
+   ExchangeReady( 'same_ctx', run_id, request_context, request_context,
+                  sender_ssn
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) UseDifferentContext:
+   [ ChooseContext( run_id, request_context, new_context, sender_ssn ) ]
+  -->
+   [
+   ExchangeReady( 'different_ctx', run_id, request_context, new_context,
+                  sender_ssn
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) RecordAcceptedRequest:
+   [
+   Fr( ~token_id ),
+   ExchangeReady( scenario, run_id, request_context, response_context,
+                  sender_ssn
+   )
+   ]
+  --[
+  RequestAccepted( scenario, run_id, ~token_id, request_context,
+                   'request_zero'
+  ),
+  ServerSendReady( run_id, response_context, sender_ssn )
+  ]->
+   [
+   Pending( scenario, run_id, ~token_id, request_context, 'request_zero',
+            response_context
+   ),
+   CanRespond( scenario, run_id, ~token_id, request_context,
+               response_context, 'request_zero', sender_ssn
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) ProtectWithOwnPiv:
+   [
+   CanRespond( scenario, run_id, token_id, request_context,
+               response_context, request_piv, sender_ssn
+   )
+   ]
+  --[
+  ResponseProtected( scenario, run_id, token_id, request_context,
+                     response_context, request_piv, 'own_piv', sender_ssn
+  )
+  ]->
+   [
+   ProtectedResponse( scenario, run_id, token_id, request_context,
+                      response_context, request_piv, 'own_piv', sender_ssn
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) ProtectWithRequestNonce:
+   [
+   CanRespond( scenario, run_id, token_id, request_context, request_context,
+               request_piv, sender_ssn
+   )
+   ]
+  --[
+  ResponseProtected( scenario, run_id, token_id, request_context,
+                     request_context, request_piv, 'reuse_piv', 'no_piv'
+  ),
+  ContextMatch( request_context, request_context )
+  ]->
+   [
+   ProtectedResponse( scenario, run_id, token_id, request_context,
+                      request_context, request_piv, 'reuse_piv', 'no_piv'
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) AcceptResponse:
+   [
+   Pending( scenario, run_id, token_id, request_context, request_piv,
+            response_context
+   ),
+   ProtectedResponse( scenario, run_id, token_id, request_context,
+                      response_context, request_piv, piv_mode, reply_piv
+   )
+   ]
+  --[
+  ResponseAccepted( scenario, run_id, token_id, request_context,
+                    response_context, request_piv, piv_mode, reply_piv
+  )
+  ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+restriction SingleInit:
+  "∀ #i #j. ((Init( ) @ #i) ∧ (Init( ) @ #j)) ⇒ (#i = #j)"
+  // safety formula
+
+  /*
+  expanded formula:
+  "∀ #i #j. ((Init( ) @ #i) ∧ (Init( ) @ #j)) ⇒ (#i = #j)"
+  */
+
+restriction EqualContext:
+  "∀ a b #i. (ContextMatch( a, b ) @ #i) ⇒ (a = b)"
+  // safety formula
+
+  /*
+  expanded formula:
+  "∀ a b #i. (ContextMatch( a, b ) @ #i) ⇒ (a = b)"
+  */
+
+lemma rb3_same_reuse_reachable:
+  exists-trace
+  "∃ run_id token_id ctx request_piv #k.
+    ResponseAccepted( 'same_ctx', run_id, token_id, ctx, ctx, request_piv,
+                      'reuse_piv', 'no_piv'
+    ) @ #k"
+/*
+guarded formula characterizing all satisfying traces:
+"∃ run_id token_id ctx request_piv #k.
+  (ResponseAccepted( 'same_ctx', run_id, token_id, ctx, ctx, request_piv,
+                     'reuse_piv', 'no_piv'
+   ) @ #k)"
+*/
+by sorry
+
+lemma rb3_same_own_reachable:
+  exists-trace
+  "∃ run_id token_id ctx request_piv reply_piv #k.
+    ResponseAccepted( 'same_ctx', run_id, token_id, ctx, ctx, request_piv,
+                      'own_piv', reply_piv
+    ) @ #k"
+/*
+guarded formula characterizing all satisfying traces:
+"∃ run_id token_id ctx request_piv reply_piv #k.
+  (ResponseAccepted( 'same_ctx', run_id, token_id, ctx, ctx, request_piv,
+                     'own_piv', reply_piv
+   ) @ #k)"
+*/
+by sorry
+
+lemma rb3_different_own_reachable:
+  exists-trace
+  "∃ run_id token_id request_context response_context request_piv reply_piv
+     #k.
+    (ResponseAccepted( 'different_ctx', run_id, token_id, request_context,
+                       response_context, request_piv, 'own_piv', reply_piv
+     ) @ #k) ∧
+    (¬(request_context = response_context))"
+/*
+guarded formula characterizing all satisfying traces:
+"∃ run_id token_id request_context response_context request_piv reply_piv
+   #k.
+  (ResponseAccepted( 'different_ctx', run_id, token_id, request_context,
+                     response_context, request_piv, 'own_piv', reply_piv
+   ) @ #k)
+ ∧
+  ¬(request_context = response_context)"
+*/
+by sorry
+
+lemma rb3_accepted_matches_protected:
+  all-traces
+  "∀ scenario run_id token_id request_context response_context request_piv
+     piv_mode reply_piv #k.
+    (ResponseAccepted( scenario, run_id, token_id, request_context,
+                       response_context, request_piv, piv_mode, reply_piv
+     ) @ #k) ⇒
+    (∃ #i.
+      (ResponseProtected( scenario, run_id, token_id, request_context,
+                          response_context, request_piv, piv_mode, reply_piv
+       ) @ #i) ∧
+      (#i < #k))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ scenario run_id token_id request_context response_context request_piv
+   piv_mode reply_piv #k.
+  (ResponseAccepted( scenario, run_id, token_id, request_context,
+                     response_context, request_piv, piv_mode, reply_piv
+   ) @ #k)
+ ∧
+  ∀ #i.
+   (ResponseProtected( scenario, run_id, token_id, request_context,
+                       response_context, request_piv, piv_mode, reply_piv
+    ) @ #i)
+  ⇒
+   ¬(#i < #k)"
+*/
+simplify
+solve( Pending( scenario, run_id, token_id, request_context, request_piv,
+                response_context
+       ) ▶₀ #k )
+  case RecordAcceptedRequest_case_1
+  solve( ProtectedResponse( 'same_ctx', ~run_id, ~token_id,
+                            ~request_context, ~request_context, 'request_zero', piv_mode, reply_piv
+         ) ▶₁ #k )
+    case ProtectWithOwnPiv
+    by contradiction /* from formulas */
+  next
+    case ProtectWithRequestNonce
+    by contradiction /* from formulas */
+  qed
+next
+  case RecordAcceptedRequest_case_2
+  solve( ProtectedResponse( 'different_ctx', ~run_id, ~token_id,
+                            ~request_context, ~new_context, 'request_zero', piv_mode, reply_piv
+         ) ▶₁ #k )
+    case ProtectWithOwnPiv
+    by contradiction /* from formulas */
+  qed
+qed
+
+lemma rb3_reuse_requires_same:
+  all-traces
+  "∀ scenario run_id token_id request_context response_context request_piv
+     reply_piv #k.
+    (ResponseProtected( scenario, run_id, token_id, request_context,
+                        response_context, request_piv, 'reuse_piv', reply_piv
+     ) @ #k) ⇒
+    ((request_context = response_context) ∧ (reply_piv = 'no_piv'))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ scenario run_id token_id request_context response_context request_piv
+   reply_piv #k.
+  (ResponseProtected( scenario, run_id, token_id, request_context,
+                      response_context, request_piv, 'reuse_piv', reply_piv
+   ) @ #k)
+ ∧
+  ((¬(request_context = response_context)) ∨ (¬(reply_piv = 'no_piv')))"
+*/
+by sorry
+
+lemma rb3_own_uses_sender_ssn:
+  all-traces
+  "∀ scenario run_id token_id request_context response_context request_piv
+     reply_piv #k.
+    (ResponseProtected( scenario, run_id, token_id, request_context,
+                        response_context, request_piv, 'own_piv', reply_piv
+     ) @ #k) ⇒
+    (∃ #i.
+      (ServerSendReady( run_id, response_context, reply_piv ) @ #i) ∧
+      (#i < #k))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ scenario run_id token_id request_context response_context request_piv
+   reply_piv #k.
+  (ResponseProtected( scenario, run_id, token_id, request_context,
+                      response_context, request_piv, 'own_piv', reply_piv
+   ) @ #k)
+ ∧
+  ∀ #i.
+   (ServerSendReady( run_id, response_context, reply_piv ) @ #i)
+  ⇒
+   ¬(#i < #k)"
+*/
+by sorry
+
+/* All wellformedness checks were successful. */
+
+/*
+Generated from:
+Tamarin version 1.13.0
+Maude version 3.5
+Git revision: UNKNOWN
+Compiled at: 2026-10-24 02:25:12.718891574 UTC
+*/
+
+end
+
+==============================================================================
+summary of summaries:
+
+analyzed: /work/inputs/rb3_equality_guard.spthy
+
+  processing time: 0.05s
+  
+  rb3_same_reuse_reachable (exists-trace): analysis incomplete (1 steps)
+  rb3_same_own_reachable (exists-trace): analysis incomplete (1 steps)
+  rb3_different_own_reachable (exists-trace): analysis incomplete (1 steps)
+  rb3_accepted_matches_protected (all-traces): verified (7 steps)
+  rb3_reuse_requires_same (all-traces): analysis incomplete (1 steps)
+  rb3_own_uses_sender_ssn (all-traces): analysis incomplete (1 steps)
+
+==============================================================================

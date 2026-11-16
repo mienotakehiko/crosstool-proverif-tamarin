@@ -1,0 +1,5 @@
+lemma	cim_pv_archived_raw	cim_reference	tamarin_retest	pv_from_tamarin	status
+rb2_second_acceptance_reachable	false	same_reachability	True	True	MATCH
+rb2_request_response_binding	true	event_binding	True	True	MATCH
+rb2_unique_acceptance	true	related_injective_correspondence	True	True	MATCH
+rb2_new_request_after_activation	true	activation_correspondence	True	True	MATCH

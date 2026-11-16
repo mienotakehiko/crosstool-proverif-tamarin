@@ -1,0 +1,18 @@
+theory H1_section3_own
+begin
+functions: kdf/2, xn/2, key/2, civ/1, nce/3, succ/1
+restriction OneInit:
+ "All #i #j. Init()@i & Init()@j ==> #i = #j"
+rule Init:
+ [ Fr(~parent), Fr(~input_a), Fr(~input_b), Fr(~m1), Fr(~m2) ] --[ Init() ]-> [ Ready(~parent,~input_a,~input_b,~m1,~m2) ]
+rule Encrypt1:
+ [ Ready(~parent,~input_a,~input_b,~m1,~m2) ] --[ RequestState('client','zero'), ContextStep(key(kdf(~parent,xn(~input_a,~input_b)),'server'),nce('server','zero',civ(kdf(~parent,xn(~input_a,~input_b))))), AeadUse(key(kdf(~parent,xn(~input_a,~input_b)),'server'),nce('server','zero',civ(kdf(~parent,xn(~input_a,~input_b)))),~m1) ]-> [ AfterFirst(~parent,~input_a,~input_b,~m1,~m2) ]
+rule Encrypt2:
+ [ AfterFirst(~parent,~input_a,~input_b,~m1,~m2) ] --[ RequestState('client','zero'), ContextStep(key(kdf(~parent,xn(~input_a,~input_b)),'server'),nce('client','zero',civ(kdf(~parent,xn(~input_a,~input_b))))), AeadUse(key(kdf(~parent,xn(~input_a,~input_b)),'server'),nce('client','zero',civ(kdf(~parent,xn(~input_a,~input_b)))),~m2), Normal() ]-> [ ]
+lemma normal: exists-trace
+ "Ex #i. Normal()@i"
+lemma collision: exists-trace
+ "Ex k n x y #i #j. AeadUse(k,n,x)@i & AeadUse(k,n,y)@j & not(x = y)"
+lemma no_collision: all-traces
+ "All k n x y #i #j. AeadUse(k,n,x)@i & AeadUse(k,n,y)@j ==> x = y"
+end

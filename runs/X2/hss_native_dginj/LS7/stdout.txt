@@ -1,0 +1,1773 @@
+theory HSS_LS7_inj
+
+begin
+
+// Function signature and definition of the equational theory E
+
+functions: ch/3, fst/1, hl/3, pair/2, prf/3 [private,constructor], s/1,
+           snd/1, z/0
+equations: fst(<x.1, x.2>) = x.1, snd(<x.1, x.2>) = x.2
+
+restriction DgFun:
+  "∀ X q m a b #i #j.
+    ((Dg( X, q, m, a ) @ #i) ∧ (Dg( X, q, m, b ) @ #j)) ⇒ (a = b)"
+  // safety formula
+
+  /*
+  expanded formula:
+  "∀ X q m a b #i #j.
+    ((Dg( X, q, m, a ) @ #i) ∧ (Dg( X, q, m, b ) @ #j)) ⇒ (a = b)"
+  */
+
+restriction DgInj:
+  "∀ X q m1 m2 a #i #j.
+    ((Dg( X, q, m1, a ) @ #i) ∧ (Dg( X, q, m2, a ) @ #j)) ⇒ (m1 = m2)"
+  // safety formula
+
+  /*
+  expanded formula:
+  "∀ X q m1 m2 a #i #j.
+    ((Dg( X, q, m1, a ) @ #i) ∧ (Dg( X, q, m2, a ) @ #j)) ⇒ (m1 = m2)"
+  */
+
+rule (modulo E) KeyGen:
+   [ Fr( ~I ), Fr( ~sdT ), Fr( ~J ), Fr( ~sdB ) ]
+  --[ KeyGen( ~I ) ]->
+   [
+   !SkT( ~I, ~sdT ), !SkB( ~I, ~J, ~sdB ), TopPending( ~I, ~sdT, ~J, ~sdB ),
+   !Root( ~I,
+          hl(~I,
+             <ch(~I, 'm', ch(~I, 'm', ch(~I, 'm', prf(~sdT, z, 'm')))), 
+              ch(~I, 'k', ch(~I, 'k', ch(~I, 'k', prf(~sdT, z, 'k'))))>,
+             <ch(~I, 'm', ch(~I, 'm', ch(~I, 'm', prf(~sdT, s(z), 'm')))), 
+              ch(~I, 'k', ch(~I, 'k', ch(~I, 'k', prf(~sdT, s(z), 'k'))))>)
+   ),
+   Out( <~I, 
+         hl(~I,
+            <ch(~I, 'm', ch(~I, 'm', ch(~I, 'm', prf(~sdT, z, 'm')))), 
+             ch(~I, 'k', ch(~I, 'k', ch(~I, 'k', prf(~sdT, z, 'k'))))>,
+            <ch(~I, 'm', ch(~I, 'm', ch(~I, 'm', prf(~sdT, s(z), 'm')))), 
+             ch(~I, 'k', ch(~I, 'k', ch(~I, 'k', prf(~sdT, s(z), 'k'))))>)
+        >
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) TopSign_a0:
+   [ TopPending( I, sdT, J, sdB ), In( <'top', z> ) ]
+  --[
+  Dg( I, z,
+      <J, 
+       hl(J,
+          <ch(J, 'm', ch(J, 'm', ch(J, 'm', prf(sdB, z, 'm')))), 
+           ch(J, 'k', ch(J, 'k', ch(J, 'k', prf(sdB, z, 'k'))))>,
+          <ch(J, 'm', ch(J, 'm', ch(J, 'm', prf(sdB, s(z), 'm')))), 
+           ch(J, 'k', ch(J, 'k', ch(J, 'k', prf(sdB, s(z), 'k'))))>)
+      >,
+      z
+  ),
+  SignTop( I, J )
+  ]->
+   [
+   BotSt( I, J, sdB, z ),
+   Out( <I, J, 
+         hl(J,
+            <ch(J, 'm', ch(J, 'm', ch(J, 'm', prf(sdB, z, 'm')))), 
+             ch(J, 'k', ch(J, 'k', ch(J, 'k', prf(sdB, z, 'k'))))>,
+            <ch(J, 'm', ch(J, 'm', ch(J, 'm', prf(sdB, s(z), 'm')))), 
+             ch(J, 'k', ch(J, 'k', ch(J, 'k', prf(sdB, s(z), 'k'))))>), 
+         z, z, prf(sdT, z, 'm'), 
+         ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sdT, z, 'k')))), 
+         ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sdT, s(z), 'm')))), 
+         ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sdT, s(z), 'k'))))>
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) TopSign_a1:
+   [ TopPending( I, sdT, J, sdB ), In( <'top', s(z)> ) ]
+  --[
+  Dg( I, z,
+      <J, 
+       hl(J,
+          <ch(J, 'm', ch(J, 'm', ch(J, 'm', prf(sdB, z, 'm')))), 
+           ch(J, 'k', ch(J, 'k', ch(J, 'k', prf(sdB, z, 'k'))))>,
+          <ch(J, 'm', ch(J, 'm', ch(J, 'm', prf(sdB, s(z), 'm')))), 
+           ch(J, 'k', ch(J, 'k', ch(J, 'k', prf(sdB, s(z), 'k'))))>)
+      >,
+      s(z)
+  ),
+  SignTop( I, J )
+  ]->
+   [
+   BotSt( I, J, sdB, z ),
+   Out( <I, J, 
+         hl(J,
+            <ch(J, 'm', ch(J, 'm', ch(J, 'm', prf(sdB, z, 'm')))), 
+             ch(J, 'k', ch(J, 'k', ch(J, 'k', prf(sdB, z, 'k'))))>,
+            <ch(J, 'm', ch(J, 'm', ch(J, 'm', prf(sdB, s(z), 'm')))), 
+             ch(J, 'k', ch(J, 'k', ch(J, 'k', prf(sdB, s(z), 'k'))))>), 
+         z, s(z), ch(I, 'm', prf(sdT, z, 'm')), 
+         ch(I, 'k', ch(I, 'k', prf(sdT, z, 'k'))), 
+         ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sdT, s(z), 'm')))), 
+         ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sdT, s(z), 'k'))))>
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) TopSign_a2:
+   [ TopPending( I, sdT, J, sdB ), In( <'top', s(s(z))> ) ]
+  --[
+  Dg( I, z,
+      <J, 
+       hl(J,
+          <ch(J, 'm', ch(J, 'm', ch(J, 'm', prf(sdB, z, 'm')))), 
+           ch(J, 'k', ch(J, 'k', ch(J, 'k', prf(sdB, z, 'k'))))>,
+          <ch(J, 'm', ch(J, 'm', ch(J, 'm', prf(sdB, s(z), 'm')))), 
+           ch(J, 'k', ch(J, 'k', ch(J, 'k', prf(sdB, s(z), 'k'))))>)
+      >,
+      s(s(z))
+  ),
+  SignTop( I, J )
+  ]->
+   [
+   BotSt( I, J, sdB, z ),
+   Out( <I, J, 
+         hl(J,
+            <ch(J, 'm', ch(J, 'm', ch(J, 'm', prf(sdB, z, 'm')))), 
+             ch(J, 'k', ch(J, 'k', ch(J, 'k', prf(sdB, z, 'k'))))>,
+            <ch(J, 'm', ch(J, 'm', ch(J, 'm', prf(sdB, s(z), 'm')))), 
+             ch(J, 'k', ch(J, 'k', ch(J, 'k', prf(sdB, s(z), 'k'))))>), 
+         z, s(s(z)), ch(I, 'm', ch(I, 'm', prf(sdT, z, 'm'))), 
+         ch(I, 'k', prf(sdT, z, 'k')), 
+         ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sdT, s(z), 'm')))), 
+         ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sdT, s(z), 'k'))))>
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) TopSign_a3:
+   [ TopPending( I, sdT, J, sdB ), In( <'top', s(s(s(z)))> ) ]
+  --[
+  Dg( I, z,
+      <J, 
+       hl(J,
+          <ch(J, 'm', ch(J, 'm', ch(J, 'm', prf(sdB, z, 'm')))), 
+           ch(J, 'k', ch(J, 'k', ch(J, 'k', prf(sdB, z, 'k'))))>,
+          <ch(J, 'm', ch(J, 'm', ch(J, 'm', prf(sdB, s(z), 'm')))), 
+           ch(J, 'k', ch(J, 'k', ch(J, 'k', prf(sdB, s(z), 'k'))))>)
+      >,
+      s(s(s(z)))
+  ),
+  SignTop( I, J )
+  ]->
+   [
+   BotSt( I, J, sdB, z ),
+   Out( <I, J, 
+         hl(J,
+            <ch(J, 'm', ch(J, 'm', ch(J, 'm', prf(sdB, z, 'm')))), 
+             ch(J, 'k', ch(J, 'k', ch(J, 'k', prf(sdB, z, 'k'))))>,
+            <ch(J, 'm', ch(J, 'm', ch(J, 'm', prf(sdB, s(z), 'm')))), 
+             ch(J, 'k', ch(J, 'k', ch(J, 'k', prf(sdB, s(z), 'k'))))>), 
+         z, s(s(s(z))), ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sdT, z, 'm')))), 
+         prf(sdT, z, 'k'), 
+         ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sdT, s(z), 'm')))), 
+         ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sdT, s(z), 'k'))))>
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) BotSign_q0_a0:
+   [ BotSt( I, J, sdB, z ), In( <'sign', m, z> ) ]
+  --[ Dg( J, z, m, z ), SignBot( I, J, m ) ]->
+   [
+   BotSt( I, J, sdB, s(z) ),
+   Out( <I, J, m, z, z, prf(sdB, z, 'm'), 
+         ch(J, 'k', ch(J, 'k', ch(J, 'k', prf(sdB, z, 'k')))), 
+         ch(J, 'm', ch(J, 'm', ch(J, 'm', prf(sdB, s(z), 'm')))), 
+         ch(J, 'k', ch(J, 'k', ch(J, 'k', prf(sdB, s(z), 'k'))))>
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) BotSign_q0_a1:
+   [ BotSt( I, J, sdB, z ), In( <'sign', m, s(z)> ) ]
+  --[ Dg( J, z, m, s(z) ), SignBot( I, J, m ) ]->
+   [
+   BotSt( I, J, sdB, s(z) ),
+   Out( <I, J, m, z, s(z), ch(J, 'm', prf(sdB, z, 'm')), 
+         ch(J, 'k', ch(J, 'k', prf(sdB, z, 'k'))), 
+         ch(J, 'm', ch(J, 'm', ch(J, 'm', prf(sdB, s(z), 'm')))), 
+         ch(J, 'k', ch(J, 'k', ch(J, 'k', prf(sdB, s(z), 'k'))))>
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) BotSign_q0_a2:
+   [ BotSt( I, J, sdB, z ), In( <'sign', m, s(s(z))> ) ]
+  --[ Dg( J, z, m, s(s(z)) ), SignBot( I, J, m ) ]->
+   [
+   BotSt( I, J, sdB, s(z) ),
+   Out( <I, J, m, z, s(s(z)), ch(J, 'm', ch(J, 'm', prf(sdB, z, 'm'))), 
+         ch(J, 'k', prf(sdB, z, 'k')), 
+         ch(J, 'm', ch(J, 'm', ch(J, 'm', prf(sdB, s(z), 'm')))), 
+         ch(J, 'k', ch(J, 'k', ch(J, 'k', prf(sdB, s(z), 'k'))))>
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) BotSign_q0_a3:
+   [ BotSt( I, J, sdB, z ), In( <'sign', m, s(s(s(z)))> ) ]
+  --[ Dg( J, z, m, s(s(s(z))) ), SignBot( I, J, m ) ]->
+   [
+   BotSt( I, J, sdB, s(z) ),
+   Out( <I, J, m, z, s(s(s(z))), 
+         ch(J, 'm', ch(J, 'm', ch(J, 'm', prf(sdB, z, 'm')))), prf(sdB, z, 'k'), 
+         ch(J, 'm', ch(J, 'm', ch(J, 'm', prf(sdB, s(z), 'm')))), 
+         ch(J, 'k', ch(J, 'k', ch(J, 'k', prf(sdB, s(z), 'k'))))>
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) BotSign_q1_a0:
+   [ BotSt( I, J, sdB, s(z) ), In( <'sign', m, z> ) ]
+  --[ Dg( J, s(z), m, z ), SignBot( I, J, m ) ]->
+   [
+   BotSt( I, J, sdB, s(s(z)) ),
+   Out( <I, J, m, s(z), z, prf(sdB, s(z), 'm'), 
+         ch(J, 'k', ch(J, 'k', ch(J, 'k', prf(sdB, s(z), 'k')))), 
+         ch(J, 'm', ch(J, 'm', ch(J, 'm', prf(sdB, z, 'm')))), 
+         ch(J, 'k', ch(J, 'k', ch(J, 'k', prf(sdB, z, 'k'))))>
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) BotSign_q1_a1:
+   [ BotSt( I, J, sdB, s(z) ), In( <'sign', m, s(z)> ) ]
+  --[ Dg( J, s(z), m, s(z) ), SignBot( I, J, m ) ]->
+   [
+   BotSt( I, J, sdB, s(s(z)) ),
+   Out( <I, J, m, s(z), s(z), ch(J, 'm', prf(sdB, s(z), 'm')), 
+         ch(J, 'k', ch(J, 'k', prf(sdB, s(z), 'k'))), 
+         ch(J, 'm', ch(J, 'm', ch(J, 'm', prf(sdB, z, 'm')))), 
+         ch(J, 'k', ch(J, 'k', ch(J, 'k', prf(sdB, z, 'k'))))>
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) BotSign_q1_a2:
+   [ BotSt( I, J, sdB, s(z) ), In( <'sign', m, s(s(z))> ) ]
+  --[ Dg( J, s(z), m, s(s(z)) ), SignBot( I, J, m ) ]->
+   [
+   BotSt( I, J, sdB, s(s(z)) ),
+   Out( <I, J, m, s(z), s(s(z)), 
+         ch(J, 'm', ch(J, 'm', prf(sdB, s(z), 'm'))), 
+         ch(J, 'k', prf(sdB, s(z), 'k')), 
+         ch(J, 'm', ch(J, 'm', ch(J, 'm', prf(sdB, z, 'm')))), 
+         ch(J, 'k', ch(J, 'k', ch(J, 'k', prf(sdB, z, 'k'))))>
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) BotSign_q1_a3:
+   [ BotSt( I, J, sdB, s(z) ), In( <'sign', m, s(s(s(z)))> ) ]
+  --[ Dg( J, s(z), m, s(s(s(z))) ), SignBot( I, J, m ) ]->
+   [
+   BotSt( I, J, sdB, s(s(z)) ),
+   Out( <I, J, m, s(z), s(s(s(z))), 
+         ch(J, 'm', ch(J, 'm', ch(J, 'm', prf(sdB, s(z), 'm')))), 
+         prf(sdB, s(z), 'k'), 
+         ch(J, 'm', ch(J, 'm', ch(J, 'm', prf(sdB, z, 'm')))), 
+         ch(J, 'k', ch(J, 'k', ch(J, 'k', prf(sdB, z, 'k'))))>
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) RevealTop:
+   [ !SkT( I, sd ) ] --[ RevealTop( I ) ]-> [ Out( sd ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) RevealBot:
+   [ !SkB( I, J, sd ) ] --[ RevealBot( I, J ) ]-> [ Out( <J, sd> ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) VerTop_q0_a0:
+   [
+   !Root( I, hl(I, <ch(I, 'm', ch(I, 'm', ch(I, 'm', sm))), sk>, sib) ),
+   In( <I, J, rB, z, z, sm, sk, sib> )
+   ]
+  --[ Dg( I, z, <J, rB>, z ), AcceptTop( I, J, rB ) ]->
+   [ !TopOK( I, J, rB ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) VerTop_q0_a1:
+   [
+   !Root( I, hl(I, <ch(I, 'm', ch(I, 'm', sm)), ch(I, 'k', sk)>, sib) ),
+   In( <I, J, rB, z, s(z), sm, sk, sib> )
+   ]
+  --[ Dg( I, z, <J, rB>, s(z) ), AcceptTop( I, J, rB ) ]->
+   [ !TopOK( I, J, rB ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) VerTop_q0_a2:
+   [
+   !Root( I, hl(I, <ch(I, 'm', sm), ch(I, 'k', ch(I, 'k', sk))>, sib) ),
+   In( <I, J, rB, z, s(s(z)), sm, sk, sib> )
+   ]
+  --[ Dg( I, z, <J, rB>, s(s(z)) ), AcceptTop( I, J, rB ) ]->
+   [ !TopOK( I, J, rB ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) VerTop_q0_a3:
+   [
+   !Root( I, hl(I, <sm, ch(I, 'k', ch(I, 'k', ch(I, 'k', sk)))>, sib) ),
+   In( <I, J, rB, z, s(s(s(z))), sm, sk, sib> )
+   ]
+  --[ Dg( I, z, <J, rB>, s(s(s(z))) ), AcceptTop( I, J, rB ) ]->
+   [ !TopOK( I, J, rB ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) VerTop_q1_a0:
+   [
+   !Root( I, hl(I, sib, <ch(I, 'm', ch(I, 'm', ch(I, 'm', sm))), sk>) ),
+   In( <I, J, rB, s(z), z, sm, sk, sib> )
+   ]
+  --[ Dg( I, s(z), <J, rB>, z ), AcceptTop( I, J, rB ) ]->
+   [ !TopOK( I, J, rB ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) VerTop_q1_a1:
+   [
+   !Root( I, hl(I, sib, <ch(I, 'm', ch(I, 'm', sm)), ch(I, 'k', sk)>) ),
+   In( <I, J, rB, s(z), s(z), sm, sk, sib> )
+   ]
+  --[ Dg( I, s(z), <J, rB>, s(z) ), AcceptTop( I, J, rB ) ]->
+   [ !TopOK( I, J, rB ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) VerTop_q1_a2:
+   [
+   !Root( I, hl(I, sib, <ch(I, 'm', sm), ch(I, 'k', ch(I, 'k', sk))>) ),
+   In( <I, J, rB, s(z), s(s(z)), sm, sk, sib> )
+   ]
+  --[ Dg( I, s(z), <J, rB>, s(s(z)) ), AcceptTop( I, J, rB ) ]->
+   [ !TopOK( I, J, rB ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) VerTop_q1_a3:
+   [
+   !Root( I, hl(I, sib, <sm, ch(I, 'k', ch(I, 'k', ch(I, 'k', sk)))>) ),
+   In( <I, J, rB, s(z), s(s(s(z))), sm, sk, sib> )
+   ]
+  --[ Dg( I, s(z), <J, rB>, s(s(s(z))) ), AcceptTop( I, J, rB ) ]->
+   [ !TopOK( I, J, rB ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) VerBot_q0_a0:
+   [
+   !TopOK( I, J, hl(J, <ch(J, 'm', ch(J, 'm', ch(J, 'm', sm))), sk>, sib) ),
+   In( <I, J, m, z, z, sm, sk, sib> )
+   ]
+  --[ Dg( J, z, m, z ), HssAccept( I, J, m ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) VerBot_q0_a1:
+   [
+   !TopOK( I, J, hl(J, <ch(J, 'm', ch(J, 'm', sm)), ch(J, 'k', sk)>, sib) ),
+   In( <I, J, m, z, s(z), sm, sk, sib> )
+   ]
+  --[ Dg( J, z, m, s(z) ), HssAccept( I, J, m ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) VerBot_q0_a2:
+   [
+   !TopOK( I, J, hl(J, <ch(J, 'm', sm), ch(J, 'k', ch(J, 'k', sk))>, sib) ),
+   In( <I, J, m, z, s(s(z)), sm, sk, sib> )
+   ]
+  --[ Dg( J, z, m, s(s(z)) ), HssAccept( I, J, m ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) VerBot_q0_a3:
+   [
+   !TopOK( I, J, hl(J, <sm, ch(J, 'k', ch(J, 'k', ch(J, 'k', sk)))>, sib) ),
+   In( <I, J, m, z, s(s(s(z))), sm, sk, sib> )
+   ]
+  --[ Dg( J, z, m, s(s(s(z))) ), HssAccept( I, J, m ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) VerBot_q1_a0:
+   [
+   !TopOK( I, J, hl(J, sib, <ch(J, 'm', ch(J, 'm', ch(J, 'm', sm))), sk>) ),
+   In( <I, J, m, s(z), z, sm, sk, sib> )
+   ]
+  --[ Dg( J, s(z), m, z ), HssAccept( I, J, m ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) VerBot_q1_a1:
+   [
+   !TopOK( I, J, hl(J, sib, <ch(J, 'm', ch(J, 'm', sm)), ch(J, 'k', sk)>) ),
+   In( <I, J, m, s(z), s(z), sm, sk, sib> )
+   ]
+  --[ Dg( J, s(z), m, s(z) ), HssAccept( I, J, m ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) VerBot_q1_a2:
+   [
+   !TopOK( I, J, hl(J, sib, <ch(J, 'm', sm), ch(J, 'k', ch(J, 'k', sk))>) ),
+   In( <I, J, m, s(z), s(s(z)), sm, sk, sib> )
+   ]
+  --[ Dg( J, s(z), m, s(s(z)) ), HssAccept( I, J, m ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) VerBot_q1_a3:
+   [
+   !TopOK( I, J, hl(J, sib, <sm, ch(J, 'k', ch(J, 'k', ch(J, 'k', sk)))>) ),
+   In( <I, J, m, s(z), s(s(s(z))), sm, sk, sib> )
+   ]
+  --[ Dg( J, s(z), m, s(s(s(z))) ), HssAccept( I, J, m ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+lemma exec:
+  exists-trace
+  "∃ I J m #k.
+    ((HssAccept( I, J, m ) @ #k) ∧ (¬(∃ #r. RevealTop( I ) @ #r))) ∧
+    (¬(∃ #r. RevealBot( I, J ) @ #r))"
+/*
+guarded formula characterizing all satisfying traces:
+"∃ I J m #k.
+  (HssAccept( I, J, m ) @ #k)
+ ∧
+  (∀ #r. (RevealTop( I ) @ #r) ⇒ ⊥) ∧ (∀ #r. (RevealBot( I, J ) @ #r) ⇒ ⊥)"
+*/
+by sorry
+
+lemma TopAuth:
+  all-traces
+  "∀ I J rB #k.
+    (AcceptTop( I, J, rB ) @ #k) ⇒
+    ((∃ #s. SignTop( I, J ) @ #s) ∨ (∃ #r. RevealTop( I ) @ #r))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ I J rB #k.
+  (AcceptTop( I, J, rB ) @ #k)
+ ∧
+  (∀ #s. (SignTop( I, J ) @ #s) ⇒ ⊥) ∧ (∀ #r. (RevealTop( I ) @ #r) ⇒ ⊥)"
+*/
+by sorry
+
+lemma LS7:
+  all-traces
+  "∀ I J m #k.
+    (HssAccept( I, J, m ) @ #k) ⇒
+    (((∃ #s #t. (SignTop( I, J ) @ #s) ∧ (SignBot( I, J, m ) @ #t)) ∨
+      (∃ #r. RevealTop( I ) @ #r)) ∨
+     (∃ #s #r. (SignTop( I, J ) @ #s) ∧ (RevealBot( I, J ) @ #r)))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ I J m #k.
+  (HssAccept( I, J, m ) @ #k)
+ ∧
+  (∀ #s #t. (SignTop( I, J ) @ #s) ∧ (SignBot( I, J, m ) @ #t) ⇒ ⊥) ∧
+  (∀ #r. (RevealTop( I ) @ #r) ⇒ ⊥) ∧
+  (∀ #s #r. (SignTop( I, J ) @ #s) ∧ (RevealBot( I, J ) @ #r) ⇒ ⊥)"
+*/
+simplify
+solve( HssAccept( I, J, m ) @ #k )
+  case VerBot_q0_a0
+  solve( !TopOK( I, J,
+                 hl(J, <ch(J, 'm', ch(J, 'm', ch(J, 'm', sm))), sk>, sib)
+         ) ▶₀ #k )
+    case VerTop_q0_a0
+    solve( !KU( prf(~sdB, z, 'm') ) @ #vk.16 )
+      case BotSign_q0_a0
+      by contradiction /* from formulas */
+    qed
+  next
+    case VerTop_q0_a1
+    solve( !KU( ch(~I, 'm', prf(~sdT, z, 'm')) ) @ #vk.22 )
+      case TopSign_a1
+      solve( !KU( prf(~sdB, z, 'm') ) @ #vk.15 )
+        case BotSign_q0_a0
+        by contradiction /* from formulas */
+      qed
+    next
+      case c_ch
+      solve( !KU( prf(~sdT, z, 'm') ) @ #vk.29 )
+        case TopSign_a0
+        solve( !KU( ch(~I, 'k', ch(~I, 'k', prf(~sdT, z, 'k'))) ) @ #vk.26 )
+          case c_ch
+          solve( !KU( ch(~I, 'k', prf(~sdT, z, 'k')) ) @ #vk.33 )
+            case c_ch
+            by solve( !KU( prf(~sdT, z, 'k') ) @ #vk.34 )
+          qed
+        qed
+      qed
+    qed
+  next
+    case VerTop_q0_a2
+    solve( !KU( ch(~I, 'm', ch(~I, 'm', prf(~sdT, z, 'm'))) ) @ #vk.22 )
+      case TopSign_a2
+      solve( !KU( prf(~sdB, z, 'm') ) @ #vk.15 )
+        case BotSign_q0_a0
+        by contradiction /* from formulas */
+      qed
+    next
+      case c_ch
+      solve( !KU( ch(~I, 'k', prf(~sdT, z, 'k')) ) @ #vk.24 )
+        case TopSign_a2
+        solve( !KU( prf(~sdB, z, 'm') ) @ #vk.17 )
+          case BotSign_q0_a0
+          by contradiction /* from formulas */
+        qed
+      next
+        case c_ch
+        solve( !KU( prf(~sdT, z, 'k') ) @ #vk.31 )
+          case TopSign_a3
+          solve( !KU( ch(~I, 'm', prf(~sdT, z, 'm')) ) @ #vk.30 )
+            case c_ch
+            by solve( !KU( prf(~sdT, z, 'm') ) @ #vk.35 )
+          qed
+        qed
+      qed
+    qed
+  next
+    case VerTop_q0_a3
+    solve( !KU( prf(~sdB, z, 'm') ) @ #vk.14 )
+      case BotSign_q0_a0
+      by contradiction /* from formulas */
+    qed
+  next
+    case VerTop_q1_a1
+    solve( !KU( ch(~I, 'm', prf(~sdT, s(z), 'm')) ) @ #vk.22 )
+      case c_ch
+      by solve( !KU( prf(~sdT, s(z), 'm') ) @ #vk.29 )
+    qed
+  next
+    case VerTop_q1_a2
+    solve( !KU( ch(~I, 'm', ch(~I, 'm', prf(~sdT, s(z), 'm'))) ) @ #vk.23 )
+      case c_ch
+      solve( !KU( ch(~I, 'k', prf(~sdT, s(z), 'k')) ) @ #vk.25 )
+        case c_ch
+        by solve( !KU( prf(~sdT, s(z), 'k') ) @ #vk.32 )
+      qed
+    qed
+  qed
+next
+  case VerBot_q0_a1
+  solve( !TopOK( I, J,
+                 hl(J, <ch(J, 'm', ch(J, 'm', sm)), ch(J, 'k', sk)>, sib)
+         ) ▶₀ #k )
+    case VerTop_q0_a0
+    solve( !KU( ch(~J, 'm', prf(~sdB, z, 'm')) ) @ #vk.17 )
+      case BotSign_q0_a1
+      by contradiction /* from formulas */
+    next
+      case c_ch
+      solve( !KU( prf(~sdB, z, 'm') ) @ #vk.33 )
+        case BotSign_q0_a0
+        solve( !KU( ch(~J, 'k', ch(~J, 'k', prf(~sdB, z, 'k'))) ) @ #vk.23 )
+          case c_ch
+          solve( !KU( ch(~J, 'k', prf(~sdB, z, 'k')) ) @ #vk.39 )
+            case c_ch
+            by solve( !KU( prf(~sdB, z, 'k') ) @ #vk.40 )
+          qed
+        qed
+      qed
+    qed
+  next
+    case VerTop_q0_a1
+    solve( !KU( ch(~I, 'm', prf(~sdT, z, 'm')) ) @ #vk.22 )
+      case TopSign_a1
+      solve( !KU( ch(~J, 'm', prf(~sdB, z, 'm')) ) @ #vk.18 )
+        case BotSign_q0_a1
+        by contradiction /* from formulas */
+      next
+        case c_ch
+        solve( !KU( prf(~sdB, z, 'm') ) @ #vk.33 )
+          case BotSign_q0_a0
+          solve( !KU( ch(~J, 'k', ch(~J, 'k', prf(~sdB, z, 'k'))) ) @ #vk.23 )
+            case c_ch
+            solve( !KU( ch(~J, 'k', prf(~sdB, z, 'k')) ) @ #vk.39 )
+              case c_ch
+              by solve( !KU( prf(~sdB, z, 'k') ) @ #vk.40 )
+            qed
+          qed
+        qed
+      qed
+    next
+      case c_ch
+      solve( !KU( prf(~sdT, z, 'm') ) @ #vk.29 )
+        case TopSign_a0
+        solve( !KU( ch(~I, 'k', ch(~I, 'k', prf(~sdT, z, 'k'))) ) @ #vk.26 )
+          case c_ch
+          solve( !KU( ch(~I, 'k', prf(~sdT, z, 'k')) ) @ #vk.33 )
+            case c_ch
+            by solve( !KU( prf(~sdT, z, 'k') ) @ #vk.34 )
+          qed
+        qed
+      qed
+    qed
+  next
+    case VerTop_q0_a2
+    solve( !KU( ch(~I, 'm', ch(~I, 'm', prf(~sdT, z, 'm'))) ) @ #vk.23 )
+      case TopSign_a2
+      solve( !KU( ch(~J, 'm', prf(~sdB, z, 'm')) ) @ #vk.16 )
+        case BotSign_q0_a1
+        by contradiction /* from formulas */
+      next
+        case c_ch
+        solve( !KU( prf(~sdB, z, 'm') ) @ #vk.34 )
+          case BotSign_q0_a0
+          solve( !KU( ch(~J, 'k', ch(~J, 'k', prf(~sdB, z, 'k'))) ) @ #vk.22 )
+            case c_ch
+            solve( !KU( ch(~J, 'k', prf(~sdB, z, 'k')) ) @ #vk.40 )
+              case c_ch
+              by solve( !KU( prf(~sdB, z, 'k') ) @ #vk.41 )
+            qed
+          qed
+        qed
+      qed
+    next
+      case c_ch
+      solve( !KU( ch(~I, 'k', prf(~sdT, z, 'k')) ) @ #vk.25 )
+        case TopSign_a2
+        solve( !KU( ch(~I, 'm', prf(~sdT, z, 'm')) ) @ #vk.31 )
+          case c_ch
+          by solve( !KU( prf(~sdT, z, 'm') ) @ #vk.35 )
+        qed
+      next
+        case c_ch
+        solve( !KU( prf(~sdT, z, 'k') ) @ #vk.32 )
+          case TopSign_a3
+          solve( !KU( ch(~I, 'm', prf(~sdT, z, 'm')) ) @ #vk.31 )
+            case c_ch
+            by solve( !KU( prf(~sdT, z, 'm') ) @ #vk.36 )
+          qed
+        qed
+      qed
+    qed
+  next
+    case VerTop_q0_a3
+    solve( !KU( ch(~J, 'm', prf(~sdB, z, 'm')) ) @ #vk.15 )
+      case BotSign_q0_a1
+      by contradiction /* from formulas */
+    next
+      case c_ch
+      solve( !KU( prf(~sdB, z, 'm') ) @ #vk.34 )
+        case BotSign_q0_a0
+        solve( !KU( ch(~J, 'k', ch(~J, 'k', prf(~sdB, z, 'k'))) ) @ #vk.23 )
+          case c_ch
+          solve( !KU( ch(~J, 'k', prf(~sdB, z, 'k')) ) @ #vk.40 )
+            case c_ch
+            by solve( !KU( prf(~sdB, z, 'k') ) @ #vk.41 )
+          qed
+        qed
+      qed
+    qed
+  next
+    case VerTop_q1_a1
+    solve( !KU( ch(~I, 'm', prf(~sdT, s(z), 'm')) ) @ #vk.22 )
+      case c_ch
+      by solve( !KU( prf(~sdT, s(z), 'm') ) @ #vk.29 )
+    qed
+  next
+    case VerTop_q1_a2
+    solve( !KU( ch(~I, 'm', ch(~I, 'm', prf(~sdT, s(z), 'm'))) ) @ #vk.23 )
+      case c_ch
+      solve( !KU( ch(~I, 'k', prf(~sdT, s(z), 'k')) ) @ #vk.25 )
+        case c_ch
+        by solve( !KU( prf(~sdT, s(z), 'k') ) @ #vk.32 )
+      qed
+    qed
+  qed
+next
+  case VerBot_q0_a2
+  solve( !TopOK( I, J,
+                 hl(J, <ch(J, 'm', sm), ch(J, 'k', ch(J, 'k', sk))>, sib)
+         ) ▶₀ #k )
+    case VerTop_q0_a0
+    solve( !KU( ch(~J, 'm', ch(~J, 'm', prf(~sdB, z, 'm'))) ) @ #vk.17 )
+      case BotSign_q0_a2
+      by contradiction /* from formulas */
+    next
+      case c_ch
+      solve( !KU( ch(~J, 'k', prf(~sdB, z, 'k')) ) @ #vk.21 )
+        case BotSign_q0_a2
+        by contradiction /* from formulas */
+      next
+        case c_ch
+        solve( !KU( prf(~sdB, z, 'k') ) @ #vk.35 )
+          case BotSign_q0_a3
+          solve( !KU( ch(~J, 'm', prf(~sdB, z, 'm')) ) @ #vk.34 )
+            case c_ch
+            by solve( !KU( prf(~sdB, z, 'm') ) @ #vk.41 )
+          qed
+        qed
+      qed
+    qed
+  next
+    case VerTop_q0_a1
+    solve( !KU( ch(~I, 'm', prf(~sdT, z, 'm')) ) @ #vk.23 )
+      case TopSign_a1
+      solve( !KU( ch(~J, 'm', ch(~J, 'm', prf(~sdB, z, 'm'))) ) @ #vk.16 )
+        case BotSign_q0_a2
+        by contradiction /* from formulas */
+      next
+        case c_ch
+        solve( !KU( ch(~J, 'k', prf(~sdB, z, 'k')) ) @ #vk.20 )
+          case BotSign_q0_a2
+          by contradiction /* from formulas */
+        next
+          case c_ch
+          solve( !KU( prf(~sdB, z, 'k') ) @ #vk.36 )
+            case BotSign_q0_a3
+            solve( !KU( ch(~J, 'm', prf(~sdB, z, 'm')) ) @ #vk.35 )
+              case c_ch
+              by solve( !KU( prf(~sdB, z, 'm') ) @ #vk.42 )
+            qed
+          qed
+        qed
+      qed
+    next
+      case c_ch
+      solve( !KU( prf(~sdT, z, 'm') ) @ #vk.30 )
+        case TopSign_a0
+        solve( !KU( ch(~I, 'k', ch(~I, 'k', prf(~sdT, z, 'k'))) ) @ #vk.27 )
+          case c_ch
+          solve( !KU( ch(~I, 'k', prf(~sdT, z, 'k')) ) @ #vk.34 )
+            case c_ch
+            by solve( !KU( prf(~sdT, z, 'k') ) @ #vk.35 )
+          qed
+        qed
+      qed
+    qed
+  next
+    case VerTop_q0_a2
+    solve( !KU( ch(~I, 'm', ch(~I, 'm', prf(~sdT, z, 'm'))) ) @ #vk.22 )
+      case TopSign_a2
+      solve( !KU( ch(~J, 'm', ch(~J, 'm', prf(~sdB, z, 'm'))) ) @ #vk.18 )
+        case BotSign_q0_a2
+        by contradiction /* from formulas */
+      next
+        case c_ch
+        solve( !KU( ch(~J, 'k', prf(~sdB, z, 'k')) ) @ #vk.21 )
+          case BotSign_q0_a2
+          by contradiction /* from formulas */
+        next
+          case c_ch
+          solve( !KU( prf(~sdB, z, 'k') ) @ #vk.35 )
+            case BotSign_q0_a3
+            solve( !KU( ch(~J, 'm', prf(~sdB, z, 'm')) ) @ #vk.34 )
+              case c_ch
+              by solve( !KU( prf(~sdB, z, 'm') ) @ #vk.41 )
+            qed
+          qed
+        qed
+      qed
+    next
+      case c_ch
+      solve( !KU( ch(~I, 'k', prf(~sdT, z, 'k')) ) @ #vk.24 )
+        case TopSign_a2
+        solve( !KU( ch(~I, 'm', prf(~sdT, z, 'm')) ) @ #vk.30 )
+          case c_ch
+          by solve( !KU( prf(~sdT, z, 'm') ) @ #vk.34 )
+        qed
+      next
+        case c_ch
+        solve( !KU( prf(~sdT, z, 'k') ) @ #vk.31 )
+          case TopSign_a3
+          solve( !KU( ch(~I, 'm', prf(~sdT, z, 'm')) ) @ #vk.30 )
+            case c_ch
+            by solve( !KU( prf(~sdT, z, 'm') ) @ #vk.35 )
+          qed
+        qed
+      qed
+    qed
+  next
+    case VerTop_q0_a3
+    solve( !KU( ch(~J, 'm', ch(~J, 'm', prf(~sdB, z, 'm'))) ) @ #vk.15 )
+      case BotSign_q0_a2
+      by contradiction /* from formulas */
+    next
+      case c_ch
+      solve( !KU( ch(~J, 'k', prf(~sdB, z, 'k')) ) @ #vk.21 )
+        case BotSign_q0_a2
+        by contradiction /* from formulas */
+      next
+        case c_ch
+        solve( !KU( prf(~sdB, z, 'k') ) @ #vk.36 )
+          case BotSign_q0_a3
+          solve( !KU( ch(~J, 'm', prf(~sdB, z, 'm')) ) @ #vk.36 )
+            case c_ch
+            by solve( !KU( prf(~sdB, z, 'm') ) @ #vk.41 )
+          qed
+        qed
+      qed
+    qed
+  next
+    case VerTop_q1_a1
+    solve( !KU( ch(~I, 'm', prf(~sdT, s(z), 'm')) ) @ #vk.23 )
+      case c_ch
+      by solve( !KU( prf(~sdT, s(z), 'm') ) @ #vk.30 )
+    qed
+  next
+    case VerTop_q1_a2
+    solve( !KU( ch(~I, 'm', ch(~I, 'm', prf(~sdT, s(z), 'm'))) ) @ #vk.23 )
+      case c_ch
+      solve( !KU( ch(~I, 'k', prf(~sdT, s(z), 'k')) ) @ #vk.25 )
+        case c_ch
+        by solve( !KU( prf(~sdT, s(z), 'k') ) @ #vk.32 )
+      qed
+    qed
+  qed
+next
+  case VerBot_q0_a3
+  solve( !TopOK( I, J,
+                 hl(J, <sm, ch(J, 'k', ch(J, 'k', ch(J, 'k', sk)))>, sib)
+         ) ▶₀ #k )
+    case VerTop_q0_a0
+    solve( !KU( prf(~sdB, z, 'k') ) @ #vk.19 )
+      case BotSign_q0_a3
+      by contradiction /* from formulas */
+    qed
+  next
+    case VerTop_q0_a1
+    solve( !KU( ch(~I, 'm', prf(~sdT, z, 'm')) ) @ #vk.23 )
+      case TopSign_a1
+      solve( !KU( prf(~sdB, z, 'k') ) @ #vk.18 )
+        case BotSign_q0_a3
+        by contradiction /* from formulas */
+      qed
+    next
+      case c_ch
+      solve( !KU( prf(~sdT, z, 'm') ) @ #vk.30 )
+        case TopSign_a0
+        solve( !KU( ch(~I, 'k', ch(~I, 'k', prf(~sdT, z, 'k'))) ) @ #vk.27 )
+          case c_ch
+          solve( !KU( ch(~I, 'k', prf(~sdT, z, 'k')) ) @ #vk.34 )
+            case c_ch
+            by solve( !KU( prf(~sdT, z, 'k') ) @ #vk.35 )
+          qed
+        qed
+      qed
+    qed
+  next
+    case VerTop_q0_a2
+    solve( !KU( ch(~I, 'm', ch(~I, 'm', prf(~sdT, z, 'm'))) ) @ #vk.23 )
+      case TopSign_a2
+      solve( !KU( prf(~sdB, z, 'k') ) @ #vk.18 )
+        case BotSign_q0_a3
+        by contradiction /* from formulas */
+      qed
+    next
+      case c_ch
+      solve( !KU( ch(~I, 'k', prf(~sdT, z, 'k')) ) @ #vk.25 )
+        case TopSign_a2
+        solve( !KU( prf(~sdB, z, 'k') ) @ #vk.20 )
+          case BotSign_q0_a3
+          by contradiction /* from formulas */
+        qed
+      next
+        case c_ch
+        solve( !KU( prf(~sdT, z, 'k') ) @ #vk.32 )
+          case TopSign_a3
+          solve( !KU( ch(~I, 'm', prf(~sdT, z, 'm')) ) @ #vk.32 )
+            case c_ch
+            by solve( !KU( prf(~sdT, z, 'm') ) @ #vk.35 )
+          qed
+        qed
+      qed
+    qed
+  next
+    case VerTop_q0_a3
+    solve( !KU( prf(~sdB, z, 'k') ) @ #vk.19 )
+      case BotSign_q0_a3
+      by contradiction /* from formulas */
+    qed
+  next
+    case VerTop_q1_a1
+    solve( !KU( ch(~I, 'm', prf(~sdT, s(z), 'm')) ) @ #vk.23 )
+      case c_ch
+      by solve( !KU( prf(~sdT, s(z), 'm') ) @ #vk.30 )
+    qed
+  next
+    case VerTop_q1_a2
+    solve( !KU( ch(~I, 'm', ch(~I, 'm', prf(~sdT, s(z), 'm'))) ) @ #vk.24 )
+      case c_ch
+      solve( !KU( ch(~I, 'k', prf(~sdT, s(z), 'k')) ) @ #vk.26 )
+        case c_ch
+        by solve( !KU( prf(~sdT, s(z), 'k') ) @ #vk.33 )
+      qed
+    qed
+  qed
+next
+  case VerBot_q1_a0
+  solve( !TopOK( I, J,
+                 hl(J, sib, <ch(J, 'm', ch(J, 'm', ch(J, 'm', sm))), sk>)
+         ) ▶₀ #k )
+    case VerTop_q0_a0
+    solve( !KU( prf(~sdB, s(z), 'm') ) @ #vk.17 )
+      case BotSign_q1_a0_case_1
+      by contradiction /* from formulas */
+    next
+      case BotSign_q1_a0_case_2
+      by contradiction /* from formulas */
+    next
+      case BotSign_q1_a0_case_3
+      by contradiction /* from formulas */
+    next
+      case BotSign_q1_a0_case_4
+      by contradiction /* from formulas */
+    qed
+  next
+    case VerTop_q0_a1
+    solve( !KU( ch(~I, 'm', prf(~sdT, z, 'm')) ) @ #vk.22 )
+      case TopSign_a1
+      solve( !KU( prf(~sdB, s(z), 'm') ) @ #vk.18 )
+        case BotSign_q1_a0_case_1
+        by contradiction /* from formulas */
+      next
+        case BotSign_q1_a0_case_2
+        by contradiction /* from formulas */
+      next
+        case BotSign_q1_a0_case_3
+        by contradiction /* from formulas */
+      next
+        case BotSign_q1_a0_case_4
+        by contradiction /* from formulas */
+      qed
+    next
+      case c_ch
+      solve( !KU( prf(~sdT, z, 'm') ) @ #vk.29 )
+        case TopSign_a0
+        solve( !KU( ch(~I, 'k', ch(~I, 'k', prf(~sdT, z, 'k'))) ) @ #vk.26 )
+          case c_ch
+          solve( !KU( ch(~I, 'k', prf(~sdT, z, 'k')) ) @ #vk.33 )
+            case c_ch
+            by solve( !KU( prf(~sdT, z, 'k') ) @ #vk.34 )
+          qed
+        qed
+      qed
+    qed
+  next
+    case VerTop_q0_a2
+    solve( !KU( ch(~I, 'm', ch(~I, 'm', prf(~sdT, z, 'm'))) ) @ #vk.23 )
+      case TopSign_a2
+      solve( !KU( prf(~sdB, s(z), 'm') ) @ #vk.16 )
+        case BotSign_q1_a0_case_1
+        by contradiction /* from formulas */
+      next
+        case BotSign_q1_a0_case_2
+        by contradiction /* from formulas */
+      next
+        case BotSign_q1_a0_case_3
+        by contradiction /* from formulas */
+      next
+        case BotSign_q1_a0_case_4
+        by contradiction /* from formulas */
+      qed
+    next
+      case c_ch
+      solve( !KU( ch(~I, 'k', prf(~sdT, z, 'k')) ) @ #vk.25 )
+        case TopSign_a2
+        solve( !KU( prf(~sdB, s(z), 'm') ) @ #vk.18 )
+          case BotSign_q1_a0_case_1
+          by contradiction /* from formulas */
+        next
+          case BotSign_q1_a0_case_2
+          by contradiction /* from formulas */
+        next
+          case BotSign_q1_a0_case_3
+          by contradiction /* from formulas */
+        next
+          case BotSign_q1_a0_case_4
+          by contradiction /* from formulas */
+        qed
+      next
+        case c_ch
+        solve( !KU( prf(~sdT, z, 'k') ) @ #vk.32 )
+          case TopSign_a3
+          solve( !KU( ch(~I, 'm', prf(~sdT, z, 'm')) ) @ #vk.31 )
+            case c_ch
+            by solve( !KU( prf(~sdT, z, 'm') ) @ #vk.36 )
+          qed
+        qed
+      qed
+    qed
+  next
+    case VerTop_q0_a3
+    solve( !KU( prf(~sdB, s(z), 'm') ) @ #vk.15 )
+      case BotSign_q1_a0_case_1
+      by contradiction /* from formulas */
+    next
+      case BotSign_q1_a0_case_2
+      by contradiction /* from formulas */
+    next
+      case BotSign_q1_a0_case_3
+      by contradiction /* from formulas */
+    next
+      case BotSign_q1_a0_case_4
+      by contradiction /* from formulas */
+    qed
+  next
+    case VerTop_q1_a1
+    solve( !KU( ch(~I, 'm', prf(~sdT, s(z), 'm')) ) @ #vk.22 )
+      case c_ch
+      by solve( !KU( prf(~sdT, s(z), 'm') ) @ #vk.29 )
+    qed
+  next
+    case VerTop_q1_a2
+    solve( !KU( ch(~I, 'm', ch(~I, 'm', prf(~sdT, s(z), 'm'))) ) @ #vk.23 )
+      case c_ch
+      solve( !KU( ch(~I, 'k', prf(~sdT, s(z), 'k')) ) @ #vk.25 )
+        case c_ch
+        by solve( !KU( prf(~sdT, s(z), 'k') ) @ #vk.32 )
+      qed
+    qed
+  qed
+next
+  case VerBot_q1_a1
+  solve( !TopOK( I, J,
+                 hl(J, sib, <ch(J, 'm', ch(J, 'm', sm)), ch(J, 'k', sk)>)
+         ) ▶₀ #k )
+    case VerTop_q0_a0
+    solve( !KU( ch(~J, 'm', prf(~sdB, s(z), 'm')) ) @ #vk.13 )
+      case BotSign_q1_a1_case_1
+      by contradiction /* from formulas */
+    next
+      case BotSign_q1_a1_case_2
+      by contradiction /* from formulas */
+    next
+      case BotSign_q1_a1_case_3
+      by contradiction /* from formulas */
+    next
+      case BotSign_q1_a1_case_4
+      by contradiction /* from formulas */
+    next
+      case c_ch
+      solve( !KU( prf(~sdB, s(z), 'm') ) @ #vk.33 )
+        case BotSign_q1_a0_case_1
+        solve( !KU( ch(~J, 'k', ch(~J, 'k', prf(~sdB, s(z), 'k'))) ) @ #vk.20 )
+          case c_ch
+          solve( !KU( ch(~J, 'k', prf(~sdB, s(z), 'k')) ) @ #vk.42 )
+            case c_ch
+            by solve( !KU( prf(~sdB, s(z), 'k') ) @ #vk.43 )
+          qed
+        qed
+      next
+        case BotSign_q1_a0_case_2
+        solve( !KU( ch(~J, 'k', ch(~J, 'k', prf(~sdB, s(z), 'k'))) ) @ #vk.21 )
+          case c_ch
+          solve( !KU( ch(~J, 'k', prf(~sdB, s(z), 'k')) ) @ #vk.42 )
+            case c_ch
+            by solve( !KU( prf(~sdB, s(z), 'k') ) @ #vk.43 )
+          qed
+        qed
+      next
+        case BotSign_q1_a0_case_3
+        solve( !KU( ch(~J, 'k', ch(~J, 'k', prf(~sdB, s(z), 'k'))) ) @ #vk.20 )
+          case c_ch
+          solve( !KU( ch(~J, 'k', prf(~sdB, s(z), 'k')) ) @ #vk.43 )
+            case c_ch
+            by solve( !KU( prf(~sdB, s(z), 'k') ) @ #vk.44 )
+          qed
+        qed
+      next
+        case BotSign_q1_a0_case_4
+        solve( !KU( ch(~J, 'k', ch(~J, 'k', prf(~sdB, s(z), 'k'))) ) @ #vk.20 )
+          case c_ch
+          solve( !KU( ch(~J, 'k', prf(~sdB, s(z), 'k')) ) @ #vk.43 )
+            case c_ch
+            by solve( !KU( prf(~sdB, s(z), 'k') ) @ #vk.44 )
+          qed
+        qed
+      qed
+    qed
+  next
+    case VerTop_q0_a1
+    solve( !KU( ch(~I, 'm', prf(~sdT, z, 'm')) ) @ #vk.22 )
+      case TopSign_a1
+      solve( !KU( ch(~J, 'm', prf(~sdB, s(z), 'm')) ) @ #vk.16 )
+        case BotSign_q1_a1_case_1
+        by contradiction /* from formulas */
+      next
+        case BotSign_q1_a1_case_2
+        by contradiction /* from formulas */
+      next
+        case BotSign_q1_a1_case_3
+        by contradiction /* from formulas */
+      next
+        case BotSign_q1_a1_case_4
+        by contradiction /* from formulas */
+      next
+        case c_ch
+        solve( !KU( prf(~sdB, s(z), 'm') ) @ #vk.33 )
+          case BotSign_q1_a0_case_1
+          solve( !KU( ch(~J, 'k', ch(~J, 'k', prf(~sdB, s(z), 'k'))) ) @ #vk.21 )
+            case c_ch
+            solve( !KU( ch(~J, 'k', prf(~sdB, s(z), 'k')) ) @ #vk.42 )
+              case c_ch
+              by solve( !KU( prf(~sdB, s(z), 'k') ) @ #vk.43 )
+            qed
+          qed
+        next
+          case BotSign_q1_a0_case_2
+          solve( !KU( ch(~J, 'k', ch(~J, 'k', prf(~sdB, s(z), 'k'))) ) @ #vk.22 )
+            case c_ch
+            solve( !KU( ch(~J, 'k', prf(~sdB, s(z), 'k')) ) @ #vk.42 )
+              case c_ch
+              by solve( !KU( prf(~sdB, s(z), 'k') ) @ #vk.43 )
+            qed
+          qed
+        next
+          case BotSign_q1_a0_case_3
+          solve( !KU( ch(~J, 'k', ch(~J, 'k', prf(~sdB, s(z), 'k'))) ) @ #vk.21 )
+            case c_ch
+            solve( !KU( ch(~J, 'k', prf(~sdB, s(z), 'k')) ) @ #vk.43 )
+              case c_ch
+              by solve( !KU( prf(~sdB, s(z), 'k') ) @ #vk.44 )
+            qed
+          qed
+        next
+          case BotSign_q1_a0_case_4
+          solve( !KU( ch(~J, 'k', ch(~J, 'k', prf(~sdB, s(z), 'k'))) ) @ #vk.21 )
+            case c_ch
+            solve( !KU( ch(~J, 'k', prf(~sdB, s(z), 'k')) ) @ #vk.43 )
+              case c_ch
+              by solve( !KU( prf(~sdB, s(z), 'k') ) @ #vk.44 )
+            qed
+          qed
+        qed
+      qed
+    next
+      case c_ch
+      solve( !KU( prf(~sdT, z, 'm') ) @ #vk.29 )
+        case TopSign_a0
+        solve( !KU( ch(~I, 'k', ch(~I, 'k', prf(~sdT, z, 'k'))) ) @ #vk.26 )
+          case c_ch
+          solve( !KU( ch(~I, 'k', prf(~sdT, z, 'k')) ) @ #vk.33 )
+            case c_ch
+            by solve( !KU( prf(~sdT, z, 'k') ) @ #vk.34 )
+          qed
+        qed
+      qed
+    qed
+  next
+    case VerTop_q0_a2
+    solve( !KU( ch(~I, 'm', ch(~I, 'm', prf(~sdT, z, 'm'))) ) @ #vk.23 )
+      case TopSign_a2
+      solve( !KU( ch(~J, 'm', prf(~sdB, s(z), 'm')) ) @ #vk.13 )
+        case BotSign_q1_a1_case_1
+        by contradiction /* from formulas */
+      next
+        case BotSign_q1_a1_case_2
+        by contradiction /* from formulas */
+      next
+        case BotSign_q1_a1_case_3
+        by contradiction /* from formulas */
+      next
+        case BotSign_q1_a1_case_4
+        by contradiction /* from formulas */
+      next
+        case c_ch
+        solve( !KU( prf(~sdB, s(z), 'm') ) @ #vk.34 )
+          case BotSign_q1_a0_case_1
+          solve( !KU( ch(~J, 'k', ch(~J, 'k', prf(~sdB, s(z), 'k'))) ) @ #vk.20 )
+            case c_ch
+            solve( !KU( ch(~J, 'k', prf(~sdB, s(z), 'k')) ) @ #vk.43 )
+              case c_ch
+              by solve( !KU( prf(~sdB, s(z), 'k') ) @ #vk.44 )
+            qed
+          qed
+        next
+          case BotSign_q1_a0_case_2
+          solve( !KU( ch(~J, 'k', ch(~J, 'k', prf(~sdB, s(z), 'k'))) ) @ #vk.21 )
+            case c_ch
+            solve( !KU( ch(~J, 'k', prf(~sdB, s(z), 'k')) ) @ #vk.43 )
+              case c_ch
+              by solve( !KU( prf(~sdB, s(z), 'k') ) @ #vk.44 )
+            qed
+          qed
+        next
+          case BotSign_q1_a0_case_3
+          solve( !KU( ch(~J, 'k', ch(~J, 'k', prf(~sdB, s(z), 'k'))) ) @ #vk.20 )
+            case c_ch
+            solve( !KU( ch(~J, 'k', prf(~sdB, s(z), 'k')) ) @ #vk.43 )
+              case c_ch
+              by solve( !KU( prf(~sdB, s(z), 'k') ) @ #vk.44 )
+            qed
+          qed
+        next
+          case BotSign_q1_a0_case_4
+          solve( !KU( ch(~J, 'k', ch(~J, 'k', prf(~sdB, s(z), 'k'))) ) @ #vk.20 )
+            case c_ch
+            solve( !KU( ch(~J, 'k', prf(~sdB, s(z), 'k')) ) @ #vk.44 )
+              case c_ch
+              by solve( !KU( prf(~sdB, s(z), 'k') ) @ #vk.45 )
+            qed
+          qed
+        qed
+      qed
+    next
+      case c_ch
+      solve( !KU( ch(~I, 'k', prf(~sdT, z, 'k')) ) @ #vk.25 )
+        case TopSign_a2
+        solve( !KU( ch(~I, 'm', prf(~sdT, z, 'm')) ) @ #vk.31 )
+          case c_ch
+          by solve( !KU( prf(~sdT, z, 'm') ) @ #vk.35 )
+        qed
+      next
+        case c_ch
+        solve( !KU( prf(~sdT, z, 'k') ) @ #vk.32 )
+          case TopSign_a3
+          solve( !KU( ch(~I, 'm', prf(~sdT, z, 'm')) ) @ #vk.31 )
+            case c_ch
+            by solve( !KU( prf(~sdT, z, 'm') ) @ #vk.36 )
+          qed
+        qed
+      qed
+    qed
+  next
+    case VerTop_q0_a3
+    solve( !KU( ch(~J, 'm', prf(~sdB, s(z), 'm')) ) @ #vk.13 )
+      case BotSign_q1_a1_case_1
+      by contradiction /* from formulas */
+    next
+      case BotSign_q1_a1_case_2
+      by contradiction /* from formulas */
+    next
+      case BotSign_q1_a1_case_3
+      by contradiction /* from formulas */
+    next
+      case BotSign_q1_a1_case_4
+      by contradiction /* from formulas */
+    next
+      case c_ch
+      solve( !KU( prf(~sdB, s(z), 'm') ) @ #vk.34 )
+        case BotSign_q1_a0_case_1
+        solve( !KU( ch(~J, 'k', ch(~J, 'k', prf(~sdB, s(z), 'k'))) ) @ #vk.21 )
+          case c_ch
+          solve( !KU( ch(~J, 'k', prf(~sdB, s(z), 'k')) ) @ #vk.43 )
+            case c_ch
+            by solve( !KU( prf(~sdB, s(z), 'k') ) @ #vk.44 )
+          qed
+        qed
+      next
+        case BotSign_q1_a0_case_2
+        solve( !KU( ch(~J, 'k', ch(~J, 'k', prf(~sdB, s(z), 'k'))) ) @ #vk.22 )
+          case c_ch
+          solve( !KU( ch(~J, 'k', prf(~sdB, s(z), 'k')) ) @ #vk.43 )
+            case c_ch
+            by solve( !KU( prf(~sdB, s(z), 'k') ) @ #vk.44 )
+          qed
+        qed
+      next
+        case BotSign_q1_a0_case_3
+        solve( !KU( ch(~J, 'k', ch(~J, 'k', prf(~sdB, s(z), 'k'))) ) @ #vk.21 )
+          case c_ch
+          solve( !KU( ch(~J, 'k', prf(~sdB, s(z), 'k')) ) @ #vk.44 )
+            case c_ch
+            by solve( !KU( prf(~sdB, s(z), 'k') ) @ #vk.45 )
+          qed
+        qed
+      next
+        case BotSign_q1_a0_case_4
+        solve( !KU( ch(~J, 'k', ch(~J, 'k', prf(~sdB, s(z), 'k'))) ) @ #vk.21 )
+          case c_ch
+          solve( !KU( ch(~J, 'k', prf(~sdB, s(z), 'k')) ) @ #vk.43 )
+            case c_ch
+            by solve( !KU( prf(~sdB, s(z), 'k') ) @ #vk.44 )
+          qed
+        qed
+      qed
+    qed
+  next
+    case VerTop_q1_a1
+    solve( !KU( ch(~I, 'm', prf(~sdT, s(z), 'm')) ) @ #vk.21 )
+      case c_ch
+      by solve( !KU( prf(~sdT, s(z), 'm') ) @ #vk.28 )
+    qed
+  next
+    case VerTop_q1_a2
+    solve( !KU( ch(~I, 'm', ch(~I, 'm', prf(~sdT, s(z), 'm'))) ) @ #vk.22 )
+      case c_ch
+      solve( !KU( ch(~I, 'k', prf(~sdT, s(z), 'k')) ) @ #vk.24 )
+        case c_ch
+        by solve( !KU( prf(~sdT, s(z), 'k') ) @ #vk.31 )
+      qed
+    qed
+  qed
+next
+  case VerBot_q1_a2
+  solve( !TopOK( I, J,
+                 hl(J, sib, <ch(J, 'm', sm), ch(J, 'k', ch(J, 'k', sk))>)
+         ) ▶₀ #k )
+    case VerTop_q0_a0
+    solve( !KU( ch(~J, 'm', ch(~J, 'm', prf(~sdB, s(z), 'm'))) ) @ #vk.14 )
+      case BotSign_q1_a2_case_1
+      by contradiction /* from formulas */
+    next
+      case BotSign_q1_a2_case_2
+      by contradiction /* from formulas */
+    next
+      case BotSign_q1_a2_case_3
+      by contradiction /* from formulas */
+    next
+      case BotSign_q1_a2_case_4
+      by contradiction /* from formulas */
+    next
+      case c_ch
+      solve( !KU( ch(~J, 'k', prf(~sdB, s(z), 'k')) ) @ #vk.20 )
+        case BotSign_q1_a2_case_1
+        by contradiction /* from formulas */
+      next
+        case BotSign_q1_a2_case_2
+        by contradiction /* from formulas */
+      next
+        case BotSign_q1_a2_case_3
+        by contradiction /* from formulas */
+      next
+        case BotSign_q1_a2_case_4
+        by contradiction /* from formulas */
+      next
+        case c_ch
+        solve( !KU( prf(~sdB, s(z), 'k') ) @ #vk.36 )
+          case BotSign_q1_a3_case_1
+          solve( !KU( ch(~J, 'm', prf(~sdB, s(z), 'm')) ) @ #vk.36 )
+            case c_ch
+            by solve( !KU( prf(~sdB, s(z), 'm') ) @ #vk.45 )
+          qed
+        next
+          case BotSign_q1_a3_case_2
+          solve( !KU( ch(~J, 'm', prf(~sdB, s(z), 'm')) ) @ #vk.36 )
+            case c_ch
+            by solve( !KU( prf(~sdB, s(z), 'm') ) @ #vk.45 )
+          qed
+        next
+          case BotSign_q1_a3_case_3
+          solve( !KU( ch(~J, 'm', prf(~sdB, s(z), 'm')) ) @ #vk.36 )
+            case c_ch
+            by solve( !KU( prf(~sdB, s(z), 'm') ) @ #vk.45 )
+          qed
+        next
+          case BotSign_q1_a3_case_4
+          solve( !KU( ch(~J, 'm', prf(~sdB, s(z), 'm')) ) @ #vk.35 )
+            case c_ch
+            by solve( !KU( prf(~sdB, s(z), 'm') ) @ #vk.45 )
+          qed
+        qed
+      qed
+    qed
+  next
+    case VerTop_q0_a1
+    solve( !KU( ch(~I, 'm', prf(~sdT, z, 'm')) ) @ #vk.23 )
+      case TopSign_a1
+      solve( !KU( ch(~J, 'm', ch(~J, 'm', prf(~sdB, s(z), 'm'))) ) @ #vk.17 )
+        case BotSign_q1_a2_case_1
+        by contradiction /* from formulas */
+      next
+        case BotSign_q1_a2_case_2
+        by contradiction /* from formulas */
+      next
+        case BotSign_q1_a2_case_3
+        by contradiction /* from formulas */
+      next
+        case BotSign_q1_a2_case_4
+        by contradiction /* from formulas */
+      next
+        case c_ch
+        solve( !KU( ch(~J, 'k', prf(~sdB, s(z), 'k')) ) @ #vk.21 )
+          case BotSign_q1_a2_case_1
+          by contradiction /* from formulas */
+        next
+          case BotSign_q1_a2_case_2
+          by contradiction /* from formulas */
+        next
+          case BotSign_q1_a2_case_3
+          by contradiction /* from formulas */
+        next
+          case BotSign_q1_a2_case_4
+          by contradiction /* from formulas */
+        next
+          case c_ch
+          solve( !KU( prf(~sdB, s(z), 'k') ) @ #vk.36 )
+            case BotSign_q1_a3_case_1
+            solve( !KU( ch(~J, 'm', prf(~sdB, s(z), 'm')) ) @ #vk.36 )
+              case c_ch
+              by solve( !KU( prf(~sdB, s(z), 'm') ) @ #vk.45 )
+            qed
+          next
+            case BotSign_q1_a3_case_2
+            solve( !KU( ch(~J, 'm', prf(~sdB, s(z), 'm')) ) @ #vk.36 )
+              case c_ch
+              by solve( !KU( prf(~sdB, s(z), 'm') ) @ #vk.45 )
+            qed
+          next
+            case BotSign_q1_a3_case_3
+            solve( !KU( ch(~J, 'm', prf(~sdB, s(z), 'm')) ) @ #vk.36 )
+              case c_ch
+              by solve( !KU( prf(~sdB, s(z), 'm') ) @ #vk.45 )
+            qed
+          next
+            case BotSign_q1_a3_case_4
+            solve( !KU( ch(~J, 'm', prf(~sdB, s(z), 'm')) ) @ #vk.35 )
+              case c_ch
+              by solve( !KU( prf(~sdB, s(z), 'm') ) @ #vk.45 )
+            qed
+          qed
+        qed
+      qed
+    next
+      case c_ch
+      solve( !KU( prf(~sdT, z, 'm') ) @ #vk.30 )
+        case TopSign_a0
+        solve( !KU( ch(~I, 'k', ch(~I, 'k', prf(~sdT, z, 'k'))) ) @ #vk.27 )
+          case c_ch
+          solve( !KU( ch(~I, 'k', prf(~sdT, z, 'k')) ) @ #vk.34 )
+            case c_ch
+            by solve( !KU( prf(~sdT, z, 'k') ) @ #vk.35 )
+          qed
+        qed
+      qed
+    qed
+  next
+    case VerTop_q0_a2
+    solve( !KU( ch(~I, 'm', ch(~I, 'm', prf(~sdT, z, 'm'))) ) @ #vk.23 )
+      case TopSign_a2
+      solve( !KU( ch(~J, 'm', ch(~J, 'm', prf(~sdB, s(z), 'm'))) ) @ #vk.17 )
+        case BotSign_q1_a2_case_1
+        by contradiction /* from formulas */
+      next
+        case BotSign_q1_a2_case_2
+        by contradiction /* from formulas */
+      next
+        case BotSign_q1_a2_case_3
+        by contradiction /* from formulas */
+      next
+        case BotSign_q1_a2_case_4
+        by contradiction /* from formulas */
+      next
+        case c_ch
+        solve( !KU( ch(~J, 'k', prf(~sdB, s(z), 'k')) ) @ #vk.21 )
+          case BotSign_q1_a2_case_1
+          by contradiction /* from formulas */
+        next
+          case BotSign_q1_a2_case_2
+          by contradiction /* from formulas */
+        next
+          case BotSign_q1_a2_case_3
+          by contradiction /* from formulas */
+        next
+          case BotSign_q1_a2_case_4
+          by contradiction /* from formulas */
+        next
+          case c_ch
+          solve( !KU( prf(~sdB, s(z), 'k') ) @ #vk.36 )
+            case BotSign_q1_a3_case_1
+            solve( !KU( ch(~J, 'm', prf(~sdB, s(z), 'm')) ) @ #vk.36 )
+              case c_ch
+              by solve( !KU( prf(~sdB, s(z), 'm') ) @ #vk.45 )
+            qed
+          next
+            case BotSign_q1_a3_case_2
+            solve( !KU( ch(~J, 'm', prf(~sdB, s(z), 'm')) ) @ #vk.36 )
+              case c_ch
+              by solve( !KU( prf(~sdB, s(z), 'm') ) @ #vk.45 )
+            qed
+          next
+            case BotSign_q1_a3_case_3
+            solve( !KU( ch(~J, 'm', prf(~sdB, s(z), 'm')) ) @ #vk.36 )
+              case c_ch
+              by solve( !KU( prf(~sdB, s(z), 'm') ) @ #vk.45 )
+            qed
+          next
+            case BotSign_q1_a3_case_4
+            solve( !KU( ch(~J, 'm', prf(~sdB, s(z), 'm')) ) @ #vk.35 )
+              case c_ch
+              by solve( !KU( prf(~sdB, s(z), 'm') ) @ #vk.45 )
+            qed
+          qed
+        qed
+      qed
+    next
+      case c_ch
+      solve( !KU( ch(~I, 'k', prf(~sdT, z, 'k')) ) @ #vk.25 )
+        case TopSign_a2
+        solve( !KU( ch(~I, 'm', prf(~sdT, z, 'm')) ) @ #vk.31 )
+          case c_ch
+          by solve( !KU( prf(~sdT, z, 'm') ) @ #vk.35 )
+        qed
+      next
+        case c_ch
+        solve( !KU( prf(~sdT, z, 'k') ) @ #vk.32 )
+          case TopSign_a3
+          solve( !KU( ch(~I, 'm', prf(~sdT, z, 'm')) ) @ #vk.31 )
+            case c_ch
+            by solve( !KU( prf(~sdT, z, 'm') ) @ #vk.36 )
+          qed
+        qed
+      qed
+    qed
+  next
+    case VerTop_q0_a3
+    solve( !KU( ch(~J, 'm', ch(~J, 'm', prf(~sdB, s(z), 'm'))) ) @ #vk.14 )
+      case BotSign_q1_a2_case_1
+      by contradiction /* from formulas */
+    next
+      case BotSign_q1_a2_case_2
+      by contradiction /* from formulas */
+    next
+      case BotSign_q1_a2_case_3
+      by contradiction /* from formulas */
+    next
+      case BotSign_q1_a2_case_4
+      by contradiction /* from formulas */
+    next
+      case c_ch
+      solve( !KU( ch(~J, 'k', prf(~sdB, s(z), 'k')) ) @ #vk.21 )
+        case BotSign_q1_a2_case_1
+        by contradiction /* from formulas */
+      next
+        case BotSign_q1_a2_case_2
+        by contradiction /* from formulas */
+      next
+        case BotSign_q1_a2_case_3
+        by contradiction /* from formulas */
+      next
+        case BotSign_q1_a2_case_4
+        by contradiction /* from formulas */
+      next
+        case c_ch
+        solve( !KU( prf(~sdB, s(z), 'k') ) @ #vk.37 )
+          case BotSign_q1_a3_case_1
+          solve( !KU( ch(~J, 'm', prf(~sdB, s(z), 'm')) ) @ #vk.38 )
+            case c_ch
+            by solve( !KU( prf(~sdB, s(z), 'm') ) @ #vk.45 )
+          qed
+        next
+          case BotSign_q1_a3_case_2
+          solve( !KU( ch(~J, 'm', prf(~sdB, s(z), 'm')) ) @ #vk.38 )
+            case c_ch
+            by solve( !KU( prf(~sdB, s(z), 'm') ) @ #vk.45 )
+          qed
+        next
+          case BotSign_q1_a3_case_3
+          solve( !KU( ch(~J, 'm', prf(~sdB, s(z), 'm')) ) @ #vk.38 )
+            case c_ch
+            by solve( !KU( prf(~sdB, s(z), 'm') ) @ #vk.45 )
+          qed
+        next
+          case BotSign_q1_a3_case_4
+          solve( !KU( ch(~J, 'm', prf(~sdB, s(z), 'm')) ) @ #vk.38 )
+            case c_ch
+            by solve( !KU( prf(~sdB, s(z), 'm') ) @ #vk.45 )
+          qed
+        qed
+      qed
+    qed
+  next
+    case VerTop_q1_a1
+    solve( !KU( ch(~I, 'm', prf(~sdT, s(z), 'm')) ) @ #vk.22 )
+      case c_ch
+      by solve( !KU( prf(~sdT, s(z), 'm') ) @ #vk.29 )
+    qed
+  next
+    case VerTop_q1_a2
+    solve( !KU( ch(~I, 'm', ch(~I, 'm', prf(~sdT, s(z), 'm'))) ) @ #vk.22 )
+      case c_ch
+      solve( !KU( ch(~I, 'k', prf(~sdT, s(z), 'k')) ) @ #vk.24 )
+        case c_ch
+        by solve( !KU( prf(~sdT, s(z), 'k') ) @ #vk.31 )
+      qed
+    qed
+  qed
+next
+  case VerBot_q1_a3
+  solve( !TopOK( I, J,
+                 hl(J, sib, <sm, ch(J, 'k', ch(J, 'k', ch(J, 'k', sk)))>)
+         ) ▶₀ #k )
+    case VerTop_q0_a0
+    solve( !KU( prf(~sdB, s(z), 'k') ) @ #vk.16 )
+      case BotSign_q1_a3_case_1
+      by contradiction /* from formulas */
+    next
+      case BotSign_q1_a3_case_2
+      by contradiction /* from formulas */
+    next
+      case BotSign_q1_a3_case_3
+      by contradiction /* from formulas */
+    next
+      case BotSign_q1_a3_case_4
+      by contradiction /* from formulas */
+    qed
+  next
+    case VerTop_q0_a1
+    solve( !KU( ch(~I, 'm', prf(~sdT, z, 'm')) ) @ #vk.23 )
+      case TopSign_a1
+      solve( !KU( prf(~sdB, s(z), 'k') ) @ #vk.19 )
+        case BotSign_q1_a3_case_1
+        by contradiction /* from formulas */
+      next
+        case BotSign_q1_a3_case_2
+        by contradiction /* from formulas */
+      next
+        case BotSign_q1_a3_case_3
+        by contradiction /* from formulas */
+      next
+        case BotSign_q1_a3_case_4
+        by contradiction /* from formulas */
+      qed
+    next
+      case c_ch
+      solve( !KU( prf(~sdT, z, 'm') ) @ #vk.30 )
+        case TopSign_a0
+        solve( !KU( ch(~I, 'k', ch(~I, 'k', prf(~sdT, z, 'k'))) ) @ #vk.27 )
+          case c_ch
+          solve( !KU( ch(~I, 'k', prf(~sdT, z, 'k')) ) @ #vk.34 )
+            case c_ch
+            by solve( !KU( prf(~sdT, z, 'k') ) @ #vk.35 )
+          qed
+        qed
+      qed
+    qed
+  next
+    case VerTop_q0_a2
+    solve( !KU( ch(~I, 'm', ch(~I, 'm', prf(~sdT, z, 'm'))) ) @ #vk.24 )
+      case TopSign_a2
+      solve( !KU( prf(~sdB, s(z), 'k') ) @ #vk.16 )
+        case BotSign_q1_a3_case_1
+        by contradiction /* from formulas */
+      next
+        case BotSign_q1_a3_case_2
+        by contradiction /* from formulas */
+      next
+        case BotSign_q1_a3_case_3
+        by contradiction /* from formulas */
+      next
+        case BotSign_q1_a3_case_4
+        by contradiction /* from formulas */
+      qed
+    next
+      case c_ch
+      solve( !KU( ch(~I, 'k', prf(~sdT, z, 'k')) ) @ #vk.26 )
+        case TopSign_a2
+        solve( !KU( prf(~sdB, s(z), 'k') ) @ #vk.18 )
+          case BotSign_q1_a3_case_1
+          by contradiction /* from formulas */
+        next
+          case BotSign_q1_a3_case_2
+          by contradiction /* from formulas */
+        next
+          case BotSign_q1_a3_case_3
+          by contradiction /* from formulas */
+        next
+          case BotSign_q1_a3_case_4
+          by contradiction /* from formulas */
+        qed
+      next
+        case c_ch
+        solve( !KU( prf(~sdT, z, 'k') ) @ #vk.33 )
+          case TopSign_a3
+          solve( !KU( ch(~I, 'm', prf(~sdT, z, 'm')) ) @ #vk.33 )
+            case c_ch
+            by solve( !KU( prf(~sdT, z, 'm') ) @ #vk.36 )
+          qed
+        qed
+      qed
+    qed
+  next
+    case VerTop_q0_a3
+    solve( !KU( prf(~sdB, s(z), 'k') ) @ #vk.18 )
+      case BotSign_q1_a3_case_1
+      by contradiction /* from formulas */
+    next
+      case BotSign_q1_a3_case_2
+      by contradiction /* from formulas */
+    next
+      case BotSign_q1_a3_case_3
+      by contradiction /* from formulas */
+    next
+      case BotSign_q1_a3_case_4
+      by contradiction /* from formulas */
+    qed
+  next
+    case VerTop_q1_a1
+    solve( !KU( ch(~I, 'm', prf(~sdT, s(z), 'm')) ) @ #vk.22 )
+      case c_ch
+      by solve( !KU( prf(~sdT, s(z), 'm') ) @ #vk.29 )
+    qed
+  next
+    case VerTop_q1_a2
+    solve( !KU( ch(~I, 'm', ch(~I, 'm', prf(~sdT, s(z), 'm'))) ) @ #vk.23 )
+      case c_ch
+      solve( !KU( ch(~I, 'k', prf(~sdT, s(z), 'k')) ) @ #vk.25 )
+        case c_ch
+        by solve( !KU( prf(~sdT, s(z), 'k') ) @ #vk.32 )
+      qed
+    qed
+  qed
+qed
+
+/* All wellformedness checks were successful. */
+
+/*
+Generated from:
+Tamarin version 1.13.0
+Maude version 3.5
+Git revision: UNKNOWN
+Compiled at: 2026-10-24 02:25:12.718891574 UTC
+*/
+
+end
+
+==============================================================================
+summary of summaries:
+
+analyzed: /input.spthy
+
+  processing time: 33.70s
+  
+  exec (exists-trace): analysis incomplete (1 steps)
+  TopAuth (all-traces): analysis incomplete (1 steps)
+  LS7 (all-traces): verified (408 steps)
+
+==============================================================================

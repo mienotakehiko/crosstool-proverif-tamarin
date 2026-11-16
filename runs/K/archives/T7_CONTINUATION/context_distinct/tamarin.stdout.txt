@@ -1,0 +1,342 @@
+theory CimT7Continuation
+
+begin
+
+// Function signature and definition of the equational theory E
+
+functions: fst/1, newctx/3, pair/2, snd/1, tempctx/2
+equations: fst(<x.1, x.2>) = x.1, snd(<x.1, x.2>) = x.2
+
+rule (modulo E) Init:
+   [
+   Fr( ~exchange_id ), Fr( ~prior_new ), Fr( ~oldest_parent ),
+   Fr( ~oldest_pair ), Fr( ~incoming_pair ), Fr( ~incoming_id )
+   ]
+  --[
+  Init( ),
+  PendingBefore( ~exchange_id, ~prior_new, ~oldest_parent,
+                 tempctx(~oldest_parent, ~oldest_pair)
+  )
+  ]->
+   [
+   Pending( ~exchange_id, ~prior_new, ~oldest_parent,
+            tempctx(~oldest_parent, ~oldest_pair), 'empty_local_pair'
+   ),
+   BeforeSnapshot( ~exchange_id, ~prior_new, ~oldest_parent,
+                   tempctx(~oldest_parent, ~oldest_pair)
+   ),
+   VerifiedNewOnlyPremise( ~exchange_id, ~incoming_id, ~prior_new,
+                           ~incoming_pair
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) RecordVerifiedReceipt:
+   [
+   VerifiedNewOnlyPremise( exchange_id, incoming_id, prior_new, peer_pair )
+   ]
+  --[
+  NewVerified( exchange_id, incoming_id, prior_new, peer_pair,
+               tempctx(prior_new, peer_pair)
+  )
+  ]->
+   [
+   VerifiedDivergent( exchange_id, incoming_id, prior_new, peer_pair,
+                      tempctx(prior_new, peer_pair)
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) AbortAndPromote:
+   [
+   Pending( exchange_id, prior_new, oldest_parent, oldest_temp, local_slot
+   ),
+   VerifiedDivergent( exchange_id, incoming_id, prior_new, peer_pair,
+                      rx_temp
+   )
+   ]
+  --[
+  PendingAborted( exchange_id, incoming_id, prior_new, oldest_parent,
+                  oldest_temp
+  ),
+  VerifiedTempMatches( rx_temp, tempctx(prior_new, peer_pair) )
+  ]->
+   [
+   BusyEntry( exchange_id, incoming_id, prior_new, peer_pair, rx_temp,
+              'empty_oldest_temp', 'empty_oldest_parent', 'empty_pending_new',
+              local_slot
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) ReadBusyEntry:
+   [
+   BusyEntry( exchange_id, incoming_id, promoted, peer_pair, rx_temp,
+              temp_slot, parent_slot, new_slot, local_slot
+   )
+   ]
+  --[
+  BusyEntryRead( exchange_id, incoming_id, promoted, peer_pair, rx_temp,
+                 temp_slot, parent_slot, new_slot, local_slot
+  )
+  ]->
+   [
+   BusyReady( exchange_id, incoming_id, promoted, peer_pair, rx_temp,
+              temp_slot, parent_slot, new_slot, local_slot
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) DeriveNewContext:
+   [
+   Fr( ~fresh_local_pair ),
+   BusyReady( exchange_id, incoming_id, promoted, peer_pair, rx_temp,
+              'empty_oldest_temp', 'empty_oldest_parent', 'empty_pending_new',
+              'empty_local_pair'
+   )
+   ]
+  --[
+  RestartDerived( exchange_id, incoming_id, promoted, peer_pair,
+                  ~fresh_local_pair, newctx(promoted, ~fresh_local_pair, peer_pair)
+  )
+  ]->
+   [
+   ReadyToSend( exchange_id, incoming_id, promoted, peer_pair, rx_temp,
+                ~fresh_local_pair, newctx(promoted, ~fresh_local_pair, peer_pair)
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) SendConvergent:
+   [
+   ReadyToSend( exchange_id, incoming_id, promoted, peer_pair, rx_temp,
+                local_pair, active_ctx
+   )
+   ]
+  --[ ConvergentSent( exchange_id, incoming_id, active_ctx ) ]->
+   [
+   PendingAfter( exchange_id, incoming_id, promoted, peer_pair, rx_temp,
+                 local_pair, active_ctx
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) ReadPending:
+   [
+   PendingAfter( exchange_id, incoming_id, promoted, peer_pair, rx_temp,
+                 local_pair, active_ctx
+   ),
+   BeforeSnapshot( exchange_id, prior_new, oldest_parent, oldest_temp )
+   ]
+  --[
+  PendingRead( exchange_id, incoming_id, promoted, peer_pair, local_pair,
+               active_ctx, prior_new, oldest_parent, oldest_temp, rx_temp
+  )
+  ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+restriction SingleInit:
+  "∀ #i #j. ((Init( ) @ #i) ∧ (Init( ) @ #j)) ⇒ (#i = #j)"
+  // safety formula
+
+  /*
+  expanded formula:
+  "∀ #i #j. ((Init( ) @ #i) ∧ (Init( ) @ #j)) ⇒ (#i = #j)"
+  */
+
+restriction VerifiedTemporaryContext:
+  "∀ a b #i. (VerifiedTempMatches( a, b ) @ #i) ⇒ (a = b)"
+  // safety formula
+
+  /*
+  expanded formula:
+  "∀ a b #i. (VerifiedTempMatches( a, b ) @ #i) ⇒ (a = b)"
+  */
+
+lemma t7_continuation_reachable:
+  exists-trace
+  "∃ exchange_id incoming_id promoted peer_pair local_pair active_ctx
+     prior_new oldest_parent oldest_temp rx_temp #k.
+    PendingRead( exchange_id, incoming_id, promoted, peer_pair, local_pair,
+                 active_ctx, prior_new, oldest_parent, oldest_temp, rx_temp
+    ) @ #k"
+/*
+guarded formula characterizing all satisfying traces:
+"∃ exchange_id incoming_id promoted peer_pair local_pair active_ctx
+   prior_new oldest_parent oldest_temp rx_temp #k.
+  (PendingRead( exchange_id, incoming_id, promoted, peer_pair, local_pair,
+                active_ctx, prior_new, oldest_parent, oldest_temp, rx_temp
+   ) @ #k)"
+*/
+by sorry
+
+lemma t7_continuation_new_receipt_and_promotion:
+  all-traces
+  "∀ exchange_id incoming_id promoted peer_pair local_pair active_ctx
+     prior_new oldest_parent oldest_temp rx_temp #k.
+    (PendingRead( exchange_id, incoming_id, promoted, peer_pair, local_pair,
+                  active_ctx, prior_new, oldest_parent, oldest_temp, rx_temp
+     ) @ #k) ⇒
+    (∃ #t1 #t2 #t3 #t4.
+      (((((((((PendingBefore( exchange_id, prior_new, oldest_parent,
+                              oldest_temp
+               ) @ #t1) ∧
+              (NewVerified( exchange_id, incoming_id, prior_new, peer_pair, rx_temp
+               ) @ #t2)) ∧
+             (PendingAborted( exchange_id, incoming_id, prior_new, oldest_parent,
+                              oldest_temp
+              ) @ #t3)) ∧
+            (BusyEntryRead( exchange_id, incoming_id, promoted, peer_pair, rx_temp,
+                            'empty_oldest_temp', 'empty_oldest_parent', 'empty_pending_new',
+                            'empty_local_pair'
+             ) @ #t4)) ∧
+           (#t1 < #t2)) ∧
+          (#t2 < #t3)) ∧
+         (#t3 < #t4)) ∧
+        (#t4 < #k)) ∧
+       (promoted = prior_new)) ∧
+      (rx_temp = tempctx(prior_new, peer_pair)))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ exchange_id incoming_id promoted peer_pair local_pair active_ctx
+   prior_new oldest_parent oldest_temp rx_temp #k.
+  (PendingRead( exchange_id, incoming_id, promoted, peer_pair, local_pair,
+                active_ctx, prior_new, oldest_parent, oldest_temp, rx_temp
+   ) @ #k)
+ ∧
+  ∀ #t1 #t2 #t3 #t4.
+   (PendingBefore( exchange_id, prior_new, oldest_parent, oldest_temp
+    ) @ #t1) ∧
+   (NewVerified( exchange_id, incoming_id, prior_new, peer_pair, rx_temp
+    ) @ #t2) ∧
+   (PendingAborted( exchange_id, incoming_id, prior_new, oldest_parent,
+                    oldest_temp
+    ) @ #t3) ∧
+   (BusyEntryRead( exchange_id, incoming_id, promoted, peer_pair, rx_temp,
+                   'empty_oldest_temp', 'empty_oldest_parent', 'empty_pending_new',
+                   'empty_local_pair'
+    ) @ #t4) ∧
+   (promoted = prior_new) ∧
+   (rx_temp = tempctx(prior_new, peer_pair))
+  ⇒
+   ((¬(#t1 < #t2)) ∨ (¬(#t2 < #t3)) ∨ (¬(#t3 < #t4)) ∨ (¬(#t4 < #k)))"
+*/
+by sorry
+
+lemma t7_continuation_derive_and_send:
+  all-traces
+  "∀ exchange_id incoming_id promoted peer_pair local_pair active_ctx
+     prior_new oldest_parent oldest_temp rx_temp #k.
+    (PendingRead( exchange_id, incoming_id, promoted, peer_pair, local_pair,
+                  active_ctx, prior_new, oldest_parent, oldest_temp, rx_temp
+     ) @ #k) ⇒
+    (∃ #t1 #t2.
+      ((((RestartDerived( exchange_id, incoming_id, promoted, peer_pair,
+                          local_pair, active_ctx
+          ) @ #t1) ∧
+         (ConvergentSent( exchange_id, incoming_id, active_ctx ) @ #t2)) ∧
+        (#t1 < #t2)) ∧
+       (#t2 < #k)) ∧
+      (active_ctx = newctx(promoted, local_pair, peer_pair)))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ exchange_id incoming_id promoted peer_pair local_pair active_ctx
+   prior_new oldest_parent oldest_temp rx_temp #k.
+  (PendingRead( exchange_id, incoming_id, promoted, peer_pair, local_pair,
+                active_ctx, prior_new, oldest_parent, oldest_temp, rx_temp
+   ) @ #k)
+ ∧
+  ∀ #t1 #t2.
+   (RestartDerived( exchange_id, incoming_id, promoted, peer_pair,
+                    local_pair, active_ctx
+    ) @ #t1) ∧
+   (ConvergentSent( exchange_id, incoming_id, active_ctx ) @ #t2) ∧
+   (active_ctx = newctx(promoted, local_pair, peer_pair))
+  ⇒
+   ((¬(#t1 < #t2)) ∨ (¬(#t2 < #k)))"
+*/
+by sorry
+
+lemma t7_continuation_parent_distinct:
+  all-traces
+  "∀ exchange_id incoming_id promoted peer_pair local_pair active_ctx
+     prior_new oldest_parent oldest_temp rx_temp #k.
+    (PendingRead( exchange_id, incoming_id, promoted, peer_pair, local_pair,
+                  active_ctx, prior_new, oldest_parent, oldest_temp, rx_temp
+     ) @ #k) ⇒
+    (¬(promoted = oldest_parent))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ exchange_id incoming_id promoted peer_pair local_pair active_ctx
+   prior_new oldest_parent oldest_temp rx_temp #k.
+  (PendingRead( exchange_id, incoming_id, promoted, peer_pair, local_pair,
+                active_ctx, prior_new, oldest_parent, oldest_temp, rx_temp
+   ) @ #k)
+ ∧
+  promoted = oldest_parent"
+*/
+by sorry
+
+lemma t7_continuation_context_distinct:
+  all-traces
+  "∀ exchange_id incoming_id promoted peer_pair local_pair active_ctx
+     prior_new oldest_parent oldest_temp rx_temp #k.
+    (PendingRead( exchange_id, incoming_id, promoted, peer_pair, local_pair,
+                  active_ctx, prior_new, oldest_parent, oldest_temp, rx_temp
+     ) @ #k) ⇒
+    (¬(active_ctx = prior_new))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ exchange_id incoming_id promoted peer_pair local_pair active_ctx
+   prior_new oldest_parent oldest_temp rx_temp #k.
+  (PendingRead( exchange_id, incoming_id, promoted, peer_pair, local_pair,
+                active_ctx, prior_new, oldest_parent, oldest_temp, rx_temp
+   ) @ #k)
+ ∧
+  active_ctx = prior_new"
+*/
+simplify
+solve( PendingAfter( exchange_id, incoming_id, promoted, peer_pair,
+                     rx_temp, local_pair, active_ctx
+       ) ▶₀ #k )
+  case SendConvergent
+  by solve( BeforeSnapshot( ~exchange_id,
+                            newctx(~prior_new, ~fresh_local_pair, ~incoming_pair), oldest_parent,
+                            oldest_temp
+            ) ▶₁ #k )
+qed
+
+/* All wellformedness checks were successful. */
+
+/*
+Generated from:
+Tamarin version 1.13.0
+Maude version 3.5
+Git revision: UNKNOWN
+Compiled at: 2026-10-24 02:25:12.718891574 UTC
+*/
+
+end
+
+==============================================================================
+summary of summaries:
+
+analyzed: /work/inputs/t7_continuation.spthy
+
+  processing time: 0.05s
+  
+  t7_continuation_reachable (exists-trace): analysis incomplete (1 steps)
+  t7_continuation_new_receipt_and_promotion (all-traces): analysis incomplete (1 steps)
+  t7_continuation_derive_and_send (all-traces): analysis incomplete (1 steps)
+  t7_continuation_parent_distinct (all-traces): analysis incomplete (1 steps)
+  t7_continuation_context_distinct (all-traces): verified (3 steps)
+
+==============================================================================

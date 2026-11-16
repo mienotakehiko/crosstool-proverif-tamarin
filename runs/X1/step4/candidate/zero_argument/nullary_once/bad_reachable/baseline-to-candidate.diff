@@ -1,0 +1,27 @@
+--- baseline
++++ candidate
+@@ -58,7 +58,7 @@
+         insert tSt(stR_St, asid, q0(), vphase0).
+ 
+ let rGood =
+-        get tSt(stL_St, asid, helperVar0, =vphase0) in
++        get tSt(stL_St, asid, =q0(), =vphase0) in
+         new rid_rGood: bitstring;
+         new stR_St: bitstring;
+         event eDistinctFact(rid_rGood, (stL_St, (asid, (q0(), vphase0))));
+@@ -66,13 +66,13 @@
+         insert tSt(stR_St, asid, vqdone, vphase1).
+ 
+ let rBad =
+-        get tSt(stL_St, asid, helperVar0, =vphase0) in
++        get tSt(stL_St, asid, =q1(), =vphase0) in
+         new rid_rBad: bitstring;
+         event eDistinctFact(rid_rBad, (stL_St, (asid, (q1(), vphase0))));
+         event eBad(asid).
+ 
+ let rAgain =
+-        get tSt(stL_St, asid, helperVar0, =vphase1) in
++        get tSt(stL_St, asid, =q0(), =vphase1) in
+         new rid_rAgain: bitstring;
+         event eDistinctFact(rid_rAgain, (stL_St, (asid, (q0(), vphase1))));
+         event eAgain(asid).

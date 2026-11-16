@@ -1,0 +1,87 @@
+{
+  "model": "t7_continuation",
+  "theory": "CimT7Continuation",
+  "constants": ["empty_oldest_temp", "empty_oldest_parent", "empty_pending_new", "empty_local_pair"],
+  "functions": {"tempctx": 2, "newctx": 3},
+  "init": {
+    "fresh": ["exchange_id", "prior_new", "oldest_parent", "oldest_pair", "incoming_pair", "incoming_id"],
+    "emit": [["PendingBefore", "exchange_id", "prior_new", "oldest_parent", ["tempctx", "oldest_parent", "oldest_pair"]]],
+    "produce": [
+      ["Pending", "exchange_id", "prior_new", "oldest_parent", ["tempctx", "oldest_parent", "oldest_pair"], "empty_local_pair"],
+      ["BeforeSnapshot", "exchange_id", "prior_new", "oldest_parent", ["tempctx", "oldest_parent", "oldest_pair"]],
+      ["VerifiedNewOnlyPremise", "exchange_id", "incoming_id", "prior_new", "incoming_pair"]
+    ]
+  },
+  "steps": [
+    {
+      "id": "RecordVerifiedReceipt",
+      "consume": [["VerifiedNewOnlyPremise", "exchange_id", "incoming_id", "prior_new", "peer_pair"]],
+      "emit": [["NewVerified", "exchange_id", "incoming_id", "prior_new", "peer_pair", ["tempctx", "prior_new", "peer_pair"]]],
+      "produce": [["VerifiedDivergent", "exchange_id", "incoming_id", "prior_new", "peer_pair", ["tempctx", "prior_new", "peer_pair"]]]
+    },
+    {
+      "id": "AbortAndPromote",
+      "consume": [
+        ["Pending", "exchange_id", "prior_new", "oldest_parent", "oldest_temp", "local_slot"],
+        ["VerifiedDivergent", "exchange_id", "incoming_id", "prior_new", "peer_pair", "rx_temp"]
+      ],
+      "require_equal": ["rx_temp", ["tempctx", "prior_new", "peer_pair"]],
+      "emit": [["PendingAborted", "exchange_id", "incoming_id", "prior_new", "oldest_parent", "oldest_temp"]],
+      "produce": [["BusyEntry", "exchange_id", "incoming_id", "prior_new", "peer_pair", "rx_temp", "empty_oldest_temp", "empty_oldest_parent", "empty_pending_new", "local_slot"]]
+    },
+    {
+      "id": "ReadBusyEntry",
+      "consume": [["BusyEntry", "exchange_id", "incoming_id", "promoted", "peer_pair", "rx_temp", "temp_slot", "parent_slot", "new_slot", "local_slot"]],
+      "emit": [["BusyEntryRead", "exchange_id", "incoming_id", "promoted", "peer_pair", "rx_temp", "temp_slot", "parent_slot", "new_slot", "local_slot"]],
+      "produce": [["BusyReady", "exchange_id", "incoming_id", "promoted", "peer_pair", "rx_temp", "temp_slot", "parent_slot", "new_slot", "local_slot"]]
+    },
+    {
+      "id": "DeriveNewContext",
+      "consume": [["BusyReady", "exchange_id", "incoming_id", "promoted", "peer_pair", "rx_temp", "empty_oldest_temp", "empty_oldest_parent", "empty_pending_new", "empty_local_pair"]],
+      "fresh": ["fresh_local_pair"],
+      "emit": [["RestartDerived", "exchange_id", "incoming_id", "promoted", "peer_pair", "fresh_local_pair", ["newctx", "promoted", "fresh_local_pair", "peer_pair"]]],
+      "produce": [["ReadyToSend", "exchange_id", "incoming_id", "promoted", "peer_pair", "rx_temp", "fresh_local_pair", ["newctx", "promoted", "fresh_local_pair", "peer_pair"]]]
+    },
+    {
+      "id": "SendConvergent",
+      "consume": [["ReadyToSend", "exchange_id", "incoming_id", "promoted", "peer_pair", "rx_temp", "local_pair", "active_ctx"]],
+      "emit": [["ConvergentSent", "exchange_id", "incoming_id", "active_ctx"]],
+      "produce": [["PendingAfter", "exchange_id", "incoming_id", "promoted", "peer_pair", "rx_temp", "local_pair", "active_ctx"]]
+    },
+    {
+      "id": "ReadPending",
+      "consume": [
+        ["PendingAfter", "exchange_id", "incoming_id", "promoted", "peer_pair", "rx_temp", "local_pair", "active_ctx"],
+        ["BeforeSnapshot", "exchange_id", "prior_new", "oldest_parent", "oldest_temp"]
+      ],
+      "emit": [["PendingRead", "exchange_id", "incoming_id", "promoted", "peer_pair", "local_pair", "active_ctx", "prior_new", "oldest_parent", "oldest_temp", "rx_temp"]],
+      "produce": []
+    }
+  ],
+  "observed": ["PendingRead", "exchange_id", "incoming_id", "promoted", "peer_pair", "local_pair", "active_ctx", "prior_new", "oldest_parent", "oldest_temp", "rx_temp"],
+  "properties": [
+    {"id": "reachable", "kind": "exists"},
+    {
+      "id": "new_receipt_and_promotion",
+      "kind": "correspondence",
+      "before": [
+        ["PendingBefore", "exchange_id", "prior_new", "oldest_parent", "oldest_temp"],
+        ["NewVerified", "exchange_id", "incoming_id", "prior_new", "peer_pair", "rx_temp"],
+        ["PendingAborted", "exchange_id", "incoming_id", "prior_new", "oldest_parent", "oldest_temp"],
+        ["BusyEntryRead", "exchange_id", "incoming_id", "promoted", "peer_pair", "rx_temp", "empty_oldest_temp", "empty_oldest_parent", "empty_pending_new", "empty_local_pair"]
+      ],
+      "equal": [["promoted", "prior_new"], ["rx_temp", ["tempctx", "prior_new", "peer_pair"]]]
+    },
+    {
+      "id": "derive_and_send",
+      "kind": "correspondence",
+      "before": [
+        ["RestartDerived", "exchange_id", "incoming_id", "promoted", "peer_pair", "local_pair", "active_ctx"],
+        ["ConvergentSent", "exchange_id", "incoming_id", "active_ctx"]
+      ],
+      "equal": [["active_ctx", ["newctx", "promoted", "local_pair", "peer_pair"]]]
+    },
+    {"id": "parent_distinct", "kind": "different", "fields": ["promoted", "oldest_parent"]},
+    {"id": "context_distinct", "kind": "different", "fields": ["active_ctx", "prior_new"]}
+  ]
+}

@@ -1,0 +1,679 @@
+maude tool: '/redacted-home/tools/bin/maude35'
+ checking version: 3.5. OK.
+ checking installation: OK.
+[Theory C1_E2r] Theory loaded
+[Theory C1_E2r] Theory translated
+[Theory C1_E2r] Theory closed
+[Saturating Sources] Step 1 (Max 5)
+[Saturating Sources] Done
+NO CYCLE -- Reason(s): 
+ * For system 2-00
+   * No match found
+ * For system 1-00
+   * NoProgress
+ * For system 1-00
+   * NoProgress
+NO CYCLE -- Reason(s): 
+ * For system 3-04
+ * For system 2-00
+ * For system 1-00
+   * NoProgress
+ * For system 1-00
+   * NoProgress
+NO CYCLE -- Reason(s): 
+ * For system 5-00
+ * For system 4-00
+ * For system 3-00
+ * For system 2-00
+ * For system 1-00
+   * NoProgress
+ * For system 1-00
+   * NoProgress
+NO CYCLE -- Reason(s): 
+ * For system 5-00
+ * For system 4-00
+ * For system 3-00
+ * For system 2-00
+ * For system 1-00
+   * NoProgress
+ * For system 1-00
+   * NoProgress
+NO CYCLE -- Reason(s): 
+ * For system 8-00
+ * For system 7-00
+ * For system 6-00
+ * For system 5-00
+ * For system 4-00
+ * For system 3-00
+ * For system 2-00
+ * For system 1-00
+   * NoProgress
+ * For system 1-00
+   * NoProgress
+NO CYCLE -- Reason(s): 
+ * For system 7-04
+ * For system 6-04
+ * For system 5-04
+ * For system 4-04
+ * For system 3-04
+ * For system 2-00
+ * For system 1-00
+   * NoProgress
+ * For system 1-00
+   * NoProgress
+NO CYCLE -- Reason(s): 
+ * For system 7-44
+ * For system 6-04
+ * For system 5-04
+ * For system 4-04
+ * For system 3-04
+ * For system 2-00
+ * For system 1-00
+   * NoProgress
+ * For system 1-00
+   * NoProgress
+NO CYCLE -- Reason(s): 
+ * For system 10-0004
+ * For system 9-0004
+ * For system 8-04
+ * For system 7-04
+ * For system 6-04
+ * For system 5-04
+ * For system 4-04
+ * For system 3-04
+ * For system 2-00
+ * For system 1-00
+   * NoProgress
+ * For system 1-00
+   * NoProgress
+NO CYCLE -- Reason(s): 
+ * For system 11-0044
+ * For system 10-0044
+ * For system 9-0044
+ * For system 8-44
+ * For system 7-44
+ * For system 6-04
+ * For system 5-04
+ * For system 4-04
+ * For system 3-04
+ * For system 2-00
+ * For system 1-00
+   * NoProgress
+ * For system 1-00
+   * NoProgress
+markGoalAsSolved: inexistent constraint DisjG (Disj {getDisj = [GAto (EqE Free #vr.7 Free #vr.8),GAto (EqE Free #vr.5 Free #vr.3)]})
+NO CYCLE -- Reason(s): 
+ * For system 15-0044
+ * For system 14-0044
+ * For system 13-0044
+ * For system 12-0044
+ * For system 11-0044
+ * For system 10-0044
+ * For system 9-0044
+ * For system 8-44
+ * For system 7-44
+ * For system 6-04
+ * For system 5-04
+ * For system 4-04
+ * For system 3-04
+ * For system 2-00
+ * For system 1-00
+   * NoProgress
+ * For system 1-00
+   * NoProgress
+NO CYCLE -- Reason(s): 
+ * For system 11-0444
+ * For system 10-0044
+ * For system 9-0044
+ * For system 8-44
+ * For system 7-44
+ * For system 6-04
+ * For system 5-04
+ * For system 4-04
+ * For system 3-04
+ * For system 2-00
+ * For system 1-00
+   * NoProgress
+ * For system 1-00
+   * NoProgress
+markGoalAsSolved: inexistent constraint DisjG (Disj {getDisj = [GAto (EqE Free #vr.9 Free #vr.10),GAto (EqE Free #vr.7 Free #vr.8)]})
+NO CYCLE -- Reason(s): 
+ * For system 16-4444
+ * For system 14-0444
+ * For system 13-0444
+ * For system 12-0444
+ * For system 11-0444
+ * For system 10-0044
+ * For system 9-0044
+ * For system 8-44
+ * For system 7-44
+ * For system 6-04
+ * For system 5-04
+ * For system 4-04
+ * For system 3-04
+ * For system 2-00
+ * For system 1-00
+   * NoProgress
+ * For system 1-00
+   * NoProgress
+NO CYCLE -- Reason(s): 
+ * For system 18-000044
+ * For system 17-000044
+ * For system 16-0044
+ * For system 15-0044
+ * For system 14-0044
+ * For system 13-0044
+ * For system 12-0044
+ * For system 11-0044
+ * For system 10-0044
+ * For system 9-0044
+ * For system 8-44
+ * For system 7-44
+ * For system 6-04
+ * For system 5-04
+ * For system 4-04
+ * For system 3-04
+ * For system 2-00
+ * For system 1-00
+   * NoProgress
+ * For system 1-00
+   * NoProgress
+markGoalAsSolved: inexistent constraint DisjG (Disj {getDisj = [GAto (EqE Free #vr.9 Free #vr.10),GAto (EqE Free #vr.7 Free #vr.5)]})
+NO CYCLE -- Reason(s): 
+ * For system 19-004444
+ * For system 18-004444
+ * For system 17-004444
+ * For system 16-4444
+ * For system 14-0444
+ * For system 13-0444
+ * For system 12-0444
+ * For system 11-0444
+ * For system 10-0044
+ * For system 9-0044
+ * For system 8-44
+ * For system 7-44
+ * For system 6-04
+ * For system 5-04
+ * For system 4-04
+ * For system 3-04
+ * For system 2-00
+ * For system 1-00
+   * NoProgress
+ * For system 1-00
+   * NoProgress
+NO CYCLE -- Reason(s): 
+ * For system 19-004444
+ * For system 18-004444
+ * For system 17-004444
+ * For system 16-4444
+ * For system 14-0444
+ * For system 13-0444
+ * For system 12-0444
+ * For system 11-0444
+ * For system 10-0044
+ * For system 9-0044
+ * For system 8-44
+ * For system 7-44
+ * For system 6-04
+ * For system 5-04
+ * For system 4-04
+ * For system 3-04
+ * For system 2-00
+ * For system 1-00
+   * NoProgress
+ * For system 1-00
+   * NoProgress
+NO CYCLE -- Reason(s): 
+ * For system 22-004444
+ * For system 21-004444
+ * For system 20-004444
+ * For system 19-004444
+ * For system 18-004444
+ * For system 17-004444
+ * For system 16-4444
+ * For system 14-0444
+ * For system 13-0444
+ * For system 12-0444
+ * For system 11-0444
+ * For system 10-0044
+ * For system 9-0044
+ * For system 8-44
+ * For system 7-44
+ * For system 6-04
+ * For system 5-04
+ * For system 4-04
+ * For system 3-04
+ * For system 2-00
+ * For system 1-00
+   * NoProgress
+ * For system 1-00
+   * NoProgress
+NO CYCLE -- Reason(s): 
+ * For system 19-004444
+ * For system 18-004444
+ * For system 17-004444
+ * For system 16-4444
+ * For system 14-0444
+ * For system 13-0444
+ * For system 12-0444
+ * For system 11-0444
+ * For system 10-0044
+ * For system 9-0044
+ * For system 8-44
+ * For system 7-44
+ * For system 6-04
+ * For system 5-04
+ * For system 4-04
+ * For system 3-04
+ * For system 2-00
+ * For system 1-00
+   * NoProgress
+ * For system 1-00
+   * NoProgress
+NO CYCLE -- Reason(s): 
+ * For system 22-004444
+ * For system 21-004444
+ * For system 20-004444
+ * For system 19-004444
+ * For system 18-004444
+ * For system 17-004444
+ * For system 16-4444
+ * For system 14-0444
+ * For system 13-0444
+ * For system 12-0444
+ * For system 11-0444
+ * For system 10-0044
+ * For system 9-0044
+ * For system 8-44
+ * For system 7-44
+ * For system 6-04
+ * For system 5-04
+ * For system 4-04
+ * For system 3-04
+ * For system 2-00
+ * For system 1-00
+   * NoProgress
+ * For system 1-00
+   * NoProgress
+theory C1_E2r begin
+
+// Function signature and definition of the equational theory E
+
+functions: ch/2, fst/1, pair/2, s/1, snd/1, z/0
+equations: fst(<x.1, x.2>) = x.1, snd(<x.1, x.2>) = x.2
+
+
+
+
+
+/* looping facts with injective instances: G/3, V/7 */
+
+restriction Neq:
+  "∀ x y #i. (Neq( x, y ) @ #i) ⇒ (¬(x = y))"
+  // safety formula
+
+rule (modulo E) KeyGen:
+   [ Fr( ~I ), Fr( ~x ) ]
+  --[ Start( ~I, ~x ), Gen( ~I, z, ~x ) ]->
+   [ G( ~I, z, ~x ), !Sk( ~I, ~x ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) GenStep:
+   [ G( I, p, t ) ]
+  --[ Neq( p, s(s(s(z))) ), Gen( I, s(p), ch(I, t) ) ]->
+   [ G( I, s(p), ch(I, t) ) ]
+
+  // loop breaker: [0]
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) GenDone:
+   [ G( I, s(s(s(z))), y ) ]
+  --[ PkOut( I, y ) ]->
+   [ !Pk( I, y ), Out( <I, y> ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign:
+   [ !Sk( I, x ), !Pk( I, y ), In( a ) ]
+  --[ SignReq( I, a ) ]->
+   [ S( I, z, x, a ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) SigStep:
+   [ S( I, p, t, a ) ] --[ Neq( p, a ) ]-> [ S( I, s(p), ch(I, t), a ) ]
+
+  // loop breaker: [0]
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) SigEmit:
+   [ S( I, a, t, a ) ] --[ Signed( I, a, t ) ]-> [ Out( <I, a, t> ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Rem:
+   [ In( <I, a, t> ) ] --> [ Rem( I, a, t, a, s(s(s(z))) ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) RemStep:
+   [ Rem( I, a, t, s(q), s(u) ) ] --> [ Rem( I, a, t, q, u ) ]
+
+  // loop breaker: [0]
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) VerStart:
+   [ !Pk( I, y ), Rem( I, a, t, z, u ), Fr( ~v ) ]
+  --[ VerIn( ~v, I, a, t ) ]->
+   [ V( ~v, I, t, u, a, t, y ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) VerStep:
+   [ V( v, I, t, s(r), a, t0, y ) ]
+  --[ VStep( v, I, t, r, y ) ]->
+   [ V( v, I, ch(I, t), r, a, t0, y ) ]
+
+  // loop breaker: [0]
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) VerAccept:
+   [ V( v, I, y, z, a, t0, y ) ]
+  --[ Accept( v, I, a ), AcceptV( v, I, a, t0 ), VStep( v, I, y, z, y ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) RevealSk:
+   [ !Sk( I, x ) ] --[ Reveal( I ) ]-> [ Out( x ) ]
+
+  /* has exactly the trivial AC variant */
+
+lemma Auto_exec:
+  exists-trace
+  "∃ v I a t #s #k. (Signed( I, a, t ) @ #s) ∧ (Accept( v, I, a ) @ #k)"
+/*
+guarded formula characterizing all satisfying traces:
+"∃ v I a t #s #k. (Signed( I, a, t ) @ #s) ∧ (Accept( v, I, a ) @ #k)"
+*/
+by sorry
+
+lemma Auto_GenSeed:
+  all-traces
+  "∀ I p t #i.
+    (Gen( I, p, t ) @ #i) ⇒
+    (∃ x #j. (Start( I, x ) @ #j) ∧ ((x ⊏ t) ∨ (x = t)))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ I p t #i.
+  (Gen( I, p, t ) @ #i)
+ ∧
+  ∀ x #j. (Start( I, x ) @ #j) ⇒ (¬(x ⊏ t)) ∧ (¬(x = t))"
+*/
+by sorry
+
+lemma Auto_GenUnique:
+  all-traces
+  "∀ I p1 p2 t #i #j.
+    ((Gen( I, p1, t ) @ #i) ∧ (Gen( I, p2, t ) @ #j)) ⇒ (#i = #j)"
+/*
+guarded formula characterizing all counter-examples:
+"∃ I p1 p2 t #i #j.
+  (Gen( I, p1, t ) @ #i) ∧ (Gen( I, p2, t ) @ #j) ∧ ¬(#i = #j)"
+*/
+by sorry
+
+lemma Auto_VStepPk [reuse]:
+  all-traces
+  "∀ v I t r y #i.
+    (VStep( v, I, t, r, y ) @ #i) ⇒ (∃ #j. PkOut( I, y ) @ #j)"
+/*
+guarded formula characterizing all counter-examples:
+"∃ v I t r y #i.
+  (VStep( v, I, t, r, y ) @ #i) ∧ ∀ #j. (PkOut( I, y ) @ #j) ⇒ ⊥"
+*/
+by sorry
+
+lemma Auto_AcceptPk:
+  all-traces
+  "∀ v I a #k. (Accept( v, I, a ) @ #k) ⇒ (∃ y #j. PkOut( I, y ) @ #j)"
+/*
+guarded formula characterizing all counter-examples:
+"∃ v I a #k. (Accept( v, I, a ) @ #k) ∧ ∀ y #j. (PkOut( I, y ) @ #j) ⇒ ⊥"
+*/
+by sorry
+
+lemma Auto_AcceptGen:
+  all-traces
+  "∀ v I a t0 #k.
+    (AcceptV( v, I, a, t0 ) @ #k) ⇒ (∃ #j. Gen( I, a, t0 ) @ #j)"
+/*
+guarded formula characterizing all counter-examples:
+"∃ v I a t0 #k.
+  (AcceptV( v, I, a, t0 ) @ #k) ∧ ∀ #j. (Gen( I, a, t0 ) @ #j) ⇒ ⊥"
+*/
+simplify
+solve( V( v.1, I.2, y.1, z, a.1, t0.1, y.1 ) ▶₀ #k )
+  case VerStart
+  search for cycle
+  minimize for cyclic proofs
+    case weaken
+    solve( G( I.2, s(s(z)), t ) ▶₀ #vr.3 )
+      case GenStep
+      search for cycle
+      minimize for cyclic proofs
+        case weaken
+        solve( G( I.2, s(z), t.1 ) ▶₀ #vr.4 )
+          case GenStep
+          search for cycle
+          minimize for cyclic proofs
+            case weaken
+            solve( G( I.2, z, t.2 ) ▶₀ #vr.5 )
+              case KeyGen
+              by UNFINISHABLE // reducible operator in subterm or solved after weakening
+            qed
+          qed
+        qed
+      qed
+    qed
+  qed
+next
+  case VerStep
+  solve( G( I.2, s(s(s(z))), ch(I.2, t) ) ▶₀ #j )
+    case GenStep
+    search for cycle
+    minimize for cyclic proofs
+      case weaken
+      solve( V( v.1, I.2, t, s(z), a.1, t0.1, ch(I.2, t) ) ▶₀ #vr )
+        case VerStart
+        solve( G( I.2, s(s(z)), t0.1 ) ▶₀ #vr.5 )
+          case GenStep
+          search for cycle
+          minimize for cyclic proofs
+            case weaken
+            solve( G( I.2, s(z), t.1 ) ▶₀ #vr.6 )
+              case GenStep
+              search for cycle
+              minimize for cyclic proofs
+                case weaken
+                solve( G( I.2, z, t.2 ) ▶₀ #vr.7 )
+                  case KeyGen
+                  by UNFINISHABLE // reducible operator in subterm or solved after weakening
+                qed
+              qed
+            qed
+          qed
+        qed
+      next
+        case VerStep
+        solve( G( I.2, s(s(z)), ch(I.2, t.1) ) ▶₀ #vr.1 )
+          case GenStep
+          search for cycle
+          minimize for cyclic proofs
+            case weaken
+            solve( V( v.1, I.2, t.1, s(s(z)), a.1, t0.1, ch(I.2, ch(I.2, t.1))
+                   ) ▶₀ #vr.2 )
+              case VerStart
+              solve( G( I.2, s(z), t0.1 ) ▶₀ #vr.3 )
+                case GenStep
+                search for cycle
+                minimize for cyclic proofs
+                  case negate_0
+                  by contradiction /* from formulas */
+                next
+                  case weaken
+                  solve( G( I.2, s(s(z)), ch(I.2, ch(I.2, t.2)) ) ▶₀ #vr.7 )
+                    case GenStep
+                    solve( G( I.2, z, t.2 ) ▶₀ #vr.8 )
+                      case KeyGen
+                      search for cycle
+                      minimize for cyclic proofs
+                        case negate_0
+                        by contradiction /* from formulas */
+                      next
+                        case weaken
+                        solve( G( ~I.3, s(z), ch(~I.3, ~x) ) ▶₀ #vr.9 )
+                          case GenStep
+                          search for cycle
+                          minimize for cyclic proofs
+                            case weaken
+                            solve( G( ~I.3, z, ~x ) ▶₀ #vr.11 )
+                              case KeyGen
+                              by UNFINISHABLE // reducible operator in subterm or solved after weakening
+                            qed
+                          qed
+                        qed
+                      qed
+                    qed
+                  qed
+                qed
+              qed
+            next
+              case VerStep
+              solve( G( I.2, s(z), ch(I.2, t.2) ) ▶₀ #vr.3 )
+                case GenStep
+                search for cycle
+                minimize for cyclic proofs
+                  case weaken
+                  solve( V( v.1, I.2, t.2, s(s(s(z))), a.1, t0.1,
+                            ch(I.2, ch(I.2, ch(I.2, t.2)))
+                         ) ▶₀ #vr.4 )
+                    case VerStart_case_1
+                    solve( G( I.2, z, t0.1 ) ▶₀ #vr.5 )
+                      case KeyGen
+                      by contradiction /* from formulas */
+                    qed
+                  next
+                    case VerStart_case_2
+                    solve( G( I.2, z, t0.1 ) ▶₀ #vr.5 )
+                      case KeyGen
+                      search for cycle
+                      minimize for cyclic proofs
+                        case negate_0
+                        by contradiction /* from formulas */
+                      next
+                        case weaken
+                        solve( G( ~I.3, s(s(z)), ch(~I.3, ch(~I.3, ~x)) ) ▶₀ #vr.9 )
+                          case GenStep
+                          search for cycle
+                          minimize for cyclic proofs
+                            case weaken
+                            solve( G( ~I.3, s(z), ch(~I.3, ~x) ) ▶₀ #vr.11 )
+                              case GenStep
+                              search for cycle
+                              minimize for cyclic proofs
+                                case weaken
+                                solve( G( ~I.3, z, ~x ) ▶₀ #vr.12 )
+                                  case KeyGen
+                                  by UNFINISHABLE // reducible operator in subterm or solved after weakening
+                                qed
+                              qed
+                            qed
+                          qed
+                        qed
+                      qed
+                    qed
+                  next
+                    case VerStep
+                    by solve( G( I.2, z, ch(I.2, t.3) ) ▶₀ #vr.5 )
+                  qed
+                qed
+              qed
+            qed
+          qed
+        qed
+      qed
+    qed
+  qed
+qed
+
+lemma Auto_SeedSecret:
+  all-traces
+  "∀ I x #i #k.
+    ((Start( I, x ) @ #i) ∧ (!KU( x ) @ #k)) ⇒
+    ((∃ #r. Reveal( I ) @ #r) ∨ (∃ #s. Signed( I, z, x ) @ #s))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ I x #i #k.
+  (Start( I, x ) @ #i) ∧ (!KU( x ) @ #k)
+ ∧
+  (∀ #r. (Reveal( I ) @ #r) ⇒ ⊥) ∧ (∀ #s. (Signed( I, z, x ) @ #s) ⇒ ⊥)"
+*/
+by sorry
+
+lemma LS2_forge_nocks:
+  exists-trace
+  "∃ v I a b t #s #k.
+    (((Signed( I, a, t ) @ #s) ∧ (Accept( v, I, b ) @ #k)) ∧ (¬(a = b))) ∧
+    (¬(∃ #r. Reveal( I ) @ #r))"
+/*
+guarded formula characterizing all satisfying traces:
+"∃ v I a b t #s #k.
+  (Signed( I, a, t ) @ #s) ∧ (Accept( v, I, b ) @ #k)
+ ∧
+  (¬(a = b)) ∧ (∀ #r. (Reveal( I ) @ #r) ⇒ ⊥)"
+*/
+by sorry
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* All wellformedness checks were successful. */
+
+/*
+Generated from:
+Tamarin version 1.11.0
+Maude version 3.5
+Git revision: 87a573516fa4b1bf52e014dc9034d1be2e18df7c, branch: HEAD
+Compiled at: 2026-10-14 05:12:27.82288044 UTC
+*/
+
+end
+
+==============================================================================
+summary of summaries:
+
+analyzed: variants/C1_E2r__T0.spthy
+
+  processing time: 0.15s
+  
+  Auto_exec (exists-trace): analysis incomplete (1 steps)
+  Auto_GenSeed (all-traces): analysis incomplete (1 steps)
+  Auto_GenUnique (all-traces): analysis incomplete (1 steps)
+  Auto_VStepPk (all-traces): analysis incomplete (1 steps)
+  Auto_AcceptPk (all-traces): analysis incomplete (1 steps)
+  Auto_AcceptGen (all-traces): analysis cannot be finished (reducible operators in subterms) (61 steps)
+  Auto_SeedSecret (all-traces): analysis incomplete (1 steps)
+  LS2_forge_nocks (exists-trace): analysis incomplete (1 steps)
+
+==============================================================================

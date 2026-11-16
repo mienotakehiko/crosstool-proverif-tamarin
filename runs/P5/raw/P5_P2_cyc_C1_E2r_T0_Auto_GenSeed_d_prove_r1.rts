@@ -1,0 +1,25 @@
+'tamarin-cyclic' '--with-maude=maude35' '--derivcheck-timeout=0' '--prove=Auto_GenSeed' 'variants/C1_E2r__T0.spthy' +RTS '-N' '-M56g' '-A64m' '-qg' '-N4' '-sresults/out/P5_P2_cyc_C1_E2r_T0_Auto_GenSeed_d_prove_r1.rts' 
+     353,406,136 bytes allocated in the heap
+       2,619,728 bytes copied during GC
+         143,328 bytes maximum residency (1 sample(s))
+          77,856 bytes maximum slop
+             269 MiB total memory in use (0 MiB lost due to fragmentation)
+
+                                     Tot time (elapsed)  Avg pause  Max pause
+  Gen  0         1 colls,     0 par    0.000s   0.007s     0.0072s    0.0072s
+  Gen  1         1 colls,     0 par    0.000s   0.000s     0.0003s    0.0003s
+
+  TASKS: 10 (1 bound, 9 peak workers (9 total), using -N4)
+
+  SPARKS: 120 (83 converted, 0 overflowed, 0 dud, 7 GC'd, 30 fizzled)
+
+  INIT    time    0.004s  (  0.003s elapsed)
+  MUT     time    0.263s  (  0.119s elapsed)
+  GC      time    0.000s  (  0.008s elapsed)
+  EXIT    time    0.001s  (  0.010s elapsed)
+  Total   time    0.267s  (  0.140s elapsed)
+
+  Alloc rate    1,344,168,660 bytes per MUT second
+
+  Productivity  98.3% of total user, 85.2% of total elapsed
+

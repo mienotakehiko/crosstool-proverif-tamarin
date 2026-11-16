@@ -1,0 +1,9 @@
+suite	case	lemma	expected_native	native	translated	pv_raw	native_rc	export_rc	pv_rc	status	reason
+sessions	session_join	good_reachable	reachable	reachable	reachable	false	0	0	0	MATCH	
+sessions	session_join	bad_reachable	unreachable	unreachable	unreachable	true	0	0	0	MATCH	
+multiplicity	linear_pair	good_reachable	reachable	reachable	reachable	false	0	0	0	MATCH	
+multiplicity	linear_pair	bad_reachable	unreachable	unreachable	reachable	false	0	0	0	DIFFERENT	
+namespace	name_constructor	good_ctor_reachable	reachable	reachable	reachable	false	0	0	0	MATCH	
+namespace	name_constructor	good_name_reachable	reachable	reachable	reachable	false	0	0	0	MATCH	
+namespace	name_constructor	bad_ctor_reachable	unreachable	unreachable	unreachable	true	0	0	0	MATCH	
+namespace	name_constructor	bad_name_reachable	unreachable	unreachable	unreachable	true	0	0	0	MATCH	

@@ -1,0 +1,76 @@
+theory nested_successor
+
+begin
+
+// Function signature and definition of the equational theory E
+
+functions: f/1, fst/1, g/1, pair/2, s/1, snd/1, z/0
+equations: fst(<x.1, x.2>) = x.1, snd(<x.1, x.2>) = x.2
+
+rule (modulo E) Init:
+   [ Fr( ~sid ) ] --[ InitOnce( ) ]-> [ St( ~sid, f(s(z)) ) ]
+
+  /* has exactly the trivial AC variant */
+
+restriction OneInit:
+  "∀ #i #j. ((InitOnce( ) @ #i) ∧ (InitOnce( ) @ #j)) ⇒ (#i = #j)"
+  // safety formula
+
+  /*
+  expanded formula:
+  "∀ #i #j. ((InitOnce( ) @ #i) ∧ (InitOnce( ) @ #j)) ⇒ (#i = #j)"
+  */
+
+rule (modulo E) Good:
+   [ St( sid, f(s(z)) ) ] --[ Good( sid ) ]-> [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Bad:
+   [ St( sid, f(z) ) ] --[ Bad( sid ) ]-> [ ]
+
+  /* has exactly the trivial AC variant */
+
+lemma good_reachable:
+  exists-trace "∃ sid #i. Good( sid ) @ #i"
+/*
+guarded formula characterizing all satisfying traces:
+"∃ sid #i. (Good( sid ) @ #i)"
+*/
+simplify
+solve( St( sid, f(s(z)) ) ▶₀ #i )
+  case Init
+  SOLVED // trace found
+qed
+
+lemma bad_reachable:
+  exists-trace "∃ sid #i. Bad( sid ) @ #i"
+/*
+guarded formula characterizing all satisfying traces:
+"∃ sid #i. (Bad( sid ) @ #i)"
+*/
+by sorry
+
+/* All wellformedness checks were successful. */
+
+/*
+Generated from:
+Tamarin version 1.13.0
+Maude version 3.5
+Git revision: UNKNOWN
+Compiled at: 2026-11-15 04:14:35.812632891 UTC
+*/
+
+end
+
+==============================================================================
+summary of summaries:
+
+analyzed: /kit/models/source/nested_successor.spthy
+
+  processing time: 0.03s
+  
+  good_reachable (exists-trace): verified (3 steps)
+  bad_reachable (exists-trace): analysis incomplete (1 steps)
+
+==============================================================================

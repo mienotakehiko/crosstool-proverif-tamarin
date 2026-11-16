@@ -1,0 +1,7 @@
+lemma	cim_pv_archived_raw	cim_reference	tamarin_retest	pv_from_tamarin	status
+rb5_block_reachable	false	same_reachability	True	True	MATCH
+rb5_send_while_active_unreachable	true	same_unreachability	True	True	MATCH
+rb5_commit_send_reachable	false	same_reachability	True	True	MATCH
+rb5_commit_before_send	true	commit_correspondence	True	True	MATCH
+rb5_abort_send_reachable	false	same_reachability	True	True	MATCH
+rb5_abort_before_send	true	abort_correspondence	True	True	MATCH

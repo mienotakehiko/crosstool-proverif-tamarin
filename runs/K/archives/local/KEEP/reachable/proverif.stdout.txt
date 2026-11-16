@@ -1,0 +1,110 @@
+Linear part: No equation.
+Convergent part:
+fst((x_1,x_2)) = x_1
+snd((x_1,x_2)) = x_2
+Completing equations...
+Completed equations:
+snd((x_1,x_2)) = x_2
+fst((x_1,x_2)) = x_1
+Process 0 (that is, the initial process):
+(
+    {1}!
+    {2}new rid_rInit: bitstring;
+    {3}new stR_BusyUsable: bitstring;
+    {4}new initial_context: bitstring;
+    {5}new initial_counter: bitstring;
+    {6}event eInit(rid_rInit);
+    {7}event eBusyBefore(initial_context,initial_counter);
+    {8}insert tBusyUsable(stR_BusyUsable,initial_context,initial_counter)
+) | (
+    {9}!
+    {10}get tBusyUsable(stL_BusyUsable: bitstring,c: bitstring,p: bitstring) in
+    {11}new rid_rKeep: bitstring;
+    {12}event eDistinctFact(rid_rKeep,(stL_BusyUsable,(c,p)));
+    {13}event eBusyKept(c,succ(p))
+)
+
+-- Restriction event(eInit(rid_i))@i && event(eInit(rid_j))@j ==> rid_i = rid_j encoded as event(eInit(rid_i)) && event(eInit(rid_j)) ==> rid_i = rid_j in process 0.
+-- Restriction event(eDistinctFact(rid_i,x))@i && event(eDistinctFact(rid_j,x))@j ==> rid_i = rid_j encoded as event(eDistinctFact(rid_i,x)) && event(eDistinctFact(rid_j,x)) ==> rid_i = rid_j in process 0.
+-- Query not event(eBusyKept(c_1,n))@k encoded as not event(eBusyKept(c_1,n)) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query not event(eBusyKept(c_1,n))@k
+Removing redudant clauses.
+Removing subsumed clauses modulo the equational theory.
+Starting verification.
+Clauses verified: 0. Clauses remaining: 1. Failed clauses: 0.
+goal reachable: b-event(eDistinctFact(rid_rKeep_1,(stR_BusyUsable_1,(initial_context_1,initial_counter_1)))) && b-event(eInit(rid_rInit_1)) && b-event(@p_act(@occ10_1,tBusyUsable(stR_BusyUsable_1,initial_context_1,initial_counter_1))) -> event(eBusyKept(initial_context_1,succ(initial_counter_1)))
+The 1st, 2nd, 3rd hypotheses occur strictly before the conclusion.
+Abbreviations:
+initial_context_1 = initial_context[!1 = @sid]
+initial_counter_1 = initial_counter[!1 = @sid]
+stR_BusyUsable_1 = stR_BusyUsable[!1 = @sid]
+rid_rKeep_1 = rid_rKeep[p = initial_counter_1,c = initial_context_1,stL_BusyUsable = stR_BusyUsable_1,!1 = @sid_1]
+rid_rInit_1 = rid_rInit[!1 = @sid]
+@occ10_1 = @occ10[!1 = @sid_1]
+
+Derivation:
+Abbreviations:
+initial_context_1 = initial_context[!1 = @sid]
+initial_counter_1 = initial_counter[!1 = @sid]
+stR_BusyUsable_1 = stR_BusyUsable[!1 = @sid]
+rid_rKeep_1 = rid_rKeep[p = initial_counter_1,c = initial_context_1,stL_BusyUsable = stR_BusyUsable_1,!1 = @sid_1]
+rid_rInit_1 = rid_rInit[!1 = @sid]
+@occ10_1 = @occ10[!1 = @sid_1]
+
+1. The event eInit(rid_rInit_1) may be executed at {6}.
+So the entry tBusyUsable(stR_BusyUsable_1,initial_context_1,initial_counter_1) may be inserted in a table at insert {8}.
+table(tBusyUsable(stR_BusyUsable_1,initial_context_1,initial_counter_1)).
+
+2. The event @p_act(@occ10_1,tBusyUsable(stR_BusyUsable_1,initial_context_1,initial_counter_1)) records how variables are instantiated at {10}.
+The entry tBusyUsable(stR_BusyUsable_1,initial_context_1,initial_counter_1) that may be in a table by 1 may be read at get {10}.
+The event eDistinctFact(rid_rKeep_1,(stR_BusyUsable_1,(initial_context_1,initial_counter_1))) may be executed at {12}.
+So event eBusyKept(initial_context_1,succ(initial_counter_1)) may be executed at {13}.
+event(eBusyKept(initial_context_1,succ(initial_counter_1))).
+
+3. By 2, event(eBusyKept(initial_context_1,succ(initial_counter_1))).
+The goals are reached, combined in the following fact:
+event(eBusyKept(initial_context_1,succ(initial_counter_1))).
+
+
+A more detailed output of the traces is available with
+  set traceDisplay = long.
+
+new rid_rInit: bitstring creating rid_rInit_2 at {2} in copy a
+
+new stR_BusyUsable: bitstring creating stR_BusyUsable_2 at {3} in copy a
+
+new initial_context: bitstring creating initial_context_2 at {4} in copy a
+
+new initial_counter: bitstring creating initial_counter_2 at {5} in copy a
+
+event eInit(rid_rInit_2) at {6} in copy a
+
+event eBusyBefore(initial_context_2,initial_counter_2) at {7} in copy a
+
+insert tBusyUsable(stR_BusyUsable_2,initial_context_2,initial_counter_2) at {8} in copy a
+
+get tBusyUsable(stR_BusyUsable_2,initial_context_2,initial_counter_2) at {10} in copy a_1
+
+new rid_rKeep: bitstring creating rid_rKeep_2 at {11} in copy a_1
+
+event eDistinctFact(rid_rKeep_2,(stR_BusyUsable_2,(initial_context_2,initial_counter_2))) at {12} in copy a_1
+
+event eBusyKept(initial_context_2,succ(initial_counter_2)) at {13} in copy a_1 (goal)
+
+The event eBusyKept(initial_context_2,succ(initial_counter_2)) is executed at {13} in copy a_1.
+A trace has been found.
+RESULT not event(eBusyKept(c_1,n))@k is false.
+
+--------------------------------------------------------------
+Verification summary:
+
+Query(ies):
+ - Query not event(eBusyKept(c_1,n))@k is false.
+Associated restriction(s):
+ - Restriction event(eInit(rid_i))@i && event(eInit(rid_j))@j ==> rid_i = rid_j encoded as event(eInit(rid_i)) && event(eInit(rid_j)) ==> rid_i = rid_j in process 0.
+ - Restriction event(eDistinctFact(rid_i,x))@i && event(eDistinctFact(rid_j,x))@j ==> rid_i = rid_j encoded as event(eDistinctFact(rid_i,x)) && event(eDistinctFact(rid_j,x)) ==> rid_i = rid_j in process 0.
+
+--------------------------------------------------------------
+

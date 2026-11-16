@@ -1,0 +1,57 @@
+{
+  "case": "H1_both_own",
+  "tool": "pv",
+  "hypothesis_collision": false,
+  "observed_collision": false,
+  "normal_reachable": true,
+  "status": "success",
+  "trace_audit": {
+    "no_collision": "true",
+    "normal_reachable": true,
+    "result_lines": [
+      "RESULT event(AeadUse(k,n,x)) && event(AeadUse(k,n,y)) ==> x = y is true.",
+      "RESULT not event(Normal) is false."
+    ],
+    "concrete_aead_uses": [
+      [
+        "key(kdf(parent_1,xn(input_a_1,input_b_1)),server)",
+        "nce(server,zero,civ(kdf(parent_1,xn(input_a_1,input_b_1))))",
+        "m1_1"
+      ],
+      [
+        "key(kdf(parent_1,xn(input_a_1,input_b_1)),server)",
+        "nce(server,succ(zero),civ(kdf(parent_1,xn(input_a_1,input_b_1))))",
+        "m2_1"
+      ]
+    ],
+    "concrete_collision_pair": null,
+    "trace_marker": true,
+    "aead_event_lines": [
+      "AeadUse(key(kdf(parent,xn(input_a,input_b)),server),nce(server,zero,civ(kdf(parent,xn(input_a,input_b)))),m1);",
+      "AeadUse(key(kdf(parent,xn(input_a,input_b)),server),nce(server,succ(zero),civ(kdf(parent,xn(input_a,input_b)))),m2);",
+      "AeadUse(key(kdf(parent_1,xn(input_a_1,input_b_1)),server),nce(server,zero,civ(kdf(parent_1,xn(input_a_1,input_b_1)))),m1_1) at {8}",
+      "AeadUse(key(kdf(parent_1,xn(input_a_1,input_b_1)),server),nce(server,succ(zero),civ(kdf(parent_1,xn(input_a_1,input_b_1)))),m2_1) at {11}"
+    ],
+    "trace_excerpt_start": 2048
+  },
+  "oracle_collision": false,
+  "execution": {
+    "command": [
+      "/usr/local/bin/proverif",
+      "/redacted-home/workspace/revision_20261111/h1h2-kit/models/H1_both_own.pv"
+    ],
+    "cwd": "/redacted-home/workspace/revision_20261111/h1h2-kit",
+    "utc_start": "2026-11-11T03:12:25.844262+00:00",
+    "utc_end": "2026-11-11T03:12:25.853516+00:00",
+    "elapsed_seconds": 0.009,
+    "rc": 0,
+    "timeout": false,
+    "timeout_seconds": 30,
+    "heap_mb": 600,
+    "limit_kind": "RLIMIT_AS",
+    "spawn_error": null,
+    "stdout_sha256": "789e3a21d9bef603a24f567c4ee42f0cb6a40fb39b46668237515f02531a9eec",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "model_sha256": "3ca491d4a0d8ca3a688ebcb6b9de80c7febaebaf9e70bba01b2e0daeec62bc22"
+}

@@ -1,0 +1,143 @@
+{
+  "pass": true,
+  "checks": {
+    "tool_exit_codes_zero": true,
+    "proverif_query_statements_match": true,
+    "proverif_expected_verdicts": true,
+    "tamarin_expected_verdicts": true,
+    "tamarin_proof_closed": true,
+    "proverif_blocked_witness": true,
+    "proverif_after_commit_witness": true,
+    "proverif_after_abort_witness": true,
+    "tamarin_blocked_witness": true,
+    "tamarin_after_commit_witness": true,
+    "tamarin_after_abort_witness": true,
+    "observed_witnesses_agree": true
+  },
+  "proverif_verdicts": [
+    "false",
+    "true",
+    "false",
+    "true",
+    "false",
+    "true"
+  ],
+  "tamarin_verdicts": {
+    "block_reachable": "verified",
+    "send_while_active_unreachable": "verified",
+    "commit_send_reachable": "verified",
+    "commit_before_send": "verified",
+    "abort_send_reachable": "verified",
+    "abort_before_send": "verified"
+  },
+  "wall_seconds": {
+    "proverif": 0.005,
+    "tamarin": 0.133
+  },
+  "tamarin_processing_seconds": 0.11,
+  "observed_events": {
+    "proverif": {
+      "blocked": {
+        "KudosStart": [
+          "execution"
+        ],
+        "AppSendChecked": [
+          "execution",
+          "phase_active",
+          "no_outcome"
+        ],
+        "AppSendBlocked": [
+          "execution"
+        ]
+      },
+      "after_commit": {
+        "KudosStart": [
+          "execution"
+        ],
+        "KudosCommit": [
+          "execution"
+        ],
+        "AppSendChecked": [
+          "execution",
+          "phase_closed",
+          "outcome_commit"
+        ],
+        "AppSend": [
+          "execution",
+          "phase_closed",
+          "outcome_commit"
+        ]
+      },
+      "after_abort": {
+        "KudosStart": [
+          "execution"
+        ],
+        "KudosAbort": [
+          "execution"
+        ],
+        "AppSendChecked": [
+          "execution",
+          "phase_closed",
+          "outcome_abort"
+        ],
+        "AppSend": [
+          "execution",
+          "phase_closed",
+          "outcome_abort"
+        ]
+      }
+    },
+    "tamarin": {
+      "blocked": {
+        "KudosStart": [
+          "execution"
+        ],
+        "AppSendChecked": [
+          "execution",
+          "phase_active",
+          "no_outcome"
+        ],
+        "AppSendBlocked": [
+          "execution"
+        ]
+      },
+      "after_commit": {
+        "KudosStart": [
+          "execution"
+        ],
+        "KudosCommit": [
+          "execution"
+        ],
+        "AppSendChecked": [
+          "execution",
+          "phase_closed",
+          "outcome_commit"
+        ],
+        "AppSend": [
+          "execution",
+          "phase_closed",
+          "outcome_commit"
+        ]
+      },
+      "after_abort": {
+        "KudosStart": [
+          "execution"
+        ],
+        "KudosAbort": [
+          "execution"
+        ],
+        "AppSendChecked": [
+          "execution",
+          "phase_closed",
+          "outcome_abort"
+        ],
+        "AppSend": [
+          "execution",
+          "phase_closed",
+          "outcome_abort"
+        ]
+      }
+    }
+  },
+  "trace_errors": {}
+}

@@ -1,0 +1,61 @@
+(* Bounded RB4: KUDOS draft 14, Appendix A.1, through response #1. *)
+free ch_ClientReady, ch_ServerReady, ch_ClientPending, ch_BranchRequest, ch_ServerAccepted, ch_ServerPrepared, ch_ConvergenceResponse: channel [private].
+free x_client, x_server: bitstring.
+fun rb4_context(bitstring, bitstring, bitstring, bitstring, bitstring): bitstring.
+
+event BranchRequestSent(bitstring, bitstring, bitstring, bitstring).
+event BranchRequestAccepted(bitstring, bitstring, bitstring, bitstring).
+event KudosDerived(bitstring, bitstring, bitstring, bitstring, bitstring, bitstring, bitstring).
+event ConvergenceResponseSent(bitstring, bitstring, bitstring, bitstring, bitstring, bitstring, bitstring).
+event KudosCommit(bitstring, bitstring, bitstring, bitstring, bitstring, bitstring, bitstring).
+
+query q1_run_id:bitstring, q1_token_id:bitstring, q1_client_x:bitstring, q1_client_nonce:bitstring, q1_server_x:bitstring, q1_server_nonce:bitstring, q1_next_context:bitstring;
+  event(KudosCommit(q1_run_id,q1_token_id,q1_client_x,q1_client_nonce,q1_server_x,q1_server_nonce,q1_next_context)).
+
+query q2_run_id:bitstring, q2_token_id:bitstring, q2_client_x:bitstring, q2_client_nonce:bitstring, q2_server_x:bitstring, q2_server_nonce:bitstring, q2_next_context:bitstring;
+  event(KudosCommit(q2_run_id,q2_token_id,q2_client_x,q2_client_nonce,q2_server_x,q2_server_nonce,q2_next_context)) ==> event(BranchRequestSent(q2_run_id,q2_token_id,q2_client_x,q2_client_nonce)) && event(BranchRequestAccepted(q2_run_id,q2_token_id,q2_client_x,q2_client_nonce)) && event(KudosDerived(q2_run_id,q2_token_id,q2_client_x,q2_client_nonce,q2_server_x,q2_server_nonce,q2_next_context)) && event(ConvergenceResponseSent(q2_run_id,q2_token_id,q2_client_x,q2_client_nonce,q2_server_x,q2_server_nonce,q2_next_context)).
+
+query q3_run_id:bitstring, q3_token_id:bitstring, q3_client_x:bitstring, q3_client_nonce:bitstring, q3_server_x:bitstring, q3_server_nonce:bitstring, q3_next_context:bitstring;
+  inj-event(KudosCommit(q3_run_id,q3_token_id,q3_client_x,q3_client_nonce,q3_server_x,q3_server_nonce,q3_next_context)) ==> inj-event(BranchRequestSent(q3_run_id,q3_token_id,q3_client_x,q3_client_nonce)).
+
+process
+  new run_id:bitstring;
+  new parent_context:bitstring;
+  (
+    (out(ch_ClientReady,(run_id,parent_context));
+     0)
+    |
+    (out(ch_ServerReady,(run_id,parent_context));
+     0)
+    |
+    (in(ch_ClientReady,(run_id_step1:bitstring,parent_context_step1:bitstring));
+     new token_id_step1:bitstring;
+     new client_nonce_step1:bitstring;
+     event BranchRequestSent(run_id_step1,token_id_step1,x_client,client_nonce_step1);
+     out(ch_ClientPending,(run_id_step1,parent_context_step1,token_id_step1,x_client,client_nonce_step1));
+     out(ch_BranchRequest,(run_id_step1,token_id_step1,x_client,client_nonce_step1));
+     0)
+    |
+    (in(ch_ServerReady,(run_id_step2:bitstring,parent_context_step2:bitstring));
+     in(ch_BranchRequest,(=run_id_step2,token_id_step2:bitstring,client_x_step2:bitstring,client_nonce_step2:bitstring));
+     event BranchRequestAccepted(run_id_step2,token_id_step2,client_x_step2,client_nonce_step2);
+     out(ch_ServerAccepted,(run_id_step2,parent_context_step2,token_id_step2,client_x_step2,client_nonce_step2));
+     0)
+    |
+    (in(ch_ServerAccepted,(run_id_step3:bitstring,parent_context_step3:bitstring,token_id_step3:bitstring,client_x_step3:bitstring,client_nonce_step3:bitstring));
+     new server_nonce_step3:bitstring;
+     event KudosDerived(run_id_step3,token_id_step3,client_x_step3,client_nonce_step3,x_server,server_nonce_step3,rb4_context(parent_context_step3,client_x_step3,client_nonce_step3,x_server,server_nonce_step3));
+     out(ch_ServerPrepared,(run_id_step3,token_id_step3,client_x_step3,client_nonce_step3,x_server,server_nonce_step3,rb4_context(parent_context_step3,client_x_step3,client_nonce_step3,x_server,server_nonce_step3)));
+     0)
+    |
+    (in(ch_ServerPrepared,(run_id_step4:bitstring,token_id_step4:bitstring,client_x_step4:bitstring,client_nonce_step4:bitstring,server_x_step4:bitstring,server_nonce_step4:bitstring,next_context_step4:bitstring));
+     event ConvergenceResponseSent(run_id_step4,token_id_step4,client_x_step4,client_nonce_step4,server_x_step4,server_nonce_step4,next_context_step4);
+     out(ch_ConvergenceResponse,(run_id_step4,token_id_step4,client_x_step4,client_nonce_step4,server_x_step4,server_nonce_step4,next_context_step4));
+     0)
+    |
+    (in(ch_ClientPending,(run_id_step5:bitstring,parent_context_step5:bitstring,token_id_step5:bitstring,client_x_step5:bitstring,client_nonce_step5:bitstring));
+     in(ch_ConvergenceResponse,(=run_id_step5,=token_id_step5,=client_x_step5,=client_nonce_step5,server_x_step5:bitstring,server_nonce_step5:bitstring,next_context_step5:bitstring));
+     if next_context_step5 = rb4_context(parent_context_step5,client_x_step5,client_nonce_step5,server_x_step5,server_nonce_step5) then
+       (event KudosCommit(run_id_step5,token_id_step5,client_x_step5,client_nonce_step5,server_x_step5,server_nonce_step5,next_context_step5);
+        0))
+  )

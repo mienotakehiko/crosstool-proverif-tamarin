@@ -1,0 +1,79 @@
+theory CimBusyKeep
+
+begin
+
+// Function signature and definition of the equational theory E
+
+functions: fst/1, pair/2, snd/1, succ/1
+equations: fst(<x.1, x.2>) = x.1, snd(<x.1, x.2>) = x.2
+
+rule (modulo E) Init:
+   [ Fr( ~initial_context ), Fr( ~initial_counter ) ]
+  --[ Init( ), BusyBefore( ~initial_context, ~initial_counter ) ]->
+   [ BusyUsable( ~initial_context, ~initial_counter ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Keep:
+   [ BusyUsable( c, p ) ] --[ BusyKept( c, succ(p) ) ]-> [ ]
+
+  /* has exactly the trivial AC variant */
+
+restriction SingleInit:
+  "∀ #i #j. ((Init( ) @ #i) ∧ (Init( ) @ #j)) ⇒ (#i = #j)"
+  // safety formula
+
+  /*
+  expanded formula:
+  "∀ #i #j. ((Init( ) @ #i) ∧ (Init( ) @ #j)) ⇒ (#i = #j)"
+  */
+
+lemma busy_keep_reachable:
+  exists-trace "∃ c n #k. BusyKept( c, n ) @ #k"
+/*
+guarded formula characterizing all satisfying traces:
+"∃ c n #k. (BusyKept( c, n ) @ #k)"
+*/
+simplify
+solve( BusyUsable( c, p ) ▶₀ #k )
+  case Init
+  SOLVED // trace found
+qed
+
+lemma busy_keep_continues:
+  all-traces
+  "∀ c n #k.
+    (BusyKept( c, n ) @ #k) ⇒
+    (∃ p #t1. ((BusyBefore( c, p ) @ #t1) ∧ (#t1 < #k)) ∧ (n = succ(p)))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ c n #k.
+  (BusyKept( c, n ) @ #k)
+ ∧
+  ∀ p #t1. (BusyBefore( c, p ) @ #t1) ∧ (n = succ(p)) ⇒ ¬(#t1 < #k)"
+*/
+by sorry
+
+/* All wellformedness checks were successful. */
+
+/*
+Generated from:
+Tamarin version 1.13.0
+Maude version 3.5
+Git revision: UNKNOWN
+Compiled at: 2026-10-24 02:25:12.718891574 UTC
+*/
+
+end
+
+==============================================================================
+summary of summaries:
+
+analyzed: /work/inputs/KEEP/busy_keep.spthy
+
+  processing time: 0.02s
+  
+  busy_keep_reachable (exists-trace): verified (3 steps)
+  busy_keep_continues (all-traces): analysis incomplete (1 steps)
+
+==============================================================================

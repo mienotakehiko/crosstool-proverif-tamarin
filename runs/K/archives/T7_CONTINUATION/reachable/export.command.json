@@ -1,0 +1,1 @@
+["tamarin-prover", "-d=0", "-m=proverif", "--lemma=t7_continuation_reachable", "-o=/work/reachable/translated.pv", "/work/inputs/t7_continuation.spthy"]

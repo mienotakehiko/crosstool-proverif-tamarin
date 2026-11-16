@@ -1,0 +1,311 @@
+Process 0 (that is, the initial process):
+{1}new run_id: bitstring;
+{2}new request_context: bitstring;
+{3}new new_context: bitstring;
+{4}new sender_ssn: bitstring;
+(
+    {5}out(ch_ChooseContext, (run_id,request_context,new_context,sender_ssn))
+) | (
+    {6}in(ch_ChooseContext, (run_id_step1: bitstring,request_context_step1: bitstring,new_context_step1: bitstring,sender_ssn_step1: bitstring));
+    {7}out(ch_ExchangeReady, (same_ctx,run_id_step1,request_context_step1,request_context_step1,sender_ssn_step1))
+) | (
+    {8}in(ch_ChooseContext, (run_id_step2: bitstring,request_context_step2: bitstring,new_context_step2: bitstring,sender_ssn_step2: bitstring));
+    {9}out(ch_ExchangeReady, (different_ctx,run_id_step2,request_context_step2,new_context_step2,sender_ssn_step2))
+) | (
+    {10}in(ch_ExchangeReady, (scenario_step3: bitstring,run_id_step3: bitstring,request_context_step3: bitstring,response_context_step3: bitstring,sender_ssn_step3: bitstring));
+    {11}new token_id_step3: bitstring;
+    {12}event RequestAccepted(scenario_step3,run_id_step3,token_id_step3,request_context_step3,request_zero);
+    {13}event ServerSendReady(run_id_step3,response_context_step3,sender_ssn_step3);
+    {14}out(ch_Pending, (scenario_step3,run_id_step3,token_id_step3,request_context_step3,request_zero,response_context_step3));
+    {15}out(ch_CanRespond, (scenario_step3,run_id_step3,token_id_step3,request_context_step3,response_context_step3,request_zero,sender_ssn_step3))
+) | (
+    {16}in(ch_CanRespond, (scenario_step4: bitstring,run_id_step4: bitstring,token_id_step4: bitstring,request_context_step4: bitstring,response_context_step4: bitstring,request_piv_step4: bitstring,sender_ssn_step4: bitstring));
+    {17}event ResponseProtected(scenario_step4,run_id_step4,token_id_step4,request_context_step4,response_context_step4,request_piv_step4,own_piv,sender_ssn_step4);
+    {18}out(ch_ProtectedResponse, (scenario_step4,run_id_step4,token_id_step4,request_context_step4,response_context_step4,request_piv_step4,own_piv,sender_ssn_step4))
+) | (
+    {19}in(ch_CanRespond, (scenario_step5: bitstring,run_id_step5: bitstring,token_id_step5: bitstring,request_context_step5: bitstring,response_context_step5: bitstring,request_piv_step5: bitstring,sender_ssn_step5: bitstring));
+    {20}if (request_context_step5 = response_context_step5) then
+    {21}event ResponseProtected(scenario_step5,run_id_step5,token_id_step5,request_context_step5,response_context_step5,request_piv_step5,reuse_piv,no_piv);
+    {22}out(ch_ProtectedResponse, (scenario_step5,run_id_step5,token_id_step5,request_context_step5,response_context_step5,request_piv_step5,reuse_piv,no_piv))
+) | (
+    {23}in(ch_Pending, (scenario_step6: bitstring,run_id_step6: bitstring,token_id_step6: bitstring,request_context_step6: bitstring,request_piv_step6: bitstring,response_context_step6: bitstring));
+    {24}in(ch_ProtectedResponse, (=scenario_step6,=run_id_step6,=token_id_step6,=request_context_step6,=response_context_step6,=request_piv_step6,piv_mode_step6: bitstring,reply_piv_step6: bitstring));
+    {25}event ResponseAccepted(scenario_step6,run_id_step6,token_id_step6,request_context_step6,response_context_step6,request_piv_step6,piv_mode_step6,reply_piv_step6)
+)
+
+-- Query not event(ResponseAccepted(same_ctx[],q1_run_id,q1_token_id,q1_ctx,q1_ctx,q1_request_piv,reuse_piv[],no_piv[])) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query not event(ResponseAccepted(same_ctx[],q1_run_id,q1_token_id,q1_ctx,q1_ctx,q1_request_piv,reuse_piv[],no_piv[]))
+goal reachable: event(ResponseAccepted(same_ctx[],run_id[],token_id_step3_1,request_context[],request_context[],request_zero[],reuse_piv[],no_piv[]))
+Abbreviations:
+token_id_step3_1 = token_id_step3[sender_ssn_step3 = sender_ssn[],response_context_step3 = request_context[],request_context_step3 = request_context[],run_id_step3 = run_id[],scenario_step3 = same_ctx[]]
+
+Derivation:
+Abbreviations:
+token_id_step3_1 = token_id_step3[sender_ssn_step3 = sender_ssn[],response_context_step3 = request_context[],request_context_step3 = request_context[],run_id_step3 = run_id[],scenario_step3 = same_ctx[]]
+
+1. The message (run_id[],request_context[],new_context[],sender_ssn[]) may be sent on channel ch_ChooseContext[] at output {5}.
+mess(ch_ChooseContext[],(run_id[],request_context[],new_context[],sender_ssn[])).
+
+2. The message (run_id[],request_context[],new_context[],sender_ssn[]) that may be sent on channel ch_ChooseContext[] by 1 may be received at input {6}.
+So the message (same_ctx[],run_id[],request_context[],request_context[],sender_ssn[]) may be sent on channel ch_ExchangeReady[] at output {7}.
+mess(ch_ExchangeReady[],(same_ctx[],run_id[],request_context[],request_context[],sender_ssn[])).
+
+3. The message (same_ctx[],run_id[],request_context[],request_context[],sender_ssn[]) that may be sent on channel ch_ExchangeReady[] by 2 may be received at input {10}.
+So the message (same_ctx[],run_id[],token_id_step3_1,request_context[],request_zero[],request_context[]) may be sent on channel ch_Pending[] at output {14}.
+mess(ch_Pending[],(same_ctx[],run_id[],token_id_step3_1,request_context[],request_zero[],request_context[])).
+
+4. The message (same_ctx[],run_id[],request_context[],request_context[],sender_ssn[]) that may be sent on channel ch_ExchangeReady[] by 2 may be received at input {10}.
+So the message (same_ctx[],run_id[],token_id_step3_1,request_context[],request_context[],request_zero[],sender_ssn[]) may be sent on channel ch_CanRespond[] at output {15}.
+mess(ch_CanRespond[],(same_ctx[],run_id[],token_id_step3_1,request_context[],request_context[],request_zero[],sender_ssn[])).
+
+5. The message (same_ctx[],run_id[],token_id_step3_1,request_context[],request_context[],request_zero[],sender_ssn[]) that may be sent on channel ch_CanRespond[] by 4 may be received at input {19}.
+So the message (same_ctx[],run_id[],token_id_step3_1,request_context[],request_context[],request_zero[],reuse_piv[],no_piv[]) may be sent on channel ch_ProtectedResponse[] at output {22}.
+mess(ch_ProtectedResponse[],(same_ctx[],run_id[],token_id_step3_1,request_context[],request_context[],request_zero[],reuse_piv[],no_piv[])).
+
+6. The message (same_ctx[],run_id[],token_id_step3_1,request_context[],request_zero[],request_context[]) that may be sent on channel ch_Pending[] by 3 may be received at input {23}.
+The message (same_ctx[],run_id[],token_id_step3_1,request_context[],request_context[],request_zero[],reuse_piv[],no_piv[]) that may be sent on channel ch_ProtectedResponse[] by 5 may be received at input {24}.
+So event ResponseAccepted(same_ctx[],run_id[],token_id_step3_1,request_context[],request_context[],request_zero[],reuse_piv[],no_piv[]) may be executed at {25}.
+event(ResponseAccepted(same_ctx[],run_id[],token_id_step3_1,request_context[],request_context[],request_zero[],reuse_piv[],no_piv[])).
+
+7. By 6, event(ResponseAccepted(same_ctx[],run_id[],token_id_step3_1,request_context[],request_context[],request_zero[],reuse_piv[],no_piv[])).
+The goal is reached, represented in the following fact:
+event(ResponseAccepted(same_ctx[],run_id[],token_id_step3_1,request_context[],request_context[],request_zero[],reuse_piv[],no_piv[])).
+
+
+A more detailed output of the traces is available with
+  set traceDisplay = long.
+
+new run_id: bitstring creating run_id_1 at {1}
+
+new request_context: bitstring creating request_context_1 at {2}
+
+new new_context: bitstring creating new_context_1 at {3}
+
+new sender_ssn: bitstring creating sender_ssn_1 at {4}
+
+out(ch_ChooseContext, (run_id_1,request_context_1,new_context_1,sender_ssn_1)) at {5} received at {6}
+
+out(ch_ExchangeReady, (same_ctx,run_id_1,request_context_1,request_context_1,sender_ssn_1)) at {7} received at {10}
+
+new token_id_step3: bitstring creating token_id_step3_2 at {11}
+
+event RequestAccepted(same_ctx,run_id_1,token_id_step3_2,request_context_1,request_zero) at {12}
+
+event ServerSendReady(run_id_1,request_context_1,sender_ssn_1) at {13}
+
+out(ch_Pending, (same_ctx,run_id_1,token_id_step3_2,request_context_1,request_zero,request_context_1)) at {14} received at {23}
+
+out(ch_CanRespond, (same_ctx,run_id_1,token_id_step3_2,request_context_1,request_context_1,request_zero,sender_ssn_1)) at {15} received at {19}
+
+event ResponseProtected(same_ctx,run_id_1,token_id_step3_2,request_context_1,request_context_1,request_zero,reuse_piv,no_piv) at {21}
+
+out(ch_ProtectedResponse, (same_ctx,run_id_1,token_id_step3_2,request_context_1,request_context_1,request_zero,reuse_piv,no_piv)) at {22} received at {24}
+
+event ResponseAccepted(same_ctx,run_id_1,token_id_step3_2,request_context_1,request_context_1,request_zero,reuse_piv,no_piv) at {25} (goal)
+
+The event ResponseAccepted(same_ctx,run_id_1,token_id_step3_2,request_context_1,request_context_1,request_zero,reuse_piv,no_piv) is executed at {25}.
+A trace has been found.
+RESULT not event(ResponseAccepted(same_ctx[],q1_run_id,q1_token_id,q1_ctx,q1_ctx,q1_request_piv,reuse_piv[],no_piv[])) is false.
+-- Query not event(ResponseAccepted(same_ctx[],q2_run_id,q2_token_id,q2_ctx,q2_ctx,q2_request_piv,own_piv[],q2_reply_piv)) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query not event(ResponseAccepted(same_ctx[],q2_run_id,q2_token_id,q2_ctx,q2_ctx,q2_request_piv,own_piv[],q2_reply_piv))
+goal reachable: event(ResponseAccepted(same_ctx[],run_id[],token_id_step3_1,request_context[],request_context[],request_zero[],own_piv[],sender_ssn[]))
+Abbreviations:
+token_id_step3_1 = token_id_step3[sender_ssn_step3 = sender_ssn[],response_context_step3 = request_context[],request_context_step3 = request_context[],run_id_step3 = run_id[],scenario_step3 = same_ctx[]]
+
+Derivation:
+Abbreviations:
+token_id_step3_1 = token_id_step3[sender_ssn_step3 = sender_ssn[],response_context_step3 = request_context[],request_context_step3 = request_context[],run_id_step3 = run_id[],scenario_step3 = same_ctx[]]
+
+1. The message (run_id[],request_context[],new_context[],sender_ssn[]) may be sent on channel ch_ChooseContext[] at output {5}.
+mess(ch_ChooseContext[],(run_id[],request_context[],new_context[],sender_ssn[])).
+
+2. The message (run_id[],request_context[],new_context[],sender_ssn[]) that may be sent on channel ch_ChooseContext[] by 1 may be received at input {6}.
+So the message (same_ctx[],run_id[],request_context[],request_context[],sender_ssn[]) may be sent on channel ch_ExchangeReady[] at output {7}.
+mess(ch_ExchangeReady[],(same_ctx[],run_id[],request_context[],request_context[],sender_ssn[])).
+
+3. The message (same_ctx[],run_id[],request_context[],request_context[],sender_ssn[]) that may be sent on channel ch_ExchangeReady[] by 2 may be received at input {10}.
+So the message (same_ctx[],run_id[],token_id_step3_1,request_context[],request_zero[],request_context[]) may be sent on channel ch_Pending[] at output {14}.
+mess(ch_Pending[],(same_ctx[],run_id[],token_id_step3_1,request_context[],request_zero[],request_context[])).
+
+4. The message (same_ctx[],run_id[],request_context[],request_context[],sender_ssn[]) that may be sent on channel ch_ExchangeReady[] by 2 may be received at input {10}.
+So the message (same_ctx[],run_id[],token_id_step3_1,request_context[],request_context[],request_zero[],sender_ssn[]) may be sent on channel ch_CanRespond[] at output {15}.
+mess(ch_CanRespond[],(same_ctx[],run_id[],token_id_step3_1,request_context[],request_context[],request_zero[],sender_ssn[])).
+
+5. The message (same_ctx[],run_id[],token_id_step3_1,request_context[],request_context[],request_zero[],sender_ssn[]) that may be sent on channel ch_CanRespond[] by 4 may be received at input {16}.
+So the message (same_ctx[],run_id[],token_id_step3_1,request_context[],request_context[],request_zero[],own_piv[],sender_ssn[]) may be sent on channel ch_ProtectedResponse[] at output {18}.
+mess(ch_ProtectedResponse[],(same_ctx[],run_id[],token_id_step3_1,request_context[],request_context[],request_zero[],own_piv[],sender_ssn[])).
+
+6. The message (same_ctx[],run_id[],token_id_step3_1,request_context[],request_zero[],request_context[]) that may be sent on channel ch_Pending[] by 3 may be received at input {23}.
+The message (same_ctx[],run_id[],token_id_step3_1,request_context[],request_context[],request_zero[],own_piv[],sender_ssn[]) that may be sent on channel ch_ProtectedResponse[] by 5 may be received at input {24}.
+So event ResponseAccepted(same_ctx[],run_id[],token_id_step3_1,request_context[],request_context[],request_zero[],own_piv[],sender_ssn[]) may be executed at {25}.
+event(ResponseAccepted(same_ctx[],run_id[],token_id_step3_1,request_context[],request_context[],request_zero[],own_piv[],sender_ssn[])).
+
+7. By 6, event(ResponseAccepted(same_ctx[],run_id[],token_id_step3_1,request_context[],request_context[],request_zero[],own_piv[],sender_ssn[])).
+The goal is reached, represented in the following fact:
+event(ResponseAccepted(same_ctx[],run_id[],token_id_step3_1,request_context[],request_context[],request_zero[],own_piv[],sender_ssn[])).
+
+
+A more detailed output of the traces is available with
+  set traceDisplay = long.
+
+new run_id: bitstring creating run_id_1 at {1}
+
+new request_context: bitstring creating request_context_1 at {2}
+
+new new_context: bitstring creating new_context_1 at {3}
+
+new sender_ssn: bitstring creating sender_ssn_1 at {4}
+
+out(ch_ChooseContext, (run_id_1,request_context_1,new_context_1,sender_ssn_1)) at {5} received at {6}
+
+out(ch_ExchangeReady, (same_ctx,run_id_1,request_context_1,request_context_1,sender_ssn_1)) at {7} received at {10}
+
+new token_id_step3: bitstring creating token_id_step3_2 at {11}
+
+event RequestAccepted(same_ctx,run_id_1,token_id_step3_2,request_context_1,request_zero) at {12}
+
+event ServerSendReady(run_id_1,request_context_1,sender_ssn_1) at {13}
+
+out(ch_Pending, (same_ctx,run_id_1,token_id_step3_2,request_context_1,request_zero,request_context_1)) at {14} received at {23}
+
+out(ch_CanRespond, (same_ctx,run_id_1,token_id_step3_2,request_context_1,request_context_1,request_zero,sender_ssn_1)) at {15} received at {16}
+
+event ResponseProtected(same_ctx,run_id_1,token_id_step3_2,request_context_1,request_context_1,request_zero,own_piv,sender_ssn_1) at {17}
+
+out(ch_ProtectedResponse, (same_ctx,run_id_1,token_id_step3_2,request_context_1,request_context_1,request_zero,own_piv,sender_ssn_1)) at {18} received at {24}
+
+event ResponseAccepted(same_ctx,run_id_1,token_id_step3_2,request_context_1,request_context_1,request_zero,own_piv,sender_ssn_1) at {25} (goal)
+
+The event ResponseAccepted(same_ctx,run_id_1,token_id_step3_2,request_context_1,request_context_1,request_zero,own_piv,sender_ssn_1) is executed at {25}.
+A trace has been found.
+RESULT not event(ResponseAccepted(same_ctx[],q2_run_id,q2_token_id,q2_ctx,q2_ctx,q2_request_piv,own_piv[],q2_reply_piv)) is false.
+-- Query not event(ResponseAccepted(different_ctx[],q3_run_id,q3_token_id,q3_request_context,q3_response_context,q3_request_piv,own_piv[],q3_reply_piv)) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query not event(ResponseAccepted(different_ctx[],q3_run_id,q3_token_id,q3_request_context,q3_response_context,q3_request_piv,own_piv[],q3_reply_piv))
+goal reachable: event(ResponseAccepted(different_ctx[],run_id[],token_id_step3_1,request_context[],new_context[],request_zero[],own_piv[],sender_ssn[]))
+Abbreviations:
+token_id_step3_1 = token_id_step3[sender_ssn_step3 = sender_ssn[],response_context_step3 = new_context[],request_context_step3 = request_context[],run_id_step3 = run_id[],scenario_step3 = different_ctx[]]
+
+Derivation:
+Abbreviations:
+token_id_step3_1 = token_id_step3[sender_ssn_step3 = sender_ssn[],response_context_step3 = new_context[],request_context_step3 = request_context[],run_id_step3 = run_id[],scenario_step3 = different_ctx[]]
+
+1. The message (run_id[],request_context[],new_context[],sender_ssn[]) may be sent on channel ch_ChooseContext[] at output {5}.
+mess(ch_ChooseContext[],(run_id[],request_context[],new_context[],sender_ssn[])).
+
+2. The message (run_id[],request_context[],new_context[],sender_ssn[]) that may be sent on channel ch_ChooseContext[] by 1 may be received at input {8}.
+So the message (different_ctx[],run_id[],request_context[],new_context[],sender_ssn[]) may be sent on channel ch_ExchangeReady[] at output {9}.
+mess(ch_ExchangeReady[],(different_ctx[],run_id[],request_context[],new_context[],sender_ssn[])).
+
+3. The message (different_ctx[],run_id[],request_context[],new_context[],sender_ssn[]) that may be sent on channel ch_ExchangeReady[] by 2 may be received at input {10}.
+So the message (different_ctx[],run_id[],token_id_step3_1,request_context[],request_zero[],new_context[]) may be sent on channel ch_Pending[] at output {14}.
+mess(ch_Pending[],(different_ctx[],run_id[],token_id_step3_1,request_context[],request_zero[],new_context[])).
+
+4. The message (different_ctx[],run_id[],request_context[],new_context[],sender_ssn[]) that may be sent on channel ch_ExchangeReady[] by 2 may be received at input {10}.
+So the message (different_ctx[],run_id[],token_id_step3_1,request_context[],new_context[],request_zero[],sender_ssn[]) may be sent on channel ch_CanRespond[] at output {15}.
+mess(ch_CanRespond[],(different_ctx[],run_id[],token_id_step3_1,request_context[],new_context[],request_zero[],sender_ssn[])).
+
+5. The message (different_ctx[],run_id[],token_id_step3_1,request_context[],new_context[],request_zero[],sender_ssn[]) that may be sent on channel ch_CanRespond[] by 4 may be received at input {16}.
+So the message (different_ctx[],run_id[],token_id_step3_1,request_context[],new_context[],request_zero[],own_piv[],sender_ssn[]) may be sent on channel ch_ProtectedResponse[] at output {18}.
+mess(ch_ProtectedResponse[],(different_ctx[],run_id[],token_id_step3_1,request_context[],new_context[],request_zero[],own_piv[],sender_ssn[])).
+
+6. The message (different_ctx[],run_id[],token_id_step3_1,request_context[],request_zero[],new_context[]) that may be sent on channel ch_Pending[] by 3 may be received at input {23}.
+The message (different_ctx[],run_id[],token_id_step3_1,request_context[],new_context[],request_zero[],own_piv[],sender_ssn[]) that may be sent on channel ch_ProtectedResponse[] by 5 may be received at input {24}.
+So event ResponseAccepted(different_ctx[],run_id[],token_id_step3_1,request_context[],new_context[],request_zero[],own_piv[],sender_ssn[]) may be executed at {25}.
+event(ResponseAccepted(different_ctx[],run_id[],token_id_step3_1,request_context[],new_context[],request_zero[],own_piv[],sender_ssn[])).
+
+7. By 6, event(ResponseAccepted(different_ctx[],run_id[],token_id_step3_1,request_context[],new_context[],request_zero[],own_piv[],sender_ssn[])).
+The goal is reached, represented in the following fact:
+event(ResponseAccepted(different_ctx[],run_id[],token_id_step3_1,request_context[],new_context[],request_zero[],own_piv[],sender_ssn[])).
+
+
+A more detailed output of the traces is available with
+  set traceDisplay = long.
+
+new run_id: bitstring creating run_id_1 at {1}
+
+new request_context: bitstring creating request_context_1 at {2}
+
+new new_context: bitstring creating new_context_1 at {3}
+
+new sender_ssn: bitstring creating sender_ssn_1 at {4}
+
+out(ch_ChooseContext, (run_id_1,request_context_1,new_context_1,sender_ssn_1)) at {5} received at {8}
+
+out(ch_ExchangeReady, (different_ctx,run_id_1,request_context_1,new_context_1,sender_ssn_1)) at {9} received at {10}
+
+new token_id_step3: bitstring creating token_id_step3_2 at {11}
+
+event RequestAccepted(different_ctx,run_id_1,token_id_step3_2,request_context_1,request_zero) at {12}
+
+event ServerSendReady(run_id_1,new_context_1,sender_ssn_1) at {13}
+
+out(ch_Pending, (different_ctx,run_id_1,token_id_step3_2,request_context_1,request_zero,new_context_1)) at {14} received at {23}
+
+out(ch_CanRespond, (different_ctx,run_id_1,token_id_step3_2,request_context_1,new_context_1,request_zero,sender_ssn_1)) at {15} received at {16}
+
+event ResponseProtected(different_ctx,run_id_1,token_id_step3_2,request_context_1,new_context_1,request_zero,own_piv,sender_ssn_1) at {17}
+
+out(ch_ProtectedResponse, (different_ctx,run_id_1,token_id_step3_2,request_context_1,new_context_1,request_zero,own_piv,sender_ssn_1)) at {18} received at {24}
+
+event ResponseAccepted(different_ctx,run_id_1,token_id_step3_2,request_context_1,new_context_1,request_zero,own_piv,sender_ssn_1) at {25} (goal)
+
+The event ResponseAccepted(different_ctx,run_id_1,token_id_step3_2,request_context_1,new_context_1,request_zero,own_piv,sender_ssn_1) is executed at {25}.
+A trace has been found.
+RESULT not event(ResponseAccepted(different_ctx[],q3_run_id,q3_token_id,q3_request_context,q3_response_context,q3_request_piv,own_piv[],q3_reply_piv)) is false.
+-- Query event(ResponseAccepted(q4_scenario,q4_run_id,q4_token_id,q4_request_context,q4_response_context,q4_request_piv,q4_piv_mode,q4_reply_piv)) ==> event(ResponseProtected(q4_scenario,q4_run_id,q4_token_id,q4_request_context,q4_response_context,q4_request_piv,q4_piv_mode,q4_reply_piv)) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query event(ResponseAccepted(q4_scenario,q4_run_id,q4_token_id,q4_request_context,q4_response_context,q4_request_piv,q4_piv_mode,q4_reply_piv)) ==> event(ResponseProtected(q4_scenario,q4_run_id,q4_token_id,q4_request_context,q4_response_context,q4_request_piv,q4_piv_mode,q4_reply_piv))
+goal reachable: b-event(ResponseProtected(different_ctx[],run_id[],token_id_step3_1,request_context[],new_context[],request_zero[],own_piv[],sender_ssn[])) -> event(ResponseAccepted(different_ctx[],run_id[],token_id_step3_1,request_context[],new_context[],request_zero[],own_piv[],sender_ssn[]))
+Abbreviations:
+token_id_step3_1 = token_id_step3[sender_ssn_step3 = sender_ssn[],response_context_step3 = new_context[],request_context_step3 = request_context[],run_id_step3 = run_id[],scenario_step3 = different_ctx[]]
+goal reachable: b-event(ResponseProtected(same_ctx[],run_id[],token_id_step3_1,request_context[],request_context[],request_zero[],own_piv[],sender_ssn[])) -> event(ResponseAccepted(same_ctx[],run_id[],token_id_step3_1,request_context[],request_context[],request_zero[],own_piv[],sender_ssn[]))
+Abbreviations:
+token_id_step3_1 = token_id_step3[sender_ssn_step3 = sender_ssn[],response_context_step3 = request_context[],request_context_step3 = request_context[],run_id_step3 = run_id[],scenario_step3 = same_ctx[]]
+goal reachable: b-event(ResponseProtected(same_ctx[],run_id[],token_id_step3_1,request_context[],request_context[],request_zero[],reuse_piv[],no_piv[])) -> event(ResponseAccepted(same_ctx[],run_id[],token_id_step3_1,request_context[],request_context[],request_zero[],reuse_piv[],no_piv[]))
+Abbreviations:
+token_id_step3_1 = token_id_step3[sender_ssn_step3 = sender_ssn[],response_context_step3 = request_context[],request_context_step3 = request_context[],run_id_step3 = run_id[],scenario_step3 = same_ctx[]]
+RESULT event(ResponseAccepted(q4_scenario,q4_run_id,q4_token_id,q4_request_context,q4_response_context,q4_request_piv,q4_piv_mode,q4_reply_piv)) ==> event(ResponseProtected(q4_scenario,q4_run_id,q4_token_id,q4_request_context,q4_response_context,q4_request_piv,q4_piv_mode,q4_reply_piv)) is true.
+-- Query event(ResponseProtected(q5_scenario,q5_run_id,q5_token_id,q5_request_context,q5_response_context,q5_request_piv,reuse_piv[],q5_reply_piv)) ==> q5_request_context = q5_response_context && q5_reply_piv = no_piv[] in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query event(ResponseProtected(q5_scenario,q5_run_id,q5_token_id,q5_request_context,q5_response_context,q5_request_piv,reuse_piv[],q5_reply_piv)) ==> q5_request_context = q5_response_context && q5_reply_piv = no_piv[]
+goal reachable: event(ResponseProtected(same_ctx[],run_id[],token_id_step3_1,request_context[],request_context[],request_zero[],reuse_piv[],no_piv[]))
+Abbreviations:
+token_id_step3_1 = token_id_step3[sender_ssn_step3 = sender_ssn[],response_context_step3 = request_context[],request_context_step3 = request_context[],run_id_step3 = run_id[],scenario_step3 = same_ctx[]]
+RESULT event(ResponseProtected(q5_scenario,q5_run_id,q5_token_id,q5_request_context,q5_response_context,q5_request_piv,reuse_piv[],q5_reply_piv)) ==> q5_request_context = q5_response_context && q5_reply_piv = no_piv[] is true.
+-- Query event(ResponseProtected(q6_scenario,q6_run_id,q6_token_id,q6_request_context,q6_response_context,q6_request_piv,own_piv[],q6_reply_piv)) ==> event(ServerSendReady(q6_run_id,q6_response_context,q6_reply_piv)) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query event(ResponseProtected(q6_scenario,q6_run_id,q6_token_id,q6_request_context,q6_response_context,q6_request_piv,own_piv[],q6_reply_piv)) ==> event(ServerSendReady(q6_run_id,q6_response_context,q6_reply_piv))
+goal reachable: b-event(ServerSendReady(run_id[],new_context[],sender_ssn[])) -> event(ResponseProtected(different_ctx[],run_id[],token_id_step3_1,request_context[],new_context[],request_zero[],own_piv[],sender_ssn[]))
+Abbreviations:
+token_id_step3_1 = token_id_step3[sender_ssn_step3 = sender_ssn[],response_context_step3 = new_context[],request_context_step3 = request_context[],run_id_step3 = run_id[],scenario_step3 = different_ctx[]]
+goal reachable: b-event(ServerSendReady(run_id[],request_context[],sender_ssn[])) -> event(ResponseProtected(same_ctx[],run_id[],token_id_step3_1,request_context[],request_context[],request_zero[],own_piv[],sender_ssn[]))
+Abbreviations:
+token_id_step3_1 = token_id_step3[sender_ssn_step3 = sender_ssn[],response_context_step3 = request_context[],request_context_step3 = request_context[],run_id_step3 = run_id[],scenario_step3 = same_ctx[]]
+RESULT event(ResponseProtected(q6_scenario,q6_run_id,q6_token_id,q6_request_context,q6_response_context,q6_request_piv,own_piv[],q6_reply_piv)) ==> event(ServerSendReady(q6_run_id,q6_response_context,q6_reply_piv)) is true.
+
+--------------------------------------------------------------
+Verification summary:
+
+Query not event(ResponseAccepted(same_ctx[],q1_run_id,q1_token_id,q1_ctx,q1_ctx,q1_request_piv,reuse_piv[],no_piv[])) is false.
+
+Query not event(ResponseAccepted(same_ctx[],q2_run_id,q2_token_id,q2_ctx,q2_ctx,q2_request_piv,own_piv[],q2_reply_piv)) is false.
+
+Query not event(ResponseAccepted(different_ctx[],q3_run_id,q3_token_id,q3_request_context,q3_response_context,q3_request_piv,own_piv[],q3_reply_piv)) is false.
+
+Query event(ResponseAccepted(q4_scenario,q4_run_id,q4_token_id,q4_request_context,q4_response_context,q4_request_piv,q4_piv_mode,q4_reply_piv)) ==> event(ResponseProtected(q4_scenario,q4_run_id,q4_token_id,q4_request_context,q4_response_context,q4_request_piv,q4_piv_mode,q4_reply_piv)) is true.
+
+Query event(ResponseProtected(q5_scenario,q5_run_id,q5_token_id,q5_request_context,q5_response_context,q5_request_piv,reuse_piv[],q5_reply_piv)) ==> q5_request_context = q5_response_context && q5_reply_piv = no_piv[] is true.
+
+Query event(ResponseProtected(q6_scenario,q6_run_id,q6_token_id,q6_request_context,q6_response_context,q6_request_piv,own_piv[],q6_reply_piv)) ==> event(ServerSendReady(q6_run_id,q6_response_context,q6_reply_piv)) is true.
+
+--------------------------------------------------------------
+

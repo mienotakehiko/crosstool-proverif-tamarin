@@ -1,0 +1,5 @@
+condition	DgInj	TopAuth_axiom	exec_raw	exec_interpretation	LS7_raw	exec_records	LS7_records
+neither	False	False	false	reachable	false	hss_noinj_300s/exec/candidate	hss_noinj_300s/LS7/candidate
+DgInj only	True	False	false	reachable	true	hss_premises/exec/dginj_only	hss_premises/LS7/dginj_only
+TopAuth axiom only	False	True	timeout	timeout	timeout	hss_premises/exec/topauth_only	hss_premises/LS7/topauth_only
+both	True	True	false	reachable	true	hss_pilot/hss_inj/exec/candidate	hss_pilot/hss_inj/LS7/candidate

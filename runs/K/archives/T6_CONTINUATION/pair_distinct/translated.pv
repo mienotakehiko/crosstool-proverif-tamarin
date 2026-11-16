@@ -1,0 +1,180 @@
+set preciseActions = true.
+
+(* Free names *)
+free publicChannel:channel.
+free vempty_new:bitstring.
+free vempty_pair:bitstring.
+
+(* Functions *)
+fun fst(bitstring):bitstring.
+fun newctx(bitstring,bitstring,bitstring):bitstring.
+fun pair(bitstring,bitstring):bitstring.
+fun snd(bitstring):bitstring.
+fun tempctx(bitstring,bitstring):bitstring.
+
+(* Equations *)
+equation forall x_1:bitstring, x_2:bitstring; fst((x_1, x_2)) = x_1.
+equation forall x_1:bitstring, x_2:bitstring; snd((x_1, x_2)) = x_2.
+
+(* Events *)
+event eBusyEntryRead(bitstring, bitstring, bitstring, bitstring, bitstring, bitstring, bitstring).
+event eConvergentSent(bitstring, bitstring, bitstring).
+event eDistinctFact(bitstring, bitstring).
+event eInit(bitstring).
+event eOldVerified(bitstring, bitstring, bitstring, bitstring, bitstring).
+event ePendingAborted(bitstring, bitstring, bitstring, bitstring, bitstring).
+event ePendingBefore(bitstring, bitstring, bitstring, bitstring).
+event ePendingRead(bitstring, bitstring, bitstring, bitstring, bitstring, bitstring, bitstring, bitstring, bitstring).
+event eRestartDerived(bitstring, bitstring, bitstring, bitstring, bitstring, bitstring).
+event eVerifiedTempMatches(bitstring, bitstring).
+
+(* Tables *)
+table tBeforeSnapshot(bitstring, bitstring, bitstring, bitstring, bitstring).
+table tBusyEntry(bitstring, bitstring, bitstring, bitstring, bitstring, bitstring, bitstring, bitstring).
+table tBusyReady(bitstring, bitstring, bitstring, bitstring, bitstring, bitstring, bitstring, bitstring).
+table tPending(bitstring, bitstring, bitstring, bitstring, bitstring).
+table tPendingAfter(bitstring, bitstring, bitstring, bitstring, bitstring, bitstring, bitstring, bitstring).
+table tReadyToSend(bitstring, bitstring, bitstring, bitstring, bitstring, bitstring, bitstring, bitstring).
+table tVerifiedDivergent(bitstring, bitstring, bitstring, bitstring, bitstring, bitstring).
+table tVerifiedOldPremise(bitstring, bitstring, bitstring, bitstring, bitstring).
+
+(* Restrictions *)
+
+(* SingleInit *)
+
+restriction rid_i:bitstring, rid_j:bitstring, i:time, j:time;
+  event(eInit( rid_i ))@i && event(eInit( rid_j ))@j ==> rid_i = rid_j.
+
+(* VerifiedTemporaryContext *)
+
+restriction a:bitstring, b:bitstring, i:time;
+  event(eVerifiedTempMatches( a, b ))@i ==> a = b.
+
+(* DistinctFact *)
+
+restriction rid_i:bitstring, rid_j:bitstring, x:bitstring, i:time,
+            j:time;
+  event(eDistinctFact( rid_i, x ))@i && event(eDistinctFact( rid_j, x ))@j
+  ==> rid_i = rid_j.
+
+(* Queries *)
+
+(* t6_continuation_pair_distinct *)
+
+query active_ctx:bitstring, discarded_ctx:bitstring,
+      discarded_pair:bitstring, exchange_id:bitstring, incoming_id:bitstring,
+      local_pair:bitstring, old_ctx:bitstring, peer_pair:bitstring,
+      rx_temp:bitstring, k:time;
+  event(ePendingRead( exchange_id, incoming_id, old_ctx, peer_pair,
+                      local_pair, active_ctx, discarded_ctx, discarded_pair, rx_temp
+        ))@k
+  ==> local_pair <> discarded_pair.
+
+(* Processes *)
+
+let rInit =
+        new rid_rInit: bitstring;
+        new stR_Pending: bitstring;
+        new stR_BeforeSnapshot: bitstring;
+        new stR_VerifiedOldPremise: bitstring;
+        new exchange_id: bitstring;
+        new old_ctx: bitstring;
+        new prior_local_pair: bitstring;
+        new prior_peer_pair: bitstring;
+        new incoming_pair: bitstring;
+        new incoming_id: bitstring;
+        event eInit(rid_rInit);
+        event ePendingBefore(exchange_id, old_ctx,
+                             newctx(old_ctx, prior_local_pair, prior_peer_pair), prior_local_pair);
+        insert tPending(stR_Pending, exchange_id, old_ctx,
+                        newctx(old_ctx, prior_local_pair, prior_peer_pair), prior_local_pair);
+        insert tBeforeSnapshot(stR_BeforeSnapshot, exchange_id, old_ctx,
+                               newctx(old_ctx, prior_local_pair, prior_peer_pair), prior_local_pair);
+        insert tVerifiedOldPremise(stR_VerifiedOldPremise, exchange_id,
+                                   incoming_id, old_ctx, incoming_pair).
+
+let rRecordVerifiedReceipt =
+        get tVerifiedOldPremise(stL_VerifiedOldPremise, exchange_id, incoming_id,
+                                old_ctx, peer_pair) in
+        new rid_rRecordVerifiedReceipt: bitstring;
+        new stR_VerifiedDivergent: bitstring;
+        event eDistinctFact(rid_rRecordVerifiedReceipt, (stL_VerifiedOldPremise, (exchange_id, (incoming_id, (old_ctx, peer_pair)))));
+        event eOldVerified(exchange_id, incoming_id, old_ctx, peer_pair,
+                           tempctx(old_ctx, peer_pair));
+        insert tVerifiedDivergent(stR_VerifiedDivergent, exchange_id,
+                                  incoming_id, old_ctx, peer_pair, tempctx(old_ctx, peer_pair)).
+
+let rAbortOnOldDerived =
+        get tPending(stL_Pending, exchange_id, old_ctx, discarded_ctx,
+                     discarded_pair) in
+        get tVerifiedDivergent(stL_VerifiedDivergent, =exchange_id, incoming_id,
+                               =old_ctx, peer_pair, rx_temp) in
+        new rid_rAbortOnOldDerived: bitstring;
+        new stR_BusyEntry: bitstring;
+        event eDistinctFact(rid_rAbortOnOldDerived, (stL_Pending, (exchange_id, (old_ctx, (discarded_ctx, discarded_pair)))));
+        event eDistinctFact(rid_rAbortOnOldDerived, (stL_VerifiedDivergent, (exchange_id, (incoming_id, (old_ctx, (peer_pair, rx_temp))))));
+        event ePendingAborted(exchange_id, incoming_id, old_ctx, discarded_ctx,
+                              discarded_pair);
+        event eVerifiedTempMatches(rx_temp, tempctx(old_ctx, peer_pair));
+        insert tBusyEntry(stR_BusyEntry, exchange_id, incoming_id, old_ctx,
+                          peer_pair, rx_temp, vempty_new, vempty_pair).
+
+let rReadBusyEntry =
+        get tBusyEntry(stL_BusyEntry, exchange_id, incoming_id, old_ctx,
+                       peer_pair, rx_temp, ctx_slot, pair_slot) in
+        new rid_rReadBusyEntry: bitstring;
+        new stR_BusyReady: bitstring;
+        event eDistinctFact(rid_rReadBusyEntry, (stL_BusyEntry, (exchange_id, (incoming_id, (old_ctx, (peer_pair, (rx_temp, (ctx_slot, pair_slot))))))));
+        event eBusyEntryRead(exchange_id, incoming_id, old_ctx, peer_pair,
+                             rx_temp, ctx_slot, pair_slot);
+        insert tBusyReady(stR_BusyReady, exchange_id, incoming_id, old_ctx,
+                          peer_pair, rx_temp, ctx_slot, pair_slot).
+
+let rDeriveNewContext =
+        get tBusyReady(stL_BusyReady, exchange_id, incoming_id, old_ctx,
+                       peer_pair, rx_temp, =vempty_new, =vempty_pair) in
+        new rid_rDeriveNewContext: bitstring;
+        new stR_ReadyToSend: bitstring;
+        new fresh_local_pair: bitstring;
+        event eDistinctFact(rid_rDeriveNewContext, (stL_BusyReady, (exchange_id, (incoming_id, (old_ctx, (peer_pair, (rx_temp, (vempty_new, vempty_pair))))))));
+        event eRestartDerived(exchange_id, incoming_id, old_ctx, peer_pair,
+                              fresh_local_pair, newctx(old_ctx, fresh_local_pair, peer_pair));
+        insert tReadyToSend(stR_ReadyToSend, exchange_id, incoming_id, old_ctx,
+                            peer_pair, rx_temp, fresh_local_pair,
+                            newctx(old_ctx, fresh_local_pair, peer_pair)).
+
+let rSendConvergent =
+        get tReadyToSend(stL_ReadyToSend, exchange_id, incoming_id, old_ctx,
+                         peer_pair, rx_temp, local_pair, active_ctx) in
+        new rid_rSendConvergent: bitstring;
+        new stR_PendingAfter: bitstring;
+        event eDistinctFact(rid_rSendConvergent, (stL_ReadyToSend, (exchange_id, (incoming_id, (old_ctx, (peer_pair, (rx_temp, (local_pair, active_ctx))))))));
+        event eConvergentSent(exchange_id, incoming_id, active_ctx);
+        insert tPendingAfter(stR_PendingAfter, exchange_id, incoming_id, old_ctx,
+                             peer_pair, rx_temp, local_pair, active_ctx).
+
+let rReadPending =
+        get tPendingAfter(stL_PendingAfter, exchange_id, incoming_id, old_ctx,
+                          peer_pair, rx_temp, local_pair, active_ctx) in
+        get tBeforeSnapshot(stL_BeforeSnapshot, =exchange_id, =old_ctx,
+                            discarded_ctx, discarded_pair) in
+        new rid_rReadPending: bitstring;
+        event eDistinctFact(rid_rReadPending, (stL_PendingAfter, (exchange_id, (incoming_id, (old_ctx, (peer_pair, (rx_temp, (local_pair, active_ctx))))))));
+        event eDistinctFact(rid_rReadPending, (stL_BeforeSnapshot, (exchange_id, (old_ctx, (discarded_ctx, discarded_pair)))));
+        event ePendingRead(exchange_id, incoming_id, old_ctx, peer_pair,
+                           local_pair, active_ctx, discarded_ctx, discarded_pair, rx_temp).
+
+process
+    ( !(rInit) | !(rRecordVerifiedReceipt) | !(rAbortOnOldDerived) | !(rReadBusyEntry) | !(rDeriveNewContext) | !(rSendConvergent) | !(rReadPending) )
+
+(*
+All wellformedness checks were successful.
+*)
+
+(*
+Generated from:
+Tamarin version 1.13.0
+Maude version 3.5
+Git revision: UNKNOWN
+Compiled at: 2026-10-24 02:25:12.718891574 UTC
+*)

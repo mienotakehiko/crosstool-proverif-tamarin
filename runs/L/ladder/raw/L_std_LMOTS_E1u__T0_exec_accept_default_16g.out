@@ -1,0 +1,11 @@
+maude tool: 'maude'
+ checking version: 3.5.1. OK.
+ checking installation: OK.
+[Theory LMOTS_E1u] Theory loaded
+[Theory LMOTS_E1u] Theory translated
+[Theory LMOTS_E1u] Theory closed
+[Saturating Sources] Step 1 (Max 5)
+[Saturating Sources] Done
+tamarin-prover: Heap exhausted;
+tamarin-prover: Current maximum heap size is 17179869184 bytes (16384 MB).
+tamarin-prover: Use `+RTS -M<size>' to increase it.

@@ -1,0 +1,18 @@
+{
+  "model": "LMS_LS6_V0_spec",
+  "lemma": "LS1_q3_a1",
+  "verdict": "cannot be proved",
+  "pv_raw_verdict": "cannot be proved",
+  "rc": 0,
+  "seconds": 4.64,
+  "pv_error": null,
+  "leading_negation": false,
+  "original_sha256": "16228ffcdbceb09aa64ff831f94c1042dc99bd12f4d4963dfa5831ee2e08865c",
+  "patched_sha256": "a44ca87f3e54020184ccbe9b8a01c3a46f0464c27e195650b1d2eb3a4fc7d167",
+  "image": "msr-to-pv-eval:ccs26",
+  "timeout_s": 3600,
+  "memory_gb": 56,
+  "output": "results/tri_pvfix_v1/LMS_LS6_V0_spec__LS1_q3_a1.pvout",
+  "pilot": false,
+  "timestamp_utc": "2026-10-24T11:00:30.289890+00:00"
+}

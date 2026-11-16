@@ -1,0 +1,7 @@
+maude tool: 'maude'
+ checking version: 3.5. OK.
+ checking installation: OK.
+[Theory ground_pair] Theory loaded
+[Theory ground_pair] Theory translated
+[Theory ground_pair] No Deconstruction Chain checks started
+[Theory ground_pair] No Deconstruction Chain checks ended

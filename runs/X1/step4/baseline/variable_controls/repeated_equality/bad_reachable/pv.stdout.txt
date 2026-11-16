@@ -1,0 +1,56 @@
+Linear part: No equation.
+Convergent part:
+fst((x_1,x_2)) = x_1
+snd((x_1,x_2)) = x_2
+Completing equations...
+Completed equations:
+snd((x_1,x_2)) = x_2
+fst((x_1,x_2)) = x_1
+Process 0 (that is, the initial process):
+(
+    {1}!
+    {2}new rid_rInit: bitstring;
+    {3}new stR_StGood: bitstring;
+    {4}new stR_StBad: bitstring;
+    {5}new asid: bitstring;
+    {6}event eInitOnce(rid_rInit);
+    {7}insert tStGood(stR_StGood,asid,(z,z));
+    {8}insert tStBad(stR_StBad,asid,(z,s(z)))
+) | (
+    {9}!
+    {10}get tStGood(stL_StGood: bitstring,asid_1: bitstring,helperVar0: bitstring) in
+    {11}let x: bitstring = g_var_x_0(helperVar0) in
+    {12}new rid_rGood: bitstring;
+    {13}event eDistinctFact(rid_rGood,(stL_StGood,(asid_1,(x,x))));
+    {14}event eGood(asid_1)
+) | (
+    {15}!
+    {16}get tStBad(stL_StBad: bitstring,asid_2: bitstring,helperVar0_1: bitstring) in
+    {17}let x_1: bitstring = g_var_x_0(helperVar0_1) in
+    {18}new rid_rBad: bitstring;
+    {19}event eDistinctFact(rid_rBad,(stL_StBad,(asid_2,(x_1,x_1))));
+    {20}event eBad(asid_2)
+)
+
+-- Restriction event(eInitOnce(rid_i))@i && event(eInitOnce(rid_j))@j ==> rid_i = rid_j encoded as event(eInitOnce(rid_i)) && event(eInitOnce(rid_j)) ==> rid_i = rid_j in process 0.
+-- Restriction event(eDistinctFact(rid_i,x_2))@i && event(eDistinctFact(rid_j,x_2))@j ==> rid_i = rid_j encoded as event(eDistinctFact(rid_i,x_2)) && event(eDistinctFact(rid_j,x_2)) ==> rid_i = rid_j in process 0.
+-- Query not event(eBad(asid_3))@i encoded as not event(eBad(asid_3)) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query not event(eBad(asid_3))@i
+Removing redudant clauses.
+Removing subsumed clauses modulo the equational theory.
+Starting verification.
+RESULT not event(eBad(asid_3))@i is true.
+
+--------------------------------------------------------------
+Verification summary:
+
+Query(ies):
+ - Query not event(eBad(asid_3))@i is true.
+Associated restriction(s):
+ - Restriction event(eInitOnce(rid_i))@i && event(eInitOnce(rid_j))@j ==> rid_i = rid_j encoded as event(eInitOnce(rid_i)) && event(eInitOnce(rid_j)) ==> rid_i = rid_j in process 0.
+ - Restriction event(eDistinctFact(rid_i,x_2))@i && event(eDistinctFact(rid_j,x_2))@j ==> rid_i = rid_j encoded as event(eDistinctFact(rid_i,x_2)) && event(eDistinctFact(rid_j,x_2)) ==> rid_i = rid_j in process 0.
+
+--------------------------------------------------------------
+

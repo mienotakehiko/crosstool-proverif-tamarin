@@ -1,0 +1,183 @@
+Linear part: No equation.
+Convergent part:
+fst((x_1,x_2)) = x_1
+snd((x_1,x_2)) = x_2
+Completing equations...
+Completed equations:
+snd((x_1,x_2)) = x_2
+fst((x_1,x_2)) = x_1
+Process 0 (that is, the initial process):
+(
+    {1}!
+    {2}new rid_rInit: bitstring;
+    {3}new stR_Execution: bitstring;
+    {4}new initial_sid: bitstring;
+    {5}event eInit(rid_rInit);
+    {6}event eKudosStart(initial_sid);
+    {7}insert tExecution(stR_Execution,initial_sid,vphase_active,vno_outcome)
+) | (
+    {8}!
+    {9}get tExecution(stL_Execution: bitstring,asid: bitstring,=vphase_active,=vno_outcome) in
+    {10}new rid_rCommitUpdate: bitstring;
+    {11}new stR_Execution_1: bitstring;
+    {12}event eDistinctFact(rid_rCommitUpdate,(stL_Execution,(asid,(vphase_active,vno_outcome))));
+    {13}event eKudosCommit(asid);
+    {14}insert tExecution(stR_Execution_1,asid,vphase_closed,voutcome_commit)
+) | (
+    {15}!
+    {16}get tExecution(stL_Execution_1: bitstring,asid_1: bitstring,=vphase_active,=vno_outcome) in
+    {17}new rid_rAbortUpdate: bitstring;
+    {18}new stR_Execution_2: bitstring;
+    {19}event eDistinctFact(rid_rAbortUpdate,(stL_Execution_1,(asid_1,(vphase_active,vno_outcome))));
+    {20}event eKudosAbort(asid_1);
+    {21}insert tExecution(stR_Execution_2,asid_1,vphase_closed,voutcome_abort)
+) | (
+    {22}!
+    {23}get tExecution(stL_Execution_2: bitstring,asid_2: bitstring,aphase: bitstring,outcome: bitstring) in
+    {24}new rid_rCheckAppSend: bitstring;
+    {25}new stR_AppCheck: bitstring;
+    {26}event eDistinctFact(rid_rCheckAppSend,(stL_Execution_2,(asid_2,(aphase,outcome))));
+    {27}event eAppSendChecked(asid_2,aphase,outcome);
+    {28}insert tAppCheck(stR_AppCheck,asid_2,aphase,outcome)
+) | (
+    {29}!
+    {30}get tAppCheck(stL_AppCheck: bitstring,asid_3: bitstring,=vphase_active,=vno_outcome) in
+    {31}new rid_rBlockAppSend: bitstring;
+    {32}event eDistinctFact(rid_rBlockAppSend,(stL_AppCheck,(asid_3,(vphase_active,vno_outcome))));
+    {33}event eAppSendBlocked(asid_3)
+) | (
+    {34}!
+    {35}get tAppCheck(stL_AppCheck_1: bitstring,asid_4: bitstring,=vphase_closed,outcome_1: bitstring) in
+    {36}new rid_rAllowAppSend: bitstring;
+    {37}event eDistinctFact(rid_rAllowAppSend,(stL_AppCheck_1,(asid_4,(vphase_closed,outcome_1))));
+    {38}event eAppSend(asid_4,vphase_closed,outcome_1)
+)
+
+-- Restriction event(eInit(rid_i))@i && event(eInit(rid_j))@j ==> rid_i = rid_j encoded as event(eInit(rid_i)) && event(eInit(rid_j)) ==> rid_i = rid_j in process 0.
+-- Restriction event(eDistinctFact(rid_i,x))@i && event(eDistinctFact(rid_j,x))@j ==> rid_i = rid_j encoded as event(eDistinctFact(rid_i,x)) && event(eDistinctFact(rid_j,x)) ==> rid_i = rid_j in process 0.
+-- Query not event(eAppSend(asid_5,vphase_closed[],voutcome_abort[]))@k encoded as not event(eAppSend(asid_5,vphase_closed[],voutcome_abort[])) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query not event(eAppSend(asid_5,vphase_closed[],voutcome_abort[]))@k
+Removing redudant clauses.
+Removing subsumed clauses modulo the equational theory.
+Starting verification.
+Clauses verified: 0. Clauses remaining: 1. Failed clauses: 0.
+goal reachable: b-event(eDistinctFact(rid_rAllowAppSend_1,(stR_AppCheck_1,(initial_sid_1,(vphase_closed[],voutcome_abort[]))))) && b-event(eDistinctFact(rid_rCheckAppSend_1,(stR_Execution_3,(initial_sid_1,(vphase_closed[],voutcome_abort[]))))) && b-event(eDistinctFact(rid_rAbortUpdate_1,(stR_Execution_4,(initial_sid_1,(vphase_active[],vno_outcome[]))))) && b-event(eInit(rid_rInit_1)) && b-event(@p_act(@occ16_1,tExecution(stR_Execution_4,initial_sid_1,vphase_active[],vno_outcome[]))) && b-event(@p_act(@occ23_1,tExecution(stR_Execution_3,initial_sid_1,vphase_closed[],voutcome_abort[]))) && b-event(@p_act(@occ35_1,tAppCheck(stR_AppCheck_1,initial_sid_1,vphase_closed[],voutcome_abort[]))) -> event(eAppSend(initial_sid_1,vphase_closed[],voutcome_abort[]))
+The 1st, 2nd, 3rd, 4th, 5th, 6th, 7th hypotheses occur strictly before the conclusion.
+Abbreviations:
+initial_sid_1 = initial_sid[!1 = @sid]
+stR_Execution_4 = stR_Execution[!1 = @sid]
+stR_Execution_3 = stR_Execution_2[asid_1 = initial_sid_1,stL_Execution_1 = stR_Execution_4,!1 = @sid_1]
+stR_AppCheck_1 = stR_AppCheck[outcome = voutcome_abort[],aphase = vphase_closed[],asid_2 = initial_sid_1,stL_Execution_2 = stR_Execution_3,!1 = @sid_2]
+rid_rAllowAppSend_1 = rid_rAllowAppSend[outcome_1 = voutcome_abort[],asid_4 = initial_sid_1,stL_AppCheck_1 = stR_AppCheck_1,!1 = @sid_3]
+rid_rCheckAppSend_1 = rid_rCheckAppSend[outcome = voutcome_abort[],aphase = vphase_closed[],asid_2 = initial_sid_1,stL_Execution_2 = stR_Execution_3,!1 = @sid_2]
+rid_rAbortUpdate_1 = rid_rAbortUpdate[asid_1 = initial_sid_1,stL_Execution_1 = stR_Execution_4,!1 = @sid_1]
+rid_rInit_1 = rid_rInit[!1 = @sid]
+@occ16_1 = @occ16[!1 = @sid_1]
+@occ23_1 = @occ23[!1 = @sid_2]
+@occ35_1 = @occ35[!1 = @sid_3]
+
+Derivation:
+Abbreviations:
+initial_sid_1 = initial_sid[!1 = @sid]
+stR_Execution_3 = stR_Execution[!1 = @sid]
+stR_Execution_4 = stR_Execution_2[asid_1 = initial_sid_1,stL_Execution_1 = stR_Execution_3,!1 = @sid_1]
+stR_AppCheck_1 = stR_AppCheck[outcome = voutcome_abort[],aphase = vphase_closed[],asid_2 = initial_sid_1,stL_Execution_2 = stR_Execution_4,!1 = @sid_2]
+rid_rAllowAppSend_1 = rid_rAllowAppSend[outcome_1 = voutcome_abort[],asid_4 = initial_sid_1,stL_AppCheck_1 = stR_AppCheck_1,!1 = @sid_3]
+rid_rCheckAppSend_1 = rid_rCheckAppSend[outcome = voutcome_abort[],aphase = vphase_closed[],asid_2 = initial_sid_1,stL_Execution_2 = stR_Execution_4,!1 = @sid_2]
+rid_rAbortUpdate_1 = rid_rAbortUpdate[asid_1 = initial_sid_1,stL_Execution_1 = stR_Execution_3,!1 = @sid_1]
+rid_rInit_1 = rid_rInit[!1 = @sid]
+@occ16_1 = @occ16[!1 = @sid_1]
+@occ23_1 = @occ23[!1 = @sid_2]
+@occ35_1 = @occ35[!1 = @sid_3]
+
+1. The event eInit(rid_rInit_1) may be executed at {5}.
+So the entry tExecution(stR_Execution_3,initial_sid_1,vphase_active[],vno_outcome[]) may be inserted in a table at insert {7}.
+table(tExecution(stR_Execution_3,initial_sid_1,vphase_active[],vno_outcome[])).
+
+2. The event @p_act(@occ16_1,tExecution(stR_Execution_3,initial_sid_1,vphase_active[],vno_outcome[])) records how variables are instantiated at {16}.
+The entry tExecution(stR_Execution_3,initial_sid_1,vphase_active[],vno_outcome[]) that may be in a table by 1 may be read at get {16}.
+The event eDistinctFact(rid_rAbortUpdate_1,(stR_Execution_3,(initial_sid_1,(vphase_active[],vno_outcome[])))) may be executed at {19}.
+So the entry tExecution(stR_Execution_4,initial_sid_1,vphase_closed[],voutcome_abort[]) may be inserted in a table at insert {21}.
+table(tExecution(stR_Execution_4,initial_sid_1,vphase_closed[],voutcome_abort[])).
+
+3. The event @p_act(@occ23_1,tExecution(stR_Execution_4,initial_sid_1,vphase_closed[],voutcome_abort[])) records how variables are instantiated at {23}.
+The entry tExecution(stR_Execution_4,initial_sid_1,vphase_closed[],voutcome_abort[]) that may be in a table by 2 may be read at get {23}.
+The event eDistinctFact(rid_rCheckAppSend_1,(stR_Execution_4,(initial_sid_1,(vphase_closed[],voutcome_abort[])))) may be executed at {26}.
+So the entry tAppCheck(stR_AppCheck_1,initial_sid_1,vphase_closed[],voutcome_abort[]) may be inserted in a table at insert {28}.
+table(tAppCheck(stR_AppCheck_1,initial_sid_1,vphase_closed[],voutcome_abort[])).
+
+4. The event @p_act(@occ35_1,tAppCheck(stR_AppCheck_1,initial_sid_1,vphase_closed[],voutcome_abort[])) records how variables are instantiated at {35}.
+The entry tAppCheck(stR_AppCheck_1,initial_sid_1,vphase_closed[],voutcome_abort[]) that may be in a table by 3 may be read at get {35}.
+The event eDistinctFact(rid_rAllowAppSend_1,(stR_AppCheck_1,(initial_sid_1,(vphase_closed[],voutcome_abort[])))) may be executed at {37}.
+So event eAppSend(initial_sid_1,vphase_closed[],voutcome_abort[]) may be executed at {38}.
+event(eAppSend(initial_sid_1,vphase_closed[],voutcome_abort[])).
+
+5. By 4, event(eAppSend(initial_sid_1,vphase_closed[],voutcome_abort[])).
+The goals are reached, combined in the following fact:
+event(eAppSend(initial_sid_1,vphase_closed[],voutcome_abort[])).
+
+
+A more detailed output of the traces is available with
+  set traceDisplay = long.
+
+new rid_rInit: bitstring creating rid_rInit_2 at {2} in copy a
+
+new stR_Execution: bitstring creating stR_Execution_5 at {3} in copy a
+
+new initial_sid: bitstring creating initial_sid_2 at {4} in copy a
+
+event eInit(rid_rInit_2) at {5} in copy a
+
+event eKudosStart(initial_sid_2) at {6} in copy a
+
+insert tExecution(stR_Execution_5,initial_sid_2,vphase_active,vno_outcome) at {7} in copy a
+
+get tExecution(stR_Execution_5,initial_sid_2,vphase_active,vno_outcome) at {16} in copy a_1
+
+new rid_rAbortUpdate: bitstring creating rid_rAbortUpdate_2 at {17} in copy a_1
+
+new stR_Execution_2: bitstring creating stR_Execution_6 at {18} in copy a_1
+
+event eDistinctFact(rid_rAbortUpdate_2,(stR_Execution_5,(initial_sid_2,(vphase_active,vno_outcome)))) at {19} in copy a_1
+
+event eKudosAbort(initial_sid_2) at {20} in copy a_1
+
+insert tExecution(stR_Execution_6,initial_sid_2,vphase_closed,voutcome_abort) at {21} in copy a_1
+
+get tExecution(stR_Execution_6,initial_sid_2,vphase_closed,voutcome_abort) at {23} in copy a_2
+
+new rid_rCheckAppSend: bitstring creating rid_rCheckAppSend_2 at {24} in copy a_2
+
+new stR_AppCheck: bitstring creating stR_AppCheck_2 at {25} in copy a_2
+
+event eDistinctFact(rid_rCheckAppSend_2,(stR_Execution_6,(initial_sid_2,(vphase_closed,voutcome_abort)))) at {26} in copy a_2
+
+event eAppSendChecked(initial_sid_2,vphase_closed,voutcome_abort) at {27} in copy a_2
+
+insert tAppCheck(stR_AppCheck_2,initial_sid_2,vphase_closed,voutcome_abort) at {28} in copy a_2
+
+get tAppCheck(stR_AppCheck_2,initial_sid_2,vphase_closed,voutcome_abort) at {35} in copy a_3
+
+new rid_rAllowAppSend: bitstring creating rid_rAllowAppSend_2 at {36} in copy a_3
+
+event eDistinctFact(rid_rAllowAppSend_2,(stR_AppCheck_2,(initial_sid_2,(vphase_closed,voutcome_abort)))) at {37} in copy a_3
+
+event eAppSend(initial_sid_2,vphase_closed,voutcome_abort) at {38} in copy a_3 (goal)
+
+The event eAppSend(initial_sid_2,vphase_closed,voutcome_abort) is executed at {38} in copy a_3.
+A trace has been found.
+RESULT not event(eAppSend(asid_5,vphase_closed[],voutcome_abort[]))@k is false.
+
+--------------------------------------------------------------
+Verification summary:
+
+Query(ies):
+ - Query not event(eAppSend(asid_5,vphase_closed[],voutcome_abort[]))@k is false.
+Associated restriction(s):
+ - Restriction event(eInit(rid_i))@i && event(eInit(rid_j))@j ==> rid_i = rid_j encoded as event(eInit(rid_i)) && event(eInit(rid_j)) ==> rid_i = rid_j in process 0.
+ - Restriction event(eDistinctFact(rid_i,x))@i && event(eDistinctFact(rid_j,x))@j ==> rid_i = rid_j encoded as event(eDistinctFact(rid_i,x)) && event(eDistinctFact(rid_j,x)) ==> rid_i = rid_j in process 0.
+
+--------------------------------------------------------------
+

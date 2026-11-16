@@ -1,0 +1,9 @@
+maude tool: 'maude'
+ checking version: 3.5. OK.
+ checking installation: OK.
+[Theory linear_plain] Theory loaded
+[Theory linear_plain] Theory translated
+[Theory linear_plain] No Deconstruction Chain checks started
+[Theory linear_plain] No Deconstruction Chain checks ended
+[Theory linear_plain] Theory closed
+[Saturating Sources] Done

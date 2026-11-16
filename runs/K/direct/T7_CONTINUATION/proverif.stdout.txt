@@ -1,0 +1,187 @@
+Process 0 (that is, the initial process):
+{1}new exchange_id: bitstring;
+{2}new prior_new: bitstring;
+{3}new oldest_parent: bitstring;
+{4}new oldest_pair: bitstring;
+{5}new incoming_pair: bitstring;
+{6}new incoming_id: bitstring;
+{7}event PendingBefore(exchange_id,prior_new,oldest_parent,tempctx(oldest_parent,oldest_pair));
+(
+    {8}out(ch_Pending, (exchange_id,prior_new,oldest_parent,tempctx(oldest_parent,oldest_pair),empty_local_pair))
+) | (
+    {9}out(ch_BeforeSnapshot, (exchange_id,prior_new,oldest_parent,tempctx(oldest_parent,oldest_pair)))
+) | (
+    {10}out(ch_VerifiedNewOnlyPremise, (exchange_id,incoming_id,prior_new,incoming_pair))
+) | (
+    {11}in(ch_VerifiedNewOnlyPremise, (exchange_id_s1: bitstring,incoming_id_s1: bitstring,prior_new_s1: bitstring,peer_pair_s1: bitstring));
+    {12}event NewVerified(exchange_id_s1,incoming_id_s1,prior_new_s1,peer_pair_s1,tempctx(prior_new_s1,peer_pair_s1));
+    {13}out(ch_VerifiedDivergent, (exchange_id_s1,incoming_id_s1,prior_new_s1,peer_pair_s1,tempctx(prior_new_s1,peer_pair_s1)))
+) | (
+    {14}in(ch_Pending, (exchange_id_s2: bitstring,prior_new_s2: bitstring,oldest_parent_s2: bitstring,oldest_temp_s2: bitstring,local_slot_s2: bitstring));
+    {15}in(ch_VerifiedDivergent, (=exchange_id_s2,incoming_id_s2: bitstring,=prior_new_s2,peer_pair_s2: bitstring,rx_temp_s2: bitstring));
+    {16}if (rx_temp_s2 = tempctx(prior_new_s2,peer_pair_s2)) then
+    {17}event PendingAborted(exchange_id_s2,incoming_id_s2,prior_new_s2,oldest_parent_s2,oldest_temp_s2);
+    {18}out(ch_BusyEntry, (exchange_id_s2,incoming_id_s2,prior_new_s2,peer_pair_s2,rx_temp_s2,empty_oldest_temp,empty_oldest_parent,empty_pending_new,local_slot_s2))
+) | (
+    {19}in(ch_BusyEntry, (exchange_id_s3: bitstring,incoming_id_s3: bitstring,promoted_s3: bitstring,peer_pair_s3: bitstring,rx_temp_s3: bitstring,temp_slot_s3: bitstring,parent_slot_s3: bitstring,new_slot_s3: bitstring,local_slot_s3: bitstring));
+    {20}event BusyEntryRead(exchange_id_s3,incoming_id_s3,promoted_s3,peer_pair_s3,rx_temp_s3,temp_slot_s3,parent_slot_s3,new_slot_s3,local_slot_s3);
+    {21}out(ch_BusyReady, (exchange_id_s3,incoming_id_s3,promoted_s3,peer_pair_s3,rx_temp_s3,temp_slot_s3,parent_slot_s3,new_slot_s3,local_slot_s3))
+) | (
+    {22}in(ch_BusyReady, (exchange_id_s4: bitstring,incoming_id_s4: bitstring,promoted_s4: bitstring,peer_pair_s4: bitstring,rx_temp_s4: bitstring,=empty_oldest_temp,=empty_oldest_parent,=empty_pending_new,=empty_local_pair));
+    {23}new fresh_local_pair_s4: bitstring;
+    {24}event RestartDerived(exchange_id_s4,incoming_id_s4,promoted_s4,peer_pair_s4,fresh_local_pair_s4,newctx(promoted_s4,fresh_local_pair_s4,peer_pair_s4));
+    {25}out(ch_ReadyToSend, (exchange_id_s4,incoming_id_s4,promoted_s4,peer_pair_s4,rx_temp_s4,fresh_local_pair_s4,newctx(promoted_s4,fresh_local_pair_s4,peer_pair_s4)))
+) | (
+    {26}in(ch_ReadyToSend, (exchange_id_s5: bitstring,incoming_id_s5: bitstring,promoted_s5: bitstring,peer_pair_s5: bitstring,rx_temp_s5: bitstring,local_pair_s5: bitstring,active_ctx_s5: bitstring));
+    {27}event ConvergentSent(exchange_id_s5,incoming_id_s5,active_ctx_s5);
+    {28}out(ch_PendingAfter, (exchange_id_s5,incoming_id_s5,promoted_s5,peer_pair_s5,rx_temp_s5,local_pair_s5,active_ctx_s5))
+) | (
+    {29}in(ch_PendingAfter, (exchange_id_s6: bitstring,incoming_id_s6: bitstring,promoted_s6: bitstring,peer_pair_s6: bitstring,rx_temp_s6: bitstring,local_pair_s6: bitstring,active_ctx_s6: bitstring));
+    {30}in(ch_BeforeSnapshot, (=exchange_id_s6,prior_new_s6: bitstring,oldest_parent_s6: bitstring,oldest_temp_s6: bitstring));
+    {31}event PendingRead(exchange_id_s6,incoming_id_s6,promoted_s6,peer_pair_s6,local_pair_s6,active_ctx_s6,prior_new_s6,oldest_parent_s6,oldest_temp_s6,rx_temp_s6)
+)
+
+-- Query not event(PendingRead(q1_exchange_id,q1_incoming_id,q1_promoted,q1_peer_pair,q1_local_pair,q1_active_ctx,q1_prior_new,q1_oldest_parent,q1_oldest_temp,q1_rx_temp)) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query not event(PendingRead(q1_exchange_id,q1_incoming_id,q1_promoted,q1_peer_pair,q1_local_pair,q1_active_ctx,q1_prior_new,q1_oldest_parent,q1_oldest_temp,q1_rx_temp))
+goal reachable: event(PendingRead(exchange_id[],incoming_id[],prior_new[],incoming_pair[],fresh_local_pair_s4_1,newctx(prior_new[],fresh_local_pair_s4_1,incoming_pair[]),prior_new[],oldest_parent[],tempctx(oldest_parent[],oldest_pair[]),tempctx(prior_new[],incoming_pair[])))
+Abbreviations:
+fresh_local_pair_s4_1 = fresh_local_pair_s4[rx_temp_s4 = tempctx(prior_new[],incoming_pair[]),peer_pair_s4 = incoming_pair[],promoted_s4 = prior_new[],incoming_id_s4 = incoming_id[],exchange_id_s4 = exchange_id[]]
+
+Derivation:
+Abbreviations:
+fresh_local_pair_s4_1 = fresh_local_pair_s4[rx_temp_s4 = tempctx(prior_new[],incoming_pair[]),peer_pair_s4 = incoming_pair[],promoted_s4 = prior_new[],incoming_id_s4 = incoming_id[],exchange_id_s4 = exchange_id[]]
+
+1. The message (exchange_id[],prior_new[],oldest_parent[],tempctx(oldest_parent[],oldest_pair[]),empty_local_pair[]) may be sent on channel ch_Pending[] at output {8}.
+mess(ch_Pending[],(exchange_id[],prior_new[],oldest_parent[],tempctx(oldest_parent[],oldest_pair[]),empty_local_pair[])).
+
+2. The message (exchange_id[],incoming_id[],prior_new[],incoming_pair[]) may be sent on channel ch_VerifiedNewOnlyPremise[] at output {10}.
+mess(ch_VerifiedNewOnlyPremise[],(exchange_id[],incoming_id[],prior_new[],incoming_pair[])).
+
+3. The message (exchange_id[],incoming_id[],prior_new[],incoming_pair[]) that may be sent on channel ch_VerifiedNewOnlyPremise[] by 2 may be received at input {11}.
+So the message (exchange_id[],incoming_id[],prior_new[],incoming_pair[],tempctx(prior_new[],incoming_pair[])) may be sent on channel ch_VerifiedDivergent[] at output {13}.
+mess(ch_VerifiedDivergent[],(exchange_id[],incoming_id[],prior_new[],incoming_pair[],tempctx(prior_new[],incoming_pair[]))).
+
+4. The message (exchange_id[],prior_new[],oldest_parent[],tempctx(oldest_parent[],oldest_pair[]),empty_local_pair[]) that may be sent on channel ch_Pending[] by 1 may be received at input {14}.
+The message (exchange_id[],incoming_id[],prior_new[],incoming_pair[],tempctx(prior_new[],incoming_pair[])) that may be sent on channel ch_VerifiedDivergent[] by 3 may be received at input {15}.
+So the message (exchange_id[],incoming_id[],prior_new[],incoming_pair[],tempctx(prior_new[],incoming_pair[]),empty_oldest_temp[],empty_oldest_parent[],empty_pending_new[],empty_local_pair[]) may be sent on channel ch_BusyEntry[] at output {18}.
+mess(ch_BusyEntry[],(exchange_id[],incoming_id[],prior_new[],incoming_pair[],tempctx(prior_new[],incoming_pair[]),empty_oldest_temp[],empty_oldest_parent[],empty_pending_new[],empty_local_pair[])).
+
+5. The message (exchange_id[],incoming_id[],prior_new[],incoming_pair[],tempctx(prior_new[],incoming_pair[]),empty_oldest_temp[],empty_oldest_parent[],empty_pending_new[],empty_local_pair[]) that may be sent on channel ch_BusyEntry[] by 4 may be received at input {19}.
+So the message (exchange_id[],incoming_id[],prior_new[],incoming_pair[],tempctx(prior_new[],incoming_pair[]),empty_oldest_temp[],empty_oldest_parent[],empty_pending_new[],empty_local_pair[]) may be sent on channel ch_BusyReady[] at output {21}.
+mess(ch_BusyReady[],(exchange_id[],incoming_id[],prior_new[],incoming_pair[],tempctx(prior_new[],incoming_pair[]),empty_oldest_temp[],empty_oldest_parent[],empty_pending_new[],empty_local_pair[])).
+
+6. The message (exchange_id[],incoming_id[],prior_new[],incoming_pair[],tempctx(prior_new[],incoming_pair[]),empty_oldest_temp[],empty_oldest_parent[],empty_pending_new[],empty_local_pair[]) that may be sent on channel ch_BusyReady[] by 5 may be received at input {22}.
+So the message (exchange_id[],incoming_id[],prior_new[],incoming_pair[],tempctx(prior_new[],incoming_pair[]),fresh_local_pair_s4_1,newctx(prior_new[],fresh_local_pair_s4_1,incoming_pair[])) may be sent on channel ch_ReadyToSend[] at output {25}.
+mess(ch_ReadyToSend[],(exchange_id[],incoming_id[],prior_new[],incoming_pair[],tempctx(prior_new[],incoming_pair[]),fresh_local_pair_s4_1,newctx(prior_new[],fresh_local_pair_s4_1,incoming_pair[]))).
+
+7. The message (exchange_id[],incoming_id[],prior_new[],incoming_pair[],tempctx(prior_new[],incoming_pair[]),fresh_local_pair_s4_1,newctx(prior_new[],fresh_local_pair_s4_1,incoming_pair[])) that may be sent on channel ch_ReadyToSend[] by 6 may be received at input {26}.
+So the message (exchange_id[],incoming_id[],prior_new[],incoming_pair[],tempctx(prior_new[],incoming_pair[]),fresh_local_pair_s4_1,newctx(prior_new[],fresh_local_pair_s4_1,incoming_pair[])) may be sent on channel ch_PendingAfter[] at output {28}.
+mess(ch_PendingAfter[],(exchange_id[],incoming_id[],prior_new[],incoming_pair[],tempctx(prior_new[],incoming_pair[]),fresh_local_pair_s4_1,newctx(prior_new[],fresh_local_pair_s4_1,incoming_pair[]))).
+
+8. The message (exchange_id[],prior_new[],oldest_parent[],tempctx(oldest_parent[],oldest_pair[])) may be sent on channel ch_BeforeSnapshot[] at output {9}.
+mess(ch_BeforeSnapshot[],(exchange_id[],prior_new[],oldest_parent[],tempctx(oldest_parent[],oldest_pair[]))).
+
+9. The message (exchange_id[],incoming_id[],prior_new[],incoming_pair[],tempctx(prior_new[],incoming_pair[]),fresh_local_pair_s4_1,newctx(prior_new[],fresh_local_pair_s4_1,incoming_pair[])) that may be sent on channel ch_PendingAfter[] by 7 may be received at input {29}.
+The message (exchange_id[],prior_new[],oldest_parent[],tempctx(oldest_parent[],oldest_pair[])) that may be sent on channel ch_BeforeSnapshot[] by 8 may be received at input {30}.
+So event PendingRead(exchange_id[],incoming_id[],prior_new[],incoming_pair[],fresh_local_pair_s4_1,newctx(prior_new[],fresh_local_pair_s4_1,incoming_pair[]),prior_new[],oldest_parent[],tempctx(oldest_parent[],oldest_pair[]),tempctx(prior_new[],incoming_pair[])) may be executed at {31}.
+event(PendingRead(exchange_id[],incoming_id[],prior_new[],incoming_pair[],fresh_local_pair_s4_1,newctx(prior_new[],fresh_local_pair_s4_1,incoming_pair[]),prior_new[],oldest_parent[],tempctx(oldest_parent[],oldest_pair[]),tempctx(prior_new[],incoming_pair[]))).
+
+10. By 9, event(PendingRead(exchange_id[],incoming_id[],prior_new[],incoming_pair[],fresh_local_pair_s4_1,newctx(prior_new[],fresh_local_pair_s4_1,incoming_pair[]),prior_new[],oldest_parent[],tempctx(oldest_parent[],oldest_pair[]),tempctx(prior_new[],incoming_pair[]))).
+The goal is reached, represented in the following fact:
+event(PendingRead(exchange_id[],incoming_id[],prior_new[],incoming_pair[],fresh_local_pair_s4_1,newctx(prior_new[],fresh_local_pair_s4_1,incoming_pair[]),prior_new[],oldest_parent[],tempctx(oldest_parent[],oldest_pair[]),tempctx(prior_new[],incoming_pair[]))).
+
+
+A more detailed output of the traces is available with
+  set traceDisplay = long.
+
+new exchange_id: bitstring creating exchange_id_1 at {1}
+
+new prior_new: bitstring creating prior_new_1 at {2}
+
+new oldest_parent: bitstring creating oldest_parent_1 at {3}
+
+new oldest_pair: bitstring creating oldest_pair_1 at {4}
+
+new incoming_pair: bitstring creating incoming_pair_1 at {5}
+
+new incoming_id: bitstring creating incoming_id_1 at {6}
+
+event PendingBefore(exchange_id_1,prior_new_1,oldest_parent_1,tempctx(oldest_parent_1,oldest_pair_1)) at {7}
+
+out(ch_VerifiedNewOnlyPremise, (exchange_id_1,incoming_id_1,prior_new_1,incoming_pair_1)) at {10} received at {11}
+
+event NewVerified(exchange_id_1,incoming_id_1,prior_new_1,incoming_pair_1,tempctx(prior_new_1,incoming_pair_1)) at {12}
+
+out(ch_Pending, (exchange_id_1,prior_new_1,oldest_parent_1,tempctx(oldest_parent_1,oldest_pair_1),empty_local_pair)) at {8} received at {14}
+
+out(ch_VerifiedDivergent, (exchange_id_1,incoming_id_1,prior_new_1,incoming_pair_1,tempctx(prior_new_1,incoming_pair_1))) at {13} received at {15}
+
+event PendingAborted(exchange_id_1,incoming_id_1,prior_new_1,oldest_parent_1,tempctx(oldest_parent_1,oldest_pair_1)) at {17}
+
+out(ch_BusyEntry, (exchange_id_1,incoming_id_1,prior_new_1,incoming_pair_1,tempctx(prior_new_1,incoming_pair_1),empty_oldest_temp,empty_oldest_parent,empty_pending_new,empty_local_pair)) at {18} received at {19}
+
+event BusyEntryRead(exchange_id_1,incoming_id_1,prior_new_1,incoming_pair_1,tempctx(prior_new_1,incoming_pair_1),empty_oldest_temp,empty_oldest_parent,empty_pending_new,empty_local_pair) at {20}
+
+out(ch_BusyReady, (exchange_id_1,incoming_id_1,prior_new_1,incoming_pair_1,tempctx(prior_new_1,incoming_pair_1),empty_oldest_temp,empty_oldest_parent,empty_pending_new,empty_local_pair)) at {21} received at {22}
+
+new fresh_local_pair_s4: bitstring creating fresh_local_pair_s4_2 at {23}
+
+event RestartDerived(exchange_id_1,incoming_id_1,prior_new_1,incoming_pair_1,fresh_local_pair_s4_2,newctx(prior_new_1,fresh_local_pair_s4_2,incoming_pair_1)) at {24}
+
+out(ch_ReadyToSend, (exchange_id_1,incoming_id_1,prior_new_1,incoming_pair_1,tempctx(prior_new_1,incoming_pair_1),fresh_local_pair_s4_2,newctx(prior_new_1,fresh_local_pair_s4_2,incoming_pair_1))) at {25} received at {26}
+
+event ConvergentSent(exchange_id_1,incoming_id_1,newctx(prior_new_1,fresh_local_pair_s4_2,incoming_pair_1)) at {27}
+
+out(ch_PendingAfter, (exchange_id_1,incoming_id_1,prior_new_1,incoming_pair_1,tempctx(prior_new_1,incoming_pair_1),fresh_local_pair_s4_2,newctx(prior_new_1,fresh_local_pair_s4_2,incoming_pair_1))) at {28} received at {29}
+
+out(ch_BeforeSnapshot, (exchange_id_1,prior_new_1,oldest_parent_1,tempctx(oldest_parent_1,oldest_pair_1))) at {9} received at {30}
+
+event PendingRead(exchange_id_1,incoming_id_1,prior_new_1,incoming_pair_1,fresh_local_pair_s4_2,newctx(prior_new_1,fresh_local_pair_s4_2,incoming_pair_1),prior_new_1,oldest_parent_1,tempctx(oldest_parent_1,oldest_pair_1),tempctx(prior_new_1,incoming_pair_1)) at {31} (goal)
+
+The event PendingRead(exchange_id_1,incoming_id_1,prior_new_1,incoming_pair_1,fresh_local_pair_s4_2,newctx(prior_new_1,fresh_local_pair_s4_2,incoming_pair_1),prior_new_1,oldest_parent_1,tempctx(oldest_parent_1,oldest_pair_1),tempctx(prior_new_1,incoming_pair_1)) is executed at {31}.
+A trace has been found.
+RESULT not event(PendingRead(q1_exchange_id,q1_incoming_id,q1_promoted,q1_peer_pair,q1_local_pair,q1_active_ctx,q1_prior_new,q1_oldest_parent,q1_oldest_temp,q1_rx_temp)) is false.
+-- Query event(PendingRead(q2_exchange_id,q2_incoming_id,q2_promoted,q2_peer_pair,q2_local_pair,q2_active_ctx,q2_prior_new,q2_oldest_parent,q2_oldest_temp,q2_rx_temp)) ==> event(PendingBefore(q2_exchange_id,q2_prior_new,q2_oldest_parent,q2_oldest_temp)) && event(NewVerified(q2_exchange_id,q2_incoming_id,q2_prior_new,q2_peer_pair,q2_rx_temp)) && event(PendingAborted(q2_exchange_id,q2_incoming_id,q2_prior_new,q2_oldest_parent,q2_oldest_temp)) && event(BusyEntryRead(q2_exchange_id,q2_incoming_id,q2_promoted,q2_peer_pair,q2_rx_temp,empty_oldest_temp[],empty_oldest_parent[],empty_pending_new[],empty_local_pair[])) && q2_promoted = q2_prior_new && q2_rx_temp = tempctx(q2_prior_new,q2_peer_pair) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query event(PendingRead(q2_exchange_id,q2_incoming_id,q2_promoted,q2_peer_pair,q2_local_pair,q2_active_ctx,q2_prior_new,q2_oldest_parent,q2_oldest_temp,q2_rx_temp)) ==> event(PendingBefore(q2_exchange_id,q2_prior_new,q2_oldest_parent,q2_oldest_temp)) && event(NewVerified(q2_exchange_id,q2_incoming_id,q2_prior_new,q2_peer_pair,q2_rx_temp)) && event(PendingAborted(q2_exchange_id,q2_incoming_id,q2_prior_new,q2_oldest_parent,q2_oldest_temp)) && event(BusyEntryRead(q2_exchange_id,q2_incoming_id,q2_promoted,q2_peer_pair,q2_rx_temp,empty_oldest_temp[],empty_oldest_parent[],empty_pending_new[],empty_local_pair[])) && q2_promoted = q2_prior_new && q2_rx_temp = tempctx(q2_prior_new,q2_peer_pair)
+goal reachable: b-event(BusyEntryRead(exchange_id[],incoming_id[],prior_new[],incoming_pair[],tempctx(prior_new[],incoming_pair[]),empty_oldest_temp[],empty_oldest_parent[],empty_pending_new[],empty_local_pair[])) && b-event(PendingAborted(exchange_id[],incoming_id[],prior_new[],oldest_parent[],tempctx(oldest_parent[],oldest_pair[]))) && b-event(NewVerified(exchange_id[],incoming_id[],prior_new[],incoming_pair[],tempctx(prior_new[],incoming_pair[]))) && b-event(PendingBefore(exchange_id[],prior_new[],oldest_parent[],tempctx(oldest_parent[],oldest_pair[]))) -> event(PendingRead(exchange_id[],incoming_id[],prior_new[],incoming_pair[],fresh_local_pair_s4_1,newctx(prior_new[],fresh_local_pair_s4_1,incoming_pair[]),prior_new[],oldest_parent[],tempctx(oldest_parent[],oldest_pair[]),tempctx(prior_new[],incoming_pair[])))
+Abbreviations:
+fresh_local_pair_s4_1 = fresh_local_pair_s4[rx_temp_s4 = tempctx(prior_new[],incoming_pair[]),peer_pair_s4 = incoming_pair[],promoted_s4 = prior_new[],incoming_id_s4 = incoming_id[],exchange_id_s4 = exchange_id[]]
+RESULT event(PendingRead(q2_exchange_id,q2_incoming_id,q2_promoted,q2_peer_pair,q2_local_pair,q2_active_ctx,q2_prior_new,q2_oldest_parent,q2_oldest_temp,q2_rx_temp)) ==> event(PendingBefore(q2_exchange_id,q2_prior_new,q2_oldest_parent,q2_oldest_temp)) && event(NewVerified(q2_exchange_id,q2_incoming_id,q2_prior_new,q2_peer_pair,q2_rx_temp)) && event(PendingAborted(q2_exchange_id,q2_incoming_id,q2_prior_new,q2_oldest_parent,q2_oldest_temp)) && event(BusyEntryRead(q2_exchange_id,q2_incoming_id,q2_promoted,q2_peer_pair,q2_rx_temp,empty_oldest_temp[],empty_oldest_parent[],empty_pending_new[],empty_local_pair[])) && q2_promoted = q2_prior_new && q2_rx_temp = tempctx(q2_prior_new,q2_peer_pair) is true.
+-- Query event(PendingRead(q3_exchange_id,q3_incoming_id,q3_promoted,q3_peer_pair,q3_local_pair,q3_active_ctx,q3_prior_new,q3_oldest_parent,q3_oldest_temp,q3_rx_temp)) ==> event(RestartDerived(q3_exchange_id,q3_incoming_id,q3_promoted,q3_peer_pair,q3_local_pair,q3_active_ctx)) && event(ConvergentSent(q3_exchange_id,q3_incoming_id,q3_active_ctx)) && q3_active_ctx = newctx(q3_promoted,q3_local_pair,q3_peer_pair) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query event(PendingRead(q3_exchange_id,q3_incoming_id,q3_promoted,q3_peer_pair,q3_local_pair,q3_active_ctx,q3_prior_new,q3_oldest_parent,q3_oldest_temp,q3_rx_temp)) ==> event(RestartDerived(q3_exchange_id,q3_incoming_id,q3_promoted,q3_peer_pair,q3_local_pair,q3_active_ctx)) && event(ConvergentSent(q3_exchange_id,q3_incoming_id,q3_active_ctx)) && q3_active_ctx = newctx(q3_promoted,q3_local_pair,q3_peer_pair)
+goal reachable: b-event(ConvergentSent(exchange_id[],incoming_id[],newctx(prior_new[],fresh_local_pair_s4_1,incoming_pair[]))) && b-event(RestartDerived(exchange_id[],incoming_id[],prior_new[],incoming_pair[],fresh_local_pair_s4_1,newctx(prior_new[],fresh_local_pair_s4_1,incoming_pair[]))) -> event(PendingRead(exchange_id[],incoming_id[],prior_new[],incoming_pair[],fresh_local_pair_s4_1,newctx(prior_new[],fresh_local_pair_s4_1,incoming_pair[]),prior_new[],oldest_parent[],tempctx(oldest_parent[],oldest_pair[]),tempctx(prior_new[],incoming_pair[])))
+Abbreviations:
+fresh_local_pair_s4_1 = fresh_local_pair_s4[rx_temp_s4 = tempctx(prior_new[],incoming_pair[]),peer_pair_s4 = incoming_pair[],promoted_s4 = prior_new[],incoming_id_s4 = incoming_id[],exchange_id_s4 = exchange_id[]]
+RESULT event(PendingRead(q3_exchange_id,q3_incoming_id,q3_promoted,q3_peer_pair,q3_local_pair,q3_active_ctx,q3_prior_new,q3_oldest_parent,q3_oldest_temp,q3_rx_temp)) ==> event(RestartDerived(q3_exchange_id,q3_incoming_id,q3_promoted,q3_peer_pair,q3_local_pair,q3_active_ctx)) && event(ConvergentSent(q3_exchange_id,q3_incoming_id,q3_active_ctx)) && q3_active_ctx = newctx(q3_promoted,q3_local_pair,q3_peer_pair) is true.
+-- Query not event(PendingRead(q4_exchange_id,q4_incoming_id,q4_oldest_parent,q4_peer_pair,q4_local_pair,q4_active_ctx,q4_prior_new,q4_oldest_parent,q4_oldest_temp,q4_rx_temp)) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query not event(PendingRead(q4_exchange_id,q4_incoming_id,q4_oldest_parent,q4_peer_pair,q4_local_pair,q4_active_ctx,q4_prior_new,q4_oldest_parent,q4_oldest_temp,q4_rx_temp))
+RESULT not event(PendingRead(q4_exchange_id,q4_incoming_id,q4_oldest_parent,q4_peer_pair,q4_local_pair,q4_active_ctx,q4_prior_new,q4_oldest_parent,q4_oldest_temp,q4_rx_temp)) is true.
+-- Query not event(PendingRead(q5_exchange_id,q5_incoming_id,q5_promoted,q5_peer_pair,q5_local_pair,q5_prior_new,q5_prior_new,q5_oldest_parent,q5_oldest_temp,q5_rx_temp)) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query not event(PendingRead(q5_exchange_id,q5_incoming_id,q5_promoted,q5_peer_pair,q5_local_pair,q5_prior_new,q5_prior_new,q5_oldest_parent,q5_oldest_temp,q5_rx_temp))
+RESULT not event(PendingRead(q5_exchange_id,q5_incoming_id,q5_promoted,q5_peer_pair,q5_local_pair,q5_prior_new,q5_prior_new,q5_oldest_parent,q5_oldest_temp,q5_rx_temp)) is true.
+
+--------------------------------------------------------------
+Verification summary:
+
+Query not event(PendingRead(q1_exchange_id,q1_incoming_id,q1_promoted,q1_peer_pair,q1_local_pair,q1_active_ctx,q1_prior_new,q1_oldest_parent,q1_oldest_temp,q1_rx_temp)) is false.
+
+Query event(PendingRead(q2_exchange_id,q2_incoming_id,q2_promoted,q2_peer_pair,q2_local_pair,q2_active_ctx,q2_prior_new,q2_oldest_parent,q2_oldest_temp,q2_rx_temp)) ==> event(PendingBefore(q2_exchange_id,q2_prior_new,q2_oldest_parent,q2_oldest_temp)) && event(NewVerified(q2_exchange_id,q2_incoming_id,q2_prior_new,q2_peer_pair,q2_rx_temp)) && event(PendingAborted(q2_exchange_id,q2_incoming_id,q2_prior_new,q2_oldest_parent,q2_oldest_temp)) && event(BusyEntryRead(q2_exchange_id,q2_incoming_id,q2_promoted,q2_peer_pair,q2_rx_temp,empty_oldest_temp[],empty_oldest_parent[],empty_pending_new[],empty_local_pair[])) && q2_promoted = q2_prior_new && q2_rx_temp = tempctx(q2_prior_new,q2_peer_pair) is true.
+
+Query event(PendingRead(q3_exchange_id,q3_incoming_id,q3_promoted,q3_peer_pair,q3_local_pair,q3_active_ctx,q3_prior_new,q3_oldest_parent,q3_oldest_temp,q3_rx_temp)) ==> event(RestartDerived(q3_exchange_id,q3_incoming_id,q3_promoted,q3_peer_pair,q3_local_pair,q3_active_ctx)) && event(ConvergentSent(q3_exchange_id,q3_incoming_id,q3_active_ctx)) && q3_active_ctx = newctx(q3_promoted,q3_local_pair,q3_peer_pair) is true.
+
+Query not event(PendingRead(q4_exchange_id,q4_incoming_id,q4_oldest_parent,q4_peer_pair,q4_local_pair,q4_active_ctx,q4_prior_new,q4_oldest_parent,q4_oldest_temp,q4_rx_temp)) is true.
+
+Query not event(PendingRead(q5_exchange_id,q5_incoming_id,q5_promoted,q5_peer_pair,q5_local_pair,q5_prior_new,q5_prior_new,q5_oldest_parent,q5_oldest_temp,q5_rx_temp)) is true.
+
+--------------------------------------------------------------
+

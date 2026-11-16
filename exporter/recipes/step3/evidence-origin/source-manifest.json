@@ -1,0 +1,42 @@
+{
+  "commit": "c293106913ccf7bb41f49b0dc555a8074e8ea88c",
+  "origin": "https://github.com/felixlinker/tamarin-prover.git",
+  "files": {
+    "lib/export/src/Export/ProVerif/Rule.hs": {
+      "sha256": "faa7042e95c3ffb45b033de161abd17b006e268b534e699e9ccbe8a784c30b56",
+      "git_blob": "79cb86c9f49ec6412f828b70231767aeb62456e7",
+      "bytes": 35586
+    },
+    "lib/sapic/src/Sapic/Facts.hs": {
+      "sha256": "2a91fbe072efb20fde323e72d2c03ba1fa081eaa9b156614d68eab5c4dc1b289",
+      "git_blob": "299ef098ef6316503d91e4eaedbf0ff6fc1b28e6",
+      "bytes": 13743
+    },
+    "lib/term/src/Term/Term.hs": {
+      "sha256": "896110b6ab8be47a11513b69876368dbd621434e45414c1507c4d952f9d2d2e8",
+      "git_blob": "762d6ac520128fb593671736cbd07731f7486433",
+      "bytes": 10354
+    },
+    "lib/term/src/Term/Term/Raw.hs": {
+      "sha256": "8411a14ac67daf31255e2df035f60d9a4d8283277d9ebcfecd05efa214b50eca",
+      "git_blob": "7afc228ccd771236f18b0069e7ba8477b505e6de",
+      "bytes": 9954
+    },
+    "LICENSE": {
+      "sha256": "c61f12da7cdad526bdcbed47a4c0a603e60dbbfdaf8b66933cd088e9132c303f",
+      "git_blob": "94a045322262546cfb9d72561e1d587b5c2ffb1e",
+      "bytes": 32472
+    },
+    "stack.yaml": {
+      "sha256": "91e770341c2ec80e55c02c347b8ea21fb74e789d7319a5566c6fceb4e8888225",
+      "git_blob": "46e96e22e1f16c1acde8777fc62a10692b521f5b",
+      "bytes": 197
+    },
+    "tamarin-prover.cabal": {
+      "sha256": "2b6d033c0b79fde1c3e68d202d1a5de4f76344cbe87cc48a53da6e912bb76385",
+      "git_blob": "a741c33ee3343ebff87224300844c082a28f519d",
+      "bytes": 5668
+    }
+  },
+  "binary_rebuild_verified": false
+}

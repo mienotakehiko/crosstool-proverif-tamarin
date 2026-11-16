@@ -1,0 +1,259 @@
+Process 0 (that is, the initial process):
+{1}new initial_id: bitstring;
+{2}new initial_context: bitstring;
+{3}new next_context: bitstring;
+(
+    {4}out(ch_ReadyOld, (initial_id,initial_context,next_context))
+) | (
+    {5}in(ch_ReadyOld, (run_id_step1: bitstring,context_step1: bitstring,next_context_step1: bitstring));
+    {6}new token_id_step1: bitstring;
+    {7}new request_id_step1: bitstring;
+    {8}event RequestSent(old_gen,run_id_step1,token_id_step1,request_id_step1,context_step1,zero_piv);
+    {9}out(ch_PendingOld, (run_id_step1,token_id_step1,request_id_step1,context_step1,zero_piv,next_context_step1));
+    {10}out(ch_RequestWireOld, (run_id_step1,token_id_step1,request_id_step1,context_step1,zero_piv))
+) | (
+    {11}in(ch_RequestWireOld, (run_id_step2: bitstring,token_id_step2: bitstring,request_id_step2: bitstring,context_step2: bitstring,request_piv_step2: bitstring));
+    {12}event RequestAccepted(old_gen,run_id_step2,token_id_step2,request_id_step2,context_step2,request_piv_step2);
+    {13}out(ch_AcceptedRequestOld, (run_id_step2,token_id_step2,request_id_step2,context_step2,request_piv_step2))
+) | (
+    {14}in(ch_AcceptedRequestOld, (run_id_step3: bitstring,token_id_step3: bitstring,request_id_step3: bitstring,context_step3: bitstring,request_piv_step3: bitstring));
+    {15}new response_id_step3: bitstring;
+    {16}event ResponseProtected(old_gen,run_id_step3,token_id_step3,request_id_step3,context_step3,request_piv_step3,response_id_step3);
+    {17}out(ch_ResponseWireOld, (run_id_step3,token_id_step3,request_id_step3,context_step3,request_piv_step3,response_id_step3))
+) | (
+    {18}in(ch_PendingOld, (run_id_step4: bitstring,token_id_step4: bitstring,request_id_step4: bitstring,context_step4: bitstring,request_piv_step4: bitstring,next_context_step4: bitstring));
+    {19}in(ch_ResponseWireOld, (=run_id_step4,=token_id_step4,=request_id_step4,=context_step4,=request_piv_step4,response_id_step4: bitstring));
+    {20}event ResponseAccepted(old_gen,run_id_step4,token_id_step4,request_id_step4,context_step4,request_piv_step4,response_id_step4);
+    {21}out(ch_OldExchangeCleared, (run_id_step4,next_context_step4))
+) | (
+    {22}in(ch_OldExchangeCleared, (run_id_step5: bitstring,next_context_step5: bitstring));
+    {23}event ContextActivated(run_id_step5,next_context_step5);
+    {24}out(ch_ReadyNew, (run_id_step5,next_context_step5))
+) | (
+    {25}in(ch_ReadyNew, (run_id_step6: bitstring,context_step6: bitstring));
+    {26}new token_id_step6: bitstring;
+    {27}new request_id_step6: bitstring;
+    {28}event RequestSent(new_gen,run_id_step6,token_id_step6,request_id_step6,context_step6,zero_piv);
+    {29}out(ch_PendingNew, (run_id_step6,token_id_step6,request_id_step6,context_step6,zero_piv));
+    {30}out(ch_RequestWireNew, (run_id_step6,token_id_step6,request_id_step6,context_step6,zero_piv))
+) | (
+    {31}in(ch_RequestWireNew, (run_id_step7: bitstring,token_id_step7: bitstring,request_id_step7: bitstring,context_step7: bitstring,request_piv_step7: bitstring));
+    {32}event RequestAccepted(new_gen,run_id_step7,token_id_step7,request_id_step7,context_step7,request_piv_step7);
+    {33}out(ch_AcceptedRequestNew, (run_id_step7,token_id_step7,request_id_step7,context_step7,request_piv_step7))
+) | (
+    {34}in(ch_AcceptedRequestNew, (run_id_step8: bitstring,token_id_step8: bitstring,request_id_step8: bitstring,context_step8: bitstring,request_piv_step8: bitstring));
+    {35}new response_id_step8: bitstring;
+    {36}event ResponseProtected(new_gen,run_id_step8,token_id_step8,request_id_step8,context_step8,request_piv_step8,response_id_step8);
+    {37}out(ch_ResponseWireNew, (run_id_step8,token_id_step8,request_id_step8,context_step8,request_piv_step8,response_id_step8))
+) | (
+    {38}in(ch_PendingNew, (run_id_step9: bitstring,token_id_step9: bitstring,request_id_step9: bitstring,context_step9: bitstring,request_piv_step9: bitstring));
+    {39}in(ch_ResponseWireNew, (=run_id_step9,=token_id_step9,=request_id_step9,=context_step9,=request_piv_step9,response_id_step9: bitstring));
+    {40}event ResponseAccepted(new_gen,run_id_step9,token_id_step9,request_id_step9,context_step9,request_piv_step9,response_id_step9)
+)
+
+-- Query not event(ResponseAccepted(new_gen[],q1_run_id,q1_token_id,q1_request_id,q1_context,q1_request_piv,q1_response_id)) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query not event(ResponseAccepted(new_gen[],q1_run_id,q1_token_id,q1_request_id,q1_context,q1_request_piv,q1_response_id))
+goal reachable: event(ResponseAccepted(new_gen[],initial_id[],token_id_step6_1,request_id_step6_1,next_context[],zero_piv[],response_id_step8_1))
+Abbreviations:
+token_id_step6_1 = token_id_step6[context_step6 = next_context[],run_id_step6 = initial_id[]]
+request_id_step6_1 = request_id_step6[context_step6 = next_context[],run_id_step6 = initial_id[]]
+response_id_step8_1 = response_id_step8[request_piv_step8 = zero_piv[],context_step8 = next_context[],request_id_step8 = request_id_step6_1,token_id_step8 = token_id_step6_1,run_id_step8 = initial_id[]]
+
+Derivation:
+Abbreviations:
+token_id_step6_1 = token_id_step6[context_step6 = next_context[],run_id_step6 = initial_id[]]
+request_id_step6_1 = request_id_step6[context_step6 = next_context[],run_id_step6 = initial_id[]]
+response_id_step8_1 = response_id_step8[request_piv_step8 = zero_piv[],context_step8 = next_context[],request_id_step8 = request_id_step6_1,token_id_step8 = token_id_step6_1,run_id_step8 = initial_id[]]
+token_id_step1_1 = token_id_step1[next_context_step1 = next_context[],context_step1 = initial_context[],run_id_step1 = initial_id[]]
+request_id_step1_1 = request_id_step1[next_context_step1 = next_context[],context_step1 = initial_context[],run_id_step1 = initial_id[]]
+response_id_step3_1 = response_id_step3[request_piv_step3 = zero_piv[],context_step3 = initial_context[],request_id_step3 = request_id_step1_1,token_id_step3 = token_id_step1_1,run_id_step3 = initial_id[]]
+
+1. The message (initial_id[],initial_context[],next_context[]) may be sent on channel ch_ReadyOld[] at output {4}.
+mess(ch_ReadyOld[],(initial_id[],initial_context[],next_context[])).
+
+2. The message (initial_id[],initial_context[],next_context[]) that may be sent on channel ch_ReadyOld[] by 1 may be received at input {5}.
+So the message (initial_id[],token_id_step1_1,request_id_step1_1,initial_context[],zero_piv[],next_context[]) may be sent on channel ch_PendingOld[] at output {9}.
+mess(ch_PendingOld[],(initial_id[],token_id_step1_1,request_id_step1_1,initial_context[],zero_piv[],next_context[])).
+
+3. The message (initial_id[],initial_context[],next_context[]) that may be sent on channel ch_ReadyOld[] by 1 may be received at input {5}.
+So the message (initial_id[],token_id_step1_1,request_id_step1_1,initial_context[],zero_piv[]) may be sent on channel ch_RequestWireOld[] at output {10}.
+mess(ch_RequestWireOld[],(initial_id[],token_id_step1_1,request_id_step1_1,initial_context[],zero_piv[])).
+
+4. The message (initial_id[],token_id_step1_1,request_id_step1_1,initial_context[],zero_piv[]) that may be sent on channel ch_RequestWireOld[] by 3 may be received at input {11}.
+So the message (initial_id[],token_id_step1_1,request_id_step1_1,initial_context[],zero_piv[]) may be sent on channel ch_AcceptedRequestOld[] at output {13}.
+mess(ch_AcceptedRequestOld[],(initial_id[],token_id_step1_1,request_id_step1_1,initial_context[],zero_piv[])).
+
+5. The message (initial_id[],token_id_step1_1,request_id_step1_1,initial_context[],zero_piv[]) that may be sent on channel ch_AcceptedRequestOld[] by 4 may be received at input {14}.
+So the message (initial_id[],token_id_step1_1,request_id_step1_1,initial_context[],zero_piv[],response_id_step3_1) may be sent on channel ch_ResponseWireOld[] at output {17}.
+mess(ch_ResponseWireOld[],(initial_id[],token_id_step1_1,request_id_step1_1,initial_context[],zero_piv[],response_id_step3_1)).
+
+6. The message (initial_id[],token_id_step1_1,request_id_step1_1,initial_context[],zero_piv[],next_context[]) that may be sent on channel ch_PendingOld[] by 2 may be received at input {18}.
+The message (initial_id[],token_id_step1_1,request_id_step1_1,initial_context[],zero_piv[],response_id_step3_1) that may be sent on channel ch_ResponseWireOld[] by 5 may be received at input {19}.
+So the message (initial_id[],next_context[]) may be sent on channel ch_OldExchangeCleared[] at output {21}.
+mess(ch_OldExchangeCleared[],(initial_id[],next_context[])).
+
+7. The message (initial_id[],next_context[]) that may be sent on channel ch_OldExchangeCleared[] by 6 may be received at input {22}.
+So the message (initial_id[],next_context[]) may be sent on channel ch_ReadyNew[] at output {24}.
+mess(ch_ReadyNew[],(initial_id[],next_context[])).
+
+8. The message (initial_id[],next_context[]) that may be sent on channel ch_ReadyNew[] by 7 may be received at input {25}.
+So the message (initial_id[],token_id_step6_1,request_id_step6_1,next_context[],zero_piv[]) may be sent on channel ch_PendingNew[] at output {29}.
+mess(ch_PendingNew[],(initial_id[],token_id_step6_1,request_id_step6_1,next_context[],zero_piv[])).
+
+9. The message (initial_id[],next_context[]) that may be sent on channel ch_ReadyNew[] by 7 may be received at input {25}.
+So the message (initial_id[],token_id_step6_1,request_id_step6_1,next_context[],zero_piv[]) may be sent on channel ch_RequestWireNew[] at output {30}.
+mess(ch_RequestWireNew[],(initial_id[],token_id_step6_1,request_id_step6_1,next_context[],zero_piv[])).
+
+10. The message (initial_id[],token_id_step6_1,request_id_step6_1,next_context[],zero_piv[]) that may be sent on channel ch_RequestWireNew[] by 9 may be received at input {31}.
+So the message (initial_id[],token_id_step6_1,request_id_step6_1,next_context[],zero_piv[]) may be sent on channel ch_AcceptedRequestNew[] at output {33}.
+mess(ch_AcceptedRequestNew[],(initial_id[],token_id_step6_1,request_id_step6_1,next_context[],zero_piv[])).
+
+11. The message (initial_id[],token_id_step6_1,request_id_step6_1,next_context[],zero_piv[]) that may be sent on channel ch_AcceptedRequestNew[] by 10 may be received at input {34}.
+So the message (initial_id[],token_id_step6_1,request_id_step6_1,next_context[],zero_piv[],response_id_step8_1) may be sent on channel ch_ResponseWireNew[] at output {37}.
+mess(ch_ResponseWireNew[],(initial_id[],token_id_step6_1,request_id_step6_1,next_context[],zero_piv[],response_id_step8_1)).
+
+12. The message (initial_id[],token_id_step6_1,request_id_step6_1,next_context[],zero_piv[]) that may be sent on channel ch_PendingNew[] by 8 may be received at input {38}.
+The message (initial_id[],token_id_step6_1,request_id_step6_1,next_context[],zero_piv[],response_id_step8_1) that may be sent on channel ch_ResponseWireNew[] by 11 may be received at input {39}.
+So event ResponseAccepted(new_gen[],initial_id[],token_id_step6_1,request_id_step6_1,next_context[],zero_piv[],response_id_step8_1) may be executed at {40}.
+event(ResponseAccepted(new_gen[],initial_id[],token_id_step6_1,request_id_step6_1,next_context[],zero_piv[],response_id_step8_1)).
+
+13. By 12, event(ResponseAccepted(new_gen[],initial_id[],token_id_step6_1,request_id_step6_1,next_context[],zero_piv[],response_id_step8_1)).
+The goal is reached, represented in the following fact:
+event(ResponseAccepted(new_gen[],initial_id[],token_id_step6_1,request_id_step6_1,next_context[],zero_piv[],response_id_step8_1)).
+
+
+A more detailed output of the traces is available with
+  set traceDisplay = long.
+
+new initial_id: bitstring creating initial_id_1 at {1}
+
+new initial_context: bitstring creating initial_context_1 at {2}
+
+new next_context: bitstring creating next_context_1 at {3}
+
+out(ch_ReadyOld, (initial_id_1,initial_context_1,next_context_1)) at {4} received at {5}
+
+new token_id_step1: bitstring creating token_id_step1_2 at {6}
+
+new request_id_step1: bitstring creating request_id_step1_2 at {7}
+
+event RequestSent(old_gen,initial_id_1,token_id_step1_2,request_id_step1_2,initial_context_1,zero_piv) at {8}
+
+out(ch_PendingOld, (initial_id_1,token_id_step1_2,request_id_step1_2,initial_context_1,zero_piv,next_context_1)) at {9} received at {18}
+
+out(ch_RequestWireOld, (initial_id_1,token_id_step1_2,request_id_step1_2,initial_context_1,zero_piv)) at {10} received at {11}
+
+event RequestAccepted(old_gen,initial_id_1,token_id_step1_2,request_id_step1_2,initial_context_1,zero_piv) at {12}
+
+out(ch_AcceptedRequestOld, (initial_id_1,token_id_step1_2,request_id_step1_2,initial_context_1,zero_piv)) at {13} received at {14}
+
+new response_id_step3: bitstring creating response_id_step3_2 at {15}
+
+event ResponseProtected(old_gen,initial_id_1,token_id_step1_2,request_id_step1_2,initial_context_1,zero_piv,response_id_step3_2) at {16}
+
+out(ch_ResponseWireOld, (initial_id_1,token_id_step1_2,request_id_step1_2,initial_context_1,zero_piv,response_id_step3_2)) at {17} received at {19}
+
+event ResponseAccepted(old_gen,initial_id_1,token_id_step1_2,request_id_step1_2,initial_context_1,zero_piv,response_id_step3_2) at {20}
+
+out(ch_OldExchangeCleared, (initial_id_1,next_context_1)) at {21} received at {22}
+
+event ContextActivated(initial_id_1,next_context_1) at {23}
+
+out(ch_ReadyNew, (initial_id_1,next_context_1)) at {24} received at {25}
+
+new token_id_step6: bitstring creating token_id_step6_2 at {26}
+
+new request_id_step6: bitstring creating request_id_step6_2 at {27}
+
+event RequestSent(new_gen,initial_id_1,token_id_step6_2,request_id_step6_2,next_context_1,zero_piv) at {28}
+
+out(ch_PendingNew, (initial_id_1,token_id_step6_2,request_id_step6_2,next_context_1,zero_piv)) at {29} received at {38}
+
+out(ch_RequestWireNew, (initial_id_1,token_id_step6_2,request_id_step6_2,next_context_1,zero_piv)) at {30} received at {31}
+
+event RequestAccepted(new_gen,initial_id_1,token_id_step6_2,request_id_step6_2,next_context_1,zero_piv) at {32}
+
+out(ch_AcceptedRequestNew, (initial_id_1,token_id_step6_2,request_id_step6_2,next_context_1,zero_piv)) at {33} received at {34}
+
+new response_id_step8: bitstring creating response_id_step8_2 at {35}
+
+event ResponseProtected(new_gen,initial_id_1,token_id_step6_2,request_id_step6_2,next_context_1,zero_piv,response_id_step8_2) at {36}
+
+out(ch_ResponseWireNew, (initial_id_1,token_id_step6_2,request_id_step6_2,next_context_1,zero_piv,response_id_step8_2)) at {37} received at {39}
+
+event ResponseAccepted(new_gen,initial_id_1,token_id_step6_2,request_id_step6_2,next_context_1,zero_piv,response_id_step8_2) at {40} (goal)
+
+The event ResponseAccepted(new_gen,initial_id_1,token_id_step6_2,request_id_step6_2,next_context_1,zero_piv,response_id_step8_2) is executed at {40}.
+A trace has been found.
+RESULT not event(ResponseAccepted(new_gen[],q1_run_id,q1_token_id,q1_request_id,q1_context,q1_request_piv,q1_response_id)) is false.
+-- Query event(ResponseAccepted(q2_generation,q2_run_id,q2_token_id,q2_request_id,q2_context,q2_request_piv,q2_response_id)) ==> event(RequestSent(q2_generation,q2_run_id,q2_token_id,q2_request_id,q2_context,q2_request_piv)) && event(RequestAccepted(q2_generation,q2_run_id,q2_token_id,q2_request_id,q2_context,q2_request_piv)) && event(ResponseProtected(q2_generation,q2_run_id,q2_token_id,q2_request_id,q2_context,q2_request_piv,q2_response_id)) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query event(ResponseAccepted(q2_generation,q2_run_id,q2_token_id,q2_request_id,q2_context,q2_request_piv,q2_response_id)) ==> event(RequestSent(q2_generation,q2_run_id,q2_token_id,q2_request_id,q2_context,q2_request_piv)) && event(RequestAccepted(q2_generation,q2_run_id,q2_token_id,q2_request_id,q2_context,q2_request_piv)) && event(ResponseProtected(q2_generation,q2_run_id,q2_token_id,q2_request_id,q2_context,q2_request_piv,q2_response_id))
+goal reachable: b-event(ResponseProtected(new_gen[],initial_id[],token_id_step6_1,request_id_step6_1,next_context[],zero_piv[],response_id_step8_1)) && b-event(RequestAccepted(new_gen[],initial_id[],token_id_step6_1,request_id_step6_1,next_context[],zero_piv[])) && b-event(RequestSent(new_gen[],initial_id[],token_id_step6_1,request_id_step6_1,next_context[],zero_piv[])) && b-event(ResponseProtected(old_gen[],initial_id[],token_id_step1_1,request_id_step1_1,initial_context[],zero_piv[],response_id_step3_1)) && b-event(RequestAccepted(old_gen[],initial_id[],token_id_step1_1,request_id_step1_1,initial_context[],zero_piv[])) && b-event(RequestSent(old_gen[],initial_id[],token_id_step1_1,request_id_step1_1,initial_context[],zero_piv[])) -> event(ResponseAccepted(new_gen[],initial_id[],token_id_step6_1,request_id_step6_1,next_context[],zero_piv[],response_id_step8_1))
+Abbreviations:
+token_id_step6_1 = token_id_step6[context_step6 = next_context[],run_id_step6 = initial_id[]]
+request_id_step6_1 = request_id_step6[context_step6 = next_context[],run_id_step6 = initial_id[]]
+response_id_step8_1 = response_id_step8[request_piv_step8 = zero_piv[],context_step8 = next_context[],request_id_step8 = request_id_step6_1,token_id_step8 = token_id_step6_1,run_id_step8 = initial_id[]]
+token_id_step1_1 = token_id_step1[next_context_step1 = next_context[],context_step1 = initial_context[],run_id_step1 = initial_id[]]
+request_id_step1_1 = request_id_step1[next_context_step1 = next_context[],context_step1 = initial_context[],run_id_step1 = initial_id[]]
+response_id_step3_1 = response_id_step3[request_piv_step3 = zero_piv[],context_step3 = initial_context[],request_id_step3 = request_id_step1_1,token_id_step3 = token_id_step1_1,run_id_step3 = initial_id[]]
+goal reachable: b-event(ResponseProtected(old_gen[],initial_id[],token_id_step1_1,request_id_step1_1,initial_context[],zero_piv[],response_id_step3_1)) && b-event(RequestAccepted(old_gen[],initial_id[],token_id_step1_1,request_id_step1_1,initial_context[],zero_piv[])) && b-event(RequestSent(old_gen[],initial_id[],token_id_step1_1,request_id_step1_1,initial_context[],zero_piv[])) -> event(ResponseAccepted(old_gen[],initial_id[],token_id_step1_1,request_id_step1_1,initial_context[],zero_piv[],response_id_step3_1))
+Abbreviations:
+token_id_step1_1 = token_id_step1[next_context_step1 = next_context[],context_step1 = initial_context[],run_id_step1 = initial_id[]]
+request_id_step1_1 = request_id_step1[next_context_step1 = next_context[],context_step1 = initial_context[],run_id_step1 = initial_id[]]
+response_id_step3_1 = response_id_step3[request_piv_step3 = zero_piv[],context_step3 = initial_context[],request_id_step3 = request_id_step1_1,token_id_step3 = token_id_step1_1,run_id_step3 = initial_id[]]
+RESULT event(ResponseAccepted(q2_generation,q2_run_id,q2_token_id,q2_request_id,q2_context,q2_request_piv,q2_response_id)) ==> event(RequestSent(q2_generation,q2_run_id,q2_token_id,q2_request_id,q2_context,q2_request_piv)) && event(RequestAccepted(q2_generation,q2_run_id,q2_token_id,q2_request_id,q2_context,q2_request_piv)) && event(ResponseProtected(q2_generation,q2_run_id,q2_token_id,q2_request_id,q2_context,q2_request_piv,q2_response_id)) is true.
+-- Query inj-event(ResponseAccepted(q3_generation,q3_run_id,q3_token_id,q3_request_id,q3_context,q3_request_piv,q3_response_id)) ==> inj-event(ResponseProtected(q3_generation,q3_run_id,q3_token_id,q3_request_id,q3_context,q3_request_piv,q3_response_id)) && inj-event(RequestSent(q3_generation,q3_run_id,q3_token_id,q3_request_id,q3_context,q3_request_piv)) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query inj-event(ResponseAccepted(q3_generation,q3_run_id,q3_token_id,q3_request_id,q3_context,q3_request_piv,q3_response_id)) ==> inj-event(ResponseProtected(q3_generation,q3_run_id,q3_token_id,q3_request_id,q3_context,q3_request_piv,q3_response_id)) && inj-event(RequestSent(q3_generation,q3_run_id,q3_token_id,q3_request_id,q3_context,q3_request_piv))
+goal reachable: b-inj-event(ResponseProtected(new_gen[],initial_id[],token_id_step6_1,request_id_step6_1,next_context[],zero_piv[],response_id_step8_1),@occ36_1) && b-inj-event(RequestSent(new_gen[],initial_id[],token_id_step6_1,request_id_step6_1,next_context[],zero_piv[]),@occ28_1) && b-inj-event(ResponseProtected(old_gen[],initial_id[],token_id_step1_1,request_id_step1_1,initial_context[],zero_piv[],response_id_step3_1),@occ16_1) && b-inj-event(RequestSent(old_gen[],initial_id[],token_id_step1_1,request_id_step1_1,initial_context[],zero_piv[]),@occ8_1) -> inj-event(ResponseAccepted(new_gen[],initial_id[],token_id_step6_1,request_id_step6_1,next_context[],zero_piv[],response_id_step8_1),@occ40_1)
+The 1st, 2nd, 3rd, 4th hypotheses occur strictly before the conclusion.
+Abbreviations:
+token_id_step6_1 = token_id_step6[context_step6 = next_context[],run_id_step6 = initial_id[]]
+request_id_step6_1 = request_id_step6[context_step6 = next_context[],run_id_step6 = initial_id[]]
+response_id_step8_1 = response_id_step8[request_piv_step8 = zero_piv[],context_step8 = next_context[],request_id_step8 = request_id_step6_1,token_id_step8 = token_id_step6_1,run_id_step8 = initial_id[]]
+@occ40_1 = @occ40[response_id_step9 = response_id_step8_1,request_piv_step9 = zero_piv[],context_step9 = next_context[],request_id_step9 = request_id_step6_1,token_id_step9 = token_id_step6_1,run_id_step9 = initial_id[]]
+@occ36_1 = @occ36[request_piv_step8 = zero_piv[],context_step8 = next_context[],request_id_step8 = request_id_step6_1,token_id_step8 = token_id_step6_1,run_id_step8 = initial_id[]]
+@occ28_1 = @occ28[context_step6 = next_context[],run_id_step6 = initial_id[]]
+token_id_step1_1 = token_id_step1[next_context_step1 = next_context[],context_step1 = initial_context[],run_id_step1 = initial_id[]]
+request_id_step1_1 = request_id_step1[next_context_step1 = next_context[],context_step1 = initial_context[],run_id_step1 = initial_id[]]
+response_id_step3_1 = response_id_step3[request_piv_step3 = zero_piv[],context_step3 = initial_context[],request_id_step3 = request_id_step1_1,token_id_step3 = token_id_step1_1,run_id_step3 = initial_id[]]
+@occ16_1 = @occ16[request_piv_step3 = zero_piv[],context_step3 = initial_context[],request_id_step3 = request_id_step1_1,token_id_step3 = token_id_step1_1,run_id_step3 = initial_id[]]
+@occ8_1 = @occ8[next_context_step1 = next_context[],context_step1 = initial_context[],run_id_step1 = initial_id[]]
+goal reachable: b-inj-event(ResponseProtected(old_gen[],initial_id[],token_id_step1_1,request_id_step1_1,initial_context[],zero_piv[],response_id_step3_1),@occ16_1) && b-inj-event(RequestSent(old_gen[],initial_id[],token_id_step1_1,request_id_step1_1,initial_context[],zero_piv[]),@occ8_1) -> inj-event(ResponseAccepted(old_gen[],initial_id[],token_id_step1_1,request_id_step1_1,initial_context[],zero_piv[],response_id_step3_1),@occ20_1)
+The 1st, 2nd hypotheses occur strictly before the conclusion.
+Abbreviations:
+token_id_step1_1 = token_id_step1[next_context_step1 = next_context[],context_step1 = initial_context[],run_id_step1 = initial_id[]]
+request_id_step1_1 = request_id_step1[next_context_step1 = next_context[],context_step1 = initial_context[],run_id_step1 = initial_id[]]
+response_id_step3_1 = response_id_step3[request_piv_step3 = zero_piv[],context_step3 = initial_context[],request_id_step3 = request_id_step1_1,token_id_step3 = token_id_step1_1,run_id_step3 = initial_id[]]
+@occ20_1 = @occ20[response_id_step4 = response_id_step3_1,next_context_step4 = next_context[],request_piv_step4 = zero_piv[],context_step4 = initial_context[],request_id_step4 = request_id_step1_1,token_id_step4 = token_id_step1_1,run_id_step4 = initial_id[]]
+@occ16_1 = @occ16[request_piv_step3 = zero_piv[],context_step3 = initial_context[],request_id_step3 = request_id_step1_1,token_id_step3 = token_id_step1_1,run_id_step3 = initial_id[]]
+@occ8_1 = @occ8[next_context_step1 = next_context[],context_step1 = initial_context[],run_id_step1 = initial_id[]]
+RESULT inj-event(ResponseAccepted(q3_generation,q3_run_id,q3_token_id,q3_request_id,q3_context,q3_request_piv,q3_response_id)) ==> inj-event(ResponseProtected(q3_generation,q3_run_id,q3_token_id,q3_request_id,q3_context,q3_request_piv,q3_response_id)) && inj-event(RequestSent(q3_generation,q3_run_id,q3_token_id,q3_request_id,q3_context,q3_request_piv)) is true.
+-- Query event(RequestSent(new_gen[],q4_run_id,q4_token_id,q4_request_id,q4_context,q4_request_piv)) ==> event(ContextActivated(q4_run_id,q4_context)) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query event(RequestSent(new_gen[],q4_run_id,q4_token_id,q4_request_id,q4_context,q4_request_piv)) ==> event(ContextActivated(q4_run_id,q4_context))
+goal reachable: b-event(ContextActivated(initial_id[],next_context[])) -> event(RequestSent(new_gen[],initial_id[],token_id_step6_1,request_id_step6_1,next_context[],zero_piv[]))
+Abbreviations:
+token_id_step6_1 = token_id_step6[context_step6 = next_context[],run_id_step6 = initial_id[]]
+request_id_step6_1 = request_id_step6[context_step6 = next_context[],run_id_step6 = initial_id[]]
+RESULT event(RequestSent(new_gen[],q4_run_id,q4_token_id,q4_request_id,q4_context,q4_request_piv)) ==> event(ContextActivated(q4_run_id,q4_context)) is true.
+
+--------------------------------------------------------------
+Verification summary:
+
+Query not event(ResponseAccepted(new_gen[],q1_run_id,q1_token_id,q1_request_id,q1_context,q1_request_piv,q1_response_id)) is false.
+
+Query event(ResponseAccepted(q2_generation,q2_run_id,q2_token_id,q2_request_id,q2_context,q2_request_piv,q2_response_id)) ==> event(RequestSent(q2_generation,q2_run_id,q2_token_id,q2_request_id,q2_context,q2_request_piv)) && event(RequestAccepted(q2_generation,q2_run_id,q2_token_id,q2_request_id,q2_context,q2_request_piv)) && event(ResponseProtected(q2_generation,q2_run_id,q2_token_id,q2_request_id,q2_context,q2_request_piv,q2_response_id)) is true.
+
+Query inj-event(ResponseAccepted(q3_generation,q3_run_id,q3_token_id,q3_request_id,q3_context,q3_request_piv,q3_response_id)) ==> inj-event(ResponseProtected(q3_generation,q3_run_id,q3_token_id,q3_request_id,q3_context,q3_request_piv,q3_response_id)) && inj-event(RequestSent(q3_generation,q3_run_id,q3_token_id,q3_request_id,q3_context,q3_request_piv)) is true.
+
+Query event(RequestSent(new_gen[],q4_run_id,q4_token_id,q4_request_id,q4_context,q4_request_piv)) ==> event(ContextActivated(q4_run_id,q4_context)) is true.
+
+--------------------------------------------------------------
+

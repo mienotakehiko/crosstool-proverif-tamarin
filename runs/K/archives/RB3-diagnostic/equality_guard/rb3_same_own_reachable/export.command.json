@@ -1,0 +1,1 @@
+["tamarin-prover", "-d=0", "-m=proverif", "--lemma=rb3_same_own_reachable", "-o=/work/equality_guard/rb3_same_own_reachable/translated.pv", "/work/inputs/rb3_equality_guard.spthy"]

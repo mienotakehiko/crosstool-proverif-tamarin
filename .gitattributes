@@ -1,2 +1,10 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+# Preserve archived bytes, including upstream formats and line endings.
+* -text
+*.tsv whitespace=-blank-at-eol
+# Historical records and upstream patches retain their original formatting.
+/runs/** -whitespace
+/corpus/morio/eval-results.jsonl -whitespace
+/exporter/patches/** -whitespace
+/exporter/recipes/** -whitespace
+/env/u11/environment.txt -whitespace
+/paper/ladder_points.csv whitespace=cr-at-eol

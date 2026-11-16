@@ -1,0 +1,25 @@
+'tamarin-cyclic' '--with-maude=maude35' '--derivcheck-timeout=0' '--prove=Login_invalidates_smaller_counters' 'corpus/related_work__YubiSecure_KS_STM12__Yubikey.spthy' +RTS '-N' '-M56g' '-A64m' '-qg' '-N4' '-sresults/out/P5_P4_cyc_related_work__YubiSecure_KS_STM12__Yubikey_T0_Login_invalidates_smaller_counters_d_prove_r2.rts' 
+     282,346,472 bytes allocated in the heap
+       5,701,192 bytes copied during GC
+         139,872 bytes maximum residency (1 sample(s))
+          77,216 bytes maximum slop
+             271 MiB total memory in use (0 MiB lost due to fragmentation)
+
+                                     Tot time (elapsed)  Avg pause  Max pause
+  Gen  0         1 colls,     0 par    0.000s   0.012s     0.0118s    0.0118s
+  Gen  1         1 colls,     0 par    0.000s   0.000s     0.0004s    0.0004s
+
+  TASKS: 10 (1 bound, 9 peak workers (9 total), using -N4)
+
+  SPARKS: 79 (54 converted, 0 overflowed, 0 dud, 0 GC'd, 25 fizzled)
+
+  INIT    time    0.003s  (  0.003s elapsed)
+  MUT     time    0.204s  (  0.102s elapsed)
+  GC      time    0.000s  (  0.012s elapsed)
+  EXIT    time    0.001s  (  0.003s elapsed)
+  Total   time    0.208s  (  0.120s elapsed)
+
+  Alloc rate    1,381,337,411 bytes per MUT second
+
+  Productivity  98.2% of total user, 85.0% of total elapsed
+

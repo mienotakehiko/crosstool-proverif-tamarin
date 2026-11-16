@@ -1,0 +1,56 @@
+(* Generated pending_old case. Verification result is a local premise. *)
+free ch_Pending, ch_BeforeSnapshot, ch_VerifiedOldPremise, ch_VerifiedDivergent, ch_BusyEntry: channel [private].
+free empty_new, empty_pair: bitstring.
+fun tempctx(bitstring, bitstring): bitstring.
+
+event PendingBefore(bitstring, bitstring, bitstring, bitstring).
+event OldVerified(bitstring, bitstring, bitstring).
+event PendingAborted(bitstring, bitstring, bitstring, bitstring, bitstring).
+event BusyEntryRead(bitstring, bitstring, bitstring, bitstring, bitstring, bitstring, bitstring, bitstring).
+
+query m:bitstring, o:bitstring, r:bitstring, n0:bitstring, i0:bitstring, p0:bitstring, ns:bitstring, ps:bitstring;
+  event(BusyEntryRead(m,o,r,n0,i0,p0,ns,ps)).
+
+query m:bitstring, o:bitstring, r:bitstring, n0:bitstring, i0:bitstring, p0:bitstring, ns:bitstring, ps:bitstring;
+  event(BusyEntryRead(m,o,r,n0,i0,p0,ns,ps)) ==> event(OldVerified(m,o,r)).
+
+query m:bitstring, o:bitstring, r:bitstring, n0:bitstring, i0:bitstring, p0:bitstring, ns:bitstring, ps:bitstring;
+  event(BusyEntryRead(m,o,r,n0,i0,p0,ns,ps)) ==> event(PendingBefore(o,n0,i0,p0)) && event(PendingAborted(m,o,n0,i0,p0)).
+
+query m:bitstring, o:bitstring, r:bitstring, n0:bitstring, i0:bitstring, p0:bitstring, ns:bitstring, ps:bitstring;
+  event(BusyEntryRead(m,o,r,n0,i0,p0,ns,ps)) ==> ns = empty_new && ps = empty_pair.
+
+process
+  new old_ctx:bitstring;
+  new new_ctx:bitstring;
+  new local_pair:bitstring;
+  new incoming_pair:bitstring;
+  new message:bitstring;
+  event PendingBefore(old_ctx,new_ctx,old_ctx,local_pair);
+  (
+    (out(ch_Pending,(old_ctx,new_ctx,old_ctx,local_pair));
+     0)
+    |
+    (out(ch_BeforeSnapshot,(new_ctx,old_ctx,local_pair));
+     0)
+    |
+    (out(ch_VerifiedOldPremise,(message,old_ctx,incoming_pair));
+     0)
+    |
+    (in(ch_VerifiedOldPremise,(m:bitstring,o:bitstring,peer_pair:bitstring));
+     event OldVerified(m,o,tempctx(o,peer_pair));
+     out(ch_VerifiedDivergent,(m,o,tempctx(o,peer_pair),peer_pair));
+     0)
+    |
+    (in(ch_Pending,(o:bitstring,n:bitstring,src:bitstring,p:bitstring));
+     in(ch_VerifiedDivergent,(m:bitstring,=o,r:bitstring,peer_pair:bitstring));
+     if r = tempctx(o,peer_pair) then
+       (event PendingAborted(m,o,n,src,p);
+        out(ch_BusyEntry,(m,o,r,empty_new,empty_pair));
+        0))
+    |
+    (in(ch_BeforeSnapshot,(n0:bitstring,i0:bitstring,p0:bitstring));
+     in(ch_BusyEntry,(m:bitstring,o:bitstring,r:bitstring,ns:bitstring,ps:bitstring));
+     event BusyEntryRead(m,o,r,n0,i0,p0,ns,ps);
+     0)
+  )

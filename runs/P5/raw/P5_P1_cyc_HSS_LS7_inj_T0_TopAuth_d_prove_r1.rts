@@ -1,0 +1,25 @@
+'tamarin-cyclic' '--with-maude=maude35' '--derivcheck-timeout=0' '--prove=TopAuth' 'variants/HSS_LS7_inj__T0.spthy' +RTS '-N' '-M56g' '-A64m' '-qg' '-N4' '-sresults/out/P5_P1_cyc_HSS_LS7_inj_T0_TopAuth_d_prove_r1.rts' 
+  37,871,538,544 bytes allocated in the heap
+   1,552,998,928 bytes copied during GC
+     202,634,280 bytes maximum residency (10 sample(s))
+         543,704 bytes maximum slop
+             747 MiB total memory in use (0 MiB lost due to fragmentation)
+
+                                     Tot time (elapsed)  Avg pause  Max pause
+  Gen  0       138 colls,     0 par    0.294s   1.380s     0.0100s    0.0265s
+  Gen  1        10 colls,     0 par    0.038s   0.734s     0.0734s    0.1953s
+
+  TASKS: 10 (1 bound, 9 peak workers (9 total), using -N4)
+
+  SPARKS: 174 (126 converted, 0 overflowed, 0 dud, 0 GC'd, 48 fizzled)
+
+  INIT    time    0.003s  (  0.002s elapsed)
+  MUT     time   15.968s  (  6.730s elapsed)
+  GC      time    0.333s  (  2.114s elapsed)
+  EXIT    time    0.014s  (  0.004s elapsed)
+  Total   time   16.317s  (  8.850s elapsed)
+
+  Alloc rate    2,371,778,992 bytes per MUT second
+
+  Productivity  97.9% of total user, 76.0% of total elapsed
+

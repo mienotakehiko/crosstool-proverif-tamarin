@@ -1,0 +1,1 @@
+["tamarin-prover", "+RTS", "-N1", "-M768m", "-RTS", "-d=0", "--prove=rb2_second_acceptance_reachable", "/work/inputs/rb2.spthy"]

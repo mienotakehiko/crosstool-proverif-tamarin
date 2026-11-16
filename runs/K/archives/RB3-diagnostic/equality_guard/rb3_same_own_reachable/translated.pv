@@ -1,0 +1,163 @@
+set preciseActions = true.
+
+(* Free names *)
+free publicChannel:channel.
+free vdifferent_ctx:bitstring.
+free vno_piv:bitstring.
+free vown_piv:bitstring.
+free vrequest_zero:bitstring.
+free vreuse_piv:bitstring.
+free vsame_ctx:bitstring.
+
+(* Functions *)
+fun fst(bitstring):bitstring.
+fun pair(bitstring,bitstring):bitstring.
+fun snd(bitstring):bitstring.
+
+(* Equations *)
+equation forall x_1:bitstring, x_2:bitstring; fst((x_1, x_2)) = x_1.
+equation forall x_1:bitstring, x_2:bitstring; snd((x_1, x_2)) = x_2.
+
+(* Events *)
+event eContextMatch(bitstring, bitstring).
+event eDistinctFact(bitstring, bitstring).
+event eInit(bitstring).
+event eRequestAccepted(bitstring, bitstring, bitstring, bitstring, bitstring).
+event eResponseAccepted(bitstring, bitstring, bitstring, bitstring, bitstring, bitstring, bitstring, bitstring).
+event eResponseProtected(bitstring, bitstring, bitstring, bitstring, bitstring, bitstring, bitstring, bitstring).
+event eServerSendReady(bitstring, bitstring, bitstring).
+
+(* Tables *)
+table tCanRespond(bitstring, bitstring, bitstring, bitstring, bitstring, bitstring, bitstring, bitstring).
+table tChooseContext(bitstring, bitstring, bitstring, bitstring, bitstring).
+table tExchangeReady(bitstring, bitstring, bitstring, bitstring, bitstring, bitstring).
+table tPending(bitstring, bitstring, bitstring, bitstring, bitstring, bitstring, bitstring).
+table tProtectedResponse(bitstring, bitstring, bitstring, bitstring, bitstring, bitstring, bitstring, bitstring, bitstring).
+
+(* Restrictions *)
+
+(* SingleInit *)
+
+restriction rid_i:bitstring, rid_j:bitstring, i:time, j:time;
+  event(eInit( rid_i ))@i && event(eInit( rid_j ))@j ==> rid_i = rid_j.
+
+(* EqualContext *)
+
+restriction a:bitstring, b:bitstring, i:time;
+  event(eContextMatch( a, b ))@i ==> a = b.
+
+(* DistinctFact *)
+
+restriction rid_i:bitstring, rid_j:bitstring, x:bitstring, i:time,
+            j:time;
+  event(eDistinctFact( rid_i, x ))@i && event(eDistinctFact( rid_j, x ))@j
+  ==> rid_i = rid_j.
+
+(* Queries *)
+
+(* rb3_same_own_reachable *)
+
+query ctx:bitstring, reply_piv:bitstring, request_piv:bitstring,
+      run_id:bitstring, token_id:bitstring, k:time;
+  event(eResponseAccepted( vsame_ctx, run_id, token_id, ctx, ctx,
+                           request_piv, vown_piv, reply_piv
+        ))@k.
+
+(* Processes *)
+
+let rInit =
+        new rid_rInit: bitstring;
+        new stR_ChooseContext: bitstring;
+        new run_id: bitstring;
+        new request_context: bitstring;
+        new new_context: bitstring;
+        new sender_ssn: bitstring;
+        event eInit(rid_rInit);
+        insert tChooseContext(stR_ChooseContext, run_id, request_context,
+                              new_context, sender_ssn).
+
+let rUseSameContext =
+        get tChooseContext(stL_ChooseContext, run_id, request_context,
+                           new_context, sender_ssn) in
+        new rid_rUseSameContext: bitstring;
+        new stR_ExchangeReady: bitstring;
+        event eDistinctFact(rid_rUseSameContext, (stL_ChooseContext, (run_id, (request_context, (new_context, sender_ssn)))));
+        insert tExchangeReady(stR_ExchangeReady, vsame_ctx, run_id,
+                              request_context, request_context, sender_ssn).
+
+let rUseDifferentContext =
+        get tChooseContext(stL_ChooseContext, run_id, request_context,
+                           new_context, sender_ssn) in
+        new rid_rUseDifferentContext: bitstring;
+        new stR_ExchangeReady: bitstring;
+        event eDistinctFact(rid_rUseDifferentContext, (stL_ChooseContext, (run_id, (request_context, (new_context, sender_ssn)))));
+        insert tExchangeReady(stR_ExchangeReady, vdifferent_ctx, run_id,
+                              request_context, new_context, sender_ssn).
+
+let rRecordAcceptedRequest =
+        get tExchangeReady(stL_ExchangeReady, scenario, run_id, request_context,
+                           response_context, sender_ssn) in
+        new rid_rRecordAcceptedRequest: bitstring;
+        new stR_Pending: bitstring;
+        new stR_CanRespond: bitstring;
+        new token_id: bitstring;
+        event eDistinctFact(rid_rRecordAcceptedRequest, (stL_ExchangeReady, (scenario, (run_id, (request_context, (response_context, sender_ssn))))));
+        event eRequestAccepted(scenario, run_id, token_id, request_context,
+                               vrequest_zero);
+        event eServerSendReady(run_id, response_context, sender_ssn);
+        insert tPending(stR_Pending, scenario, run_id, token_id, request_context,
+                        vrequest_zero, response_context);
+        insert tCanRespond(stR_CanRespond, scenario, run_id, token_id,
+                           request_context, response_context, vrequest_zero, sender_ssn).
+
+let rProtectWithOwnPiv =
+        get tCanRespond(stL_CanRespond, scenario, run_id, token_id,
+                        request_context, response_context, request_piv, sender_ssn) in
+        new rid_rProtectWithOwnPiv: bitstring;
+        new stR_ProtectedResponse: bitstring;
+        event eDistinctFact(rid_rProtectWithOwnPiv, (stL_CanRespond, (scenario, (run_id, (token_id, (request_context, (response_context, (request_piv, sender_ssn))))))));
+        event eResponseProtected(scenario, run_id, token_id, request_context,
+                                 response_context, request_piv, vown_piv, sender_ssn);
+        insert tProtectedResponse(stR_ProtectedResponse, scenario, run_id,
+                                  token_id, request_context, response_context, request_piv, vown_piv,
+                                  sender_ssn).
+
+let rProtectWithRequestNonce =
+        get tCanRespond(stL_CanRespond, scenario, run_id, token_id,
+                        request_context, request_context, request_piv, sender_ssn) in
+        new rid_rProtectWithRequestNonce: bitstring;
+        new stR_ProtectedResponse: bitstring;
+        event eDistinctFact(rid_rProtectWithRequestNonce, (stL_CanRespond, (scenario, (run_id, (token_id, (request_context, (request_context, (request_piv, sender_ssn))))))));
+        event eResponseProtected(scenario, run_id, token_id, request_context,
+                                 request_context, request_piv, vreuse_piv, vno_piv);
+        event eContextMatch(request_context, request_context);
+        insert tProtectedResponse(stR_ProtectedResponse, scenario, run_id,
+                                  token_id, request_context, request_context, request_piv, vreuse_piv,
+                                  vno_piv).
+
+let rAcceptResponse =
+        get tPending(stL_Pending, scenario, run_id, token_id, request_context,
+                     request_piv, response_context) in
+        get tProtectedResponse(stL_ProtectedResponse, =scenario, =run_id,
+                               =token_id, =request_context, =response_context, =request_piv, piv_mode,
+                               reply_piv) in
+        new rid_rAcceptResponse: bitstring;
+        event eDistinctFact(rid_rAcceptResponse, (stL_Pending, (scenario, (run_id, (token_id, (request_context, (request_piv, response_context)))))));
+        event eDistinctFact(rid_rAcceptResponse, (stL_ProtectedResponse, (scenario, (run_id, (token_id, (request_context, (response_context, (request_piv, (piv_mode, reply_piv)))))))));
+        event eResponseAccepted(scenario, run_id, token_id, request_context,
+                                response_context, request_piv, piv_mode, reply_piv).
+
+process
+    ( !(rInit) | !(rUseSameContext) | !(rUseDifferentContext) | !(rRecordAcceptedRequest) | !(rProtectWithOwnPiv) | !(rProtectWithRequestNonce) | !(rAcceptResponse) )
+
+(*
+All wellformedness checks were successful.
+*)
+
+(*
+Generated from:
+Tamarin version 1.13.0
+Maude version 3.5
+Git revision: UNKNOWN
+Compiled at: 2026-10-24 02:25:12.718891574 UTC
+*)

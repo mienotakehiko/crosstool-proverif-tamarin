@@ -1,0 +1,122 @@
+--- baseline
++++ candidate
+@@ -335,10 +335,10 @@
+         out(publicChannel, (I, (J, (hl(J, (ch(J, vm, ch(J, vm, ch(J, vm, prf(sdB, z(), vm)))), ch(J, vk, ch(J, vk, ch(J, vk, prf(sdB, z(), vk))))), (ch(J, vm, ch(J, vm, ch(J, vm, prf(sdB, s(z()), vm)))), ch(J, vk, ch(J, vk, ch(J, vk, prf(sdB, s(z()), vk)))))), (z(), (s(s(s(z()))), (ch(I, vm, ch(I, vm, ch(I, vm, prf(sdT, z(), vm)))), (prf(sdT, z(), vk), (ch(I, vm, ch(I, vm, ch(I, vm, prf(sdT, s(z()), vm)))), ch(I, vk, ch(I, vk, ch(I, vk, prf(sdT, s(z()), vk))))))))))))).
+ 
+ let rBotSign_q0_a0 =
+-        get tBotSt(stL_BotSt, I, J, sdB, helperVar0) in
+-        in(publicChannel, helperVar1: bitstring);
+-        let (=vsign) = g_var_vsign_4(helperVar1) in
+-        let m = g_var_m_5(helperVar1) in
++        get tBotSt(stL_BotSt, I, J, sdB, =z()) in
++        in(publicChannel, helperVar0: bitstring);
++        let (=vsign) = g_var_vsign_4(helperVar0) in
++        let m = g_var_m_5(helperVar0) in
+         new rid_rBotSign_q0_a0: bitstring;
+         new stR_BotSt: bitstring;
+         event eDistinctFact(rid_rBotSign_q0_a0, (stL_BotSt, (I, (J, (sdB, z())))));
+@@ -348,10 +348,10 @@
+         out(publicChannel, (I, (J, (m, (z(), (z(), (prf(sdB, z(), vm), (ch(J, vk, ch(J, vk, ch(J, vk, prf(sdB, z(), vk)))), (ch(J, vm, ch(J, vm, ch(J, vm, prf(sdB, s(z()), vm)))), ch(J, vk, ch(J, vk, ch(J, vk, prf(sdB, s(z()), vk))))))))))))).
+ 
+ let rBotSign_q0_a1 =
+-        get tBotSt(stL_BotSt, I, J, sdB, helperVar0) in
+-        in(publicChannel, helperVar1: bitstring);
+-        let (=vsign) = g_var_vsign_6(helperVar1) in
+-        let m = g_var_m_7(helperVar1) in
++        get tBotSt(stL_BotSt, I, J, sdB, =z()) in
++        in(publicChannel, helperVar0: bitstring);
++        let (=vsign) = g_var_vsign_6(helperVar0) in
++        let m = g_var_m_7(helperVar0) in
+         new rid_rBotSign_q0_a1: bitstring;
+         new stR_BotSt: bitstring;
+         event eDistinctFact(rid_rBotSign_q0_a1, (stL_BotSt, (I, (J, (sdB, z())))));
+@@ -361,10 +361,10 @@
+         out(publicChannel, (I, (J, (m, (z(), (s(z()), (ch(J, vm, prf(sdB, z(), vm)), (ch(J, vk, ch(J, vk, prf(sdB, z(), vk))), (ch(J, vm, ch(J, vm, ch(J, vm, prf(sdB, s(z()), vm)))), ch(J, vk, ch(J, vk, ch(J, vk, prf(sdB, s(z()), vk))))))))))))).
+ 
+ let rBotSign_q0_a2 =
+-        get tBotSt(stL_BotSt, I, J, sdB, helperVar0) in
+-        in(publicChannel, helperVar1: bitstring);
+-        let (=vsign) = g_var_vsign_8(helperVar1) in
+-        let m = g_var_m_9(helperVar1) in
++        get tBotSt(stL_BotSt, I, J, sdB, =z()) in
++        in(publicChannel, helperVar0: bitstring);
++        let (=vsign) = g_var_vsign_8(helperVar0) in
++        let m = g_var_m_9(helperVar0) in
+         new rid_rBotSign_q0_a2: bitstring;
+         new stR_BotSt: bitstring;
+         event eDistinctFact(rid_rBotSign_q0_a2, (stL_BotSt, (I, (J, (sdB, z())))));
+@@ -374,10 +374,10 @@
+         out(publicChannel, (I, (J, (m, (z(), (s(s(z())), (ch(J, vm, ch(J, vm, prf(sdB, z(), vm))), (ch(J, vk, prf(sdB, z(), vk)), (ch(J, vm, ch(J, vm, ch(J, vm, prf(sdB, s(z()), vm)))), ch(J, vk, ch(J, vk, ch(J, vk, prf(sdB, s(z()), vk))))))))))))).
+ 
+ let rBotSign_q0_a3 =
+-        get tBotSt(stL_BotSt, I, J, sdB, helperVar0) in
+-        in(publicChannel, helperVar1: bitstring);
+-        let (=vsign) = g_var_vsign_10(helperVar1) in
+-        let m = g_var_m_11(helperVar1) in
++        get tBotSt(stL_BotSt, I, J, sdB, =z()) in
++        in(publicChannel, helperVar0: bitstring);
++        let (=vsign) = g_var_vsign_10(helperVar0) in
++        let m = g_var_m_11(helperVar0) in
+         new rid_rBotSign_q0_a3: bitstring;
+         new stR_BotSt: bitstring;
+         event eDistinctFact(rid_rBotSign_q0_a3, (stL_BotSt, (I, (J, (sdB, z())))));
+@@ -387,10 +387,10 @@
+         out(publicChannel, (I, (J, (m, (z(), (s(s(s(z()))), (ch(J, vm, ch(J, vm, ch(J, vm, prf(sdB, z(), vm)))), (prf(sdB, z(), vk), (ch(J, vm, ch(J, vm, ch(J, vm, prf(sdB, s(z()), vm)))), ch(J, vk, ch(J, vk, ch(J, vk, prf(sdB, s(z()), vk))))))))))))).
+ 
+ let rBotSign_q1_a0 =
+-        get tBotSt(stL_BotSt, I, J, sdB, helperVar0) in
+-        in(publicChannel, helperVar1: bitstring);
+-        let (=vsign) = g_var_vsign_4(helperVar1) in
+-        let m = g_var_m_5(helperVar1) in
++        get tBotSt(stL_BotSt, I, J, sdB, =s(z())) in
++        in(publicChannel, helperVar0: bitstring);
++        let (=vsign) = g_var_vsign_4(helperVar0) in
++        let m = g_var_m_5(helperVar0) in
+         new rid_rBotSign_q1_a0: bitstring;
+         new stR_BotSt: bitstring;
+         event eDistinctFact(rid_rBotSign_q1_a0, (stL_BotSt, (I, (J, (sdB, s(z()))))));
+@@ -400,10 +400,10 @@
+         out(publicChannel, (I, (J, (m, (s(z()), (z(), (prf(sdB, s(z()), vm), (ch(J, vk, ch(J, vk, ch(J, vk, prf(sdB, s(z()), vk)))), (ch(J, vm, ch(J, vm, ch(J, vm, prf(sdB, z(), vm)))), ch(J, vk, ch(J, vk, ch(J, vk, prf(sdB, z(), vk))))))))))))).
+ 
+ let rBotSign_q1_a1 =
+-        get tBotSt(stL_BotSt, I, J, sdB, helperVar0) in
+-        in(publicChannel, helperVar1: bitstring);
+-        let (=vsign) = g_var_vsign_6(helperVar1) in
+-        let m = g_var_m_7(helperVar1) in
++        get tBotSt(stL_BotSt, I, J, sdB, =s(z())) in
++        in(publicChannel, helperVar0: bitstring);
++        let (=vsign) = g_var_vsign_6(helperVar0) in
++        let m = g_var_m_7(helperVar0) in
+         new rid_rBotSign_q1_a1: bitstring;
+         new stR_BotSt: bitstring;
+         event eDistinctFact(rid_rBotSign_q1_a1, (stL_BotSt, (I, (J, (sdB, s(z()))))));
+@@ -413,10 +413,10 @@
+         out(publicChannel, (I, (J, (m, (s(z()), (s(z()), (ch(J, vm, prf(sdB, s(z()), vm)), (ch(J, vk, ch(J, vk, prf(sdB, s(z()), vk))), (ch(J, vm, ch(J, vm, ch(J, vm, prf(sdB, z(), vm)))), ch(J, vk, ch(J, vk, ch(J, vk, prf(sdB, z(), vk))))))))))))).
+ 
+ let rBotSign_q1_a2 =
+-        get tBotSt(stL_BotSt, I, J, sdB, helperVar0) in
+-        in(publicChannel, helperVar1: bitstring);
+-        let (=vsign) = g_var_vsign_8(helperVar1) in
+-        let m = g_var_m_9(helperVar1) in
++        get tBotSt(stL_BotSt, I, J, sdB, =s(z())) in
++        in(publicChannel, helperVar0: bitstring);
++        let (=vsign) = g_var_vsign_8(helperVar0) in
++        let m = g_var_m_9(helperVar0) in
+         new rid_rBotSign_q1_a2: bitstring;
+         new stR_BotSt: bitstring;
+         event eDistinctFact(rid_rBotSign_q1_a2, (stL_BotSt, (I, (J, (sdB, s(z()))))));
+@@ -426,10 +426,10 @@
+         out(publicChannel, (I, (J, (m, (s(z()), (s(s(z())), (ch(J, vm, ch(J, vm, prf(sdB, s(z()), vm))), (ch(J, vk, prf(sdB, s(z()), vk)), (ch(J, vm, ch(J, vm, ch(J, vm, prf(sdB, z(), vm)))), ch(J, vk, ch(J, vk, ch(J, vk, prf(sdB, z(), vk))))))))))))).
+ 
+ let rBotSign_q1_a3 =
+-        get tBotSt(stL_BotSt, I, J, sdB, helperVar0) in
+-        in(publicChannel, helperVar1: bitstring);
+-        let (=vsign) = g_var_vsign_10(helperVar1) in
+-        let m = g_var_m_11(helperVar1) in
++        get tBotSt(stL_BotSt, I, J, sdB, =s(z())) in
++        in(publicChannel, helperVar0: bitstring);
++        let (=vsign) = g_var_vsign_10(helperVar0) in
++        let m = g_var_m_11(helperVar0) in
+         new rid_rBotSign_q1_a3: bitstring;
+         new stR_BotSt: bitstring;
+         event eDistinctFact(rid_rBotSign_q1_a3, (stL_BotSt, (I, (J, (sdB, s(z()))))));

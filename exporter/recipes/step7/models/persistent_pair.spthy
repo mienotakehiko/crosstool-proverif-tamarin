@@ -1,0 +1,15 @@
+theory persistent_pair begin
+functions: z/0
+
+rule Init:
+  [ Fr(~sid) ] --[ InitOnce() ]-> [ !St(~sid, z) ]
+
+restriction OneInit:
+  "All #i #j. InitOnce() @ i & InitOnce() @ j ==> #i = #j"
+
+rule Good:
+  [ !St(sid, z), !St(sid, value) ] --[ Good(sid) ]-> [ Result(value) ]
+
+lemma good_reachable: exists-trace
+  "Ex sid #i. Good(sid) @ i"
+end

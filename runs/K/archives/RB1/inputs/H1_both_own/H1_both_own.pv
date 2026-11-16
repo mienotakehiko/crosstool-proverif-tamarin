@@ -1,0 +1,31 @@
+(* NEW bounded abstract model; no network or recovered trace. *)
+fun kdf(bitstring,bitstring): bitstring.
+fun xn(bitstring,bitstring): bitstring.
+fun key(bitstring,bitstring): bitstring.
+fun civ(bitstring): bitstring.
+fun nce(bitstring,bitstring,bitstring): bitstring.
+fun succ(bitstring): bitstring.
+free client,server,zero,empty: bitstring.
+event AeadUse(bitstring,bitstring,bitstring).
+event Normal().
+event ContextStep(bitstring,bitstring).
+event RequestState(bitstring,bitstring).
+event ContextState(bitstring,bitstring,bitstring).
+event RederiveState(bitstring,bitstring,bitstring).
+event ContinueState(bitstring,bitstring,bitstring).
+query k:bitstring,n:bitstring,x:bitstring,y:bitstring; event(AeadUse(k,n,x)) && event(AeadUse(k,n,y)) ==> x = y.
+query event(Normal()).
+process
+new parent:bitstring;
+new input_a:bitstring;
+new input_b:bitstring;
+new m1:bitstring;
+new m2:bitstring;
+event RequestState(client,zero);
+event ContextStep(key(kdf(parent,xn(input_a,input_b)),server),nce(server,zero,civ(kdf(parent,xn(input_a,input_b)))));
+event AeadUse(key(kdf(parent,xn(input_a,input_b)),server),nce(server,zero,civ(kdf(parent,xn(input_a,input_b)))),m1);
+event RequestState(client,zero);
+event ContextStep(key(kdf(parent,xn(input_a,input_b)),server),nce(server,succ(zero),civ(kdf(parent,xn(input_a,input_b)))));
+event AeadUse(key(kdf(parent,xn(input_a,input_b)),server),nce(server,succ(zero),civ(kdf(parent,xn(input_a,input_b)))),m2);
+event Normal();
+0

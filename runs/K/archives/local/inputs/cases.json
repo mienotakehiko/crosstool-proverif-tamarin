@@ -1,0 +1,52 @@
+[
+  {
+    "case": "KEEP",
+    "model": "busy_keep",
+    "lemma_prefix": "busy_keep",
+    "reach_event": "eBusyKept",
+    "checks": [
+      "reachable",
+      "continues"
+    ],
+    "evidence_path": "busy/results/KEEP.rmgeKXuP"
+  },
+  {
+    "case": "REFRESH",
+    "model": "busy_refresh",
+    "lemma_prefix": "refresh",
+    "reach_event": "eRefreshRead",
+    "checks": [
+      "reachable",
+      "parent_and_context",
+      "temp_distinct",
+      "pair_distinct"
+    ],
+    "evidence_path": "busy/results/REFRESH.f69BHxCr"
+  },
+  {
+    "case": "T6",
+    "model": "pending_old",
+    "lemma_prefix": "pending_old",
+    "reach_event": "eBusyEntryRead",
+    "checks": [
+      "reachable",
+      "verified_receipt",
+      "aborts_matching_update",
+      "slots_empty"
+    ],
+    "evidence_path": "pending/results/T6.55ykxSPE"
+  },
+  {
+    "case": "T7",
+    "model": "pending_new",
+    "lemma_prefix": "pending_new",
+    "reach_event": "eBusyEntryRead",
+    "checks": [
+      "reachable",
+      "receipt_and_promotion",
+      "aborts_matching_update",
+      "slots_empty"
+    ],
+    "evidence_path": "pending/results/T7.P8BQhq8G"
+  }
+]

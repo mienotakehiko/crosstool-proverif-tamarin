@@ -1,0 +1,59 @@
+{
+  "pass": true,
+  "model": "busy_keep",
+  "baseline_archives_sha256": {
+    "models.zip": "51c4e6e1053ac220f1c7757ebfc78cd2cf624de73f9a5895b5c6c252ecc35d7b",
+    "logs.zip": "81809ade035b47daf512a5be24d102fada810160994ae82efafa6745b35aa4b8"
+  },
+  "checks": {
+    "tool_exit_codes_zero": true,
+    "proverif_query_statements_match_baseline": true,
+    "proverif_expected_verdicts": true,
+    "tamarin_expected_verdicts": true,
+    "tamarin_proof_closed": true,
+    "proverif_normal_trace_matches_baseline": true,
+    "tamarin_normal_trace_matches_baseline": true
+  },
+  "proverif_verdicts": [
+    "false",
+    "true"
+  ],
+  "tamarin_verdicts": {
+    "reachable": "verified",
+    "continues": "verified"
+  },
+  "wall_seconds": {
+    "proverif": 0.004,
+    "tamarin": 0.121
+  },
+  "tamarin_processing_seconds": 0.06,
+  "observed_events": {
+    "proverif": {
+      "BusyBefore": [
+        "fresh_0",
+        "fresh_1"
+      ],
+      "BusyKept": [
+        "fresh_0",
+        [
+          "succ",
+          "fresh_1"
+        ]
+      ]
+    },
+    "tamarin": {
+      "BusyBefore": [
+        "fresh_0",
+        "fresh_1"
+      ],
+      "BusyKept": [
+        "fresh_0",
+        [
+          "succ",
+          "fresh_1"
+        ]
+      ]
+    }
+  },
+  "trace_errors": {}
+}

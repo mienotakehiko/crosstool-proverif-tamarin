@@ -1,0 +1,1 @@
+["tamarin-prover", "+RTS", "-N1", "-M768m", "-RTS", "-d=0", "--prove=t6_continuation_reachable", "/work/inputs/t6_continuation.spthy"]

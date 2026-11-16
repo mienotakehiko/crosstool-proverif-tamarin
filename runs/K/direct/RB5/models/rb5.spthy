@@ -1,0 +1,58 @@
+// Generated finite RB5 model. No network inputs.
+theory CimRb5
+begin
+
+rule Init:
+  [ Fr(~initial_sid) ]
+  --[ Init(), KudosStart(~initial_sid) ]->
+  [ Execution(~initial_sid,'phase_active','no_outcome') ]
+
+rule CommitUpdate:
+  [ Execution(sid,'phase_active','no_outcome') ]
+  --[ KudosCommit(sid) ]->
+  [ Execution(sid,'phase_closed','outcome_commit') ]
+
+rule AbortUpdate:
+  [ Execution(sid,'phase_active','no_outcome') ]
+  --[ KudosAbort(sid) ]->
+  [ Execution(sid,'phase_closed','outcome_abort') ]
+
+rule CheckAppSend:
+  [ Execution(sid,phase,outcome) ]
+  --[ AppSendChecked(sid,phase,outcome) ]->
+  [ AppCheck(sid,phase,outcome) ]
+
+rule BlockAppSend:
+  [ AppCheck(sid,'phase_active','no_outcome') ]
+  --[ AppSendBlocked(sid) ]->
+  [  ]
+
+rule AllowAppSend:
+  [ AppCheck(sid,'phase_closed',outcome) ]
+  --[ AppSend(sid,'phase_closed',outcome) ]->
+  [  ]
+
+restriction SingleInit:
+  "All #i #j. Init()@i & Init()@j ==> #i = #j"
+
+lemma rb5_block_reachable: exists-trace
+  "Ex sid #k. AppSendBlocked(sid)@k"
+
+lemma rb5_send_while_active_unreachable:
+  "not (Ex sid outcome #k. AppSend(sid,'phase_active',outcome)@k)"
+
+lemma rb5_commit_send_reachable: exists-trace
+  "Ex sid #k. AppSend(sid,'phase_closed','outcome_commit')@k"
+
+lemma rb5_commit_before_send:
+  "All sid #k. AppSend(sid,'phase_closed','outcome_commit')@k ==>
+    Ex #i #j. KudosStart(sid)@i & KudosCommit(sid)@j & #i < #j & #j < #k"
+
+lemma rb5_abort_send_reachable: exists-trace
+  "Ex sid #k. AppSend(sid,'phase_closed','outcome_abort')@k"
+
+lemma rb5_abort_before_send:
+  "All sid #k. AppSend(sid,'phase_closed','outcome_abort')@k ==>
+    Ex #i #j. KudosStart(sid)@i & KudosAbort(sid)@j & #i < #j & #j < #k"
+
+end

@@ -1,0 +1,104 @@
+set preciseActions = true.
+
+(* Free names *)
+free publicChannel:channel.
+
+(* Functions *)
+fun fst(bitstring):bitstring.
+fun pair(bitstring,bitstring):bitstring.
+fun snd(bitstring):bitstring.
+fun tempctx(bitstring,bitstring):bitstring.
+
+(* Equations *)
+equation forall x_1:bitstring, x_2:bitstring; fst((x_1, x_2)) = x_1.
+equation forall x_1:bitstring, x_2:bitstring; snd((x_1, x_2)) = x_2.
+
+(* Events *)
+event eDistinctFact(bitstring, bitstring).
+event eInit(bitstring).
+event eRefreshBefore(bitstring, bitstring, bitstring).
+event eRefreshInstalled(bitstring, bitstring, bitstring).
+event eRefreshRead(bitstring, bitstring, bitstring, bitstring, bitstring, bitstring).
+
+(* Tables *)
+table tBeforeSnapshot(bitstring, bitstring, bitstring, bitstring).
+table tBusyActive(bitstring, bitstring, bitstring, bitstring).
+table tBusyUnusable(bitstring, bitstring, bitstring, bitstring).
+
+(* Restrictions *)
+
+(* SingleInit *)
+
+restriction rid_i:bitstring, rid_j:bitstring, i:time, j:time;
+  event(eInit( rid_i ))@i && event(eInit( rid_j ))@j ==> rid_i = rid_j.
+
+(* DistinctFact *)
+
+restriction rid_i:bitstring, rid_j:bitstring, x:bitstring, i:time,
+            j:time;
+  event(eDistinctFact( rid_i, x ))@i && event(eDistinctFact( rid_j, x ))@j
+  ==> rid_i = rid_j.
+
+(* Queries *)
+
+(* refresh_parent_and_context *)
+
+query b:bitstring, p:bitstring, t:bitstring, t0:bitstring, x:bitstring,
+      x0:bitstring, k:time, t1:time, t2:time;
+  event(eRefreshRead( b, t0, x0, p, t, x ))@k
+  ==> event(eRefreshBefore( b, t0, x0 ))@t1
+      && event(eRefreshInstalled( p, t, x ))@t2
+      && t1 < k
+      && t2 < k
+      && p = b
+      && t = tempctx(p, x).
+
+(* Processes *)
+
+let rInit =
+        new rid_rInit: bitstring;
+        new stR_BusyUnusable: bitstring;
+        new stR_BeforeSnapshot: bitstring;
+        new initial_parent: bitstring;
+        new initial_pair: bitstring;
+        event eInit(rid_rInit);
+        event eRefreshBefore(initial_parent,
+                             tempctx(initial_parent, initial_pair), initial_pair);
+        insert tBusyUnusable(stR_BusyUnusable, initial_parent,
+                             tempctx(initial_parent, initial_pair), initial_pair);
+        insert tBeforeSnapshot(stR_BeforeSnapshot, initial_parent,
+                               tempctx(initial_parent, initial_pair), initial_pair).
+
+let rRefresh =
+        get tBusyUnusable(stL_BusyUnusable, parent, previous_temp,
+                          previous_pair) in
+        new rid_rRefresh: bitstring;
+        new stR_BusyActive: bitstring;
+        new fresh_pair: bitstring;
+        event eDistinctFact(rid_rRefresh, (stL_BusyUnusable, (parent, (previous_temp, previous_pair))));
+        event eRefreshInstalled(parent, tempctx(parent, fresh_pair), fresh_pair);
+        insert tBusyActive(stR_BusyActive, parent, tempctx(parent, fresh_pair),
+                           fresh_pair).
+
+let rReadActive =
+        get tBeforeSnapshot(stL_BeforeSnapshot, b, t0, x0) in
+        get tBusyActive(stL_BusyActive, p, t, x) in
+        new rid_rReadActive: bitstring;
+        event eDistinctFact(rid_rReadActive, (stL_BeforeSnapshot, (b, (t0, x0))));
+        event eDistinctFact(rid_rReadActive, (stL_BusyActive, (p, (t, x))));
+        event eRefreshRead(b, t0, x0, p, t, x).
+
+process
+    ( !(rInit) | !(rRefresh) | !(rReadActive) )
+
+(*
+All wellformedness checks were successful.
+*)
+
+(*
+Generated from:
+Tamarin version 1.13.0
+Maude version 3.5
+Git revision: UNKNOWN
+Compiled at: 2026-10-24 02:25:12.718891574 UTC
+*)

@@ -1,0 +1,12 @@
+[
+  "/baseline-tamarin",
+  "+RTS",
+  "-N1",
+  "-M768m",
+  "-RTS",
+  "-d=0",
+  "-m=proverif",
+  "--lemma=LS1",
+  "-o=/work/same_cim_lms/LS1/baseline/translated.pv",
+  "/kit/models/same_cim_lms.spthy"
+]

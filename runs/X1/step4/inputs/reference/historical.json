@@ -1,0 +1,20 @@
+{
+  "initial": {
+    "archive": "pinned_lyuwv32y.tar.gz",
+    "sha256": "532e4f1404dbbcbe00081bad373ef18a1f91acc0a2026da874fb6e98f4f4294a",
+    "matches": 16,
+    "differences": 0
+  },
+  "zero_argument": {
+    "archive": "pinned_9kwhx50a.tar.gz",
+    "sha256": "b8afaf5713d9c7fc00641ac553ce448b8aa3cef7fb04b9cf4b66751da3c247da",
+    "matches": 10,
+    "differences": 6
+  },
+  "source": {
+    "archive": "source_probe_ih07m7ga.tar.gz",
+    "sha256": "7996ed8e73a2ae983483909ad8d30042286569cb841936bb60e6506610bc409c",
+    "matches": 13,
+    "differences": 3
+  }
+}

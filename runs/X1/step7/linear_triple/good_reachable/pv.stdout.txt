@@ -1,0 +1,171 @@
+Linear part: No equation.
+Convergent part:
+fst((x_1,x_2)) = x_1
+snd((x_1,x_2)) = x_2
+Completing equations...
+Completed equations:
+snd((x_1,x_2)) = x_2
+fst((x_1,x_2)) = x_1
+Process 0 (that is, the initial process):
+(
+    {1}!
+    {2}new rid_rInit: bitstring;
+    {3}new stR_St: bitstring;
+    {4}new stR_St_1: bitstring;
+    {5}new stR_St_2: bitstring;
+    {6}new stR_St_3: bitstring;
+    {7}new stR_St_4: bitstring;
+    {8}new asid: bitstring;
+    {9}event eInitOnce(rid_rInit);
+    {10}insert tSt(stR_St,asid,vthree,z);
+    {11}insert tSt(stR_St_1,asid,vthree,z);
+    {12}insert tSt(stR_St_2,asid,vthree,z);
+    {13}insert tSt(stR_St_3,asid,vtwo,z);
+    {14}insert tSt(stR_St_4,asid,vtwo,z)
+) | (
+    {15}!
+    {16}get tSt(stL_St: bitstring,asid_1: bitstring,=vthree,=z) in
+    {17}get tSt(stL_St_1: bitstring,=asid_1,=vthree,=z) suchthat (stL_St_1 ≠ stL_St) in
+    {18}get tSt(stL_St_2: bitstring,=asid_1,=vthree,=z) suchthat ((stL_St_2 ≠ stL_St) && (stL_St_2 ≠ stL_St_1)) in
+    {19}new rid_rGood: bitstring;
+    {20}event eDistinctFact(rid_rGood,(stL_St,(asid_1,(vthree,z))));
+    {21}event eDistinctFact(rid_rGood,(stL_St_1,(asid_1,(vthree,z))));
+    {22}event eDistinctFact(rid_rGood,(stL_St_2,(asid_1,(vthree,z))));
+    {23}event eGood(asid_1)
+) | (
+    {24}!
+    {25}get tSt(stL_St_3: bitstring,asid_2: bitstring,=vtwo,=z) in
+    {26}get tSt(stL_St_4: bitstring,=asid_2,=vtwo,=z) suchthat (stL_St_4 ≠ stL_St_3) in
+    {27}get tSt(stL_St_5: bitstring,=asid_2,=vtwo,=z) suchthat ((stL_St_5 ≠ stL_St_3) && (stL_St_5 ≠ stL_St_4)) in
+    {28}new rid_rBad: bitstring;
+    {29}event eDistinctFact(rid_rBad,(stL_St_3,(asid_2,(vtwo,z))));
+    {30}event eDistinctFact(rid_rBad,(stL_St_4,(asid_2,(vtwo,z))));
+    {31}event eDistinctFact(rid_rBad,(stL_St_5,(asid_2,(vtwo,z))));
+    {32}event eBad(asid_2)
+)
+
+-- Restriction event(eInitOnce(rid_i))@i && event(eInitOnce(rid_j))@j ==> rid_i = rid_j encoded as event(eInitOnce(rid_i)) && event(eInitOnce(rid_j)) ==> rid_i = rid_j in process 0.
+-- Restriction event(eDistinctFact(rid_i,x))@i && event(eDistinctFact(rid_j,x))@j ==> rid_i = rid_j encoded as event(eDistinctFact(rid_i,x)) && event(eDistinctFact(rid_j,x)) ==> rid_i = rid_j in process 0.
+-- Query not event(eGood(asid_3))@i encoded as not event(eGood(asid_3)) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query not event(eGood(asid_3))@i
+Removing redudant clauses.
+Removing subsumed clauses modulo the equational theory.
+Starting verification.
+Clauses verified: 0. Clauses remaining: 6. Failed clauses: 0.
+goal reachable: b-event(eDistinctFact(rid_rGood_1,(stR_St_5,(asid_3,(vthree[],z))))) && b-event(eDistinctFact(rid_rGood_1,(stR_St_6,(asid_3,(vthree[],z))))) && b-event(eDistinctFact(rid_rGood_1,(stR_St_7,(asid_3,(vthree[],z))))) && b-event(@p_act(@occ18_1,tSt(stR_St_5,asid_3,vthree[],z))) && b-event(@p_act(@occ17_1,tSt(stR_St_6,asid_3,vthree[],z))) && b-event(eInitOnce(rid_rInit_1)) && b-event(@p_act(@occ16_1,tSt(stR_St_7,asid_3,vthree[],z))) -> event(eGood(asid_3))
+The 1st, 2nd, 3rd, 4th, 5th, 6th, 7th hypotheses occur strictly before the conclusion.
+Abbreviations:
+asid_3 = asid[!1 = @sid]
+stR_St_5 = stR_St_2[!1 = @sid]
+stR_St_6 = stR_St_1[!1 = @sid]
+stR_St_7 = stR_St[!1 = @sid]
+rid_rGood_1 = rid_rGood[stL_St_2 = stR_St_5,stL_St_1 = stR_St_6,asid_1 = asid_3,stL_St = stR_St_7,!1 = @sid_1]
+@occ18_1 = @occ18[!1 = @sid_1]
+@occ17_1 = @occ17[!1 = @sid_1]
+rid_rInit_1 = rid_rInit[!1 = @sid]
+@occ16_1 = @occ16[!1 = @sid_1]
+
+Derivation:
+Abbreviations:
+asid_3 = asid[!1 = @sid]
+stR_St_5 = stR_St_2[!1 = @sid]
+stR_St_6 = stR_St_1[!1 = @sid]
+stR_St_7 = stR_St[!1 = @sid]
+rid_rGood_1 = rid_rGood[stL_St_2 = stR_St_5,stL_St_1 = stR_St_6,asid_1 = asid_3,stL_St = stR_St_7,!1 = @sid_1]
+rid_rInit_1 = rid_rInit[!1 = @sid]
+@occ18_1 = @occ18[!1 = @sid_1]
+@occ17_1 = @occ17[!1 = @sid_1]
+@occ16_1 = @occ16[!1 = @sid_1]
+
+1. The event eInitOnce(rid_rInit_1) may be executed at {9}.
+So the entry tSt(stR_St_7,asid_3,vthree[],z) may be inserted in a table at insert {10}.
+table(tSt(stR_St_7,asid_3,vthree[],z)).
+
+2. The event eInitOnce(rid_rInit_1) may be executed at {9}.
+So the entry tSt(stR_St_6,asid_3,vthree[],z) may be inserted in a table at insert {11}.
+table(tSt(stR_St_6,asid_3,vthree[],z)).
+
+3. The event eInitOnce(rid_rInit_1) may be executed at {9}.
+So the entry tSt(stR_St_5,asid_3,vthree[],z) may be inserted in a table at insert {12}.
+table(tSt(stR_St_5,asid_3,vthree[],z)).
+
+4. The event @p_act(@occ16_1,tSt(stR_St_7,asid_3,vthree[],z)) records how variables are instantiated at {16}.
+The entry tSt(stR_St_7,asid_3,vthree[],z) that may be in a table by 1 may be read at get {16}.
+The event @p_act(@occ17_1,tSt(stR_St_6,asid_3,vthree[],z)) records how variables are instantiated at {17}.
+The entry tSt(stR_St_6,asid_3,vthree[],z) that may be in a table by 2 may be read at get {17}.
+The event @p_act(@occ18_1,tSt(stR_St_5,asid_3,vthree[],z)) records how variables are instantiated at {18}.
+The entry tSt(stR_St_5,asid_3,vthree[],z) that may be in a table by 3 may be read at get {18}.
+The event eDistinctFact(rid_rGood_1,(stR_St_7,(asid_3,(vthree[],z)))) may be executed at {20}.
+The event eDistinctFact(rid_rGood_1,(stR_St_6,(asid_3,(vthree[],z)))) may be executed at {21}.
+The event eDistinctFact(rid_rGood_1,(stR_St_5,(asid_3,(vthree[],z)))) may be executed at {22}.
+We have stR_St_5 ≠ stR_St_6 && stR_St_5 ≠ stR_St_7 && stR_St_6 ≠ stR_St_7.
+So event eGood(asid_3) may be executed at {23}.
+event(eGood(asid_3)).
+
+5. By 4, event(eGood(asid_3)).
+The goals are reached, combined in the following fact:
+event(eGood(asid_3)).
+
+
+A more detailed output of the traces is available with
+  set traceDisplay = long.
+
+new rid_rInit: bitstring creating rid_rInit_2 at {2} in copy a
+
+new stR_St: bitstring creating stR_St_8 at {3} in copy a
+
+new stR_St_1: bitstring creating stR_St_9 at {4} in copy a
+
+new stR_St_2: bitstring creating stR_St_10 at {5} in copy a
+
+new stR_St_3: bitstring creating stR_St_11 at {6} in copy a
+
+new stR_St_4: bitstring creating stR_St_12 at {7} in copy a
+
+new asid: bitstring creating asid_4 at {8} in copy a
+
+event eInitOnce(rid_rInit_2) at {9} in copy a
+
+insert tSt(stR_St_8,asid_4,vthree,z) at {10} in copy a
+
+insert tSt(stR_St_9,asid_4,vthree,z) at {11} in copy a
+
+insert tSt(stR_St_10,asid_4,vthree,z) at {12} in copy a
+
+insert tSt(stR_St_11,asid_4,vtwo,z) at {13} in copy a
+
+insert tSt(stR_St_12,asid_4,vtwo,z) at {14} in copy a
+
+get tSt(stR_St_8,asid_4,vthree,z) at {16} in copy a_1
+
+get tSt(stR_St_9,asid_4,vthree,z) at {17} in copy a_1
+
+get tSt(stR_St_10,asid_4,vthree,z) at {18} in copy a_1
+
+new rid_rGood: bitstring creating rid_rGood_2 at {19} in copy a_1
+
+event eDistinctFact(rid_rGood_2,(stR_St_8,(asid_4,(vthree,z)))) at {20} in copy a_1
+
+event eDistinctFact(rid_rGood_2,(stR_St_9,(asid_4,(vthree,z)))) at {21} in copy a_1
+
+event eDistinctFact(rid_rGood_2,(stR_St_10,(asid_4,(vthree,z)))) at {22} in copy a_1
+
+event eGood(asid_4) at {23} in copy a_1 (goal)
+
+The event eGood(asid_4) is executed at {23} in copy a_1.
+A trace has been found.
+RESULT not event(eGood(asid_3))@i is false.
+
+--------------------------------------------------------------
+Verification summary:
+
+Query(ies):
+ - Query not event(eGood(asid_3))@i is false.
+Associated restriction(s):
+ - Restriction event(eInitOnce(rid_i))@i && event(eInitOnce(rid_j))@j ==> rid_i = rid_j encoded as event(eInitOnce(rid_i)) && event(eInitOnce(rid_j)) ==> rid_i = rid_j in process 0.
+ - Restriction event(eDistinctFact(rid_i,x))@i && event(eDistinctFact(rid_j,x))@j ==> rid_i = rid_j encoded as event(eDistinctFact(rid_i,x)) && event(eDistinctFact(rid_j,x)) ==> rid_i = rid_j in process 0.
+
+--------------------------------------------------------------
+

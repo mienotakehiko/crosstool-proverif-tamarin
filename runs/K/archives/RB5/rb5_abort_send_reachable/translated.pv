@@ -1,0 +1,115 @@
+set preciseActions = true.
+
+(* Free names *)
+free publicChannel:channel.
+free vno_outcome:bitstring.
+free voutcome_abort:bitstring.
+free voutcome_commit:bitstring.
+free vphase_active:bitstring.
+free vphase_closed:bitstring.
+
+(* Functions *)
+fun fst(bitstring):bitstring.
+fun pair(bitstring,bitstring):bitstring.
+fun snd(bitstring):bitstring.
+
+(* Equations *)
+equation forall x_1:bitstring, x_2:bitstring; fst((x_1, x_2)) = x_1.
+equation forall x_1:bitstring, x_2:bitstring; snd((x_1, x_2)) = x_2.
+
+(* Events *)
+event eAppSend(bitstring, bitstring, bitstring).
+event eAppSendBlocked(bitstring).
+event eAppSendChecked(bitstring, bitstring, bitstring).
+event eDistinctFact(bitstring, bitstring).
+event eInit(bitstring).
+event eKudosAbort(bitstring).
+event eKudosCommit(bitstring).
+event eKudosStart(bitstring).
+
+(* Tables *)
+table tAppCheck(bitstring, bitstring, bitstring, bitstring).
+table tExecution(bitstring, bitstring, bitstring, bitstring).
+
+(* Restrictions *)
+
+(* SingleInit *)
+
+restriction rid_i:bitstring, rid_j:bitstring, i:time, j:time;
+  event(eInit( rid_i ))@i && event(eInit( rid_j ))@j ==> rid_i = rid_j.
+
+(* DistinctFact *)
+
+restriction rid_i:bitstring, rid_j:bitstring, x:bitstring, i:time,
+            j:time;
+  event(eDistinctFact( rid_i, x ))@i && event(eDistinctFact( rid_j, x ))@j
+  ==> rid_i = rid_j.
+
+(* Queries *)
+
+(* rb5_abort_send_reachable *)
+
+query asid:bitstring, k:time;
+  event(eAppSend( asid, vphase_closed, voutcome_abort ))@k.
+
+(* Processes *)
+
+let rInit =
+        new rid_rInit: bitstring;
+        new stR_Execution: bitstring;
+        new initial_sid: bitstring;
+        event eInit(rid_rInit);
+        event eKudosStart(initial_sid);
+        insert tExecution(stR_Execution, initial_sid, vphase_active,
+                          vno_outcome).
+
+let rCommitUpdate =
+        get tExecution(stL_Execution, asid, =vphase_active, =vno_outcome) in
+        new rid_rCommitUpdate: bitstring;
+        new stR_Execution: bitstring;
+        event eDistinctFact(rid_rCommitUpdate, (stL_Execution, (asid, (vphase_active, vno_outcome))));
+        event eKudosCommit(asid);
+        insert tExecution(stR_Execution, asid, vphase_closed, voutcome_commit).
+
+let rAbortUpdate =
+        get tExecution(stL_Execution, asid, =vphase_active, =vno_outcome) in
+        new rid_rAbortUpdate: bitstring;
+        new stR_Execution: bitstring;
+        event eDistinctFact(rid_rAbortUpdate, (stL_Execution, (asid, (vphase_active, vno_outcome))));
+        event eKudosAbort(asid);
+        insert tExecution(stR_Execution, asid, vphase_closed, voutcome_abort).
+
+let rCheckAppSend =
+        get tExecution(stL_Execution, asid, aphase, outcome) in
+        new rid_rCheckAppSend: bitstring;
+        new stR_AppCheck: bitstring;
+        event eDistinctFact(rid_rCheckAppSend, (stL_Execution, (asid, (aphase, outcome))));
+        event eAppSendChecked(asid, aphase, outcome);
+        insert tAppCheck(stR_AppCheck, asid, aphase, outcome).
+
+let rBlockAppSend =
+        get tAppCheck(stL_AppCheck, asid, =vphase_active, =vno_outcome) in
+        new rid_rBlockAppSend: bitstring;
+        event eDistinctFact(rid_rBlockAppSend, (stL_AppCheck, (asid, (vphase_active, vno_outcome))));
+        event eAppSendBlocked(asid).
+
+let rAllowAppSend =
+        get tAppCheck(stL_AppCheck, asid, =vphase_closed, outcome) in
+        new rid_rAllowAppSend: bitstring;
+        event eDistinctFact(rid_rAllowAppSend, (stL_AppCheck, (asid, (vphase_closed, outcome))));
+        event eAppSend(asid, vphase_closed, outcome).
+
+process
+    ( !(rInit) | !(rCommitUpdate) | !(rAbortUpdate) | !(rCheckAppSend) | !(rBlockAppSend) | !(rAllowAppSend) )
+
+(*
+All wellformedness checks were successful.
+*)
+
+(*
+Generated from:
+Tamarin version 1.13.0
+Maude version 3.5
+Git revision: UNKNOWN
+Compiled at: 2026-10-24 02:25:12.718891574 UTC
+*)

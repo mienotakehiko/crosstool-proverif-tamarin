@@ -1,0 +1,25 @@
+'tamarin-prover' '--with-maude=maude' '--derivcheck-timeout=0' '--prove=Auto_exec' 'variants/C1_E2f__T0.spthy' +RTS '-N' '-M56g' '-A64m' '-qg' '-N4' '-sresults/out/P5_P2_std_C1_E2f_T0_Auto_exec_d_prove_r5.rts' 
+  10,110,072,048 bytes allocated in the heap
+     202,358,144 bytes copied during GC
+      42,263,976 bytes maximum residency (5 sample(s))
+         174,680 bytes maximum slop
+             350 MiB total memory in use (0 MiB lost due to fragmentation)
+
+                                     Tot time (elapsed)  Avg pause  Max pause
+  Gen  0        35 colls,     0 par    0.048s   0.212s     0.0061s    0.0101s
+  Gen  1         5 colls,     0 par    0.027s   0.097s     0.0194s    0.0459s
+
+  TASKS: 11 (1 bound, 9 peak workers (10 total), using -N4)
+
+  SPARKS: 613 (301 converted, 0 overflowed, 0 dud, 15 GC'd, 297 fizzled)
+
+  INIT    time    0.003s  (  0.002s elapsed)
+  MUT     time    5.327s  (  2.639s elapsed)
+  GC      time    0.075s  (  0.309s elapsed)
+  EXIT    time    0.007s  (  0.011s elapsed)
+  Total   time    5.411s  (  2.960s elapsed)
+
+  Alloc rate    1,898,051,596 bytes per MUT second
+
+  Productivity  98.4% of total user, 89.1% of total elapsed
+

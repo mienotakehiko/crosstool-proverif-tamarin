@@ -1,0 +1,12 @@
+[
+  "/step4-tamarin-prover",
+  "+RTS",
+  "-N1",
+  "-M768m",
+  "-RTS",
+  "-d=0",
+  "-m=proverif",
+  "--lemma=honest_reachable",
+  "-o=/work/baseline/initial/constant_repeat/honest_reachable/translated.pv",
+  "/kit/models/initial/constant_repeat.spthy"
+]

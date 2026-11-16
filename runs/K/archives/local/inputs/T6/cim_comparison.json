@@ -1,0 +1,110 @@
+{
+  "pass": true,
+  "model": "pending_old",
+  "baseline_archive_sha256": "7b7f5212c5abf2d227fe2b2fda0f3f19f6a5297bbc2b1a61e02420970d6c2871",
+  "checks": {
+    "tool_exit_codes_zero": true,
+    "proverif_query_statements_match_baseline": true,
+    "proverif_expected_verdicts": true,
+    "tamarin_expected_verdicts": true,
+    "tamarin_proof_closed": true,
+    "proverif_normal_trace_matches_baseline": true,
+    "tamarin_normal_trace_matches_baseline": true
+  },
+  "proverif_verdicts": [
+    "false",
+    "true",
+    "true",
+    "true"
+  ],
+  "tamarin_verdicts": {
+    "reachable": "verified",
+    "verified_receipt": "verified",
+    "aborts_matching_update": "verified",
+    "slots_empty": "verified"
+  },
+  "wall_seconds": {
+    "proverif": 0.006,
+    "tamarin": 0.312
+  },
+  "tamarin_processing_seconds": 0.29,
+  "observed_events": {
+    "proverif": {
+      "PendingBefore": [
+        "fresh_0",
+        "fresh_1",
+        "fresh_0",
+        "fresh_2"
+      ],
+      "OldVerified": [
+        "fresh_3",
+        "fresh_0",
+        [
+          "tempctx",
+          "fresh_0",
+          "fresh_4"
+        ]
+      ],
+      "PendingAborted": [
+        "fresh_3",
+        "fresh_0",
+        "fresh_1",
+        "fresh_0",
+        "fresh_2"
+      ],
+      "BusyEntryRead": [
+        "fresh_3",
+        "fresh_0",
+        [
+          "tempctx",
+          "fresh_0",
+          "fresh_4"
+        ],
+        "fresh_1",
+        "fresh_0",
+        "fresh_2",
+        "empty_new",
+        "empty_pair"
+      ]
+    },
+    "tamarin": {
+      "PendingBefore": [
+        "fresh_0",
+        "fresh_1",
+        "fresh_0",
+        "fresh_2"
+      ],
+      "OldVerified": [
+        "fresh_3",
+        "fresh_0",
+        [
+          "tempctx",
+          "fresh_0",
+          "fresh_4"
+        ]
+      ],
+      "PendingAborted": [
+        "fresh_3",
+        "fresh_0",
+        "fresh_1",
+        "fresh_0",
+        "fresh_2"
+      ],
+      "BusyEntryRead": [
+        "fresh_3",
+        "fresh_0",
+        [
+          "tempctx",
+          "fresh_0",
+          "fresh_4"
+        ],
+        "fresh_1",
+        "fresh_0",
+        "fresh_2",
+        "empty_new",
+        "empty_pair"
+      ]
+    }
+  },
+  "trace_errors": {}
+}

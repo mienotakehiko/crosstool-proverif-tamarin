@@ -1,0 +1,1 @@
+RESULT event(eHssAccept(I_31,J_30,m_16))@k ==> event(eRevealTop(I_31))@r || event(eRevealBot(I_31,J_30))@r is false.

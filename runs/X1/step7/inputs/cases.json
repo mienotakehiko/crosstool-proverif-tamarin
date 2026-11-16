@@ -1,0 +1,92 @@
+[
+  {
+    "model": "linear_pair",
+    "lemma": "good_reachable",
+    "event": "eGood",
+    "rule": "rGood",
+    "expected": "reachable",
+    "reads": 2,
+    "distinct": true,
+    "sha256": "4807f3a92787a7fb8bc52fbb93224e88eabf1478876dbd8a55cd855206fcf88d"
+  },
+  {
+    "model": "linear_pair",
+    "lemma": "bad_reachable",
+    "event": "eBad",
+    "rule": "rBad",
+    "expected": "unreachable",
+    "reads": 2,
+    "distinct": true,
+    "sha256": "4807f3a92787a7fb8bc52fbb93224e88eabf1478876dbd8a55cd855206fcf88d"
+  },
+  {
+    "model": "linear_triple",
+    "lemma": "good_reachable",
+    "event": "eGood",
+    "rule": "rGood",
+    "expected": "reachable",
+    "reads": 3,
+    "distinct": true,
+    "sha256": "72ec8ed0c24659e95b1b33cf2a5f63b6f41b33328b129e5904df01fc2395ff7d"
+  },
+  {
+    "model": "linear_triple",
+    "lemma": "bad_reachable",
+    "event": "eBad",
+    "rule": "rBad",
+    "expected": "unreachable",
+    "reads": 3,
+    "distinct": true,
+    "sha256": "72ec8ed0c24659e95b1b33cf2a5f63b6f41b33328b129e5904df01fc2395ff7d"
+  },
+  {
+    "model": "linear_mixed",
+    "lemma": "good_reachable",
+    "event": "eGood",
+    "rule": "rGood",
+    "expected": "reachable",
+    "reads": 2,
+    "distinct": true,
+    "sha256": "fb94e494e78b8c30ec02a2746def5c133546289eff37f8bcd518a42a8fe76880"
+  },
+  {
+    "model": "linear_mixed",
+    "lemma": "bad_reachable",
+    "event": "eBad",
+    "rule": "rBad",
+    "expected": "unreachable",
+    "reads": 2,
+    "distinct": true,
+    "sha256": "fb94e494e78b8c30ec02a2746def5c133546289eff37f8bcd518a42a8fe76880"
+  },
+  {
+    "model": "linear_plain",
+    "lemma": "good_reachable",
+    "event": "eGood",
+    "rule": "rGood",
+    "expected": "reachable",
+    "reads": 2,
+    "distinct": true,
+    "sha256": "682a949d9b75b4c45828b568c99d9cfdf76182c79bb595dde683eeba4114b274"
+  },
+  {
+    "model": "linear_plain",
+    "lemma": "bad_reachable",
+    "event": "eBad",
+    "rule": "rBad",
+    "expected": "unreachable",
+    "reads": 2,
+    "distinct": true,
+    "sha256": "682a949d9b75b4c45828b568c99d9cfdf76182c79bb595dde683eeba4114b274"
+  },
+  {
+    "model": "persistent_pair",
+    "lemma": "good_reachable",
+    "event": "eGood",
+    "rule": "rGood",
+    "expected": "reachable",
+    "reads": 2,
+    "distinct": false,
+    "sha256": "49707091f58a4ff9aedb2e66d454d950150ce4a259869df8084038fd37b8d5bf"
+  }
+]

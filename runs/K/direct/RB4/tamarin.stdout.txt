@@ -1,0 +1,14 @@
+
+==============================================================================
+summary of summaries:
+
+analyzed: results/RB4_A1.PAGsDdCY/models/rb4.spthy
+
+  output:          results/RB4_A1.PAGsDdCY/tamarin.proof.spthy
+  processing time: 0.45s
+  
+  rb4_commit_reachable (exists-trace): verified (4 steps)
+  rb4_request_response_binding (all-traces): verified (4 steps)
+  rb4_unique_commit_per_request (all-traces): verified (10 steps)
+
+==============================================================================

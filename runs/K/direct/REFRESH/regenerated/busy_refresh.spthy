@@ -1,0 +1,38 @@
+// Generated busy_refresh case. CTX_TEMP usability is a local premise.
+theory CimBusyRefresh
+begin
+
+functions: tempctx/2
+
+rule Init:
+  [ Fr(~initial_parent), Fr(~initial_pair) ]
+  --[ Init(), RefreshBefore(~initial_parent,tempctx(~initial_parent,~initial_pair),~initial_pair) ]->
+  [ BusyUnusable(~initial_parent,tempctx(~initial_parent,~initial_pair),~initial_pair), BeforeSnapshot(~initial_parent,tempctx(~initial_parent,~initial_pair),~initial_pair) ]
+
+rule Refresh:
+  [ Fr(~fresh_pair), BusyUnusable(parent,previous_temp,previous_pair) ]
+  --[ RefreshInstalled(parent,tempctx(parent,~fresh_pair),~fresh_pair) ]->
+  [ BusyActive(parent,tempctx(parent,~fresh_pair),~fresh_pair) ]
+
+rule ReadActive:
+  [ BeforeSnapshot(b,t0,x0), BusyActive(p,t,x) ]
+  --[ RefreshRead(b,t0,x0,p,t,x) ]->
+  [  ]
+
+restriction SingleInit:
+  "All #i #j. Init()@i & Init()@j ==> #i = #j"
+
+lemma refresh_reachable: exists-trace
+  "Ex b t0 x0 p t x #k. RefreshRead(b,t0,x0,p,t,x)@k"
+
+lemma refresh_parent_and_context:
+  "All b t0 x0 p t x #k. RefreshRead(b,t0,x0,p,t,x)@k ==>
+    Ex #t1 #t2. RefreshBefore(b,t0,x0)@t1 & RefreshInstalled(p,t,x)@t2 & #t1 < #k & #t2 < #k & p = b & t = tempctx(p,x)"
+
+lemma refresh_temp_distinct:
+  "All b t0 x0 p t x #k. RefreshRead(b,t0,x0,p,t,x)@k ==> not(t0 = t)"
+
+lemma refresh_pair_distinct:
+  "All b t0 x0 p t x #k. RefreshRead(b,t0,x0,p,t,x)@k ==> not(x0 = x)"
+
+end

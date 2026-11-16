@@ -1,0 +1,26 @@
+{
+  "command": [
+    "/usr/local/bin/tamarin-prover",
+    "/redacted-home/workspace/revision_20261111/h1h2-kit/models/H1_section3_own.spthy",
+    "--prove",
+    "--quit-on-warning",
+    "--output=/redacted-home/workspace/revision_20261111/h1h2-kit/runs/full02/H1_section3_own__tm/proof.spthy",
+    "--output-json=/redacted-home/workspace/revision_20261111/h1h2-kit/runs/full02/H1_section3_own__tm/traces.json",
+    "+RTS",
+    "-N1",
+    "-M600m",
+    "-RTS"
+  ],
+  "cwd": "/redacted-home/workspace/revision_20261111/h1h2-kit",
+  "utc_start": "2026-11-11T03:12:24.935899+00:00",
+  "utc_end": "2026-11-11T03:12:25.402528+00:00",
+  "elapsed_seconds": 0.467,
+  "rc": 0,
+  "timeout": false,
+  "timeout_seconds": 30,
+  "heap_mb": 600,
+  "limit_kind": "GHC_RTS_heap",
+  "spawn_error": null,
+  "stdout_sha256": "59eaa887b2ce707c000195d0912923c55a80a87449b1b5c2d8732f5df64646f6",
+  "stderr_sha256": "02b58144ff17f913600864166deb0872e5f5bd94343de037e08cafc291e0f922"
+}

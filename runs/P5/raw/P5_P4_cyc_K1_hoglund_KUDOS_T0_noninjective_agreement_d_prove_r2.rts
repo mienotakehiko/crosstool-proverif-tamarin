@@ -1,0 +1,25 @@
+'tamarin-cyclic' '--with-maude=maude35' '--derivcheck-timeout=0' '--prove=noninjective_agreement' 'corpus/K1_hoglund_KUDOS.spthy' +RTS '-N' '-M56g' '-A64m' '-qg' '-N4' '-sresults/out/P5_P4_cyc_K1_hoglund_KUDOS_T0_noninjective_agreement_d_prove_r2.rts' 
+     264,786,464 bytes allocated in the heap
+       4,118,616 bytes copied during GC
+         143,776 bytes maximum residency (1 sample(s))
+          77,408 bytes maximum slop
+             270 MiB total memory in use (0 MiB lost due to fragmentation)
+
+                                     Tot time (elapsed)  Avg pause  Max pause
+  Gen  0         1 colls,     0 par    0.000s   0.008s     0.0085s    0.0085s
+  Gen  1         1 colls,     0 par    0.000s   0.000s     0.0003s    0.0003s
+
+  TASKS: 10 (1 bound, 9 peak workers (9 total), using -N4)
+
+  SPARKS: 98 (71 converted, 0 overflowed, 0 dud, 0 GC'd, 27 fizzled)
+
+  INIT    time    0.003s  (  0.002s elapsed)
+  MUT     time    0.193s  (  0.135s elapsed)
+  GC      time    0.000s  (  0.009s elapsed)
+  EXIT    time    0.001s  (  0.005s elapsed)
+  Total   time    0.197s  (  0.150s elapsed)
+
+  Alloc rate    1,370,924,883 bytes per MUT second
+
+  Productivity  98.2% of total user, 89.8% of total elapsed
+

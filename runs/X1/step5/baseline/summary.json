@@ -1,0 +1,210 @@
+[
+  {
+    "case": "session_join",
+    "event": "Good",
+    "expected_native": "reachable",
+    "export_rc": 0,
+    "lemma": "good_reachable",
+    "model_sha256": "43ce50088d40edbfcf2dc51a01bfd368e886d9323d421329f1a5489594c823fa",
+    "native": "reachable",
+    "native_rc": 0,
+    "pv_raw": [
+      "false"
+    ],
+    "pv_rc": 0,
+    "query_count": 1,
+    "reason": [],
+    "status": "MATCH",
+    "suite": "sessions",
+    "translated": "reachable",
+    "translated_sha256": "0f5e0c4528d59732f945f14b9329eeeba2f74628a5e0819acdea3ae7a50a31e1",
+    "translation_flags": {
+      "leading_negation": false,
+      "multiple_queries": false,
+      "timepoints_split": false
+    },
+    "translation_markers": []
+  },
+  {
+    "case": "session_join",
+    "event": "Bad",
+    "expected_native": "unreachable",
+    "export_rc": 0,
+    "lemma": "bad_reachable",
+    "model_sha256": "43ce50088d40edbfcf2dc51a01bfd368e886d9323d421329f1a5489594c823fa",
+    "native": "unreachable",
+    "native_rc": 0,
+    "pv_raw": [
+      "true"
+    ],
+    "pv_rc": 0,
+    "query_count": 1,
+    "reason": [],
+    "status": "MATCH",
+    "suite": "sessions",
+    "translated": "unreachable",
+    "translated_sha256": "f8615bc093dcd386682f2e6f4d6f07bc2354ddddef7a4420e39117727f7801dd",
+    "translation_flags": {
+      "leading_negation": false,
+      "multiple_queries": false,
+      "timepoints_split": false
+    },
+    "translation_markers": []
+  },
+  {
+    "case": "linear_pair",
+    "event": "Good",
+    "expected_native": "reachable",
+    "export_rc": 0,
+    "lemma": "good_reachable",
+    "model_sha256": "4807f3a92787a7fb8bc52fbb93224e88eabf1478876dbd8a55cd855206fcf88d",
+    "native": "reachable",
+    "native_rc": 0,
+    "pv_raw": [
+      "false"
+    ],
+    "pv_rc": 0,
+    "query_count": 1,
+    "reason": [],
+    "status": "MATCH",
+    "suite": "multiplicity",
+    "translated": "reachable",
+    "translated_sha256": "c0bef383e7c82377142d10bac63a0c21b080ad612eae2bf804e97b9f9005c5e5",
+    "translation_flags": {
+      "leading_negation": false,
+      "multiple_queries": false,
+      "timepoints_split": false
+    },
+    "translation_markers": []
+  },
+  {
+    "case": "linear_pair",
+    "event": "Bad",
+    "expected_native": "unreachable",
+    "export_rc": 0,
+    "lemma": "bad_reachable",
+    "model_sha256": "4807f3a92787a7fb8bc52fbb93224e88eabf1478876dbd8a55cd855206fcf88d",
+    "native": "unreachable",
+    "native_rc": 0,
+    "pv_raw": [
+      "false"
+    ],
+    "pv_rc": 0,
+    "query_count": 1,
+    "reason": [],
+    "status": "DIFFERENT",
+    "suite": "multiplicity",
+    "translated": "reachable",
+    "translated_sha256": "5437b6a1ba314a75ddde0af6ba871e002c3f84069f9bdcdcc6a8401ebde696c5",
+    "translation_flags": {
+      "leading_negation": false,
+      "multiple_queries": false,
+      "timepoints_split": false
+    },
+    "translation_markers": []
+  },
+  {
+    "case": "name_constructor",
+    "event": "GoodCtor",
+    "expected_native": "reachable",
+    "export_rc": 0,
+    "lemma": "good_ctor_reachable",
+    "model_sha256": "b5edb1ed9ba1e866980c2121abb2bedc0a125f7169e2c9d6fb9e66653e138d7a",
+    "native": "reachable",
+    "native_rc": 0,
+    "pv_raw": [
+      "false"
+    ],
+    "pv_rc": 0,
+    "query_count": 1,
+    "reason": [],
+    "status": "MATCH",
+    "suite": "namespace",
+    "translated": "reachable",
+    "translated_sha256": "7dc6d71594b5ecead5ba8e689dc441e1ac261aa7cd94ed11612dd59fc9cdbf74",
+    "translation_flags": {
+      "leading_negation": false,
+      "multiple_queries": false,
+      "timepoints_split": false
+    },
+    "translation_markers": []
+  },
+  {
+    "case": "name_constructor",
+    "event": "GoodName",
+    "expected_native": "reachable",
+    "export_rc": 0,
+    "lemma": "good_name_reachable",
+    "model_sha256": "b5edb1ed9ba1e866980c2121abb2bedc0a125f7169e2c9d6fb9e66653e138d7a",
+    "native": "reachable",
+    "native_rc": 0,
+    "pv_raw": [
+      "false"
+    ],
+    "pv_rc": 0,
+    "query_count": 1,
+    "reason": [],
+    "status": "MATCH",
+    "suite": "namespace",
+    "translated": "reachable",
+    "translated_sha256": "a721738157d743e87af5454555e2dc78b88d13dfc4de78c81f3e8f3206631e44",
+    "translation_flags": {
+      "leading_negation": false,
+      "multiple_queries": false,
+      "timepoints_split": false
+    },
+    "translation_markers": []
+  },
+  {
+    "case": "name_constructor",
+    "event": "BadCtor",
+    "expected_native": "unreachable",
+    "export_rc": 0,
+    "lemma": "bad_ctor_reachable",
+    "model_sha256": "b5edb1ed9ba1e866980c2121abb2bedc0a125f7169e2c9d6fb9e66653e138d7a",
+    "native": "unreachable",
+    "native_rc": 0,
+    "pv_raw": [
+      "false"
+    ],
+    "pv_rc": 0,
+    "query_count": 1,
+    "reason": [],
+    "status": "DIFFERENT",
+    "suite": "namespace",
+    "translated": "reachable",
+    "translated_sha256": "08354639a2a80feb4cac4db3cd2c1775eb0b8645625d254ee95ba29d1870facf",
+    "translation_flags": {
+      "leading_negation": false,
+      "multiple_queries": false,
+      "timepoints_split": false
+    },
+    "translation_markers": []
+  },
+  {
+    "case": "name_constructor",
+    "event": "BadName",
+    "expected_native": "unreachable",
+    "export_rc": 0,
+    "lemma": "bad_name_reachable",
+    "model_sha256": "b5edb1ed9ba1e866980c2121abb2bedc0a125f7169e2c9d6fb9e66653e138d7a",
+    "native": "unreachable",
+    "native_rc": 0,
+    "pv_raw": [
+      "true"
+    ],
+    "pv_rc": 0,
+    "query_count": 1,
+    "reason": [],
+    "status": "MATCH",
+    "suite": "namespace",
+    "translated": "unreachable",
+    "translated_sha256": "6df08a69bb1a7fb141b2d9fc96503f55befe6cc93a148bf14fbe3e55403772e6",
+    "translation_flags": {
+      "leading_negation": false,
+      "multiple_queries": false,
+      "timepoints_split": false
+    },
+    "translation_markers": []
+  }
+]

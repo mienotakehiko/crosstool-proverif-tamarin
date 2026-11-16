@@ -1,0 +1,101 @@
+theory successor_once
+
+begin
+
+// Function signature and definition of the equational theory E
+
+functions: fst/1, pair/2, s/1, snd/1, z/0
+equations: fst(<x.1, x.2>) = x.1, snd(<x.1, x.2>) = x.2
+
+/* looping facts with injective instances: St/3 */
+
+rule (modulo E) Init:
+   [ Fr( ~sid ) ] --[ InitOnce( ) ]-> [ St( ~sid, z, 'phase0' ) ]
+
+  /* has exactly the trivial AC variant */
+
+restriction OneInit:
+  "∀ #i #j. ((InitOnce( ) @ #i) ∧ (InitOnce( ) @ #j)) ⇒ (#i = #j)"
+  // safety formula
+
+  /*
+  expanded formula:
+  "∀ #i #j. ((InitOnce( ) @ #i) ∧ (InitOnce( ) @ #j)) ⇒ (#i = #j)"
+  */
+
+rule (modulo E) Good:
+   [ St( sid, z, 'phase0' ) ]
+  --[ Honest( sid ) ]->
+   [ St( sid, 'qdone', 'phase1' ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Bad:
+   [ St( sid, s(z), 'phase0' ) ] --[ Bad( sid ) ]-> [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Again:
+   [ St( sid, z, 'phase1' ) ] --[ Again( sid ) ]-> [ ]
+
+  /* has exactly the trivial AC variant */
+
+lemma honest_reachable:
+  exists-trace "∃ sid #i. Honest( sid ) @ #i"
+/*
+guarded formula characterizing all satisfying traces:
+"∃ sid #i. (Honest( sid ) @ #i)"
+*/
+by sorry
+
+lemma bad_reachable:
+  exists-trace "∃ sid #i. Bad( sid ) @ #i"
+/*
+guarded formula characterizing all satisfying traces:
+"∃ sid #i. (Bad( sid ) @ #i)"
+*/
+by sorry
+
+lemma repeat_reachable:
+  exists-trace "∃ sid #i. Again( sid ) @ #i"
+/*
+guarded formula characterizing all satisfying traces:
+"∃ sid #i. (Again( sid ) @ #i)"
+*/
+simplify
+by solve( St( sid, z, 'phase1' ) ▶₀ #i )
+
+lemma single_consumption:
+  all-traces
+  "∀ sid #i #j. ((Honest( sid ) @ #i) ∧ (Honest( sid ) @ #j)) ⇒ (#i = #j)"
+/*
+guarded formula characterizing all counter-examples:
+"∃ sid #i #j. (Honest( sid ) @ #i) ∧ (Honest( sid ) @ #j) ∧ ¬(#i = #j)"
+*/
+by sorry
+
+/* All wellformedness checks were successful. */
+
+/*
+Generated from:
+Tamarin version 1.13.0
+Maude version 3.5
+Git revision: UNKNOWN
+Compiled at: 2026-11-15 05:08:08.737146731 UTC
+*/
+
+end
+
+==============================================================================
+summary of summaries:
+
+analyzed: /kit/models/zero_argument/successor_once.spthy
+
+  processing time: 0.03s
+  
+  honest_reachable (exists-trace): analysis incomplete (1 steps)
+  bad_reachable (exists-trace): analysis incomplete (1 steps)
+  repeat_reachable (exists-trace): falsified - no trace found (2 steps)
+  single_consumption (all-traces): analysis incomplete (1 steps)
+
+==============================================================================

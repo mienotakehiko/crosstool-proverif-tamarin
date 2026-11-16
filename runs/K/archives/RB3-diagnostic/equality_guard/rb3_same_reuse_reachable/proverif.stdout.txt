@@ -1,0 +1,266 @@
+File "/work/equality_guard/rb3_same_reuse_reachable/translated.pv", line 127, characters 42-56:
+Warning: identifier request_context rebound.
+Linear part: No equation.
+Convergent part:
+fst((x_1,x_2)) = x_1
+snd((x_1,x_2)) = x_2
+Completing equations...
+Completed equations:
+snd((x_1,x_2)) = x_2
+fst((x_1,x_2)) = x_1
+Process 0 (that is, the initial process):
+(
+    {1}!
+    {2}new rid_rInit: bitstring;
+    {3}new stR_ChooseContext: bitstring;
+    {4}new run_id: bitstring;
+    {5}new request_context: bitstring;
+    {6}new new_context: bitstring;
+    {7}new sender_ssn: bitstring;
+    {8}event eInit(rid_rInit);
+    {9}insert tChooseContext(stR_ChooseContext,run_id,request_context,new_context,sender_ssn)
+) | (
+    {10}!
+    {11}get tChooseContext(stL_ChooseContext: bitstring,run_id_1: bitstring,request_context_1: bitstring,new_context_1: bitstring,sender_ssn_1: bitstring) in
+    {12}new rid_rUseSameContext: bitstring;
+    {13}new stR_ExchangeReady: bitstring;
+    {14}event eDistinctFact(rid_rUseSameContext,(stL_ChooseContext,(run_id_1,(request_context_1,(new_context_1,sender_ssn_1)))));
+    {15}insert tExchangeReady(stR_ExchangeReady,vsame_ctx,run_id_1,request_context_1,request_context_1,sender_ssn_1)
+) | (
+    {16}!
+    {17}get tChooseContext(stL_ChooseContext_1: bitstring,run_id_2: bitstring,request_context_2: bitstring,new_context_2: bitstring,sender_ssn_2: bitstring) in
+    {18}new rid_rUseDifferentContext: bitstring;
+    {19}new stR_ExchangeReady_1: bitstring;
+    {20}event eDistinctFact(rid_rUseDifferentContext,(stL_ChooseContext_1,(run_id_2,(request_context_2,(new_context_2,sender_ssn_2)))));
+    {21}insert tExchangeReady(stR_ExchangeReady_1,vdifferent_ctx,run_id_2,request_context_2,new_context_2,sender_ssn_2)
+) | (
+    {22}!
+    {23}get tExchangeReady(stL_ExchangeReady: bitstring,scenario: bitstring,run_id_3: bitstring,request_context_3: bitstring,response_context: bitstring,sender_ssn_3: bitstring) in
+    {24}new rid_rRecordAcceptedRequest: bitstring;
+    {25}new stR_Pending: bitstring;
+    {26}new stR_CanRespond: bitstring;
+    {27}new token_id: bitstring;
+    {28}event eDistinctFact(rid_rRecordAcceptedRequest,(stL_ExchangeReady,(scenario,(run_id_3,(request_context_3,(response_context,sender_ssn_3))))));
+    {29}event eRequestAccepted(scenario,run_id_3,token_id,request_context_3,vrequest_zero);
+    {30}event eServerSendReady(run_id_3,response_context,sender_ssn_3);
+    {31}insert tPending(stR_Pending,scenario,run_id_3,token_id,request_context_3,vrequest_zero,response_context);
+    {32}insert tCanRespond(stR_CanRespond,scenario,run_id_3,token_id,request_context_3,response_context,vrequest_zero,sender_ssn_3)
+) | (
+    {33}!
+    {34}get tCanRespond(stL_CanRespond: bitstring,scenario_1: bitstring,run_id_4: bitstring,token_id_1: bitstring,request_context_4: bitstring,response_context_1: bitstring,request_piv: bitstring,sender_ssn_4: bitstring) in
+    {35}new rid_rProtectWithOwnPiv: bitstring;
+    {36}new stR_ProtectedResponse: bitstring;
+    {37}event eDistinctFact(rid_rProtectWithOwnPiv,(stL_CanRespond,(scenario_1,(run_id_4,(token_id_1,(request_context_4,(response_context_1,(request_piv,sender_ssn_4))))))));
+    {38}event eResponseProtected(scenario_1,run_id_4,token_id_1,request_context_4,response_context_1,request_piv,vown_piv,sender_ssn_4);
+    {39}insert tProtectedResponse(stR_ProtectedResponse,scenario_1,run_id_4,token_id_1,request_context_4,response_context_1,request_piv,vown_piv,sender_ssn_4)
+) | (
+    {40}!
+    {41}get tCanRespond(stL_CanRespond_1: bitstring,scenario_2: bitstring,run_id_5: bitstring,token_id_2: bitstring,request_context_5: bitstring,request_context_6: bitstring,request_piv_1: bitstring,sender_ssn_5: bitstring) in
+    {42}new rid_rProtectWithRequestNonce: bitstring;
+    {43}new stR_ProtectedResponse_1: bitstring;
+    {44}event eDistinctFact(rid_rProtectWithRequestNonce,(stL_CanRespond_1,(scenario_2,(run_id_5,(token_id_2,(request_context_6,(request_context_6,(request_piv_1,sender_ssn_5))))))));
+    {45}event eResponseProtected(scenario_2,run_id_5,token_id_2,request_context_6,request_context_6,request_piv_1,vreuse_piv,vno_piv);
+    {46}event eContextMatch(request_context_6,request_context_6);
+    {47}insert tProtectedResponse(stR_ProtectedResponse_1,scenario_2,run_id_5,token_id_2,request_context_6,request_context_6,request_piv_1,vreuse_piv,vno_piv)
+) | (
+    {48}!
+    {49}get tPending(stL_Pending: bitstring,scenario_3: bitstring,run_id_6: bitstring,token_id_3: bitstring,request_context_7: bitstring,request_piv_2: bitstring,response_context_2: bitstring) in
+    {50}get tProtectedResponse(stL_ProtectedResponse: bitstring,=scenario_3,=run_id_6,=token_id_3,=request_context_7,=response_context_2,=request_piv_2,piv_mode: bitstring,reply_piv: bitstring) in
+    {51}new rid_rAcceptResponse: bitstring;
+    {52}event eDistinctFact(rid_rAcceptResponse,(stL_Pending,(scenario_3,(run_id_6,(token_id_3,(request_context_7,(request_piv_2,response_context_2)))))));
+    {53}event eDistinctFact(rid_rAcceptResponse,(stL_ProtectedResponse,(scenario_3,(run_id_6,(token_id_3,(request_context_7,(response_context_2,(request_piv_2,(piv_mode,reply_piv)))))))));
+    {54}event eResponseAccepted(scenario_3,run_id_6,token_id_3,request_context_7,response_context_2,request_piv_2,piv_mode,reply_piv)
+)
+
+-- Restriction event(eInit(rid_i))@i && event(eInit(rid_j))@j ==> rid_i = rid_j encoded as event(eInit(rid_i)) && event(eInit(rid_j)) ==> rid_i = rid_j in process 0.
+-- Restriction event(eContextMatch(a,b))@i ==> a = b encoded as event(eContextMatch(a,b)) ==> a = b in process 0.
+-- Restriction event(eDistinctFact(rid_i,x))@i && event(eDistinctFact(rid_j,x))@j ==> rid_i = rid_j encoded as event(eDistinctFact(rid_i,x)) && event(eDistinctFact(rid_j,x)) ==> rid_i = rid_j in process 0.
+-- Query not event(eResponseAccepted(vsame_ctx[],run_id_7,token_id_4,ctx,ctx,request_piv_3,vreuse_piv[],vno_piv[]))@k encoded as not event(eResponseAccepted(vsame_ctx[],run_id_7,token_id_4,ctx,ctx,request_piv_3,vreuse_piv[],vno_piv[])) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query not event(eResponseAccepted(vsame_ctx[],run_id_7,token_id_4,ctx,ctx,request_piv_3,vreuse_piv[],vno_piv[]))@k
+Removing redudant clauses.
+Removing subsumed clauses modulo the equational theory.
+Starting verification.
+Clauses verified: 0. Clauses remaining: 1. Failed clauses: 0.
+goal reachable: b-event(eDistinctFact(rid_rAcceptResponse_1,(stR_ProtectedResponse_2,(vsame_ctx[],(run_id_7,(token_id_4,(request_context_8,(request_context_8,(vrequest_zero[],(vreuse_piv[],vno_piv[])))))))))) && b-event(eDistinctFact(rid_rAcceptResponse_1,(stR_Pending_1,(vsame_ctx[],(run_id_7,(token_id_4,(request_context_8,(vrequest_zero[],request_context_8)))))))) && b-event(eContextMatch(request_context_8,request_context_8)) && b-event(eDistinctFact(rid_rProtectWithRequestNonce_1,(stR_CanRespond_1,(vsame_ctx[],(run_id_7,(token_id_4,(request_context_8,(request_context_8,(vrequest_zero[],sender_ssn_6))))))))) && b-event(@p_act(@occ41_1,tCanRespond(stR_CanRespond_1,vsame_ctx[],run_id_7,token_id_4,request_context_8,request_context_8,vrequest_zero[],sender_ssn_6))) && b-event(@p_act(@occ50_1,tProtectedResponse(stR_ProtectedResponse_2,vsame_ctx[],run_id_7,token_id_4,request_context_8,request_context_8,vrequest_zero[],vreuse_piv[],vno_piv[]))) && b-event(eDistinctFact(rid_rRecordAcceptedRequest_1,(stR_ExchangeReady_2,(vsame_ctx[],(run_id_7,(request_context_8,(request_context_8,sender_ssn_6))))))) && b-event(eDistinctFact(rid_rUseSameContext_1,(stR_ChooseContext_1,(run_id_7,(request_context_8,(new_context_3,sender_ssn_6)))))) && b-event(eInit(rid_rInit_1)) && b-event(@p_act(@occ11_1,tChooseContext(stR_ChooseContext_1,run_id_7,request_context_8,new_context_3,sender_ssn_6))) && b-event(@p_act(@occ23_1,tExchangeReady(stR_ExchangeReady_2,vsame_ctx[],run_id_7,request_context_8,request_context_8,sender_ssn_6))) && b-event(@p_act(@occ49_1,tPending(stR_Pending_1,vsame_ctx[],run_id_7,token_id_4,request_context_8,vrequest_zero[],request_context_8))) -> event(eResponseAccepted(vsame_ctx[],run_id_7,token_id_4,request_context_8,request_context_8,vrequest_zero[],vreuse_piv[],vno_piv[]))
+The 1st, 2nd, 3rd, 4th, 5th, 6th, 7th, 8th, 9th, 10th, 11th, 12th hypotheses occur strictly before the conclusion.
+Abbreviations:
+run_id_7 = run_id[!1 = @sid]
+sender_ssn_6 = sender_ssn[!1 = @sid]
+request_context_8 = request_context[!1 = @sid]
+new_context_3 = new_context[!1 = @sid]
+stR_ChooseContext_1 = stR_ChooseContext[!1 = @sid]
+stR_ExchangeReady_2 = stR_ExchangeReady[sender_ssn_1 = sender_ssn_6,new_context_1 = new_context_3,request_context_1 = request_context_8,run_id_1 = run_id_7,stL_ChooseContext = stR_ChooseContext_1,!1 = @sid_1]
+token_id_4 = token_id[sender_ssn_3 = sender_ssn_6,response_context = request_context_8,request_context_3 = request_context_8,run_id_3 = run_id_7,scenario = vsame_ctx[],stL_ExchangeReady = stR_ExchangeReady_2,!1 = @sid_2]
+stR_CanRespond_1 = stR_CanRespond[sender_ssn_3 = sender_ssn_6,response_context = request_context_8,request_context_3 = request_context_8,run_id_3 = run_id_7,scenario = vsame_ctx[],stL_ExchangeReady = stR_ExchangeReady_2,!1 = @sid_2]
+stR_ProtectedResponse_2 = stR_ProtectedResponse_1[sender_ssn_5 = sender_ssn_6,request_piv_1 = vrequest_zero[],request_context_6 = request_context_8,request_context_5 = request_context_8,token_id_2 = token_id_4,run_id_5 = run_id_7,scenario_2 = vsame_ctx[],stL_CanRespond_1 = stR_CanRespond_1,!1 = @sid_3]
+stR_Pending_1 = stR_Pending[sender_ssn_3 = sender_ssn_6,response_context = request_context_8,request_context_3 = request_context_8,run_id_3 = run_id_7,scenario = vsame_ctx[],stL_ExchangeReady = stR_ExchangeReady_2,!1 = @sid_2]
+rid_rAcceptResponse_1 = rid_rAcceptResponse[reply_piv = vno_piv[],piv_mode = vreuse_piv[],stL_ProtectedResponse = stR_ProtectedResponse_2,response_context_2 = request_context_8,request_piv_2 = vrequest_zero[],request_context_7 = request_context_8,token_id_3 = token_id_4,run_id_6 = run_id_7,scenario_3 = vsame_ctx[],stL_Pending = stR_Pending_1,!1 = @sid_4]
+rid_rProtectWithRequestNonce_1 = rid_rProtectWithRequestNonce[sender_ssn_5 = sender_ssn_6,request_piv_1 = vrequest_zero[],request_context_6 = request_context_8,request_context_5 = request_context_8,token_id_2 = token_id_4,run_id_5 = run_id_7,scenario_2 = vsame_ctx[],stL_CanRespond_1 = stR_CanRespond_1,!1 = @sid_3]
+@occ41_1 = @occ41[!1 = @sid_3]
+@occ50_1 = @occ50[!1 = @sid_4]
+rid_rRecordAcceptedRequest_1 = rid_rRecordAcceptedRequest[sender_ssn_3 = sender_ssn_6,response_context = request_context_8,request_context_3 = request_context_8,run_id_3 = run_id_7,scenario = vsame_ctx[],stL_ExchangeReady = stR_ExchangeReady_2,!1 = @sid_2]
+rid_rUseSameContext_1 = rid_rUseSameContext[sender_ssn_1 = sender_ssn_6,new_context_1 = new_context_3,request_context_1 = request_context_8,run_id_1 = run_id_7,stL_ChooseContext = stR_ChooseContext_1,!1 = @sid_1]
+rid_rInit_1 = rid_rInit[!1 = @sid]
+@occ11_1 = @occ11[!1 = @sid_1]
+@occ23_1 = @occ23[!1 = @sid_2]
+@occ49_1 = @occ49[!1 = @sid_4]
+
+Derivation:
+Abbreviations:
+run_id_7 = run_id[!1 = @sid]
+sender_ssn_6 = sender_ssn[!1 = @sid]
+request_context_8 = request_context[!1 = @sid]
+new_context_3 = new_context[!1 = @sid]
+stR_ChooseContext_1 = stR_ChooseContext[!1 = @sid]
+stR_ExchangeReady_2 = stR_ExchangeReady[sender_ssn_1 = sender_ssn_6,new_context_1 = new_context_3,request_context_1 = request_context_8,run_id_1 = run_id_7,stL_ChooseContext = stR_ChooseContext_1,!1 = @sid_1]
+token_id_4 = token_id[sender_ssn_3 = sender_ssn_6,response_context = request_context_8,request_context_3 = request_context_8,run_id_3 = run_id_7,scenario = vsame_ctx[],stL_ExchangeReady = stR_ExchangeReady_2,!1 = @sid_2]
+stR_CanRespond_1 = stR_CanRespond[sender_ssn_3 = sender_ssn_6,response_context = request_context_8,request_context_3 = request_context_8,run_id_3 = run_id_7,scenario = vsame_ctx[],stL_ExchangeReady = stR_ExchangeReady_2,!1 = @sid_2]
+stR_ProtectedResponse_2 = stR_ProtectedResponse_1[sender_ssn_5 = sender_ssn_6,request_piv_1 = vrequest_zero[],request_context_6 = request_context_8,request_context_5 = request_context_8,token_id_2 = token_id_4,run_id_5 = run_id_7,scenario_2 = vsame_ctx[],stL_CanRespond_1 = stR_CanRespond_1,!1 = @sid_3]
+stR_Pending_1 = stR_Pending[sender_ssn_3 = sender_ssn_6,response_context = request_context_8,request_context_3 = request_context_8,run_id_3 = run_id_7,scenario = vsame_ctx[],stL_ExchangeReady = stR_ExchangeReady_2,!1 = @sid_2]
+rid_rAcceptResponse_1 = rid_rAcceptResponse[reply_piv = vno_piv[],piv_mode = vreuse_piv[],stL_ProtectedResponse = stR_ProtectedResponse_2,response_context_2 = request_context_8,request_piv_2 = vrequest_zero[],request_context_7 = request_context_8,token_id_3 = token_id_4,run_id_6 = run_id_7,scenario_3 = vsame_ctx[],stL_Pending = stR_Pending_1,!1 = @sid_4]
+rid_rProtectWithRequestNonce_1 = rid_rProtectWithRequestNonce[sender_ssn_5 = sender_ssn_6,request_piv_1 = vrequest_zero[],request_context_6 = request_context_8,request_context_5 = request_context_8,token_id_2 = token_id_4,run_id_5 = run_id_7,scenario_2 = vsame_ctx[],stL_CanRespond_1 = stR_CanRespond_1,!1 = @sid_3]
+rid_rRecordAcceptedRequest_1 = rid_rRecordAcceptedRequest[sender_ssn_3 = sender_ssn_6,response_context = request_context_8,request_context_3 = request_context_8,run_id_3 = run_id_7,scenario = vsame_ctx[],stL_ExchangeReady = stR_ExchangeReady_2,!1 = @sid_2]
+@occ23_1 = @occ23[!1 = @sid_2]
+@occ41_1 = @occ41[!1 = @sid_3]
+@occ50_1 = @occ50[!1 = @sid_4]
+rid_rUseSameContext_1 = rid_rUseSameContext[sender_ssn_1 = sender_ssn_6,new_context_1 = new_context_3,request_context_1 = request_context_8,run_id_1 = run_id_7,stL_ChooseContext = stR_ChooseContext_1,!1 = @sid_1]
+rid_rInit_1 = rid_rInit[!1 = @sid]
+@occ11_1 = @occ11[!1 = @sid_1]
+@occ49_1 = @occ49[!1 = @sid_4]
+
+1. The event eInit(rid_rInit_1) may be executed at {8}.
+So the entry tChooseContext(stR_ChooseContext_1,run_id_7,request_context_8,new_context_3,sender_ssn_6) may be inserted in a table at insert {9}.
+table(tChooseContext(stR_ChooseContext_1,run_id_7,request_context_8,new_context_3,sender_ssn_6)).
+
+2. The event @p_act(@occ11_1,tChooseContext(stR_ChooseContext_1,run_id_7,request_context_8,new_context_3,sender_ssn_6)) records how variables are instantiated at {11}.
+The entry tChooseContext(stR_ChooseContext_1,run_id_7,request_context_8,new_context_3,sender_ssn_6) that may be in a table by 1 may be read at get {11}.
+The event eDistinctFact(rid_rUseSameContext_1,(stR_ChooseContext_1,(run_id_7,(request_context_8,(new_context_3,sender_ssn_6))))) may be executed at {14}.
+So the entry tExchangeReady(stR_ExchangeReady_2,vsame_ctx[],run_id_7,request_context_8,request_context_8,sender_ssn_6) may be inserted in a table at insert {15}.
+table(tExchangeReady(stR_ExchangeReady_2,vsame_ctx[],run_id_7,request_context_8,request_context_8,sender_ssn_6)).
+
+3. The event @p_act(@occ23_1,tExchangeReady(stR_ExchangeReady_2,vsame_ctx[],run_id_7,request_context_8,request_context_8,sender_ssn_6)) records how variables are instantiated at {23}.
+The entry tExchangeReady(stR_ExchangeReady_2,vsame_ctx[],run_id_7,request_context_8,request_context_8,sender_ssn_6) that may be in a table by 2 may be read at get {23}.
+The event eDistinctFact(rid_rRecordAcceptedRequest_1,(stR_ExchangeReady_2,(vsame_ctx[],(run_id_7,(request_context_8,(request_context_8,sender_ssn_6)))))) may be executed at {28}.
+So the entry tPending(stR_Pending_1,vsame_ctx[],run_id_7,token_id_4,request_context_8,vrequest_zero[],request_context_8) may be inserted in a table at insert {31}.
+table(tPending(stR_Pending_1,vsame_ctx[],run_id_7,token_id_4,request_context_8,vrequest_zero[],request_context_8)).
+
+4. The event @p_act(@occ23_1,tExchangeReady(stR_ExchangeReady_2,vsame_ctx[],run_id_7,request_context_8,request_context_8,sender_ssn_6)) records how variables are instantiated at {23}.
+The entry tExchangeReady(stR_ExchangeReady_2,vsame_ctx[],run_id_7,request_context_8,request_context_8,sender_ssn_6) that may be in a table by 2 may be read at get {23}.
+The event eDistinctFact(rid_rRecordAcceptedRequest_1,(stR_ExchangeReady_2,(vsame_ctx[],(run_id_7,(request_context_8,(request_context_8,sender_ssn_6)))))) may be executed at {28}.
+So the entry tCanRespond(stR_CanRespond_1,vsame_ctx[],run_id_7,token_id_4,request_context_8,request_context_8,vrequest_zero[],sender_ssn_6) may be inserted in a table at insert {32}.
+table(tCanRespond(stR_CanRespond_1,vsame_ctx[],run_id_7,token_id_4,request_context_8,request_context_8,vrequest_zero[],sender_ssn_6)).
+
+5. The event @p_act(@occ41_1,tCanRespond(stR_CanRespond_1,vsame_ctx[],run_id_7,token_id_4,request_context_8,request_context_8,vrequest_zero[],sender_ssn_6)) records how variables are instantiated at {41}.
+The entry tCanRespond(stR_CanRespond_1,vsame_ctx[],run_id_7,token_id_4,request_context_8,request_context_8,vrequest_zero[],sender_ssn_6) that may be in a table by 4 may be read at get {41}.
+The event eDistinctFact(rid_rProtectWithRequestNonce_1,(stR_CanRespond_1,(vsame_ctx[],(run_id_7,(token_id_4,(request_context_8,(request_context_8,(vrequest_zero[],sender_ssn_6)))))))) may be executed at {44}.
+The event eContextMatch(request_context_8,request_context_8) may be executed at {46}.
+So the entry tProtectedResponse(stR_ProtectedResponse_2,vsame_ctx[],run_id_7,token_id_4,request_context_8,request_context_8,vrequest_zero[],vreuse_piv[],vno_piv[]) may be inserted in a table at insert {47}.
+table(tProtectedResponse(stR_ProtectedResponse_2,vsame_ctx[],run_id_7,token_id_4,request_context_8,request_context_8,vrequest_zero[],vreuse_piv[],vno_piv[])).
+
+6. The event @p_act(@occ49_1,tPending(stR_Pending_1,vsame_ctx[],run_id_7,token_id_4,request_context_8,vrequest_zero[],request_context_8)) records how variables are instantiated at {49}.
+The entry tPending(stR_Pending_1,vsame_ctx[],run_id_7,token_id_4,request_context_8,vrequest_zero[],request_context_8) that may be in a table by 3 may be read at get {49}.
+The event @p_act(@occ50_1,tProtectedResponse(stR_ProtectedResponse_2,vsame_ctx[],run_id_7,token_id_4,request_context_8,request_context_8,vrequest_zero[],vreuse_piv[],vno_piv[])) records how variables are instantiated at {50}.
+The entry tProtectedResponse(stR_ProtectedResponse_2,vsame_ctx[],run_id_7,token_id_4,request_context_8,request_context_8,vrequest_zero[],vreuse_piv[],vno_piv[]) that may be in a table by 5 may be read at get {50}.
+The event eDistinctFact(rid_rAcceptResponse_1,(stR_Pending_1,(vsame_ctx[],(run_id_7,(token_id_4,(request_context_8,(vrequest_zero[],request_context_8))))))) may be executed at {52}.
+The event eDistinctFact(rid_rAcceptResponse_1,(stR_ProtectedResponse_2,(vsame_ctx[],(run_id_7,(token_id_4,(request_context_8,(request_context_8,(vrequest_zero[],(vreuse_piv[],vno_piv[]))))))))) may be executed at {53}.
+So event eResponseAccepted(vsame_ctx[],run_id_7,token_id_4,request_context_8,request_context_8,vrequest_zero[],vreuse_piv[],vno_piv[]) may be executed at {54}.
+event(eResponseAccepted(vsame_ctx[],run_id_7,token_id_4,request_context_8,request_context_8,vrequest_zero[],vreuse_piv[],vno_piv[])).
+
+7. By 6, event(eResponseAccepted(vsame_ctx[],run_id_7,token_id_4,request_context_8,request_context_8,vrequest_zero[],vreuse_piv[],vno_piv[])).
+The goals are reached, combined in the following fact:
+event(eResponseAccepted(vsame_ctx[],run_id_7,token_id_4,request_context_8,request_context_8,vrequest_zero[],vreuse_piv[],vno_piv[])).
+
+
+A more detailed output of the traces is available with
+  set traceDisplay = long.
+
+new rid_rInit: bitstring creating rid_rInit_2 at {2} in copy a
+
+new stR_ChooseContext: bitstring creating stR_ChooseContext_2 at {3} in copy a
+
+new run_id: bitstring creating run_id_8 at {4} in copy a
+
+new request_context: bitstring creating request_context_9 at {5} in copy a
+
+new new_context: bitstring creating new_context_4 at {6} in copy a
+
+new sender_ssn: bitstring creating sender_ssn_7 at {7} in copy a
+
+event eInit(rid_rInit_2) at {8} in copy a
+
+insert tChooseContext(stR_ChooseContext_2,run_id_8,request_context_9,new_context_4,sender_ssn_7) at {9} in copy a
+
+get tChooseContext(stR_ChooseContext_2,run_id_8,request_context_9,new_context_4,sender_ssn_7) at {11} in copy a_1
+
+new rid_rUseSameContext: bitstring creating rid_rUseSameContext_2 at {12} in copy a_1
+
+new stR_ExchangeReady: bitstring creating stR_ExchangeReady_3 at {13} in copy a_1
+
+event eDistinctFact(rid_rUseSameContext_2,(stR_ChooseContext_2,(run_id_8,(request_context_9,(new_context_4,sender_ssn_7))))) at {14} in copy a_1
+
+insert tExchangeReady(stR_ExchangeReady_3,vsame_ctx,run_id_8,request_context_9,request_context_9,sender_ssn_7) at {15} in copy a_1
+
+get tExchangeReady(stR_ExchangeReady_3,vsame_ctx,run_id_8,request_context_9,request_context_9,sender_ssn_7) at {23} in copy a_2
+
+new rid_rRecordAcceptedRequest: bitstring creating rid_rRecordAcceptedRequest_2 at {24} in copy a_2
+
+new stR_Pending: bitstring creating stR_Pending_2 at {25} in copy a_2
+
+new stR_CanRespond: bitstring creating stR_CanRespond_2 at {26} in copy a_2
+
+new token_id: bitstring creating token_id_5 at {27} in copy a_2
+
+event eDistinctFact(rid_rRecordAcceptedRequest_2,(stR_ExchangeReady_3,(vsame_ctx,(run_id_8,(request_context_9,(request_context_9,sender_ssn_7)))))) at {28} in copy a_2
+
+event eRequestAccepted(vsame_ctx,run_id_8,token_id_5,request_context_9,vrequest_zero) at {29} in copy a_2
+
+event eServerSendReady(run_id_8,request_context_9,sender_ssn_7) at {30} in copy a_2
+
+insert tPending(stR_Pending_2,vsame_ctx,run_id_8,token_id_5,request_context_9,vrequest_zero,request_context_9) at {31} in copy a_2
+
+insert tCanRespond(stR_CanRespond_2,vsame_ctx,run_id_8,token_id_5,request_context_9,request_context_9,vrequest_zero,sender_ssn_7) at {32} in copy a_2
+
+get tCanRespond(stR_CanRespond_2,vsame_ctx,run_id_8,token_id_5,request_context_9,request_context_9,vrequest_zero,sender_ssn_7) at {41} in copy a_3
+
+new rid_rProtectWithRequestNonce: bitstring creating rid_rProtectWithRequestNonce_2 at {42} in copy a_3
+
+new stR_ProtectedResponse_1: bitstring creating stR_ProtectedResponse_3 at {43} in copy a_3
+
+event eDistinctFact(rid_rProtectWithRequestNonce_2,(stR_CanRespond_2,(vsame_ctx,(run_id_8,(token_id_5,(request_context_9,(request_context_9,(vrequest_zero,sender_ssn_7)))))))) at {44} in copy a_3
+
+event eResponseProtected(vsame_ctx,run_id_8,token_id_5,request_context_9,request_context_9,vrequest_zero,vreuse_piv,vno_piv) at {45} in copy a_3
+
+event eContextMatch(request_context_9,request_context_9) at {46} in copy a_3
+
+insert tProtectedResponse(stR_ProtectedResponse_3,vsame_ctx,run_id_8,token_id_5,request_context_9,request_context_9,vrequest_zero,vreuse_piv,vno_piv) at {47} in copy a_3
+
+get tPending(stR_Pending_2,vsame_ctx,run_id_8,token_id_5,request_context_9,vrequest_zero,request_context_9) at {49} in copy a_4
+
+get tProtectedResponse(stR_ProtectedResponse_3,vsame_ctx,run_id_8,token_id_5,request_context_9,request_context_9,vrequest_zero,vreuse_piv,vno_piv) at {50} in copy a_4
+
+new rid_rAcceptResponse: bitstring creating rid_rAcceptResponse_2 at {51} in copy a_4
+
+event eDistinctFact(rid_rAcceptResponse_2,(stR_Pending_2,(vsame_ctx,(run_id_8,(token_id_5,(request_context_9,(vrequest_zero,request_context_9))))))) at {52} in copy a_4
+
+event eDistinctFact(rid_rAcceptResponse_2,(stR_ProtectedResponse_3,(vsame_ctx,(run_id_8,(token_id_5,(request_context_9,(request_context_9,(vrequest_zero,(vreuse_piv,vno_piv))))))))) at {53} in copy a_4
+
+event eResponseAccepted(vsame_ctx,run_id_8,token_id_5,request_context_9,request_context_9,vrequest_zero,vreuse_piv,vno_piv) at {54} in copy a_4 (goal)
+
+The event eResponseAccepted(vsame_ctx,run_id_8,token_id_5,request_context_9,request_context_9,vrequest_zero,vreuse_piv,vno_piv) is executed at {54} in copy a_4.
+A trace has been found.
+RESULT not event(eResponseAccepted(vsame_ctx[],run_id_7,token_id_4,ctx,ctx,request_piv_3,vreuse_piv[],vno_piv[]))@k is false.
+
+--------------------------------------------------------------
+Verification summary:
+
+Query(ies):
+ - Query not event(eResponseAccepted(vsame_ctx[],run_id_7,token_id_4,ctx,ctx,request_piv_3,vreuse_piv[],vno_piv[]))@k is false.
+Associated restriction(s):
+ - Restriction event(eInit(rid_i))@i && event(eInit(rid_j))@j ==> rid_i = rid_j encoded as event(eInit(rid_i)) && event(eInit(rid_j)) ==> rid_i = rid_j in process 0.
+ - Restriction event(eContextMatch(a,b))@i ==> a = b encoded as event(eContextMatch(a,b)) ==> a = b in process 0.
+ - Restriction event(eDistinctFact(rid_i,x))@i && event(eDistinctFact(rid_j,x))@j ==> rid_i = rid_j encoded as event(eDistinctFact(rid_i,x)) && event(eDistinctFact(rid_j,x)) ==> rid_i = rid_j in process 0.
+
+--------------------------------------------------------------
+

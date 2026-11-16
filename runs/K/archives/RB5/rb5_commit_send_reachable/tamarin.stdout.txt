@@ -1,0 +1,166 @@
+theory CimRb5
+
+begin
+
+// Function signature and definition of the equational theory E
+
+functions: fst/1, pair/2, snd/1
+equations: fst(<x.1, x.2>) = x.1, snd(<x.1, x.2>) = x.2
+
+/* looping facts with injective instances: Execution/3 */
+
+rule (modulo E) Init:
+   [ Fr( ~initial_sid ) ]
+  --[ Init( ), KudosStart( ~initial_sid ) ]->
+   [ Execution( ~initial_sid, 'phase_active', 'no_outcome' ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) CommitUpdate:
+   [ Execution( sid, 'phase_active', 'no_outcome' ) ]
+  --[ KudosCommit( sid ) ]->
+   [ Execution( sid, 'phase_closed', 'outcome_commit' ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) AbortUpdate:
+   [ Execution( sid, 'phase_active', 'no_outcome' ) ]
+  --[ KudosAbort( sid ) ]->
+   [ Execution( sid, 'phase_closed', 'outcome_abort' ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) CheckAppSend:
+   [ Execution( sid, phase, outcome ) ]
+  --[ AppSendChecked( sid, phase, outcome ) ]->
+   [ AppCheck( sid, phase, outcome ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) BlockAppSend:
+   [ AppCheck( sid, 'phase_active', 'no_outcome' ) ]
+  --[ AppSendBlocked( sid ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) AllowAppSend:
+   [ AppCheck( sid, 'phase_closed', outcome ) ]
+  --[ AppSend( sid, 'phase_closed', outcome ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+restriction SingleInit:
+  "∀ #i #j. ((Init( ) @ #i) ∧ (Init( ) @ #j)) ⇒ (#i = #j)"
+  // safety formula
+
+  /*
+  expanded formula:
+  "∀ #i #j. ((Init( ) @ #i) ∧ (Init( ) @ #j)) ⇒ (#i = #j)"
+  */
+
+lemma rb5_block_reachable:
+  exists-trace "∃ sid #k. AppSendBlocked( sid ) @ #k"
+/*
+guarded formula characterizing all satisfying traces:
+"∃ sid #k. (AppSendBlocked( sid ) @ #k)"
+*/
+by sorry
+
+lemma rb5_send_while_active_unreachable:
+  all-traces
+  "¬(∃ sid outcome #k. AppSend( sid, 'phase_active', outcome ) @ #k)"
+/*
+guarded formula characterizing all counter-examples:
+"∃ sid outcome #k. (AppSend( sid, 'phase_active', outcome ) @ #k)"
+*/
+by sorry
+
+lemma rb5_commit_send_reachable:
+  exists-trace
+  "∃ sid #k. AppSend( sid, 'phase_closed', 'outcome_commit' ) @ #k"
+/*
+guarded formula characterizing all satisfying traces:
+"∃ sid #k. (AppSend( sid, 'phase_closed', 'outcome_commit' ) @ #k)"
+*/
+simplify
+solve( AppCheck( sid, 'phase_closed', 'outcome_commit' ) ▶₀ #k )
+  case CheckAppSend
+  SOLVED // trace found
+qed
+
+lemma rb5_commit_before_send:
+  all-traces
+  "∀ sid #k.
+    (AppSend( sid, 'phase_closed', 'outcome_commit' ) @ #k) ⇒
+    (∃ #i #j.
+      (((KudosStart( sid ) @ #i) ∧ (KudosCommit( sid ) @ #j)) ∧ (#i < #j)) ∧
+      (#j < #k))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ sid #k.
+  (AppSend( sid, 'phase_closed', 'outcome_commit' ) @ #k)
+ ∧
+  ∀ #i #j.
+   (KudosStart( sid ) @ #i) ∧ (KudosCommit( sid ) @ #j)
+  ⇒
+   ((¬(#i < #j)) ∨ (¬(#j < #k)))"
+*/
+by sorry
+
+lemma rb5_abort_send_reachable:
+  exists-trace
+  "∃ sid #k. AppSend( sid, 'phase_closed', 'outcome_abort' ) @ #k"
+/*
+guarded formula characterizing all satisfying traces:
+"∃ sid #k. (AppSend( sid, 'phase_closed', 'outcome_abort' ) @ #k)"
+*/
+by sorry
+
+lemma rb5_abort_before_send:
+  all-traces
+  "∀ sid #k.
+    (AppSend( sid, 'phase_closed', 'outcome_abort' ) @ #k) ⇒
+    (∃ #i #j.
+      (((KudosStart( sid ) @ #i) ∧ (KudosAbort( sid ) @ #j)) ∧ (#i < #j)) ∧
+      (#j < #k))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ sid #k.
+  (AppSend( sid, 'phase_closed', 'outcome_abort' ) @ #k)
+ ∧
+  ∀ #i #j.
+   (KudosStart( sid ) @ #i) ∧ (KudosAbort( sid ) @ #j)
+  ⇒
+   ((¬(#i < #j)) ∨ (¬(#j < #k)))"
+*/
+by sorry
+
+/* All wellformedness checks were successful. */
+
+/*
+Generated from:
+Tamarin version 1.13.0
+Maude version 3.5
+Git revision: UNKNOWN
+Compiled at: 2026-10-24 02:25:12.718891574 UTC
+*/
+
+end
+
+==============================================================================
+summary of summaries:
+
+analyzed: /work/inputs/rb5.spthy
+
+  processing time: 0.03s
+  
+  rb5_block_reachable (exists-trace): analysis incomplete (1 steps)
+  rb5_send_while_active_unreachable (all-traces): analysis incomplete (1 steps)
+  rb5_commit_send_reachable (exists-trace): verified (3 steps)
+  rb5_commit_before_send (all-traces): analysis incomplete (1 steps)
+  rb5_abort_send_reachable (exists-trace): analysis incomplete (1 steps)
+  rb5_abort_before_send (all-traces): analysis incomplete (1 steps)
+
+==============================================================================

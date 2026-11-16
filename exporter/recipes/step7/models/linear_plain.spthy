@@ -1,0 +1,21 @@
+theory linear_plain begin
+rule Init:
+  [ Fr(~sid) ] --[ InitOnce() ]->
+  [ St(~sid, 'two', 'payload'), St(~sid, 'two', 'payload'),
+    St(~sid, 'one', 'payload') ]
+
+restriction OneInit:
+  "All #i #j. InitOnce() @ i & InitOnce() @ j ==> #i = #j"
+
+rule Good:
+  [ St(sid, 'two', 'payload'), St(sid, 'two', 'payload') ] --[ Good(sid) ]-> []
+
+rule Bad:
+  [ St(sid, 'one', 'payload'), St(sid, 'one', 'payload') ] --[ Bad(sid) ]-> []
+
+lemma good_reachable: exists-trace
+  "Ex sid #i. Good(sid) @ i"
+
+lemma bad_reachable: exists-trace
+  "Ex sid #i. Bad(sid) @ i"
+end

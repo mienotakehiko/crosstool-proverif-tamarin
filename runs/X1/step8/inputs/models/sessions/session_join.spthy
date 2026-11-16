@@ -1,0 +1,23 @@
+theory session_join begin
+functions: z/0
+
+rule Init:
+  [ Fr(~sa), Fr(~sb) ] --[ InitOnce() ]->
+  [ St(~sa, 'same', z), Aux(~sa, 'same', z),
+    St(~sa, 'cross', z), Aux(~sb, 'cross', z) ]
+
+restriction OneInit:
+  "All #i #j. InitOnce() @ i & InitOnce() @ j ==> #i = #j"
+
+rule Good:
+  [ St(sid, 'same', z), Aux(sid, 'same', z) ] --[ Good(sid) ]-> []
+
+rule Bad:
+  [ St(sid, 'cross', z), Aux(sid, 'cross', z) ] --[ Bad(sid) ]-> []
+
+lemma good_reachable: exists-trace
+  "Ex sid #i. Good(sid) @ i"
+
+lemma bad_reachable: exists-trace
+  "Ex sid #i. Bad(sid) @ i"
+end

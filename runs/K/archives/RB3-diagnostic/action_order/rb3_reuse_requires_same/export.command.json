@@ -1,0 +1,1 @@
+["tamarin-prover", "-d=0", "-m=proverif", "--lemma=rb3_reuse_requires_same", "-o=/work/action_order/rb3_reuse_requires_same/translated.pv", "/work/inputs/rb3_action_order.spthy"]

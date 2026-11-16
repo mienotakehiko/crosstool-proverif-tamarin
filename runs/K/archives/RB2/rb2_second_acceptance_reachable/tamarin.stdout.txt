@@ -1,0 +1,305 @@
+theory CimRb2
+
+begin
+
+// Function signature and definition of the equational theory E
+
+functions: fst/1, pair/2, snd/1
+equations: fst(<x.1, x.2>) = x.1, snd(<x.1, x.2>) = x.2
+
+rule (modulo E) Init:
+   [ Fr( ~initial_id ), Fr( ~initial_context ), Fr( ~next_context ) ]
+  --[ Init( ) ]->
+   [ ReadyOld( ~initial_id, ~initial_context, ~next_context ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) SendRequestOld:
+   [
+   Fr( ~token_id ), Fr( ~request_id ),
+   ReadyOld( run_id, context, next_context )
+   ]
+  --[
+  RequestSent( 'old_gen', run_id, ~token_id, ~request_id, context,
+               'zero_piv'
+  )
+  ]->
+   [
+   PendingOld( run_id, ~token_id, ~request_id, context, 'zero_piv',
+               next_context
+   ),
+   RequestWireOld( run_id, ~token_id, ~request_id, context, 'zero_piv' )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) AcceptRequestOld:
+   [ RequestWireOld( run_id, token_id, request_id, context, request_piv ) ]
+  --[
+  RequestAccepted( 'old_gen', run_id, token_id, request_id, context,
+                   request_piv
+  )
+  ]->
+   [
+   AcceptedRequestOld( run_id, token_id, request_id, context, request_piv )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) ProtectResponseOld:
+   [
+   Fr( ~response_id ),
+   AcceptedRequestOld( run_id, token_id, request_id, context, request_piv )
+   ]
+  --[
+  ResponseProtected( 'old_gen', run_id, token_id, request_id, context,
+                     request_piv, ~response_id
+  )
+  ]->
+   [
+   ResponseWireOld( run_id, token_id, request_id, context, request_piv,
+                    ~response_id
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) AcceptResponseOld:
+   [
+   PendingOld( run_id, token_id, request_id, context, request_piv,
+               next_context
+   ),
+   ResponseWireOld( run_id, token_id, request_id, context, request_piv,
+                    response_id
+   )
+   ]
+  --[
+  ResponseAccepted( 'old_gen', run_id, token_id, request_id, context,
+                    request_piv, response_id
+  )
+  ]->
+   [ OldExchangeCleared( run_id, next_context ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) ActivateNewContext:
+   [ OldExchangeCleared( run_id, next_context ) ]
+  --[ ContextActivated( run_id, next_context ) ]->
+   [ ReadyNew( run_id, next_context ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) SendRequestNew:
+   [ Fr( ~token_id ), Fr( ~request_id ), ReadyNew( run_id, context ) ]
+  --[
+  RequestSent( 'new_gen', run_id, ~token_id, ~request_id, context,
+               'zero_piv'
+  )
+  ]->
+   [
+   PendingNew( run_id, ~token_id, ~request_id, context, 'zero_piv' ),
+   RequestWireNew( run_id, ~token_id, ~request_id, context, 'zero_piv' )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) AcceptRequestNew:
+   [ RequestWireNew( run_id, token_id, request_id, context, request_piv ) ]
+  --[
+  RequestAccepted( 'new_gen', run_id, token_id, request_id, context,
+                   request_piv
+  )
+  ]->
+   [
+   AcceptedRequestNew( run_id, token_id, request_id, context, request_piv )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) ProtectResponseNew:
+   [
+   Fr( ~response_id ),
+   AcceptedRequestNew( run_id, token_id, request_id, context, request_piv )
+   ]
+  --[
+  ResponseProtected( 'new_gen', run_id, token_id, request_id, context,
+                     request_piv, ~response_id
+  )
+  ]->
+   [
+   ResponseWireNew( run_id, token_id, request_id, context, request_piv,
+                    ~response_id
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) AcceptResponseNew:
+   [
+   PendingNew( run_id, token_id, request_id, context, request_piv ),
+   ResponseWireNew( run_id, token_id, request_id, context, request_piv,
+                    response_id
+   )
+   ]
+  --[
+  ResponseAccepted( 'new_gen', run_id, token_id, request_id, context,
+                    request_piv, response_id
+  )
+  ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+restriction SingleInit:
+  "∀ #i #j. ((Init( ) @ #i) ∧ (Init( ) @ #j)) ⇒ (#i = #j)"
+  // safety formula
+
+  /*
+  expanded formula:
+  "∀ #i #j. ((Init( ) @ #i) ∧ (Init( ) @ #j)) ⇒ (#i = #j)"
+  */
+
+lemma rb2_second_acceptance_reachable:
+  exists-trace
+  "∃ run_id token_id request_id context request_piv response_id #k.
+    ResponseAccepted( 'new_gen', run_id, token_id, request_id, context,
+                      request_piv, response_id
+    ) @ #k"
+/*
+guarded formula characterizing all satisfying traces:
+"∃ run_id token_id request_id context request_piv response_id #k.
+  (ResponseAccepted( 'new_gen', run_id, token_id, request_id, context,
+                     request_piv, response_id
+   ) @ #k)"
+*/
+simplify
+solve( ResponseAccepted( 'new_gen', run_id, token_id, request_id,
+                         context, request_piv, response_id
+       ) @ #k )
+  case AcceptResponseNew
+  solve( PendingNew( run_id, token_id, request_id, context, request_piv
+         ) ▶₀ #k )
+    case SendRequestNew
+    solve( ResponseWireNew( ~initial_id, ~token_id, ~request_id,
+                            ~next_context, 'zero_piv', response_id
+           ) ▶₁ #k )
+      case ProtectResponseNew
+      SOLVED // trace found
+    qed
+  qed
+qed
+
+lemma rb2_request_response_binding:
+  all-traces
+  "∀ generation run_id token_id request_id context request_piv response_id
+     #k.
+    (ResponseAccepted( generation, run_id, token_id, request_id, context,
+                       request_piv, response_id
+     ) @ #k) ⇒
+    (∃ #i1 #i2 #i3.
+      (((((RequestSent( generation, run_id, token_id, request_id, context,
+                        request_piv
+           ) @ #i1) ∧
+          (RequestAccepted( generation, run_id, token_id, request_id, context,
+                            request_piv
+           ) @ #i2)) ∧
+         (ResponseProtected( generation, run_id, token_id, request_id, context,
+                             request_piv, response_id
+          ) @ #i3)) ∧
+        (#i1 < #i2)) ∧
+       (#i2 < #i3)) ∧
+      (#i3 < #k))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ generation run_id token_id request_id context request_piv response_id
+   #k.
+  (ResponseAccepted( generation, run_id, token_id, request_id, context,
+                     request_piv, response_id
+   ) @ #k)
+ ∧
+  ∀ #i1 #i2 #i3.
+   (RequestSent( generation, run_id, token_id, request_id, context,
+                 request_piv
+    ) @ #i1) ∧
+   (RequestAccepted( generation, run_id, token_id, request_id, context,
+                     request_piv
+    ) @ #i2) ∧
+   (ResponseProtected( generation, run_id, token_id, request_id, context,
+                       request_piv, response_id
+    ) @ #i3)
+  ⇒
+   ((¬(#i1 < #i2)) ∨ (¬(#i2 < #i3)) ∨ (¬(#i3 < #k)))"
+*/
+by sorry
+
+lemma rb2_unique_acceptance:
+  all-traces
+  "∀ generation run_id token_id request_id context request_piv response_id
+     generation_other request_id_other context_other request_piv_other
+     response_id_other #k #j.
+    ((ResponseAccepted( generation, run_id, token_id, request_id, context,
+                        request_piv, response_id
+      ) @ #k) ∧
+     (ResponseAccepted( generation_other, run_id, token_id, request_id_other,
+                        context_other, request_piv_other, response_id_other
+      ) @ #j)) ⇒
+    (#k = #j)"
+/*
+guarded formula characterizing all counter-examples:
+"∃ generation run_id token_id request_id context request_piv response_id
+   generation_other request_id_other context_other request_piv_other
+   response_id_other #k #j.
+  (ResponseAccepted( generation, run_id, token_id, request_id, context,
+                     request_piv, response_id
+   ) @ #k) ∧
+  (ResponseAccepted( generation_other, run_id, token_id, request_id_other,
+                     context_other, request_piv_other, response_id_other
+   ) @ #j)
+ ∧
+  ¬(#k = #j)"
+*/
+by sorry
+
+lemma rb2_new_request_after_activation:
+  all-traces
+  "∀ run_id token_id request_id context request_piv #k.
+    (RequestSent( 'new_gen', run_id, token_id, request_id, context,
+                  request_piv
+     ) @ #k) ⇒
+    (∃ #i1. (ContextActivated( run_id, context ) @ #i1) ∧ (#i1 < #k))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ run_id token_id request_id context request_piv #k.
+  (RequestSent( 'new_gen', run_id, token_id, request_id, context,
+                request_piv
+   ) @ #k)
+ ∧
+  ∀ #i1. (ContextActivated( run_id, context ) @ #i1) ⇒ ¬(#i1 < #k)"
+*/
+by sorry
+
+/* All wellformedness checks were successful. */
+
+/*
+Generated from:
+Tamarin version 1.13.0
+Maude version 3.5
+Git revision: UNKNOWN
+Compiled at: 2026-10-24 02:25:12.718891574 UTC
+*/
+
+end
+
+==============================================================================
+summary of summaries:
+
+analyzed: /work/inputs/rb2.spthy
+
+  processing time: 0.06s
+  
+  rb2_second_acceptance_reachable (exists-trace): verified (5 steps)
+  rb2_request_response_binding (all-traces): analysis incomplete (1 steps)
+  rb2_unique_acceptance (all-traces): analysis incomplete (1 steps)
+  rb2_new_request_after_activation (all-traces): analysis incomplete (1 steps)
+
+==============================================================================

@@ -1,0 +1,1 @@
+docker run --rm --pull never --network none --cpus=1 --memory=2g --user 1000:1000 --volume /redacted-home/H1_CIM_D_RB3.20261112T091334Z.a2R95Bqo:/work --workdir /work sha256:70093355b2b5ad24b5ada7b4e9b405008bd467a39209850cc8fcca830a420793 python3 -B /work/run_inside.py 

@@ -1,0 +1,1 @@
+["tamarin-prover", "-d=0", "-m=proverif", "--lemma=pending_old_verified_receipt", "-o=/work/T6/verified_receipt/translated.pv", "/work/inputs/T6/pending_old.spthy"]

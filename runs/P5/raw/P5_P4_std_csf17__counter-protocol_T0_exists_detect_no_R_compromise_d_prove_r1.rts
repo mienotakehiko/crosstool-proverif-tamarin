@@ -1,0 +1,25 @@
+'tamarin-prover' '--with-maude=maude' '--derivcheck-timeout=0' '--prove=exists_detect_no_R_compromise' 'corpus/csf17__counter-protocol.spthy' +RTS '-N' '-M56g' '-A64m' '-qg' '-N4' '-sresults/out/P5_P4_std_csf17__counter-protocol_T0_exists_detect_no_R_compromise_d_prove_r1.rts' 
+   5,586,506,344 bytes allocated in the heap
+     216,433,776 bytes copied during GC
+      51,879,488 bytes maximum residency (5 sample(s))
+         205,248 bytes maximum slop
+             358 MiB total memory in use (0 MiB lost due to fragmentation)
+
+                                     Tot time (elapsed)  Avg pause  Max pause
+  Gen  0        17 colls,     0 par    0.021s   0.192s     0.0113s    0.0189s
+  Gen  1         5 colls,     0 par    0.066s   0.122s     0.0245s    0.0662s
+
+  TASKS: 10 (1 bound, 9 peak workers (9 total), using -N4)
+
+  SPARKS: 225 (153 converted, 0 overflowed, 0 dud, 10 GC'd, 62 fizzled)
+
+  INIT    time    0.003s  (  0.003s elapsed)
+  MUT     time    4.238s  (  1.612s elapsed)
+  GC      time    0.087s  (  0.314s elapsed)
+  EXIT    time    0.003s  (  0.001s elapsed)
+  Total   time    4.333s  (  1.930s elapsed)
+
+  Alloc rate    1,318,110,717 bytes per MUT second
+
+  Productivity  97.8% of total user, 83.5% of total elapsed
+

@@ -1,0 +1,25 @@
+'tamarin-prover' '--with-maude=maude' '--derivcheck-timeout=0' '--prove=reachability_right' 'corpus/related_work__StatVerif_ARR_CSF11__StatVerif_Security_Device.spthy' +RTS '-N' '-M56g' '-A64m' '-qg' '-N4' '-sresults/out/P5_P4_std_related_work__StatVerif_ARR_CSF11__StatVerif_Security_Device_T0_reachability_right_d_prove_r3.rts' 
+     370,003,560 bytes allocated in the heap
+       1,998,664 bytes copied during GC
+         143,664 bytes maximum residency (1 sample(s))
+          77,520 bytes maximum slop
+             268 MiB total memory in use (0 MiB lost due to fragmentation)
+
+                                     Tot time (elapsed)  Avg pause  Max pause
+  Gen  0         1 colls,     0 par    0.004s   0.004s     0.0043s    0.0043s
+  Gen  1         1 colls,     0 par    0.000s   0.000s     0.0002s    0.0002s
+
+  TASKS: 10 (1 bound, 9 peak workers (9 total), using -N4)
+
+  SPARKS: 95 (64 converted, 0 overflowed, 0 dud, 0 GC'd, 31 fizzled)
+
+  INIT    time    0.003s  (  0.003s elapsed)
+  MUT     time    0.260s  (  0.124s elapsed)
+  GC      time    0.004s  (  0.005s elapsed)
+  EXIT    time    0.001s  (  0.009s elapsed)
+  Total   time    0.268s  (  0.140s elapsed)
+
+  Alloc rate    1,425,190,578 bytes per MUT second
+
+  Productivity  97.0% of total user, 88.4% of total elapsed
+

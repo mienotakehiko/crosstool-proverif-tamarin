@@ -1,0 +1,25 @@
+'tamarin-cyclic' '--with-maude=maude35' '--derivcheck-timeout=0' '--prove=types' 'corpus/loops__RFID_Simple.spthy' +RTS '-N' '-M56g' '-A64m' '-qg' '-N4' '-sresults/out/P5_P4_cyc_loops__RFID_Simple_T0_types_d_prove_r4.rts' 
+     379,991,080 bytes allocated in the heap
+       8,686,448 bytes copied during GC
+         143,592 bytes maximum residency (1 sample(s))
+          77,592 bytes maximum slop
+             274 MiB total memory in use (0 MiB lost due to fragmentation)
+
+                                     Tot time (elapsed)  Avg pause  Max pause
+  Gen  0         1 colls,     0 par    0.000s   0.019s     0.0192s    0.0192s
+  Gen  1         1 colls,     0 par    0.000s   0.001s     0.0005s    0.0005s
+
+  TASKS: 10 (1 bound, 9 peak workers (9 total), using -N4)
+
+  SPARKS: 156 (93 converted, 0 overflowed, 0 dud, 0 GC'd, 63 fizzled)
+
+  INIT    time    0.003s  (  0.003s elapsed)
+  MUT     time    0.258s  (  0.118s elapsed)
+  GC      time    0.000s  (  0.020s elapsed)
+  EXIT    time    0.001s  (  0.010s elapsed)
+  Total   time    0.263s  (  0.150s elapsed)
+
+  Alloc rate    1,471,805,661 bytes per MUT second
+
+  Productivity  98.3% of total user, 78.5% of total elapsed
+

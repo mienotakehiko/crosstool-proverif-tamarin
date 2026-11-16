@@ -1,0 +1,25 @@
+'tamarin-prover' '--with-maude=maude' '--derivcheck-timeout=0' '--prove=Login_reachable' 'corpus/related_work__YubiSecure_KS_STM12__Yubikey.spthy' +RTS '-N' '-M56g' '-A64m' '-qg' '-N4' '-sresults/out/P5_CHECK_P4_std_Yubi_Login_reachable_r2_r3.rts' 
+   6,166,982,656 bytes allocated in the heap
+     172,624,336 bytes copied during GC
+      41,119,992 bytes maximum residency (5 sample(s))
+         175,880 bytes maximum slop
+             347 MiB total memory in use (0 MiB lost due to fragmentation)
+
+                                     Tot time (elapsed)  Avg pause  Max pause
+  Gen  0        19 colls,     0 par    0.038s   0.160s     0.0084s    0.0137s
+  Gen  1         5 colls,     0 par    0.012s   0.125s     0.0251s    0.0546s
+
+  TASKS: 10 (1 bound, 9 peak workers (9 total), using -N4)
+
+  SPARKS: 321 (213 converted, 0 overflowed, 0 dud, 24 GC'd, 84 fizzled)
+
+  INIT    time    0.003s  (  0.003s elapsed)
+  MUT     time    2.986s  (  0.860s elapsed)
+  GC      time    0.050s  (  0.286s elapsed)
+  EXIT    time    0.032s  (  0.003s elapsed)
+  Total   time    3.071s  (  1.150s elapsed)
+
+  Alloc rate    2,065,325,161 bytes per MUT second
+
+  Productivity  97.2% of total user, 74.7% of total elapsed
+

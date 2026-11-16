@@ -1,0 +1,66 @@
+{
+  "theory": "CimRb4A1",
+  "constants": ["x_client", "x_server"],
+  "function": "rb4_context",
+  "arity": 5,
+  "init": {
+    "fresh": ["run_id", "parent_context"],
+    "produce": [
+      ["ClientReady", "run_id", "parent_context"],
+      ["ServerReady", "run_id", "parent_context"]
+    ]
+  },
+  "steps": [
+    {
+      "id": "SendRequest",
+      "consume": [["ClientReady", "run_id", "parent_context"]],
+      "fresh": ["token_id", "client_nonce"],
+      "emit": ["BranchRequestSent", "run_id", "token_id", "x_client", "client_nonce"],
+      "produce": [
+        ["ClientPending", "run_id", "parent_context", "token_id", "x_client", "client_nonce"],
+        ["BranchRequest", "run_id", "token_id", "x_client", "client_nonce"]
+      ]
+    },
+    {
+      "id": "AcceptRequest",
+      "consume": [
+        ["ServerReady", "run_id", "parent_context"],
+        ["BranchRequest", "run_id", "token_id", "client_x", "client_nonce"]
+      ],
+      "emit": ["BranchRequestAccepted", "run_id", "token_id", "client_x", "client_nonce"],
+      "produce": [["ServerAccepted", "run_id", "parent_context", "token_id", "client_x", "client_nonce"]]
+    },
+    {
+      "id": "DeriveServerContext",
+      "consume": [["ServerAccepted", "run_id", "parent_context", "token_id", "client_x", "client_nonce"]],
+      "fresh": ["server_nonce"],
+      "emit": ["KudosDerived", "run_id", "token_id", "client_x", "client_nonce", "x_server", "server_nonce",
+        ["rb4_context", "parent_context", "client_x", "client_nonce", "x_server", "server_nonce"]],
+      "produce": [["ServerPrepared", "run_id", "token_id", "client_x", "client_nonce", "x_server", "server_nonce",
+        ["rb4_context", "parent_context", "client_x", "client_nonce", "x_server", "server_nonce"]]]
+    },
+    {
+      "id": "SendResponse",
+      "consume": [["ServerPrepared", "run_id", "token_id", "client_x", "client_nonce", "server_x", "server_nonce", "next_context"]],
+      "emit": ["ConvergenceResponseSent", "run_id", "token_id", "client_x", "client_nonce", "server_x", "server_nonce", "next_context"],
+      "produce": [["ConvergenceResponse", "run_id", "token_id", "client_x", "client_nonce", "server_x", "server_nonce", "next_context"]]
+    },
+    {
+      "id": "CommitClientContext",
+      "consume": [
+        ["ClientPending", "run_id", "parent_context", "token_id", "client_x", "client_nonce"],
+        ["ConvergenceResponse", "run_id", "token_id", "client_x", "client_nonce", "server_x", "server_nonce", "next_context"]
+      ],
+      "require_equal": ["next_context", ["rb4_context", "parent_context", "client_x", "client_nonce", "server_x", "server_nonce"]],
+      "emit": ["KudosCommit", "run_id", "token_id", "client_x", "client_nonce", "server_x", "server_nonce", "next_context"],
+      "produce": []
+    }
+  ],
+  "observe": ["KudosCommit", "run_id", "token_id", "client_x", "client_nonce", "server_x", "server_nonce", "next_context"],
+  "before": [
+    ["BranchRequestSent", "run_id", "token_id", "client_x", "client_nonce"],
+    ["BranchRequestAccepted", "run_id", "token_id", "client_x", "client_nonce"],
+    ["KudosDerived", "run_id", "token_id", "client_x", "client_nonce", "server_x", "server_nonce", "next_context"],
+    ["ConvergenceResponseSent", "run_id", "token_id", "client_x", "client_nonce", "server_x", "server_nonce", "next_context"]
+  ]
+}

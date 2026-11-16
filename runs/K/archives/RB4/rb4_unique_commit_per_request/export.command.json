@@ -1,0 +1,1 @@
+["tamarin-prover", "-d=0", "-m=proverif", "--lemma=rb4_unique_commit_per_request", "-o=/work/rb4_unique_commit_per_request/translated.pv", "/work/inputs/rb4.spthy"]

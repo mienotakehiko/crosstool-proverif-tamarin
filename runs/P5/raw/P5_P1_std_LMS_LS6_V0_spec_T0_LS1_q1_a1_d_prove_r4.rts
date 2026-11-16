@@ -1,0 +1,25 @@
+'tamarin-prover' '--with-maude=maude' '--derivcheck-timeout=0' '--prove=LS1_q1_a1' 'variants/LMS_LS6_V0_spec__T0.spthy' +RTS '-N' '-M56g' '-A64m' '-qg' '-N4' '-sresults/out/P5_P1_std_LMS_LS6_V0_spec_T0_LS1_q1_a1_d_prove_r4.rts' 
+ 291,747,121,216 bytes allocated in the heap
+  18,922,598,440 bytes copied during GC
+   1,563,182,176 bytes maximum residency (26 sample(s))
+       3,382,176 bytes maximum slop
+            3723 MiB total memory in use (0 MiB lost due to fragmentation)
+
+                                     Tot time (elapsed)  Avg pause  Max pause
+  Gen  0      1104 colls,     0 par    3.818s  16.062s     0.0145s    0.0456s
+  Gen  1        26 colls,     0 par    3.433s   6.319s     0.2430s    1.2961s
+
+  TASKS: 10 (1 bound, 9 peak workers (9 total), using -N4)
+
+  SPARKS: 176 (158 converted, 0 overflowed, 0 dud, 0 GC'd, 18 fizzled)
+
+  INIT    time    0.003s  (  0.003s elapsed)
+  MUT     time   99.802s  ( 30.093s elapsed)
+  GC      time    7.251s  ( 22.381s elapsed)
+  EXIT    time    0.075s  (  0.003s elapsed)
+  Total   time  107.131s  ( 52.480s elapsed)
+
+  Alloc rate    2,923,266,547 bytes per MUT second
+
+  Productivity  93.2% of total user, 57.3% of total elapsed
+

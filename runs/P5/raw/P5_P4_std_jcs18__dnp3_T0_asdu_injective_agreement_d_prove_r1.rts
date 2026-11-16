@@ -1,0 +1,25 @@
+'tamarin-prover' '--with-maude=maude' '--derivcheck-timeout=0' '--prove=asdu_injective_agreement' 'corpus/jcs18__dnp3.spthy' +RTS '-N' '-M56g' '-A64m' '-qg' '-N4' '-sresults/out/P5_P4_std_jcs18__dnp3_T0_asdu_injective_agreement_d_prove_r1.rts' 
+     636,795,832 bytes allocated in the heap
+       6,083,800 bytes copied during GC
+       4,870,552 bytes maximum residency (2 sample(s))
+          85,608 bytes maximum slop
+             271 MiB total memory in use (0 MiB lost due to fragmentation)
+
+                                     Tot time (elapsed)  Avg pause  Max pause
+  Gen  0         1 colls,     0 par    0.000s   0.003s     0.0028s    0.0028s
+  Gen  1         2 colls,     0 par    0.009s   0.010s     0.0049s    0.0094s
+
+  TASKS: 10 (1 bound, 9 peak workers (9 total), using -N4)
+
+  SPARKS: 139 (120 converted, 0 overflowed, 0 dud, 0 GC'd, 19 fizzled)
+
+  INIT    time    0.003s  (  0.002s elapsed)
+  MUT     time    0.636s  (  0.277s elapsed)
+  GC      time    0.009s  (  0.013s elapsed)
+  EXIT    time    0.001s  (  0.008s elapsed)
+  Total   time    0.650s  (  0.300s elapsed)
+
+  Alloc rate    1,001,349,711 bytes per MUT second
+
+  Productivity  97.9% of total user, 92.3% of total elapsed
+

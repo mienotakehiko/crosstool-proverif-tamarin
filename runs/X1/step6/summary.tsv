@@ -1,0 +1,5 @@
+variant	lemma	expected	actual	raw_result	trace_ids	read_ids	rc	timeout	status
+original	good_reachable	reachable	reachable	false	same	stR_St_5,stR_St_5	0	False	MATCH
+distinct_ids	good_reachable	reachable	reachable	false	distinct	stR_St_5,stR_St_6	0	False	MATCH
+original	bad_reachable	reachable	reachable	false	same	stR_St_6,stR_St_6	0	False	MATCH
+distinct_ids	bad_reachable	unreachable	unreachable	true	none		0	False	MATCH

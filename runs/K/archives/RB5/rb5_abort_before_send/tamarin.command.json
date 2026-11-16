@@ -1,0 +1,1 @@
+["tamarin-prover", "+RTS", "-N1", "-M768m", "-RTS", "-d=0", "--prove=rb5_abort_before_send", "/work/inputs/rb5.spthy"]

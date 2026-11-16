@@ -1,0 +1,25 @@
+'tamarin-cyclic' '--with-maude=maude35' '--derivcheck-timeout=0' '--prove=force_nonce_ordering' 'corpus/csf17__counter-protocol.spthy' +RTS '-N' '-M56g' '-A64m' '-qg' '-N4' '-sresults/out/P5_P4_cyc_csf17__counter-protocol_T0_force_nonce_ordering_d_prove_r5.rts' 
+   1,262,694,760 bytes allocated in the heap
+      38,751,736 bytes copied during GC
+      15,027,816 bytes maximum residency (2 sample(s))
+         139,672 bytes maximum slop
+             289 MiB total memory in use (0 MiB lost due to fragmentation)
+
+                                     Tot time (elapsed)  Avg pause  Max pause
+  Gen  0         3 colls,     0 par    0.000s   0.044s     0.0148s    0.0185s
+  Gen  1         2 colls,     0 par    0.027s   0.027s     0.0137s    0.0266s
+
+  TASKS: 10 (1 bound, 9 peak workers (9 total), using -N4)
+
+  SPARKS: 196 (139 converted, 0 overflowed, 0 dud, 4 GC'd, 53 fizzled)
+
+  INIT    time    0.003s  (  0.003s elapsed)
+  MUT     time    0.704s  (  0.255s elapsed)
+  GC      time    0.027s  (  0.072s elapsed)
+  EXIT    time    0.001s  (  0.001s elapsed)
+  Total   time    0.736s  (  0.330s elapsed)
+
+  Alloc rate    1,792,598,540 bytes per MUT second
+
+  Productivity  95.7% of total user, 77.1% of total elapsed
+

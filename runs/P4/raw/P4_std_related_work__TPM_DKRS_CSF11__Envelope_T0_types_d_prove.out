@@ -1,0 +1,197 @@
+maude tool: 'maude'
+ checking version: 3.5.1. OK.
+ checking installation: OK.
+[Theory TPM_Envelope] Theory loaded
+[Theory TPM_Envelope] Theory translated
+[Theory TPM_Envelope] Theory closed
+[Saturating Sources] Step 1 (Max 5)
+[Saturating Sources] Done
+theory TPM_Envelope
+
+begin
+
+// Function signature and definition of the equational theory E
+
+functions: adec/2, aenc/2, fst/1, h/1, pair/2, pk/1, sign/2, snd/1,
+           true/0, verify/3
+equations:
+    adec(aenc(x.1, pk(x.2)), x.2) = x.1,
+    fst(<x.1, x.2>) = x.1,
+    snd(<x.1, x.2>) = x.2,
+    verify(sign(x.1, x.2), x.1, pk(x.2)) = true
+
+rule (modulo E) PCR_Init:
+   [ Fr( ~aik ) ]
+  --[ PCR_Init( ), PCR_Write( 'pcr0' ) ]->
+   [ PCR( 'pcr0' ), PCR_Write( 'pcr0' ), !AIK( ~aik ), Out( pk(~aik) ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) PCR_Extend:
+   [ PCR_Write( x ), PCR( x ), In( y ) ]
+  --[ PCR_Write( h(<x, y>) ) ]->
+   [ PCR( h(<x, y>) ), PCR_Write( h(<x, y>) ) ]
+
+  // loop breakers: [0,1]
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) PCR_CertKey:
+   [ !AIK( aik ), !KeyTable( lock, sk ) ]
+  -->
+   [ Out( sign(<'certkey', lock, pk(sk)>, aik) ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) PCR_Quote:
+   [ PCR( x ), !AIK( aik ) ]
+  --[ PCR_Read( x ) ]->
+   [ Out( sign(<'certpcr', x>, aik) ), PCR( x ) ]
+
+  // loop breaker: [0]
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) PCR_Unbind:
+   [ PCR( x ), !KeyTable( x, sk ), In( aenc(m, pk(sk)) ) ]
+  --[ PCR_Unbind( x, sk, m ), PCR_Read( x ) ]->
+   [ PCR( x ), Out( m ) ]
+
+  // loop breaker: [0]
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Alice1:
+   [ Fr( ~n ), PCR( x ), PCR_Write( x ) ]
+  --[ PCR_Write( h(<x, ~n>) ) ]->
+   [ PCR( h(<x, ~n>) ), PCR_Write( h(<x, ~n>) ), Alice1( ~n ) ]
+
+  // loop breakers: [1,2]
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Alice2[no_derivcheck]:
+   [
+   Alice1( n ), Fr( ~s ), !AIK( aik ),
+   In( sign(<'certkey', h(<h(<'pcr0', n>), 'obtain'>), pk>, aik) )
+   ]
+  --[ Secret( ~s ) ]->
+   [ Out( aenc(~s, pk) ), Alice2( n, ~s ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Alice3:
+   [
+   Alice2( n, s ), !AIK( aik ),
+   In( sign(<'certpcr', h(<h(<'pcr0', n>), 'deny'>)>, aik) )
+   ]
+  --[ Denied( s ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) CreateLockedKey:
+   [ PCR( x ), Fr( ~sk ), In( lock ) ]
+  --[ PCR_Read( x ) ]->
+   [ PCR( x ), !KeyTable( h(<x, lock>), ~sk ), Out( pk(~sk) ) ]
+
+  // loop breaker: [0]
+  /* has exactly the trivial AC variant */
+
+restriction PCR_Init_unique:
+  "∀ #i #j. ((PCR_Init( ) @ #i) ∧ (PCR_Init( ) @ #j)) ⇒ (#i = #j)"
+  // safety formula
+
+  /*
+  expanded formula:
+  "∀ #i #j. ((PCR_Init( ) @ #i) ∧ (PCR_Init( ) @ #j)) ⇒ (#i = #j)"
+  */
+
+lemma types [sources]:
+  all-traces
+  "∀ m d1 d2 #i.
+    (PCR_Unbind( d1, d2, m ) @ #i) ⇒
+    ((∃ #j. (!KU( m ) @ #j) ∧ (#j < #i)) ∨ (∃ #j. Secret( m ) @ #j))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ m d1 d2 #i.
+  (PCR_Unbind( d1, d2, m ) @ #i)
+ ∧
+  (∀ #j. (!KU( m ) @ #j) ⇒ ¬(#j < #i)) ∧ (∀ #j. (Secret( m ) @ #j) ⇒ ⊥)"
+*/
+induction
+  case empty_trace
+  by contradiction /* from formulas */
+next
+  case non_empty_trace
+  solve( (last(#i))  ∥
+         (∃ #j. (!KU( m ) @ #j) ∧ (¬(last(#j))) ∧ (#j < #i))  ∥
+         (∃ #j. (Secret( m ) @ #j) ∧ ¬(last(#j))) )
+    case case_1
+    solve( !KeyTable( d1, d2 ) ▶₁ #i )
+      case CreateLockedKey
+      solve( !KU( aenc(m, pk(~sk)) ) @ #vk )
+        case Alice2
+        by contradiction /* from formulas */
+      next
+        case PCR_Unbind
+        solve( (∃ #j. (!KU( t ) @ #j) ∧ (¬(last(#j))) ∧ (#j < #vr.1))  ∥
+               (∃ #j. (Secret( t ) @ #j) ∧ ¬(last(#j))) )
+          case case_1
+          by contradiction /* cyclic */
+        next
+          case case_2
+          by contradiction /* impossible chain */
+        qed
+      next
+        case c_aenc
+        by contradiction /* from formulas */
+      qed
+    qed
+  next
+    case case_2
+    by contradiction /* from formulas */
+  next
+    case case_3
+    by contradiction /* from formulas */
+  qed
+qed
+
+lemma PCR_Write_charn [reuse, use_induction]:
+  all-traces "∀ x #i. (PCR_Read( x ) @ #i) ⇒ (∃ #j. PCR_Write( x ) @ #j)"
+/*
+guarded formula characterizing all counter-examples:
+"∃ x #i. (PCR_Read( x ) @ #i) ∧ ∀ #j. (PCR_Write( x ) @ #j) ⇒ ⊥"
+*/
+by sorry
+
+lemma Secret_and_Denied_exclusive:
+  all-traces
+  "¬(∃ s #i #j #k.
+      ((Secret( s ) @ #i) ∧ (Denied( s ) @ #j)) ∧ (K( s ) @ #k))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ s #i #j #k. (Secret( s ) @ #i) ∧ (Denied( s ) @ #j) ∧ (K( s ) @ #k)"
+*/
+by sorry
+
+/* All wellformedness checks were successful. */
+
+/*
+Generated from:
+Tamarin version 1.12.0
+Maude version 3.5.1
+Git revision: 82780bbaf3328a45f624ddb41e51bf75425f851c (with uncommited changes), branch: master
+Compiled at: 2026-03-07 14:22:39.174278293 UTC
+*/
+
+end
+
+==============================================================================
+summary of summaries:
+
+analyzed: corpus/related_work__TPM_DKRS_CSF11__Envelope.spthy
+
+  processing time: 0.10s
+  
+  types (all-traces): verified (12 steps)
+  PCR_Write_charn (all-traces): analysis incomplete (1 steps)
+  Secret_and_Denied_exclusive (all-traces): analysis incomplete (1 steps)
+
+==============================================================================

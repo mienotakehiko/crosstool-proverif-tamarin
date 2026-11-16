@@ -1,0 +1,629 @@
+Linear part: No equation.
+Convergent part:
+fst((x_1,x_2)) = x_1
+snd((x_1,x_2)) = x_2
+Completing equations...
+Completed equations:
+snd((x_1,x_2)) = x_2
+fst((x_1,x_2)) = x_1
+Process 0 (that is, the initial process):
+(
+    {1}!
+    {2}new stR_TopPending: bitstring;
+    {3}new I: bitstring;
+    {4}new sdT: bitstring;
+    {5}new J: bitstring;
+    {6}new sdB: bitstring;
+    {7}event eKeyGen(I);
+    {8}insert tSkT(I,sdT);
+    {9}insert tSkB(I,J,sdB);
+    {10}insert tTopPending(stR_TopPending,I,sdT,J,sdB);
+    {11}insert tRoot(I,hl(I,(ch(I,vm,ch(I,vm,ch(I,vm,prf(sdT,z,vm)))),ch(I,vk,ch(I,vk,ch(I,vk,prf(sdT,z,vk))))),(ch(I,vm,ch(I,vm,ch(I,vm,prf(sdT,s(z),vm)))),ch(I,vk,ch(I,vk,ch(I,vk,prf(sdT,s(z),vk)))))));
+    {12}out(publicChannel, (I,hl(I,(ch(I,vm,ch(I,vm,ch(I,vm,prf(sdT,z,vm)))),ch(I,vk,ch(I,vk,ch(I,vk,prf(sdT,z,vk))))),(ch(I,vm,ch(I,vm,ch(I,vm,prf(sdT,s(z),vm)))),ch(I,vk,ch(I,vk,ch(I,vk,prf(sdT,s(z),vk))))))))
+) | (
+    {13}!
+    {14}get tTopPending(stL_TopPending: bitstring,I_1: bitstring,sdT_1: bitstring,J_1: bitstring,sdB_1: bitstring) in
+    {15}in(publicChannel, helperVar0: bitstring);
+    {16}let =vtop = g_var_vtop_0(helperVar0) in
+    {17}new rid_rTopSign_a0: bitstring;
+    {18}new stR_BotSt: bitstring;
+    {19}event eDistinctFact(rid_rTopSign_a0,(stL_TopPending,(I_1,(sdT_1,(J_1,sdB_1)))));
+    {20}event eDg(I_1,z,(J_1,hl(J_1,(ch(J_1,vm,ch(J_1,vm,ch(J_1,vm,prf(sdB_1,z,vm)))),ch(J_1,vk,ch(J_1,vk,ch(J_1,vk,prf(sdB_1,z,vk))))),(ch(J_1,vm,ch(J_1,vm,ch(J_1,vm,prf(sdB_1,s(z),vm)))),ch(J_1,vk,ch(J_1,vk,ch(J_1,vk,prf(sdB_1,s(z),vk))))))),z);
+    {21}event eSignTop(I_1,J_1);
+    {22}insert tBotSt(stR_BotSt,I_1,J_1,sdB_1,z);
+    {23}out(publicChannel, (I_1,(J_1,(hl(J_1,(ch(J_1,vm,ch(J_1,vm,ch(J_1,vm,prf(sdB_1,z,vm)))),ch(J_1,vk,ch(J_1,vk,ch(J_1,vk,prf(sdB_1,z,vk))))),(ch(J_1,vm,ch(J_1,vm,ch(J_1,vm,prf(sdB_1,s(z),vm)))),ch(J_1,vk,ch(J_1,vk,ch(J_1,vk,prf(sdB_1,s(z),vk)))))),(z,(z,(prf(sdT_1,z,vm),(ch(I_1,vk,ch(I_1,vk,ch(I_1,vk,prf(sdT_1,z,vk)))),(ch(I_1,vm,ch(I_1,vm,ch(I_1,vm,prf(sdT_1,s(z),vm)))),ch(I_1,vk,ch(I_1,vk,ch(I_1,vk,prf(sdT_1,s(z),vk)))))))))))))
+) | (
+    {24}!
+    {25}get tTopPending(stL_TopPending_1: bitstring,I_2: bitstring,sdT_2: bitstring,J_2: bitstring,sdB_2: bitstring) in
+    {26}in(publicChannel, helperVar0_1: bitstring);
+    {27}let =vtop = g_var_vtop_1(helperVar0_1) in
+    {28}new rid_rTopSign_a1: bitstring;
+    {29}new stR_BotSt_1: bitstring;
+    {30}event eDistinctFact(rid_rTopSign_a1,(stL_TopPending_1,(I_2,(sdT_2,(J_2,sdB_2)))));
+    {31}event eDg(I_2,z,(J_2,hl(J_2,(ch(J_2,vm,ch(J_2,vm,ch(J_2,vm,prf(sdB_2,z,vm)))),ch(J_2,vk,ch(J_2,vk,ch(J_2,vk,prf(sdB_2,z,vk))))),(ch(J_2,vm,ch(J_2,vm,ch(J_2,vm,prf(sdB_2,s(z),vm)))),ch(J_2,vk,ch(J_2,vk,ch(J_2,vk,prf(sdB_2,s(z),vk))))))),s(z));
+    {32}event eSignTop(I_2,J_2);
+    {33}insert tBotSt(stR_BotSt_1,I_2,J_2,sdB_2,z);
+    {34}out(publicChannel, (I_2,(J_2,(hl(J_2,(ch(J_2,vm,ch(J_2,vm,ch(J_2,vm,prf(sdB_2,z,vm)))),ch(J_2,vk,ch(J_2,vk,ch(J_2,vk,prf(sdB_2,z,vk))))),(ch(J_2,vm,ch(J_2,vm,ch(J_2,vm,prf(sdB_2,s(z),vm)))),ch(J_2,vk,ch(J_2,vk,ch(J_2,vk,prf(sdB_2,s(z),vk)))))),(z,(s(z),(ch(I_2,vm,prf(sdT_2,z,vm)),(ch(I_2,vk,ch(I_2,vk,prf(sdT_2,z,vk))),(ch(I_2,vm,ch(I_2,vm,ch(I_2,vm,prf(sdT_2,s(z),vm)))),ch(I_2,vk,ch(I_2,vk,ch(I_2,vk,prf(sdT_2,s(z),vk)))))))))))))
+) | (
+    {35}!
+    {36}get tTopPending(stL_TopPending_2: bitstring,I_3: bitstring,sdT_3: bitstring,J_3: bitstring,sdB_3: bitstring) in
+    {37}in(publicChannel, helperVar0_2: bitstring);
+    {38}let =vtop = g_var_vtop_2(helperVar0_2) in
+    {39}new rid_rTopSign_a2: bitstring;
+    {40}new stR_BotSt_2: bitstring;
+    {41}event eDistinctFact(rid_rTopSign_a2,(stL_TopPending_2,(I_3,(sdT_3,(J_3,sdB_3)))));
+    {42}event eDg(I_3,z,(J_3,hl(J_3,(ch(J_3,vm,ch(J_3,vm,ch(J_3,vm,prf(sdB_3,z,vm)))),ch(J_3,vk,ch(J_3,vk,ch(J_3,vk,prf(sdB_3,z,vk))))),(ch(J_3,vm,ch(J_3,vm,ch(J_3,vm,prf(sdB_3,s(z),vm)))),ch(J_3,vk,ch(J_3,vk,ch(J_3,vk,prf(sdB_3,s(z),vk))))))),s(s(z)));
+    {43}event eSignTop(I_3,J_3);
+    {44}insert tBotSt(stR_BotSt_2,I_3,J_3,sdB_3,z);
+    {45}out(publicChannel, (I_3,(J_3,(hl(J_3,(ch(J_3,vm,ch(J_3,vm,ch(J_3,vm,prf(sdB_3,z,vm)))),ch(J_3,vk,ch(J_3,vk,ch(J_3,vk,prf(sdB_3,z,vk))))),(ch(J_3,vm,ch(J_3,vm,ch(J_3,vm,prf(sdB_3,s(z),vm)))),ch(J_3,vk,ch(J_3,vk,ch(J_3,vk,prf(sdB_3,s(z),vk)))))),(z,(s(s(z)),(ch(I_3,vm,ch(I_3,vm,prf(sdT_3,z,vm))),(ch(I_3,vk,prf(sdT_3,z,vk)),(ch(I_3,vm,ch(I_3,vm,ch(I_3,vm,prf(sdT_3,s(z),vm)))),ch(I_3,vk,ch(I_3,vk,ch(I_3,vk,prf(sdT_3,s(z),vk)))))))))))))
+) | (
+    {46}!
+    {47}get tTopPending(stL_TopPending_3: bitstring,I_4: bitstring,sdT_4: bitstring,J_4: bitstring,sdB_4: bitstring) in
+    {48}in(publicChannel, helperVar0_3: bitstring);
+    {49}let =vtop = g_var_vtop_3(helperVar0_3) in
+    {50}new rid_rTopSign_a3: bitstring;
+    {51}new stR_BotSt_3: bitstring;
+    {52}event eDistinctFact(rid_rTopSign_a3,(stL_TopPending_3,(I_4,(sdT_4,(J_4,sdB_4)))));
+    {53}event eDg(I_4,z,(J_4,hl(J_4,(ch(J_4,vm,ch(J_4,vm,ch(J_4,vm,prf(sdB_4,z,vm)))),ch(J_4,vk,ch(J_4,vk,ch(J_4,vk,prf(sdB_4,z,vk))))),(ch(J_4,vm,ch(J_4,vm,ch(J_4,vm,prf(sdB_4,s(z),vm)))),ch(J_4,vk,ch(J_4,vk,ch(J_4,vk,prf(sdB_4,s(z),vk))))))),s(s(s(z))));
+    {54}event eSignTop(I_4,J_4);
+    {55}insert tBotSt(stR_BotSt_3,I_4,J_4,sdB_4,z);
+    {56}out(publicChannel, (I_4,(J_4,(hl(J_4,(ch(J_4,vm,ch(J_4,vm,ch(J_4,vm,prf(sdB_4,z,vm)))),ch(J_4,vk,ch(J_4,vk,ch(J_4,vk,prf(sdB_4,z,vk))))),(ch(J_4,vm,ch(J_4,vm,ch(J_4,vm,prf(sdB_4,s(z),vm)))),ch(J_4,vk,ch(J_4,vk,ch(J_4,vk,prf(sdB_4,s(z),vk)))))),(z,(s(s(s(z))),(ch(I_4,vm,ch(I_4,vm,ch(I_4,vm,prf(sdT_4,z,vm)))),(prf(sdT_4,z,vk),(ch(I_4,vm,ch(I_4,vm,ch(I_4,vm,prf(sdT_4,s(z),vm)))),ch(I_4,vk,ch(I_4,vk,ch(I_4,vk,prf(sdT_4,s(z),vk)))))))))))))
+) | (
+    {57}!
+    {58}get tBotSt(stL_BotSt: bitstring,I_5: bitstring,J_5: bitstring,sdB_5: bitstring,=z) in
+    {59}in(publicChannel, helperVar0_4: bitstring);
+    {60}let =vsign = g_var_vsign_4(helperVar0_4) in
+    {61}let m: bitstring = g_var_m_5(helperVar0_4) in
+    {62}new rid_rBotSign_q0_a0: bitstring;
+    {63}new stR_BotSt_4: bitstring;
+    {64}event eDistinctFact(rid_rBotSign_q0_a0,(stL_BotSt,(I_5,(J_5,(sdB_5,z)))));
+    {65}event eDg(J_5,z,m,z);
+    {66}event eSignBot(I_5,J_5,m);
+    {67}insert tBotSt(stR_BotSt_4,I_5,J_5,sdB_5,s(z));
+    {68}out(publicChannel, (I_5,(J_5,(m,(z,(z,(prf(sdB_5,z,vm),(ch(J_5,vk,ch(J_5,vk,ch(J_5,vk,prf(sdB_5,z,vk)))),(ch(J_5,vm,ch(J_5,vm,ch(J_5,vm,prf(sdB_5,s(z),vm)))),ch(J_5,vk,ch(J_5,vk,ch(J_5,vk,prf(sdB_5,s(z),vk)))))))))))))
+) | (
+    {69}!
+    {70}get tBotSt(stL_BotSt_1: bitstring,I_6: bitstring,J_6: bitstring,sdB_6: bitstring,=z) in
+    {71}in(publicChannel, helperVar0_5: bitstring);
+    {72}let =vsign = g_var_vsign_6(helperVar0_5) in
+    {73}let m_1: bitstring = g_var_m_7(helperVar0_5) in
+    {74}new rid_rBotSign_q0_a1: bitstring;
+    {75}new stR_BotSt_5: bitstring;
+    {76}event eDistinctFact(rid_rBotSign_q0_a1,(stL_BotSt_1,(I_6,(J_6,(sdB_6,z)))));
+    {77}event eDg(J_6,z,m_1,s(z));
+    {78}event eSignBot(I_6,J_6,m_1);
+    {79}insert tBotSt(stR_BotSt_5,I_6,J_6,sdB_6,s(z));
+    {80}out(publicChannel, (I_6,(J_6,(m_1,(z,(s(z),(ch(J_6,vm,prf(sdB_6,z,vm)),(ch(J_6,vk,ch(J_6,vk,prf(sdB_6,z,vk))),(ch(J_6,vm,ch(J_6,vm,ch(J_6,vm,prf(sdB_6,s(z),vm)))),ch(J_6,vk,ch(J_6,vk,ch(J_6,vk,prf(sdB_6,s(z),vk)))))))))))))
+) | (
+    {81}!
+    {82}get tBotSt(stL_BotSt_2: bitstring,I_7: bitstring,J_7: bitstring,sdB_7: bitstring,=z) in
+    {83}in(publicChannel, helperVar0_6: bitstring);
+    {84}let =vsign = g_var_vsign_8(helperVar0_6) in
+    {85}let m_2: bitstring = g_var_m_9(helperVar0_6) in
+    {86}new rid_rBotSign_q0_a2: bitstring;
+    {87}new stR_BotSt_6: bitstring;
+    {88}event eDistinctFact(rid_rBotSign_q0_a2,(stL_BotSt_2,(I_7,(J_7,(sdB_7,z)))));
+    {89}event eDg(J_7,z,m_2,s(s(z)));
+    {90}event eSignBot(I_7,J_7,m_2);
+    {91}insert tBotSt(stR_BotSt_6,I_7,J_7,sdB_7,s(z));
+    {92}out(publicChannel, (I_7,(J_7,(m_2,(z,(s(s(z)),(ch(J_7,vm,ch(J_7,vm,prf(sdB_7,z,vm))),(ch(J_7,vk,prf(sdB_7,z,vk)),(ch(J_7,vm,ch(J_7,vm,ch(J_7,vm,prf(sdB_7,s(z),vm)))),ch(J_7,vk,ch(J_7,vk,ch(J_7,vk,prf(sdB_7,s(z),vk)))))))))))))
+) | (
+    {93}!
+    {94}get tBotSt(stL_BotSt_3: bitstring,I_8: bitstring,J_8: bitstring,sdB_8: bitstring,=z) in
+    {95}in(publicChannel, helperVar0_7: bitstring);
+    {96}let =vsign = g_var_vsign_10(helperVar0_7) in
+    {97}let m_3: bitstring = g_var_m_11(helperVar0_7) in
+    {98}new rid_rBotSign_q0_a3: bitstring;
+    {99}new stR_BotSt_7: bitstring;
+    {100}event eDistinctFact(rid_rBotSign_q0_a3,(stL_BotSt_3,(I_8,(J_8,(sdB_8,z)))));
+    {101}event eDg(J_8,z,m_3,s(s(s(z))));
+    {102}event eSignBot(I_8,J_8,m_3);
+    {103}insert tBotSt(stR_BotSt_7,I_8,J_8,sdB_8,s(z));
+    {104}out(publicChannel, (I_8,(J_8,(m_3,(z,(s(s(s(z))),(ch(J_8,vm,ch(J_8,vm,ch(J_8,vm,prf(sdB_8,z,vm)))),(prf(sdB_8,z,vk),(ch(J_8,vm,ch(J_8,vm,ch(J_8,vm,prf(sdB_8,s(z),vm)))),ch(J_8,vk,ch(J_8,vk,ch(J_8,vk,prf(sdB_8,s(z),vk)))))))))))))
+) | (
+    {105}!
+    {106}get tBotSt(stL_BotSt_4: bitstring,I_9: bitstring,J_9: bitstring,sdB_9: bitstring,=s(z)) in
+    {107}in(publicChannel, helperVar0_8: bitstring);
+    {108}let =vsign = g_var_vsign_4(helperVar0_8) in
+    {109}let m_4: bitstring = g_var_m_5(helperVar0_8) in
+    {110}new rid_rBotSign_q1_a0: bitstring;
+    {111}new stR_BotSt_8: bitstring;
+    {112}event eDistinctFact(rid_rBotSign_q1_a0,(stL_BotSt_4,(I_9,(J_9,(sdB_9,s(z))))));
+    {113}event eDg(J_9,s(z),m_4,z);
+    {114}event eSignBot(I_9,J_9,m_4);
+    {115}insert tBotSt(stR_BotSt_8,I_9,J_9,sdB_9,s(s(z)));
+    {116}out(publicChannel, (I_9,(J_9,(m_4,(s(z),(z,(prf(sdB_9,s(z),vm),(ch(J_9,vk,ch(J_9,vk,ch(J_9,vk,prf(sdB_9,s(z),vk)))),(ch(J_9,vm,ch(J_9,vm,ch(J_9,vm,prf(sdB_9,z,vm)))),ch(J_9,vk,ch(J_9,vk,ch(J_9,vk,prf(sdB_9,z,vk)))))))))))))
+) | (
+    {117}!
+    {118}get tBotSt(stL_BotSt_5: bitstring,I_10: bitstring,J_10: bitstring,sdB_10: bitstring,=s(z)) in
+    {119}in(publicChannel, helperVar0_9: bitstring);
+    {120}let =vsign = g_var_vsign_6(helperVar0_9) in
+    {121}let m_5: bitstring = g_var_m_7(helperVar0_9) in
+    {122}new rid_rBotSign_q1_a1: bitstring;
+    {123}new stR_BotSt_9: bitstring;
+    {124}event eDistinctFact(rid_rBotSign_q1_a1,(stL_BotSt_5,(I_10,(J_10,(sdB_10,s(z))))));
+    {125}event eDg(J_10,s(z),m_5,s(z));
+    {126}event eSignBot(I_10,J_10,m_5);
+    {127}insert tBotSt(stR_BotSt_9,I_10,J_10,sdB_10,s(s(z)));
+    {128}out(publicChannel, (I_10,(J_10,(m_5,(s(z),(s(z),(ch(J_10,vm,prf(sdB_10,s(z),vm)),(ch(J_10,vk,ch(J_10,vk,prf(sdB_10,s(z),vk))),(ch(J_10,vm,ch(J_10,vm,ch(J_10,vm,prf(sdB_10,z,vm)))),ch(J_10,vk,ch(J_10,vk,ch(J_10,vk,prf(sdB_10,z,vk)))))))))))))
+) | (
+    {129}!
+    {130}get tBotSt(stL_BotSt_6: bitstring,I_11: bitstring,J_11: bitstring,sdB_11: bitstring,=s(z)) in
+    {131}in(publicChannel, helperVar0_10: bitstring);
+    {132}let =vsign = g_var_vsign_8(helperVar0_10) in
+    {133}let m_6: bitstring = g_var_m_9(helperVar0_10) in
+    {134}new rid_rBotSign_q1_a2: bitstring;
+    {135}new stR_BotSt_10: bitstring;
+    {136}event eDistinctFact(rid_rBotSign_q1_a2,(stL_BotSt_6,(I_11,(J_11,(sdB_11,s(z))))));
+    {137}event eDg(J_11,s(z),m_6,s(s(z)));
+    {138}event eSignBot(I_11,J_11,m_6);
+    {139}insert tBotSt(stR_BotSt_10,I_11,J_11,sdB_11,s(s(z)));
+    {140}out(publicChannel, (I_11,(J_11,(m_6,(s(z),(s(s(z)),(ch(J_11,vm,ch(J_11,vm,prf(sdB_11,s(z),vm))),(ch(J_11,vk,prf(sdB_11,s(z),vk)),(ch(J_11,vm,ch(J_11,vm,ch(J_11,vm,prf(sdB_11,z,vm)))),ch(J_11,vk,ch(J_11,vk,ch(J_11,vk,prf(sdB_11,z,vk)))))))))))))
+) | (
+    {141}!
+    {142}get tBotSt(stL_BotSt_7: bitstring,I_12: bitstring,J_12: bitstring,sdB_12: bitstring,=s(z)) in
+    {143}in(publicChannel, helperVar0_11: bitstring);
+    {144}let =vsign = g_var_vsign_10(helperVar0_11) in
+    {145}let m_7: bitstring = g_var_m_11(helperVar0_11) in
+    {146}new rid_rBotSign_q1_a3: bitstring;
+    {147}new stR_BotSt_11: bitstring;
+    {148}event eDistinctFact(rid_rBotSign_q1_a3,(stL_BotSt_7,(I_12,(J_12,(sdB_12,s(z))))));
+    {149}event eDg(J_12,s(z),m_7,s(s(s(z))));
+    {150}event eSignBot(I_12,J_12,m_7);
+    {151}insert tBotSt(stR_BotSt_11,I_12,J_12,sdB_12,s(s(z)));
+    {152}out(publicChannel, (I_12,(J_12,(m_7,(s(z),(s(s(s(z))),(ch(J_12,vm,ch(J_12,vm,ch(J_12,vm,prf(sdB_12,s(z),vm)))),(prf(sdB_12,s(z),vk),(ch(J_12,vm,ch(J_12,vm,ch(J_12,vm,prf(sdB_12,z,vm)))),ch(J_12,vk,ch(J_12,vk,ch(J_12,vk,prf(sdB_12,z,vk)))))))))))))
+) | (
+    {153}!
+    {154}get tSkT(I_13: bitstring,sd: bitstring) in
+    {155}event eRevealTop(I_13);
+    {156}out(publicChannel, sd)
+) | (
+    {157}!
+    {158}get tSkB(I_14: bitstring,J_13: bitstring,sd_1: bitstring) in
+    {159}event eRevealBot(I_14,J_13);
+    {160}out(publicChannel, (J_13,sd_1))
+) | (
+    {161}!
+    {162}get tRoot(I_15: bitstring,helperVar0_12: bitstring) in
+    {163}let =I_15 = g_var_I_12(helperVar0_12) in
+    {164}let =vm = g_var_vm_13(helperVar0_12) in
+    {165}let sm: bitstring = g_var_sm_14(helperVar0_12) in
+    {166}let sk: bitstring = g_var_sk_15(helperVar0_12) in
+    {167}let sib: bitstring = g_var_sib_16(helperVar0_12) in
+    {168}in(publicChannel, helperVar1: bitstring);
+    {169}let =I_15 = g_var_I_17(helperVar1) in
+    {170}let J_14: bitstring = g_var_J_18(helperVar1) in
+    {171}let rB: bitstring = g_var_rB_19(helperVar1) in
+    {172}let =sm = g_var_sm_20(helperVar1) in
+    {173}let =sk = g_var_sk_21(helperVar1) in
+    {174}let =sib = g_var_sib_22(helperVar1) in
+    {175}event eDg(I_15,z,(J_14,rB),z);
+    {176}event eAcceptTop(I_15,J_14,rB);
+    {177}insert tTopOK(I_15,J_14,rB)
+) | (
+    {178}!
+    {179}get tRoot(I_16: bitstring,helperVar0_13: bitstring) in
+    {180}let =I_16 = g_var_I_23(helperVar0_13) in
+    {181}let =vm = g_var_vm_24(helperVar0_13) in
+    {182}let sm_1: bitstring = g_var_sm_25(helperVar0_13) in
+    {183}let =vk = g_var_vk_26(helperVar0_13) in
+    {184}let sk_1: bitstring = g_var_sk_27(helperVar0_13) in
+    {185}let sib_1: bitstring = g_var_sib_28(helperVar0_13) in
+    {186}in(publicChannel, helperVar1_1: bitstring);
+    {187}let =I_16 = g_var_I_29(helperVar1_1) in
+    {188}let J_15: bitstring = g_var_J_30(helperVar1_1) in
+    {189}let rB_1: bitstring = g_var_rB_31(helperVar1_1) in
+    {190}let =sm_1 = g_var_sm_32(helperVar1_1) in
+    {191}let =sk_1 = g_var_sk_33(helperVar1_1) in
+    {192}let =sib_1 = g_var_sib_34(helperVar1_1) in
+    {193}event eDg(I_16,z,(J_15,rB_1),s(z));
+    {194}event eAcceptTop(I_16,J_15,rB_1);
+    {195}insert tTopOK(I_16,J_15,rB_1)
+) | (
+    {196}!
+    {197}get tRoot(I_17: bitstring,helperVar0_14: bitstring) in
+    {198}let =I_17 = g_var_I_35(helperVar0_14) in
+    {199}let =vm = g_var_vm_36(helperVar0_14) in
+    {200}let sm_2: bitstring = g_var_sm_37(helperVar0_14) in
+    {201}let =vk = g_var_vk_38(helperVar0_14) in
+    {202}let sk_2: bitstring = g_var_sk_39(helperVar0_14) in
+    {203}let sib_2: bitstring = g_var_sib_40(helperVar0_14) in
+    {204}in(publicChannel, helperVar1_2: bitstring);
+    {205}let =I_17 = g_var_I_41(helperVar1_2) in
+    {206}let J_16: bitstring = g_var_J_42(helperVar1_2) in
+    {207}let rB_2: bitstring = g_var_rB_43(helperVar1_2) in
+    {208}let =sm_2 = g_var_sm_44(helperVar1_2) in
+    {209}let =sk_2 = g_var_sk_45(helperVar1_2) in
+    {210}let =sib_2 = g_var_sib_46(helperVar1_2) in
+    {211}event eDg(I_17,z,(J_16,rB_2),s(s(z)));
+    {212}event eAcceptTop(I_17,J_16,rB_2);
+    {213}insert tTopOK(I_17,J_16,rB_2)
+) | (
+    {214}!
+    {215}get tRoot(I_18: bitstring,helperVar0_15: bitstring) in
+    {216}let =I_18 = g_var_I_47(helperVar0_15) in
+    {217}let sm_3: bitstring = g_var_sm_48(helperVar0_15) in
+    {218}let =vk = g_var_vk_49(helperVar0_15) in
+    {219}let sk_3: bitstring = g_var_sk_50(helperVar0_15) in
+    {220}let sib_3: bitstring = g_var_sib_51(helperVar0_15) in
+    {221}in(publicChannel, helperVar1_3: bitstring);
+    {222}let =I_18 = g_var_I_52(helperVar1_3) in
+    {223}let J_17: bitstring = g_var_J_53(helperVar1_3) in
+    {224}let rB_3: bitstring = g_var_rB_54(helperVar1_3) in
+    {225}let =sm_3 = g_var_sm_55(helperVar1_3) in
+    {226}let =sk_3 = g_var_sk_56(helperVar1_3) in
+    {227}let =sib_3 = g_var_sib_57(helperVar1_3) in
+    {228}event eDg(I_18,z,(J_17,rB_3),s(s(s(z))));
+    {229}event eAcceptTop(I_18,J_17,rB_3);
+    {230}insert tTopOK(I_18,J_17,rB_3)
+) | (
+    {231}!
+    {232}get tRoot(I_19: bitstring,helperVar0_16: bitstring) in
+    {233}let =I_19 = g_var_I_58(helperVar0_16) in
+    {234}let sib_4: bitstring = g_var_sib_59(helperVar0_16) in
+    {235}let =vm = g_var_vm_60(helperVar0_16) in
+    {236}let sm_4: bitstring = g_var_sm_61(helperVar0_16) in
+    {237}let sk_4: bitstring = g_var_sk_62(helperVar0_16) in
+    {238}in(publicChannel, helperVar1_4: bitstring);
+    {239}let =I_19 = g_var_I_63(helperVar1_4) in
+    {240}let J_18: bitstring = g_var_J_64(helperVar1_4) in
+    {241}let rB_4: bitstring = g_var_rB_65(helperVar1_4) in
+    {242}let =sm_4 = g_var_sm_66(helperVar1_4) in
+    {243}let =sk_4 = g_var_sk_67(helperVar1_4) in
+    {244}let =sib_4 = g_var_sib_68(helperVar1_4) in
+    {245}event eDg(I_19,s(z),(J_18,rB_4),z);
+    {246}event eAcceptTop(I_19,J_18,rB_4);
+    {247}insert tTopOK(I_19,J_18,rB_4)
+) | (
+    {248}!
+    {249}get tRoot(I_20: bitstring,helperVar0_17: bitstring) in
+    {250}let =I_20 = g_var_I_69(helperVar0_17) in
+    {251}let sib_5: bitstring = g_var_sib_70(helperVar0_17) in
+    {252}let =vm = g_var_vm_71(helperVar0_17) in
+    {253}let sm_5: bitstring = g_var_sm_72(helperVar0_17) in
+    {254}let =vk = g_var_vk_73(helperVar0_17) in
+    {255}let sk_5: bitstring = g_var_sk_74(helperVar0_17) in
+    {256}in(publicChannel, helperVar1_5: bitstring);
+    {257}let =I_20 = g_var_I_75(helperVar1_5) in
+    {258}let J_19: bitstring = g_var_J_76(helperVar1_5) in
+    {259}let rB_5: bitstring = g_var_rB_77(helperVar1_5) in
+    {260}let =sm_5 = g_var_sm_78(helperVar1_5) in
+    {261}let =sk_5 = g_var_sk_79(helperVar1_5) in
+    {262}let =sib_5 = g_var_sib_80(helperVar1_5) in
+    {263}event eDg(I_20,s(z),(J_19,rB_5),s(z));
+    {264}event eAcceptTop(I_20,J_19,rB_5);
+    {265}insert tTopOK(I_20,J_19,rB_5)
+) | (
+    {266}!
+    {267}get tRoot(I_21: bitstring,helperVar0_18: bitstring) in
+    {268}let =I_21 = g_var_I_81(helperVar0_18) in
+    {269}let sib_6: bitstring = g_var_sib_82(helperVar0_18) in
+    {270}let =vm = g_var_vm_83(helperVar0_18) in
+    {271}let sm_6: bitstring = g_var_sm_84(helperVar0_18) in
+    {272}let =vk = g_var_vk_85(helperVar0_18) in
+    {273}let sk_6: bitstring = g_var_sk_86(helperVar0_18) in
+    {274}in(publicChannel, helperVar1_6: bitstring);
+    {275}let =I_21 = g_var_I_87(helperVar1_6) in
+    {276}let J_20: bitstring = g_var_J_88(helperVar1_6) in
+    {277}let rB_6: bitstring = g_var_rB_89(helperVar1_6) in
+    {278}let =sm_6 = g_var_sm_90(helperVar1_6) in
+    {279}let =sk_6 = g_var_sk_91(helperVar1_6) in
+    {280}let =sib_6 = g_var_sib_92(helperVar1_6) in
+    {281}event eDg(I_21,s(z),(J_20,rB_6),s(s(z)));
+    {282}event eAcceptTop(I_21,J_20,rB_6);
+    {283}insert tTopOK(I_21,J_20,rB_6)
+) | (
+    {284}!
+    {285}get tRoot(I_22: bitstring,helperVar0_19: bitstring) in
+    {286}let =I_22 = g_var_I_93(helperVar0_19) in
+    {287}let sib_7: bitstring = g_var_sib_94(helperVar0_19) in
+    {288}let sm_7: bitstring = g_var_sm_95(helperVar0_19) in
+    {289}let =vk = g_var_vk_96(helperVar0_19) in
+    {290}let sk_7: bitstring = g_var_sk_97(helperVar0_19) in
+    {291}in(publicChannel, helperVar1_7: bitstring);
+    {292}let =I_22 = g_var_I_98(helperVar1_7) in
+    {293}let J_21: bitstring = g_var_J_99(helperVar1_7) in
+    {294}let rB_7: bitstring = g_var_rB_100(helperVar1_7) in
+    {295}let =sm_7 = g_var_sm_101(helperVar1_7) in
+    {296}let =sk_7 = g_var_sk_102(helperVar1_7) in
+    {297}let =sib_7 = g_var_sib_103(helperVar1_7) in
+    {298}event eDg(I_22,s(z),(J_21,rB_7),s(s(s(z))));
+    {299}event eAcceptTop(I_22,J_21,rB_7);
+    {300}insert tTopOK(I_22,J_21,rB_7)
+) | (
+    {301}!
+    {302}get tTopOK(I_23: bitstring,J_22: bitstring,helperVar0_20: bitstring) in
+    {303}let =J_22 = g_var_J_104(helperVar0_20) in
+    {304}let =vm = g_var_vm_105(helperVar0_20) in
+    {305}let sm_8: bitstring = g_var_sm_106(helperVar0_20) in
+    {306}let sk_8: bitstring = g_var_sk_107(helperVar0_20) in
+    {307}let sib_8: bitstring = g_var_sib_108(helperVar0_20) in
+    {308}in(publicChannel, helperVar1_8: bitstring);
+    {309}let =I_23 = g_var_I_109(helperVar1_8) in
+    {310}let =J_22 = g_var_J_110(helperVar1_8) in
+    {311}let m_8: bitstring = g_var_m_111(helperVar1_8) in
+    {312}let =sm_8 = g_var_sm_112(helperVar1_8) in
+    {313}let =sk_8 = g_var_sk_113(helperVar1_8) in
+    {314}let =sib_8 = g_var_sib_114(helperVar1_8) in
+    {315}event eDg(J_22,z,m_8,z);
+    {316}event eHssAccept(I_23,J_22,m_8)
+) | (
+    {317}!
+    {318}get tTopOK(I_24: bitstring,J_23: bitstring,helperVar0_21: bitstring) in
+    {319}let =J_23 = g_var_J_115(helperVar0_21) in
+    {320}let =vm = g_var_vm_116(helperVar0_21) in
+    {321}let sm_9: bitstring = g_var_sm_117(helperVar0_21) in
+    {322}let =vk = g_var_vk_118(helperVar0_21) in
+    {323}let sk_9: bitstring = g_var_sk_119(helperVar0_21) in
+    {324}let sib_9: bitstring = g_var_sib_120(helperVar0_21) in
+    {325}in(publicChannel, helperVar1_9: bitstring);
+    {326}let =I_24 = g_var_I_121(helperVar1_9) in
+    {327}let =J_23 = g_var_J_122(helperVar1_9) in
+    {328}let m_9: bitstring = g_var_m_123(helperVar1_9) in
+    {329}let =sm_9 = g_var_sm_124(helperVar1_9) in
+    {330}let =sk_9 = g_var_sk_125(helperVar1_9) in
+    {331}let =sib_9 = g_var_sib_126(helperVar1_9) in
+    {332}event eDg(J_23,z,m_9,s(z));
+    {333}event eHssAccept(I_24,J_23,m_9)
+) | (
+    {334}!
+    {335}get tTopOK(I_25: bitstring,J_24: bitstring,helperVar0_22: bitstring) in
+    {336}let =J_24 = g_var_J_127(helperVar0_22) in
+    {337}let =vm = g_var_vm_128(helperVar0_22) in
+    {338}let sm_10: bitstring = g_var_sm_129(helperVar0_22) in
+    {339}let =vk = g_var_vk_130(helperVar0_22) in
+    {340}let sk_10: bitstring = g_var_sk_131(helperVar0_22) in
+    {341}let sib_10: bitstring = g_var_sib_132(helperVar0_22) in
+    {342}in(publicChannel, helperVar1_10: bitstring);
+    {343}let =I_25 = g_var_I_133(helperVar1_10) in
+    {344}let =J_24 = g_var_J_134(helperVar1_10) in
+    {345}let m_10: bitstring = g_var_m_135(helperVar1_10) in
+    {346}let =sm_10 = g_var_sm_136(helperVar1_10) in
+    {347}let =sk_10 = g_var_sk_137(helperVar1_10) in
+    {348}let =sib_10 = g_var_sib_138(helperVar1_10) in
+    {349}event eDg(J_24,z,m_10,s(s(z)));
+    {350}event eHssAccept(I_25,J_24,m_10)
+) | (
+    {351}!
+    {352}get tTopOK(I_26: bitstring,J_25: bitstring,helperVar0_23: bitstring) in
+    {353}let =J_25 = g_var_J_139(helperVar0_23) in
+    {354}let sm_11: bitstring = g_var_sm_140(helperVar0_23) in
+    {355}let =vk = g_var_vk_141(helperVar0_23) in
+    {356}let sk_11: bitstring = g_var_sk_142(helperVar0_23) in
+    {357}let sib_11: bitstring = g_var_sib_143(helperVar0_23) in
+    {358}in(publicChannel, helperVar1_11: bitstring);
+    {359}let =I_26 = g_var_I_144(helperVar1_11) in
+    {360}let =J_25 = g_var_J_145(helperVar1_11) in
+    {361}let m_11: bitstring = g_var_m_146(helperVar1_11) in
+    {362}let =sm_11 = g_var_sm_147(helperVar1_11) in
+    {363}let =sk_11 = g_var_sk_148(helperVar1_11) in
+    {364}let =sib_11 = g_var_sib_149(helperVar1_11) in
+    {365}event eDg(J_25,z,m_11,s(s(s(z))));
+    {366}event eHssAccept(I_26,J_25,m_11)
+) | (
+    {367}!
+    {368}get tTopOK(I_27: bitstring,J_26: bitstring,helperVar0_24: bitstring) in
+    {369}let =J_26 = g_var_J_150(helperVar0_24) in
+    {370}let sib_12: bitstring = g_var_sib_151(helperVar0_24) in
+    {371}let =vm = g_var_vm_152(helperVar0_24) in
+    {372}let sm_12: bitstring = g_var_sm_153(helperVar0_24) in
+    {373}let sk_12: bitstring = g_var_sk_154(helperVar0_24) in
+    {374}in(publicChannel, helperVar1_12: bitstring);
+    {375}let =I_27 = g_var_I_155(helperVar1_12) in
+    {376}let =J_26 = g_var_J_156(helperVar1_12) in
+    {377}let m_12: bitstring = g_var_m_157(helperVar1_12) in
+    {378}let =sm_12 = g_var_sm_158(helperVar1_12) in
+    {379}let =sk_12 = g_var_sk_159(helperVar1_12) in
+    {380}let =sib_12 = g_var_sib_160(helperVar1_12) in
+    {381}event eDg(J_26,s(z),m_12,z);
+    {382}event eHssAccept(I_27,J_26,m_12)
+) | (
+    {383}!
+    {384}get tTopOK(I_28: bitstring,J_27: bitstring,helperVar0_25: bitstring) in
+    {385}let =J_27 = g_var_J_161(helperVar0_25) in
+    {386}let sib_13: bitstring = g_var_sib_162(helperVar0_25) in
+    {387}let =vm = g_var_vm_163(helperVar0_25) in
+    {388}let sm_13: bitstring = g_var_sm_164(helperVar0_25) in
+    {389}let =vk = g_var_vk_165(helperVar0_25) in
+    {390}let sk_13: bitstring = g_var_sk_166(helperVar0_25) in
+    {391}in(publicChannel, helperVar1_13: bitstring);
+    {392}let =I_28 = g_var_I_167(helperVar1_13) in
+    {393}let =J_27 = g_var_J_168(helperVar1_13) in
+    {394}let m_13: bitstring = g_var_m_169(helperVar1_13) in
+    {395}let =sm_13 = g_var_sm_170(helperVar1_13) in
+    {396}let =sk_13 = g_var_sk_171(helperVar1_13) in
+    {397}let =sib_13 = g_var_sib_172(helperVar1_13) in
+    {398}event eDg(J_27,s(z),m_13,s(z));
+    {399}event eHssAccept(I_28,J_27,m_13)
+) | (
+    {400}!
+    {401}get tTopOK(I_29: bitstring,J_28: bitstring,helperVar0_26: bitstring) in
+    {402}let =J_28 = g_var_J_173(helperVar0_26) in
+    {403}let sib_14: bitstring = g_var_sib_174(helperVar0_26) in
+    {404}let =vm = g_var_vm_175(helperVar0_26) in
+    {405}let sm_14: bitstring = g_var_sm_176(helperVar0_26) in
+    {406}let =vk = g_var_vk_177(helperVar0_26) in
+    {407}let sk_14: bitstring = g_var_sk_178(helperVar0_26) in
+    {408}in(publicChannel, helperVar1_14: bitstring);
+    {409}let =I_29 = g_var_I_179(helperVar1_14) in
+    {410}let =J_28 = g_var_J_180(helperVar1_14) in
+    {411}let m_14: bitstring = g_var_m_181(helperVar1_14) in
+    {412}let =sm_14 = g_var_sm_182(helperVar1_14) in
+    {413}let =sk_14 = g_var_sk_183(helperVar1_14) in
+    {414}let =sib_14 = g_var_sib_184(helperVar1_14) in
+    {415}event eDg(J_28,s(z),m_14,s(s(z)));
+    {416}event eHssAccept(I_29,J_28,m_14)
+) | (
+    {417}!
+    {418}get tTopOK(I_30: bitstring,J_29: bitstring,helperVar0_27: bitstring) in
+    {419}let =J_29 = g_var_J_185(helperVar0_27) in
+    {420}let sib_15: bitstring = g_var_sib_186(helperVar0_27) in
+    {421}let sm_15: bitstring = g_var_sm_187(helperVar0_27) in
+    {422}let =vk = g_var_vk_188(helperVar0_27) in
+    {423}let sk_15: bitstring = g_var_sk_189(helperVar0_27) in
+    {424}in(publicChannel, helperVar1_15: bitstring);
+    {425}let =I_30 = g_var_I_190(helperVar1_15) in
+    {426}let =J_29 = g_var_J_191(helperVar1_15) in
+    {427}let m_15: bitstring = g_var_m_192(helperVar1_15) in
+    {428}let =sm_15 = g_var_sm_193(helperVar1_15) in
+    {429}let =sk_15 = g_var_sk_194(helperVar1_15) in
+    {430}let =sib_15 = g_var_sib_195(helperVar1_15) in
+    {431}event eDg(J_29,s(z),m_15,s(s(s(z))));
+    {432}event eHssAccept(I_30,J_29,m_15)
+)
+
+File "/input.pv", line 266, character 62:
+Warning: identifier s rebound.
+-- Restriction event(eDg(X,q,m_16,a))@i && event(eDg(X,q,m_16,b))@j ==> a = b encoded as event(eDg(X,q,m_16,a)) && event(eDg(X,q,m_16,b)) ==> a = b in process 0.
+-- Restriction event(eDistinctFact(rid_i,x))@i && event(eDistinctFact(rid_j,x))@j ==> rid_i = rid_j encoded as event(eDistinctFact(rid_i,x)) && event(eDistinctFact(rid_j,x)) ==> rid_i = rid_j in process 0.
+-- Axiom event(eAcceptTop(I_31,J_30,rB_8)) ==> event(eSignTop(I_31,J_30)) || event(eRevealTop(I_31)) encoded as event(eAcceptTop(I_31,J_30,rB_8)) ==> event(eSignTop(I_31,J_30)) || event(eRevealTop(I_31)) in process 0.
+-- Query event(eHssAccept(I_31,J_30,m_16))@k ==> (event(eSignTop(I_31,J_30))@s_1 && event(eSignBot(I_31,J_30,m_16))@t) || event(eRevealTop(I_31))@r || (event(eSignTop(I_31,J_30))@s_1 && event(eRevealBot(I_31,J_30))@r) encoded as event(eHssAccept(I_31,J_30,m_16)) ==> (event(eSignTop(I_31,J_30)) && event(eSignBot(I_31,J_30,m_16))) || event(eRevealTop(I_31)) || (event(eSignTop(I_31,J_30)) && event(eRevealBot(I_31,J_30))) in process 0.
+Translating the process into Horn clauses...
+Completing...
+200 rules inserted. Base: 200 rules (62 with conclusion selected). Queue: 144 rules.
+400 rules inserted. Base: 364 rules (194 with conclusion selected). Queue: 272 rules.
+600 rules inserted. Base: 564 rules (394 with conclusion selected). Queue: 72 rules.
+800 rules inserted. Base: 704 rules (394 with conclusion selected). Queue: 73 rules.
+1000 rules inserted. Base: 858 rules (402 with conclusion selected). Queue: 420 rules.
+1200 rules inserted. Base: 1058 rules (402 with conclusion selected). Queue: 3988 rules.
+1400 rules inserted. Base: 1258 rules (402 with conclusion selected). Queue: 7568 rules.
+1600 rules inserted. Base: 1403 rules (402 with conclusion selected). Queue: 7730 rules.
+1800 rules inserted. Base: 1493 rules (402 with conclusion selected). Queue: 7673 rules.
+2000 rules inserted. Base: 1608 rules (402 with conclusion selected). Queue: 7747 rules.
+2200 rules inserted. Base: 1738 rules (402 with conclusion selected). Queue: 7795 rules.
+2400 rules inserted. Base: 1879 rules (402 with conclusion selected). Queue: 7818 rules.
+2600 rules inserted. Base: 1956 rules (402 with conclusion selected). Queue: 7848 rules.
+2800 rules inserted. Base: 2076 rules (402 with conclusion selected). Queue: 7736 rules.
+3000 rules inserted. Base: 2222 rules (402 with conclusion selected). Queue: 7906 rules.
+3200 rules inserted. Base: 2309 rules (402 with conclusion selected). Queue: 7902 rules.
+3400 rules inserted. Base: 2428 rules (402 with conclusion selected). Queue: 7925 rules.
+3600 rules inserted. Base: 2553 rules (402 with conclusion selected). Queue: 7962 rules.
+3800 rules inserted. Base: 2689 rules (402 with conclusion selected). Queue: 8004 rules.
+4000 rules inserted. Base: 2777 rules (402 with conclusion selected). Queue: 8018 rules.
+4200 rules inserted. Base: 2893 rules (402 with conclusion selected). Queue: 7966 rules.
+4400 rules inserted. Base: 3039 rules (402 with conclusion selected). Queue: 8082 rules.
+4600 rules inserted. Base: 3125 rules (402 with conclusion selected). Queue: 8070 rules.
+4800 rules inserted. Base: 3252 rules (402 with conclusion selected). Queue: 8114 rules.
+5000 rules inserted. Base: 3373 rules (402 with conclusion selected). Queue: 8130 rules.
+5200 rules inserted. Base: 3498 rules (402 with conclusion selected). Queue: 8092 rules.
+5400 rules inserted. Base: 3597 rules (402 with conclusion selected). Queue: 8187 rules.
+5600 rules inserted. Base: 3707 rules (402 with conclusion selected). Queue: 8134 rules.
+5800 rules inserted. Base: 3863 rules (402 with conclusion selected). Queue: 8271 rules.
+6000 rules inserted. Base: 3949 rules (402 with conclusion selected). Queue: 8242 rules.
+6200 rules inserted. Base: 4076 rules (402 with conclusion selected). Queue: 8272 rules.
+6400 rules inserted. Base: 4197 rules (402 with conclusion selected). Queue: 8298 rules.
+6600 rules inserted. Base: 4306 rules (402 with conclusion selected). Queue: 8273 rules.
+6800 rules inserted. Base: 4407 rules (402 with conclusion selected). Queue: 8363 rules.
+7000 rules inserted. Base: 4468 rules (402 with conclusion selected). Queue: 8178 rules.
+7200 rules inserted. Base: 4392 rules (402 with conclusion selected). Queue: 8124 rules.
+7400 rules inserted. Base: 4527 rules (402 with conclusion selected). Queue: 8107 rules.
+7600 rules inserted. Base: 4442 rules (402 with conclusion selected). Queue: 8030 rules.
+7800 rules inserted. Base: 4435 rules (402 with conclusion selected). Queue: 7881 rules.
+8000 rules inserted. Base: 4426 rules (402 with conclusion selected). Queue: 7872 rules.
+8200 rules inserted. Base: 4513 rules (402 with conclusion selected). Queue: 7842 rules.
+8400 rules inserted. Base: 4491 rules (402 with conclusion selected). Queue: 7787 rules.
+8600 rules inserted. Base: 4438 rules (402 with conclusion selected). Queue: 7658 rules.
+8800 rules inserted. Base: 4479 rules (402 with conclusion selected). Queue: 7637 rules.
+9000 rules inserted. Base: 4412 rules (402 with conclusion selected). Queue: 7569 rules.
+9200 rules inserted. Base: 4450 rules (402 with conclusion selected). Queue: 7481 rules.
+9400 rules inserted. Base: 4382 rules (402 with conclusion selected). Queue: 7409 rules.
+9600 rules inserted. Base: 4479 rules (402 with conclusion selected). Queue: 7324 rules.
+9800 rules inserted. Base: 4444 rules (402 with conclusion selected). Queue: 7317 rules.
+10000 rules inserted. Base: 4412 rules (402 with conclusion selected). Queue: 7180 rules.
+10200 rules inserted. Base: 4433 rules (402 with conclusion selected). Queue: 7167 rules.
+10400 rules inserted. Base: 4450 rules (402 with conclusion selected). Queue: 7071 rules.
+10600 rules inserted. Base: 4423 rules (402 with conclusion selected). Queue: 7003 rules.
+10800 rules inserted. Base: 4349 rules (402 with conclusion selected). Queue: 6947 rules.
+11000 rules inserted. Base: 4487 rules (402 with conclusion selected). Queue: 6932 rules.
+11200 rules inserted. Base: 4400 rules (402 with conclusion selected). Queue: 6854 rules.
+11400 rules inserted. Base: 4390 rules (402 with conclusion selected). Queue: 6706 rules.
+11600 rules inserted. Base: 4385 rules (402 with conclusion selected). Queue: 6697 rules.
+11800 rules inserted. Base: 4428 rules (402 with conclusion selected). Queue: 6589 rules.
+12000 rules inserted. Base: 4405 rules (402 with conclusion selected). Queue: 6533 rules.
+12200 rules inserted. Base: 4394 rules (402 with conclusion selected). Queue: 6483 rules.
+12400 rules inserted. Base: 4439 rules (402 with conclusion selected). Queue: 6462 rules.
+12600 rules inserted. Base: 4367 rules (402 with conclusion selected). Queue: 6394 rules.
+12800 rules inserted. Base: 4479 rules (402 with conclusion selected). Queue: 6344 rules.
+13000 rules inserted. Base: 4584 rules (402 with conclusion selected). Queue: 6272 rules.
+13200 rules inserted. Base: 4678 rules (402 with conclusion selected). Queue: 6282 rules.
+13400 rules inserted. Base: 4759 rules (402 with conclusion selected). Queue: 6186 rules.
+13600 rules inserted. Base: 4827 rules (402 with conclusion selected). Queue: 6159 rules.
+13800 rules inserted. Base: 4928 rules (402 with conclusion selected). Queue: 6090 rules.
+14000 rules inserted. Base: 5022 rules (402 with conclusion selected). Queue: 6100 rules.
+14200 rules inserted. Base: 5105 rules (402 with conclusion selected). Queue: 6004 rules.
+14400 rules inserted. Base: 5174 rules (402 with conclusion selected). Queue: 5975 rules.
+14600 rules inserted. Base: 5272 rules (402 with conclusion selected). Queue: 5908 rules.
+14800 rules inserted. Base: 5366 rules (402 with conclusion selected). Queue: 5918 rules.
+15000 rules inserted. Base: 5450 rules (402 with conclusion selected). Queue: 5822 rules.
+15200 rules inserted. Base: 5521 rules (402 with conclusion selected). Queue: 5791 rules.
+15400 rules inserted. Base: 5616 rules (402 with conclusion selected). Queue: 5726 rules.
+15600 rules inserted. Base: 5710 rules (402 with conclusion selected). Queue: 5736 rules.
+15800 rules inserted. Base: 5794 rules (402 with conclusion selected). Queue: 5640 rules.
+16000 rules inserted. Base: 5867 rules (402 with conclusion selected). Queue: 5607 rules.
+16200 rules inserted. Base: 5960 rules (402 with conclusion selected). Queue: 5544 rules.
+16400 rules inserted. Base: 6054 rules (402 with conclusion selected). Queue: 5554 rules.
+16600 rules inserted. Base: 6138 rules (402 with conclusion selected). Queue: 5458 rules.
+16800 rules inserted. Base: 6214 rules (402 with conclusion selected). Queue: 5422 rules.
+17000 rules inserted. Base: 6304 rules (402 with conclusion selected). Queue: 5362 rules.
+17200 rules inserted. Base: 6398 rules (402 with conclusion selected). Queue: 5372 rules.
+17400 rules inserted. Base: 6482 rules (402 with conclusion selected). Queue: 5276 rules.
+17600 rules inserted. Base: 6562 rules (402 with conclusion selected). Queue: 5238 rules.
+17800 rules inserted. Base: 6648 rules (402 with conclusion selected). Queue: 5180 rules.
+18000 rules inserted. Base: 6742 rules (402 with conclusion selected). Queue: 5190 rules.
+18200 rules inserted. Base: 6826 rules (402 with conclusion selected). Queue: 5094 rules.
+18400 rules inserted. Base: 6909 rules (402 with conclusion selected). Queue: 5054 rules.
+18600 rules inserted. Base: 6992 rules (402 with conclusion selected). Queue: 4998 rules.
+18800 rules inserted. Base: 7087 rules (402 with conclusion selected). Queue: 5007 rules.
+19000 rules inserted. Base: 7170 rules (402 with conclusion selected). Queue: 4912 rules.
+19200 rules inserted. Base: 7285 rules (467 with conclusion selected). Queue: 4847 rules.
+19400 rules inserted. Base: 7380 rules (470 with conclusion selected). Queue: 4849 rules.
+19600 rules inserted. Base: 7473 rules (537 with conclusion selected). Queue: 4777 rules.
+19800 rules inserted. Base: 7580 rules (589 with conclusion selected). Queue: 4725 rules.
+20000 rules inserted. Base: 7679 rules (605 with conclusion selected). Queue: 4712 rules.
+20200 rules inserted. Base: 7779 rules (672 with conclusion selected). Queue: 4643 rules.
+20400 rules inserted. Base: 7875 rules (711 with conclusion selected). Queue: 4603 rules.
+20600 rules inserted. Base: 7977 rules (741 with conclusion selected). Queue: 4576 rules.
+20800 rules inserted. Base: 8098 rules (808 with conclusion selected). Queue: 4510 rules.
+21000 rules inserted. Base: 8173 rules (843 with conclusion selected). Queue: 4471 rules.
+21200 rules inserted. Base: 8274 rules (877 with conclusion selected). Queue: 4439 rules.
+21400 rules inserted. Base: 8401 rules (935 with conclusion selected). Queue: 4384 rules.
+21600 rules inserted. Base: 8476 rules (979 with conclusion selected). Queue: 4335 rules.
+21800 rules inserted. Base: 8572 rules (1013 with conclusion selected). Queue: 4302 rules.
+22000 rules inserted. Base: 8696 rules (1057 with conclusion selected). Queue: 4262 rules.
+22200 rules inserted. Base: 8779 rules (1115 with conclusion selected). Queue: 4199 rules.
+22400 rules inserted. Base: 8870 rules (1149 with conclusion selected). Queue: 4166 rules.
+22600 rules inserted. Base: 8994 rules (1183 with conclusion selected). Queue: 4137 rules.
+22800 rules inserted. Base: 9076 rules (1240 with conclusion selected). Queue: 4074 rules.
+23000 rules inserted. Base: 9168 rules (1285 with conclusion selected). Queue: 4029 rules.
+23200 rules inserted. Base: 9307 rules (1319 with conclusion selected). Queue: 4004 rules.
+23400 rules inserted. Base: 9371 rules (1362 with conclusion selected). Queue: 3952 rules.
+23600 rules inserted. Base: 9470 rules (1421 with conclusion selected). Queue: 3893 rules.
+23800 rules inserted. Base: 9617 rules (1448 with conclusion selected). Queue: 3876 rules.
+24000 rules inserted. Base: 9668 rules (1490 with conclusion selected). Queue: 3824 rules.
+24200 rules inserted. Base: 9655 rules (1522 with conclusion selected). Queue: 3753 rules.
+24400 rules inserted. Base: 9750 rules (1538 with conclusion selected). Queue: 3677 rules.
+24600 rules inserted. Base: 9735 rules (1571 with conclusion selected). Queue: 3604 rules.
+24800 rules inserted. Base: 9856 rules (1586 with conclusion selected). Queue: 3525 rules.
+25000 rules inserted. Base: 9882 rules (1618 with conclusion selected). Queue: 3449 rules.
+25200 rules inserted. Base: 9932 rules (1650 with conclusion selected). Queue: 3373 rules.
+25400 rules inserted. Base: 10020 rules (1682 with conclusion selected). Queue: 3291 rules.
+25600 rules inserted. Base: 10005 rules (1714 with conclusion selected). Queue: 3216 rules.
+25800 rules inserted. Base: 10103 rules (1714 with conclusion selected). Queue: 3146 rules.
+26000 rules inserted. Base: 10090 rules (1746 with conclusion selected). Queue: 3072 rules.
+26200 rules inserted. Base: 10207 rules (1778 with conclusion selected). Queue: 2990 rules.
+26400 rules inserted. Base: 10287 rules (1810 with conclusion selected). Queue: 2908 rules.
+26600 rules inserted. Base: 10280 rules (1842 with conclusion selected). Queue: 2833 rules.
+26800 rules inserted. Base: 10374 rules (1862 with conclusion selected). Queue: 2758 rules.
+27000 rules inserted. Base: 10360 rules (1896 with conclusion selected). Queue: 2684 rules.
+27200 rules inserted. Base: 10478 rules (1906 with conclusion selected). Queue: 2609 rules.
+27400 rules inserted. Base: 10490 rules (1938 with conclusion selected). Queue: 2532 rules.
+27600 rules inserted. Base: 10557 rules (1970 with conclusion selected). Queue: 2453 rules.
+27800 rules inserted. Base: 10646 rules (2002 with conclusion selected). Queue: 2372 rules.
+28000 rules inserted. Base: 10834 rules (2089 with conclusion selected). Queue: 2230 rules.
+28200 rules inserted. Base: 11034 rules (2195 with conclusion selected). Queue: 2080 rules.
+28400 rules inserted. Base: 11234 rules (2291 with conclusion selected). Queue: 1943 rules.
+28600 rules inserted. Base: 11434 rules (2387 with conclusion selected). Queue: 1795 rules.
+28800 rules inserted. Base: 11634 rules (2501 with conclusion selected). Queue: 1640 rules.
+29000 rules inserted. Base: 11834 rules (2591 with conclusion selected). Queue: 1506 rules.
+29200 rules inserted. Base: 12034 rules (2686 with conclusion selected). Queue: 1360 rules.
+29400 rules inserted. Base: 12234 rules (2806 with conclusion selected). Queue: 1200 rules.

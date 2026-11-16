@@ -1,0 +1,10 @@
+[
+  "/step5-tamarin-prover",
+  "+RTS",
+  "-N1",
+  "-M768m",
+  "-RTS",
+  "-d=0",
+  "--prove=good_reachable",
+  "/kit/models/sessions/session_join.spthy"
+]

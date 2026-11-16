@@ -1,0 +1,1 @@
+RESULT event(eSign(I_18,q,a))@s_1 && event(eAccept(I_18,q,a))@k ==> event(eRevealSeed(I_18))@r is false.

@@ -1,0 +1,12 @@
+[
+  "/step4-tamarin-prover",
+  "+RTS",
+  "-N1",
+  "-M768m",
+  "-RTS",
+  "-d=0",
+  "-m=proverif",
+  "--lemma=bad_reachable",
+  "-o=/work/candidate/source/nonground_nested/bad_reachable/translated.pv",
+  "/kit/models/source/nonground_nested.spthy"
+]

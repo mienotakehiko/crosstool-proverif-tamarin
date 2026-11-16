@@ -1,0 +1,12 @@
+[
+  "/candidate-tamarin",
+  "+RTS",
+  "-N1",
+  "-M768m",
+  "-RTS",
+  "-d=0",
+  "-m=proverif",
+  "--lemma=exec",
+  "-o=/work/hss_inj/exec/candidate/translated.pv",
+  "/kit/models/hss_inj.spthy"
+]

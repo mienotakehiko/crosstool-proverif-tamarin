@@ -1,0 +1,18 @@
+{
+  "command": [
+    "/usr/local/bin/proverif",
+    "/redacted-home/workspace/revision_20261111/h1h2-kit/models/H1_section3_own.pv"
+  ],
+  "cwd": "/redacted-home/workspace/revision_20261111/h1h2-kit",
+  "utc_start": "2026-11-11T03:12:24.917604+00:00",
+  "utc_end": "2026-11-11T03:12:24.930347+00:00",
+  "elapsed_seconds": 0.013,
+  "rc": 0,
+  "timeout": false,
+  "timeout_seconds": 30,
+  "heap_mb": 600,
+  "limit_kind": "RLIMIT_AS",
+  "spawn_error": null,
+  "stdout_sha256": "5090fc2e0e3f7306ab36f7b54efc84328bb8cf6f708c3f1240f95c8d57d2f679",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

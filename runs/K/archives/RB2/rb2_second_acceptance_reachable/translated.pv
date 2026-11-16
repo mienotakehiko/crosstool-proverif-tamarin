@@ -1,0 +1,197 @@
+set preciseActions = true.
+
+(* Free names *)
+free publicChannel:channel.
+free vnew_gen:bitstring.
+free vold_gen:bitstring.
+free vzero_piv:bitstring.
+
+(* Functions *)
+fun fst(bitstring):bitstring.
+fun pair(bitstring,bitstring):bitstring.
+fun snd(bitstring):bitstring.
+
+(* Equations *)
+equation forall x_1:bitstring, x_2:bitstring; fst((x_1, x_2)) = x_1.
+equation forall x_1:bitstring, x_2:bitstring; snd((x_1, x_2)) = x_2.
+
+(* Events *)
+event eContextActivated(bitstring, bitstring).
+event eDistinctFact(bitstring, bitstring).
+event eInit(bitstring).
+event eRequestAccepted(bitstring, bitstring, bitstring, bitstring, bitstring, bitstring).
+event eRequestSent(bitstring, bitstring, bitstring, bitstring, bitstring, bitstring).
+event eResponseAccepted(bitstring, bitstring, bitstring, bitstring, bitstring, bitstring, bitstring).
+event eResponseProtected(bitstring, bitstring, bitstring, bitstring, bitstring, bitstring, bitstring).
+
+(* Tables *)
+table tAcceptedRequestNew(bitstring, bitstring, bitstring, bitstring, bitstring, bitstring).
+table tAcceptedRequestOld(bitstring, bitstring, bitstring, bitstring, bitstring, bitstring).
+table tOldExchangeCleared(bitstring, bitstring, bitstring).
+table tPendingNew(bitstring, bitstring, bitstring, bitstring, bitstring, bitstring).
+table tPendingOld(bitstring, bitstring, bitstring, bitstring, bitstring, bitstring, bitstring).
+table tReadyNew(bitstring, bitstring, bitstring).
+table tReadyOld(bitstring, bitstring, bitstring, bitstring).
+table tRequestWireNew(bitstring, bitstring, bitstring, bitstring, bitstring, bitstring).
+table tRequestWireOld(bitstring, bitstring, bitstring, bitstring, bitstring, bitstring).
+table tResponseWireNew(bitstring, bitstring, bitstring, bitstring, bitstring, bitstring, bitstring).
+table tResponseWireOld(bitstring, bitstring, bitstring, bitstring, bitstring, bitstring, bitstring).
+
+(* Restrictions *)
+
+(* SingleInit *)
+
+restriction rid_i:bitstring, rid_j:bitstring, i:time, j:time;
+  event(eInit( rid_i ))@i && event(eInit( rid_j ))@j ==> rid_i = rid_j.
+
+(* DistinctFact *)
+
+restriction rid_i:bitstring, rid_j:bitstring, x:bitstring, i:time,
+            j:time;
+  event(eDistinctFact( rid_i, x ))@i && event(eDistinctFact( rid_j, x ))@j
+  ==> rid_i = rid_j.
+
+(* Queries *)
+
+(* rb2_second_acceptance_reachable *)
+
+query context:bitstring, request_id:bitstring, request_piv:bitstring,
+      response_id:bitstring, run_id:bitstring, token_id:bitstring, k:time;
+  event(eResponseAccepted( vnew_gen, run_id, token_id, request_id, context,
+                           request_piv, response_id
+        ))@k.
+
+(* Processes *)
+
+let rInit =
+        new rid_rInit: bitstring;
+        new stR_ReadyOld: bitstring;
+        new initial_id: bitstring;
+        new initial_context: bitstring;
+        new next_context: bitstring;
+        event eInit(rid_rInit);
+        insert tReadyOld(stR_ReadyOld, initial_id, initial_context,
+                         next_context).
+
+let rSendRequestOld =
+        get tReadyOld(stL_ReadyOld, run_id, context, next_context) in
+        new rid_rSendRequestOld: bitstring;
+        new stR_PendingOld: bitstring;
+        new stR_RequestWireOld: bitstring;
+        new token_id: bitstring;
+        new request_id: bitstring;
+        event eDistinctFact(rid_rSendRequestOld, (stL_ReadyOld, (run_id, (context, next_context))));
+        event eRequestSent(vold_gen, run_id, token_id, request_id, context,
+                           vzero_piv);
+        insert tPendingOld(stR_PendingOld, run_id, token_id, request_id, context,
+                           vzero_piv, next_context);
+        insert tRequestWireOld(stR_RequestWireOld, run_id, token_id, request_id,
+                               context, vzero_piv).
+
+let rAcceptRequestOld =
+        get tRequestWireOld(stL_RequestWireOld, run_id, token_id, request_id,
+                            context, request_piv) in
+        new rid_rAcceptRequestOld: bitstring;
+        new stR_AcceptedRequestOld: bitstring;
+        event eDistinctFact(rid_rAcceptRequestOld, (stL_RequestWireOld, (run_id, (token_id, (request_id, (context, request_piv))))));
+        event eRequestAccepted(vold_gen, run_id, token_id, request_id, context,
+                               request_piv);
+        insert tAcceptedRequestOld(stR_AcceptedRequestOld, run_id, token_id,
+                                   request_id, context, request_piv).
+
+let rProtectResponseOld =
+        get tAcceptedRequestOld(stL_AcceptedRequestOld, run_id, token_id,
+                                request_id, context, request_piv) in
+        new rid_rProtectResponseOld: bitstring;
+        new stR_ResponseWireOld: bitstring;
+        new response_id: bitstring;
+        event eDistinctFact(rid_rProtectResponseOld, (stL_AcceptedRequestOld, (run_id, (token_id, (request_id, (context, request_piv))))));
+        event eResponseProtected(vold_gen, run_id, token_id, request_id, context,
+                                 request_piv, response_id);
+        insert tResponseWireOld(stR_ResponseWireOld, run_id, token_id,
+                                request_id, context, request_piv, response_id).
+
+let rAcceptResponseOld =
+        get tPendingOld(stL_PendingOld, run_id, token_id, request_id, context,
+                        request_piv, next_context) in
+        get tResponseWireOld(stL_ResponseWireOld, =run_id, =token_id,
+                             =request_id, =context, =request_piv, response_id) in
+        new rid_rAcceptResponseOld: bitstring;
+        new stR_OldExchangeCleared: bitstring;
+        event eDistinctFact(rid_rAcceptResponseOld, (stL_PendingOld, (run_id, (token_id, (request_id, (context, (request_piv, next_context)))))));
+        event eDistinctFact(rid_rAcceptResponseOld, (stL_ResponseWireOld, (run_id, (token_id, (request_id, (context, (request_piv, response_id)))))));
+        event eResponseAccepted(vold_gen, run_id, token_id, request_id, context,
+                                request_piv, response_id);
+        insert tOldExchangeCleared(stR_OldExchangeCleared, run_id, next_context).
+
+let rActivateNewContext =
+        get tOldExchangeCleared(stL_OldExchangeCleared, run_id, next_context) in
+        new rid_rActivateNewContext: bitstring;
+        new stR_ReadyNew: bitstring;
+        event eDistinctFact(rid_rActivateNewContext, (stL_OldExchangeCleared, (run_id, next_context)));
+        event eContextActivated(run_id, next_context);
+        insert tReadyNew(stR_ReadyNew, run_id, next_context).
+
+let rSendRequestNew =
+        get tReadyNew(stL_ReadyNew, run_id, context) in
+        new rid_rSendRequestNew: bitstring;
+        new stR_PendingNew: bitstring;
+        new stR_RequestWireNew: bitstring;
+        new token_id: bitstring;
+        new request_id: bitstring;
+        event eDistinctFact(rid_rSendRequestNew, (stL_ReadyNew, (run_id, context)));
+        event eRequestSent(vnew_gen, run_id, token_id, request_id, context,
+                           vzero_piv);
+        insert tPendingNew(stR_PendingNew, run_id, token_id, request_id, context,
+                           vzero_piv);
+        insert tRequestWireNew(stR_RequestWireNew, run_id, token_id, request_id,
+                               context, vzero_piv).
+
+let rAcceptRequestNew =
+        get tRequestWireNew(stL_RequestWireNew, run_id, token_id, request_id,
+                            context, request_piv) in
+        new rid_rAcceptRequestNew: bitstring;
+        new stR_AcceptedRequestNew: bitstring;
+        event eDistinctFact(rid_rAcceptRequestNew, (stL_RequestWireNew, (run_id, (token_id, (request_id, (context, request_piv))))));
+        event eRequestAccepted(vnew_gen, run_id, token_id, request_id, context,
+                               request_piv);
+        insert tAcceptedRequestNew(stR_AcceptedRequestNew, run_id, token_id,
+                                   request_id, context, request_piv).
+
+let rProtectResponseNew =
+        get tAcceptedRequestNew(stL_AcceptedRequestNew, run_id, token_id,
+                                request_id, context, request_piv) in
+        new rid_rProtectResponseNew: bitstring;
+        new stR_ResponseWireNew: bitstring;
+        new response_id: bitstring;
+        event eDistinctFact(rid_rProtectResponseNew, (stL_AcceptedRequestNew, (run_id, (token_id, (request_id, (context, request_piv))))));
+        event eResponseProtected(vnew_gen, run_id, token_id, request_id, context,
+                                 request_piv, response_id);
+        insert tResponseWireNew(stR_ResponseWireNew, run_id, token_id,
+                                request_id, context, request_piv, response_id).
+
+let rAcceptResponseNew =
+        get tPendingNew(stL_PendingNew, run_id, token_id, request_id, context,
+                        request_piv) in
+        get tResponseWireNew(stL_ResponseWireNew, =run_id, =token_id,
+                             =request_id, =context, =request_piv, response_id) in
+        new rid_rAcceptResponseNew: bitstring;
+        event eDistinctFact(rid_rAcceptResponseNew, (stL_PendingNew, (run_id, (token_id, (request_id, (context, request_piv))))));
+        event eDistinctFact(rid_rAcceptResponseNew, (stL_ResponseWireNew, (run_id, (token_id, (request_id, (context, (request_piv, response_id)))))));
+        event eResponseAccepted(vnew_gen, run_id, token_id, request_id, context,
+                                request_piv, response_id).
+
+process
+    ( !(rInit) | !(rSendRequestOld) | !(rAcceptRequestOld) | !(rProtectResponseOld) | !(rAcceptResponseOld) | !(rActivateNewContext) | !(rSendRequestNew) | !(rAcceptRequestNew) | !(rProtectResponseNew) | !(rAcceptResponseNew) )
+
+(*
+All wellformedness checks were successful.
+*)
+
+(*
+Generated from:
+Tamarin version 1.13.0
+Maude version 3.5
+Git revision: UNKNOWN
+Compiled at: 2026-10-24 02:25:12.718891574 UTC
+*)

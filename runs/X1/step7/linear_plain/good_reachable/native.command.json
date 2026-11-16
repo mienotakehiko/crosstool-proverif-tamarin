@@ -1,0 +1,10 @@
+[
+  "/step7-tamarin-prover",
+  "+RTS",
+  "-N1",
+  "-M768m",
+  "-RTS",
+  "-d=0",
+  "--prove=good_reachable",
+  "/kit/models/linear_plain.spthy"
+]

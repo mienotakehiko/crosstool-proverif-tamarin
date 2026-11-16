@@ -1,0 +1,197 @@
+--- a/lib/export/src/Export/ProVerif/Rule.hs
++++ b/lib/export/src/Export/ProVerif/Rule.hs
+@@ -105,7 +105,7 @@
+   (ruleDoc, headers, hasTailDocs)
+   where
+     (headDocs, tailDocs, destructors) =
+-      translateRuleDocs emptyRuleInstrumentation matchedVars rprems racts rconcls M.empty
++      translateRuleDocs emptyRuleInstrumentation M.empty matchedVars rprems racts rconcls M.empty
+     hasTailDocs = not (null tailDocs)
+     ruleDoc =
+       if hasTailDocs
+@@ -402,19 +402,20 @@
+   (d, M.Map (String, String) String)
+ translateRule instrumentation rprems racts rconcls destrs =
+   let (headDocs, tailDocs, newDestrs) =
+-        translateRuleDocs instrumentation S.empty rprems racts rconcls destrs
++        translateRuleDocs instrumentation (priorRowIds rprems) S.empty rprems racts rconcls destrs
+    in (combineRuleDocs headDocs tailDocs, newDestrs)
+ 
+ translateRuleDocs ::
+   (HighlightDocument d) =>
+   RuleInstrumentation ->
++  RowReadGuards ->
+   S.Set String ->
+   [LNFact] ->
+   [LNFact] ->
+   [LNFact] ->
+   M.Map (String, String) String ->
+   ([d], [d], M.Map (String, String) String)
+-translateRuleDocs instrumentation initialVars rprems racts rconcls destrs =
++translateRuleDocs instrumentation rowReadGuards initialVars rprems racts rconcls destrs =
+   -- docsX contains the expression resulting from the given translation (as an instance of Doc)
+   -- varsX is a set of all variables that have appeared in the rule translation until that point
+   -- varsX' is a map where the keys are the patterns, which have appeared in the rule translation until that point,
+@@ -439,16 +440,16 @@
+         text "event"
+           <-> text ('e' : completionEvent)
+           <> parens (text ruleIdName)
+-      (docs1, vars1, vars1', destr1) = translatePatterns rprems GET patternGetsFilter initialVars M.empty destrs
+-      (docs2, vars2) = translateNonPatterns rprems GET nonPatternGetsFilter vars1
+-      (docs3, vars3, _, destr3) = translatePatterns rprems IN patternInsFilter vars2 vars1' destr1
++      (docs1, vars1, vars1', destr1) = translatePatterns rowReadGuards rprems GET patternGetsFilter initialVars M.empty destrs
++      (docs2, vars2) = translateNonPatternsWithRuleId rowReadGuards S.empty "" rprems GET nonPatternGetsFilter vars1
++      (docs3, vars3, _, destr3) = translatePatterns M.empty rprems IN patternInsFilter vars2 vars1' destr1
+       (docs4, vars4) = translateNonPatterns rprems IN nonPatternInsFilter vars3
+       (docs5, vars5) = translateNonPatterns rprems NEW isFrFact vars4
+       -- Actions from embedded restrictions (_restrict(...)) as well as Eq, Neq need to come before all other actions.
+       -- The restriction holds only for variables after the restriction action.
+       (docs6, vars6) =
+         if ruleUsesRuleId
+-          then translateNonPatternsWithRuleId ruleIdEvents ruleIdName (sortActionsByPriority racts) EVENT (const True) vars5
++          then translateNonPatternsWithRuleId M.empty ruleIdEvents ruleIdName (sortActionsByPriority racts) EVENT (const True) vars5
+           else translateNonPatterns (sortActionsByPriority racts) EVENT (const True) vars5
+       (docs7, vars7) = translateNonPatterns (rconcls \\ rprems) INSERT isStorage vars6
+       (docs8, _) = translateNonPatterns rconcls OUT isOutFact vars7
+@@ -506,7 +507,35 @@
+ nonPatternGetsFilter :: LNFact -> Bool
+ nonPatternGetsFilter p = isStorage p && not (hasPattern p)
+ 
+--- | @translatePatterns facts factType filterFunction vars helperVars destructors@ applies the
++type RowReadGuards = M.Map LNTerm [LNTerm]
++
++-- | The first argument of a stamped linear fact identifies its table row.
++-- Compare it with previously bound row IDs from the same table, following
++-- the actual rendering order: pattern reads, then plain reads.
++priorRowIds :: [LNFact] -> RowReadGuards
++priorRowIds facts = snd $ foldl' remember (M.empty, M.empty) orderedReads
++  where
++    orderedReads = filter patternGetsFilter facts ++ filter nonPatternGetsFilter facts
++    remember (seen, guards) fact@(Fact tag _ (rowId : _))
++      | not (isPersistentFact fact),
++        Lit (Var (LVar name LSortFresh _)) <- viewTerm rowId,
++        name == "stL_" ++ factTagName tag =
++          let table = showFactName tag
++              previous = M.findWithDefault [] table seen
++           in (M.insert table (rowId : previous) seen, M.insert rowId (reverse previous) guards)
++    remember acc _ = acc
++
++rowReadCondition :: (Document d) => RowReadGuards -> LNFact -> d
++rowReadCondition guards fact@(Fact _ _ (rowId : _))
++  | not (isPersistentFact fact),
++    previous@(_ : _) <- M.findWithDefault [] rowId guards =
++      text (" suchthat (" ++ intercalate " && " (map unequal previous) ++ ")")
++  where
++    renderId = printTerm True S.empty False
++    unequal other = renderId rowId ++ " <> " ++ renderId other
++rowReadCondition _ _ = text ""
++
++-- | @translatePatterns rowReadGuards facts factType filterFunction vars helperVars destructors@ applies the
+ --   @filterFunction@ to the @facts@ to extract those that should be translated with this call, and
+ --   returns a list with translations for all those facts. @factType@ indicates what type of fact
+ --   should be translated. @vars@ are all variables that have appeared in the current rule translation
+@@ -517,6 +546,7 @@
+ --   translation and the updated map of destructors.
+ translatePatterns ::
+   (HighlightDocument d) =>
++  RowReadGuards ->
+   [LNFact] ->
+   FactType ->
+   (LNFact -> Bool) ->
+@@ -524,7 +554,7 @@
+   M.Map String String ->
+   M.Map (String, String) String ->
+   ([d], S.Set String, M.Map String String, M.Map (String, String) String)
+-translatePatterns facts factType filterFunction vars helperVars destructors =
++translatePatterns rowReadGuards facts factType filterFunction vars helperVars destructors =
+   -- Translate all selected pattern facts, while keeping track of the variables that have already
+   -- appeared and also continuously updating the maps with the helper vars and the destructors.
+   foldl'
+@@ -546,7 +576,7 @@
+       where
+         -- First create only the part of the translation that is 'get'
+         -- or 'in', introducing new helper vars for all patterns.
+-        (factDoc, newHelperVars) = translatePatternFact prem factType vs hvs
++        (factDoc, newHelperVars) = translatePatternFact rowReadGuards prem factType vs hvs
+ 
+         -- For each pattern term, create the list of destructor expressions
+         -- that extract its contents. @literals@ contains all non-pattern
+@@ -577,8 +607,8 @@
+     accumulateWith3 (as, b, c) (a, b1, c1) = (as ++ [a], b <> b1, c <> c1)
+ 
+ -- | Like translateNonPatterns but includes a rule ID as the first argument to EVENT facts
+-translateNonPatternsWithRuleId :: (HighlightDocument d) => S.Set String -> String -> [LNFact] -> FactType -> (LNFact -> Bool) -> S.Set String -> ([d], S.Set String)
+-translateNonPatternsWithRuleId ruleIdEvents ruleIdName facts factType filterFunction vars =
++translateNonPatternsWithRuleId :: (HighlightDocument d) => RowReadGuards -> S.Set String -> String -> [LNFact] -> FactType -> (LNFact -> Bool) -> S.Set String -> ([d], S.Set String)
++translateNonPatternsWithRuleId rowReadGuards ruleIdEvents ruleIdName facts factType filterFunction vars =
+   foldl' (\acc@(_, currVars) f -> acc `accumulateResult` translate f currVars) ([], vars) nonPatternFacts
+   where
+     nonPatternFacts = filter filterFunction facts
+@@ -593,28 +623,28 @@
+         renderFact =
+           if useRuleId
+             then translateFactWithRuleId prem factType vs ruleIdName
+-            else translateFact prem factType vs
++            else translateFact rowReadGuards prem factType vs
+         atoms = S.fromList $ foldMap (map show . lits) ts
+         checkForNewIDs = not (atoms `S.isSubsetOf` vs) && any (startsWith '$') (atoms `S.difference` vs)
+         idConstructor = idExp . S.toList $ atoms `S.difference` vs
+         idExp = vcat . map (\a -> text "in(publicChannel, " <> text (showAtom True a) <> text ": bitstring);") . filter (startsWith '$')
+ 
+ translateNonPatterns :: (HighlightDocument d) => [LNFact] -> FactType -> (LNFact -> Bool) -> S.Set String -> ([d], S.Set String)
+-translateNonPatterns = translateNonPatternsWithRuleId S.empty ""
++translateNonPatterns = translateNonPatternsWithRuleId M.empty S.empty ""
+ 
+ -- | Like translateFact but prepends the rule ID to EVENT fact arguments. Only
+ -- EVENT facts carry a rule ID; other fact types render as in 'translateFact'.
+ translateFactWithRuleId :: (Document d) => LNFact -> FactType -> S.Set String -> String -> d
+ translateFactWithRuleId fact@(Fact tag _ ts) factType vars ruleIdName = case factType of
+   EVENT -> text "event" <-> text (showEventName tag) <> termsWithRuleId
+-  _ -> translateFact fact factType vars
++  _ -> translateFact M.empty fact factType vars
+   where
+     termsWithRuleId =
+       text "(" <> text ruleIdName <> (if null ts then text "" else comma <-> (fsep . punctuate comma $ map (translateTerm S.empty False) ts)) <> text ")"
+ 
+-translateFact :: (Document d) => LNFact -> FactType -> S.Set String -> d
+-translateFact (Fact tag _ ts) factType vars = case factType of
+-  GET -> text "get" <-> text (showFactName tag) <> translateTerms vars True <> text " in"
++translateFact :: (Document d) => RowReadGuards -> LNFact -> FactType -> S.Set String -> d
++translateFact rowReadGuards fact@(Fact tag _ ts) factType vars = case factType of
++  GET -> text "get" <-> text (showFactName tag) <> translateTerms vars True <> rowReadCondition rowReadGuards fact <> text " in"
+   IN ->
+     text "in(publicChannel," <-> translateTerm vars True firstTerm
+       <> text (if startsWith '=' (printTerm True vars True firstTerm) then ")" else ": bitstring)")
+@@ -631,18 +661,19 @@
+ 
+ translatePatternFact ::
+   (Document d) =>
++  RowReadGuards ->
+   LNFact ->
+   FactType ->
+   S.Set String ->
+   M.Map String String ->
+   (d, M.Map String String)
+-translatePatternFact (Fact tag _ ts) factType vars helperVars =
++translatePatternFact rowReadGuards fact@(Fact tag _ ts) factType vars helperVars =
+   (factDoc, newHelperVars)
+   where
+     (doclist, newHelperVars) =
+       foldl' (\acc@(_, helpers) t -> acc `accumulateResult` translatePatternTerm vars helpers t) ([], helperVars) ts
+     factDoc = case factType of
+-      GET -> text "get" <-> text (showFactName tag) <> text "(" <> (fsep . punctuate comma $ doclist) <> text ") in"
++      GET -> text "get" <-> text (showFactName tag) <> text "(" <> (fsep . punctuate comma $ doclist) <> text ")" <> rowReadCondition rowReadGuards fact <> text " in"
+       IN -> case doclist of
+         document : _ -> text "in(publicChannel," <-> document <> text ": bitstring);"
+         [] -> translationFail "An input pattern requires one term."
+@@ -720,6 +751,10 @@
+         (text "=" <> (text . showAtom True $ show l), helperVars)
+   Lit l ->
+     (text . showAtom True $ show l, helperVars)
++  -- Candidate: preserve leafless ground patterns, including nullary symbols.
++  -- Not a general equational-pattern repair; requires compiled regression tests.
++  _ | null (lits t) ->
++    (text "=" <> translateTerm S.empty False t, helperVars)
+   _ ->
+     (varDoc, newHelperVars)
+     where

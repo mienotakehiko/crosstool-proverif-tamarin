@@ -1,0 +1,138 @@
+maude tool: 'maude'
+ checking version: 3.5.1. OK.
+ checking installation: OK.
+[Theory StatVerif_Security_Device] Theory loaded
+[Theory StatVerif_Security_Device] Theory translated
+[Theory StatVerif_Security_Device] Theory closed
+[Saturating Sources] Step 1 (Max 5)
+[Saturating Sources] Done
+[Saturating Sources] Step 1 (Max 5)
+[Saturating Sources] Done
+theory StatVerif_Security_Device
+
+begin
+
+// Function signature and definition of the equational theory E
+
+functions: adec/2, aenc/2, fst/1, pair/2, pk/1, snd/1
+equations:
+    adec(aenc(x.1, pk(x.2)), x.2) = x.1,
+    fst(<x.1, x.2>) = x.1,
+    snd(<x.1, x.2>) = x.2
+
+rule (modulo E) NewDevice:
+   [ Fr( ~sk ) ]
+  -->
+   [ UnconfiguredDevice( ~sk ), !DevicePublicKey( pk(~sk) ), Out( pk(~sk) )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Alice:
+   [ Fr( ~x ), Fr( ~y ), !DevicePublicKey( key ) ]
+  --[ Exclusive( ~x, ~y ) ]->
+   [ Out( aenc(<~x, ~y>, key) ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) ConfigureDevice:
+   [ UnconfiguredDevice( sk ), In( config ) ]
+  -->
+   [ !ConfiguredDevice( sk, config ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) UseLeftDevice:
+   [ !ConfiguredDevice( sk, 'left' ), In( aenc(<x, y>, pk(sk)) ) ]
+  --[ Access( x ) ]->
+   [ Out( x ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) UseRightDevice:
+   [ !ConfiguredDevice( sk, 'right' ), In( aenc(<x, y>, pk(sk)) ) ]
+  --[ Access( y ) ]->
+   [ Out( y ) ]
+
+  /* has exactly the trivial AC variant */
+
+lemma types [sources]:
+  all-traces
+  "∀ m #i.
+    (Access( m ) @ #i) ⇒
+    (((∃ #j. (!KU( m ) @ #j) ∧ (#j < #i)) ∨
+      (∃ x #j. Exclusive( x, m ) @ #j)) ∨
+     (∃ y #j. Exclusive( m, y ) @ #j))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ m #i.
+  (Access( m ) @ #i)
+ ∧
+  (∀ #j. (!KU( m ) @ #j) ⇒ ¬(#j < #i)) ∧
+  (∀ x #j. (Exclusive( x, m ) @ #j) ⇒ ⊥) ∧
+  (∀ y #j. (Exclusive( m, y ) @ #j) ⇒ ⊥)"
+*/
+by sorry
+
+lemma reachability_left:
+  exists-trace "∃ x y #i #j. (Exclusive( x, y ) @ #i) ∧ (K( x ) @ #j)"
+/*
+guarded formula characterizing all satisfying traces:
+"∃ x y #i #j. (Exclusive( x, y ) @ #i) ∧ (K( x ) @ #j)"
+*/
+simplify
+solve( !DevicePublicKey( key ) ▶₂ #i )
+  case NewDevice
+  solve( !KU( ~x ) @ #vk )
+    case UseLeftDevice
+    solve( !KU( aenc(<~x, y.1>, pk(~sk.1)) ) @ #vk.1 )
+      case Alice
+      SOLVED // trace found
+    qed
+  qed
+qed
+
+lemma reachability_right:
+  exists-trace "∃ x y #i #k. (Exclusive( x, y ) @ #i) ∧ (K( y ) @ #k)"
+/*
+guarded formula characterizing all satisfying traces:
+"∃ x y #i #k. (Exclusive( x, y ) @ #i) ∧ (K( y ) @ #k)"
+*/
+by sorry
+
+lemma secrecy:
+  all-traces
+  "¬(∃ x y #i #k1 #k2.
+      ((Exclusive( x, y ) @ #i) ∧ (K( x ) @ #k1)) ∧ (K( y ) @ #k2))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ x y #i #k1 #k2.
+  (Exclusive( x, y ) @ #i) ∧ (K( x ) @ #k1) ∧ (K( y ) @ #k2)"
+*/
+by sorry
+
+/* All wellformedness checks were successful. */
+
+/*
+Generated from:
+Tamarin version 1.12.0
+Maude version 3.5.1
+Git revision: 82780bbaf3328a45f624ddb41e51bf75425f851c (with uncommited changes), branch: master
+Compiled at: 2026-03-07 14:22:39.174278293 UTC
+*/
+
+end
+
+==============================================================================
+summary of summaries:
+
+analyzed: corpus/related_work__StatVerif_ARR_CSF11__StatVerif_Security_Device.spthy
+
+  processing time: 0.10s
+  
+  types (all-traces): analysis incomplete (1 steps)
+  reachability_left (exists-trace): verified (5 steps)
+  reachability_right (exists-trace): analysis incomplete (1 steps)
+  secrecy (all-traces): analysis incomplete (1 steps)
+
+==============================================================================

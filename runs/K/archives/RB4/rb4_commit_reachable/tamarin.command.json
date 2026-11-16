@@ -1,0 +1,1 @@
+["tamarin-prover", "+RTS", "-N1", "-M768m", "-RTS", "-d=0", "--prove=rb4_commit_reachable", "/work/inputs/rb4.spthy"]

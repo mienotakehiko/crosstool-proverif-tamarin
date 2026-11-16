@@ -1,0 +1,139 @@
+theory H1_section3_own
+
+begin
+
+// Function signature and definition of the equational theory E
+
+functions: civ/1, fst/1, kdf/2, key/2, nce/3, pair/2, snd/1, succ/1, xn/2
+equations: fst(<x.1, x.2>) = x.1, snd(<x.1, x.2>) = x.2
+
+restriction OneInit:
+  "∀ #i #j. ((Init( ) @ #i) ∧ (Init( ) @ #j)) ⇒ (#i = #j)"
+  // safety formula
+
+  /*
+  expanded formula:
+  "∀ #i #j. ((Init( ) @ #i) ∧ (Init( ) @ #j)) ⇒ (#i = #j)"
+  */
+
+rule (modulo E) Init:
+   [ Fr( ~parent ), Fr( ~input_a ), Fr( ~input_b ), Fr( ~m1 ), Fr( ~m2 ) ]
+  --[ Init( ) ]->
+   [ Ready( ~parent, ~input_a, ~input_b, ~m1, ~m2 ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Encrypt1:
+   [ Ready( ~parent, ~input_a, ~input_b, ~m1, ~m2 ) ]
+  --[
+  RequestState( 'client', 'zero' ),
+  ContextStep( key(kdf(~parent, xn(~input_a, ~input_b)), 'server'),
+               nce('server', 'zero', civ(kdf(~parent, xn(~input_a, ~input_b))))
+  ),
+  AeadUse( key(kdf(~parent, xn(~input_a, ~input_b)), 'server'),
+           nce('server', 'zero', civ(kdf(~parent, xn(~input_a, ~input_b)))), ~m1
+  )
+  ]->
+   [ AfterFirst( ~parent, ~input_a, ~input_b, ~m1, ~m2 ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Encrypt2:
+   [ AfterFirst( ~parent, ~input_a, ~input_b, ~m1, ~m2 ) ]
+  --[
+  RequestState( 'client', 'zero' ),
+  ContextStep( key(kdf(~parent, xn(~input_a, ~input_b)), 'server'),
+               nce('client', 'zero', civ(kdf(~parent, xn(~input_a, ~input_b))))
+  ),
+  AeadUse( key(kdf(~parent, xn(~input_a, ~input_b)), 'server'),
+           nce('client', 'zero', civ(kdf(~parent, xn(~input_a, ~input_b)))), ~m2
+  ),
+  Normal( )
+  ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+lemma normal:
+  exists-trace "∃ #i. Normal( ) @ #i"
+/*
+guarded formula characterizing all satisfying traces:
+"∃ #i. (Normal( ) @ #i)"
+*/
+by sorry
+
+lemma collision:
+  exists-trace
+  "∃ k n x y #i #j.
+    ((AeadUse( k, n, x ) @ #i) ∧ (AeadUse( k, n, y ) @ #j)) ∧ (¬(x = y))"
+/*
+guarded formula characterizing all satisfying traces:
+"∃ k n x y #i #j.
+  (AeadUse( k, n, x ) @ #i) ∧ (AeadUse( k, n, y ) @ #j) ∧ ¬(x = y)"
+*/
+simplify
+solve( AeadUse( k, n, x ) @ #i )
+  case Encrypt1
+  solve( Ready( ~parent, ~input_a, ~input_b, ~m1, ~m2 ) ▶₀ #i )
+    case Init
+    solve( AeadUse( key(kdf(~parent, xn(~input_a, ~input_b)), 'server'),
+                    nce('server', 'zero', civ(kdf(~parent, xn(~input_a, ~input_b)))), y
+           ) @ #j )
+      case Encrypt1
+      solve( Ready( ~parent, ~input_a, ~input_b, ~m1.1, ~m2.1 ) ▶₀ #j )
+        case Init
+        by contradiction /* from formulas */
+      qed
+    qed
+  qed
+next
+  case Encrypt2
+  solve( AfterFirst( ~parent, ~input_a, ~input_b, ~m1, ~m2 ) ▶₀ #i )
+    case Encrypt1
+    solve( AeadUse( key(kdf(~parent, xn(~input_a, ~input_b)), 'server'),
+                    nce('client', 'zero', civ(kdf(~parent, xn(~input_a, ~input_b)))), y
+           ) @ #j )
+      case Encrypt2
+      solve( AfterFirst( ~parent, ~input_a, ~input_b, ~m1.1, ~m2.1 ) ▶₀ #j )
+        case Encrypt1
+        by contradiction /* from formulas */
+      qed
+    qed
+  qed
+qed
+
+lemma no_collision:
+  all-traces
+  "∀ k n x y #i #j.
+    ((AeadUse( k, n, x ) @ #i) ∧ (AeadUse( k, n, y ) @ #j)) ⇒ (x = y)"
+/*
+guarded formula characterizing all counter-examples:
+"∃ k n x y #i #j.
+  (AeadUse( k, n, x ) @ #i) ∧ (AeadUse( k, n, y ) @ #j) ∧ ¬(x = y)"
+*/
+by sorry
+
+/* All wellformedness checks were successful. */
+
+/*
+Generated from:
+Tamarin version 1.13.0
+Maude version 3.5
+Git revision: UNKNOWN
+Compiled at: 2026-10-24 02:25:12.718891574 UTC
+*/
+
+end
+
+==============================================================================
+summary of summaries:
+
+analyzed: /work/inputs/H1_section3_own/H1_section3_own.spthy
+
+  processing time: 0.04s
+  
+  normal (exists-trace): analysis incomplete (1 steps)
+  collision (exists-trace): falsified - no trace found (10 steps)
+  no_collision (all-traces): analysis incomplete (1 steps)
+
+==============================================================================

@@ -1,0 +1,25 @@
+'tamarin-cyclic' '--with-maude=maude35' '--derivcheck-timeout=0' '--prove=exec_accept' 'variants/LMOTS_E1u__T0.spthy' +RTS '-N' '-M8g' '-A64m' '-qg' '-N4' '-sresults/out/L_cyc_LMOTS_E1u__T0_exec_accept_default_8g.rts' 
+ 177,911,017,520 bytes allocated in the heap
+  19,300,558,704 bytes copied during GC
+   8,179,633,616 bytes maximum residency (12 sample(s))
+      19,407,408 bytes maximum slop
+            8342 MiB total memory in use (0 MiB lost due to fragmentation)
+
+                                     Tot time (elapsed)  Avg pause  Max pause
+  Gen  0       676 colls,     0 par    4.565s  15.123s     0.0224s    0.0728s
+  Gen  1        12 colls,     0 par    0.823s  66.173s     5.5144s    27.3238s
+
+  TASKS: 10 (1 bound, 9 peak workers (9 total), using -N4)
+
+  SPARKS: 11237 (6324 converted, 0 overflowed, 0 dud, 73 GC'd, 4840 fizzled)
+
+  INIT    time    0.003s  (  0.005s elapsed)
+  MUT     time  231.695s  ( 92.828s elapsed)
+  GC      time    5.388s  ( 81.296s elapsed)
+  EXIT    time    1.655s  (  0.002s elapsed)
+  Total   time  238.741s  (174.132s elapsed)
+
+  Alloc rate    767,865,741 bytes per MUT second
+
+  Productivity  97.0% of total user, 53.3% of total elapsed
+

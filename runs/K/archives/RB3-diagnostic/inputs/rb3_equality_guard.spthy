@@ -1,0 +1,64 @@
+// Bounded RB3: KUDOS draft 14 section 3 and response acceptance.
+theory CimRb3
+begin
+
+rule Init:
+  [ Fr(~run_id), Fr(~request_context), Fr(~new_context), Fr(~sender_ssn) ]
+  --[ Init() ]->
+  [ ChooseContext(~run_id,~request_context,~new_context,~sender_ssn) ]
+
+rule UseSameContext:
+  [ ChooseContext(run_id,request_context,new_context,sender_ssn) ]
+  --[  ]->
+  [ ExchangeReady('same_ctx',run_id,request_context,request_context,sender_ssn) ]
+
+rule UseDifferentContext:
+  [ ChooseContext(run_id,request_context,new_context,sender_ssn) ]
+  --[  ]->
+  [ ExchangeReady('different_ctx',run_id,request_context,new_context,sender_ssn) ]
+
+rule RecordAcceptedRequest:
+  [ Fr(~token_id), ExchangeReady(scenario,run_id,request_context,response_context,sender_ssn) ]
+  --[ RequestAccepted(scenario,run_id,~token_id,request_context,'request_zero'), ServerSendReady(run_id,response_context,sender_ssn) ]->
+  [ Pending(scenario,run_id,~token_id,request_context,'request_zero',response_context), CanRespond(scenario,run_id,~token_id,request_context,response_context,'request_zero',sender_ssn) ]
+
+rule ProtectWithOwnPiv:
+  [ CanRespond(scenario,run_id,token_id,request_context,response_context,request_piv,sender_ssn) ]
+  --[ ResponseProtected(scenario,run_id,token_id,request_context,response_context,request_piv,'own_piv',sender_ssn) ]->
+  [ ProtectedResponse(scenario,run_id,token_id,request_context,response_context,request_piv,'own_piv',sender_ssn) ]
+
+rule ProtectWithRequestNonce:
+  [ CanRespond(scenario,run_id,token_id,request_context,request_context,request_piv,sender_ssn) ]
+  --[ ResponseProtected(scenario,run_id,token_id,request_context,request_context,request_piv,'reuse_piv','no_piv'), ContextMatch(request_context,request_context) ]->
+  [ ProtectedResponse(scenario,run_id,token_id,request_context,request_context,request_piv,'reuse_piv','no_piv') ]
+
+rule AcceptResponse:
+  [ Pending(scenario,run_id,token_id,request_context,request_piv,response_context), ProtectedResponse(scenario,run_id,token_id,request_context,response_context,request_piv,piv_mode,reply_piv) ]
+  --[ ResponseAccepted(scenario,run_id,token_id,request_context,response_context,request_piv,piv_mode,reply_piv) ]->
+  [  ]
+
+restriction SingleInit:
+  "All #i #j. Init()@i & Init()@j ==> #i = #j"
+
+restriction EqualContext:
+  "All a b #i. ContextMatch(a,b)@i ==> a = b"
+
+lemma rb3_same_reuse_reachable: exists-trace
+  "Ex run_id token_id ctx request_piv #k. ResponseAccepted('same_ctx',run_id,token_id,ctx,ctx,request_piv,'reuse_piv','no_piv')@k"
+
+lemma rb3_same_own_reachable: exists-trace
+  "Ex run_id token_id ctx request_piv reply_piv #k. ResponseAccepted('same_ctx',run_id,token_id,ctx,ctx,request_piv,'own_piv',reply_piv)@k"
+
+lemma rb3_different_own_reachable: exists-trace
+  "Ex run_id token_id request_context response_context request_piv reply_piv #k. ResponseAccepted('different_ctx',run_id,token_id,request_context,response_context,request_piv,'own_piv',reply_piv)@k & not(request_context = response_context)"
+
+lemma rb3_accepted_matches_protected:
+  "All scenario run_id token_id request_context response_context request_piv piv_mode reply_piv #k. ResponseAccepted(scenario,run_id,token_id,request_context,response_context,request_piv,piv_mode,reply_piv)@k ==> Ex #i. ResponseProtected(scenario,run_id,token_id,request_context,response_context,request_piv,piv_mode,reply_piv)@i & #i < #k"
+
+lemma rb3_reuse_requires_same:
+  "All scenario run_id token_id request_context response_context request_piv reply_piv #k. ResponseProtected(scenario,run_id,token_id,request_context,response_context,request_piv,'reuse_piv',reply_piv)@k ==> request_context = response_context & reply_piv = 'no_piv'"
+
+lemma rb3_own_uses_sender_ssn:
+  "All scenario run_id token_id request_context response_context request_piv reply_piv #k. ResponseProtected(scenario,run_id,token_id,request_context,response_context,request_piv,'own_piv',reply_piv)@k ==> Ex #i. ServerSendReady(run_id,response_context,reply_piv)@i & #i < #k"
+
+end

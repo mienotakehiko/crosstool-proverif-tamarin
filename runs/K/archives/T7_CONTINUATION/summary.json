@@ -1,0 +1,107 @@
+[
+  {
+    "lemma": "t7_continuation_reachable",
+    "cim_pv_archived_raw": "false",
+    "cim_pv_archived_expected": true,
+    "tamarin_retest": true,
+    "pv_from_tamarin": true,
+    "pv_diagnostic": null,
+    "exit_codes": {
+      "tamarin": 0,
+      "export": 0,
+      "proverif": 0
+    },
+    "translation_flags": {
+      "timepoints_split": false,
+      "leading_negation": false,
+      "multiple_queries": false,
+      "restriction_missing": false,
+      "axiom_missing": false
+    },
+    "status": "MATCH"
+  },
+  {
+    "lemma": "t7_continuation_new_receipt_and_promotion",
+    "cim_pv_archived_raw": "true",
+    "cim_pv_archived_expected": true,
+    "tamarin_retest": true,
+    "pv_from_tamarin": true,
+    "pv_diagnostic": null,
+    "exit_codes": {
+      "tamarin": 0,
+      "export": 0,
+      "proverif": 0
+    },
+    "translation_flags": {
+      "timepoints_split": false,
+      "leading_negation": false,
+      "multiple_queries": false,
+      "restriction_missing": false,
+      "axiom_missing": false
+    },
+    "status": "MATCH"
+  },
+  {
+    "lemma": "t7_continuation_derive_and_send",
+    "cim_pv_archived_raw": "true",
+    "cim_pv_archived_expected": true,
+    "tamarin_retest": true,
+    "pv_from_tamarin": true,
+    "pv_diagnostic": null,
+    "exit_codes": {
+      "tamarin": 0,
+      "export": 0,
+      "proverif": 0
+    },
+    "translation_flags": {
+      "timepoints_split": false,
+      "leading_negation": false,
+      "multiple_queries": false,
+      "restriction_missing": false,
+      "axiom_missing": false
+    },
+    "status": "MATCH"
+  },
+  {
+    "lemma": "t7_continuation_parent_distinct",
+    "cim_pv_archived_raw": "true",
+    "cim_pv_archived_expected": true,
+    "tamarin_retest": true,
+    "pv_from_tamarin": true,
+    "pv_diagnostic": null,
+    "exit_codes": {
+      "tamarin": 0,
+      "export": 0,
+      "proverif": 0
+    },
+    "translation_flags": {
+      "timepoints_split": false,
+      "leading_negation": false,
+      "multiple_queries": false,
+      "restriction_missing": false,
+      "axiom_missing": false
+    },
+    "status": "MATCH"
+  },
+  {
+    "lemma": "t7_continuation_context_distinct",
+    "cim_pv_archived_raw": "true",
+    "cim_pv_archived_expected": true,
+    "tamarin_retest": true,
+    "pv_from_tamarin": true,
+    "pv_diagnostic": null,
+    "exit_codes": {
+      "tamarin": 0,
+      "export": 0,
+      "proverif": 0
+    },
+    "translation_flags": {
+      "timepoints_split": false,
+      "leading_negation": false,
+      "multiple_queries": false,
+      "restriction_missing": false,
+      "axiom_missing": false
+    },
+    "status": "MATCH"
+  }
+]

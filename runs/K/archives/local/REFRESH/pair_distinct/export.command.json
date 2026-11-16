@@ -1,0 +1,1 @@
+["tamarin-prover", "-d=0", "-m=proverif", "--lemma=refresh_pair_distinct", "-o=/work/REFRESH/pair_distinct/translated.pv", "/work/inputs/REFRESH/busy_refresh.spthy"]

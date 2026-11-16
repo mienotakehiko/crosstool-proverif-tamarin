@@ -1,0 +1,11 @@
+model	lemma	status	declarations_query_prefix_equal	body_equal	baseline_status	candidate_status
+legacy_lms	exec	CHANGED	True	False	EXPORTED	EXPORTED
+legacy_lms	LS1	CHANGED	True	False	EXPORTED	EXPORTED
+legacy_lms	LS4_pure	CHANGED	True	False	EXPORTED	EXPORTED
+same_cim_lms	exec	UNCHANGED	True	True	EXPORTED	EXPORTED
+same_cim_lms	LS1	UNCHANGED	True	True	EXPORTED	EXPORTED
+same_cim_lms	LS4_pure	UNCHANGED	True	True	EXPORTED	EXPORTED
+hss_inj	exec	CHANGED	True	False	EXPORTED	EXPORTED
+hss_inj	LS7	CHANGED	True	False	EXPORTED	EXPORTED
+hss_noinj	exec	CHANGED	True	False	EXPORTED	EXPORTED
+hss_noinj	LS7	CHANGED	True	False	EXPORTED	EXPORTED

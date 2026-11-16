@@ -1,0 +1,108 @@
+Linear part: No equation.
+Convergent part:
+fst((x_1,x_2)) = x_1
+snd((x_1,x_2)) = x_2
+Completing equations...
+Completed equations:
+snd((x_1,x_2)) = x_2
+fst((x_1,x_2)) = x_1
+Process 0 (that is, the initial process):
+(
+    {1}!
+    {2}new rid_rInit: bitstring;
+    {3}new stR_St: bitstring;
+    {4}new asid: bitstring;
+    {5}event eInitOnce(rid_rInit);
+    {6}insert tSt(stR_St,asid,f(s(z)))
+) | (
+    {7}!
+    {8}get tSt(stL_St: bitstring,asid_1: bitstring,helperVar0: bitstring) in
+    {9}new rid_rGood: bitstring;
+    {10}event eDistinctFact(rid_rGood,(stL_St,(asid_1,f(s(z)))));
+    {11}event eGood(asid_1)
+) | (
+    {12}!
+    {13}get tSt(stL_St_1: bitstring,asid_2: bitstring,helperVar0_1: bitstring) in
+    {14}new rid_rBad: bitstring;
+    {15}event eDistinctFact(rid_rBad,(stL_St_1,(asid_2,f(z))));
+    {16}event eBad(asid_2)
+)
+
+-- Restriction event(eInitOnce(rid_i))@i && event(eInitOnce(rid_j))@j ==> rid_i = rid_j encoded as event(eInitOnce(rid_i)) && event(eInitOnce(rid_j)) ==> rid_i = rid_j in process 0.
+-- Restriction event(eDistinctFact(rid_i,x))@i && event(eDistinctFact(rid_j,x))@j ==> rid_i = rid_j encoded as event(eDistinctFact(rid_i,x)) && event(eDistinctFact(rid_j,x)) ==> rid_i = rid_j in process 0.
+-- Query not event(eBad(asid_3))@i encoded as not event(eBad(asid_3)) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query not event(eBad(asid_3))@i
+Removing redudant clauses.
+Removing subsumed clauses modulo the equational theory.
+Starting verification.
+Clauses verified: 0. Clauses remaining: 1. Failed clauses: 0.
+goal reachable: b-event(eDistinctFact(rid_rBad_1,(stR_St_1,(asid_3,f(z))))) && b-event(eInitOnce(rid_rInit_1)) && b-event(@p_act(@occ13_1,tSt(stR_St_1,asid_3,f(s(z))))) -> event(eBad(asid_3))
+The 1st, 2nd, 3rd hypotheses occur strictly before the conclusion.
+Abbreviations:
+asid_3 = asid[!1 = @sid]
+stR_St_1 = stR_St[!1 = @sid]
+rid_rBad_1 = rid_rBad[helperVar0_1 = f(s(z)),asid_2 = asid_3,stL_St_1 = stR_St_1,!1 = @sid_1]
+rid_rInit_1 = rid_rInit[!1 = @sid]
+@occ13_1 = @occ13[!1 = @sid_1]
+
+Derivation:
+Abbreviations:
+asid_3 = asid[!1 = @sid]
+stR_St_1 = stR_St[!1 = @sid]
+rid_rBad_1 = rid_rBad[helperVar0_1 = f(s(z)),asid_2 = asid_3,stL_St_1 = stR_St_1,!1 = @sid_1]
+rid_rInit_1 = rid_rInit[!1 = @sid]
+@occ13_1 = @occ13[!1 = @sid_1]
+
+1. The event eInitOnce(rid_rInit_1) may be executed at {5}.
+So the entry tSt(stR_St_1,asid_3,f(s(z))) may be inserted in a table at insert {6}.
+table(tSt(stR_St_1,asid_3,f(s(z)))).
+
+2. The event @p_act(@occ13_1,tSt(stR_St_1,asid_3,f(s(z)))) records how variables are instantiated at {13}.
+The entry tSt(stR_St_1,asid_3,f(s(z))) that may be in a table by 1 may be read at get {13}.
+The event eDistinctFact(rid_rBad_1,(stR_St_1,(asid_3,f(z)))) may be executed at {15}.
+So event eBad(asid_3) may be executed at {16}.
+event(eBad(asid_3)).
+
+3. By 2, event(eBad(asid_3)).
+The goals are reached, combined in the following fact:
+event(eBad(asid_3)).
+
+
+A more detailed output of the traces is available with
+  set traceDisplay = long.
+
+new rid_rInit: bitstring creating rid_rInit_2 at {2} in copy a
+
+new stR_St: bitstring creating stR_St_2 at {3} in copy a
+
+new asid: bitstring creating asid_4 at {4} in copy a
+
+event eInitOnce(rid_rInit_2) at {5} in copy a
+
+insert tSt(stR_St_2,asid_4,f(s(z))) at {6} in copy a
+
+get tSt(stR_St_2,asid_4,f(s(z))) at {13} in copy a_1
+
+new rid_rBad: bitstring creating rid_rBad_2 at {14} in copy a_1
+
+event eDistinctFact(rid_rBad_2,(stR_St_2,(asid_4,f(z)))) at {15} in copy a_1
+
+event eBad(asid_4) at {16} in copy a_1 (goal)
+
+The event eBad(asid_4) is executed at {16} in copy a_1.
+A trace has been found.
+RESULT not event(eBad(asid_3))@i is false.
+
+--------------------------------------------------------------
+Verification summary:
+
+Query(ies):
+ - Query not event(eBad(asid_3))@i is false.
+Associated restriction(s):
+ - Restriction event(eInitOnce(rid_i))@i && event(eInitOnce(rid_j))@j ==> rid_i = rid_j encoded as event(eInitOnce(rid_i)) && event(eInitOnce(rid_j)) ==> rid_i = rid_j in process 0.
+ - Restriction event(eDistinctFact(rid_i,x))@i && event(eDistinctFact(rid_j,x))@j ==> rid_i = rid_j encoded as event(eDistinctFact(rid_i,x)) && event(eDistinctFact(rid_j,x)) ==> rid_i = rid_j in process 0.
+
+--------------------------------------------------------------
+

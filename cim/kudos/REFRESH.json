@@ -1,0 +1,41 @@
+{
+  "model": "busy_refresh",
+  "theory": "CimBusyRefresh",
+  "lemma_prefix": "refresh",
+  "function": ["tempctx", 2],
+  "init": {
+    "fresh": ["initial_parent", "initial_pair"],
+    "emit": [["RefreshBefore", "initial_parent", ["tempctx", "initial_parent", "initial_pair"], "initial_pair"]],
+    "produce": [
+      ["BusyUnusable", "initial_parent", ["tempctx", "initial_parent", "initial_pair"], "initial_pair"],
+      ["BeforeSnapshot", "initial_parent", ["tempctx", "initial_parent", "initial_pair"], "initial_pair"]
+    ]
+  },
+  "steps": [
+    {
+      "id": "Refresh",
+      "consume": [["BusyUnusable", "parent", "previous_temp", "previous_pair"]],
+      "fresh": ["fresh_pair"],
+      "emit": [["RefreshInstalled", "parent", ["tempctx", "parent", "fresh_pair"], "fresh_pair"]],
+      "produce": [["BusyActive", "parent", ["tempctx", "parent", "fresh_pair"], "fresh_pair"]]
+    },
+    {
+      "id": "ReadActive",
+      "consume": [["BeforeSnapshot", "b", "t0", "x0"], ["BusyActive", "p", "t", "x"]],
+      "emit": [["RefreshRead", "b", "t0", "x0", "p", "t", "x"]],
+      "produce": []
+    }
+  ],
+  "observed": ["RefreshRead", "b", "t0", "x0", "p", "t", "x"],
+  "properties": [
+    {"id": "reachable", "kind": "exists"},
+    {
+      "id": "parent_and_context",
+      "kind": "correspondence",
+      "before": [["RefreshBefore", "b", "t0", "x0"], ["RefreshInstalled", "p", "t", "x"]],
+      "equal": [["p", "b"], ["t", ["tempctx", "p", "x"]]]
+    },
+    {"id": "temp_distinct", "kind": "different", "fields": ["t0", "t"]},
+    {"id": "pair_distinct", "kind": "different", "fields": ["x0", "x"]}
+  ]
+}

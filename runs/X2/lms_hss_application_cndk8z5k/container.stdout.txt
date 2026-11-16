@@ -1,0 +1,10 @@
+legacy_lms	exec	CHANGED
+legacy_lms	LS1	CHANGED
+legacy_lms	LS4_pure	CHANGED
+same_cim_lms	exec	UNCHANGED
+same_cim_lms	LS1	UNCHANGED
+same_cim_lms	LS4_pure	UNCHANGED
+hss_inj	exec	CHANGED
+hss_inj	LS7	CHANGED
+hss_noinj	exec	CHANGED
+hss_noinj	LS7	CHANGED

@@ -1,0 +1,1 @@
+["tamarin-prover", "-d=0", "-m=proverif", "--lemma=no_collision", "-o=/work/H1_both_own/no_collision/translated.pv", "/work/inputs/H1_both_own/H1_both_own.spthy"]

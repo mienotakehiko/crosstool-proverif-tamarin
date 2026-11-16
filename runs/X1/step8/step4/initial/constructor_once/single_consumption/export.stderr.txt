@@ -1,0 +1,7 @@
+maude tool: 'maude'
+ checking version: 3.5. OK.
+ checking installation: OK.
+[Theory constructor_once] Theory loaded
+[Theory constructor_once] Theory translated
+[Theory constructor_once] No Deconstruction Chain checks started
+[Theory constructor_once] No Deconstruction Chain checks ended

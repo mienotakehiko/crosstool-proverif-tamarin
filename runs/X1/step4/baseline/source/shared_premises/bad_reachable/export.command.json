@@ -1,0 +1,12 @@
+[
+  "/step4-tamarin-prover",
+  "+RTS",
+  "-N1",
+  "-M768m",
+  "-RTS",
+  "-d=0",
+  "-m=proverif",
+  "--lemma=bad_reachable",
+  "-o=/work/baseline/source/shared_premises/bad_reachable/translated.pv",
+  "/kit/models/source/shared_premises.spthy"
+]

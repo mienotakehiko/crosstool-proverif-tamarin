@@ -1,0 +1,76 @@
+{
+  "case": "RB5_one_update",
+  "theory": "CimRb5",
+  "constants": ["phase_active", "phase_closed", "no_outcome", "outcome_commit", "outcome_abort"],
+  "init": {
+    "fresh": ["initial_sid"],
+    "emit": [["KudosStart", "initial_sid"]],
+    "produce": [["Execution", "initial_sid", "phase_active", "no_outcome"]]
+  },
+  "steps": [
+    {
+      "id": "CommitUpdate",
+      "consume": [["Execution", "sid", "phase_active", "no_outcome"]],
+      "emit": [["KudosCommit", "sid"]],
+      "produce": [["Execution", "sid", "phase_closed", "outcome_commit"]]
+    },
+    {
+      "id": "AbortUpdate",
+      "consume": [["Execution", "sid", "phase_active", "no_outcome"]],
+      "emit": [["KudosAbort", "sid"]],
+      "produce": [["Execution", "sid", "phase_closed", "outcome_abort"]]
+    },
+    {
+      "id": "CheckAppSend",
+      "consume": [["Execution", "sid", "phase", "outcome"]],
+      "emit": [["AppSendChecked", "sid", "phase", "outcome"]],
+      "produce": [["AppCheck", "sid", "phase", "outcome"]]
+    },
+    {
+      "id": "BlockAppSend",
+      "consume": [["AppCheck", "sid", "phase_active", "no_outcome"]],
+      "emit": [["AppSendBlocked", "sid"]],
+      "produce": []
+    },
+    {
+      "id": "AllowAppSend",
+      "consume": [["AppCheck", "sid", "phase_closed", "outcome"]],
+      "emit": [["AppSend", "sid", "phase_closed", "outcome"]],
+      "produce": []
+    }
+  ],
+  "properties": [
+    {
+      "id": "block_reachable",
+      "kind": "exists",
+      "observe": ["AppSendBlocked", "sid"]
+    },
+    {
+      "id": "send_while_active_unreachable",
+      "kind": "unreachable",
+      "observe": ["AppSend", "sid", "phase_active", "outcome"]
+    },
+    {
+      "id": "commit_send_reachable",
+      "kind": "exists",
+      "observe": ["AppSend", "sid", "phase_closed", "outcome_commit"]
+    },
+    {
+      "id": "commit_before_send",
+      "kind": "correspondence",
+      "observe": ["AppSend", "sid", "phase_closed", "outcome_commit"],
+      "before": [["KudosStart", "sid"], ["KudosCommit", "sid"]]
+    },
+    {
+      "id": "abort_send_reachable",
+      "kind": "exists",
+      "observe": ["AppSend", "sid", "phase_closed", "outcome_abort"]
+    },
+    {
+      "id": "abort_before_send",
+      "kind": "correspondence",
+      "observe": ["AppSend", "sid", "phase_closed", "outcome_abort"],
+      "before": [["KudosStart", "sid"], ["KudosAbort", "sid"]]
+    }
+  ]
+}

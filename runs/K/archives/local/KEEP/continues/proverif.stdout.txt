@@ -1,0 +1,58 @@
+Linear part: No equation.
+Convergent part:
+fst((x_1,x_2)) = x_1
+snd((x_1,x_2)) = x_2
+Completing equations...
+Completed equations:
+snd((x_1,x_2)) = x_2
+fst((x_1,x_2)) = x_1
+Process 0 (that is, the initial process):
+(
+    {1}!
+    {2}new rid_rInit: bitstring;
+    {3}new stR_BusyUsable: bitstring;
+    {4}new initial_context: bitstring;
+    {5}new initial_counter: bitstring;
+    {6}event eInit(rid_rInit);
+    {7}event eBusyBefore(initial_context,initial_counter);
+    {8}insert tBusyUsable(stR_BusyUsable,initial_context,initial_counter)
+) | (
+    {9}!
+    {10}get tBusyUsable(stL_BusyUsable: bitstring,c: bitstring,p: bitstring) in
+    {11}new rid_rKeep: bitstring;
+    {12}event eDistinctFact(rid_rKeep,(stL_BusyUsable,(c,p)));
+    {13}event eBusyKept(c,succ(p))
+)
+
+-- Restriction event(eInit(rid_i))@i && event(eInit(rid_j))@j ==> rid_i = rid_j encoded as event(eInit(rid_i)) && event(eInit(rid_j)) ==> rid_i = rid_j in process 0.
+-- Restriction event(eDistinctFact(rid_i,x))@i && event(eDistinctFact(rid_j,x))@j ==> rid_i = rid_j encoded as event(eDistinctFact(rid_i,x)) && event(eDistinctFact(rid_j,x)) ==> rid_i = rid_j in process 0.
+-- Query event(eBusyKept(c_1,n))@k ==> event(eBusyBefore(c_1,p_1))@t1 && k > t1 && n = succ(p_1) encoded as event(eBusyKept(c_1,n))@i ==> event(eBusyBefore(c_1,p_1))@i_1 && i > i_1 && n = succ(p_1) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query event(eBusyKept(c_1,n))@k ==> event(eBusyBefore(c_1,p_1))@t1 && k > t1 && n = succ(p_1)
+Removing redudant clauses.
+Removing subsumed clauses modulo the equational theory.
+Starting verification.
+Clauses verified: 0. Clauses remaining: 1. Failed clauses: 0.
+goal reachable: b-event(eDistinctFact(rid_rKeep_1,(stR_BusyUsable_1,(initial_context_1,initial_counter_1)))) && b-event(eBusyBefore(initial_context_1,initial_counter_1)) && b-event(eInit(rid_rInit_1)) && b-event(@p_act(@occ10_1,tBusyUsable(stR_BusyUsable_1,initial_context_1,initial_counter_1))) -> event(eBusyKept(initial_context_1,succ(initial_counter_1)))
+The 1st, 2nd, 3rd, 4th hypotheses occur strictly before the conclusion.
+Abbreviations:
+initial_context_1 = initial_context[!1 = @sid]
+initial_counter_1 = initial_counter[!1 = @sid]
+stR_BusyUsable_1 = stR_BusyUsable[!1 = @sid]
+rid_rKeep_1 = rid_rKeep[p = initial_counter_1,c = initial_context_1,stL_BusyUsable = stR_BusyUsable_1,!1 = @sid_1]
+rid_rInit_1 = rid_rInit[!1 = @sid]
+@occ10_1 = @occ10[!1 = @sid_1]
+RESULT event(eBusyKept(c_1,n))@k ==> event(eBusyBefore(c_1,p_1))@t1 && k > t1 && n = succ(p_1) is true.
+
+--------------------------------------------------------------
+Verification summary:
+
+Query(ies):
+ - Query event(eBusyKept(c_1,n))@k ==> event(eBusyBefore(c_1,p_1))@t1 && k > t1 && n = succ(p_1) is true.
+Associated restriction(s):
+ - Restriction event(eInit(rid_i))@i && event(eInit(rid_j))@j ==> rid_i = rid_j encoded as event(eInit(rid_i)) && event(eInit(rid_j)) ==> rid_i = rid_j in process 0.
+ - Restriction event(eDistinctFact(rid_i,x))@i && event(eDistinctFact(rid_j,x))@j ==> rid_i = rid_j encoded as event(eDistinctFact(rid_i,x)) && event(eDistinctFact(rid_j,x)) ==> rid_i = rid_j in process 0.
+
+--------------------------------------------------------------
+

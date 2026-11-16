@@ -1,0 +1,14 @@
+./H1_both_own/H1_both_own.pv: OK
+./H1_both_own/H1_both_own.spthy: OK
+./H1_both_own/cim_pv_audit.json: OK
+./H1_both_own/cim_pv_stdout.txt: OK
+./H1_both_own/cim_tm_audit.json: OK
+./H1_both_own/cim_tm_stdout.txt: OK
+./H1_section3_own/H1_section3_own.pv: OK
+./H1_section3_own/H1_section3_own.spthy: OK
+./H1_section3_own/cim_pv_audit.json: OK
+./H1_section3_own/cim_pv_stdout.txt: OK
+./H1_section3_own/cim_tm_audit.json: OK
+./H1_section3_own/cim_tm_stdout.txt: OK
+./cases.json: OK
+./h2_tool_sha256.txt: OK

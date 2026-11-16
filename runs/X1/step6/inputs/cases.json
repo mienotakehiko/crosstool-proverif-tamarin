@@ -1,0 +1,42 @@
+[
+  {
+    "variant": "original",
+    "lemma": "good_reachable",
+    "event": "eGood",
+    "tag": "vtwo",
+    "expected": "reachable",
+    "expected_trace_ids": "any_two",
+    "step5_original_path": "candidate/multiplicity/linear_pair/good_reachable/translated.pv",
+    "sha256": "85ed33bd4c17065ca65393e1d4ad2623fb8fedf6c2cf9aeb36ed9605b07e6491"
+  },
+  {
+    "variant": "distinct_ids",
+    "lemma": "good_reachable",
+    "event": "eGood",
+    "tag": "vtwo",
+    "expected": "reachable",
+    "expected_trace_ids": "distinct",
+    "step5_original_path": "candidate/multiplicity/linear_pair/good_reachable/translated.pv",
+    "sha256": "b27cd1720d8b6cad9735234ca640c8a5daf73dca79c89d4a4c82619b7a1ab64b"
+  },
+  {
+    "variant": "original",
+    "lemma": "bad_reachable",
+    "event": "eBad",
+    "tag": "vone",
+    "expected": "reachable",
+    "expected_trace_ids": "same",
+    "step5_original_path": "candidate/multiplicity/linear_pair/bad_reachable/translated.pv",
+    "sha256": "d191017e1d1404f01e99ddaa242f390297bbab689c8ba1ec421e63b79318f349"
+  },
+  {
+    "variant": "distinct_ids",
+    "lemma": "bad_reachable",
+    "event": "eBad",
+    "tag": "vone",
+    "expected": "unreachable",
+    "expected_trace_ids": "none",
+    "step5_original_path": "candidate/multiplicity/linear_pair/bad_reachable/translated.pv",
+    "sha256": "8f53aefcc4edcf9c568ed8fb2571a2b4f582f62b514e374fa8cefba5ba953ca5"
+  }
+]

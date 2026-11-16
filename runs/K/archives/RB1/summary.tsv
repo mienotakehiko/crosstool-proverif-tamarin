@@ -1,0 +1,7 @@
+case	lemma	cim_reference	expected	tamarin_retest	pv_from_tamarin	status
+H1_section3_own	normal	direct	True	True	True	MATCH
+H1_section3_own	collision	inverse_no_collision	False	False	False	MATCH
+H1_section3_own	no_collision	direct	True	True	True	MATCH
+H1_both_own	normal	direct	True	True	True	MATCH
+H1_both_own	collision	inverse_no_collision	False	False	False	MATCH
+H1_both_own	no_collision	direct	True	True	True	MATCH

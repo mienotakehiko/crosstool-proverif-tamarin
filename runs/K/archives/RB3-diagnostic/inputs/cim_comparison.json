@@ -1,0 +1,459 @@
+{
+  "pass": true,
+  "checks": {
+    "tool_exit_codes_zero": true,
+    "proverif_query_statements_match": true,
+    "proverif_expected_verdicts": true,
+    "tamarin_expected_verdicts": true,
+    "tamarin_proof_closed": true,
+    "proverif_rb3_same_reuse_reachable_witness": true,
+    "proverif_rb3_same_own_reachable_witness": true,
+    "proverif_rb3_different_own_reachable_witness": true,
+    "tamarin_rb3_same_reuse_reachable_witness": true,
+    "tamarin_rb3_same_own_reachable_witness": true,
+    "tamarin_rb3_different_own_reachable_witness": true,
+    "observed_witnesses_agree": true
+  },
+  "proverif_verdicts": [
+    "false",
+    "false",
+    "false",
+    "true",
+    "true",
+    "true"
+  ],
+  "tamarin_verdicts": {
+    "rb3_same_reuse_reachable": "verified",
+    "rb3_same_own_reachable": "verified",
+    "rb3_different_own_reachable": "verified",
+    "rb3_accepted_matches_protected": "verified",
+    "rb3_reuse_requires_same": "verified",
+    "rb3_own_uses_sender_ssn": "verified"
+  },
+  "wall_seconds": {
+    "proverif": 0.012,
+    "tamarin": 0.563
+  },
+  "tamarin_processing_seconds": 0.53,
+  "observed_events": {
+    "proverif": {
+      "rb3_same_reuse_reachable": {
+        "RequestAccepted": [
+          "same_ctx",
+          "run_id_1",
+          "token_id_step3_2",
+          "request_context_1",
+          "request_zero"
+        ],
+        "ServerSendReady": [
+          "run_id_1",
+          "request_context_1",
+          "sender_ssn_1"
+        ],
+        "ResponseProtected": [
+          "same_ctx",
+          "run_id_1",
+          "token_id_step3_2",
+          "request_context_1",
+          "request_context_1",
+          "request_zero",
+          "reuse_piv",
+          "no_piv"
+        ],
+        "ResponseAccepted": [
+          "same_ctx",
+          "run_id_1",
+          "token_id_step3_2",
+          "request_context_1",
+          "request_context_1",
+          "request_zero",
+          "reuse_piv",
+          "no_piv"
+        ]
+      },
+      "rb3_same_own_reachable": {
+        "RequestAccepted": [
+          "same_ctx",
+          "run_id_1",
+          "token_id_step3_2",
+          "request_context_1",
+          "request_zero"
+        ],
+        "ServerSendReady": [
+          "run_id_1",
+          "request_context_1",
+          "sender_ssn_1"
+        ],
+        "ResponseProtected": [
+          "same_ctx",
+          "run_id_1",
+          "token_id_step3_2",
+          "request_context_1",
+          "request_context_1",
+          "request_zero",
+          "own_piv",
+          "sender_ssn_1"
+        ],
+        "ResponseAccepted": [
+          "same_ctx",
+          "run_id_1",
+          "token_id_step3_2",
+          "request_context_1",
+          "request_context_1",
+          "request_zero",
+          "own_piv",
+          "sender_ssn_1"
+        ]
+      },
+      "rb3_different_own_reachable": {
+        "RequestAccepted": [
+          "different_ctx",
+          "run_id_1",
+          "token_id_step3_2",
+          "request_context_1",
+          "request_zero"
+        ],
+        "ServerSendReady": [
+          "run_id_1",
+          "new_context_1",
+          "sender_ssn_1"
+        ],
+        "ResponseProtected": [
+          "different_ctx",
+          "run_id_1",
+          "token_id_step3_2",
+          "request_context_1",
+          "new_context_1",
+          "request_zero",
+          "own_piv",
+          "sender_ssn_1"
+        ],
+        "ResponseAccepted": [
+          "different_ctx",
+          "run_id_1",
+          "token_id_step3_2",
+          "request_context_1",
+          "new_context_1",
+          "request_zero",
+          "own_piv",
+          "sender_ssn_1"
+        ]
+      }
+    },
+    "tamarin": {
+      "rb3_same_reuse_reachable": {
+        "ResponseAccepted": [
+          "same_ctx",
+          "~run_id",
+          "~token_id",
+          "~request_context",
+          "~request_context",
+          "request_zero",
+          "reuse_piv",
+          "no_piv"
+        ],
+        "RequestAccepted": [
+          "same_ctx",
+          "~run_id",
+          "~token_id",
+          "~request_context",
+          "request_zero"
+        ],
+        "ServerSendReady": [
+          "~run_id",
+          "~request_context",
+          "~sender_ssn"
+        ],
+        "ResponseProtected": [
+          "same_ctx",
+          "~run_id",
+          "~token_id",
+          "~request_context",
+          "~request_context",
+          "request_zero",
+          "reuse_piv",
+          "no_piv"
+        ]
+      },
+      "rb3_same_own_reachable": {
+        "ResponseAccepted": [
+          "same_ctx",
+          "~run_id",
+          "~token_id",
+          "~request_context",
+          "~request_context",
+          "request_zero",
+          "own_piv",
+          "~sender_ssn"
+        ],
+        "RequestAccepted": [
+          "same_ctx",
+          "~run_id",
+          "~token_id",
+          "~request_context",
+          "request_zero"
+        ],
+        "ServerSendReady": [
+          "~run_id",
+          "~request_context",
+          "~sender_ssn"
+        ],
+        "ResponseProtected": [
+          "same_ctx",
+          "~run_id",
+          "~token_id",
+          "~request_context",
+          "~request_context",
+          "request_zero",
+          "own_piv",
+          "~sender_ssn"
+        ]
+      },
+      "rb3_different_own_reachable": {
+        "ResponseAccepted": [
+          "different_ctx",
+          "~run_id",
+          "~token_id",
+          "~request_context",
+          "~new_context",
+          "request_zero",
+          "own_piv",
+          "~sender_ssn"
+        ],
+        "RequestAccepted": [
+          "different_ctx",
+          "~run_id",
+          "~token_id",
+          "~request_context",
+          "request_zero"
+        ],
+        "ServerSendReady": [
+          "~run_id",
+          "~new_context",
+          "~sender_ssn"
+        ],
+        "ResponseProtected": [
+          "different_ctx",
+          "~run_id",
+          "~token_id",
+          "~request_context",
+          "~new_context",
+          "request_zero",
+          "own_piv",
+          "~sender_ssn"
+        ]
+      }
+    }
+  },
+  "normalized_events": {
+    "proverif": {
+      "rb3_same_reuse_reachable": {
+        "RequestAccepted": [
+          "same_ctx",
+          "exchange",
+          "token",
+          "request_context",
+          "request_zero"
+        ],
+        "ServerSendReady": [
+          "exchange",
+          "request_context",
+          "server_sender_ssn"
+        ],
+        "ResponseProtected": [
+          "same_ctx",
+          "exchange",
+          "token",
+          "request_context",
+          "request_context",
+          "request_zero",
+          "reuse_piv",
+          "no_piv"
+        ],
+        "ResponseAccepted": [
+          "same_ctx",
+          "exchange",
+          "token",
+          "request_context",
+          "request_context",
+          "request_zero",
+          "reuse_piv",
+          "no_piv"
+        ]
+      },
+      "rb3_same_own_reachable": {
+        "RequestAccepted": [
+          "same_ctx",
+          "exchange",
+          "token",
+          "request_context",
+          "request_zero"
+        ],
+        "ServerSendReady": [
+          "exchange",
+          "request_context",
+          "server_sender_ssn"
+        ],
+        "ResponseProtected": [
+          "same_ctx",
+          "exchange",
+          "token",
+          "request_context",
+          "request_context",
+          "request_zero",
+          "own_piv",
+          "server_sender_ssn"
+        ],
+        "ResponseAccepted": [
+          "same_ctx",
+          "exchange",
+          "token",
+          "request_context",
+          "request_context",
+          "request_zero",
+          "own_piv",
+          "server_sender_ssn"
+        ]
+      },
+      "rb3_different_own_reachable": {
+        "RequestAccepted": [
+          "different_ctx",
+          "exchange",
+          "token",
+          "request_context",
+          "request_zero"
+        ],
+        "ServerSendReady": [
+          "exchange",
+          "new_response_context",
+          "server_sender_ssn"
+        ],
+        "ResponseProtected": [
+          "different_ctx",
+          "exchange",
+          "token",
+          "request_context",
+          "new_response_context",
+          "request_zero",
+          "own_piv",
+          "server_sender_ssn"
+        ],
+        "ResponseAccepted": [
+          "different_ctx",
+          "exchange",
+          "token",
+          "request_context",
+          "new_response_context",
+          "request_zero",
+          "own_piv",
+          "server_sender_ssn"
+        ]
+      }
+    },
+    "tamarin": {
+      "rb3_same_reuse_reachable": {
+        "RequestAccepted": [
+          "same_ctx",
+          "exchange",
+          "token",
+          "request_context",
+          "request_zero"
+        ],
+        "ServerSendReady": [
+          "exchange",
+          "request_context",
+          "server_sender_ssn"
+        ],
+        "ResponseProtected": [
+          "same_ctx",
+          "exchange",
+          "token",
+          "request_context",
+          "request_context",
+          "request_zero",
+          "reuse_piv",
+          "no_piv"
+        ],
+        "ResponseAccepted": [
+          "same_ctx",
+          "exchange",
+          "token",
+          "request_context",
+          "request_context",
+          "request_zero",
+          "reuse_piv",
+          "no_piv"
+        ]
+      },
+      "rb3_same_own_reachable": {
+        "RequestAccepted": [
+          "same_ctx",
+          "exchange",
+          "token",
+          "request_context",
+          "request_zero"
+        ],
+        "ServerSendReady": [
+          "exchange",
+          "request_context",
+          "server_sender_ssn"
+        ],
+        "ResponseProtected": [
+          "same_ctx",
+          "exchange",
+          "token",
+          "request_context",
+          "request_context",
+          "request_zero",
+          "own_piv",
+          "server_sender_ssn"
+        ],
+        "ResponseAccepted": [
+          "same_ctx",
+          "exchange",
+          "token",
+          "request_context",
+          "request_context",
+          "request_zero",
+          "own_piv",
+          "server_sender_ssn"
+        ]
+      },
+      "rb3_different_own_reachable": {
+        "RequestAccepted": [
+          "different_ctx",
+          "exchange",
+          "token",
+          "request_context",
+          "request_zero"
+        ],
+        "ServerSendReady": [
+          "exchange",
+          "new_response_context",
+          "server_sender_ssn"
+        ],
+        "ResponseProtected": [
+          "different_ctx",
+          "exchange",
+          "token",
+          "request_context",
+          "new_response_context",
+          "request_zero",
+          "own_piv",
+          "server_sender_ssn"
+        ],
+        "ResponseAccepted": [
+          "different_ctx",
+          "exchange",
+          "token",
+          "request_context",
+          "new_response_context",
+          "request_zero",
+          "own_piv",
+          "server_sender_ssn"
+        ]
+      }
+    }
+  },
+  "errors": {}
+}

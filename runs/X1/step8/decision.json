@@ -1,0 +1,12 @@
+{
+  "DIFFERENT": 0,
+  "MATCH": 60,
+  "REVIEW": 0,
+  "changed_pv": 2,
+  "decision": "PASS",
+  "preserved": 59,
+  "repaired": 1,
+  "rows": 60,
+  "step4_rows": 52,
+  "step5_rows": 8
+}

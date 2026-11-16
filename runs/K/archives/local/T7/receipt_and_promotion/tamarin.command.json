@@ -1,0 +1,1 @@
+["tamarin-prover", "+RTS", "-N1", "-M768m", "-RTS", "-d=0", "--prove=pending_new_receipt_and_promotion", "/work/inputs/T7/pending_new.spthy"]

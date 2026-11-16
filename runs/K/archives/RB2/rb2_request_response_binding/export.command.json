@@ -1,0 +1,1 @@
+["tamarin-prover", "-d=0", "-m=proverif", "--lemma=rb2_request_response_binding", "-o=/work/rb2_request_response_binding/translated.pv", "/work/inputs/rb2.spthy"]

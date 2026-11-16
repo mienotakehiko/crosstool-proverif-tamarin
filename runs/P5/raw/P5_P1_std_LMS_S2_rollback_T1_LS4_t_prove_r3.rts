@@ -1,0 +1,25 @@
+'tamarin-prover' '--with-maude=maude' '--derivcheck-timeout=0' '--prove=LS4' '--heuristic={statefirst}' 'variants/LMS_S2_rollback__T1.spthy' +RTS '-N' '-M56g' '-A64m' '-qg' '-N4' '-sresults/out/P5_P1_std_LMS_S2_rollback_T1_LS4_t_prove_r3.rts' 
+  24,151,468,208 bytes allocated in the heap
+   1,301,795,648 bytes copied during GC
+     242,476,256 bytes maximum residency (9 sample(s))
+         637,728 bytes maximum slop
+             780 MiB total memory in use (0 MiB lost due to fragmentation)
+
+                                     Tot time (elapsed)  Avg pause  Max pause
+  Gen  0        85 colls,     0 par    0.374s   1.128s     0.0133s    0.0220s
+  Gen  1         9 colls,     0 par    0.337s   0.618s     0.0687s    0.2302s
+
+  TASKS: 10 (1 bound, 9 peak workers (9 total), using -N4)
+
+  SPARKS: 828 (591 converted, 0 overflowed, 0 dud, 69 GC'd, 168 fizzled)
+
+  INIT    time    0.003s  (  0.002s elapsed)
+  MUT     time    9.718s  (  3.092s elapsed)
+  GC      time    0.711s  (  1.747s elapsed)
+  EXIT    time    0.001s  (  0.010s elapsed)
+  Total   time   10.433s  (  4.850s elapsed)
+
+  Alloc rate    2,485,111,609 bytes per MUT second
+
+  Productivity  93.2% of total user, 63.7% of total elapsed
+

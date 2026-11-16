@@ -1,0 +1,132 @@
+{
+  "pass": true,
+  "model": "pending_new",
+  "baseline_archive_sha256": "006c8099e9afa809393ca46d9f7b6054cea024c8fa4fe3d377c99c531f9951f9",
+  "checks": {
+    "tool_exit_codes_zero": true,
+    "proverif_query_statements_match_baseline": true,
+    "proverif_expected_verdicts": true,
+    "tamarin_expected_verdicts": true,
+    "tamarin_proof_closed": true,
+    "proverif_normal_trace_matches_baseline": true,
+    "tamarin_normal_trace_matches_baseline": true
+  },
+  "proverif_verdicts": [
+    "false",
+    "true",
+    "true",
+    "true"
+  ],
+  "tamarin_verdicts": {
+    "reachable": "verified",
+    "receipt_and_promotion": "verified",
+    "aborts_matching_update": "verified",
+    "slots_empty": "verified"
+  },
+  "wall_seconds": {
+    "proverif": 0.006,
+    "tamarin": 0.342
+  },
+  "tamarin_processing_seconds": 0.32,
+  "observed_events": {
+    "proverif": {
+      "PendingBefore": [
+        "fresh_0",
+        "fresh_1",
+        [
+          "tempctx",
+          "fresh_1",
+          "fresh_2"
+        ]
+      ],
+      "NewVerified": [
+        "fresh_3",
+        "fresh_0",
+        [
+          "tempctx",
+          "fresh_0",
+          "fresh_4"
+        ]
+      ],
+      "PendingAborted": [
+        "fresh_3",
+        "fresh_0",
+        "fresh_1",
+        [
+          "tempctx",
+          "fresh_1",
+          "fresh_2"
+        ]
+      ],
+      "BusyEntryRead": [
+        "fresh_3",
+        "fresh_0",
+        [
+          "tempctx",
+          "fresh_0",
+          "fresh_4"
+        ],
+        "fresh_0",
+        "fresh_1",
+        [
+          "tempctx",
+          "fresh_1",
+          "fresh_2"
+        ],
+        "empty_oldest_temp",
+        "empty_oldest_parent",
+        "empty_pending_new"
+      ]
+    },
+    "tamarin": {
+      "PendingBefore": [
+        "fresh_0",
+        "fresh_1",
+        [
+          "tempctx",
+          "fresh_1",
+          "fresh_2"
+        ]
+      ],
+      "NewVerified": [
+        "fresh_3",
+        "fresh_0",
+        [
+          "tempctx",
+          "fresh_0",
+          "fresh_4"
+        ]
+      ],
+      "PendingAborted": [
+        "fresh_3",
+        "fresh_0",
+        "fresh_1",
+        [
+          "tempctx",
+          "fresh_1",
+          "fresh_2"
+        ]
+      ],
+      "BusyEntryRead": [
+        "fresh_3",
+        "fresh_0",
+        [
+          "tempctx",
+          "fresh_0",
+          "fresh_4"
+        ],
+        "fresh_0",
+        "fresh_1",
+        [
+          "tempctx",
+          "fresh_1",
+          "fresh_2"
+        ],
+        "empty_oldest_temp",
+        "empty_oldest_parent",
+        "empty_pending_new"
+      ]
+    }
+  },
+  "trace_errors": {}
+}

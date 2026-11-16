@@ -1,0 +1,163 @@
+Linear part: No equation.
+Convergent part:
+fst((x_1,x_2)) = x_1
+snd((x_1,x_2)) = x_2
+Completing equations...
+Completed equations:
+snd((x_1,x_2)) = x_2
+fst((x_1,x_2)) = x_1
+Process 0 (that is, the initial process):
+(
+    {1}!
+    {2}new rid_rInit: bitstring;
+    {3}new stR_ClientReady: bitstring;
+    {4}new stR_ServerReady: bitstring;
+    {5}new run_id: bitstring;
+    {6}new parent_context: bitstring;
+    {7}event eInit(rid_rInit);
+    {8}insert tClientReady(stR_ClientReady,run_id,parent_context);
+    {9}insert tServerReady(stR_ServerReady,run_id,parent_context)
+) | (
+    {10}!
+    {11}get tClientReady(stL_ClientReady: bitstring,run_id_1: bitstring,parent_context_1: bitstring) in
+    {12}new rid_rSendRequest: bitstring;
+    {13}new stR_ClientPending: bitstring;
+    {14}new stR_BranchRequest: bitstring;
+    {15}new token_id: bitstring;
+    {16}new client_nonce: bitstring;
+    {17}event eDistinctFact(rid_rSendRequest,(stL_ClientReady,(run_id_1,parent_context_1)));
+    {18}event eBranchRequestSent(run_id_1,token_id,vx_client,client_nonce);
+    {19}insert tClientPending(stR_ClientPending,run_id_1,parent_context_1,token_id,vx_client,client_nonce);
+    {20}insert tBranchRequest(stR_BranchRequest,run_id_1,token_id,vx_client,client_nonce)
+) | (
+    {21}!
+    {22}get tServerReady(stL_ServerReady: bitstring,run_id_2: bitstring,parent_context_2: bitstring) in
+    {23}get tBranchRequest(stL_BranchRequest: bitstring,=run_id_2,token_id_1: bitstring,client_x: bitstring,client_nonce_1: bitstring) in
+    {24}new rid_rAcceptRequest: bitstring;
+    {25}new stR_ServerAccepted: bitstring;
+    {26}event eDistinctFact(rid_rAcceptRequest,(stL_ServerReady,(run_id_2,parent_context_2)));
+    {27}event eDistinctFact(rid_rAcceptRequest,(stL_BranchRequest,(run_id_2,(token_id_1,(client_x,client_nonce_1)))));
+    {28}event eBranchRequestAccepted(run_id_2,token_id_1,client_x,client_nonce_1);
+    {29}insert tServerAccepted(stR_ServerAccepted,run_id_2,parent_context_2,token_id_1,client_x,client_nonce_1)
+) | (
+    {30}!
+    {31}get tServerAccepted(stL_ServerAccepted: bitstring,run_id_3: bitstring,parent_context_3: bitstring,token_id_2: bitstring,client_x_1: bitstring,client_nonce_2: bitstring) in
+    {32}new rid_rDeriveServerContext: bitstring;
+    {33}new stR_ServerPrepared: bitstring;
+    {34}new server_nonce: bitstring;
+    {35}event eDistinctFact(rid_rDeriveServerContext,(stL_ServerAccepted,(run_id_3,(parent_context_3,(token_id_2,(client_x_1,client_nonce_2))))));
+    {36}event eKudosDerived(run_id_3,token_id_2,client_x_1,client_nonce_2,vx_server,server_nonce,rb4_context(parent_context_3,client_x_1,client_nonce_2,vx_server,server_nonce));
+    {37}insert tServerPrepared(stR_ServerPrepared,run_id_3,token_id_2,client_x_1,client_nonce_2,vx_server,server_nonce,rb4_context(parent_context_3,client_x_1,client_nonce_2,vx_server,server_nonce))
+) | (
+    {38}!
+    {39}get tServerPrepared(stL_ServerPrepared: bitstring,run_id_4: bitstring,token_id_3: bitstring,client_x_2: bitstring,client_nonce_3: bitstring,server_x: bitstring,server_nonce_1: bitstring,next_context: bitstring) in
+    {40}new rid_rSendResponse: bitstring;
+    {41}new stR_ConvergenceResponse: bitstring;
+    {42}event eDistinctFact(rid_rSendResponse,(stL_ServerPrepared,(run_id_4,(token_id_3,(client_x_2,(client_nonce_3,(server_x,(server_nonce_1,next_context))))))));
+    {43}event eConvergenceResponseSent(run_id_4,token_id_3,client_x_2,client_nonce_3,server_x,server_nonce_1,next_context);
+    {44}insert tConvergenceResponse(stR_ConvergenceResponse,run_id_4,token_id_3,client_x_2,client_nonce_3,server_x,server_nonce_1,next_context)
+) | (
+    {45}!
+    {46}get tClientPending(stL_ClientPending: bitstring,run_id_5: bitstring,parent_context_4: bitstring,token_id_4: bitstring,client_x_3: bitstring,client_nonce_4: bitstring) in
+    {47}get tConvergenceResponse(stL_ConvergenceResponse: bitstring,=run_id_5,=token_id_4,=client_x_3,=client_nonce_4,server_x_1: bitstring,server_nonce_2: bitstring,next_context_1: bitstring) in
+    {48}new rid_rCommitClientContext: bitstring;
+    {49}event eDistinctFact(rid_rCommitClientContext,(stL_ClientPending,(run_id_5,(parent_context_4,(token_id_4,(client_x_3,client_nonce_4))))));
+    {50}event eDistinctFact(rid_rCommitClientContext,(stL_ConvergenceResponse,(run_id_5,(token_id_4,(client_x_3,(client_nonce_4,(server_x_1,(server_nonce_2,next_context_1))))))));
+    {51}event eKudosCommit(run_id_5,token_id_4,client_x_3,client_nonce_4,server_x_1,server_nonce_2,next_context_1);
+    {52}event eContextMatch(next_context_1,rb4_context(parent_context_4,client_x_3,client_nonce_4,server_x_1,server_nonce_2))
+)
+
+-- Restriction event(eInit(rid_i))@i && event(eInit(rid_j))@j ==> rid_i = rid_j encoded as event(eInit(rid_i)) && event(eInit(rid_j)) ==> rid_i = rid_j in process 0.
+-- Restriction event(eContextMatch(a,b))@i ==> a = b encoded as event(eContextMatch(a,b)) ==> a = b in process 0.
+-- Restriction event(eDistinctFact(rid_i,x))@i && event(eDistinctFact(rid_j,x))@j ==> rid_i = rid_j encoded as event(eDistinctFact(rid_i,x)) && event(eDistinctFact(rid_j,x)) ==> rid_i = rid_j in process 0.
+-- Query event(eKudosCommit(run_id_6,token_id_5,client_x_4,client_nonce_5,server_x_2,server_nonce_3,next_context_2))@k ==> event(eBranchRequestSent(run_id_6,token_id_5,client_x_4,client_nonce_5))@t1 && event(eBranchRequestAccepted(run_id_6,token_id_5,client_x_4,client_nonce_5))@t2 && event(eKudosDerived(run_id_6,token_id_5,client_x_4,client_nonce_5,server_x_2,server_nonce_3,next_context_2))@t3 && event(eConvergenceResponseSent(run_id_6,token_id_5,client_x_4,client_nonce_5,server_x_2,server_nonce_3,next_context_2))@t4 && t2 > t1 && t3 > t2 && t4 > t3 && k > t4 encoded as event(eKudosCommit(run_id_6,token_id_5,client_x_4,client_nonce_5,server_x_2,server_nonce_3,next_context_2))@i ==> (event(v,eBranchRequestAccepted(run_id_6,token_id_5,client_x_4,client_nonce_5)) ==> event(eBranchRequestSent(run_id_6,token_id_5,client_x_4,client_nonce_5))) && (event(v_1,eKudosDerived(run_id_6,token_id_5,client_x_4,client_nonce_5,server_x_2,server_nonce_3,next_context_2)) ==> event(v,eBranchRequestAccepted(run_id_6,token_id_5,client_x_4,client_nonce_5))) && (event(eConvergenceResponseSent(run_id_6,token_id_5,client_x_4,client_nonce_5,server_x_2,server_nonce_3,next_context_2))@i_1 ==> event(v_1,eKudosDerived(run_id_6,token_id_5,client_x_4,client_nonce_5,server_x_2,server_nonce_3,next_context_2))) && i > i_1 in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query event(eKudosCommit(run_id_6,token_id_5,client_x_4,client_nonce_5,server_x_2,server_nonce_3,next_context_2))@k ==> event(eBranchRequestSent(run_id_6,token_id_5,client_x_4,client_nonce_5))@t1 && event(eBranchRequestAccepted(run_id_6,token_id_5,client_x_4,client_nonce_5))@t2 && event(eKudosDerived(run_id_6,token_id_5,client_x_4,client_nonce_5,server_x_2,server_nonce_3,next_context_2))@t3 && event(eConvergenceResponseSent(run_id_6,token_id_5,client_x_4,client_nonce_5,server_x_2,server_nonce_3,next_context_2))@t4 && t2 > t1 && t3 > t2 && t4 > t3 && k > t4
+Removing redudant clauses.
+Removing subsumed clauses modulo the equational theory.
+Starting verification.
+Clauses verified: 0. Clauses remaining: 1. Failed clauses: 0.
+Removing redudant clauses.
+Starting verification.
+Clauses verified: 0. Clauses remaining: 1. Failed clauses: 0.
+Removing redudant clauses.
+Starting verification.
+Clauses verified: 0. Clauses remaining: 1. Failed clauses: 0.
+goal reachable: b-event(eDistinctFact(rid_rCommitClientContext_1,(stR_ConvergenceResponse_1,(run_id_6,(token_id_5,(vx_client[],(client_nonce_5,(vx_server[],(server_nonce_3,rb4_context(parent_context_5,vx_client[],client_nonce_5,vx_server[],server_nonce_3)))))))))) && b-event(eDistinctFact(rid_rCommitClientContext_1,(stR_ClientPending_1,(run_id_6,(parent_context_5,(token_id_5,(vx_client[],client_nonce_5))))))) && b-event(eConvergenceResponseSent(run_id_6,token_id_5,vx_client[],client_nonce_5,vx_server[],server_nonce_3,rb4_context(parent_context_5,vx_client[],client_nonce_5,vx_server[],server_nonce_3))) && b-event(eDistinctFact(rid_rSendResponse_1,(stR_ServerPrepared_1,(run_id_6,(token_id_5,(vx_client[],(client_nonce_5,(vx_server[],(server_nonce_3,rb4_context(parent_context_5,vx_client[],client_nonce_5,vx_server[],server_nonce_3)))))))))) && b-occ-event(eKudosDerived(run_id_6,token_id_5,vx_client[],client_nonce_5,vx_server[],server_nonce_3,rb4_context(parent_context_5,vx_client[],client_nonce_5,vx_server[],server_nonce_3)),@occ36_1) && b-event(eDistinctFact(rid_rDeriveServerContext_1,(stR_ServerAccepted_1,(run_id_6,(parent_context_5,(token_id_5,(vx_client[],client_nonce_5))))))) && b-occ-event(eBranchRequestAccepted(run_id_6,token_id_5,vx_client[],client_nonce_5),@occ28_1) && b-event(eDistinctFact(rid_rAcceptRequest_1,(stR_BranchRequest_1,(run_id_6,(token_id_5,(vx_client[],client_nonce_5)))))) && b-event(eDistinctFact(rid_rAcceptRequest_1,(stR_ServerReady_1,(run_id_6,parent_context_5)))) && b-event(@p_act(@occ23_1,tBranchRequest(stR_BranchRequest_1,run_id_6,token_id_5,vx_client[],client_nonce_5))) && b-event(@p_act(@occ22_1,tServerReady(stR_ServerReady_1,run_id_6,parent_context_5))) && b-event(@p_act(@occ31_1,tServerAccepted(stR_ServerAccepted_1,run_id_6,parent_context_5,token_id_5,vx_client[],client_nonce_5))) && b-event(@p_act(@occ39_1,tServerPrepared(stR_ServerPrepared_1,run_id_6,token_id_5,vx_client[],client_nonce_5,vx_server[],server_nonce_3,rb4_context(parent_context_5,vx_client[],client_nonce_5,vx_server[],server_nonce_3)))) && b-event(@p_act(@occ47_1,tConvergenceResponse(stR_ConvergenceResponse_1,run_id_6,token_id_5,vx_client[],client_nonce_5,vx_server[],server_nonce_3,rb4_context(parent_context_5,vx_client[],client_nonce_5,vx_server[],server_nonce_3)))) && b-event(eBranchRequestSent(run_id_6,token_id_5,vx_client[],client_nonce_5)) && b-event(eDistinctFact(rid_rSendRequest_1,(stR_ClientReady_1,(run_id_6,parent_context_5)))) && b-event(eInit(rid_rInit_1)) && b-event(@p_act(@occ11_1,tClientReady(stR_ClientReady_1,run_id_6,parent_context_5))) && b-event(@p_act(@occ46_1,tClientPending(stR_ClientPending_1,run_id_6,parent_context_5,token_id_5,vx_client[],client_nonce_5))) -> event(eKudosCommit(run_id_6,token_id_5,vx_client[],client_nonce_5,vx_server[],server_nonce_3,rb4_context(parent_context_5,vx_client[],client_nonce_5,vx_server[],server_nonce_3)))
+The 1st, 2nd, 3rd, 4th, 5th, 6th, 7th, 8th, 9th, 10th, 11th, 12th, 13th, 14th, 15th, 16th, 17th, 18th, 19th hypotheses occur strictly before the conclusion.
+Abbreviations:
+run_id_6 = run_id[!1 = @sid]
+parent_context_5 = parent_context[!1 = @sid]
+stR_ClientReady_1 = stR_ClientReady[!1 = @sid]
+token_id_5 = token_id[parent_context_1 = parent_context_5,run_id_1 = run_id_6,stL_ClientReady = stR_ClientReady_1,!1 = @sid_1]
+client_nonce_5 = client_nonce[parent_context_1 = parent_context_5,run_id_1 = run_id_6,stL_ClientReady = stR_ClientReady_1,!1 = @sid_1]
+stR_BranchRequest_1 = stR_BranchRequest[parent_context_1 = parent_context_5,run_id_1 = run_id_6,stL_ClientReady = stR_ClientReady_1,!1 = @sid_1]
+stR_ServerReady_1 = stR_ServerReady[!1 = @sid]
+stR_ServerAccepted_1 = stR_ServerAccepted[client_nonce_1 = client_nonce_5,client_x = vx_client[],token_id_1 = token_id_5,stL_BranchRequest = stR_BranchRequest_1,parent_context_2 = parent_context_5,run_id_2 = run_id_6,stL_ServerReady = stR_ServerReady_1,!1 = @sid_2]
+server_nonce_3 = server_nonce[client_nonce_2 = client_nonce_5,client_x_1 = vx_client[],token_id_2 = token_id_5,parent_context_3 = parent_context_5,run_id_3 = run_id_6,stL_ServerAccepted = stR_ServerAccepted_1,!1 = @sid_3]
+stR_ServerPrepared_1 = stR_ServerPrepared[client_nonce_2 = client_nonce_5,client_x_1 = vx_client[],token_id_2 = token_id_5,parent_context_3 = parent_context_5,run_id_3 = run_id_6,stL_ServerAccepted = stR_ServerAccepted_1,!1 = @sid_3]
+stR_ConvergenceResponse_1 = stR_ConvergenceResponse[next_context = rb4_context(parent_context_5,vx_client[],client_nonce_5,vx_server[],server_nonce_3),server_nonce_1 = server_nonce_3,server_x = vx_server[],client_nonce_3 = client_nonce_5,client_x_2 = vx_client[],token_id_3 = token_id_5,run_id_4 = run_id_6,stL_ServerPrepared = stR_ServerPrepared_1,!1 = @sid_4]
+stR_ClientPending_1 = stR_ClientPending[parent_context_1 = parent_context_5,run_id_1 = run_id_6,stL_ClientReady = stR_ClientReady_1,!1 = @sid_1]
+rid_rCommitClientContext_1 = rid_rCommitClientContext[next_context_1 = rb4_context(parent_context_5,vx_client[],client_nonce_5,vx_server[],server_nonce_3),server_nonce_2 = server_nonce_3,server_x_1 = vx_server[],stL_ConvergenceResponse = stR_ConvergenceResponse_1,client_nonce_4 = client_nonce_5,client_x_3 = vx_client[],token_id_4 = token_id_5,parent_context_4 = parent_context_5,run_id_5 = run_id_6,stL_ClientPending = stR_ClientPending_1,!1 = @sid_5]
+rid_rSendResponse_1 = rid_rSendResponse[next_context = rb4_context(parent_context_5,vx_client[],client_nonce_5,vx_server[],server_nonce_3),server_nonce_1 = server_nonce_3,server_x = vx_server[],client_nonce_3 = client_nonce_5,client_x_2 = vx_client[],token_id_3 = token_id_5,run_id_4 = run_id_6,stL_ServerPrepared = stR_ServerPrepared_1,!1 = @sid_4]
+@occ36_1 = @occ36[client_nonce_2 = client_nonce_5,client_x_1 = vx_client[],token_id_2 = token_id_5,parent_context_3 = parent_context_5,run_id_3 = run_id_6,stL_ServerAccepted = stR_ServerAccepted_1,!1 = @sid_3]
+rid_rDeriveServerContext_1 = rid_rDeriveServerContext[client_nonce_2 = client_nonce_5,client_x_1 = vx_client[],token_id_2 = token_id_5,parent_context_3 = parent_context_5,run_id_3 = run_id_6,stL_ServerAccepted = stR_ServerAccepted_1,!1 = @sid_3]
+@occ28_1 = @occ28[client_nonce_1 = client_nonce_5,client_x = vx_client[],token_id_1 = token_id_5,stL_BranchRequest = stR_BranchRequest_1,parent_context_2 = parent_context_5,run_id_2 = run_id_6,stL_ServerReady = stR_ServerReady_1,!1 = @sid_2]
+rid_rAcceptRequest_1 = rid_rAcceptRequest[client_nonce_1 = client_nonce_5,client_x = vx_client[],token_id_1 = token_id_5,stL_BranchRequest = stR_BranchRequest_1,parent_context_2 = parent_context_5,run_id_2 = run_id_6,stL_ServerReady = stR_ServerReady_1,!1 = @sid_2]
+@occ23_1 = @occ23[!1 = @sid_2]
+@occ22_1 = @occ22[!1 = @sid_2]
+@occ31_1 = @occ31[!1 = @sid_3]
+@occ39_1 = @occ39[!1 = @sid_4]
+@occ47_1 = @occ47[!1 = @sid_5]
+rid_rSendRequest_1 = rid_rSendRequest[parent_context_1 = parent_context_5,run_id_1 = run_id_6,stL_ClientReady = stR_ClientReady_1,!1 = @sid_1]
+rid_rInit_1 = rid_rInit[!1 = @sid]
+@occ11_1 = @occ11[!1 = @sid_1]
+@occ46_1 = @occ46[!1 = @sid_5]
+goal reachable: b-event(eDistinctFact(rid_rCommitClientContext_1,(stR_ConvergenceResponse_1,(run_id_6,(token_id_5,(vx_client[],(client_nonce_5,(vx_server[],(server_nonce_3,rb4_context(parent_context_5,vx_client[],client_nonce_5,vx_server[],server_nonce_3)))))))))) && b-event(eDistinctFact(rid_rCommitClientContext_1,(stR_ClientPending_1,(run_id_6,(parent_context_5,(token_id_5,(vx_client[],client_nonce_5))))))) && b-event(eConvergenceResponseSent(run_id_6,token_id_5,vx_client[],client_nonce_5,vx_server[],server_nonce_3,rb4_context(parent_context_5,vx_client[],client_nonce_5,vx_server[],server_nonce_3))) && b-event(@p_act(@occ47_1,tConvergenceResponse(stR_ConvergenceResponse_1,run_id_6,token_id_5,vx_client[],client_nonce_5,vx_server[],server_nonce_3,rb4_context(parent_context_5,vx_client[],client_nonce_5,vx_server[],server_nonce_3)))) && b-event(@p_act(@occ46_1,tClientPending(stR_ClientPending_1,run_id_6,parent_context_5,token_id_5,vx_client[],client_nonce_5))) && b-event(eDistinctFact(rid_rSendResponse_1,(stR_ServerPrepared_1,(run_id_6,(token_id_5,(vx_client[],(client_nonce_5,(vx_server[],(server_nonce_3,rb4_context(parent_context_5,vx_client[],client_nonce_5,vx_server[],server_nonce_3)))))))))) && b-occ-event(eKudosDerived(run_id_6,token_id_5,vx_client[],client_nonce_5,vx_server[],server_nonce_3,rb4_context(parent_context_5,vx_client[],client_nonce_5,vx_server[],server_nonce_3)),@occ36_1) && b-event(eDistinctFact(rid_rDeriveServerContext_1,(stR_ServerAccepted_1,(run_id_6,(parent_context_5,(token_id_5,(vx_client[],client_nonce_5))))))) && b-occ-event(eBranchRequestAccepted(run_id_6,token_id_5,vx_client[],client_nonce_5),@occ28_1) && b-event(eDistinctFact(rid_rAcceptRequest_1,(stR_BranchRequest_1,(run_id_6,(token_id_5,(vx_client[],client_nonce_5)))))) && b-event(eDistinctFact(rid_rAcceptRequest_1,(stR_ServerReady_1,(run_id_6,parent_context_5)))) && b-event(eBranchRequestSent(run_id_6,token_id_5,vx_client[],client_nonce_5)) && b-event(eDistinctFact(rid_rSendRequest_1,(stR_ClientReady_1,(run_id_6,parent_context_5)))) && b-event(@p_act(@occ11_1,tClientReady(stR_ClientReady_1,run_id_6,parent_context_5))) && b-event(@p_act(@occ23_1,tBranchRequest(stR_BranchRequest_1,run_id_6,token_id_5,vx_client[],client_nonce_5))) && b-event(eInit(rid_rInit_1)) && b-event(@p_act(@occ22_1,tServerReady(stR_ServerReady_1,run_id_6,parent_context_5))) && b-event(@p_act(@occ31_1,tServerAccepted(stR_ServerAccepted_1,run_id_6,parent_context_5,token_id_5,vx_client[],client_nonce_5))) && b-event(@p_act(@occ39_1,tServerPrepared(stR_ServerPrepared_1,run_id_6,token_id_5,vx_client[],client_nonce_5,vx_server[],server_nonce_3,rb4_context(parent_context_5,vx_client[],client_nonce_5,vx_server[],server_nonce_3)))) -> event(eKudosCommit(run_id_6,token_id_5,vx_client[],client_nonce_5,vx_server[],server_nonce_3,rb4_context(parent_context_5,vx_client[],client_nonce_5,vx_server[],server_nonce_3))) && occ-event(eBranchRequestAccepted(run_id_6,token_id_5,vx_client[],client_nonce_5),@occ28_1) && occ-event(eKudosDerived(run_id_6,token_id_5,vx_client[],client_nonce_5,vx_server[],server_nonce_3,rb4_context(parent_context_5,vx_client[],client_nonce_5,vx_server[],server_nonce_3)),@occ36_1) && event(eConvergenceResponseSent(run_id_6,token_id_5,vx_client[],client_nonce_5,vx_server[],server_nonce_3,rb4_context(parent_context_5,vx_client[],client_nonce_5,vx_server[],server_nonce_3)))
+The 1st, 2nd, 3rd, 4th, 5th, 6th, 7th, 8th, 9th, 10th, 11th, 12th, 13th, 14th, 15th, 16th, 17th, 18th, 19th hypotheses occur strictly before the 1st conclusion.
+The 6th, 7th, 8th, 9th, 10th, 11th, 12th, 13th, 14th, 15th, 16th, 17th, 18th, 19th hypotheses occur strictly before the 4th conclusion.
+The 8th, 9th, 10th, 11th, 12th, 13th, 14th, 15th, 16th, 17th, 18th hypotheses occur strictly before the 3rd conclusion.
+The 10th, 11th, 12th, 13th, 14th, 15th, 16th, 17th hypotheses occur strictly before the 2nd conclusion.
+Abbreviations:
+run_id_6 = run_id[!1 = @sid]
+parent_context_5 = parent_context[!1 = @sid]
+stR_ClientReady_1 = stR_ClientReady[!1 = @sid]
+token_id_5 = token_id[parent_context_1 = parent_context_5,run_id_1 = run_id_6,stL_ClientReady = stR_ClientReady_1,!1 = @sid_1]
+client_nonce_5 = client_nonce[parent_context_1 = parent_context_5,run_id_1 = run_id_6,stL_ClientReady = stR_ClientReady_1,!1 = @sid_1]
+stR_BranchRequest_1 = stR_BranchRequest[parent_context_1 = parent_context_5,run_id_1 = run_id_6,stL_ClientReady = stR_ClientReady_1,!1 = @sid_1]
+stR_ServerReady_1 = stR_ServerReady[!1 = @sid]
+stR_ServerAccepted_1 = stR_ServerAccepted[client_nonce_1 = client_nonce_5,client_x = vx_client[],token_id_1 = token_id_5,stL_BranchRequest = stR_BranchRequest_1,parent_context_2 = parent_context_5,run_id_2 = run_id_6,stL_ServerReady = stR_ServerReady_1,!1 = @sid_2]
+server_nonce_3 = server_nonce[client_nonce_2 = client_nonce_5,client_x_1 = vx_client[],token_id_2 = token_id_5,parent_context_3 = parent_context_5,run_id_3 = run_id_6,stL_ServerAccepted = stR_ServerAccepted_1,!1 = @sid_3]
+@occ28_1 = @occ28[client_nonce_1 = client_nonce_5,client_x = vx_client[],token_id_1 = token_id_5,stL_BranchRequest = stR_BranchRequest_1,parent_context_2 = parent_context_5,run_id_2 = run_id_6,stL_ServerReady = stR_ServerReady_1,!1 = @sid_2]
+@occ36_1 = @occ36[client_nonce_2 = client_nonce_5,client_x_1 = vx_client[],token_id_2 = token_id_5,parent_context_3 = parent_context_5,run_id_3 = run_id_6,stL_ServerAccepted = stR_ServerAccepted_1,!1 = @sid_3]
+stR_ServerPrepared_1 = stR_ServerPrepared[client_nonce_2 = client_nonce_5,client_x_1 = vx_client[],token_id_2 = token_id_5,parent_context_3 = parent_context_5,run_id_3 = run_id_6,stL_ServerAccepted = stR_ServerAccepted_1,!1 = @sid_3]
+stR_ConvergenceResponse_1 = stR_ConvergenceResponse[next_context = rb4_context(parent_context_5,vx_client[],client_nonce_5,vx_server[],server_nonce_3),server_nonce_1 = server_nonce_3,server_x = vx_server[],client_nonce_3 = client_nonce_5,client_x_2 = vx_client[],token_id_3 = token_id_5,run_id_4 = run_id_6,stL_ServerPrepared = stR_ServerPrepared_1,!1 = @sid_4]
+stR_ClientPending_1 = stR_ClientPending[parent_context_1 = parent_context_5,run_id_1 = run_id_6,stL_ClientReady = stR_ClientReady_1,!1 = @sid_1]
+rid_rCommitClientContext_1 = rid_rCommitClientContext[next_context_1 = rb4_context(parent_context_5,vx_client[],client_nonce_5,vx_server[],server_nonce_3),server_nonce_2 = server_nonce_3,server_x_1 = vx_server[],stL_ConvergenceResponse = stR_ConvergenceResponse_1,client_nonce_4 = client_nonce_5,client_x_3 = vx_client[],token_id_4 = token_id_5,parent_context_4 = parent_context_5,run_id_5 = run_id_6,stL_ClientPending = stR_ClientPending_1,!1 = @sid_5]
+@occ47_1 = @occ47[!1 = @sid_5]
+@occ46_1 = @occ46[!1 = @sid_5]
+rid_rSendResponse_1 = rid_rSendResponse[next_context = rb4_context(parent_context_5,vx_client[],client_nonce_5,vx_server[],server_nonce_3),server_nonce_1 = server_nonce_3,server_x = vx_server[],client_nonce_3 = client_nonce_5,client_x_2 = vx_client[],token_id_3 = token_id_5,run_id_4 = run_id_6,stL_ServerPrepared = stR_ServerPrepared_1,!1 = @sid_4]
+rid_rDeriveServerContext_1 = rid_rDeriveServerContext[client_nonce_2 = client_nonce_5,client_x_1 = vx_client[],token_id_2 = token_id_5,parent_context_3 = parent_context_5,run_id_3 = run_id_6,stL_ServerAccepted = stR_ServerAccepted_1,!1 = @sid_3]
+rid_rAcceptRequest_1 = rid_rAcceptRequest[client_nonce_1 = client_nonce_5,client_x = vx_client[],token_id_1 = token_id_5,stL_BranchRequest = stR_BranchRequest_1,parent_context_2 = parent_context_5,run_id_2 = run_id_6,stL_ServerReady = stR_ServerReady_1,!1 = @sid_2]
+rid_rSendRequest_1 = rid_rSendRequest[parent_context_1 = parent_context_5,run_id_1 = run_id_6,stL_ClientReady = stR_ClientReady_1,!1 = @sid_1]
+@occ11_1 = @occ11[!1 = @sid_1]
+@occ23_1 = @occ23[!1 = @sid_2]
+rid_rInit_1 = rid_rInit[!1 = @sid]
+@occ22_1 = @occ22[!1 = @sid_2]
+@occ31_1 = @occ31[!1 = @sid_3]
+@occ39_1 = @occ39[!1 = @sid_4]
+RESULT event(eKudosCommit(run_id_6,token_id_5,client_x_4,client_nonce_5,server_x_2,server_nonce_3,next_context_2))@k ==> event(eBranchRequestSent(run_id_6,token_id_5,client_x_4,client_nonce_5))@t1 && event(eBranchRequestAccepted(run_id_6,token_id_5,client_x_4,client_nonce_5))@t2 && event(eKudosDerived(run_id_6,token_id_5,client_x_4,client_nonce_5,server_x_2,server_nonce_3,next_context_2))@t3 && event(eConvergenceResponseSent(run_id_6,token_id_5,client_x_4,client_nonce_5,server_x_2,server_nonce_3,next_context_2))@t4 && t2 > t1 && t3 > t2 && t4 > t3 && k > t4 is true.
+
+--------------------------------------------------------------
+Verification summary:
+
+Query(ies):
+ - Query event(eKudosCommit(run_id_6,token_id_5,client_x_4,client_nonce_5,server_x_2,server_nonce_3,next_context_2))@k ==> event(eBranchRequestSent(run_id_6,token_id_5,client_x_4,client_nonce_5))@t1 && event(eBranchRequestAccepted(run_id_6,token_id_5,client_x_4,client_nonce_5))@t2 && event(eKudosDerived(run_id_6,token_id_5,client_x_4,client_nonce_5,server_x_2,server_nonce_3,next_context_2))@t3 && event(eConvergenceResponseSent(run_id_6,token_id_5,client_x_4,client_nonce_5,server_x_2,server_nonce_3,next_context_2))@t4 && t2 > t1 && t3 > t2 && t4 > t3 && k > t4 is true.
+Associated restriction(s):
+ - Restriction event(eInit(rid_i))@i && event(eInit(rid_j))@j ==> rid_i = rid_j encoded as event(eInit(rid_i)) && event(eInit(rid_j)) ==> rid_i = rid_j in process 0.
+ - Restriction event(eContextMatch(a,b))@i ==> a = b encoded as event(eContextMatch(a,b)) ==> a = b in process 0.
+ - Restriction event(eDistinctFact(rid_i,x))@i && event(eDistinctFact(rid_j,x))@j ==> rid_i = rid_j encoded as event(eDistinctFact(rid_i,x)) && event(eDistinctFact(rid_j,x)) ==> rid_i = rid_j in process 0.
+
+--------------------------------------------------------------
+

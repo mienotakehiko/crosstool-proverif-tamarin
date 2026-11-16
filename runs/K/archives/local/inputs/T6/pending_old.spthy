@@ -1,0 +1,48 @@
+// Generated pending_old case. Verification result is a local premise.
+theory CimPendingOld
+begin
+
+functions: tempctx/2
+
+rule Init:
+  [ Fr(~old_ctx), Fr(~new_ctx), Fr(~local_pair), Fr(~incoming_pair), Fr(~message) ]
+  --[ Init(), PendingBefore(~old_ctx,~new_ctx,~old_ctx,~local_pair) ]->
+  [ Pending(~old_ctx,~new_ctx,~old_ctx,~local_pair), BeforeSnapshot(~new_ctx,~old_ctx,~local_pair), VerifiedOldPremise(~message,~old_ctx,~incoming_pair) ]
+
+rule RecordVerifiedReceipt:
+  [ VerifiedOldPremise(m,o,peer_pair) ]
+  --[ OldVerified(m,o,tempctx(o,peer_pair)) ]->
+  [ VerifiedDivergent(m,o,tempctx(o,peer_pair),peer_pair) ]
+
+rule AbortOnOldDerived:
+  [ Pending(o,n,src,p), VerifiedDivergent(m,o,r,peer_pair) ]
+  --[ PendingAborted(m,o,n,src,p), VerifiedTempMatches(r,tempctx(o,peer_pair)) ]->
+  [ BusyEntry(m,o,r,'empty_new','empty_pair') ]
+
+rule ReadBusyEntry:
+  [ BeforeSnapshot(n0,i0,p0), BusyEntry(m,o,r,ns,ps) ]
+  --[ BusyEntryRead(m,o,r,n0,i0,p0,ns,ps) ]->
+  [  ]
+
+restriction SingleInit:
+  "All #i #j. Init()@i & Init()@j ==> #i = #j"
+
+restriction VerifiedTemporaryContext:
+  "All a b #i. VerifiedTempMatches(a,b)@i ==> a = b"
+
+lemma pending_old_reachable: exists-trace
+  "Ex m o r n0 i0 p0 ns ps #k. BusyEntryRead(m,o,r,n0,i0,p0,ns,ps)@k"
+
+lemma pending_old_verified_receipt:
+  "All m o r n0 i0 p0 ns ps #k. BusyEntryRead(m,o,r,n0,i0,p0,ns,ps)@k ==>
+    Ex #t1. OldVerified(m,o,r)@t1 & #t1 < #k"
+
+lemma pending_old_aborts_matching_update:
+  "All m o r n0 i0 p0 ns ps #k. BusyEntryRead(m,o,r,n0,i0,p0,ns,ps)@k ==>
+    Ex #t1 #t2. PendingBefore(o,n0,i0,p0)@t1 & PendingAborted(m,o,n0,i0,p0)@t2 & #t1 < #k & #t2 < #k"
+
+lemma pending_old_slots_empty:
+  "All m o r n0 i0 p0 ns ps #k. BusyEntryRead(m,o,r,n0,i0,p0,ns,ps)@k ==>
+    ns = 'empty_new' & ps = 'empty_pair'"
+
+end

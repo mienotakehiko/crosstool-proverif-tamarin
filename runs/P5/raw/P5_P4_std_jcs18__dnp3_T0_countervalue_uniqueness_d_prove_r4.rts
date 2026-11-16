@@ -1,0 +1,25 @@
+'tamarin-prover' '--with-maude=maude' '--derivcheck-timeout=0' '--prove=countervalue_uniqueness' 'corpus/jcs18__dnp3.spthy' +RTS '-N' '-M56g' '-A64m' '-qg' '-N4' '-sresults/out/P5_P4_std_jcs18__dnp3_T0_countervalue_uniqueness_d_prove_r4.rts' 
+  43,513,080,384 bytes allocated in the heap
+   2,993,566,760 bytes copied during GC
+     192,136,456 bytes maximum residency (14 sample(s))
+         592,632 bytes maximum slop
+             756 MiB total memory in use (0 MiB lost due to fragmentation)
+
+                                     Tot time (elapsed)  Avg pause  Max pause
+  Gen  0       154 colls,     0 par    0.538s   2.436s     0.0158s    0.0219s
+  Gen  1        14 colls,     0 par    0.360s   1.190s     0.0850s    0.1705s
+
+  TASKS: 10 (1 bound, 9 peak workers (9 total), using -N4)
+
+  SPARKS: 285 (248 converted, 0 overflowed, 0 dud, 0 GC'd, 37 fizzled)
+
+  INIT    time    0.003s  (  0.003s elapsed)
+  MUT     time   19.651s  (  4.820s elapsed)
+  GC      time    0.897s  (  3.626s elapsed)
+  EXIT    time    0.016s  (  0.002s elapsed)
+  Total   time   20.568s  (  8.450s elapsed)
+
+  Alloc rate    2,214,244,458 bytes per MUT second
+
+  Productivity  95.5% of total user, 57.0% of total elapsed
+

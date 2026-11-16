@@ -1,0 +1,118 @@
+Linear part: No equation.
+Convergent part:
+fst((x_1,x_2)) = x_1
+snd((x_1,x_2)) = x_2
+Completing equations...
+Completed equations:
+snd((x_1,x_2)) = x_2
+fst((x_1,x_2)) = x_1
+Process 0 (that is, the initial process):
+(
+    {1}!
+    {2}new rid_rInit: bitstring;
+    {3}new stR_St: bitstring;
+    {4}new asid: bitstring;
+    {5}event eInitOnce(rid_rInit);
+    {6}insert tSt(stR_St,asid,z,vphase0)
+) | (
+    {7}!
+    {8}get tSt(stL_St: bitstring,asid_1: bitstring,=z,=vphase0) in
+    {9}new rid_rGood: bitstring;
+    {10}new stR_St_1: bitstring;
+    {11}event eDistinctFact(rid_rGood,(stL_St,(asid_1,(z,vphase0))));
+    {12}event eHonest(asid_1);
+    {13}insert tSt(stR_St_1,asid_1,z,vphase1)
+) | (
+    {14}!
+    {15}get tSt(stL_St_1: bitstring,asid_2: bitstring,=s(z),=vphase0) in
+    {16}new rid_rBad: bitstring;
+    {17}event eDistinctFact(rid_rBad,(stL_St_1,(asid_2,(s(z),vphase0))));
+    {18}event eBad(asid_2)
+) | (
+    {19}!
+    {20}get tSt(stL_St_2: bitstring,asid_3: bitstring,=z,=vphase1) in
+    {21}new rid_rAgain: bitstring;
+    {22}event eDistinctFact(rid_rAgain,(stL_St_2,(asid_3,(z,vphase1))));
+    {23}event eAgain(asid_3)
+)
+
+-- Restriction event(eInitOnce(rid_i))@i && event(eInitOnce(rid_j))@j ==> rid_i = rid_j encoded as event(eInitOnce(rid_i)) && event(eInitOnce(rid_j)) ==> rid_i = rid_j in process 0.
+-- Restriction event(eDistinctFact(rid_i,x))@i && event(eDistinctFact(rid_j,x))@j ==> rid_i = rid_j encoded as event(eDistinctFact(rid_i,x)) && event(eDistinctFact(rid_j,x)) ==> rid_i = rid_j in process 0.
+-- Query not event(eHonest(asid_4))@i encoded as not event(eHonest(asid_4)) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query not event(eHonest(asid_4))@i
+Removing redudant clauses.
+Removing subsumed clauses modulo the equational theory.
+Starting verification.
+Clauses verified: 0. Clauses remaining: 1. Failed clauses: 0.
+goal reachable: b-event(eDistinctFact(rid_rGood_1,(stR_St_2,(asid_4,(z,vphase0[]))))) && b-event(eInitOnce(rid_rInit_1)) && b-event(@p_act(@occ8_1,tSt(stR_St_2,asid_4,z,vphase0[]))) -> event(eHonest(asid_4))
+The 1st, 2nd, 3rd hypotheses occur strictly before the conclusion.
+Abbreviations:
+asid_4 = asid[!1 = @sid]
+stR_St_2 = stR_St[!1 = @sid]
+rid_rGood_1 = rid_rGood[asid_1 = asid_4,stL_St = stR_St_2,!1 = @sid_1]
+rid_rInit_1 = rid_rInit[!1 = @sid]
+@occ8_1 = @occ8[!1 = @sid_1]
+
+Derivation:
+Abbreviations:
+asid_4 = asid[!1 = @sid]
+stR_St_2 = stR_St[!1 = @sid]
+rid_rGood_1 = rid_rGood[asid_1 = asid_4,stL_St = stR_St_2,!1 = @sid_1]
+rid_rInit_1 = rid_rInit[!1 = @sid]
+@occ8_1 = @occ8[!1 = @sid_1]
+
+1. The event eInitOnce(rid_rInit_1) may be executed at {5}.
+So the entry tSt(stR_St_2,asid_4,z,vphase0[]) may be inserted in a table at insert {6}.
+table(tSt(stR_St_2,asid_4,z,vphase0[])).
+
+2. The event @p_act(@occ8_1,tSt(stR_St_2,asid_4,z,vphase0[])) records how variables are instantiated at {8}.
+The entry tSt(stR_St_2,asid_4,z,vphase0[]) that may be in a table by 1 may be read at get {8}.
+The event eDistinctFact(rid_rGood_1,(stR_St_2,(asid_4,(z,vphase0[])))) may be executed at {11}.
+So event eHonest(asid_4) may be executed at {12}.
+event(eHonest(asid_4)).
+
+3. By 2, event(eHonest(asid_4)).
+The goals are reached, combined in the following fact:
+event(eHonest(asid_4)).
+
+
+A more detailed output of the traces is available with
+  set traceDisplay = long.
+
+new rid_rInit: bitstring creating rid_rInit_2 at {2} in copy a
+
+new stR_St: bitstring creating stR_St_3 at {3} in copy a
+
+new asid: bitstring creating asid_5 at {4} in copy a
+
+event eInitOnce(rid_rInit_2) at {5} in copy a
+
+insert tSt(stR_St_3,asid_5,z,vphase0) at {6} in copy a
+
+get tSt(stR_St_3,asid_5,z,vphase0) at {8} in copy a_1
+
+new rid_rGood: bitstring creating rid_rGood_2 at {9} in copy a_1
+
+new stR_St_1: bitstring creating stR_St_4 at {10} in copy a_1
+
+event eDistinctFact(rid_rGood_2,(stR_St_3,(asid_5,(z,vphase0)))) at {11} in copy a_1
+
+event eHonest(asid_5) at {12} in copy a_1 (goal)
+
+The event eHonest(asid_5) is executed at {12} in copy a_1.
+A trace has been found.
+RESULT not event(eHonest(asid_4))@i is false.
+
+--------------------------------------------------------------
+Verification summary:
+
+Query(ies):
+ - Query not event(eHonest(asid_4))@i is false.
+Associated restriction(s):
+ - Restriction event(eInitOnce(rid_i))@i && event(eInitOnce(rid_j))@j ==> rid_i = rid_j encoded as event(eInitOnce(rid_i)) && event(eInitOnce(rid_j)) ==> rid_i = rid_j in process 0.
+ - Restriction event(eDistinctFact(rid_i,x))@i && event(eDistinctFact(rid_j,x))@j ==> rid_i = rid_j encoded as event(eDistinctFact(rid_i,x)) && event(eDistinctFact(rid_j,x)) ==> rid_i = rid_j in process 0.
+
+--------------------------------------------------------------
+

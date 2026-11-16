@@ -1,0 +1,2224 @@
+maude tool: 'maude'
+ checking version: 3.5.1. OK.
+ checking installation: OK.
+[Theory LMS_LS6_V0_spec] Theory loaded
+[Theory LMS_LS6_V0_spec] Theory translated
+[Theory LMS_LS6_V0_spec] Theory closed
+[Saturating Sources] Step 1 (Max 5)
+[Saturating Sources] Done
+theory LMS_LS6_V0_spec
+
+begin
+
+// Function signature and definition of the equational theory E
+
+functions: ch/3, fst/1, hn/4, pair/2, pblc/4, prf/3[private,constructor],
+           s/1, snd/1, z/0
+equations: fst(<x.1, x.2>) = x.1, snd(<x.1, x.2>) = x.2
+
+/* looping facts with injective instances: St/2 */
+
+rule (modulo E) KeyGen:
+   [ Fr( ~I ), Fr( ~sd ) ]
+  --[ KeyGen( ~I ) ]->
+   [
+   !Sk( ~I, ~sd ), St( ~I, z ),
+   !Root( ~I,
+          hn(~I, '1', 'dintr',
+             <
+              hn(~I, '2', 'dintr',
+                 <
+                  hn(~I, '4', 'dleaf',
+                     pblc(~I, z, 'dpblc',
+                          <ch(~I, 'm', ch(~I, 'm', ch(~I, 'm', prf(~sd, z, 'm')))), 
+                           ch(~I, 'k', ch(~I, 'k', ch(~I, 'k', prf(~sd, z, 'k'))))>)), 
+                  hn(~I, '5', 'dleaf',
+                     pblc(~I, s(z), 'dpblc',
+                          <ch(~I, 'm', ch(~I, 'm', ch(~I, 'm', prf(~sd, s(z), 'm')))), 
+                           ch(~I, 'k', ch(~I, 'k', ch(~I, 'k', prf(~sd, s(z), 'k'))))>))
+                 >), 
+              hn(~I, '3', 'dintr',
+                 <
+                  hn(~I, '6', 'dleaf',
+                     pblc(~I, s(s(z)), 'dpblc',
+                          <ch(~I, 'm', ch(~I, 'm', ch(~I, 'm', prf(~sd, s(s(z)), 'm')))), 
+                           ch(~I, 'k', ch(~I, 'k', ch(~I, 'k', prf(~sd, s(s(z)), 'k'))))>)), 
+                  hn(~I, '7', 'dleaf',
+                     pblc(~I, s(s(s(z))), 'dpblc',
+                          <ch(~I, 'm', ch(~I, 'm', ch(~I, 'm', prf(~sd, s(s(s(z))), 'm')))), 
+                           ch(~I, 'k', ch(~I, 'k', ch(~I, 'k', prf(~sd, s(s(s(z))), 'k'))))>))
+                 >)
+             >)
+   ),
+   Out( <~I, 
+         hn(~I, '1', 'dintr',
+            <
+             hn(~I, '2', 'dintr',
+                <
+                 hn(~I, '4', 'dleaf',
+                    pblc(~I, z, 'dpblc',
+                         <ch(~I, 'm', ch(~I, 'm', ch(~I, 'm', prf(~sd, z, 'm')))), 
+                          ch(~I, 'k', ch(~I, 'k', ch(~I, 'k', prf(~sd, z, 'k'))))>)), 
+                 hn(~I, '5', 'dleaf',
+                    pblc(~I, s(z), 'dpblc',
+                         <ch(~I, 'm', ch(~I, 'm', ch(~I, 'm', prf(~sd, s(z), 'm')))), 
+                          ch(~I, 'k', ch(~I, 'k', ch(~I, 'k', prf(~sd, s(z), 'k'))))>))
+                >), 
+             hn(~I, '3', 'dintr',
+                <
+                 hn(~I, '6', 'dleaf',
+                    pblc(~I, s(s(z)), 'dpblc',
+                         <ch(~I, 'm', ch(~I, 'm', ch(~I, 'm', prf(~sd, s(s(z)), 'm')))), 
+                          ch(~I, 'k', ch(~I, 'k', ch(~I, 'k', prf(~sd, s(s(z)), 'k'))))>)), 
+                 hn(~I, '7', 'dleaf',
+                    pblc(~I, s(s(s(z))), 'dpblc',
+                         <ch(~I, 'm', ch(~I, 'm', ch(~I, 'm', prf(~sd, s(s(s(z))), 'm')))), 
+                          ch(~I, 'k', ch(~I, 'k', ch(~I, 'k', prf(~sd, s(s(s(z))), 'k'))))>))
+                >)
+            >)
+        >
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q0_a0:
+   [ St( I, z ), !Sk( I, sd ), In( <'sign', z> ) ]
+  --[ Sign( I, z, z ) ]->
+   [
+   St( I, s(z) ),
+   Out( <I, z, z, prf(sd, z, 'm'), 
+         ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, z, 'k')))), 
+         hn(I, '5', 'dleaf',
+            pblc(I, s(z), 'dpblc',
+                 <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(z), 'm')))), 
+                  ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(z), 'k'))))>)), 
+         hn(I, '3', 'dintr',
+            <
+             hn(I, '6', 'dleaf',
+                pblc(I, s(s(z)), 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(s(z)), 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(s(z)), 'k'))))>)), 
+             hn(I, '7', 'dleaf',
+                pblc(I, s(s(s(z))), 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(s(s(z))), 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(s(s(z))), 'k'))))>))
+            >)
+        >
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q0_a1:
+   [ St( I, z ), !Sk( I, sd ), In( <'sign', s(z)> ) ]
+  --[ Sign( I, z, s(z) ) ]->
+   [
+   St( I, s(z) ),
+   Out( <I, z, s(z), ch(I, 'm', prf(sd, z, 'm')), 
+         ch(I, 'k', ch(I, 'k', prf(sd, z, 'k'))), 
+         hn(I, '5', 'dleaf',
+            pblc(I, s(z), 'dpblc',
+                 <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(z), 'm')))), 
+                  ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(z), 'k'))))>)), 
+         hn(I, '3', 'dintr',
+            <
+             hn(I, '6', 'dleaf',
+                pblc(I, s(s(z)), 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(s(z)), 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(s(z)), 'k'))))>)), 
+             hn(I, '7', 'dleaf',
+                pblc(I, s(s(s(z))), 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(s(s(z))), 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(s(s(z))), 'k'))))>))
+            >)
+        >
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q0_a2:
+   [ St( I, z ), !Sk( I, sd ), In( <'sign', s(s(z))> ) ]
+  --[ Sign( I, z, s(s(z)) ) ]->
+   [
+   St( I, s(z) ),
+   Out( <I, z, s(s(z)), ch(I, 'm', ch(I, 'm', prf(sd, z, 'm'))), 
+         ch(I, 'k', prf(sd, z, 'k')), 
+         hn(I, '5', 'dleaf',
+            pblc(I, s(z), 'dpblc',
+                 <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(z), 'm')))), 
+                  ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(z), 'k'))))>)), 
+         hn(I, '3', 'dintr',
+            <
+             hn(I, '6', 'dleaf',
+                pblc(I, s(s(z)), 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(s(z)), 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(s(z)), 'k'))))>)), 
+             hn(I, '7', 'dleaf',
+                pblc(I, s(s(s(z))), 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(s(s(z))), 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(s(s(z))), 'k'))))>))
+            >)
+        >
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q0_a3:
+   [ St( I, z ), !Sk( I, sd ), In( <'sign', s(s(s(z)))> ) ]
+  --[ Sign( I, z, s(s(s(z))) ) ]->
+   [
+   St( I, s(z) ),
+   Out( <I, z, s(s(s(z))), 
+         ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, z, 'm')))), prf(sd, z, 'k'), 
+         hn(I, '5', 'dleaf',
+            pblc(I, s(z), 'dpblc',
+                 <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(z), 'm')))), 
+                  ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(z), 'k'))))>)), 
+         hn(I, '3', 'dintr',
+            <
+             hn(I, '6', 'dleaf',
+                pblc(I, s(s(z)), 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(s(z)), 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(s(z)), 'k'))))>)), 
+             hn(I, '7', 'dleaf',
+                pblc(I, s(s(s(z))), 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(s(s(z))), 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(s(s(z))), 'k'))))>))
+            >)
+        >
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q1_a0:
+   [ St( I, s(z) ), !Sk( I, sd ), In( <'sign', z> ) ]
+  --[ Sign( I, s(z), z ) ]->
+   [
+   St( I, s(s(z)) ),
+   Out( <I, s(z), z, prf(sd, s(z), 'm'), 
+         ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(z), 'k')))), 
+         hn(I, '4', 'dleaf',
+            pblc(I, z, 'dpblc',
+                 <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, z, 'm')))), 
+                  ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, z, 'k'))))>)), 
+         hn(I, '3', 'dintr',
+            <
+             hn(I, '6', 'dleaf',
+                pblc(I, s(s(z)), 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(s(z)), 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(s(z)), 'k'))))>)), 
+             hn(I, '7', 'dleaf',
+                pblc(I, s(s(s(z))), 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(s(s(z))), 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(s(s(z))), 'k'))))>))
+            >)
+        >
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q1_a1:
+   [ St( I, s(z) ), !Sk( I, sd ), In( <'sign', s(z)> ) ]
+  --[ Sign( I, s(z), s(z) ) ]->
+   [
+   St( I, s(s(z)) ),
+   Out( <I, s(z), s(z), ch(I, 'm', prf(sd, s(z), 'm')), 
+         ch(I, 'k', ch(I, 'k', prf(sd, s(z), 'k'))), 
+         hn(I, '4', 'dleaf',
+            pblc(I, z, 'dpblc',
+                 <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, z, 'm')))), 
+                  ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, z, 'k'))))>)), 
+         hn(I, '3', 'dintr',
+            <
+             hn(I, '6', 'dleaf',
+                pblc(I, s(s(z)), 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(s(z)), 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(s(z)), 'k'))))>)), 
+             hn(I, '7', 'dleaf',
+                pblc(I, s(s(s(z))), 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(s(s(z))), 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(s(s(z))), 'k'))))>))
+            >)
+        >
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q1_a2:
+   [ St( I, s(z) ), !Sk( I, sd ), In( <'sign', s(s(z))> ) ]
+  --[ Sign( I, s(z), s(s(z)) ) ]->
+   [
+   St( I, s(s(z)) ),
+   Out( <I, s(z), s(s(z)), ch(I, 'm', ch(I, 'm', prf(sd, s(z), 'm'))), 
+         ch(I, 'k', prf(sd, s(z), 'k')), 
+         hn(I, '4', 'dleaf',
+            pblc(I, z, 'dpblc',
+                 <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, z, 'm')))), 
+                  ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, z, 'k'))))>)), 
+         hn(I, '3', 'dintr',
+            <
+             hn(I, '6', 'dleaf',
+                pblc(I, s(s(z)), 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(s(z)), 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(s(z)), 'k'))))>)), 
+             hn(I, '7', 'dleaf',
+                pblc(I, s(s(s(z))), 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(s(s(z))), 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(s(s(z))), 'k'))))>))
+            >)
+        >
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q1_a3:
+   [ St( I, s(z) ), !Sk( I, sd ), In( <'sign', s(s(s(z)))> ) ]
+  --[ Sign( I, s(z), s(s(s(z))) ) ]->
+   [
+   St( I, s(s(z)) ),
+   Out( <I, s(z), s(s(s(z))), 
+         ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(z), 'm')))), 
+         prf(sd, s(z), 'k'), 
+         hn(I, '4', 'dleaf',
+            pblc(I, z, 'dpblc',
+                 <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, z, 'm')))), 
+                  ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, z, 'k'))))>)), 
+         hn(I, '3', 'dintr',
+            <
+             hn(I, '6', 'dleaf',
+                pblc(I, s(s(z)), 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(s(z)), 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(s(z)), 'k'))))>)), 
+             hn(I, '7', 'dleaf',
+                pblc(I, s(s(s(z))), 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(s(s(z))), 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(s(s(z))), 'k'))))>))
+            >)
+        >
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q2_a0:
+   [ St( I, s(s(z)) ), !Sk( I, sd ), In( <'sign', z> ) ]
+  --[ Sign( I, s(s(z)), z ) ]->
+   [
+   St( I, s(s(s(z))) ),
+   Out( <I, s(s(z)), z, prf(sd, s(s(z)), 'm'), 
+         ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(s(z)), 'k')))), 
+         hn(I, '7', 'dleaf',
+            pblc(I, s(s(s(z))), 'dpblc',
+                 <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(s(s(z))), 'm')))), 
+                  ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(s(s(z))), 'k'))))>)), 
+         hn(I, '2', 'dintr',
+            <
+             hn(I, '4', 'dleaf',
+                pblc(I, z, 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, z, 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, z, 'k'))))>)), 
+             hn(I, '5', 'dleaf',
+                pblc(I, s(z), 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(z), 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(z), 'k'))))>))
+            >)
+        >
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q2_a1:
+   [ St( I, s(s(z)) ), !Sk( I, sd ), In( <'sign', s(z)> ) ]
+  --[ Sign( I, s(s(z)), s(z) ) ]->
+   [
+   St( I, s(s(s(z))) ),
+   Out( <I, s(s(z)), s(z), ch(I, 'm', prf(sd, s(s(z)), 'm')), 
+         ch(I, 'k', ch(I, 'k', prf(sd, s(s(z)), 'k'))), 
+         hn(I, '7', 'dleaf',
+            pblc(I, s(s(s(z))), 'dpblc',
+                 <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(s(s(z))), 'm')))), 
+                  ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(s(s(z))), 'k'))))>)), 
+         hn(I, '2', 'dintr',
+            <
+             hn(I, '4', 'dleaf',
+                pblc(I, z, 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, z, 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, z, 'k'))))>)), 
+             hn(I, '5', 'dleaf',
+                pblc(I, s(z), 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(z), 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(z), 'k'))))>))
+            >)
+        >
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q2_a2:
+   [ St( I, s(s(z)) ), !Sk( I, sd ), In( <'sign', s(s(z))> ) ]
+  --[ Sign( I, s(s(z)), s(s(z)) ) ]->
+   [
+   St( I, s(s(s(z))) ),
+   Out( <I, s(s(z)), s(s(z)), 
+         ch(I, 'm', ch(I, 'm', prf(sd, s(s(z)), 'm'))), 
+         ch(I, 'k', prf(sd, s(s(z)), 'k')), 
+         hn(I, '7', 'dleaf',
+            pblc(I, s(s(s(z))), 'dpblc',
+                 <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(s(s(z))), 'm')))), 
+                  ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(s(s(z))), 'k'))))>)), 
+         hn(I, '2', 'dintr',
+            <
+             hn(I, '4', 'dleaf',
+                pblc(I, z, 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, z, 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, z, 'k'))))>)), 
+             hn(I, '5', 'dleaf',
+                pblc(I, s(z), 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(z), 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(z), 'k'))))>))
+            >)
+        >
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q2_a3:
+   [ St( I, s(s(z)) ), !Sk( I, sd ), In( <'sign', s(s(s(z)))> ) ]
+  --[ Sign( I, s(s(z)), s(s(s(z))) ) ]->
+   [
+   St( I, s(s(s(z))) ),
+   Out( <I, s(s(z)), s(s(s(z))), 
+         ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(s(z)), 'm')))), 
+         prf(sd, s(s(z)), 'k'), 
+         hn(I, '7', 'dleaf',
+            pblc(I, s(s(s(z))), 'dpblc',
+                 <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(s(s(z))), 'm')))), 
+                  ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(s(s(z))), 'k'))))>)), 
+         hn(I, '2', 'dintr',
+            <
+             hn(I, '4', 'dleaf',
+                pblc(I, z, 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, z, 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, z, 'k'))))>)), 
+             hn(I, '5', 'dleaf',
+                pblc(I, s(z), 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(z), 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(z), 'k'))))>))
+            >)
+        >
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q3_a0:
+   [ St( I, s(s(s(z))) ), !Sk( I, sd ), In( <'sign', z> ) ]
+  --[ Sign( I, s(s(s(z))), z ) ]->
+   [
+   St( I, s(s(s(s(z)))) ),
+   Out( <I, s(s(s(z))), z, prf(sd, s(s(s(z))), 'm'), 
+         ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(s(s(z))), 'k')))), 
+         hn(I, '6', 'dleaf',
+            pblc(I, s(s(z)), 'dpblc',
+                 <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(s(z)), 'm')))), 
+                  ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(s(z)), 'k'))))>)), 
+         hn(I, '2', 'dintr',
+            <
+             hn(I, '4', 'dleaf',
+                pblc(I, z, 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, z, 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, z, 'k'))))>)), 
+             hn(I, '5', 'dleaf',
+                pblc(I, s(z), 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(z), 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(z), 'k'))))>))
+            >)
+        >
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q3_a1:
+   [ St( I, s(s(s(z))) ), !Sk( I, sd ), In( <'sign', s(z)> ) ]
+  --[ Sign( I, s(s(s(z))), s(z) ) ]->
+   [
+   St( I, s(s(s(s(z)))) ),
+   Out( <I, s(s(s(z))), s(z), ch(I, 'm', prf(sd, s(s(s(z))), 'm')), 
+         ch(I, 'k', ch(I, 'k', prf(sd, s(s(s(z))), 'k'))), 
+         hn(I, '6', 'dleaf',
+            pblc(I, s(s(z)), 'dpblc',
+                 <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(s(z)), 'm')))), 
+                  ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(s(z)), 'k'))))>)), 
+         hn(I, '2', 'dintr',
+            <
+             hn(I, '4', 'dleaf',
+                pblc(I, z, 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, z, 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, z, 'k'))))>)), 
+             hn(I, '5', 'dleaf',
+                pblc(I, s(z), 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(z), 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(z), 'k'))))>))
+            >)
+        >
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q3_a2:
+   [ St( I, s(s(s(z))) ), !Sk( I, sd ), In( <'sign', s(s(z))> ) ]
+  --[ Sign( I, s(s(s(z))), s(s(z)) ) ]->
+   [
+   St( I, s(s(s(s(z)))) ),
+   Out( <I, s(s(s(z))), s(s(z)), 
+         ch(I, 'm', ch(I, 'm', prf(sd, s(s(s(z))), 'm'))), 
+         ch(I, 'k', prf(sd, s(s(s(z))), 'k')), 
+         hn(I, '6', 'dleaf',
+            pblc(I, s(s(z)), 'dpblc',
+                 <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(s(z)), 'm')))), 
+                  ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(s(z)), 'k'))))>)), 
+         hn(I, '2', 'dintr',
+            <
+             hn(I, '4', 'dleaf',
+                pblc(I, z, 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, z, 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, z, 'k'))))>)), 
+             hn(I, '5', 'dleaf',
+                pblc(I, s(z), 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(z), 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(z), 'k'))))>))
+            >)
+        >
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q3_a3:
+   [ St( I, s(s(s(z))) ), !Sk( I, sd ), In( <'sign', s(s(s(z)))> ) ]
+  --[ Sign( I, s(s(s(z))), s(s(s(z))) ) ]->
+   [
+   St( I, s(s(s(s(z)))) ),
+   Out( <I, s(s(s(z))), s(s(s(z))), 
+         ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(s(s(z))), 'm')))), 
+         prf(sd, s(s(s(z))), 'k'), 
+         hn(I, '6', 'dleaf',
+            pblc(I, s(s(z)), 'dpblc',
+                 <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(s(z)), 'm')))), 
+                  ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(s(z)), 'k'))))>)), 
+         hn(I, '2', 'dintr',
+            <
+             hn(I, '4', 'dleaf',
+                pblc(I, z, 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, z, 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, z, 'k'))))>)), 
+             hn(I, '5', 'dleaf',
+                pblc(I, s(z), 'dpblc',
+                     <ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(z), 'm')))), 
+                      ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(z), 'k'))))>))
+            >)
+        >
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) RevealSeed:
+   [ !Sk( I, sd ) ] --[ RevealSeed( I ) ]-> [ Out( sd ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_q0_a0:
+   [
+   !Root( I,
+          hn(I, '1', 'dintr',
+             <
+              hn(I, '2', 'dintr',
+                 <
+                  hn(I, '4', 'dleaf',
+                     pblc(I, z, 'dpblc', <ch(I, 'm', ch(I, 'm', ch(I, 'm', sm))), sk>)), 
+                  p1>), 
+              p2>)
+   ),
+   In( <I, z, z, sm, sk, p1, p2> )
+   ]
+  --[ Accept( I, z, z ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_q0_a1:
+   [
+   !Root( I,
+          hn(I, '1', 'dintr',
+             <
+              hn(I, '2', 'dintr',
+                 <
+                  hn(I, '4', 'dleaf',
+                     pblc(I, z, 'dpblc', <ch(I, 'm', ch(I, 'm', sm)), ch(I, 'k', sk)>)), 
+                  p1>), 
+              p2>)
+   ),
+   In( <I, z, s(z), sm, sk, p1, p2> )
+   ]
+  --[ Accept( I, z, s(z) ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_q0_a2:
+   [
+   !Root( I,
+          hn(I, '1', 'dintr',
+             <
+              hn(I, '2', 'dintr',
+                 <
+                  hn(I, '4', 'dleaf',
+                     pblc(I, z, 'dpblc', <ch(I, 'm', sm), ch(I, 'k', ch(I, 'k', sk))>)), 
+                  p1>), 
+              p2>)
+   ),
+   In( <I, z, s(s(z)), sm, sk, p1, p2> )
+   ]
+  --[ Accept( I, z, s(s(z)) ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_q0_a3:
+   [
+   !Root( I,
+          hn(I, '1', 'dintr',
+             <
+              hn(I, '2', 'dintr',
+                 <
+                  hn(I, '4', 'dleaf',
+                     pblc(I, z, 'dpblc', <sm, ch(I, 'k', ch(I, 'k', ch(I, 'k', sk)))>)), 
+                  p1>), 
+              p2>)
+   ),
+   In( <I, z, s(s(s(z))), sm, sk, p1, p2> )
+   ]
+  --[ Accept( I, z, s(s(s(z))) ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_q1_a0:
+   [
+   !Root( I,
+          hn(I, '1', 'dintr',
+             <
+              hn(I, '2', 'dintr',
+                 <p1, 
+                  hn(I, '5', 'dleaf',
+                     pblc(I, s(z), 'dpblc', <ch(I, 'm', ch(I, 'm', ch(I, 'm', sm))), sk>))
+                 >), 
+              p2>)
+   ),
+   In( <I, s(z), z, sm, sk, p1, p2> )
+   ]
+  --[ Accept( I, s(z), z ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_q1_a1:
+   [
+   !Root( I,
+          hn(I, '1', 'dintr',
+             <
+              hn(I, '2', 'dintr',
+                 <p1, 
+                  hn(I, '5', 'dleaf',
+                     pblc(I, s(z), 'dpblc', <ch(I, 'm', ch(I, 'm', sm)), ch(I, 'k', sk)>))
+                 >), 
+              p2>)
+   ),
+   In( <I, s(z), s(z), sm, sk, p1, p2> )
+   ]
+  --[ Accept( I, s(z), s(z) ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_q1_a2:
+   [
+   !Root( I,
+          hn(I, '1', 'dintr',
+             <
+              hn(I, '2', 'dintr',
+                 <p1, 
+                  hn(I, '5', 'dleaf',
+                     pblc(I, s(z), 'dpblc', <ch(I, 'm', sm), ch(I, 'k', ch(I, 'k', sk))>))
+                 >), 
+              p2>)
+   ),
+   In( <I, s(z), s(s(z)), sm, sk, p1, p2> )
+   ]
+  --[ Accept( I, s(z), s(s(z)) ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_q1_a3:
+   [
+   !Root( I,
+          hn(I, '1', 'dintr',
+             <
+              hn(I, '2', 'dintr',
+                 <p1, 
+                  hn(I, '5', 'dleaf',
+                     pblc(I, s(z), 'dpblc', <sm, ch(I, 'k', ch(I, 'k', ch(I, 'k', sk)))>))
+                 >), 
+              p2>)
+   ),
+   In( <I, s(z), s(s(s(z))), sm, sk, p1, p2> )
+   ]
+  --[ Accept( I, s(z), s(s(s(z))) ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_q2_a0:
+   [
+   !Root( I,
+          hn(I, '1', 'dintr',
+             <p2, 
+              hn(I, '3', 'dintr',
+                 <
+                  hn(I, '6', 'dleaf',
+                     pblc(I, s(s(z)), 'dpblc',
+                          <ch(I, 'm', ch(I, 'm', ch(I, 'm', sm))), sk>)), 
+                  p1>)
+             >)
+   ),
+   In( <I, s(s(z)), z, sm, sk, p1, p2> )
+   ]
+  --[ Accept( I, s(s(z)), z ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_q2_a1:
+   [
+   !Root( I,
+          hn(I, '1', 'dintr',
+             <p2, 
+              hn(I, '3', 'dintr',
+                 <
+                  hn(I, '6', 'dleaf',
+                     pblc(I, s(s(z)), 'dpblc',
+                          <ch(I, 'm', ch(I, 'm', sm)), ch(I, 'k', sk)>)), 
+                  p1>)
+             >)
+   ),
+   In( <I, s(s(z)), s(z), sm, sk, p1, p2> )
+   ]
+  --[ Accept( I, s(s(z)), s(z) ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_q2_a2:
+   [
+   !Root( I,
+          hn(I, '1', 'dintr',
+             <p2, 
+              hn(I, '3', 'dintr',
+                 <
+                  hn(I, '6', 'dleaf',
+                     pblc(I, s(s(z)), 'dpblc',
+                          <ch(I, 'm', sm), ch(I, 'k', ch(I, 'k', sk))>)), 
+                  p1>)
+             >)
+   ),
+   In( <I, s(s(z)), s(s(z)), sm, sk, p1, p2> )
+   ]
+  --[ Accept( I, s(s(z)), s(s(z)) ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_q2_a3:
+   [
+   !Root( I,
+          hn(I, '1', 'dintr',
+             <p2, 
+              hn(I, '3', 'dintr',
+                 <
+                  hn(I, '6', 'dleaf',
+                     pblc(I, s(s(z)), 'dpblc',
+                          <sm, ch(I, 'k', ch(I, 'k', ch(I, 'k', sk)))>)), 
+                  p1>)
+             >)
+   ),
+   In( <I, s(s(z)), s(s(s(z))), sm, sk, p1, p2> )
+   ]
+  --[ Accept( I, s(s(z)), s(s(s(z))) ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_q3_a0:
+   [
+   !Root( I,
+          hn(I, '1', 'dintr',
+             <p2, 
+              hn(I, '3', 'dintr',
+                 <p1, 
+                  hn(I, '7', 'dleaf',
+                     pblc(I, s(s(s(z))), 'dpblc',
+                          <ch(I, 'm', ch(I, 'm', ch(I, 'm', sm))), sk>))
+                 >)
+             >)
+   ),
+   In( <I, s(s(s(z))), z, sm, sk, p1, p2> )
+   ]
+  --[ Accept( I, s(s(s(z))), z ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_q3_a1:
+   [
+   !Root( I,
+          hn(I, '1', 'dintr',
+             <p2, 
+              hn(I, '3', 'dintr',
+                 <p1, 
+                  hn(I, '7', 'dleaf',
+                     pblc(I, s(s(s(z))), 'dpblc',
+                          <ch(I, 'm', ch(I, 'm', sm)), ch(I, 'k', sk)>))
+                 >)
+             >)
+   ),
+   In( <I, s(s(s(z))), s(z), sm, sk, p1, p2> )
+   ]
+  --[ Accept( I, s(s(s(z))), s(z) ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_q3_a2:
+   [
+   !Root( I,
+          hn(I, '1', 'dintr',
+             <p2, 
+              hn(I, '3', 'dintr',
+                 <p1, 
+                  hn(I, '7', 'dleaf',
+                     pblc(I, s(s(s(z))), 'dpblc',
+                          <ch(I, 'm', sm), ch(I, 'k', ch(I, 'k', sk))>))
+                 >)
+             >)
+   ),
+   In( <I, s(s(s(z))), s(s(z)), sm, sk, p1, p2> )
+   ]
+  --[ Accept( I, s(s(s(z))), s(s(z)) ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_q3_a3:
+   [
+   !Root( I,
+          hn(I, '1', 'dintr',
+             <p2, 
+              hn(I, '3', 'dintr',
+                 <p1, 
+                  hn(I, '7', 'dleaf',
+                     pblc(I, s(s(s(z))), 'dpblc',
+                          <sm, ch(I, 'k', ch(I, 'k', ch(I, 'k', sk)))>))
+                 >)
+             >)
+   ),
+   In( <I, s(s(s(z))), s(s(s(z))), sm, sk, p1, p2> )
+   ]
+  --[ Accept( I, s(s(s(z))), s(s(s(z))) ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+lemma exec:
+  exists-trace
+  "∃ I q a #s #k.
+    ((Sign( I, q, a ) @ #s) ∧ (Accept( I, q, a ) @ #k)) ∧
+    (¬(∃ #r. RevealSeed( I ) @ #r))"
+/*
+guarded formula characterizing all satisfying traces:
+"∃ I q a #s #k.
+  (Sign( I, q, a ) @ #s) ∧ (Accept( I, q, a ) @ #k)
+ ∧
+  ∀ #r. (RevealSeed( I ) @ #r) ⇒ ⊥"
+*/
+by sorry
+
+lemma LS1:
+  all-traces
+  "∀ I q a #k.
+    (Accept( I, q, a ) @ #k) ⇒
+    ((∃ #s. Sign( I, q, a ) @ #s) ∨ (∃ #r. RevealSeed( I ) @ #r))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ I q a #k.
+  (Accept( I, q, a ) @ #k)
+ ∧
+  (∀ #s. (Sign( I, q, a ) @ #s) ⇒ ⊥) ∧ (∀ #r. (RevealSeed( I ) @ #r) ⇒ ⊥)"
+*/
+by sorry
+
+lemma LS6_bind:
+  all-traces
+  "∀ I q a #k.
+    (Accept( I, q, a ) @ #k) ⇒
+    ((∃ b #s. Sign( I, q, b ) @ #s) ∨ (∃ #r. RevealSeed( I ) @ #r))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ I q a #k.
+  (Accept( I, q, a ) @ #k)
+ ∧
+  (∀ b #s. (Sign( I, q, b ) @ #s) ⇒ ⊥) ∧
+  (∀ #r. (RevealSeed( I ) @ #r) ⇒ ⊥)"
+*/
+by sorry
+
+lemma LS1_q0_a0:
+  all-traces
+  "∀ I #k.
+    (Accept( I, z, z ) @ #k) ⇒
+    ((∃ #s. Sign( I, z, z ) @ #s) ∨ (∃ #r. RevealSeed( I ) @ #r))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ I #k.
+  (Accept( I, z, z ) @ #k)
+ ∧
+  (∀ #s. (Sign( I, z, z ) @ #s) ⇒ ⊥) ∧ (∀ #r. (RevealSeed( I ) @ #r) ⇒ ⊥)"
+*/
+simplify
+solve( Accept( I, z, z ) @ #k )
+  case Verify_q0_a0
+  solve( !Root( I,
+                hn(I, '1', 'dintr',
+                   <
+                    hn(I, '2', 'dintr',
+                       <
+                        hn(I, '4', 'dleaf',
+                           pblc(I, z, 'dpblc', <ch(I, 'm', ch(I, 'm', ch(I, 'm', sm))), sk>)), 
+                        p1>), 
+                    p2>)
+         ) ▶₀ #k )
+    case KeyGen
+    solve( !KU( ~I ) @ #vk.1 )
+      case KeyGen
+      solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+        case Sign_q0_a0
+        by contradiction /* from formulas */
+      qed
+    next
+      case Sign_q0_a0
+      by contradiction /* from formulas */
+    next
+      case Sign_q0_a1
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q0_a2
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q0_a3
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q1_a0_case_1
+      by contradiction /* from formulas */
+    next
+      case Sign_q1_a0_case_2
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q1_a0_case_3
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q1_a0_case_4
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q1_a1_case_1
+      by contradiction /* from formulas */
+    next
+      case Sign_q1_a1_case_2
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q1_a1_case_3
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q1_a1_case_4
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q1_a2_case_1
+      by contradiction /* from formulas */
+    next
+      case Sign_q1_a2_case_2
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q1_a2_case_3
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q1_a2_case_4
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q1_a3_case_1
+      by contradiction /* from formulas */
+    next
+      case Sign_q1_a3_case_2
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q1_a3_case_3
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q1_a3_case_4
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q2_a0_case_01
+      by contradiction /* from formulas */
+    next
+      case Sign_q2_a0_case_02
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q2_a0_case_03
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q2_a0_case_04
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q2_a0_case_05
+      by contradiction /* from formulas */
+    next
+      case Sign_q2_a0_case_06
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q2_a0_case_07
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q2_a0_case_08
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q2_a0_case_09
+      by contradiction /* from formulas */
+    next
+      case Sign_q2_a0_case_10
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q2_a0_case_11
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q2_a0_case_12
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q2_a0_case_13
+      by contradiction /* from formulas */
+    next
+      case Sign_q2_a0_case_14
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q2_a0_case_15
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q2_a0_case_16
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q2_a1_case_01
+      by contradiction /* from formulas */
+    next
+      case Sign_q2_a1_case_02
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q2_a1_case_03
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q2_a1_case_04
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q2_a1_case_05
+      by contradiction /* from formulas */
+    next
+      case Sign_q2_a1_case_06
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q2_a1_case_07
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q2_a1_case_08
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q2_a1_case_09
+      by contradiction /* from formulas */
+    next
+      case Sign_q2_a1_case_10
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q2_a1_case_11
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q2_a1_case_12
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q2_a1_case_13
+      by contradiction /* from formulas */
+    next
+      case Sign_q2_a1_case_14
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q2_a1_case_15
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q2_a1_case_16
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q2_a2_case_01
+      by contradiction /* from formulas */
+    next
+      case Sign_q2_a2_case_02
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q2_a2_case_03
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q2_a2_case_04
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q2_a2_case_05
+      by contradiction /* from formulas */
+    next
+      case Sign_q2_a2_case_06
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q2_a2_case_07
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q2_a2_case_08
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q2_a2_case_09
+      by contradiction /* from formulas */
+    next
+      case Sign_q2_a2_case_10
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q2_a2_case_11
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q2_a2_case_12
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q2_a2_case_13
+      by contradiction /* from formulas */
+    next
+      case Sign_q2_a2_case_14
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q2_a2_case_15
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q2_a2_case_16
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q2_a3_case_01
+      by contradiction /* from formulas */
+    next
+      case Sign_q2_a3_case_02
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q2_a3_case_03
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q2_a3_case_04
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q2_a3_case_05
+      by contradiction /* from formulas */
+    next
+      case Sign_q2_a3_case_06
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q2_a3_case_07
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q2_a3_case_08
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q2_a3_case_09
+      by contradiction /* from formulas */
+    next
+      case Sign_q2_a3_case_10
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q2_a3_case_11
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q2_a3_case_12
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q2_a3_case_13
+      by contradiction /* from formulas */
+    next
+      case Sign_q2_a3_case_14
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q2_a3_case_15
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q2_a3_case_16
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a0_case_01
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a0_case_02
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a0_case_03
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a0_case_04
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a0_case_05
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a0_case_06
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a0_case_07
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a0_case_08
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a0_case_09
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a0_case_10
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a0_case_11
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a0_case_12
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a0_case_13
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a0_case_14
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a0_case_15
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a0_case_16
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a0_case_17
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a0_case_18
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a0_case_19
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a0_case_20
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a0_case_21
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a0_case_22
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a0_case_23
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a0_case_24
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a0_case_25
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a0_case_26
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a0_case_27
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a0_case_28
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a0_case_29
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a0_case_30
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a0_case_31
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a0_case_32
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a0_case_33
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a0_case_34
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a0_case_35
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a0_case_36
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a0_case_37
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a0_case_38
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a0_case_39
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a0_case_40
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a0_case_41
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a0_case_42
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a0_case_43
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a0_case_44
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a0_case_45
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a0_case_46
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a0_case_47
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a0_case_48
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a0_case_49
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a0_case_50
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a0_case_51
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a0_case_52
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a0_case_53
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a0_case_54
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a0_case_55
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a0_case_56
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a0_case_57
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a0_case_58
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a0_case_59
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a0_case_60
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a0_case_61
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a0_case_62
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a0_case_63
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a0_case_64
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a1_case_01
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a1_case_02
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a1_case_03
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a1_case_04
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a1_case_05
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a1_case_06
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a1_case_07
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a1_case_08
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a1_case_09
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a1_case_10
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a1_case_11
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a1_case_12
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a1_case_13
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a1_case_14
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a1_case_15
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a1_case_16
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a1_case_17
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a1_case_18
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a1_case_19
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a1_case_20
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a1_case_21
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a1_case_22
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a1_case_23
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a1_case_24
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a1_case_25
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a1_case_26
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a1_case_27
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a1_case_28
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a1_case_29
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a1_case_30
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a1_case_31
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a1_case_32
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a1_case_33
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a1_case_34
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a1_case_35
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a1_case_36
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a1_case_37
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a1_case_38
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a1_case_39
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a1_case_40
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a1_case_41
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a1_case_42
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a1_case_43
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a1_case_44
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a1_case_45
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a1_case_46
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a1_case_47
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a1_case_48
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a1_case_49
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a1_case_50
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a1_case_51
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a1_case_52
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a1_case_53
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a1_case_54
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a1_case_55
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a1_case_56
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a1_case_57
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a1_case_58
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a1_case_59
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a1_case_60
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a1_case_61
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a1_case_62
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a1_case_63
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a1_case_64
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a2_case_01
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a2_case_02
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a2_case_03
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a2_case_04
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a2_case_05
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a2_case_06
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a2_case_07
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a2_case_08
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a2_case_09
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a2_case_10
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a2_case_11
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a2_case_12
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a2_case_13
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a2_case_14
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a2_case_15
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a2_case_16
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a2_case_17
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a2_case_18
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a2_case_19
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a2_case_20
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a2_case_21
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a2_case_22
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a2_case_23
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a2_case_24
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a2_case_25
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a2_case_26
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a2_case_27
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a2_case_28
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a2_case_29
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a2_case_30
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a2_case_31
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a2_case_32
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a2_case_33
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a2_case_34
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a2_case_35
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a2_case_36
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a2_case_37
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a2_case_38
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a2_case_39
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a2_case_40
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a2_case_41
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a2_case_42
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a2_case_43
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a2_case_44
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a2_case_45
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a2_case_46
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a2_case_47
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a2_case_48
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a2_case_49
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a2_case_50
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a2_case_51
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a2_case_52
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a2_case_53
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a2_case_54
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a2_case_55
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a2_case_56
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a2_case_57
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a2_case_58
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a2_case_59
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a2_case_60
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a2_case_61
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a2_case_62
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a2_case_63
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a2_case_64
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a3_case_01
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a3_case_02
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a3_case_03
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a3_case_04
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a3_case_05
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a3_case_06
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a3_case_07
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a3_case_08
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a3_case_09
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a3_case_10
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a3_case_11
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a3_case_12
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a3_case_13
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a3_case_14
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a3_case_15
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a3_case_16
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a3_case_17
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a3_case_18
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a3_case_19
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a3_case_20
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a3_case_21
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a3_case_22
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a3_case_23
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a3_case_24
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a3_case_25
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a3_case_26
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a3_case_27
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a3_case_28
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a3_case_29
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a3_case_30
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a3_case_31
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a3_case_32
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a3_case_33
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a3_case_34
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a3_case_35
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a3_case_36
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a3_case_37
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a3_case_38
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a3_case_39
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a3_case_40
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a3_case_41
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a3_case_42
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a3_case_43
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a3_case_44
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a3_case_45
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a3_case_46
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a3_case_47
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a3_case_48
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a3_case_49
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a3_case_50
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a3_case_51
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a3_case_52
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.7 )
+    next
+      case Sign_q3_a3_case_53
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a3_case_54
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a3_case_55
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a3_case_56
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a3_case_57
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a3_case_58
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a3_case_59
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a3_case_60
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a3_case_61
+      by contradiction /* from formulas */
+    next
+      case Sign_q3_a3_case_62
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a3_case_63
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    next
+      case Sign_q3_a3_case_64
+      by solve( !KU( prf(~sd, z, 'm') ) @ #vk.6 )
+    qed
+  qed
+qed
+
+lemma LS1_q0_a1:
+  all-traces
+  "∀ I #k.
+    (Accept( I, z, s(z) ) @ #k) ⇒
+    ((∃ #s. Sign( I, z, s(z) ) @ #s) ∨ (∃ #r. RevealSeed( I ) @ #r))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ I #k.
+  (Accept( I, z, s(z) ) @ #k)
+ ∧
+  (∀ #s. (Sign( I, z, s(z) ) @ #s) ⇒ ⊥) ∧
+  (∀ #r. (RevealSeed( I ) @ #r) ⇒ ⊥)"
+*/
+by sorry
+
+lemma LS1_q0_a2:
+  all-traces
+  "∀ I #k.
+    (Accept( I, z, s(s(z)) ) @ #k) ⇒
+    ((∃ #s. Sign( I, z, s(s(z)) ) @ #s) ∨ (∃ #r. RevealSeed( I ) @ #r))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ I #k.
+  (Accept( I, z, s(s(z)) ) @ #k)
+ ∧
+  (∀ #s. (Sign( I, z, s(s(z)) ) @ #s) ⇒ ⊥) ∧
+  (∀ #r. (RevealSeed( I ) @ #r) ⇒ ⊥)"
+*/
+by sorry
+
+lemma LS1_q0_a3:
+  all-traces
+  "∀ I #k.
+    (Accept( I, z, s(s(s(z))) ) @ #k) ⇒
+    ((∃ #s. Sign( I, z, s(s(s(z))) ) @ #s) ∨ (∃ #r. RevealSeed( I ) @ #r))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ I #k.
+  (Accept( I, z, s(s(s(z))) ) @ #k)
+ ∧
+  (∀ #s. (Sign( I, z, s(s(s(z))) ) @ #s) ⇒ ⊥) ∧
+  (∀ #r. (RevealSeed( I ) @ #r) ⇒ ⊥)"
+*/
+by sorry
+
+lemma LS1_q1_a0:
+  all-traces
+  "∀ I #k.
+    (Accept( I, s(z), z ) @ #k) ⇒
+    ((∃ #s. Sign( I, s(z), z ) @ #s) ∨ (∃ #r. RevealSeed( I ) @ #r))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ I #k.
+  (Accept( I, s(z), z ) @ #k)
+ ∧
+  (∀ #s. (Sign( I, s(z), z ) @ #s) ⇒ ⊥) ∧
+  (∀ #r. (RevealSeed( I ) @ #r) ⇒ ⊥)"
+*/
+by sorry
+
+lemma LS1_q1_a1:
+  all-traces
+  "∀ I #k.
+    (Accept( I, s(z), s(z) ) @ #k) ⇒
+    ((∃ #s. Sign( I, s(z), s(z) ) @ #s) ∨ (∃ #r. RevealSeed( I ) @ #r))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ I #k.
+  (Accept( I, s(z), s(z) ) @ #k)
+ ∧
+  (∀ #s. (Sign( I, s(z), s(z) ) @ #s) ⇒ ⊥) ∧
+  (∀ #r. (RevealSeed( I ) @ #r) ⇒ ⊥)"
+*/
+by sorry
+
+lemma LS1_q1_a2:
+  all-traces
+  "∀ I #k.
+    (Accept( I, s(z), s(s(z)) ) @ #k) ⇒
+    ((∃ #s. Sign( I, s(z), s(s(z)) ) @ #s) ∨ (∃ #r. RevealSeed( I ) @ #r))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ I #k.
+  (Accept( I, s(z), s(s(z)) ) @ #k)
+ ∧
+  (∀ #s. (Sign( I, s(z), s(s(z)) ) @ #s) ⇒ ⊥) ∧
+  (∀ #r. (RevealSeed( I ) @ #r) ⇒ ⊥)"
+*/
+by sorry
+
+lemma LS1_q1_a3:
+  all-traces
+  "∀ I #k.
+    (Accept( I, s(z), s(s(s(z))) ) @ #k) ⇒
+    ((∃ #s. Sign( I, s(z), s(s(s(z))) ) @ #s) ∨
+     (∃ #r. RevealSeed( I ) @ #r))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ I #k.
+  (Accept( I, s(z), s(s(s(z))) ) @ #k)
+ ∧
+  (∀ #s. (Sign( I, s(z), s(s(s(z))) ) @ #s) ⇒ ⊥) ∧
+  (∀ #r. (RevealSeed( I ) @ #r) ⇒ ⊥)"
+*/
+by sorry
+
+lemma LS1_q2_a0:
+  all-traces
+  "∀ I #k.
+    (Accept( I, s(s(z)), z ) @ #k) ⇒
+    ((∃ #s. Sign( I, s(s(z)), z ) @ #s) ∨ (∃ #r. RevealSeed( I ) @ #r))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ I #k.
+  (Accept( I, s(s(z)), z ) @ #k)
+ ∧
+  (∀ #s. (Sign( I, s(s(z)), z ) @ #s) ⇒ ⊥) ∧
+  (∀ #r. (RevealSeed( I ) @ #r) ⇒ ⊥)"
+*/
+by sorry
+
+lemma LS1_q2_a1:
+  all-traces
+  "∀ I #k.
+    (Accept( I, s(s(z)), s(z) ) @ #k) ⇒
+    ((∃ #s. Sign( I, s(s(z)), s(z) ) @ #s) ∨ (∃ #r. RevealSeed( I ) @ #r))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ I #k.
+  (Accept( I, s(s(z)), s(z) ) @ #k)
+ ∧
+  (∀ #s. (Sign( I, s(s(z)), s(z) ) @ #s) ⇒ ⊥) ∧
+  (∀ #r. (RevealSeed( I ) @ #r) ⇒ ⊥)"
+*/
+by sorry
+
+lemma LS1_q2_a2:
+  all-traces
+  "∀ I #k.
+    (Accept( I, s(s(z)), s(s(z)) ) @ #k) ⇒
+    ((∃ #s. Sign( I, s(s(z)), s(s(z)) ) @ #s) ∨
+     (∃ #r. RevealSeed( I ) @ #r))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ I #k.
+  (Accept( I, s(s(z)), s(s(z)) ) @ #k)
+ ∧
+  (∀ #s. (Sign( I, s(s(z)), s(s(z)) ) @ #s) ⇒ ⊥) ∧
+  (∀ #r. (RevealSeed( I ) @ #r) ⇒ ⊥)"
+*/
+by sorry
+
+lemma LS1_q2_a3:
+  all-traces
+  "∀ I #k.
+    (Accept( I, s(s(z)), s(s(s(z))) ) @ #k) ⇒
+    ((∃ #s. Sign( I, s(s(z)), s(s(s(z))) ) @ #s) ∨
+     (∃ #r. RevealSeed( I ) @ #r))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ I #k.
+  (Accept( I, s(s(z)), s(s(s(z))) ) @ #k)
+ ∧
+  (∀ #s. (Sign( I, s(s(z)), s(s(s(z))) ) @ #s) ⇒ ⊥) ∧
+  (∀ #r. (RevealSeed( I ) @ #r) ⇒ ⊥)"
+*/
+by sorry
+
+lemma LS1_q3_a0:
+  all-traces
+  "∀ I #k.
+    (Accept( I, s(s(s(z))), z ) @ #k) ⇒
+    ((∃ #s. Sign( I, s(s(s(z))), z ) @ #s) ∨ (∃ #r. RevealSeed( I ) @ #r))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ I #k.
+  (Accept( I, s(s(s(z))), z ) @ #k)
+ ∧
+  (∀ #s. (Sign( I, s(s(s(z))), z ) @ #s) ⇒ ⊥) ∧
+  (∀ #r. (RevealSeed( I ) @ #r) ⇒ ⊥)"
+*/
+by sorry
+
+lemma LS1_q3_a1:
+  all-traces
+  "∀ I #k.
+    (Accept( I, s(s(s(z))), s(z) ) @ #k) ⇒
+    ((∃ #s. Sign( I, s(s(s(z))), s(z) ) @ #s) ∨
+     (∃ #r. RevealSeed( I ) @ #r))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ I #k.
+  (Accept( I, s(s(s(z))), s(z) ) @ #k)
+ ∧
+  (∀ #s. (Sign( I, s(s(s(z))), s(z) ) @ #s) ⇒ ⊥) ∧
+  (∀ #r. (RevealSeed( I ) @ #r) ⇒ ⊥)"
+*/
+by sorry
+
+lemma LS1_q3_a2:
+  all-traces
+  "∀ I #k.
+    (Accept( I, s(s(s(z))), s(s(z)) ) @ #k) ⇒
+    ((∃ #s. Sign( I, s(s(s(z))), s(s(z)) ) @ #s) ∨
+     (∃ #r. RevealSeed( I ) @ #r))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ I #k.
+  (Accept( I, s(s(s(z))), s(s(z)) ) @ #k)
+ ∧
+  (∀ #s. (Sign( I, s(s(s(z))), s(s(z)) ) @ #s) ⇒ ⊥) ∧
+  (∀ #r. (RevealSeed( I ) @ #r) ⇒ ⊥)"
+*/
+by sorry
+
+lemma LS1_q3_a3:
+  all-traces
+  "∀ I #k.
+    (Accept( I, s(s(s(z))), s(s(s(z))) ) @ #k) ⇒
+    ((∃ #s. Sign( I, s(s(s(z))), s(s(s(z))) ) @ #s) ∨
+     (∃ #r. RevealSeed( I ) @ #r))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ I #k.
+  (Accept( I, s(s(s(z))), s(s(s(z))) ) @ #k)
+ ∧
+  (∀ #s. (Sign( I, s(s(s(z))), s(s(s(z))) ) @ #s) ⇒ ⊥) ∧
+  (∀ #r. (RevealSeed( I ) @ #r) ⇒ ⊥)"
+*/
+by sorry
+
+/* All wellformedness checks were successful. */
+
+/*
+Generated from:
+Tamarin version 1.12.0
+Maude version 3.5.1
+Git revision: 82780bbaf3328a45f624ddb41e51bf75425f851c (with uncommited changes), branch: master
+Compiled at: 2026-03-07 14:22:39.174278293 UTC
+*/
+
+end
+
+==============================================================================
+summary of summaries:
+
+analyzed: variants/LMS_LS6_V0_spec__T0.spthy
+
+  processing time: 77.26s
+  
+  exec (exists-trace): analysis incomplete (1 steps)
+  LS1 (all-traces): analysis incomplete (1 steps)
+  LS6_bind (all-traces): analysis incomplete (1 steps)
+  LS1_q0_a0 (all-traces): verified (346 steps)
+  LS1_q0_a1 (all-traces): analysis incomplete (1 steps)
+  LS1_q0_a2 (all-traces): analysis incomplete (1 steps)
+  LS1_q0_a3 (all-traces): analysis incomplete (1 steps)
+  LS1_q1_a0 (all-traces): analysis incomplete (1 steps)
+  LS1_q1_a1 (all-traces): analysis incomplete (1 steps)
+  LS1_q1_a2 (all-traces): analysis incomplete (1 steps)
+  LS1_q1_a3 (all-traces): analysis incomplete (1 steps)
+  LS1_q2_a0 (all-traces): analysis incomplete (1 steps)
+  LS1_q2_a1 (all-traces): analysis incomplete (1 steps)
+  LS1_q2_a2 (all-traces): analysis incomplete (1 steps)
+  LS1_q2_a3 (all-traces): analysis incomplete (1 steps)
+  LS1_q3_a0 (all-traces): analysis incomplete (1 steps)
+  LS1_q3_a1 (all-traces): analysis incomplete (1 steps)
+  LS1_q3_a2 (all-traces): analysis incomplete (1 steps)
+  LS1_q3_a3 (all-traces): analysis incomplete (1 steps)
+
+==============================================================================

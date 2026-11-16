@@ -1,0 +1,63 @@
+Linear part: No equation.
+Convergent part:
+fst((x_1,x_2)) = x_1
+snd((x_1,x_2)) = x_2
+Completing equations...
+Completed equations:
+snd((x_1,x_2)) = x_2
+fst((x_1,x_2)) = x_1
+Process 0 (that is, the initial process):
+(
+    {1}!
+    {2}new rid_rInit: bitstring;
+    {3}new stR_Ready: bitstring;
+    {4}new parent: bitstring;
+    {5}new input_a: bitstring;
+    {6}new input_b: bitstring;
+    {7}new m1: bitstring;
+    {8}new m2: bitstring;
+    {9}event eInit(rid_rInit);
+    {10}insert tReady(stR_Ready,parent,input_a,input_b,m1,m2)
+) | (
+    {11}!
+    {12}get tReady(stL_Ready: bitstring,parent_1: bitstring,input_a_1: bitstring,input_b_1: bitstring,m1_1: bitstring,m2_1: bitstring) in
+    {13}new rid_rEncrypt1: bitstring;
+    {14}new stR_AfterFirst: bitstring;
+    {15}event eDistinctFact(rid_rEncrypt1,(stL_Ready,(parent_1,(input_a_1,(input_b_1,(m1_1,m2_1))))));
+    {16}event eRequestState(vclient,vzero);
+    {17}event eContextStep(key(kdf(parent_1,xn(input_a_1,input_b_1)),vserver),nce(vserver,vzero,civ(kdf(parent_1,xn(input_a_1,input_b_1)))));
+    {18}event eAeadUse(key(kdf(parent_1,xn(input_a_1,input_b_1)),vserver),nce(vserver,vzero,civ(kdf(parent_1,xn(input_a_1,input_b_1)))),m1_1);
+    {19}insert tAfterFirst(stR_AfterFirst,parent_1,input_a_1,input_b_1,m1_1,m2_1)
+) | (
+    {20}!
+    {21}get tAfterFirst(stL_AfterFirst: bitstring,parent_2: bitstring,input_a_2: bitstring,input_b_2: bitstring,m1_2: bitstring,m2_2: bitstring) in
+    {22}new rid_rEncrypt2: bitstring;
+    {23}event eDistinctFact(rid_rEncrypt2,(stL_AfterFirst,(parent_2,(input_a_2,(input_b_2,(m1_2,m2_2))))));
+    {24}event eRequestState(vclient,vzero);
+    {25}event eContextStep(key(kdf(parent_2,xn(input_a_2,input_b_2)),vserver),nce(vserver,succ(vzero),civ(kdf(parent_2,xn(input_a_2,input_b_2)))));
+    {26}event eAeadUse(key(kdf(parent_2,xn(input_a_2,input_b_2)),vserver),nce(vserver,succ(vzero),civ(kdf(parent_2,xn(input_a_2,input_b_2)))),m2_2);
+    {27}event eNormal
+)
+
+-- Restriction event(eInit(rid_i))@i && event(eInit(rid_j))@j ==> rid_i = rid_j encoded as event(eInit(rid_i)) && event(eInit(rid_j)) ==> rid_i = rid_j in process 0.
+-- Restriction event(eDistinctFact(rid_i,x))@i && event(eDistinctFact(rid_j,x))@j ==> rid_i = rid_j encoded as event(eDistinctFact(rid_i,x)) && event(eDistinctFact(rid_j,x)) ==> rid_i = rid_j in process 0.
+-- Query not (event(eAeadUse(k,n,x))@i && event(eAeadUse(k,n,y))@j && x ≠ y) encoded as not (event(eAeadUse(k,n,x)) && event(eAeadUse(k,n,y)) && x ≠ y) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query not (event(eAeadUse(k,n,x))@i && event(eAeadUse(k,n,y))@j && x ≠ y)
+Removing redudant clauses.
+Removing subsumed clauses modulo the equational theory.
+Starting verification.
+RESULT not (event(eAeadUse(k,n,x))@i && event(eAeadUse(k,n,y))@j && x ≠ y) is true.
+
+--------------------------------------------------------------
+Verification summary:
+
+Query(ies):
+ - Query not (event(eAeadUse(k,n,x))@i && event(eAeadUse(k,n,y))@j && x ≠ y) is true.
+Associated restriction(s):
+ - Restriction event(eInit(rid_i))@i && event(eInit(rid_j))@j ==> rid_i = rid_j encoded as event(eInit(rid_i)) && event(eInit(rid_j)) ==> rid_i = rid_j in process 0.
+ - Restriction event(eDistinctFact(rid_i,x))@i && event(eDistinctFact(rid_j,x))@j ==> rid_i = rid_j encoded as event(eDistinctFact(rid_i,x)) && event(eDistinctFact(rid_j,x)) ==> rid_i = rid_j in process 0.
+
+--------------------------------------------------------------
+

@@ -1,0 +1,1 @@
+["tamarin-prover", "+RTS", "-N1", "-M768m", "-RTS", "-d=0", "--prove=rb3_same_own_reachable", "/work/inputs/rb3_action_order.spthy"]

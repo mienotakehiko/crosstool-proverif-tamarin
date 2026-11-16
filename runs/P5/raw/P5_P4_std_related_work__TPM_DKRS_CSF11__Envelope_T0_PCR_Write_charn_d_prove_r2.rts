@@ -1,0 +1,25 @@
+'tamarin-prover' '--with-maude=maude' '--derivcheck-timeout=0' '--prove=PCR_Write_charn' 'corpus/related_work__TPM_DKRS_CSF11__Envelope.spthy' +RTS '-N' '-M56g' '-A64m' '-qg' '-N4' '-sresults/out/P5_P4_std_related_work__TPM_DKRS_CSF11__Envelope_T0_PCR_Write_charn_d_prove_r2.rts' 
+     745,610,704 bytes allocated in the heap
+       6,062,880 bytes copied during GC
+       4,462,520 bytes maximum residency (2 sample(s))
+          92,232 bytes maximum slop
+             271 MiB total memory in use (0 MiB lost due to fragmentation)
+
+                                     Tot time (elapsed)  Avg pause  Max pause
+  Gen  0         1 colls,     0 par    0.000s   0.004s     0.0044s    0.0044s
+  Gen  1         2 colls,     0 par    0.011s   0.011s     0.0056s    0.0110s
+
+  TASKS: 10 (1 bound, 9 peak workers (9 total), using -N4)
+
+  SPARKS: 256 (135 converted, 0 overflowed, 0 dud, 9 GC'd, 112 fizzled)
+
+  INIT    time    0.004s  (  0.003s elapsed)
+  MUT     time    0.392s  (  0.175s elapsed)
+  GC      time    0.011s  (  0.016s elapsed)
+  EXIT    time    0.001s  (  0.006s elapsed)
+  Total   time    0.408s  (  0.200s elapsed)
+
+  Alloc rate    1,900,351,988 bytes per MUT second
+
+  Productivity  96.2% of total user, 87.6% of total elapsed
+

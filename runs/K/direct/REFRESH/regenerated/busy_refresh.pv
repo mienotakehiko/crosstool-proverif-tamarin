@@ -1,0 +1,42 @@
+(* Generated busy_refresh case. CTX_TEMP usability is a local premise. *)
+free ch_BusyUnusable, ch_BeforeSnapshot, ch_BusyActive: channel [private].
+fun tempctx(bitstring, bitstring): bitstring.
+
+event RefreshBefore(bitstring, bitstring, bitstring).
+event RefreshInstalled(bitstring, bitstring, bitstring).
+event RefreshRead(bitstring, bitstring, bitstring, bitstring, bitstring, bitstring).
+
+query b:bitstring, t0:bitstring, x0:bitstring, p:bitstring, t:bitstring, x:bitstring;
+  event(RefreshRead(b,t0,x0,p,t,x)).
+
+query b:bitstring, t0:bitstring, x0:bitstring, p:bitstring, t:bitstring, x:bitstring;
+  event(RefreshRead(b,t0,x0,p,t,x)) ==> event(RefreshBefore(b,t0,x0)) && event(RefreshInstalled(p,t,x)) && p = b && t = tempctx(p,x).
+
+query b:bitstring, t:bitstring, x0:bitstring, p:bitstring, x:bitstring;
+  event(RefreshRead(b,t,x0,p,t,x)).
+
+query b:bitstring, t0:bitstring, x:bitstring, p:bitstring, t:bitstring;
+  event(RefreshRead(b,t0,x,p,t,x)).
+
+process
+  new initial_parent:bitstring;
+  new initial_pair:bitstring;
+  event RefreshBefore(initial_parent,tempctx(initial_parent,initial_pair),initial_pair);
+  (
+    (out(ch_BusyUnusable,(initial_parent,tempctx(initial_parent,initial_pair),initial_pair));
+     0)
+    |
+    (out(ch_BeforeSnapshot,(initial_parent,tempctx(initial_parent,initial_pair),initial_pair));
+     0)
+    |
+    (in(ch_BusyUnusable,(parent:bitstring,previous_temp:bitstring,previous_pair:bitstring));
+     new fresh_pair:bitstring;
+     event RefreshInstalled(parent,tempctx(parent,fresh_pair),fresh_pair);
+     out(ch_BusyActive,(parent,tempctx(parent,fresh_pair),fresh_pair));
+     0)
+    |
+    (in(ch_BeforeSnapshot,(b:bitstring,t0:bitstring,x0:bitstring));
+     in(ch_BusyActive,(p:bitstring,t:bitstring,x:bitstring));
+     event RefreshRead(b,t0,x0,p,t,x);
+     0)
+  )

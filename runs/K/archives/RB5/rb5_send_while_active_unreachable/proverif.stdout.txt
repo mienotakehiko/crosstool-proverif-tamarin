@@ -1,0 +1,77 @@
+Linear part: No equation.
+Convergent part:
+fst((x_1,x_2)) = x_1
+snd((x_1,x_2)) = x_2
+Completing equations...
+Completed equations:
+snd((x_1,x_2)) = x_2
+fst((x_1,x_2)) = x_1
+Process 0 (that is, the initial process):
+(
+    {1}!
+    {2}new rid_rInit: bitstring;
+    {3}new stR_Execution: bitstring;
+    {4}new initial_sid: bitstring;
+    {5}event eInit(rid_rInit);
+    {6}event eKudosStart(initial_sid);
+    {7}insert tExecution(stR_Execution,initial_sid,vphase_active,vno_outcome)
+) | (
+    {8}!
+    {9}get tExecution(stL_Execution: bitstring,asid: bitstring,=vphase_active,=vno_outcome) in
+    {10}new rid_rCommitUpdate: bitstring;
+    {11}new stR_Execution_1: bitstring;
+    {12}event eDistinctFact(rid_rCommitUpdate,(stL_Execution,(asid,(vphase_active,vno_outcome))));
+    {13}event eKudosCommit(asid);
+    {14}insert tExecution(stR_Execution_1,asid,vphase_closed,voutcome_commit)
+) | (
+    {15}!
+    {16}get tExecution(stL_Execution_1: bitstring,asid_1: bitstring,=vphase_active,=vno_outcome) in
+    {17}new rid_rAbortUpdate: bitstring;
+    {18}new stR_Execution_2: bitstring;
+    {19}event eDistinctFact(rid_rAbortUpdate,(stL_Execution_1,(asid_1,(vphase_active,vno_outcome))));
+    {20}event eKudosAbort(asid_1);
+    {21}insert tExecution(stR_Execution_2,asid_1,vphase_closed,voutcome_abort)
+) | (
+    {22}!
+    {23}get tExecution(stL_Execution_2: bitstring,asid_2: bitstring,aphase: bitstring,outcome: bitstring) in
+    {24}new rid_rCheckAppSend: bitstring;
+    {25}new stR_AppCheck: bitstring;
+    {26}event eDistinctFact(rid_rCheckAppSend,(stL_Execution_2,(asid_2,(aphase,outcome))));
+    {27}event eAppSendChecked(asid_2,aphase,outcome);
+    {28}insert tAppCheck(stR_AppCheck,asid_2,aphase,outcome)
+) | (
+    {29}!
+    {30}get tAppCheck(stL_AppCheck: bitstring,asid_3: bitstring,=vphase_active,=vno_outcome) in
+    {31}new rid_rBlockAppSend: bitstring;
+    {32}event eDistinctFact(rid_rBlockAppSend,(stL_AppCheck,(asid_3,(vphase_active,vno_outcome))));
+    {33}event eAppSendBlocked(asid_3)
+) | (
+    {34}!
+    {35}get tAppCheck(stL_AppCheck_1: bitstring,asid_4: bitstring,=vphase_closed,outcome_1: bitstring) in
+    {36}new rid_rAllowAppSend: bitstring;
+    {37}event eDistinctFact(rid_rAllowAppSend,(stL_AppCheck_1,(asid_4,(vphase_closed,outcome_1))));
+    {38}event eAppSend(asid_4,vphase_closed,outcome_1)
+)
+
+-- Restriction event(eInit(rid_i))@i && event(eInit(rid_j))@j ==> rid_i = rid_j encoded as event(eInit(rid_i)) && event(eInit(rid_j)) ==> rid_i = rid_j in process 0.
+-- Restriction event(eDistinctFact(rid_i,x))@i && event(eDistinctFact(rid_j,x))@j ==> rid_i = rid_j encoded as event(eDistinctFact(rid_i,x)) && event(eDistinctFact(rid_j,x)) ==> rid_i = rid_j in process 0.
+-- Query not event(eAppSend(asid_5,vphase_active[],outcome_2))@k encoded as not event(eAppSend(asid_5,vphase_active[],outcome_2)) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query not event(eAppSend(asid_5,vphase_active[],outcome_2))@k
+Removing redudant clauses.
+Removing subsumed clauses modulo the equational theory.
+Starting verification.
+RESULT not event(eAppSend(asid_5,vphase_active[],outcome_2))@k is true.
+
+--------------------------------------------------------------
+Verification summary:
+
+Query(ies):
+ - Query not event(eAppSend(asid_5,vphase_active[],outcome_2))@k is true.
+Associated restriction(s):
+ - Restriction event(eInit(rid_i))@i && event(eInit(rid_j))@j ==> rid_i = rid_j encoded as event(eInit(rid_i)) && event(eInit(rid_j)) ==> rid_i = rid_j in process 0.
+ - Restriction event(eDistinctFact(rid_i,x))@i && event(eDistinctFact(rid_j,x))@j ==> rid_i = rid_j encoded as event(eDistinctFact(rid_i,x)) && event(eDistinctFact(rid_j,x)) ==> rid_i = rid_j in process 0.
+
+--------------------------------------------------------------
+

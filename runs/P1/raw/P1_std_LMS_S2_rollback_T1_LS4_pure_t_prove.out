@@ -1,0 +1,3570 @@
+maude tool: 'maude'
+ checking version: 3.5.1. OK.
+ checking installation: OK.
+[Theory LMS_S2_rollback] Theory loaded
+[Theory LMS_S2_rollback] Theory translated
+[Theory LMS_S2_rollback] Theory closed
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( I, q, a1 ) @ #i
+1: Sign( I, q, a2 ) @ #j
+2:  (#i < #j)  ∥ (#j < #i)
+3:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+4:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+1
+2
+3
+4
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+[Saturating Sources] Step 1 (Max 5)
+[Saturating Sources] Done
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( I, z, a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: St( I, z ) ▶₀ #i
+5: !Sk( I, sd ) ▶₁ #i
+6: !KU( s(z) ) @ #vk.2
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+4
+0
+1
+2
+3
+5
+6
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( I, z, a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: St( I, z ) ▶₀ #i
+5: !Sk( I, sd ) ▶₁ #i
+6: !KU( s(s(z)) ) @ #vk.2
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+4
+0
+1
+2
+3
+5
+6
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( I, z, a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: St( I, z ) ▶₀ #i
+5: !Sk( I, sd ) ▶₁ #i
+6: !KU( s(s(s(z))) ) @ #vk.2
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+4
+0
+1
+2
+3
+5
+6
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( I, z, a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: St( I, z ) ▶₀ #i
+5: !Sk( I, sd ) ▶₁ #i
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+4
+0
+1
+2
+3
+5
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( I, s(z), a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: St( I, s(z) ) ▶₀ #i
+5: !Sk( I, sd ) ▶₁ #i
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+4
+0
+1
+2
+3
+5
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, z, a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( ~I, sd ) ▶₁ #i
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+1
+2
+3
+4
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( I, s(z), a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: St( I, s(z) ) ▶₀ #i
+5: !Sk( I, sd ) ▶₁ #i
+6: !KU( s(s(z)) ) @ #vk.2
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+4
+0
+1
+2
+3
+5
+6
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( I, s(z), a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: St( I, s(z) ) ▶₀ #i
+5: !Sk( I, sd ) ▶₁ #i
+6: !KU( s(z) ) @ #vk.2
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+4
+0
+1
+2
+3
+5
+6
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( I, z, a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( I, sd ) ▶₁ #i
+5: St( I, q ) ▶₀ #vr
+6: !Snap( I, z ) ▶₁ #vr
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+5
+6
+0
+1
+2
+3
+4
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( I, s(z), a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: St( I, s(z) ) ▶₀ #i
+5: !Sk( I, sd ) ▶₁ #i
+6: !KU( s(s(s(z))) ) @ #vk.2
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+4
+0
+1
+2
+3
+5
+6
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, z, a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( ~I, sd ) ▶₁ #i
+5: !KU( s(z) ) @ #vk.2
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+1
+2
+3
+4
+5
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, z, a2 ) @ #j
+1: !Sk( ~I, sd ) ▶₁ #i
+2: !Snap( ~I, z ) ▶₁ #vr
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+2
+0
+1
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, z, a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( ~I, sd ) ▶₁ #i
+5: !Snap( ~I, z ) ▶₁ #vr
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+5
+0
+1
+2
+3
+4
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, z, a2 ) @ #j
+1: !Sk( ~I, sd ) ▶₁ #i
+2: !Snap( ~I, z ) ▶₁ #vr
+3: !KU( s(z) ) @ #vk.4
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+2
+0
+1
+3
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( I, z, a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( I, sd ) ▶₁ #i
+5: !KU( s(z) ) @ #vk.2
+6: St( I, q ) ▶₀ #vr
+7: !Snap( I, z ) ▶₁ #vr
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+6
+7
+0
+1
+2
+3
+4
+5
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0:  (#i < #j)  ∥ (#j < #i)
+1:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+2:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+3: !Sk( ~I, sd ) ▶₁ #i
+4: !KU( s(z) ) @ #vk.2
+5: St( ~I, z ) ▶₀ #j
+6: !Sk( ~I, sd.1 ) ▶₁ #j
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+5
+0
+1
+2
+3
+4
+6
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0:  (#i < #j)  ∥ (#j < #i)
+1: !Sk( ~I, sd ) ▶₁ #i
+2: !KU( s(z) ) @ #vk.3
+3: St( ~I, z ) ▶₀ #j
+4: !Sk( ~I, sd.1 ) ▶₁ #j
+5:  (last(#i))  ∥ (last(#j))
+6:  (last(#j))  ∥ (last(#i))
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+3
+0
+1
+2
+4
+5
+6
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0:  (#i < #j)  ∥ (#j < #i)
+1: !Sk( ~I, sd ) ▶₁ #i
+2: !KU( s(z) ) @ #vk.3
+3: St( ~I, z ) ▶₀ #j
+4: !Sk( ~I, sd.1 ) ▶₁ #j
+5: !KU( s(s(z)) ) @ #vk.4
+6:  (last(#i))  ∥ (last(#j))
+7:  (last(#j))  ∥ (last(#i))
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+3
+0
+1
+2
+4
+5
+6
+7
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0:  (#i < #j)  ∥ (#j < #i)
+1: !Sk( ~I, sd ) ▶₁ #i
+2: !KU( s(z) ) @ #vk.3
+3: St( ~I, z ) ▶₀ #j
+4: !Sk( ~I, sd.1 ) ▶₁ #j
+5: !KU( s(s(s(z))) ) @ #vk.4
+6:  (last(#i))  ∥ (last(#j))
+7:  (last(#j))  ∥ (last(#i))
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+3
+0
+1
+2
+4
+5
+6
+7
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, z, a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( ~I, sd ) ▶₁ #i
+5: !KU( s(s(z)) ) @ #vk.2
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+1
+2
+3
+4
+5
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, z, a2 ) @ #j
+1: !Sk( ~I, sd ) ▶₁ #i
+2: !KU( s(z) ) @ #vk.2
+3: !Snap( ~I, z ) ▶₁ #vr
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+3
+0
+1
+2
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, z, a2 ) @ #j
+1: !Sk( ~I, sd ) ▶₁ #i
+2: !KU( s(z) ) @ #vk.3
+3: !Snap( ~I, z ) ▶₁ #vr
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+3
+0
+1
+2
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, z, a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( ~I, sd ) ▶₁ #i
+5: !KU( s(z) ) @ #vk.2
+6: !Snap( ~I, z ) ▶₁ #vr
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+6
+0
+1
+2
+3
+4
+5
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, z, a2 ) @ #j
+1: !Sk( ~I, sd ) ▶₁ #i
+2: !KU( s(z) ) @ #vk.3
+3: !Snap( ~I, z ) ▶₁ #vr
+4: !KU( s(s(z)) ) @ #vk.4
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+3
+0
+1
+2
+4
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, z, a2 ) @ #j
+1: !Sk( ~I, sd ) ▶₁ #i
+2: !KU( s(z) ) @ #vk.3
+3: !Snap( ~I, z ) ▶₁ #vr
+4: !KU( s(s(s(z))) ) @ #vk.4
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+3
+0
+1
+2
+4
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, z, a2 ) @ #j
+1: !Sk( ~I, sd ) ▶₁ #i
+2: !KU( s(z) ) @ #vk.3
+3: !Snap( ~I, z ) ▶₁ #vr
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+3
+0
+1
+2
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( I, z, a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( I, sd ) ▶₁ #i
+5: !KU( s(s(z)) ) @ #vk.2
+6: St( I, q ) ▶₀ #vr
+7: !Snap( I, z ) ▶₁ #vr
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+6
+7
+0
+1
+2
+3
+4
+5
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, z, a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( ~I, sd ) ▶₁ #i
+5: !KU( s(s(s(z))) ) @ #vk.2
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+1
+2
+3
+4
+5
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, z, a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( ~I, sd ) ▶₁ #i
+5: !KU( s(s(z)) ) @ #vk.2
+6: !Snap( ~I, z ) ▶₁ #vr
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+6
+0
+1
+2
+3
+4
+5
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, z, a2 ) @ #j
+1: !Sk( ~I, sd ) ▶₁ #i
+2: !KU( s(s(z)) ) @ #vk.3
+3: !Snap( ~I, z ) ▶₁ #vr
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+3
+0
+1
+2
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, z, a2 ) @ #j
+1: !Sk( ~I, sd ) ▶₁ #i
+2: !KU( s(s(z)) ) @ #vk.3
+3: !Snap( ~I, z ) ▶₁ #vr
+4: !KU( s(z) ) @ #vk.4
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+3
+0
+1
+2
+4
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( I, z, a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( I, sd ) ▶₁ #i
+5: !KU( s(s(s(z))) ) @ #vk.2
+6: St( I, q ) ▶₀ #vr
+7: !Snap( I, z ) ▶₁ #vr
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+6
+7
+0
+1
+2
+3
+4
+5
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0:  (#i < #j)  ∥ (#j < #i)
+1: !Sk( ~I, sd ) ▶₁ #i
+2: !KU( s(s(s(z))) ) @ #vk.3
+3: St( ~I, z ) ▶₀ #j
+4: !Sk( ~I, sd.1 ) ▶₁ #j
+5:  (last(#i))  ∥ (last(#j))
+6:  (last(#j))  ∥ (last(#i))
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+3
+0
+1
+2
+4
+5
+6
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0:  (#i < #j)  ∥ (#j < #i)
+1: !Sk( ~I, sd ) ▶₁ #i
+2: !KU( s(s(s(z))) ) @ #vk.3
+3: St( ~I, z ) ▶₀ #j
+4: !Sk( ~I, sd.1 ) ▶₁ #j
+5: !KU( s(z) ) @ #vk.4
+6:  (last(#i))  ∥ (last(#j))
+7:  (last(#j))  ∥ (last(#i))
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+3
+0
+1
+2
+4
+5
+6
+7
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0:  (#i < #j)  ∥ (#j < #i)
+1: !Sk( ~I, sd ) ▶₁ #i
+2: !KU( s(s(s(z))) ) @ #vk.3
+3: St( ~I, z ) ▶₀ #j
+4: !Sk( ~I, sd.1 ) ▶₁ #j
+5: !KU( s(s(z)) ) @ #vk.4
+6:  (last(#i))  ∥ (last(#j))
+7:  (last(#j))  ∥ (last(#i))
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+3
+0
+1
+2
+4
+5
+6
+7
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0:  (#i < #j)  ∥ (#j < #i)
+1:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+2:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+3: !Sk( ~I, sd ) ▶₁ #i
+4: !KU( s(s(s(z))) ) @ #vk.2
+5: St( ~I, z ) ▶₀ #j
+6: !Sk( ~I, sd.1 ) ▶₁ #j
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+5
+0
+1
+2
+3
+4
+6
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( I, s(z), a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( I, sd ) ▶₁ #i
+5: St( I, q ) ▶₀ #vr
+6: !Snap( I, s(z) ) ▶₁ #vr
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+5
+6
+0
+1
+2
+3
+4
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, z, a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( ~I, sd ) ▶₁ #i
+5: !KU( s(s(s(z))) ) @ #vk.2
+6: !Snap( ~I, z ) ▶₁ #vr
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+6
+0
+1
+2
+3
+4
+5
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, z, a2 ) @ #j
+1: !Sk( ~I, sd ) ▶₁ #i
+2: !KU( s(s(s(z))) ) @ #vk.3
+3: !Snap( ~I, z ) ▶₁ #vr
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+3
+0
+1
+2
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, z, a2 ) @ #j
+1: !Sk( ~I, sd ) ▶₁ #i
+2: !KU( s(s(s(z))) ) @ #vk.3
+3: !Snap( ~I, z ) ▶₁ #vr
+4: !KU( s(z) ) @ #vk.4
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+3
+0
+1
+2
+4
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, z, a2 ) @ #j
+1: !Sk( ~I, sd ) ▶₁ #i
+2: !KU( s(s(s(z))) ) @ #vk.3
+3: !Snap( ~I, z ) ▶₁ #vr
+4: !KU( s(s(z)) ) @ #vk.4
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+3
+0
+1
+2
+4
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, z, a2 ) @ #j
+1: !Sk( ~I, sd ) ▶₁ #i
+2: !KU( s(s(s(z))) ) @ #vk.2
+3: !Snap( ~I, z ) ▶₁ #vr
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+3
+0
+1
+2
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, z, a2 ) @ #j
+1: !Sk( ~I, sd ) ▶₁ #i
+2: !KU( s(s(s(z))) ) @ #vk.3
+3: !Snap( ~I, z ) ▶₁ #vr
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+3
+0
+1
+2
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, s(z), a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( ~I, sd ) ▶₁ #i
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+1
+2
+3
+4
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, s(z), a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( ~I, sd ) ▶₁ #i
+5: St( ~I, q ) ▶₀ #vr.1
+6: !Snap( ~I, z ) ▶₁ #vr.1
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+5
+6
+0
+1
+2
+3
+4
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, s(z), a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( ~I, sd ) ▶₁ #i
+5: !KU( s(z) ) @ #vk.4
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+1
+2
+3
+4
+5
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, s(z), a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( ~I, sd ) ▶₁ #i
+5: !KU( s(z) ) @ #vk.4
+6: St( ~I, q ) ▶₀ #vr.1
+7: !Snap( ~I, z ) ▶₁ #vr.1
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+6
+7
+0
+1
+2
+3
+4
+5
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, s(z), a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( ~I, sd ) ▶₁ #i
+5: !KU( s(s(z)) ) @ #vk.4
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+1
+2
+3
+4
+5
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, s(z), a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( ~I, sd ) ▶₁ #i
+5: !KU( s(s(z)) ) @ #vk.4
+6: St( ~I, q ) ▶₀ #vr.1
+7: !Snap( ~I, z ) ▶₁ #vr.1
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+6
+7
+0
+1
+2
+3
+4
+5
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, s(z), a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( ~I, sd ) ▶₁ #i
+5: !KU( s(s(s(z))) ) @ #vk.4
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+1
+2
+3
+4
+5
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, s(z), a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( ~I, sd ) ▶₁ #i
+5: !KU( s(s(s(z))) ) @ #vk.4
+6: St( ~I, q ) ▶₀ #vr.1
+7: !Snap( ~I, z ) ▶₁ #vr.1
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+6
+7
+0
+1
+2
+3
+4
+5
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, s(z), a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( ~I, sd ) ▶₁ #i
+5: !Snap( ~I, z ) ▶₁ #vr.1
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+5
+0
+1
+2
+3
+4
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, s(z), a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( ~I, sd ) ▶₁ #i
+5: !KU( s(s(z)) ) @ #vk.4
+6: !Snap( ~I, z ) ▶₁ #vr.1
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+6
+0
+1
+2
+3
+4
+5
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0:  (#i < #j)  ∥ (#j < #i)
+1:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+2:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+3: !Sk( ~I, sd ) ▶₁ #i
+4: !KU( s(s(s(z))) ) @ #vk.4
+5: St( ~I, s(z) ) ▶₀ #j
+6: !Sk( ~I, sd.1 ) ▶₁ #j
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+5
+0
+1
+2
+3
+4
+6
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0:  (#i < #j)  ∥ (#j < #i)
+1: !Sk( ~I, sd ) ▶₁ #i
+2: !KU( s(s(s(z))) ) @ #vk.5
+3: St( ~I, s(z) ) ▶₀ #j
+4: !Sk( ~I, sd.1 ) ▶₁ #j
+5: !KU( s(z) ) @ #vk.6
+6:  (last(#i))  ∥ (last(#j))
+7:  (last(#j))  ∥ (last(#i))
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+3
+0
+1
+2
+4
+5
+6
+7
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0:  (#i < #j)  ∥ (#j < #i)
+1: !Sk( ~I, sd ) ▶₁ #i
+2: !KU( s(s(s(z))) ) @ #vk.5
+3: St( ~I, s(z) ) ▶₀ #j
+4: !Sk( ~I, sd.1 ) ▶₁ #j
+5: !KU( s(s(z)) ) @ #vk.6
+6:  (last(#i))  ∥ (last(#j))
+7:  (last(#j))  ∥ (last(#i))
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+3
+0
+1
+2
+4
+5
+6
+7
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( I, s(z), a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( I, sd ) ▶₁ #i
+5: !KU( s(z) ) @ #vk.2
+6: St( I, q ) ▶₀ #vr
+7: !Snap( I, s(z) ) ▶₁ #vr
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+6
+7
+0
+1
+2
+3
+4
+5
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, s(z), a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( ~I, sd ) ▶₁ #i
+5: !KU( s(s(s(z))) ) @ #vk.4
+6: !Snap( ~I, z ) ▶₁ #vr.1
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+6
+0
+1
+2
+3
+4
+5
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, s(z), a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( ~I, sd ) ▶₁ #i
+5: !KU( s(z) ) @ #vk.3
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+1
+2
+3
+4
+5
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, s(z), a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( ~I, sd ) ▶₁ #i
+5: !KU( s(z) ) @ #vk.2
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+1
+2
+3
+4
+5
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, s(z), a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( ~I, sd ) ▶₁ #i
+5: !KU( s(z) ) @ #vk.3
+6: St( ~I, q ) ▶₀ #vr.1
+7: !Snap( ~I, z ) ▶₁ #vr.1
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+6
+7
+0
+1
+2
+3
+4
+5
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, s(z), a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( ~I, sd ) ▶₁ #i
+5: !KU( s(z) ) @ #vk.2
+6: St( ~I, q ) ▶₀ #vr.1
+7: !Snap( ~I, z ) ▶₁ #vr.1
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+6
+7
+0
+1
+2
+3
+4
+5
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, s(z), a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( ~I, sd ) ▶₁ #i
+5: !KU( s(z) ) @ #vk.3
+6: !KU( s(s(z)) ) @ #vk.4
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+1
+2
+3
+4
+5
+6
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, s(z), a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( ~I, sd ) ▶₁ #i
+5: !KU( s(z) ) @ #vk.3
+6: !KU( s(s(z)) ) @ #vk.4
+7: St( ~I, q ) ▶₀ #vr.1
+8: !Snap( ~I, z ) ▶₁ #vr.1
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+7
+8
+0
+1
+2
+3
+4
+5
+6
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, s(z), a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( ~I, sd ) ▶₁ #i
+5: !KU( s(z) ) @ #vk.3
+6: !KU( s(s(s(z))) ) @ #vk.4
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+1
+2
+3
+4
+5
+6
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, s(z), a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( ~I, sd ) ▶₁ #i
+5: !KU( s(z) ) @ #vk.3
+6: !KU( s(s(s(z))) ) @ #vk.4
+7: St( ~I, q ) ▶₀ #vr.1
+8: !Snap( ~I, z ) ▶₁ #vr.1
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+7
+8
+0
+1
+2
+3
+4
+5
+6
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, s(z), a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( ~I, sd ) ▶₁ #i
+5: !KU( s(z) ) @ #vk.3
+6: !Snap( ~I, z ) ▶₁ #vr.1
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+6
+0
+1
+2
+3
+4
+5
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, s(z), a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( ~I, sd ) ▶₁ #i
+5: !KU( s(z) ) @ #vk.3
+6: !KU( s(s(z)) ) @ #vk.4
+7: !Snap( ~I, z ) ▶₁ #vr.1
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+7
+0
+1
+2
+3
+4
+5
+6
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0:  (#i < #j)  ∥ (#j < #i)
+1: !Sk( ~I, sd ) ▶₁ #i
+2: !KU( s(z) ) @ #vk.4
+3: !KU( s(s(s(z))) ) @ #vk.5
+4: St( ~I, s(z) ) ▶₀ #j
+5: !Sk( ~I, sd.1 ) ▶₁ #j
+6:  (last(#i))  ∥ (last(#j))
+7:  (last(#j))  ∥ (last(#i))
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+4
+0
+1
+2
+3
+5
+6
+7
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0:  (#i < #j)  ∥ (#j < #i)
+1:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+2:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+3: !Sk( ~I, sd ) ▶₁ #i
+4: !KU( s(z) ) @ #vk.3
+5: !KU( s(s(s(z))) ) @ #vk.4
+6: St( ~I, s(z) ) ▶₀ #j
+7: !Sk( ~I, sd.1 ) ▶₁ #j
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+6
+0
+1
+2
+3
+4
+5
+7
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0:  (#i < #j)  ∥ (#j < #i)
+1: !Sk( ~I, sd ) ▶₁ #i
+2: !KU( s(z) ) @ #vk.4
+3: !KU( s(s(s(z))) ) @ #vk.5
+4: St( ~I, s(z) ) ▶₀ #j
+5: !Sk( ~I, sd.1 ) ▶₁ #j
+6: !KU( s(s(z)) ) @ #vk.6
+7:  (last(#i))  ∥ (last(#j))
+8:  (last(#j))  ∥ (last(#i))
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+4
+0
+1
+2
+3
+5
+6
+7
+8
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( I, s(z), a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( I, sd ) ▶₁ #i
+5: !KU( s(s(z)) ) @ #vk.2
+6: St( I, q ) ▶₀ #vr
+7: !Snap( I, s(z) ) ▶₁ #vr
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+6
+7
+0
+1
+2
+3
+4
+5
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, s(z), a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( ~I, sd ) ▶₁ #i
+5: !KU( s(z) ) @ #vk.3
+6: !KU( s(s(s(z))) ) @ #vk.4
+7: !Snap( ~I, z ) ▶₁ #vr.1
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+7
+0
+1
+2
+3
+4
+5
+6
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, s(z), a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( ~I, sd ) ▶₁ #i
+5: !KU( s(s(z)) ) @ #vk.3
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+1
+2
+3
+4
+5
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, s(z), a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( ~I, sd ) ▶₁ #i
+5: !KU( s(s(z)) ) @ #vk.3
+6: !KU( s(z) ) @ #vk.4
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+1
+2
+3
+4
+5
+6
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, s(z), a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( ~I, sd ) ▶₁ #i
+5: !KU( s(s(z)) ) @ #vk.3
+6: St( ~I, q ) ▶₀ #vr.1
+7: !Snap( ~I, z ) ▶₁ #vr.1
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+6
+7
+0
+1
+2
+3
+4
+5
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, s(z), a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( ~I, sd ) ▶₁ #i
+5: !KU( s(s(z)) ) @ #vk.3
+6: !KU( s(z) ) @ #vk.4
+7: St( ~I, q ) ▶₀ #vr.1
+8: !Snap( ~I, z ) ▶₁ #vr.1
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+7
+8
+0
+1
+2
+3
+4
+5
+6
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, s(z), a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( ~I, sd ) ▶₁ #i
+5: !KU( s(s(z)) ) @ #vk.2
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+1
+2
+3
+4
+5
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, s(z), a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( ~I, sd ) ▶₁ #i
+5: !KU( s(s(z)) ) @ #vk.2
+6: St( ~I, q ) ▶₀ #vr.1
+7: !Snap( ~I, z ) ▶₁ #vr.1
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+6
+7
+0
+1
+2
+3
+4
+5
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, s(z), a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( ~I, sd ) ▶₁ #i
+5: !KU( s(s(z)) ) @ #vk.3
+6: !KU( s(s(s(z))) ) @ #vk.4
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+1
+2
+3
+4
+5
+6
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, s(z), a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( ~I, sd ) ▶₁ #i
+5: !KU( s(s(z)) ) @ #vk.3
+6: !KU( s(s(s(z))) ) @ #vk.4
+7: St( ~I, q ) ▶₀ #vr.1
+8: !Snap( ~I, z ) ▶₁ #vr.1
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+7
+8
+0
+1
+2
+3
+4
+5
+6
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, s(z), a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( ~I, sd ) ▶₁ #i
+5: !KU( s(s(z)) ) @ #vk.3
+6: !Snap( ~I, z ) ▶₁ #vr.1
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+6
+0
+1
+2
+3
+4
+5
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0:  (#i < #j)  ∥ (#j < #i)
+1: !Sk( ~I, sd ) ▶₁ #i
+2: !KU( s(s(z)) ) @ #vk.4
+3: !KU( s(z) ) @ #vk.5
+4: St( ~I, s(z) ) ▶₀ #j
+5: !Sk( ~I, sd.1 ) ▶₁ #j
+6:  (last(#i))  ∥ (last(#j))
+7:  (last(#j))  ∥ (last(#i))
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+4
+0
+1
+2
+3
+5
+6
+7
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0:  (#i < #j)  ∥ (#j < #i)
+1: !Sk( ~I, sd ) ▶₁ #i
+2: !KU( s(s(z)) ) @ #vk.3
+3: !KU( s(z) ) @ #vk.4
+4: St( ~I, s(z) ) ▶₀ #j
+5: !Sk( ~I, sd.1 ) ▶₁ #j
+6:  (last(#i))  ∥ (last(#j))
+7:  (last(#j))  ∥ (last(#i))
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+4
+0
+1
+2
+3
+5
+6
+7
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, s(z), a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( ~I, sd ) ▶₁ #i
+5: !KU( s(s(z)) ) @ #vk.2
+6: !Snap( ~I, z ) ▶₁ #vr.1
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+6
+0
+1
+2
+3
+4
+5
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( I, s(z), a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( I, sd ) ▶₁ #i
+5: !KU( s(s(s(z))) ) @ #vk.2
+6: St( I, q ) ▶₀ #vr
+7: !Snap( I, s(z) ) ▶₁ #vr
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+6
+7
+0
+1
+2
+3
+4
+5
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, s(z), a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( ~I, sd ) ▶₁ #i
+5: !KU( s(s(z)) ) @ #vk.3
+6: !KU( s(s(s(z))) ) @ #vk.4
+7: !Snap( ~I, z ) ▶₁ #vr.1
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+7
+0
+1
+2
+3
+4
+5
+6
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, s(z), a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( ~I, sd ) ▶₁ #i
+5: !KU( s(s(s(z))) ) @ #vk.3
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+1
+2
+3
+4
+5
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, s(z), a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( ~I, sd ) ▶₁ #i
+5: !KU( s(s(s(z))) ) @ #vk.3
+6: St( ~I, q ) ▶₀ #vr.1
+7: !Snap( ~I, z ) ▶₁ #vr.1
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+6
+7
+0
+1
+2
+3
+4
+5
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, s(z), a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( ~I, sd ) ▶₁ #i
+5: !KU( s(s(s(z))) ) @ #vk.3
+6: !KU( s(z) ) @ #vk.4
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+1
+2
+3
+4
+5
+6
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, s(z), a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( ~I, sd ) ▶₁ #i
+5: !KU( s(s(s(z))) ) @ #vk.3
+6: !KU( s(z) ) @ #vk.4
+7: St( ~I, q ) ▶₀ #vr.1
+8: !Snap( ~I, z ) ▶₁ #vr.1
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+7
+8
+0
+1
+2
+3
+4
+5
+6
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, s(z), a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( ~I, sd ) ▶₁ #i
+5: !KU( s(s(s(z))) ) @ #vk.3
+6: !KU( s(s(z)) ) @ #vk.4
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+1
+2
+3
+4
+5
+6
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, s(z), a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( ~I, sd ) ▶₁ #i
+5: !KU( s(s(s(z))) ) @ #vk.3
+6: !KU( s(s(z)) ) @ #vk.4
+7: St( ~I, q ) ▶₀ #vr.1
+8: !Snap( ~I, z ) ▶₁ #vr.1
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+7
+8
+0
+1
+2
+3
+4
+5
+6
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, s(z), a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( ~I, sd ) ▶₁ #i
+5: !KU( s(s(s(z))) ) @ #vk.2
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+1
+2
+3
+4
+5
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, s(z), a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( ~I, sd ) ▶₁ #i
+5: !KU( s(s(s(z))) ) @ #vk.2
+6: St( ~I, q ) ▶₀ #vr.1
+7: !Snap( ~I, z ) ▶₁ #vr.1
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+6
+7
+0
+1
+2
+3
+4
+5
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, s(z), a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( ~I, sd ) ▶₁ #i
+5: !KU( s(s(s(z))) ) @ #vk.3
+6: !Snap( ~I, z ) ▶₁ #vr.1
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+6
+0
+1
+2
+3
+4
+5
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, s(z), a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( ~I, sd ) ▶₁ #i
+5: !KU( s(s(s(z))) ) @ #vk.3
+6: !KU( s(s(z)) ) @ #vk.4
+7: !Snap( ~I, z ) ▶₁ #vr.1
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+7
+0
+1
+2
+3
+4
+5
+6
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0:  (#i < #j)  ∥ (#j < #i)
+1: !Sk( ~I, sd ) ▶₁ #i
+2: !KU( s(s(s(z))) ) @ #vk.3
+3: St( ~I, s(z) ) ▶₀ #j
+4: !Sk( ~I, sd.1 ) ▶₁ #j
+5:  (last(#i))  ∥ (last(#j))
+6:  (last(#j))  ∥ (last(#i))
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+3
+0
+1
+2
+4
+5
+6
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0:  (#i < #j)  ∥ (#j < #i)
+1: !Sk( ~I, sd ) ▶₁ #i
+2: !KU( s(s(s(z))) ) @ #vk.3
+3: St( ~I, s(z) ) ▶₀ #j
+4: !Sk( ~I, sd.1 ) ▶₁ #j
+5: !KU( s(z) ) @ #vk.4
+6:  (last(#i))  ∥ (last(#j))
+7:  (last(#j))  ∥ (last(#i))
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+3
+0
+1
+2
+4
+5
+6
+7
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0:  (#i < #j)  ∥ (#j < #i)
+1: !Sk( ~I, sd ) ▶₁ #i
+2: !KU( s(s(s(z))) ) @ #vk.3
+3: St( ~I, s(z) ) ▶₀ #j
+4: !Sk( ~I, sd.1 ) ▶₁ #j
+5: !KU( s(s(z)) ) @ #vk.4
+6:  (last(#i))  ∥ (last(#j))
+7:  (last(#j))  ∥ (last(#i))
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+3
+0
+1
+2
+4
+5
+6
+7
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0:  (#i < #j)  ∥ (#j < #i)
+1:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+2:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+3: !Sk( ~I, sd ) ▶₁ #i
+4: St( ~I, z ) ▶₀ #j
+5: !Sk( ~I, sd.1 ) ▶₁ #j
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+4
+0
+1
+2
+3
+5
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, s(z), a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( ~I, sd ) ▶₁ #i
+5: !KU( s(s(s(z))) ) @ #vk.2
+6: !Snap( ~I, z ) ▶₁ #vr.1
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+6
+0
+1
+2
+3
+4
+5
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0:  (#i < #j)  ∥ (#j < #i)
+1: !Sk( ~I, sd ) ▶₁ #i
+2: St( ~I, z ) ▶₀ #j
+3: !Sk( ~I, sd.1 ) ▶₁ #j
+4: !KU( s(z) ) @ #vk.4
+5:  (last(#i))  ∥ (last(#j))
+6:  (last(#j))  ∥ (last(#i))
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+2
+0
+1
+3
+4
+5
+6
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0:  (#i < #j)  ∥ (#j < #i)
+1: !Sk( ~I, sd ) ▶₁ #i
+2: St( ~I, z ) ▶₀ #j
+3: !Sk( ~I, sd.1 ) ▶₁ #j
+4: !KU( s(s(z)) ) @ #vk.4
+5:  (last(#i))  ∥ (last(#j))
+6:  (last(#j))  ∥ (last(#i))
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+2
+0
+1
+3
+4
+5
+6
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0:  (#i < #j)  ∥ (#j < #i)
+1: !Sk( ~I, sd ) ▶₁ #i
+2: St( ~I, z ) ▶₀ #j
+3: !Sk( ~I, sd.1 ) ▶₁ #j
+4: !KU( s(s(s(z))) ) @ #vk.4
+5:  (last(#i))  ∥ (last(#j))
+6:  (last(#j))  ∥ (last(#i))
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+2
+0
+1
+3
+4
+5
+6
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0:  (#i < #j)  ∥ (#j < #i)
+1:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+2:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+3: !Sk( ~I, sd ) ▶₁ #i
+4: !Sk( ~I, sd.1 ) ▶₁ #j
+5: St( ~I, q ) ▶₀ #vr.1
+6: !Snap( ~I, z ) ▶₁ #vr.1
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+5
+6
+0
+1
+2
+3
+4
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !Sk( ~I, sd.1 ) ▶₁ #j
+1: !Snap( ~I, z ) ▶₁ #vr.1
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+1
+0
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !Sk( ~I, sd.1 ) ▶₁ #j
+1: !Snap( ~I, z ) ▶₁ #vr.1
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+1
+0
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !Sk( ~I, sd.1 ) ▶₁ #j
+1: !Snap( ~I, z ) ▶₁ #vr.1
+2: !KU( s(z) ) @ #vk.4
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+1
+0
+2
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !Sk( ~I, sd.1 ) ▶₁ #j
+1: !Snap( ~I, z ) ▶₁ #vr.1
+2: !KU( s(s(z)) ) @ #vk.4
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+1
+0
+2
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !Sk( ~I, sd.1 ) ▶₁ #j
+1: !Snap( ~I, z ) ▶₁ #vr.1
+2: !KU( s(s(s(z))) ) @ #vk.4
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+1
+0
+2
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !Sk( ~I, sd.1 ) ▶₁ #j
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !Sk( ~I, sd.1 ) ▶₁ #j
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !Sk( ~I, sd.1 ) ▶₁ #j
+1: !KU( s(z) ) @ #vk.4
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+1
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !Sk( ~I, sd.1 ) ▶₁ #j
+1: !KU( s(s(z)) ) @ #vk.4
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+1
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !KU( s(z) ) @ #vk.4
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !Sk( ~I, sd.1 ) ▶₁ #j
+1: !KU( s(s(s(z))) ) @ #vk.4
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+1
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !KU( s(s(z)) ) @ #vk.4
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0:  (#i < #j)  ∥ (#j < #i)
+1: !Sk( ~I, sd ) ▶₁ #i
+2: !Sk( ~I, sd.1 ) ▶₁ #j
+3: !KU( s(z) ) @ #vk.4
+4:  (last(#i))  ∥ (last(#j))
+5:  (last(#j))  ∥ (last(#i))
+6: St( ~I, q ) ▶₀ #vr.1
+7: !Snap( ~I, z ) ▶₁ #vr.1
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+6
+7
+0
+1
+2
+3
+4
+5
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !KU( s(s(s(z))) ) @ #vk.4
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !Sk( ~I, sd.1 ) ▶₁ #j
+1: !KU( s(z) ) @ #vk.4
+2: !Snap( ~I, z ) ▶₁ #vr.1
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+2
+0
+1
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !Sk( ~I, sd.1 ) ▶₁ #j
+1: !KU( s(z) ) @ #vk.4
+2: !Snap( ~I, z ) ▶₁ #vr.1
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+2
+0
+1
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !Sk( ~I, sd.1 ) ▶₁ #j
+1: !KU( s(z) ) @ #vk.4
+2: !Snap( ~I, z ) ▶₁ #vr.1
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+2
+0
+1
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !Sk( ~I, sd.1 ) ▶₁ #j
+1: !KU( s(z) ) @ #vk.5
+2: !Snap( ~I, z ) ▶₁ #vr.1
+3: !KU( s(s(z)) ) @ #vk.6
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+2
+0
+1
+3
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !Sk( ~I, sd.1 ) ▶₁ #j
+1: !KU( s(z) ) @ #vk.4
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+1
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !Sk( ~I, sd.1 ) ▶₁ #j
+1: !KU( s(z) ) @ #vk.5
+2: !Snap( ~I, z ) ▶₁ #vr.1
+3: !KU( s(s(s(z))) ) @ #vk.6
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+2
+0
+1
+3
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !Sk( ~I, sd.1 ) ▶₁ #j
+1: !KU( s(z) ) @ #vk.4
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+1
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !KU( s(z) ) @ #vk.4
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !Sk( ~I, sd.1 ) ▶₁ #j
+1: !KU( s(z) ) @ #vk.4
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+1
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !KU( s(z) ) @ #vk.4
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !Sk( ~I, sd.1 ) ▶₁ #j
+1: !KU( s(z) ) @ #vk.5
+2: !KU( s(s(z)) ) @ #vk.6
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+1
+2
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !KU( s(z) ) @ #vk.4
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !Sk( ~I, sd.1 ) ▶₁ #j
+1: !KU( s(z) ) @ #vk.5
+2: !KU( s(s(s(z))) ) @ #vk.6
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+1
+2
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !KU( s(z) ) @ #vk.5
+1: !KU( s(s(z)) ) @ #vk.6
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+1
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0:  (#i < #j)  ∥ (#j < #i)
+1: !Sk( ~I, sd ) ▶₁ #i
+2: !Sk( ~I, sd.1 ) ▶₁ #j
+3: !KU( s(s(z)) ) @ #vk.4
+4:  (last(#i))  ∥ (last(#j))
+5:  (last(#j))  ∥ (last(#i))
+6: St( ~I, q ) ▶₀ #vr.1
+7: !Snap( ~I, z ) ▶₁ #vr.1
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+6
+7
+0
+1
+2
+3
+4
+5
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !KU( s(z) ) @ #vk.5
+1: !KU( s(s(s(z))) ) @ #vk.6
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+1
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !Sk( ~I, sd.1 ) ▶₁ #j
+1: !KU( s(s(z)) ) @ #vk.4
+2: !Snap( ~I, z ) ▶₁ #vr.1
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+2
+0
+1
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !Sk( ~I, sd.1 ) ▶₁ #j
+1: !KU( s(s(z)) ) @ #vk.4
+2: !Snap( ~I, z ) ▶₁ #vr.1
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+2
+0
+1
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !Sk( ~I, sd.1 ) ▶₁ #j
+1: !KU( s(s(z)) ) @ #vk.5
+2: !Snap( ~I, z ) ▶₁ #vr.1
+3: !KU( s(z) ) @ #vk.6
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+2
+0
+1
+3
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !Sk( ~I, sd.1 ) ▶₁ #j
+1: !KU( s(s(z)) ) @ #vk.4
+2: !Snap( ~I, z ) ▶₁ #vr.1
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+2
+0
+1
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !Sk( ~I, sd.1 ) ▶₁ #j
+1: !KU( s(s(z)) ) @ #vk.5
+2: !Snap( ~I, z ) ▶₁ #vr.1
+3: !KU( s(s(s(z))) ) @ #vk.6
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+2
+0
+1
+3
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !Sk( ~I, sd.1 ) ▶₁ #j
+1: !KU( s(s(z)) ) @ #vk.4
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+1
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !KU( s(s(z)) ) @ #vk.4
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !Sk( ~I, sd.1 ) ▶₁ #j
+1: !KU( s(s(z)) ) @ #vk.4
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+1
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !Sk( ~I, sd.1 ) ▶₁ #j
+1: !KU( s(s(z)) ) @ #vk.5
+2: !KU( s(z) ) @ #vk.6
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+1
+2
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !KU( s(s(z)) ) @ #vk.4
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !KU( s(s(z)) ) @ #vk.5
+1: !KU( s(z) ) @ #vk.6
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+1
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !Sk( ~I, sd.1 ) ▶₁ #j
+1: !KU( s(s(z)) ) @ #vk.4
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+1
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !KU( s(s(z)) ) @ #vk.4
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !Sk( ~I, sd.1 ) ▶₁ #j
+1: !KU( s(s(z)) ) @ #vk.5
+2: !KU( s(s(s(z))) ) @ #vk.6
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+1
+2
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0:  (#i < #j)  ∥ (#j < #i)
+1: !Sk( ~I, sd ) ▶₁ #i
+2: !Sk( ~I, sd.1 ) ▶₁ #j
+3: !KU( s(s(s(z))) ) @ #vk.4
+4:  (last(#i))  ∥ (last(#j))
+5:  (last(#j))  ∥ (last(#i))
+6: St( ~I, q ) ▶₀ #vr.1
+7: !Snap( ~I, z ) ▶₁ #vr.1
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+6
+7
+0
+1
+2
+3
+4
+5
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !KU( s(s(z)) ) @ #vk.5
+1: !KU( s(s(s(z))) ) @ #vk.6
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+1
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !Sk( ~I, sd.1 ) ▶₁ #j
+1: !KU( s(s(s(z))) ) @ #vk.4
+2: !Snap( ~I, z ) ▶₁ #vr.1
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+2
+0
+1
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !Sk( ~I, sd.1 ) ▶₁ #j
+1: !KU( s(s(s(z))) ) @ #vk.5
+2: !Snap( ~I, z ) ▶₁ #vr.1
+3: !KU( s(s(z)) ) @ #vk.6
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+2
+0
+1
+3
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !Sk( ~I, sd.1 ) ▶₁ #j
+1: !KU( s(s(s(z))) ) @ #vk.5
+2: !Snap( ~I, z ) ▶₁ #vr.1
+3: !KU( s(z) ) @ #vk.6
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+2
+0
+1
+3
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !Sk( ~I, sd.1 ) ▶₁ #j
+1: !KU( s(s(s(z))) ) @ #vk.4
+2: !Snap( ~I, z ) ▶₁ #vr.1
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+2
+0
+1
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !Sk( ~I, sd.1 ) ▶₁ #j
+1: !KU( s(s(s(z))) ) @ #vk.4
+2: !Snap( ~I, z ) ▶₁ #vr.1
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+2
+0
+1
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !Sk( ~I, sd.1 ) ▶₁ #j
+1: !KU( s(s(s(z))) ) @ #vk.4
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+1
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !KU( s(s(s(z))) ) @ #vk.4
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !Sk( ~I, sd.1 ) ▶₁ #j
+1: !KU( s(s(s(z))) ) @ #vk.4
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+1
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !Sk( ~I, sd.1 ) ▶₁ #j
+1: !KU( s(s(s(z))) ) @ #vk.5
+2: !KU( s(z) ) @ #vk.6
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+1
+2
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !KU( s(s(s(z))) ) @ #vk.4
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !Sk( ~I, sd.1 ) ▶₁ #j
+1: !KU( s(s(s(z))) ) @ #vk.5
+2: !KU( s(s(z)) ) @ #vk.6
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+1
+2
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !KU( s(s(s(z))) ) @ #vk.5
+1: !KU( s(z) ) @ #vk.6
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+1
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !Sk( ~I, sd.1 ) ▶₁ #j
+1: !KU( s(s(s(z))) ) @ #vk.4
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+1
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !KU( s(s(s(z))) ) @ #vk.5
+1: !KU( s(s(z)) ) @ #vk.6
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+1
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, z, a2 ) @ #j
+1:  (#i < #j)  ∥ (#j < #i)
+2:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+3:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+4: !Sk( ~I, sd ) ▶₁ #i
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+1
+2
+3
+4
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !KU( s(s(s(z))) ) @ #vk.4
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, z, a2 ) @ #j
+1: !Sk( ~I, sd ) ▶₁ #i
+2: !Snap( ~I, z ) ▶₁ #vr
+3: !KU( s(s(s(z))) ) @ #vk.4
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+2
+0
+1
+3
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, z, a2 ) @ #j
+1: !Sk( ~I, sd ) ▶₁ #i
+2: !Snap( ~I, z ) ▶₁ #vr
+3: !KU( s(s(z)) ) @ #vk.4
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+2
+0
+1
+3
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, z, a2 ) @ #j
+1: !Sk( ~I, sd ) ▶₁ #i
+2: !Snap( ~I, z ) ▶₁ #vr
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+2
+0
+1
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, z, a2 ) @ #j
+1: !Sk( ~I, sd ) ▶₁ #i
+2: !Snap( ~I, z ) ▶₁ #vr
+3: !KU( s(z) ) @ #vk.4
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+2
+0
+1
+3
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, z, a2 ) @ #j
+1: !Sk( ~I, sd ) ▶₁ #i
+2: !Snap( ~I, z ) ▶₁ #vr
+3: !KU( s(s(z)) ) @ #vk.4
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+2
+0
+1
+3
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0:  (#i < #j)  ∥ (#j < #i)
+1:  (last(#j))  ∥ (last(#i))  ∥ (#i = #j)
+2:  (last(#i))  ∥ (last(#j))  ∥ (#j = #i)
+3: !Sk( ~I, sd ) ▶₁ #i
+4: St( ~I, z ) ▶₀ #j
+5: !Sk( ~I, sd.1 ) ▶₁ #j
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+4
+0
+1
+2
+3
+5
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, z, a2 ) @ #j
+1: !Sk( ~I, sd ) ▶₁ #i
+2: !Snap( ~I, z ) ▶₁ #vr
+3: !KU( s(s(s(z))) ) @ #vk.4
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+2
+0
+1
+3
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, z, a2 ) @ #j
+1: !Sk( ~I, sd ) ▶₁ #i
+2: !Snap( ~I, z ) ▶₁ #vr
+3: !KU( s(z) ) @ #vk.4
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+2
+0
+1
+3
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, z, a2 ) @ #j
+1: !Sk( ~I, sd ) ▶₁ #i
+2: !Snap( ~I, z ) ▶₁ #vr
+3: !KU( s(z) ) @ #vk.4
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+2
+0
+1
+3
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0:  (#i < #j)  ∥ (#j < #i)
+1: !Sk( ~I, sd ) ▶₁ #i
+2: St( ~I, z ) ▶₀ #j
+3: !Sk( ~I, sd.1 ) ▶₁ #j
+4: !KU( s(z) ) @ #vk.4
+5:  (last(#i))  ∥ (last(#j))
+6:  (last(#j))  ∥ (last(#i))
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+2
+0
+1
+3
+4
+5
+6
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, z, a2 ) @ #j
+1: !Sk( ~I, sd ) ▶₁ #i
+2: !Snap( ~I, z ) ▶₁ #vr
+3: !KU( s(z) ) @ #vk.5
+4: !KU( s(s(z)) ) @ #vk.6
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+2
+0
+1
+3
+4
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, z, a2 ) @ #j
+1: !Sk( ~I, sd ) ▶₁ #i
+2: !Snap( ~I, z ) ▶₁ #vr
+3: !KU( s(z) ) @ #vk.5
+4: !KU( s(s(s(z))) ) @ #vk.6
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+2
+0
+1
+3
+4
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, z, a2 ) @ #j
+1: !Sk( ~I, sd ) ▶₁ #i
+2: !Snap( ~I, z ) ▶₁ #vr
+3: !KU( s(s(z)) ) @ #vk.4
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+2
+0
+1
+3
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0:  (#i < #j)  ∥ (#j < #i)
+1: !Sk( ~I, sd ) ▶₁ #i
+2: St( ~I, z ) ▶₀ #j
+3: !Sk( ~I, sd.1 ) ▶₁ #j
+4: !KU( s(s(z)) ) @ #vk.4
+5:  (last(#i))  ∥ (last(#j))
+6:  (last(#j))  ∥ (last(#i))
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+2
+0
+1
+3
+4
+5
+6
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, z, a2 ) @ #j
+1: !Sk( ~I, sd ) ▶₁ #i
+2: !Snap( ~I, z ) ▶₁ #vr
+3: !KU( s(s(z)) ) @ #vk.5
+4: !KU( s(z) ) @ #vk.6
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+2
+0
+1
+3
+4
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, z, a2 ) @ #j
+1: !Sk( ~I, sd ) ▶₁ #i
+2: !Snap( ~I, z ) ▶₁ #vr
+3: !KU( s(s(z)) ) @ #vk.4
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+2
+0
+1
+3
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, z, a2 ) @ #j
+1: !Sk( ~I, sd ) ▶₁ #i
+2: !Snap( ~I, z ) ▶₁ #vr
+3: !KU( s(s(z)) ) @ #vk.5
+4: !KU( s(s(s(z))) ) @ #vk.6
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+2
+0
+1
+3
+4
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0:  (#i < #j)  ∥ (#j < #i)
+1: !Sk( ~I, sd ) ▶₁ #i
+2: St( ~I, z ) ▶₀ #j
+3: !Sk( ~I, sd.1 ) ▶₁ #j
+4: !KU( s(s(s(z))) ) @ #vk.4
+5:  (last(#i))  ∥ (last(#j))
+6:  (last(#j))  ∥ (last(#i))
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+2
+0
+1
+3
+4
+5
+6
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, z, a2 ) @ #j
+1: !Sk( ~I, sd ) ▶₁ #i
+2: !Snap( ~I, z ) ▶₁ #vr
+3: !KU( s(s(s(z))) ) @ #vk.4
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+2
+0
+1
+3
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, z, a2 ) @ #j
+1: !Sk( ~I, sd ) ▶₁ #i
+2: !Snap( ~I, z ) ▶₁ #vr
+3: !KU( s(s(s(z))) ) @ #vk.5
+4: !KU( s(z) ) @ #vk.6
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+2
+0
+1
+3
+4
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, z, a2 ) @ #j
+1: !Sk( ~I, sd ) ▶₁ #i
+2: !Snap( ~I, z ) ▶₁ #vr
+3: !KU( s(s(s(z))) ) @ #vk.5
+4: !KU( s(s(z)) ) @ #vk.6
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+2
+0
+1
+3
+4
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, z, a2 ) @ #j
+1: !Sk( ~I, sd ) ▶₁ #i
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+1
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: !Sk( ~I, sd ) ▶₁ #i
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+0
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+>>>>>>>>>>>>>>>>>>>>>>>> START INPUT
+0: Sign( ~I, z, a2 ) @ #j
+1: !Sk( ~I, sd ) ▶₁ #i
+2: !Snap( ~I, z ) ▶₁ #vr
+3: !KU( s(s(s(z))) ) @ #vk.4
+
+>>>>>>>>>>>>>>>>>>>>>>>> START OUTPUT
+2
+0
+1
+3
+
+>>>>>>>>>>>>>>>>>>>>>>>> END Tactic call
+
+theory LMS_S2_rollback
+
+begin
+
+// Function signature and definition of the equational theory E
+
+functions: ch/3, fst/1, hl/3, pair/2, prf/3[private,constructor], s/1,
+           snd/1, z/0
+equations: fst(<x.1, x.2>) = x.1, snd(<x.1, x.2>) = x.2
+
+tactic: statefirst
+presort: C
+prio: {id}
+  regex"St\(" | regex"Snap\(" | regex"BotSt\(" | regex"TopPending\("
+prio: {id}
+  regex"!Root\(" | regex"!TopOK\("
+prio: {id}
+  regex"Misuse\(" | regex"Clone\(" | regex"Rollback\("
+deprio: {id}
+  regex"KU\(*ch\(" | regex"KU\(*hl\("
+deprio: {id}
+  regex"KU\(*prf\("
+
+/* looping facts with injective instances: St/2 */
+
+restriction Cks:
+  "∀ a c #i.
+    (Cks( a, c ) @ #i) ⇒
+    (((((a = z) ∧ (c = s(s(s(z))))) ∨ ((a = s(z)) ∧ (c = s(s(z))))) ∨
+      ((a = s(s(z))) ∧ (c = s(z)))) ∨
+     ((a = s(s(s(z)))) ∧ (c = z)))"
+  // safety formula
+
+  /*
+  expanded formula:
+  "∀ a c #i.
+    (Cks( a, c ) @ #i) ⇒
+    (((((a = z) ∧ (c = s(s(s(z))))) ∨ ((a = s(z)) ∧ (c = s(s(z))))) ∨
+      ((a = s(s(z))) ∧ (c = s(z)))) ∨
+     ((a = s(s(s(z)))) ∧ (c = z)))"
+  */
+
+rule (modulo E) KeyGen:
+   [ Fr( ~I ), Fr( ~sd ) ]
+  --[ KeyGen( ~I ) ]->
+   [
+   !Sk( ~I, ~sd ), St( ~I, z ), !Snap( ~I, z ),
+   !Root( ~I,
+          hl(~I,
+             <ch(~I, 'm', ch(~I, 'm', ch(~I, 'm', prf(~sd, z, 'm')))), 
+              ch(~I, 'k', ch(~I, 'k', ch(~I, 'k', prf(~sd, z, 'k'))))>,
+             <ch(~I, 'm', ch(~I, 'm', ch(~I, 'm', prf(~sd, s(z), 'm')))), 
+              ch(~I, 'k', ch(~I, 'k', ch(~I, 'k', prf(~sd, s(z), 'k'))))>)
+   ),
+   Out( <~I, 
+         hl(~I,
+            <ch(~I, 'm', ch(~I, 'm', ch(~I, 'm', prf(~sd, z, 'm')))), 
+             ch(~I, 'k', ch(~I, 'k', ch(~I, 'k', prf(~sd, z, 'k'))))>,
+            <ch(~I, 'm', ch(~I, 'm', ch(~I, 'm', prf(~sd, s(z), 'm')))), 
+             ch(~I, 'k', ch(~I, 'k', ch(~I, 'k', prf(~sd, s(z), 'k'))))>)
+        >
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q0_a0:
+   [ St( I, z ), !Sk( I, sd ), In( <'sign', z> ) ]
+  --[ Cks( z, s(s(s(z))) ), Sign( I, z, z ), UseLeaf( I, z ) ]->
+   [
+   St( I, s(z) ), !Snap( I, s(z) ),
+   Out( <I, z, z, prf(sd, z, 'm'), 
+         ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, z, 'k')))), 
+         ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(z), 'm')))), 
+         ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(z), 'k'))))>
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q0_a1:
+   [ St( I, z ), !Sk( I, sd ), In( <'sign', s(z)> ) ]
+  --[ Cks( s(z), s(s(z)) ), Sign( I, z, s(z) ), UseLeaf( I, z ) ]->
+   [
+   St( I, s(z) ), !Snap( I, s(z) ),
+   Out( <I, z, s(z), ch(I, 'm', prf(sd, z, 'm')), 
+         ch(I, 'k', ch(I, 'k', prf(sd, z, 'k'))), 
+         ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(z), 'm')))), 
+         ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(z), 'k'))))>
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q0_a2:
+   [ St( I, z ), !Sk( I, sd ), In( <'sign', s(s(z))> ) ]
+  --[ Cks( s(s(z)), s(z) ), Sign( I, z, s(s(z)) ), UseLeaf( I, z ) ]->
+   [
+   St( I, s(z) ), !Snap( I, s(z) ),
+   Out( <I, z, s(s(z)), ch(I, 'm', ch(I, 'm', prf(sd, z, 'm'))), 
+         ch(I, 'k', prf(sd, z, 'k')), 
+         ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(z), 'm')))), 
+         ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(z), 'k'))))>
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q0_a3:
+   [ St( I, z ), !Sk( I, sd ), In( <'sign', s(s(s(z)))> ) ]
+  --[ Cks( s(s(s(z))), z ), Sign( I, z, s(s(s(z))) ), UseLeaf( I, z ) ]->
+   [
+   St( I, s(z) ), !Snap( I, s(z) ),
+   Out( <I, z, s(s(s(z))), 
+         ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, z, 'm')))), prf(sd, z, 'k'), 
+         ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(z), 'm')))), 
+         ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(z), 'k'))))>
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q1_a0:
+   [ St( I, s(z) ), !Sk( I, sd ), In( <'sign', z> ) ]
+  --[ Cks( z, s(s(s(z))) ), Sign( I, s(z), z ), UseLeaf( I, s(z) ) ]->
+   [
+   St( I, s(s(z)) ), !Snap( I, s(s(z)) ),
+   Out( <I, s(z), z, prf(sd, s(z), 'm'), 
+         ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, s(z), 'k')))), 
+         ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, z, 'm')))), 
+         ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, z, 'k'))))>
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q1_a1:
+   [ St( I, s(z) ), !Sk( I, sd ), In( <'sign', s(z)> ) ]
+  --[ Cks( s(z), s(s(z)) ), Sign( I, s(z), s(z) ), UseLeaf( I, s(z) ) ]->
+   [
+   St( I, s(s(z)) ), !Snap( I, s(s(z)) ),
+   Out( <I, s(z), s(z), ch(I, 'm', prf(sd, s(z), 'm')), 
+         ch(I, 'k', ch(I, 'k', prf(sd, s(z), 'k'))), 
+         ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, z, 'm')))), 
+         ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, z, 'k'))))>
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q1_a2:
+   [ St( I, s(z) ), !Sk( I, sd ), In( <'sign', s(s(z))> ) ]
+  --[ Cks( s(s(z)), s(z) ), Sign( I, s(z), s(s(z)) ), UseLeaf( I, s(z) )
+  ]->
+   [
+   St( I, s(s(z)) ), !Snap( I, s(s(z)) ),
+   Out( <I, s(z), s(s(z)), ch(I, 'm', ch(I, 'm', prf(sd, s(z), 'm'))), 
+         ch(I, 'k', prf(sd, s(z), 'k')), 
+         ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, z, 'm')))), 
+         ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, z, 'k'))))>
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q1_a3:
+   [ St( I, s(z) ), !Sk( I, sd ), In( <'sign', s(s(s(z)))> ) ]
+  --[ Cks( s(s(s(z))), z ), Sign( I, s(z), s(s(s(z))) ), UseLeaf( I, s(z) )
+  ]->
+   [
+   St( I, s(s(z)) ), !Snap( I, s(s(z)) ),
+   Out( <I, s(z), s(s(s(z))), 
+         ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, s(z), 'm')))), 
+         prf(sd, s(z), 'k'), ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, z, 'm')))), 
+         ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, z, 'k'))))>
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+restriction OneMisuse:
+  "∀ I #i #j. ((Misuse( I ) @ #i) ∧ (Misuse( I ) @ #j)) ⇒ (#i = #j)"
+  // safety formula
+
+  /*
+  expanded formula:
+  "∀ I #i #j. ((Misuse( I ) @ #i) ∧ (Misuse( I ) @ #j)) ⇒ (#i = #j)"
+  */
+
+rule (modulo E) Rollback:
+   [ St( I, q ), !Snap( I, q0 ) ]
+  --[ Misuse( I ), Rollback( I, q, q0 ) ]->
+   [ St( I, q0 ) ]
+
+  // loop breakers: [0,1]
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) RevealSeed:
+   [ !Sk( I, sd ) ] --[ RevealSeed( I ) ]-> [ Out( sd ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_q0_a0:
+   [
+   !Root( I, hl(I, <ch(I, 'm', ch(I, 'm', ch(I, 'm', sm))), sk>, sib) ),
+   In( <I, z, z, sm, sk, sib> )
+   ]
+  --[ Cks( z, s(s(s(z))) ), Accept( I, z, z ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_q0_a1:
+   [
+   !Root( I, hl(I, <ch(I, 'm', ch(I, 'm', sm)), ch(I, 'k', sk)>, sib) ),
+   In( <I, z, s(z), sm, sk, sib> )
+   ]
+  --[ Cks( s(z), s(s(z)) ), Accept( I, z, s(z) ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_q0_a2:
+   [
+   !Root( I, hl(I, <ch(I, 'm', sm), ch(I, 'k', ch(I, 'k', sk))>, sib) ),
+   In( <I, z, s(s(z)), sm, sk, sib> )
+   ]
+  --[ Cks( s(s(z)), s(z) ), Accept( I, z, s(s(z)) ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_q0_a3:
+   [
+   !Root( I, hl(I, <sm, ch(I, 'k', ch(I, 'k', ch(I, 'k', sk)))>, sib) ),
+   In( <I, z, s(s(s(z))), sm, sk, sib> )
+   ]
+  --[ Cks( s(s(s(z))), z ), Accept( I, z, s(s(s(z))) ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_q1_a0:
+   [
+   !Root( I, hl(I, sib, <ch(I, 'm', ch(I, 'm', ch(I, 'm', sm))), sk>) ),
+   In( <I, s(z), z, sm, sk, sib> )
+   ]
+  --[ Cks( z, s(s(s(z))) ), Accept( I, s(z), z ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_q1_a1:
+   [
+   !Root( I, hl(I, sib, <ch(I, 'm', ch(I, 'm', sm)), ch(I, 'k', sk)>) ),
+   In( <I, s(z), s(z), sm, sk, sib> )
+   ]
+  --[ Cks( s(z), s(s(z)) ), Accept( I, s(z), s(z) ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_q1_a2:
+   [
+   !Root( I, hl(I, sib, <ch(I, 'm', sm), ch(I, 'k', ch(I, 'k', sk))>) ),
+   In( <I, s(z), s(s(z)), sm, sk, sib> )
+   ]
+  --[ Cks( s(s(z)), s(z) ), Accept( I, s(z), s(s(z)) ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_q1_a3:
+   [
+   !Root( I, hl(I, sib, <sm, ch(I, 'k', ch(I, 'k', ch(I, 'k', sk)))>) ),
+   In( <I, s(z), s(s(s(z))), sm, sk, sib> )
+   ]
+  --[ Cks( s(s(s(z))), z ), Accept( I, s(z), s(s(s(z))) ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+lemma exec:
+  exists-trace
+  "∃ I q a #s #k.
+    ((Sign( I, q, a ) @ #s) ∧ (Accept( I, q, a ) @ #k)) ∧
+    (¬(∃ #r. RevealSeed( I ) @ #r))"
+/*
+guarded formula characterizing all satisfying traces:
+"∃ I q a #s #k.
+  (Sign( I, q, a ) @ #s) ∧ (Accept( I, q, a ) @ #k)
+ ∧
+  ∀ #r. (RevealSeed( I ) @ #r) ⇒ ⊥"
+*/
+by sorry
+
+lemma LS4_pure [use_induction]:
+  all-traces
+  "∀ I q a1 a2 #i #j.
+    ((Sign( I, q, a1 ) @ #i) ∧ (Sign( I, q, a2 ) @ #j)) ⇒ (#i = #j)"
+/*
+guarded formula characterizing all counter-examples:
+"∃ I q a1 a2 #i #j.
+  (Sign( I, q, a1 ) @ #i) ∧ (Sign( I, q, a2 ) @ #j) ∧ ¬(#i = #j)"
+*/
+induction
+  case non_empty_trace
+  solve( Sign( I, q, a1 ) @ #i )
+    case Sign_q0_a0
+    solve( St( I, z ) ▶₀ #i )
+      case Rollback
+      solve( St( I, q ) ▶₀ #vr )
+        case Sign_q0_a0_case_1
+        solve( !Snap( ~I, z ) ▶₁ #vr )
+          case KeyGen
+          solve( Sign( ~I, z, a2 ) @ #j )
+            case Sign_q0_a0
+            solve( !Sk( ~I, sd ) ▶₁ #i )
+              case KeyGen
+              SOLVED // trace found
+            qed
+          qed
+        qed
+      qed
+    qed
+  qed
+qed
+
+lemma LS4 [use_induction]:
+  all-traces
+  "∀ I q a1 a2 #i #j.
+    ((Sign( I, q, a1 ) @ #i) ∧ (Sign( I, q, a2 ) @ #j)) ⇒
+    ((#i = #j) ∨ (∃ x y #r. Rollback( I, x, y ) @ #r))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ I q a1 a2 #i #j.
+  (Sign( I, q, a1 ) @ #i) ∧ (Sign( I, q, a2 ) @ #j)
+ ∧
+  (¬(#i = #j)) ∧ (∀ x y #r. (Rollback( I, x, y ) @ #r) ⇒ ⊥)"
+*/
+by sorry
+
+lemma LS1:
+  all-traces
+  "∀ I q a #k.
+    (Accept( I, q, a ) @ #k) ⇒
+    ((∃ #s. Sign( I, q, a ) @ #s) ∨ (∃ #r. RevealSeed( I ) @ #r))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ I q a #k.
+  (Accept( I, q, a ) @ #k)
+ ∧
+  (∀ #s. (Sign( I, q, a ) @ #s) ⇒ ⊥) ∧ (∀ #r. (RevealSeed( I ) @ #r) ⇒ ⊥)"
+*/
+by sorry
+
+lemma LS3_forge:
+  exists-trace
+  "∃ I q a #k.
+    ((Accept( I, q, a ) @ #k) ∧ (¬(∃ #s. Sign( I, q, a ) @ #s))) ∧
+    (¬(∃ #r. RevealSeed( I ) @ #r))"
+/*
+guarded formula characterizing all satisfying traces:
+"∃ I q a #k.
+  (Accept( I, q, a ) @ #k)
+ ∧
+  (∀ #s. (Sign( I, q, a ) @ #s) ⇒ ⊥) ∧ (∀ #r. (RevealSeed( I ) @ #r) ⇒ ⊥)"
+*/
+by sorry
+
+/* All wellformedness checks were successful. */
+
+/*
+Generated from:
+Tamarin version 1.12.0
+Maude version 3.5.1
+Git revision: 82780bbaf3328a45f624ddb41e51bf75425f851c (with uncommited changes), branch: master
+Compiled at: 2026-03-07 14:22:39.174278293 UTC
+*/
+
+end
+
+==============================================================================
+summary of summaries:
+
+analyzed: variants/LMS_S2_rollback__T1.spthy
+
+  processing time: 7.12s
+  
+  exec (exists-trace): analysis incomplete (1 steps)
+  LS4_pure (all-traces): falsified - found trace (8 steps)
+  LS4 (all-traces): analysis incomplete (1 steps)
+  LS1 (all-traces): analysis incomplete (1 steps)
+  LS3_forge (exists-trace): analysis incomplete (1 steps)
+
+==============================================================================

@@ -1,0 +1,10 @@
+model	lemma	expected	native	translated	pv_raw	read_ids	guard_check	status	reason
+linear_pair	good_reachable	reachable	reachable	reachable	false	stR_St_5,stR_St_6	OK	MATCH	
+linear_pair	bad_reachable	unreachable	unreachable	unreachable	true		OK	MATCH	
+linear_triple	good_reachable	reachable	reachable	reachable	false	stR_St_8,stR_St_9,stR_St_10	OK	MATCH	
+linear_triple	bad_reachable	unreachable	unreachable	unreachable	true		OK	MATCH	
+linear_mixed	good_reachable	reachable	reachable	reachable	false	stR_St_5,stR_St_6	OK	MATCH	
+linear_mixed	bad_reachable	unreachable	unreachable	unreachable	true		OK	MATCH	
+linear_plain	good_reachable	reachable	reachable	reachable	false	stR_St_5,stR_St_6	OK	MATCH	
+linear_plain	bad_reachable	unreachable	unreachable	unreachable	true		OK	MATCH	
+persistent_pair	good_reachable	reachable	reachable	reachable	false		OK	MATCH	

@@ -1,0 +1,13 @@
+case	specification_path	generator_path	byte_identical_models	historical_direct_records
+H1_both_own	cim/kudos/RB1/spec.json	cim/kudos/RB1/generate.py	2/2	runs/K/direct/H1_both_own
+H1_section3_own	cim/kudos/RB1/spec.json	cim/kudos/RB1/generate.py	2/2	runs/K/direct/H1_section3_own
+RB2	cim/kudos/RB2.json	cim/kudos/generators/H1_CIM_RB2_v1/generate.py	2/2	runs/K/direct/RB2
+RB3	cim/kudos/RB3.json	cim/kudos/generators/H1_CIM_RB3_v1/generate.py	2/2	runs/K/direct/RB3
+RB4	cim/kudos/RB4.json	cim/kudos/generators/H1_CIM_RB4_A1_v1/generate.py	2/2	runs/K/direct/RB4
+RB5	cim/kudos/RB5.json	cim/kudos/generators/H1_CIM_RB5_v1_1/generate.py	2/2	runs/K/direct/RB5
+KEEP	cim/kudos/KEEP.json	cim/kudos/generators/H2_CIM_BUSY_v1/generate.py	2/2	runs/K/direct/KEEP
+REFRESH	cim/kudos/REFRESH.json	cim/kudos/generators/H2_CIM_BUSY_v1/generate.py	2/2	runs/K/direct/REFRESH
+T6	cim/kudos/T6.json	cim/kudos/generators/CIM_H1_recheck_H2_T6_T7_v1/generate.py	2/2	runs/K/direct/T6
+T7	cim/kudos/T7.json	cim/kudos/generators/CIM_H1_recheck_H2_T6_T7_v1/generate.py	2/2	runs/K/direct/T7
+T6_CONTINUATION	cim/kudos/T6_CONTINUATION.json	cim/kudos/generators/H2_CIM_T6_CONTINUATION_v1/generate.py	2/2	runs/K/direct/T6_CONTINUATION
+T7_CONTINUATION	cim/kudos/T7_CONTINUATION.json	cim/kudos/generators/H2_CIM_T7_CONTINUATION_v1/generate.py	2/2	runs/K/direct/T7_CONTINUATION

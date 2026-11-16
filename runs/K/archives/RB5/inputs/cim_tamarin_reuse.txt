@@ -1,0 +1,5 @@
+tamarin_evidence=reused
+original_archive=H1_CIM_RB5_results_20261112T021459Z.tar.gz
+original_archive_sha256=3f45be7b28cd149bca777bbea1a5cb12e339632d2eae1b72585a6b1096ed9ada
+original_result_dir=results/RB5.xWZe60Op
+Tamarin rc=0

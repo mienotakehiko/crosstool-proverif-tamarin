@@ -1,0 +1,224 @@
+File "results/RB5_PV_FIX.cIxB5M5N/models/rb5.pv", line 56, characters 22-24:
+Warning: identifier sid rebound.
+File "results/RB5_PV_FIX.cIxB5M5N/models/rb5.pv", line 52, characters 22-24:
+Warning: identifier sid rebound.
+File "results/RB5_PV_FIX.cIxB5M5N/models/rb5.pv", line 47, characters 23-25:
+Warning: identifier sid rebound.
+File "results/RB5_PV_FIX.cIxB5M5N/models/rb5.pv", line 42, characters 23-25:
+Warning: identifier sid rebound.
+File "results/RB5_PV_FIX.cIxB5M5N/models/rb5.pv", line 37, characters 23-25:
+Warning: identifier sid rebound.
+Process 0 (that is, the initial process):
+{1}new initial_sid: bitstring;
+{2}event KudosStart(initial_sid);
+(
+    {3}out(ch_Execution, (initial_sid,phase_active,no_outcome))
+) | (
+    {4}in(ch_Execution, (sid_1: bitstring,=phase_active,=no_outcome));
+    {5}event KudosCommit(sid_1);
+    {6}out(ch_Execution, (sid_1,phase_closed,outcome_commit))
+) | (
+    {7}in(ch_Execution, (sid_2: bitstring,=phase_active,=no_outcome));
+    {8}event KudosAbort(sid_2);
+    {9}out(ch_Execution, (sid_2,phase_closed,outcome_abort))
+) | (
+    {10}in(ch_Execution, (sid_3: bitstring,current_phase: bitstring,outcome: bitstring));
+    {11}event AppSendChecked(sid_3,current_phase,outcome);
+    {12}out(ch_AppCheck, (sid_3,current_phase,outcome))
+) | (
+    {13}in(ch_AppCheck, (sid_4: bitstring,=phase_active,=no_outcome));
+    {14}event AppSendBlocked(sid_4)
+) | (
+    {15}in(ch_AppCheck, (sid_5: bitstring,=phase_closed,outcome_1: bitstring));
+    {16}event AppSend(sid_5,phase_closed,outcome_1)
+)
+
+File "results/RB5_PV_FIX.cIxB5M5N/models/rb5.pv", line 12, characters 7-9:
+Warning: identifier sid rebound.
+File "results/RB5_PV_FIX.cIxB5M5N/models/rb5.pv", line 15, characters 7-9:
+Warning: identifier sid rebound.
+File "results/RB5_PV_FIX.cIxB5M5N/models/rb5.pv", line 18, characters 7-9:
+Warning: identifier sid rebound.
+File "results/RB5_PV_FIX.cIxB5M5N/models/rb5.pv", line 21, characters 7-9:
+Warning: identifier sid rebound.
+File "results/RB5_PV_FIX.cIxB5M5N/models/rb5.pv", line 24, characters 7-9:
+Warning: identifier sid rebound.
+File "results/RB5_PV_FIX.cIxB5M5N/models/rb5.pv", line 27, characters 7-9:
+Warning: identifier sid rebound.
+-- Query not event(AppSendBlocked(sid_6)) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query not event(AppSendBlocked(sid_6))
+goal reachable: event(AppSendBlocked(initial_sid[]))
+
+Derivation:
+
+1. The message (initial_sid[],phase_active[],no_outcome[]) may be sent on channel ch_Execution[] at output {3}.
+mess(ch_Execution[],(initial_sid[],phase_active[],no_outcome[])).
+
+2. The message (initial_sid[],phase_active[],no_outcome[]) that may be sent on channel ch_Execution[] by 1 may be received at input {10}.
+So the message (initial_sid[],phase_active[],no_outcome[]) may be sent on channel ch_AppCheck[] at output {12}.
+mess(ch_AppCheck[],(initial_sid[],phase_active[],no_outcome[])).
+
+3. The message (initial_sid[],phase_active[],no_outcome[]) that may be sent on channel ch_AppCheck[] by 2 may be received at input {13}.
+So event AppSendBlocked(initial_sid[]) may be executed at {14}.
+event(AppSendBlocked(initial_sid[])).
+
+4. By 3, event(AppSendBlocked(initial_sid[])).
+The goal is reached, represented in the following fact:
+event(AppSendBlocked(initial_sid[])).
+
+
+A more detailed output of the traces is available with
+  set traceDisplay = long.
+
+new initial_sid: bitstring creating initial_sid_1 at {1}
+
+event KudosStart(initial_sid_1) at {2}
+
+out(ch_Execution, (initial_sid_1,phase_active,no_outcome)) at {3} received at {10}
+
+event AppSendChecked(initial_sid_1,phase_active,no_outcome) at {11}
+
+out(ch_AppCheck, (initial_sid_1,phase_active,no_outcome)) at {12} received at {13}
+
+event AppSendBlocked(initial_sid_1) at {14} (goal)
+
+The event AppSendBlocked(initial_sid_1) is executed at {14}.
+A trace has been found.
+RESULT not event(AppSendBlocked(sid_6)) is false.
+-- Query not event(AppSend(sid_6,phase_active[],outcome_2)) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query not event(AppSend(sid_6,phase_active[],outcome_2))
+RESULT not event(AppSend(sid_6,phase_active[],outcome_2)) is true.
+-- Query not event(AppSend(sid_6,phase_closed[],outcome_commit[])) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query not event(AppSend(sid_6,phase_closed[],outcome_commit[]))
+goal reachable: event(AppSend(initial_sid[],phase_closed[],outcome_commit[]))
+
+Derivation:
+
+1. The message (initial_sid[],phase_active[],no_outcome[]) may be sent on channel ch_Execution[] at output {3}.
+mess(ch_Execution[],(initial_sid[],phase_active[],no_outcome[])).
+
+2. The message (initial_sid[],phase_active[],no_outcome[]) that may be sent on channel ch_Execution[] by 1 may be received at input {4}.
+So the message (initial_sid[],phase_closed[],outcome_commit[]) may be sent on channel ch_Execution[] at output {6}.
+mess(ch_Execution[],(initial_sid[],phase_closed[],outcome_commit[])).
+
+3. The message (initial_sid[],phase_closed[],outcome_commit[]) that may be sent on channel ch_Execution[] by 2 may be received at input {10}.
+So the message (initial_sid[],phase_closed[],outcome_commit[]) may be sent on channel ch_AppCheck[] at output {12}.
+mess(ch_AppCheck[],(initial_sid[],phase_closed[],outcome_commit[])).
+
+4. The message (initial_sid[],phase_closed[],outcome_commit[]) that may be sent on channel ch_AppCheck[] by 3 may be received at input {15}.
+So event AppSend(initial_sid[],phase_closed[],outcome_commit[]) may be executed at {16}.
+event(AppSend(initial_sid[],phase_closed[],outcome_commit[])).
+
+5. By 4, event(AppSend(initial_sid[],phase_closed[],outcome_commit[])).
+The goal is reached, represented in the following fact:
+event(AppSend(initial_sid[],phase_closed[],outcome_commit[])).
+
+
+A more detailed output of the traces is available with
+  set traceDisplay = long.
+
+new initial_sid: bitstring creating initial_sid_1 at {1}
+
+event KudosStart(initial_sid_1) at {2}
+
+out(ch_Execution, (initial_sid_1,phase_active,no_outcome)) at {3} received at {4}
+
+event KudosCommit(initial_sid_1) at {5}
+
+out(ch_Execution, (initial_sid_1,phase_closed,outcome_commit)) at {6} received at {10}
+
+event AppSendChecked(initial_sid_1,phase_closed,outcome_commit) at {11}
+
+out(ch_AppCheck, (initial_sid_1,phase_closed,outcome_commit)) at {12} received at {15}
+
+event AppSend(initial_sid_1,phase_closed,outcome_commit) at {16} (goal)
+
+The event AppSend(initial_sid_1,phase_closed,outcome_commit) is executed at {16}.
+A trace has been found.
+RESULT not event(AppSend(sid_6,phase_closed[],outcome_commit[])) is false.
+-- Query event(AppSend(sid_6,phase_closed[],outcome_commit[])) ==> event(KudosStart(sid_6)) && event(KudosCommit(sid_6)) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query event(AppSend(sid_6,phase_closed[],outcome_commit[])) ==> event(KudosStart(sid_6)) && event(KudosCommit(sid_6))
+goal reachable: b-event(KudosCommit(initial_sid[])) && b-event(KudosStart(initial_sid[])) -> event(AppSend(initial_sid[],phase_closed[],outcome_commit[]))
+RESULT event(AppSend(sid_6,phase_closed[],outcome_commit[])) ==> event(KudosStart(sid_6)) && event(KudosCommit(sid_6)) is true.
+-- Query not event(AppSend(sid_6,phase_closed[],outcome_abort[])) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query not event(AppSend(sid_6,phase_closed[],outcome_abort[]))
+goal reachable: event(AppSend(initial_sid[],phase_closed[],outcome_abort[]))
+
+Derivation:
+
+1. The message (initial_sid[],phase_active[],no_outcome[]) may be sent on channel ch_Execution[] at output {3}.
+mess(ch_Execution[],(initial_sid[],phase_active[],no_outcome[])).
+
+2. The message (initial_sid[],phase_active[],no_outcome[]) that may be sent on channel ch_Execution[] by 1 may be received at input {7}.
+So the message (initial_sid[],phase_closed[],outcome_abort[]) may be sent on channel ch_Execution[] at output {9}.
+mess(ch_Execution[],(initial_sid[],phase_closed[],outcome_abort[])).
+
+3. The message (initial_sid[],phase_closed[],outcome_abort[]) that may be sent on channel ch_Execution[] by 2 may be received at input {10}.
+So the message (initial_sid[],phase_closed[],outcome_abort[]) may be sent on channel ch_AppCheck[] at output {12}.
+mess(ch_AppCheck[],(initial_sid[],phase_closed[],outcome_abort[])).
+
+4. The message (initial_sid[],phase_closed[],outcome_abort[]) that may be sent on channel ch_AppCheck[] by 3 may be received at input {15}.
+So event AppSend(initial_sid[],phase_closed[],outcome_abort[]) may be executed at {16}.
+event(AppSend(initial_sid[],phase_closed[],outcome_abort[])).
+
+5. By 4, event(AppSend(initial_sid[],phase_closed[],outcome_abort[])).
+The goal is reached, represented in the following fact:
+event(AppSend(initial_sid[],phase_closed[],outcome_abort[])).
+
+
+A more detailed output of the traces is available with
+  set traceDisplay = long.
+
+new initial_sid: bitstring creating initial_sid_1 at {1}
+
+event KudosStart(initial_sid_1) at {2}
+
+out(ch_Execution, (initial_sid_1,phase_active,no_outcome)) at {3} received at {7}
+
+event KudosAbort(initial_sid_1) at {8}
+
+out(ch_Execution, (initial_sid_1,phase_closed,outcome_abort)) at {9} received at {10}
+
+event AppSendChecked(initial_sid_1,phase_closed,outcome_abort) at {11}
+
+out(ch_AppCheck, (initial_sid_1,phase_closed,outcome_abort)) at {12} received at {15}
+
+event AppSend(initial_sid_1,phase_closed,outcome_abort) at {16} (goal)
+
+The event AppSend(initial_sid_1,phase_closed,outcome_abort) is executed at {16}.
+A trace has been found.
+RESULT not event(AppSend(sid_6,phase_closed[],outcome_abort[])) is false.
+-- Query event(AppSend(sid_6,phase_closed[],outcome_abort[])) ==> event(KudosStart(sid_6)) && event(KudosAbort(sid_6)) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query event(AppSend(sid_6,phase_closed[],outcome_abort[])) ==> event(KudosStart(sid_6)) && event(KudosAbort(sid_6))
+goal reachable: b-event(KudosAbort(initial_sid[])) && b-event(KudosStart(initial_sid[])) -> event(AppSend(initial_sid[],phase_closed[],outcome_abort[]))
+RESULT event(AppSend(sid_6,phase_closed[],outcome_abort[])) ==> event(KudosStart(sid_6)) && event(KudosAbort(sid_6)) is true.
+
+--------------------------------------------------------------
+Verification summary:
+
+Query not event(AppSendBlocked(sid_6)) is false.
+
+Query not event(AppSend(sid_6,phase_active[],outcome_2)) is true.
+
+Query not event(AppSend(sid_6,phase_closed[],outcome_commit[])) is false.
+
+Query event(AppSend(sid_6,phase_closed[],outcome_commit[])) ==> event(KudosStart(sid_6)) && event(KudosCommit(sid_6)) is true.
+
+Query not event(AppSend(sid_6,phase_closed[],outcome_abort[])) is false.
+
+Query event(AppSend(sid_6,phase_closed[],outcome_abort[])) ==> event(KudosStart(sid_6)) && event(KudosAbort(sid_6)) is true.
+
+--------------------------------------------------------------
+

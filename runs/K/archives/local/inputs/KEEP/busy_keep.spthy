@@ -1,0 +1,27 @@
+// Generated busy_keep case. CTX_TEMP usability is a local premise.
+theory CimBusyKeep
+begin
+
+functions: succ/1
+
+rule Init:
+  [ Fr(~initial_context), Fr(~initial_counter) ]
+  --[ Init(), BusyBefore(~initial_context,~initial_counter) ]->
+  [ BusyUsable(~initial_context,~initial_counter) ]
+
+rule Keep:
+  [ BusyUsable(c,p) ]
+  --[ BusyKept(c,succ(p)) ]->
+  [  ]
+
+restriction SingleInit:
+  "All #i #j. Init()@i & Init()@j ==> #i = #j"
+
+lemma busy_keep_reachable: exists-trace
+  "Ex c n #k. BusyKept(c,n)@k"
+
+lemma busy_keep_continues:
+  "All c n #k. BusyKept(c,n)@k ==>
+    Ex p #t1. BusyBefore(c,p)@t1 & #t1 < #k & n = succ(p)"
+
+end

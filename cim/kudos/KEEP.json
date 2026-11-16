@@ -1,0 +1,30 @@
+{
+  "model": "busy_keep",
+  "theory": "CimBusyKeep",
+  "lemma_prefix": "busy_keep",
+  "function": ["succ", 1],
+  "init": {
+    "fresh": ["initial_context", "initial_counter"],
+    "emit": [["BusyBefore", "initial_context", "initial_counter"]],
+    "produce": [["BusyUsable", "initial_context", "initial_counter"]]
+  },
+  "steps": [
+    {
+      "id": "Keep",
+      "consume": [["BusyUsable", "c", "p"]],
+      "emit": [["BusyKept", "c", ["succ", "p"]]],
+      "produce": []
+    }
+  ],
+  "observed": ["BusyKept", "c", "n"],
+  "properties": [
+    {"id": "reachable", "kind": "exists"},
+    {
+      "id": "continues",
+      "kind": "correspondence",
+      "witness": ["p"],
+      "before": [["BusyBefore", "c", "p"]],
+      "equal": [["n", ["succ", "p"]]]
+    }
+  ]
+}

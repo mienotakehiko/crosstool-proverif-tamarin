@@ -1,0 +1,25 @@
+(* Generated busy_keep case. CTX_TEMP usability is a local premise. *)
+free ch_BusyUsable: channel [private].
+fun succ(bitstring): bitstring.
+
+event BusyBefore(bitstring, bitstring).
+event BusyKept(bitstring, bitstring).
+
+query c:bitstring, n:bitstring;
+  event(BusyKept(c,n)).
+
+query c:bitstring, n:bitstring, p:bitstring;
+  event(BusyKept(c,n)) ==> event(BusyBefore(c,p)) && n = succ(p).
+
+process
+  new initial_context:bitstring;
+  new initial_counter:bitstring;
+  event BusyBefore(initial_context,initial_counter);
+  (
+    (out(ch_BusyUsable,(initial_context,initial_counter));
+     0)
+    |
+    (in(ch_BusyUsable,(c:bitstring,p:bitstring));
+     event BusyKept(c,succ(p));
+     0)
+  )

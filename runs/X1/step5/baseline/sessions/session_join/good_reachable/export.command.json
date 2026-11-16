@@ -1,0 +1,12 @@
+[
+  "/step5-tamarin-prover",
+  "+RTS",
+  "-N1",
+  "-M768m",
+  "-RTS",
+  "-d=0",
+  "-m=proverif",
+  "--lemma=good_reachable",
+  "-o=/work/baseline/sessions/session_join/good_reachable/translated.pv",
+  "/kit/models/sessions/session_join.spthy"
+]

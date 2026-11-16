@@ -1,0 +1,106 @@
+set preciseActions = true.
+
+(* Free names *)
+free publicChannel:channel.
+free vclient:bitstring.
+free vserver:bitstring.
+free vzero:bitstring.
+
+(* Functions *)
+fun civ(bitstring):bitstring.
+fun fst(bitstring):bitstring.
+fun kdf(bitstring,bitstring):bitstring.
+fun key(bitstring,bitstring):bitstring.
+fun nce(bitstring,bitstring,bitstring):bitstring.
+fun pair(bitstring,bitstring):bitstring.
+fun snd(bitstring):bitstring.
+fun succ(bitstring):bitstring.
+fun xn(bitstring,bitstring):bitstring.
+
+(* Equations *)
+equation forall x_1:bitstring, x_2:bitstring; fst((x_1, x_2)) = x_1.
+equation forall x_1:bitstring, x_2:bitstring; snd((x_1, x_2)) = x_2.
+
+(* Events *)
+event eAeadUse(bitstring, bitstring, bitstring).
+event eContextStep(bitstring, bitstring).
+event eDistinctFact(bitstring, bitstring).
+event eInit(bitstring).
+event eNormal().
+event eRequestState(bitstring, bitstring).
+
+(* Tables *)
+table tAfterFirst(bitstring, bitstring, bitstring, bitstring, bitstring, bitstring).
+table tReady(bitstring, bitstring, bitstring, bitstring, bitstring, bitstring).
+
+(* Restrictions *)
+
+(* OneInit *)
+
+restriction rid_i:bitstring, rid_j:bitstring, i:time, j:time;
+  event(eInit( rid_i ))@i && event(eInit( rid_j ))@j ==> rid_i = rid_j.
+
+(* DistinctFact *)
+
+restriction rid_i:bitstring, rid_j:bitstring, x:bitstring, i:time,
+            j:time;
+  event(eDistinctFact( rid_i, x ))@i && event(eDistinctFact( rid_j, x ))@j
+  ==> rid_i = rid_j.
+
+(* Queries *)
+
+(* collision *)
+
+query k:bitstring, n:bitstring, x:bitstring, y:bitstring, i:time, j:time;
+  event(eAeadUse( k, n, x ))@i && event(eAeadUse( k, n, y ))@j && x <> y.
+
+(* Processes *)
+
+let rInit =
+        new rid_rInit: bitstring;
+        new stR_Ready: bitstring;
+        new parent: bitstring;
+        new input_a: bitstring;
+        new input_b: bitstring;
+        new m1: bitstring;
+        new m2: bitstring;
+        event eInit(rid_rInit);
+        insert tReady(stR_Ready, parent, input_a, input_b, m1, m2).
+
+let rEncrypt1 =
+        get tReady(stL_Ready, parent, input_a, input_b, m1, m2) in
+        new rid_rEncrypt1: bitstring;
+        new stR_AfterFirst: bitstring;
+        event eDistinctFact(rid_rEncrypt1, (stL_Ready, (parent, (input_a, (input_b, (m1, m2))))));
+        event eRequestState(vclient, vzero);
+        event eContextStep(key(kdf(parent, xn(input_a, input_b)), vserver),
+                           nce(vserver, vzero, civ(kdf(parent, xn(input_a, input_b)))));
+        event eAeadUse(key(kdf(parent, xn(input_a, input_b)), vserver),
+                       nce(vserver, vzero, civ(kdf(parent, xn(input_a, input_b)))), m1);
+        insert tAfterFirst(stR_AfterFirst, parent, input_a, input_b, m1, m2).
+
+let rEncrypt2 =
+        get tAfterFirst(stL_AfterFirst, parent, input_a, input_b, m1, m2) in
+        new rid_rEncrypt2: bitstring;
+        event eDistinctFact(rid_rEncrypt2, (stL_AfterFirst, (parent, (input_a, (input_b, (m1, m2))))));
+        event eRequestState(vclient, vzero);
+        event eContextStep(key(kdf(parent, xn(input_a, input_b)), vserver),
+                           nce(vserver, succ(vzero), civ(kdf(parent, xn(input_a, input_b)))));
+        event eAeadUse(key(kdf(parent, xn(input_a, input_b)), vserver),
+                       nce(vserver, succ(vzero), civ(kdf(parent, xn(input_a, input_b)))), m2);
+        event eNormal().
+
+process
+    ( !(rInit) | !(rEncrypt1) | !(rEncrypt2) )
+
+(*
+All wellformedness checks were successful.
+*)
+
+(*
+Generated from:
+Tamarin version 1.13.0
+Maude version 3.5
+Git revision: UNKNOWN
+Compiled at: 2026-10-24 02:25:12.718891574 UTC
+*)

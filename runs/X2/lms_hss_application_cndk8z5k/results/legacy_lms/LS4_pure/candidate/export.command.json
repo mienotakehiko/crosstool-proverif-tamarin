@@ -1,0 +1,12 @@
+[
+  "/candidate-tamarin",
+  "+RTS",
+  "-N1",
+  "-M768m",
+  "-RTS",
+  "-d=0",
+  "-m=proverif",
+  "--lemma=LS4_pure",
+  "-o=/work/legacy_lms/LS4_pure/candidate/translated.pv",
+  "/kit/models/legacy_lms.spthy"
+]

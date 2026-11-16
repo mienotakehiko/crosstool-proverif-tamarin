@@ -1,0 +1,1 @@
+["tamarin-prover", "+RTS", "-N1", "-M768m", "-RTS", "-d=0", "--prove=pending_new_aborts_matching_update", "/work/inputs/T7/pending_new.spthy"]

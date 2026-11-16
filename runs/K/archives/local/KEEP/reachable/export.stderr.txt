@@ -1,0 +1,7 @@
+maude tool: 'maude'
+ checking version: 3.5. OK.
+ checking installation: OK.
+[Theory CimBusyKeep] Theory loaded
+[Theory CimBusyKeep] Theory translated
+[Theory CimBusyKeep] No Deconstruction Chain checks started
+[Theory CimBusyKeep] No Deconstruction Chain checks ended

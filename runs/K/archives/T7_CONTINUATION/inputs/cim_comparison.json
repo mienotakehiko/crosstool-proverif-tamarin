@@ -1,0 +1,425 @@
+{
+  "pass": true,
+  "checks": {
+    "tool_exit_codes_zero": true,
+    "proverif_query_statements_match": true,
+    "proverif_expected_verdicts": true,
+    "tamarin_expected_verdicts": true,
+    "tamarin_proof_closed": true,
+    "proverif_continuation_witness": true,
+    "tamarin_continuation_witness": true,
+    "observed_witnesses_agree": true
+  },
+  "proverif_verdicts": [
+    "false",
+    "true",
+    "true",
+    "true",
+    "true"
+  ],
+  "tamarin_verdicts": {
+    "reachable": "verified",
+    "new_receipt_and_promotion": "verified",
+    "derive_and_send": "verified",
+    "parent_distinct": "verified",
+    "context_distinct": "verified"
+  },
+  "wall_seconds": {
+    "proverif": 0.013,
+    "tamarin": 0.833
+  },
+  "tamarin_processing_seconds": 0.81,
+  "observed_events": {
+    "proverif": {
+      "PendingBefore": [
+        "exchange_id_1",
+        "prior_new_1",
+        "oldest_parent_1",
+        [
+          "tempctx",
+          "oldest_parent_1",
+          "oldest_pair_1"
+        ]
+      ],
+      "NewVerified": [
+        "exchange_id_1",
+        "incoming_id_1",
+        "prior_new_1",
+        "incoming_pair_1",
+        [
+          "tempctx",
+          "prior_new_1",
+          "incoming_pair_1"
+        ]
+      ],
+      "PendingAborted": [
+        "exchange_id_1",
+        "incoming_id_1",
+        "prior_new_1",
+        "oldest_parent_1",
+        [
+          "tempctx",
+          "oldest_parent_1",
+          "oldest_pair_1"
+        ]
+      ],
+      "BusyEntryRead": [
+        "exchange_id_1",
+        "incoming_id_1",
+        "prior_new_1",
+        "incoming_pair_1",
+        [
+          "tempctx",
+          "prior_new_1",
+          "incoming_pair_1"
+        ],
+        "empty_oldest_temp",
+        "empty_oldest_parent",
+        "empty_pending_new",
+        "empty_local_pair"
+      ],
+      "RestartDerived": [
+        "exchange_id_1",
+        "incoming_id_1",
+        "prior_new_1",
+        "incoming_pair_1",
+        "fresh_local_pair_s4_2",
+        [
+          "newctx",
+          "prior_new_1",
+          "fresh_local_pair_s4_2",
+          "incoming_pair_1"
+        ]
+      ],
+      "ConvergentSent": [
+        "exchange_id_1",
+        "incoming_id_1",
+        [
+          "newctx",
+          "prior_new_1",
+          "fresh_local_pair_s4_2",
+          "incoming_pair_1"
+        ]
+      ],
+      "PendingRead": [
+        "exchange_id_1",
+        "incoming_id_1",
+        "prior_new_1",
+        "incoming_pair_1",
+        "fresh_local_pair_s4_2",
+        [
+          "newctx",
+          "prior_new_1",
+          "fresh_local_pair_s4_2",
+          "incoming_pair_1"
+        ],
+        "prior_new_1",
+        "oldest_parent_1",
+        [
+          "tempctx",
+          "oldest_parent_1",
+          "oldest_pair_1"
+        ],
+        [
+          "tempctx",
+          "prior_new_1",
+          "incoming_pair_1"
+        ]
+      ]
+    },
+    "tamarin": {
+      "PendingRead": [
+        "~exchange_id",
+        "~incoming_id",
+        "~prior_new",
+        "~incoming_pair",
+        "~fresh_local_pair",
+        [
+          "newctx",
+          "~prior_new",
+          "~fresh_local_pair",
+          "~incoming_pair"
+        ],
+        "~prior_new",
+        "~oldest_parent",
+        [
+          "tempctx",
+          "~oldest_parent",
+          "~oldest_pair"
+        ],
+        [
+          "tempctx",
+          "~prior_new",
+          "~incoming_pair"
+        ]
+      ],
+      "ConvergentSent": [
+        "~exchange_id",
+        "~incoming_id",
+        [
+          "newctx",
+          "~prior_new",
+          "~fresh_local_pair",
+          "~incoming_pair"
+        ]
+      ],
+      "RestartDerived": [
+        "~exchange_id",
+        "~incoming_id",
+        "~prior_new",
+        "~incoming_pair",
+        "~fresh_local_pair",
+        [
+          "newctx",
+          "~prior_new",
+          "~fresh_local_pair",
+          "~incoming_pair"
+        ]
+      ],
+      "BusyEntryRead": [
+        "~exchange_id",
+        "~incoming_id",
+        "~prior_new",
+        "~incoming_pair",
+        [
+          "tempctx",
+          "~prior_new",
+          "~incoming_pair"
+        ],
+        "empty_oldest_temp",
+        "empty_oldest_parent",
+        "empty_pending_new",
+        "empty_local_pair"
+      ],
+      "PendingAborted": [
+        "~exchange_id",
+        "~incoming_id",
+        "~prior_new",
+        "~oldest_parent",
+        [
+          "tempctx",
+          "~oldest_parent",
+          "~oldest_pair"
+        ]
+      ],
+      "PendingBefore": [
+        "~exchange_id",
+        "~prior_new",
+        "~oldest_parent",
+        [
+          "tempctx",
+          "~oldest_parent",
+          "~oldest_pair"
+        ]
+      ],
+      "NewVerified": [
+        "~exchange_id",
+        "~incoming_id",
+        "~prior_new",
+        "~incoming_pair",
+        [
+          "tempctx",
+          "~prior_new",
+          "~incoming_pair"
+        ]
+      ]
+    }
+  },
+  "normalized_events": {
+    "proverif": {
+      "PendingBefore": [
+        "exchange",
+        "promoted_context",
+        "discarded_parent",
+        [
+          "tempctx",
+          "discarded_parent",
+          "discarded_temp_pair"
+        ]
+      ],
+      "NewVerified": [
+        "exchange",
+        "incoming_message",
+        "promoted_context",
+        "incoming_peer_pair",
+        [
+          "tempctx",
+          "promoted_context",
+          "incoming_peer_pair"
+        ]
+      ],
+      "PendingAborted": [
+        "exchange",
+        "incoming_message",
+        "promoted_context",
+        "discarded_parent",
+        [
+          "tempctx",
+          "discarded_parent",
+          "discarded_temp_pair"
+        ]
+      ],
+      "BusyEntryRead": [
+        "exchange",
+        "incoming_message",
+        "promoted_context",
+        "incoming_peer_pair",
+        [
+          "tempctx",
+          "promoted_context",
+          "incoming_peer_pair"
+        ],
+        "empty_oldest_temp",
+        "empty_oldest_parent",
+        "empty_pending_new",
+        "empty_local_pair"
+      ],
+      "RestartDerived": [
+        "exchange",
+        "incoming_message",
+        "promoted_context",
+        "incoming_peer_pair",
+        "fresh_local_pair",
+        [
+          "newctx",
+          "promoted_context",
+          "fresh_local_pair",
+          "incoming_peer_pair"
+        ]
+      ],
+      "ConvergentSent": [
+        "exchange",
+        "incoming_message",
+        [
+          "newctx",
+          "promoted_context",
+          "fresh_local_pair",
+          "incoming_peer_pair"
+        ]
+      ],
+      "PendingRead": [
+        "exchange",
+        "incoming_message",
+        "promoted_context",
+        "incoming_peer_pair",
+        "fresh_local_pair",
+        [
+          "newctx",
+          "promoted_context",
+          "fresh_local_pair",
+          "incoming_peer_pair"
+        ],
+        "promoted_context",
+        "discarded_parent",
+        [
+          "tempctx",
+          "discarded_parent",
+          "discarded_temp_pair"
+        ],
+        [
+          "tempctx",
+          "promoted_context",
+          "incoming_peer_pair"
+        ]
+      ]
+    },
+    "tamarin": {
+      "PendingBefore": [
+        "exchange",
+        "promoted_context",
+        "discarded_parent",
+        [
+          "tempctx",
+          "discarded_parent",
+          "discarded_temp_pair"
+        ]
+      ],
+      "NewVerified": [
+        "exchange",
+        "incoming_message",
+        "promoted_context",
+        "incoming_peer_pair",
+        [
+          "tempctx",
+          "promoted_context",
+          "incoming_peer_pair"
+        ]
+      ],
+      "PendingAborted": [
+        "exchange",
+        "incoming_message",
+        "promoted_context",
+        "discarded_parent",
+        [
+          "tempctx",
+          "discarded_parent",
+          "discarded_temp_pair"
+        ]
+      ],
+      "BusyEntryRead": [
+        "exchange",
+        "incoming_message",
+        "promoted_context",
+        "incoming_peer_pair",
+        [
+          "tempctx",
+          "promoted_context",
+          "incoming_peer_pair"
+        ],
+        "empty_oldest_temp",
+        "empty_oldest_parent",
+        "empty_pending_new",
+        "empty_local_pair"
+      ],
+      "RestartDerived": [
+        "exchange",
+        "incoming_message",
+        "promoted_context",
+        "incoming_peer_pair",
+        "fresh_local_pair",
+        [
+          "newctx",
+          "promoted_context",
+          "fresh_local_pair",
+          "incoming_peer_pair"
+        ]
+      ],
+      "ConvergentSent": [
+        "exchange",
+        "incoming_message",
+        [
+          "newctx",
+          "promoted_context",
+          "fresh_local_pair",
+          "incoming_peer_pair"
+        ]
+      ],
+      "PendingRead": [
+        "exchange",
+        "incoming_message",
+        "promoted_context",
+        "incoming_peer_pair",
+        "fresh_local_pair",
+        [
+          "newctx",
+          "promoted_context",
+          "fresh_local_pair",
+          "incoming_peer_pair"
+        ],
+        "promoted_context",
+        "discarded_parent",
+        [
+          "tempctx",
+          "discarded_parent",
+          "discarded_temp_pair"
+        ],
+        [
+          "tempctx",
+          "promoted_context",
+          "incoming_peer_pair"
+        ]
+      ]
+    }
+  },
+  "errors": {}
+}

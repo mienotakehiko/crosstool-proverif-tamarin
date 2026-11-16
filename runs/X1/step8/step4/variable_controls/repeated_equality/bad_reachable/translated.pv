@@ -1,0 +1,87 @@
+set preciseActions = true.
+
+(* Free names *)
+free publicChannel:channel.
+
+(* Functions *)
+fun fst(bitstring):bitstring.
+fun pair(bitstring,bitstring):bitstring.
+fun s(bitstring):bitstring.
+fun snd(bitstring):bitstring.
+fun z():bitstring.
+
+(* Equations *)
+equation forall x_1:bitstring, x_2:bitstring; fst((x_1, x_2)) = x_1.
+equation forall x_1:bitstring, x_2:bitstring; snd((x_1, x_2)) = x_2.
+reduc forall var_x:bitstring; g_var_x_0((var_x, var_x)) = var_x[private].
+
+(* Events *)
+event eBad(bitstring).
+event eDistinctFact(bitstring, bitstring).
+event eGood(bitstring).
+event eInitOnce(bitstring).
+
+(* Tables *)
+table tStBad(bitstring, bitstring, bitstring).
+table tStGood(bitstring, bitstring, bitstring).
+
+(* Restrictions *)
+
+(* OneInit *)
+
+restriction rid_i:bitstring, rid_j:bitstring, i:time, j:time;
+  event(eInitOnce( rid_i ))@i && event(eInitOnce( rid_j ))@j
+  ==> rid_i = rid_j.
+
+(* DistinctFact *)
+
+restriction rid_i:bitstring, rid_j:bitstring, x:bitstring, i:time,
+            j:time;
+  event(eDistinctFact( rid_i, x ))@i && event(eDistinctFact( rid_j, x ))@j
+  ==> rid_i = rid_j.
+
+(* Queries *)
+
+(* bad_reachable *)
+
+query asid:bitstring, i:time; event(eBad( asid ))@i.
+
+(* Processes *)
+
+let rInit =
+        new rid_rInit: bitstring;
+        new stR_StGood: bitstring;
+        new stR_StBad: bitstring;
+        new asid: bitstring;
+        event eInitOnce(rid_rInit);
+        insert tStGood(stR_StGood, asid, (z(), z()));
+        insert tStBad(stR_StBad, asid, (z(), s(z()))).
+
+let rGood =
+        get tStGood(stL_StGood, asid, helperVar0) in
+        let x = g_var_x_0(helperVar0) in
+        new rid_rGood: bitstring;
+        event eDistinctFact(rid_rGood, (stL_StGood, (asid, (x, x))));
+        event eGood(asid).
+
+let rBad =
+        get tStBad(stL_StBad, asid, helperVar0) in
+        let x = g_var_x_0(helperVar0) in
+        new rid_rBad: bitstring;
+        event eDistinctFact(rid_rBad, (stL_StBad, (asid, (x, x))));
+        event eBad(asid).
+
+process
+    ( !(rInit) | !(rGood) | !(rBad) )
+
+(*
+All wellformedness checks were successful.
+*)
+
+(*
+Generated from:
+Tamarin version 1.13.0
+Maude version 3.5
+Git revision: UNKNOWN
+Compiled at: 2026-11-15 05:08:08.737146731 UTC
+*)

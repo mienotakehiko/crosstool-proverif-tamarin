@@ -1,0 +1,168 @@
+theory CimPendingNew
+
+begin
+
+// Function signature and definition of the equational theory E
+
+functions: fst/1, pair/2, snd/1, tempctx/2
+equations: fst(<x.1, x.2>) = x.1, snd(<x.1, x.2>) = x.2
+
+rule (modulo E) Init:
+   [
+   Fr( ~old_ctx ), Fr( ~new_ctx ), Fr( ~oldest_pair ), Fr( ~incoming_pair ),
+   Fr( ~message )
+   ]
+  --[
+  Init( ),
+  PendingBefore( ~new_ctx, ~old_ctx, tempctx(~old_ctx, ~oldest_pair) )
+  ]->
+   [
+   Pending( ~new_ctx, ~old_ctx, tempctx(~old_ctx, ~oldest_pair) ),
+   BeforeSnapshot( ~new_ctx, ~old_ctx, tempctx(~old_ctx, ~oldest_pair) ),
+   VerifiedNewOnlyPremise( ~message, ~new_ctx, ~incoming_pair )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) RecordVerifiedReceipt:
+   [ VerifiedNewOnlyPremise( m, n, peer_pair ) ]
+  --[ NewVerified( m, n, tempctx(n, peer_pair) ) ]->
+   [ VerifiedDivergent( m, n, tempctx(n, peer_pair), peer_pair ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) AbortOnNewDerived:
+   [ Pending( n, b, t0 ), VerifiedDivergent( m, n, r, peer_pair ) ]
+  --[
+  PendingAborted( m, n, b, t0 ),
+  VerifiedTempMatches( r, tempctx(n, peer_pair) )
+  ]->
+   [
+   BusyEntry( m, n, r, 'empty_oldest_temp', 'empty_oldest_parent',
+              'empty_pending_new'
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) ReadBusyEntry:
+   [ BeforeSnapshot( n0, b0, t0 ), BusyEntry( m, o, r, st, sp, sn ) ]
+  --[ BusyEntryRead( m, o, r, n0, b0, t0, st, sp, sn ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+restriction SingleInit:
+  "∀ #i #j. ((Init( ) @ #i) ∧ (Init( ) @ #j)) ⇒ (#i = #j)"
+  // safety formula
+
+  /*
+  expanded formula:
+  "∀ #i #j. ((Init( ) @ #i) ∧ (Init( ) @ #j)) ⇒ (#i = #j)"
+  */
+
+restriction VerifiedTemporaryContext:
+  "∀ a b #i. (VerifiedTempMatches( a, b ) @ #i) ⇒ (a = b)"
+  // safety formula
+
+  /*
+  expanded formula:
+  "∀ a b #i. (VerifiedTempMatches( a, b ) @ #i) ⇒ (a = b)"
+  */
+
+lemma pending_new_reachable:
+  exists-trace
+  "∃ m o r n0 b0 t0 st sp sn #k.
+    BusyEntryRead( m, o, r, n0, b0, t0, st, sp, sn ) @ #k"
+/*
+guarded formula characterizing all satisfying traces:
+"∃ m o r n0 b0 t0 st sp sn #k.
+  (BusyEntryRead( m, o, r, n0, b0, t0, st, sp, sn ) @ #k)"
+*/
+simplify
+solve( BeforeSnapshot( n0, b0, t0 ) ▶₀ #k )
+  case Init
+  solve( BusyEntry( m, o, r, st, sp, sn ) ▶₁ #k )
+    case AbortOnNewDerived
+    SOLVED // trace found
+  qed
+qed
+
+lemma pending_new_receipt_and_promotion:
+  all-traces
+  "∀ m o r n0 b0 t0 st sp sn #k.
+    (BusyEntryRead( m, o, r, n0, b0, t0, st, sp, sn ) @ #k) ⇒
+    (∃ #t1. ((NewVerified( m, n0, r ) @ #t1) ∧ (#t1 < #k)) ∧ (o = n0))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ m o r n0 b0 t0 st sp sn #k.
+  (BusyEntryRead( m, o, r, n0, b0, t0, st, sp, sn ) @ #k)
+ ∧
+  ∀ #t1. (NewVerified( m, n0, r ) @ #t1) ∧ (o = n0) ⇒ ¬(#t1 < #k)"
+*/
+by sorry
+
+lemma pending_new_aborts_matching_update:
+  all-traces
+  "∀ m o r n0 b0 t0 st sp sn #k.
+    (BusyEntryRead( m, o, r, n0, b0, t0, st, sp, sn ) @ #k) ⇒
+    (∃ #t1 #t2.
+      (((PendingBefore( n0, b0, t0 ) @ #t1) ∧
+        (PendingAborted( m, n0, b0, t0 ) @ #t2)) ∧
+       (#t1 < #k)) ∧
+      (#t2 < #k))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ m o r n0 b0 t0 st sp sn #k.
+  (BusyEntryRead( m, o, r, n0, b0, t0, st, sp, sn ) @ #k)
+ ∧
+  ∀ #t1 #t2.
+   (PendingBefore( n0, b0, t0 ) @ #t1) ∧
+   (PendingAborted( m, n0, b0, t0 ) @ #t2)
+  ⇒
+   ((¬(#t1 < #k)) ∨ (¬(#t2 < #k)))"
+*/
+by sorry
+
+lemma pending_new_slots_empty:
+  all-traces
+  "∀ m o r n0 b0 t0 st sp sn #k.
+    (BusyEntryRead( m, o, r, n0, b0, t0, st, sp, sn ) @ #k) ⇒
+    (((st = 'empty_oldest_temp') ∧ (sp = 'empty_oldest_parent')) ∧
+     (sn = 'empty_pending_new'))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ m o r n0 b0 t0 st sp sn #k.
+  (BusyEntryRead( m, o, r, n0, b0, t0, st, sp, sn ) @ #k)
+ ∧
+  ((¬(st = 'empty_oldest_temp')) ∨
+   (¬(sp = 'empty_oldest_parent')) ∨
+   (¬(sn = 'empty_pending_new')))"
+*/
+by sorry
+
+/* All wellformedness checks were successful. */
+
+/*
+Generated from:
+Tamarin version 1.13.0
+Maude version 3.5
+Git revision: UNKNOWN
+Compiled at: 2026-10-24 02:25:12.718891574 UTC
+*/
+
+end
+
+==============================================================================
+summary of summaries:
+
+analyzed: /work/inputs/T7/pending_new.spthy
+
+  processing time: 0.04s
+  
+  pending_new_reachable (exists-trace): verified (4 steps)
+  pending_new_receipt_and_promotion (all-traces): analysis incomplete (1 steps)
+  pending_new_aborts_matching_update (all-traces): analysis incomplete (1 steps)
+  pending_new_slots_empty (all-traces): analysis incomplete (1 steps)
+
+==============================================================================

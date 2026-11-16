@@ -1,0 +1,25 @@
+'tamarin-prover' '--with-maude=maude' '--derivcheck-timeout=0' '--prove=TopAuth' '--heuristic=S' 'variants/HSS_LS7_inj__T0.spthy' +RTS '-N' '-M56g' '-A64m' '-qg' '-N4' '-sresults/out/P5_P3_std_HSS_LS7_inj_T0_TopAuth_S_prove_r2.rts' 
+  62,071,913,816 bytes allocated in the heap
+   1,425,986,352 bytes copied during GC
+     117,450,088 bytes maximum residency (12 sample(s))
+         334,488 bytes maximum slop
+             530 MiB total memory in use (0 MiB lost due to fragmentation)
+
+                                     Tot time (elapsed)  Avg pause  Max pause
+  Gen  0       229 colls,     0 par    0.232s   1.437s     0.0063s    0.0257s
+  Gen  1        12 colls,     0 par    0.072s   0.491s     0.0409s    0.0959s
+
+  TASKS: 10 (1 bound, 9 peak workers (9 total), using -N4)
+
+  SPARKS: 174 (128 converted, 0 overflowed, 0 dud, 0 GC'd, 46 fizzled)
+
+  INIT    time    0.003s  (  0.003s elapsed)
+  MUT     time   22.636s  (  9.297s elapsed)
+  GC      time    0.303s  (  1.928s elapsed)
+  EXIT    time    0.001s  (  0.003s elapsed)
+  Total   time   22.943s  ( 11.230s elapsed)
+
+  Alloc rate    2,742,219,432 bytes per MUT second
+
+  Productivity  98.7% of total user, 82.8% of total elapsed
+

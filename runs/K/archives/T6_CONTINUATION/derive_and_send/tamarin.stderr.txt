@@ -1,0 +1,10 @@
+maude tool: 'maude'
+ checking version: 3.5. OK.
+ checking installation: OK.
+[Theory CimT6Continuation] Theory loaded
+[Theory CimT6Continuation] Theory translated
+[Theory CimT6Continuation] No Deconstruction Chain checks started
+[Theory CimT6Continuation] No Deconstruction Chain checks ended
+[Theory CimT6Continuation] Theory closed
+[Saturating Sources] Step 1 (Max 5)
+[Saturating Sources] Done

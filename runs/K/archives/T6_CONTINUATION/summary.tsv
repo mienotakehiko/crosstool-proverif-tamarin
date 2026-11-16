@@ -1,0 +1,6 @@
+lemma	cim_pv_archived_raw	tamarin_retest	pv_from_tamarin	status
+t6_continuation_reachable	false	True	True	MATCH
+t6_continuation_old_receipt_and_clear	true	True	True	MATCH
+t6_continuation_derive_and_send	true	True	True	MATCH
+t6_continuation_pair_distinct	true	True	True	MATCH
+t6_continuation_context_distinct	true	True	True	MATCH

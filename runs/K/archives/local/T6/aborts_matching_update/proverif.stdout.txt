@@ -1,0 +1,101 @@
+Linear part: No equation.
+Convergent part:
+fst((x_1,x_2)) = x_1
+snd((x_1,x_2)) = x_2
+Completing equations...
+Completed equations:
+snd((x_1,x_2)) = x_2
+fst((x_1,x_2)) = x_1
+Process 0 (that is, the initial process):
+(
+    {1}!
+    {2}new rid_rInit: bitstring;
+    {3}new stR_Pending: bitstring;
+    {4}new stR_BeforeSnapshot: bitstring;
+    {5}new stR_VerifiedOldPremise: bitstring;
+    {6}new old_ctx: bitstring;
+    {7}new new_ctx: bitstring;
+    {8}new local_pair: bitstring;
+    {9}new incoming_pair: bitstring;
+    {10}new message: bitstring;
+    {11}event eInit(rid_rInit);
+    {12}event ePendingBefore(old_ctx,new_ctx,old_ctx,local_pair);
+    {13}insert tPending(stR_Pending,old_ctx,new_ctx,old_ctx,local_pair);
+    {14}insert tBeforeSnapshot(stR_BeforeSnapshot,new_ctx,old_ctx,local_pair);
+    {15}insert tVerifiedOldPremise(stR_VerifiedOldPremise,message,old_ctx,incoming_pair)
+) | (
+    {16}!
+    {17}get tVerifiedOldPremise(stL_VerifiedOldPremise: bitstring,m: bitstring,o: bitstring,peer_pair: bitstring) in
+    {18}new rid_rRecordVerifiedReceipt: bitstring;
+    {19}new stR_VerifiedDivergent: bitstring;
+    {20}event eDistinctFact(rid_rRecordVerifiedReceipt,(stL_VerifiedOldPremise,(m,(o,peer_pair))));
+    {21}event eOldVerified(m,o,tempctx(o,peer_pair));
+    {22}insert tVerifiedDivergent(stR_VerifiedDivergent,m,o,tempctx(o,peer_pair),peer_pair)
+) | (
+    {23}!
+    {24}get tPending(stL_Pending: bitstring,o_1: bitstring,n: bitstring,src: bitstring,p: bitstring) in
+    {25}get tVerifiedDivergent(stL_VerifiedDivergent: bitstring,m_1: bitstring,=o_1,r: bitstring,peer_pair_1: bitstring) in
+    {26}new rid_rAbortOnOldDerived: bitstring;
+    {27}new stR_BusyEntry: bitstring;
+    {28}event eDistinctFact(rid_rAbortOnOldDerived,(stL_Pending,(o_1,(n,(src,p)))));
+    {29}event eDistinctFact(rid_rAbortOnOldDerived,(stL_VerifiedDivergent,(m_1,(o_1,(r,peer_pair_1)))));
+    {30}event ePendingAborted(m_1,o_1,n,src,p);
+    {31}event eVerifiedTempMatches(r,tempctx(o_1,peer_pair_1));
+    {32}insert tBusyEntry(stR_BusyEntry,m_1,o_1,r,vempty_new,vempty_pair)
+) | (
+    {33}!
+    {34}get tBeforeSnapshot(stL_BeforeSnapshot: bitstring,n0: bitstring,i0: bitstring,p0: bitstring) in
+    {35}get tBusyEntry(stL_BusyEntry: bitstring,m_2: bitstring,o_2: bitstring,r_1: bitstring,ns: bitstring,ps: bitstring) in
+    {36}new rid_rReadBusyEntry: bitstring;
+    {37}event eDistinctFact(rid_rReadBusyEntry,(stL_BeforeSnapshot,(n0,(i0,p0))));
+    {38}event eDistinctFact(rid_rReadBusyEntry,(stL_BusyEntry,(m_2,(o_2,(r_1,(ns,ps))))));
+    {39}event eBusyEntryRead(m_2,o_2,r_1,n0,i0,p0,ns,ps)
+)
+
+-- Restriction event(eInit(rid_i))@i && event(eInit(rid_j))@j ==> rid_i = rid_j encoded as event(eInit(rid_i)) && event(eInit(rid_j)) ==> rid_i = rid_j in process 0.
+-- Restriction event(eVerifiedTempMatches(a,b))@i ==> a = b encoded as event(eVerifiedTempMatches(a,b)) ==> a = b in process 0.
+-- Restriction event(eDistinctFact(rid_i,x))@i && event(eDistinctFact(rid_j,x))@j ==> rid_i = rid_j encoded as event(eDistinctFact(rid_i,x)) && event(eDistinctFact(rid_j,x)) ==> rid_i = rid_j in process 0.
+-- Query event(eBusyEntryRead(m_3,o_3,r_2,n0_1,i0_1,p0_1,ns_1,ps_1))@k ==> event(ePendingBefore(o_3,n0_1,i0_1,p0_1))@t1 && event(ePendingAborted(m_3,o_3,n0_1,i0_1,p0_1))@t2 && k > t1 && k > t2 encoded as event(eBusyEntryRead(m_3,o_3,r_2,n0_1,i0_1,p0_1,ns_1,ps_1))@i ==> event(ePendingBefore(o_3,n0_1,i0_1,p0_1))@i_1 && i > i_1 && event(ePendingAborted(m_3,o_3,n0_1,i0_1,p0_1))@i_2 && i > i_2 in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query event(eBusyEntryRead(m_3,o_3,r_2,n0_1,i0_1,p0_1,ns_1,ps_1))@k ==> event(ePendingBefore(o_3,n0_1,i0_1,p0_1))@t1 && event(ePendingAborted(m_3,o_3,n0_1,i0_1,p0_1))@t2 && k > t1 && k > t2
+Removing redudant clauses.
+Removing subsumed clauses modulo the equational theory.
+Starting verification.
+Clauses verified: 0. Clauses remaining: 1. Failed clauses: 0.
+goal reachable: b-event(eDistinctFact(rid_rReadBusyEntry_1,(stR_BusyEntry_1,(message_1,(old_ctx_1,(tempctx(old_ctx_1,incoming_pair_1),(vempty_new[],vempty_pair[]))))))) && b-event(eDistinctFact(rid_rReadBusyEntry_1,(stR_BeforeSnapshot_1,(new_ctx_1,(old_ctx_1,local_pair_1))))) && b-event(eVerifiedTempMatches(tempctx(old_ctx_1,incoming_pair_1),tempctx(old_ctx_1,incoming_pair_1))) && b-event(ePendingAborted(message_1,old_ctx_1,new_ctx_1,old_ctx_1,local_pair_1)) && b-event(eDistinctFact(rid_rAbortOnOldDerived_1,(stR_VerifiedDivergent_1,(message_1,(old_ctx_1,(tempctx(old_ctx_1,incoming_pair_1),incoming_pair_1)))))) && b-event(eDistinctFact(rid_rAbortOnOldDerived_1,(stR_Pending_1,(old_ctx_1,(new_ctx_1,(old_ctx_1,local_pair_1)))))) && b-event(eDistinctFact(rid_rRecordVerifiedReceipt_1,(stR_VerifiedOldPremise_1,(message_1,(old_ctx_1,incoming_pair_1))))) && b-event(@p_act(@occ17_1,tVerifiedOldPremise(stR_VerifiedOldPremise_1,message_1,old_ctx_1,incoming_pair_1))) && b-event(@p_act(@occ25_1,tVerifiedDivergent(stR_VerifiedDivergent_1,message_1,old_ctx_1,tempctx(old_ctx_1,incoming_pair_1),incoming_pair_1))) && b-event(@p_act(@occ24_1,tPending(stR_Pending_1,old_ctx_1,new_ctx_1,old_ctx_1,local_pair_1))) && b-event(@p_act(@occ35_1,tBusyEntry(stR_BusyEntry_1,message_1,old_ctx_1,tempctx(old_ctx_1,incoming_pair_1),vempty_new[],vempty_pair[]))) && b-event(ePendingBefore(old_ctx_1,new_ctx_1,old_ctx_1,local_pair_1)) && b-event(eInit(rid_rInit_1)) && b-event(@p_act(@occ34_1,tBeforeSnapshot(stR_BeforeSnapshot_1,new_ctx_1,old_ctx_1,local_pair_1))) -> event(eBusyEntryRead(message_1,old_ctx_1,tempctx(old_ctx_1,incoming_pair_1),new_ctx_1,old_ctx_1,local_pair_1,vempty_new[],vempty_pair[]))
+The 1st, 2nd, 3rd, 4th, 5th, 6th, 7th, 8th, 9th, 10th, 11th, 12th, 13th, 14th hypotheses occur strictly before the conclusion.
+Abbreviations:
+message_1 = message[!1 = @sid]
+old_ctx_1 = old_ctx[!1 = @sid]
+incoming_pair_1 = incoming_pair[!1 = @sid]
+new_ctx_1 = new_ctx[!1 = @sid]
+local_pair_1 = local_pair[!1 = @sid]
+stR_VerifiedOldPremise_1 = stR_VerifiedOldPremise[!1 = @sid]
+stR_VerifiedDivergent_1 = stR_VerifiedDivergent[peer_pair = incoming_pair_1,o = old_ctx_1,m = message_1,stL_VerifiedOldPremise = stR_VerifiedOldPremise_1,!1 = @sid_1]
+stR_Pending_1 = stR_Pending[!1 = @sid]
+stR_BusyEntry_1 = stR_BusyEntry[peer_pair_1 = incoming_pair_1,r = tempctx(old_ctx_1,incoming_pair_1),m_1 = message_1,stL_VerifiedDivergent = stR_VerifiedDivergent_1,p = local_pair_1,src = old_ctx_1,n = new_ctx_1,o_1 = old_ctx_1,stL_Pending = stR_Pending_1,!1 = @sid_2]
+stR_BeforeSnapshot_1 = stR_BeforeSnapshot[!1 = @sid]
+rid_rReadBusyEntry_1 = rid_rReadBusyEntry[ps = vempty_pair[],ns = vempty_new[],r_1 = tempctx(old_ctx_1,incoming_pair_1),o_2 = old_ctx_1,m_2 = message_1,stL_BusyEntry = stR_BusyEntry_1,p0 = local_pair_1,i0 = old_ctx_1,n0 = new_ctx_1,stL_BeforeSnapshot = stR_BeforeSnapshot_1,!1 = @sid_3]
+rid_rAbortOnOldDerived_1 = rid_rAbortOnOldDerived[peer_pair_1 = incoming_pair_1,r = tempctx(old_ctx_1,incoming_pair_1),m_1 = message_1,stL_VerifiedDivergent = stR_VerifiedDivergent_1,p = local_pair_1,src = old_ctx_1,n = new_ctx_1,o_1 = old_ctx_1,stL_Pending = stR_Pending_1,!1 = @sid_2]
+rid_rRecordVerifiedReceipt_1 = rid_rRecordVerifiedReceipt[peer_pair = incoming_pair_1,o = old_ctx_1,m = message_1,stL_VerifiedOldPremise = stR_VerifiedOldPremise_1,!1 = @sid_1]
+@occ17_1 = @occ17[!1 = @sid_1]
+@occ25_1 = @occ25[!1 = @sid_2]
+@occ24_1 = @occ24[!1 = @sid_2]
+@occ35_1 = @occ35[!1 = @sid_3]
+rid_rInit_1 = rid_rInit[!1 = @sid]
+@occ34_1 = @occ34[!1 = @sid_3]
+RESULT event(eBusyEntryRead(m_3,o_3,r_2,n0_1,i0_1,p0_1,ns_1,ps_1))@k ==> event(ePendingBefore(o_3,n0_1,i0_1,p0_1))@t1 && event(ePendingAborted(m_3,o_3,n0_1,i0_1,p0_1))@t2 && k > t1 && k > t2 is true.
+
+--------------------------------------------------------------
+Verification summary:
+
+Query(ies):
+ - Query event(eBusyEntryRead(m_3,o_3,r_2,n0_1,i0_1,p0_1,ns_1,ps_1))@k ==> event(ePendingBefore(o_3,n0_1,i0_1,p0_1))@t1 && event(ePendingAborted(m_3,o_3,n0_1,i0_1,p0_1))@t2 && k > t1 && k > t2 is true.
+Associated restriction(s):
+ - Restriction event(eInit(rid_i))@i && event(eInit(rid_j))@j ==> rid_i = rid_j encoded as event(eInit(rid_i)) && event(eInit(rid_j)) ==> rid_i = rid_j in process 0.
+ - Restriction event(eVerifiedTempMatches(a,b))@i ==> a = b encoded as event(eVerifiedTempMatches(a,b)) ==> a = b in process 0.
+ - Restriction event(eDistinctFact(rid_i,x))@i && event(eDistinctFact(rid_j,x))@j ==> rid_i = rid_j encoded as event(eDistinctFact(rid_i,x)) && event(eDistinctFact(rid_j,x)) ==> rid_i = rid_j in process 0.
+
+--------------------------------------------------------------
+

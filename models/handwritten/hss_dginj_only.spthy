@@ -1,0 +1,157 @@
+theory HSS_LS7_inj
+/*
+ * L-S7: HSS with two levels, each an LMS tree of height 1 with LM-OTS
+ * (w = 2, p = 2). The top key signs the bottom public key once, at
+ * top leaf z. The bottom key signs messages at leaves z and s(z).
+ * Variant: inj.
+ */
+begin
+functions: ch/3, prf/3 [private], hl/3, s/1, z/0
+
+restriction DgFun: "All X q m a b #i #j. Dg(X,q,m,a)@i & Dg(X,q,m,b)@j ==> a = b"
+restriction DgInj: "All X q m1 m2 a #i #j. Dg(X,q,m1,a)@i & Dg(X,q,m2,a)@j ==> m1 = m2"
+
+rule KeyGen:
+  [ Fr(~I), Fr(~sdT), Fr(~J), Fr(~sdB) ]
+  --[ KeyGen(~I) ]->
+  [ !SkT(~I,~sdT), !SkB(~I,~J,~sdB), TopPending(~I,~sdT,~J,~sdB),
+    !Root(~I, hl(~I, <ch(~I,'m',ch(~I,'m',ch(~I,'m',prf(~sdT,z,'m')))), ch(~I,'k',ch(~I,'k',ch(~I,'k',prf(~sdT,z,'k'))))>, <ch(~I,'m',ch(~I,'m',ch(~I,'m',prf(~sdT,s(z),'m')))), ch(~I,'k',ch(~I,'k',ch(~I,'k',prf(~sdT,s(z),'k'))))>)), Out(<~I, hl(~I, <ch(~I,'m',ch(~I,'m',ch(~I,'m',prf(~sdT,z,'m')))), ch(~I,'k',ch(~I,'k',ch(~I,'k',prf(~sdT,z,'k'))))>, <ch(~I,'m',ch(~I,'m',ch(~I,'m',prf(~sdT,s(z),'m')))), ch(~I,'k',ch(~I,'k',ch(~I,'k',prf(~sdT,s(z),'k'))))>)>) ]
+
+// The top key signs the bottom public key <J, rootB> at top leaf z.
+rule TopSign_a0:
+  [ TopPending(I,sdT,J,sdB), In(<'top',z>) ]
+  --[ Dg(I,z,<J,hl(J, <ch(J,'m',ch(J,'m',ch(J,'m',prf(sdB,z,'m')))), ch(J,'k',ch(J,'k',ch(J,'k',prf(sdB,z,'k'))))>, <ch(J,'m',ch(J,'m',ch(J,'m',prf(sdB,s(z),'m')))), ch(J,'k',ch(J,'k',ch(J,'k',prf(sdB,s(z),'k'))))>)>,z), SignTop(I,J) ]->
+  [ BotSt(I,J,sdB,z),
+    Out(<I,J,hl(J, <ch(J,'m',ch(J,'m',ch(J,'m',prf(sdB,z,'m')))), ch(J,'k',ch(J,'k',ch(J,'k',prf(sdB,z,'k'))))>, <ch(J,'m',ch(J,'m',ch(J,'m',prf(sdB,s(z),'m')))), ch(J,'k',ch(J,'k',ch(J,'k',prf(sdB,s(z),'k'))))>),z,z,prf(sdT,z,'m'),ch(I,'k',ch(I,'k',ch(I,'k',prf(sdT,z,'k')))),<ch(I,'m',ch(I,'m',ch(I,'m',prf(sdT,s(z),'m')))), ch(I,'k',ch(I,'k',ch(I,'k',prf(sdT,s(z),'k'))))>>) ]
+rule TopSign_a1:
+  [ TopPending(I,sdT,J,sdB), In(<'top',s(z)>) ]
+  --[ Dg(I,z,<J,hl(J, <ch(J,'m',ch(J,'m',ch(J,'m',prf(sdB,z,'m')))), ch(J,'k',ch(J,'k',ch(J,'k',prf(sdB,z,'k'))))>, <ch(J,'m',ch(J,'m',ch(J,'m',prf(sdB,s(z),'m')))), ch(J,'k',ch(J,'k',ch(J,'k',prf(sdB,s(z),'k'))))>)>,s(z)), SignTop(I,J) ]->
+  [ BotSt(I,J,sdB,z),
+    Out(<I,J,hl(J, <ch(J,'m',ch(J,'m',ch(J,'m',prf(sdB,z,'m')))), ch(J,'k',ch(J,'k',ch(J,'k',prf(sdB,z,'k'))))>, <ch(J,'m',ch(J,'m',ch(J,'m',prf(sdB,s(z),'m')))), ch(J,'k',ch(J,'k',ch(J,'k',prf(sdB,s(z),'k'))))>),z,s(z),ch(I,'m',prf(sdT,z,'m')),ch(I,'k',ch(I,'k',prf(sdT,z,'k'))),<ch(I,'m',ch(I,'m',ch(I,'m',prf(sdT,s(z),'m')))), ch(I,'k',ch(I,'k',ch(I,'k',prf(sdT,s(z),'k'))))>>) ]
+rule TopSign_a2:
+  [ TopPending(I,sdT,J,sdB), In(<'top',s(s(z))>) ]
+  --[ Dg(I,z,<J,hl(J, <ch(J,'m',ch(J,'m',ch(J,'m',prf(sdB,z,'m')))), ch(J,'k',ch(J,'k',ch(J,'k',prf(sdB,z,'k'))))>, <ch(J,'m',ch(J,'m',ch(J,'m',prf(sdB,s(z),'m')))), ch(J,'k',ch(J,'k',ch(J,'k',prf(sdB,s(z),'k'))))>)>,s(s(z))), SignTop(I,J) ]->
+  [ BotSt(I,J,sdB,z),
+    Out(<I,J,hl(J, <ch(J,'m',ch(J,'m',ch(J,'m',prf(sdB,z,'m')))), ch(J,'k',ch(J,'k',ch(J,'k',prf(sdB,z,'k'))))>, <ch(J,'m',ch(J,'m',ch(J,'m',prf(sdB,s(z),'m')))), ch(J,'k',ch(J,'k',ch(J,'k',prf(sdB,s(z),'k'))))>),z,s(s(z)),ch(I,'m',ch(I,'m',prf(sdT,z,'m'))),ch(I,'k',prf(sdT,z,'k')),<ch(I,'m',ch(I,'m',ch(I,'m',prf(sdT,s(z),'m')))), ch(I,'k',ch(I,'k',ch(I,'k',prf(sdT,s(z),'k'))))>>) ]
+rule TopSign_a3:
+  [ TopPending(I,sdT,J,sdB), In(<'top',s(s(s(z)))>) ]
+  --[ Dg(I,z,<J,hl(J, <ch(J,'m',ch(J,'m',ch(J,'m',prf(sdB,z,'m')))), ch(J,'k',ch(J,'k',ch(J,'k',prf(sdB,z,'k'))))>, <ch(J,'m',ch(J,'m',ch(J,'m',prf(sdB,s(z),'m')))), ch(J,'k',ch(J,'k',ch(J,'k',prf(sdB,s(z),'k'))))>)>,s(s(s(z)))), SignTop(I,J) ]->
+  [ BotSt(I,J,sdB,z),
+    Out(<I,J,hl(J, <ch(J,'m',ch(J,'m',ch(J,'m',prf(sdB,z,'m')))), ch(J,'k',ch(J,'k',ch(J,'k',prf(sdB,z,'k'))))>, <ch(J,'m',ch(J,'m',ch(J,'m',prf(sdB,s(z),'m')))), ch(J,'k',ch(J,'k',ch(J,'k',prf(sdB,s(z),'k'))))>),z,s(s(s(z))),ch(I,'m',ch(I,'m',ch(I,'m',prf(sdT,z,'m')))),prf(sdT,z,'k'),<ch(I,'m',ch(I,'m',ch(I,'m',prf(sdT,s(z),'m')))), ch(I,'k',ch(I,'k',ch(I,'k',prf(sdT,s(z),'k'))))>>) ]
+
+// The bottom key signs messages; the state moves forwards only.
+rule BotSign_q0_a0:
+  [ BotSt(I,J,sdB,z), In(<'sign',m,z>) ]
+  --[ Dg(J,z,m,z), SignBot(I,J,m) ]->
+  [ BotSt(I,J,sdB,s(z)), Out(<I,J,m,z,z,prf(sdB,z,'m'),ch(J,'k',ch(J,'k',ch(J,'k',prf(sdB,z,'k')))),<ch(J,'m',ch(J,'m',ch(J,'m',prf(sdB,s(z),'m')))), ch(J,'k',ch(J,'k',ch(J,'k',prf(sdB,s(z),'k'))))>>) ]
+rule BotSign_q0_a1:
+  [ BotSt(I,J,sdB,z), In(<'sign',m,s(z)>) ]
+  --[ Dg(J,z,m,s(z)), SignBot(I,J,m) ]->
+  [ BotSt(I,J,sdB,s(z)), Out(<I,J,m,z,s(z),ch(J,'m',prf(sdB,z,'m')),ch(J,'k',ch(J,'k',prf(sdB,z,'k'))),<ch(J,'m',ch(J,'m',ch(J,'m',prf(sdB,s(z),'m')))), ch(J,'k',ch(J,'k',ch(J,'k',prf(sdB,s(z),'k'))))>>) ]
+rule BotSign_q0_a2:
+  [ BotSt(I,J,sdB,z), In(<'sign',m,s(s(z))>) ]
+  --[ Dg(J,z,m,s(s(z))), SignBot(I,J,m) ]->
+  [ BotSt(I,J,sdB,s(z)), Out(<I,J,m,z,s(s(z)),ch(J,'m',ch(J,'m',prf(sdB,z,'m'))),ch(J,'k',prf(sdB,z,'k')),<ch(J,'m',ch(J,'m',ch(J,'m',prf(sdB,s(z),'m')))), ch(J,'k',ch(J,'k',ch(J,'k',prf(sdB,s(z),'k'))))>>) ]
+rule BotSign_q0_a3:
+  [ BotSt(I,J,sdB,z), In(<'sign',m,s(s(s(z)))>) ]
+  --[ Dg(J,z,m,s(s(s(z)))), SignBot(I,J,m) ]->
+  [ BotSt(I,J,sdB,s(z)), Out(<I,J,m,z,s(s(s(z))),ch(J,'m',ch(J,'m',ch(J,'m',prf(sdB,z,'m')))),prf(sdB,z,'k'),<ch(J,'m',ch(J,'m',ch(J,'m',prf(sdB,s(z),'m')))), ch(J,'k',ch(J,'k',ch(J,'k',prf(sdB,s(z),'k'))))>>) ]
+rule BotSign_q1_a0:
+  [ BotSt(I,J,sdB,s(z)), In(<'sign',m,z>) ]
+  --[ Dg(J,s(z),m,z), SignBot(I,J,m) ]->
+  [ BotSt(I,J,sdB,s(s(z))), Out(<I,J,m,s(z),z,prf(sdB,s(z),'m'),ch(J,'k',ch(J,'k',ch(J,'k',prf(sdB,s(z),'k')))),<ch(J,'m',ch(J,'m',ch(J,'m',prf(sdB,z,'m')))), ch(J,'k',ch(J,'k',ch(J,'k',prf(sdB,z,'k'))))>>) ]
+rule BotSign_q1_a1:
+  [ BotSt(I,J,sdB,s(z)), In(<'sign',m,s(z)>) ]
+  --[ Dg(J,s(z),m,s(z)), SignBot(I,J,m) ]->
+  [ BotSt(I,J,sdB,s(s(z))), Out(<I,J,m,s(z),s(z),ch(J,'m',prf(sdB,s(z),'m')),ch(J,'k',ch(J,'k',prf(sdB,s(z),'k'))),<ch(J,'m',ch(J,'m',ch(J,'m',prf(sdB,z,'m')))), ch(J,'k',ch(J,'k',ch(J,'k',prf(sdB,z,'k'))))>>) ]
+rule BotSign_q1_a2:
+  [ BotSt(I,J,sdB,s(z)), In(<'sign',m,s(s(z))>) ]
+  --[ Dg(J,s(z),m,s(s(z))), SignBot(I,J,m) ]->
+  [ BotSt(I,J,sdB,s(s(z))), Out(<I,J,m,s(z),s(s(z)),ch(J,'m',ch(J,'m',prf(sdB,s(z),'m'))),ch(J,'k',prf(sdB,s(z),'k')),<ch(J,'m',ch(J,'m',ch(J,'m',prf(sdB,z,'m')))), ch(J,'k',ch(J,'k',ch(J,'k',prf(sdB,z,'k'))))>>) ]
+rule BotSign_q1_a3:
+  [ BotSt(I,J,sdB,s(z)), In(<'sign',m,s(s(s(z)))>) ]
+  --[ Dg(J,s(z),m,s(s(s(z)))), SignBot(I,J,m) ]->
+  [ BotSt(I,J,sdB,s(s(z))), Out(<I,J,m,s(z),s(s(s(z))),ch(J,'m',ch(J,'m',ch(J,'m',prf(sdB,s(z),'m')))),prf(sdB,s(z),'k'),<ch(J,'m',ch(J,'m',ch(J,'m',prf(sdB,z,'m')))), ch(J,'k',ch(J,'k',ch(J,'k',prf(sdB,z,'k'))))>>) ]
+
+rule RevealTop:
+  [ !SkT(I,sd) ] --[ RevealTop(I) ]-> [ Out(sd) ]
+rule RevealBot:
+  [ !SkB(I,J,sd) ] --[ RevealBot(I,J) ]-> [ Out(<J,sd>) ]
+
+// Step 1: check the top signature on a claimed bottom key <J, rB>.
+rule VerTop_q0_a0:
+  [ !Root(I,hl(I, <ch(I,'m',ch(I,'m',ch(I,'m',sm))), sk>, sib)), In(<I,J,rB,z,z,sm,sk,sib>) ]
+  --[ Dg(I,z,<J,rB>,z), AcceptTop(I,J,rB) ]->
+  [ !TopOK(I,J,rB) ]
+rule VerTop_q0_a1:
+  [ !Root(I,hl(I, <ch(I,'m',ch(I,'m',sm)), ch(I,'k',sk)>, sib)), In(<I,J,rB,z,s(z),sm,sk,sib>) ]
+  --[ Dg(I,z,<J,rB>,s(z)), AcceptTop(I,J,rB) ]->
+  [ !TopOK(I,J,rB) ]
+rule VerTop_q0_a2:
+  [ !Root(I,hl(I, <ch(I,'m',sm), ch(I,'k',ch(I,'k',sk))>, sib)), In(<I,J,rB,z,s(s(z)),sm,sk,sib>) ]
+  --[ Dg(I,z,<J,rB>,s(s(z))), AcceptTop(I,J,rB) ]->
+  [ !TopOK(I,J,rB) ]
+rule VerTop_q0_a3:
+  [ !Root(I,hl(I, <sm, ch(I,'k',ch(I,'k',ch(I,'k',sk)))>, sib)), In(<I,J,rB,z,s(s(s(z))),sm,sk,sib>) ]
+  --[ Dg(I,z,<J,rB>,s(s(s(z)))), AcceptTop(I,J,rB) ]->
+  [ !TopOK(I,J,rB) ]
+rule VerTop_q1_a0:
+  [ !Root(I,hl(I, sib, <ch(I,'m',ch(I,'m',ch(I,'m',sm))), sk>)), In(<I,J,rB,s(z),z,sm,sk,sib>) ]
+  --[ Dg(I,s(z),<J,rB>,z), AcceptTop(I,J,rB) ]->
+  [ !TopOK(I,J,rB) ]
+rule VerTop_q1_a1:
+  [ !Root(I,hl(I, sib, <ch(I,'m',ch(I,'m',sm)), ch(I,'k',sk)>)), In(<I,J,rB,s(z),s(z),sm,sk,sib>) ]
+  --[ Dg(I,s(z),<J,rB>,s(z)), AcceptTop(I,J,rB) ]->
+  [ !TopOK(I,J,rB) ]
+rule VerTop_q1_a2:
+  [ !Root(I,hl(I, sib, <ch(I,'m',sm), ch(I,'k',ch(I,'k',sk))>)), In(<I,J,rB,s(z),s(s(z)),sm,sk,sib>) ]
+  --[ Dg(I,s(z),<J,rB>,s(s(z))), AcceptTop(I,J,rB) ]->
+  [ !TopOK(I,J,rB) ]
+rule VerTop_q1_a3:
+  [ !Root(I,hl(I, sib, <sm, ch(I,'k',ch(I,'k',ch(I,'k',sk)))>)), In(<I,J,rB,s(z),s(s(s(z))),sm,sk,sib>) ]
+  --[ Dg(I,s(z),<J,rB>,s(s(s(z)))), AcceptTop(I,J,rB) ]->
+  [ !TopOK(I,J,rB) ]
+
+// Step 2: check the bottom signature on m against an accepted bottom key.
+rule VerBot_q0_a0:
+  [ !TopOK(I,J,hl(J, <ch(J,'m',ch(J,'m',ch(J,'m',sm))), sk>, sib)), In(<I,J,m,z,z,sm,sk,sib>) ]
+  --[ Dg(J,z,m,z), HssAccept(I,J,m) ]-> []
+rule VerBot_q0_a1:
+  [ !TopOK(I,J,hl(J, <ch(J,'m',ch(J,'m',sm)), ch(J,'k',sk)>, sib)), In(<I,J,m,z,s(z),sm,sk,sib>) ]
+  --[ Dg(J,z,m,s(z)), HssAccept(I,J,m) ]-> []
+rule VerBot_q0_a2:
+  [ !TopOK(I,J,hl(J, <ch(J,'m',sm), ch(J,'k',ch(J,'k',sk))>, sib)), In(<I,J,m,z,s(s(z)),sm,sk,sib>) ]
+  --[ Dg(J,z,m,s(s(z))), HssAccept(I,J,m) ]-> []
+rule VerBot_q0_a3:
+  [ !TopOK(I,J,hl(J, <sm, ch(J,'k',ch(J,'k',ch(J,'k',sk)))>, sib)), In(<I,J,m,z,s(s(s(z))),sm,sk,sib>) ]
+  --[ Dg(J,z,m,s(s(s(z)))), HssAccept(I,J,m) ]-> []
+rule VerBot_q1_a0:
+  [ !TopOK(I,J,hl(J, sib, <ch(J,'m',ch(J,'m',ch(J,'m',sm))), sk>)), In(<I,J,m,s(z),z,sm,sk,sib>) ]
+  --[ Dg(J,s(z),m,z), HssAccept(I,J,m) ]-> []
+rule VerBot_q1_a1:
+  [ !TopOK(I,J,hl(J, sib, <ch(J,'m',ch(J,'m',sm)), ch(J,'k',sk)>)), In(<I,J,m,s(z),s(z),sm,sk,sib>) ]
+  --[ Dg(J,s(z),m,s(z)), HssAccept(I,J,m) ]-> []
+rule VerBot_q1_a2:
+  [ !TopOK(I,J,hl(J, sib, <ch(J,'m',sm), ch(J,'k',ch(J,'k',sk))>)), In(<I,J,m,s(z),s(s(z)),sm,sk,sib>) ]
+  --[ Dg(J,s(z),m,s(s(z))), HssAccept(I,J,m) ]-> []
+rule VerBot_q1_a3:
+  [ !TopOK(I,J,hl(J, sib, <sm, ch(J,'k',ch(J,'k',ch(J,'k',sk)))>)), In(<I,J,m,s(z),s(s(s(z))),sm,sk,sib>) ]
+  --[ Dg(J,s(z),m,s(s(s(z)))), HssAccept(I,J,m) ]-> []
+
+lemma exec: exists-trace
+  "Ex I J m #k. HssAccept(I,J,m)@k & not (Ex #r. RevealTop(I)@r)
+     & not (Ex #r. RevealBot(I,J)@r)"
+
+// Helper: an accepted bottom key was signed by the top key.
+lemma TopAuth:
+  "All I J rB #k. AcceptTop(I,J,rB)@k ==>
+     (Ex #s. SignTop(I,J)@s) | (Ex #r. RevealTop(I)@r)"
+
+// L-S7: an accepted HSS signature on m was produced by the signer, or
+// the top seed leaked, or the bottom seed of a certified key leaked.
+lemma LS7:
+  "All I J m #k. HssAccept(I,J,m)@k ==>
+     (Ex #s #t. SignTop(I,J)@s & SignBot(I,J,m)@t)
+   | (Ex #r. RevealTop(I)@r)
+   | (Ex #s #r. SignTop(I,J)@s & RevealBot(I,J)@r)"
+end

@@ -1,0 +1,8 @@
+./cim_comparison.json: OK
+./cim_pv_stdout.txt: OK
+./cim_tm_stdout.txt: OK
+./rb3.pv: OK
+./rb3.spthy: OK
+./rb3_action_order.spthy: OK
+./rb3_equality_guard.spthy: OK
+./rb3_tool_sha256.txt: OK

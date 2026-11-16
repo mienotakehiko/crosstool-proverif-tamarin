@@ -1,0 +1,170 @@
+set preciseActions = true.
+
+(* Free names *)
+free publicChannel:channel.
+free vx_client:bitstring.
+free vx_server:bitstring.
+
+(* Functions *)
+fun fst(bitstring):bitstring.
+fun pair(bitstring,bitstring):bitstring.
+fun rb4_context(bitstring,bitstring,bitstring,bitstring,bitstring):bitstring.
+fun snd(bitstring):bitstring.
+
+(* Equations *)
+equation forall x_1:bitstring, x_2:bitstring; fst((x_1, x_2)) = x_1.
+equation forall x_1:bitstring, x_2:bitstring; snd((x_1, x_2)) = x_2.
+
+(* Events *)
+event eBranchRequestAccepted(bitstring, bitstring, bitstring, bitstring).
+event eBranchRequestSent(bitstring, bitstring, bitstring, bitstring).
+event eContextMatch(bitstring, bitstring).
+event eConvergenceResponseSent(bitstring, bitstring, bitstring, bitstring, bitstring, bitstring, bitstring).
+event eDistinctFact(bitstring, bitstring).
+event eInit(bitstring).
+event eKudosCommit(bitstring, bitstring, bitstring, bitstring, bitstring, bitstring, bitstring).
+event eKudosDerived(bitstring, bitstring, bitstring, bitstring, bitstring, bitstring, bitstring).
+
+(* Tables *)
+table tBranchRequest(bitstring, bitstring, bitstring, bitstring, bitstring).
+table tClientPending(bitstring, bitstring, bitstring, bitstring, bitstring, bitstring).
+table tClientReady(bitstring, bitstring, bitstring).
+table tConvergenceResponse(bitstring, bitstring, bitstring, bitstring, bitstring, bitstring, bitstring, bitstring).
+table tServerAccepted(bitstring, bitstring, bitstring, bitstring, bitstring, bitstring).
+table tServerPrepared(bitstring, bitstring, bitstring, bitstring, bitstring, bitstring, bitstring, bitstring).
+table tServerReady(bitstring, bitstring, bitstring).
+
+(* Restrictions *)
+
+(* SingleInit *)
+
+restriction rid_i:bitstring, rid_j:bitstring, i:time, j:time;
+  event(eInit( rid_i ))@i && event(eInit( rid_j ))@j ==> rid_i = rid_j.
+
+(* EqualContext *)
+
+restriction a:bitstring, b:bitstring, i:time;
+  event(eContextMatch( a, b ))@i ==> a = b.
+
+(* DistinctFact *)
+
+restriction rid_i:bitstring, rid_j:bitstring, x:bitstring, i:time,
+            j:time;
+  event(eDistinctFact( rid_i, x ))@i && event(eDistinctFact( rid_j, x ))@j
+  ==> rid_i = rid_j.
+
+(* Queries *)
+
+(* rb4_request_response_binding *)
+
+query client_nonce:bitstring, client_x:bitstring, next_context:bitstring,
+      run_id:bitstring, server_nonce:bitstring, server_x:bitstring,
+      token_id:bitstring, k:time, t1:time, t2:time, t3:time, t4:time;
+  event(eKudosCommit( run_id, token_id, client_x, client_nonce, server_x,
+                      server_nonce, next_context
+        ))@k
+  ==> event(eBranchRequestSent( run_id, token_id, client_x, client_nonce
+            ))@t1
+      && event(eBranchRequestAccepted( run_id, token_id, client_x, client_nonce
+               ))@t2
+      && event(eKudosDerived( run_id, token_id, client_x, client_nonce,
+                              server_x, server_nonce, next_context
+               ))@t3
+      && event(eConvergenceResponseSent( run_id, token_id, client_x,
+                                         client_nonce, server_x, server_nonce, next_context
+               ))@t4
+      && t1 < t2
+      && t2 < t3
+      && t3 < t4
+      && t4 < k.
+
+(* Processes *)
+
+let rInit =
+        new rid_rInit: bitstring;
+        new stR_ClientReady: bitstring;
+        new stR_ServerReady: bitstring;
+        new run_id: bitstring;
+        new parent_context: bitstring;
+        event eInit(rid_rInit);
+        insert tClientReady(stR_ClientReady, run_id, parent_context);
+        insert tServerReady(stR_ServerReady, run_id, parent_context).
+
+let rSendRequest =
+        get tClientReady(stL_ClientReady, run_id, parent_context) in
+        new rid_rSendRequest: bitstring;
+        new stR_ClientPending: bitstring;
+        new stR_BranchRequest: bitstring;
+        new token_id: bitstring;
+        new client_nonce: bitstring;
+        event eDistinctFact(rid_rSendRequest, (stL_ClientReady, (run_id, parent_context)));
+        event eBranchRequestSent(run_id, token_id, vx_client, client_nonce);
+        insert tClientPending(stR_ClientPending, run_id, parent_context,
+                              token_id, vx_client, client_nonce);
+        insert tBranchRequest(stR_BranchRequest, run_id, token_id, vx_client,
+                              client_nonce).
+
+let rAcceptRequest =
+        get tServerReady(stL_ServerReady, run_id, parent_context) in
+        get tBranchRequest(stL_BranchRequest, =run_id, token_id, client_x,
+                           client_nonce) in
+        new rid_rAcceptRequest: bitstring;
+        new stR_ServerAccepted: bitstring;
+        event eDistinctFact(rid_rAcceptRequest, (stL_ServerReady, (run_id, parent_context)));
+        event eDistinctFact(rid_rAcceptRequest, (stL_BranchRequest, (run_id, (token_id, (client_x, client_nonce)))));
+        event eBranchRequestAccepted(run_id, token_id, client_x, client_nonce);
+        insert tServerAccepted(stR_ServerAccepted, run_id, parent_context,
+                               token_id, client_x, client_nonce).
+
+let rDeriveServerContext =
+        get tServerAccepted(stL_ServerAccepted, run_id, parent_context, token_id,
+                            client_x, client_nonce) in
+        new rid_rDeriveServerContext: bitstring;
+        new stR_ServerPrepared: bitstring;
+        new server_nonce: bitstring;
+        event eDistinctFact(rid_rDeriveServerContext, (stL_ServerAccepted, (run_id, (parent_context, (token_id, (client_x, client_nonce))))));
+        event eKudosDerived(run_id, token_id, client_x, client_nonce, vx_server,
+                            server_nonce,
+                            rb4_context(parent_context, client_x, client_nonce, vx_server, server_nonce));
+        insert tServerPrepared(stR_ServerPrepared, run_id, token_id, client_x,
+                               client_nonce, vx_server, server_nonce,
+                               rb4_context(parent_context, client_x, client_nonce, vx_server, server_nonce)).
+
+let rSendResponse =
+        get tServerPrepared(stL_ServerPrepared, run_id, token_id, client_x,
+                            client_nonce, server_x, server_nonce, next_context) in
+        new rid_rSendResponse: bitstring;
+        new stR_ConvergenceResponse: bitstring;
+        event eDistinctFact(rid_rSendResponse, (stL_ServerPrepared, (run_id, (token_id, (client_x, (client_nonce, (server_x, (server_nonce, next_context))))))));
+        event eConvergenceResponseSent(run_id, token_id, client_x, client_nonce,
+                                       server_x, server_nonce, next_context);
+        insert tConvergenceResponse(stR_ConvergenceResponse, run_id, token_id,
+                                    client_x, client_nonce, server_x, server_nonce, next_context).
+
+let rCommitClientContext =
+        get tClientPending(stL_ClientPending, run_id, parent_context, token_id,
+                           client_x, client_nonce) in
+        get tConvergenceResponse(stL_ConvergenceResponse, =run_id, =token_id,
+                                 =client_x, =client_nonce, server_x, server_nonce, next_context) in
+        new rid_rCommitClientContext: bitstring;
+        event eDistinctFact(rid_rCommitClientContext, (stL_ClientPending, (run_id, (parent_context, (token_id, (client_x, client_nonce))))));
+        event eDistinctFact(rid_rCommitClientContext, (stL_ConvergenceResponse, (run_id, (token_id, (client_x, (client_nonce, (server_x, (server_nonce, next_context))))))));
+        event eKudosCommit(run_id, token_id, client_x, client_nonce, server_x,
+                           server_nonce, next_context);
+        event eContextMatch(next_context,
+                            rb4_context(parent_context, client_x, client_nonce, server_x, server_nonce)).
+
+process
+    ( !(rInit) | !(rSendRequest) | !(rAcceptRequest) | !(rDeriveServerContext) | !(rSendResponse) | !(rCommitClientContext) )
+
+(*
+All wellformedness checks were successful.
+*)
+
+(*
+Generated from:
+Tamarin version 1.13.0
+Maude version 3.5
+Git revision: UNKNOWN
+Compiled at: 2026-10-24 02:25:12.718891574 UTC
+*)

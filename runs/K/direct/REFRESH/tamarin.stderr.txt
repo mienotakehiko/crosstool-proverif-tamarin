@@ -1,0 +1,10 @@
+maude tool: 'maude'
+ checking version: 3.5.1. OK.
+ checking installation: OK.
+[Theory CimBusyRefresh] Theory loaded
+[Theory CimBusyRefresh] Theory translated
+[Theory CimBusyRefresh] Derivation checks started
+[Theory CimBusyRefresh] Derivation checks ended
+[Theory CimBusyRefresh] Theory closed
+[Saturating Sources] Step 1 (Max 5)
+[Saturating Sources] Done

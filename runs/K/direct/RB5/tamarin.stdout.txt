@@ -1,0 +1,17 @@
+
+==============================================================================
+summary of summaries:
+
+analyzed: results/RB5.xWZe60Op/models/rb5.spthy
+
+  output:          results/RB5.xWZe60Op/tamarin.proof.spthy
+  processing time: 0.11s
+  
+  rb5_block_reachable (exists-trace): verified (3 steps)
+  rb5_send_while_active_unreachable (all-traces): verified (1 steps)
+  rb5_commit_send_reachable (exists-trace): verified (3 steps)
+  rb5_commit_before_send (all-traces): verified (3 steps)
+  rb5_abort_send_reachable (exists-trace): verified (3 steps)
+  rb5_abort_before_send (all-traces): verified (3 steps)
+
+==============================================================================

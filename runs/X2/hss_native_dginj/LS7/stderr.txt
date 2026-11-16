@@ -1,0 +1,12 @@
+maude tool: '/usr/local/bin/maude'
+ checking version: 3.5. OK.
+ checking installation: OK.
+[Theory HSS_LS7_inj] Theory loaded
+[Theory HSS_LS7_inj] Theory translated
+[Theory HSS_LS7_inj] No Deconstruction Chain checks started
+[Theory HSS_LS7_inj] No Deconstruction Chain checks ended
+[Theory HSS_LS7_inj] Derivation checks started
+[Theory HSS_LS7_inj] Derivation checks ended
+[Theory HSS_LS7_inj] Theory closed
+[Saturating Sources] Step 1 (Max 5)
+[Saturating Sources] Done

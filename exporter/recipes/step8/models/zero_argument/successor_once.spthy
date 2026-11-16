@@ -1,0 +1,22 @@
+theory successor_once begin
+functions: z/0, s/1
+
+rule Init:
+  [ Fr(~sid) ] --[ InitOnce() ]-> [ St(~sid, z, 'phase0') ]
+restriction OneInit:
+  "All #i #j. InitOnce() @ i & InitOnce() @ j ==> #i = #j"
+rule Good:
+  [ St(sid, z, 'phase0') ] --[ Honest(sid) ]-> [ St(sid, 'qdone', 'phase1') ]
+rule Bad:
+  [ St(sid, s(z), 'phase0') ] --[ Bad(sid) ]-> []
+rule Again:
+  [ St(sid, z, 'phase1') ] --[ Again(sid) ]-> []
+lemma honest_reachable: exists-trace
+  "Ex sid #i. Honest(sid) @ i"
+lemma bad_reachable: exists-trace
+  "Ex sid #i. Bad(sid) @ i"
+lemma repeat_reachable: exists-trace
+  "Ex sid #i. Again(sid) @ i"
+lemma single_consumption: all-traces
+  "All sid #i #j. Honest(sid) @ i & Honest(sid) @ j ==> #i = #j"
+end

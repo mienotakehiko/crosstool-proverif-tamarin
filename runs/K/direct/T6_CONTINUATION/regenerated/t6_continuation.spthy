@@ -1,0 +1,65 @@
+// Generated t6_continuation case. Verification result is a local premise.
+theory CimT6Continuation
+begin
+
+functions: tempctx/2, newctx/3
+
+rule Init:
+  [ Fr(~exchange_id), Fr(~old_ctx), Fr(~prior_local_pair), Fr(~prior_peer_pair), Fr(~incoming_pair), Fr(~incoming_id) ]
+  --[ Init(), PendingBefore(~exchange_id,~old_ctx,newctx(~old_ctx,~prior_local_pair,~prior_peer_pair),~prior_local_pair) ]->
+  [ Pending(~exchange_id,~old_ctx,newctx(~old_ctx,~prior_local_pair,~prior_peer_pair),~prior_local_pair), BeforeSnapshot(~exchange_id,~old_ctx,newctx(~old_ctx,~prior_local_pair,~prior_peer_pair),~prior_local_pair), VerifiedOldPremise(~exchange_id,~incoming_id,~old_ctx,~incoming_pair) ]
+
+rule RecordVerifiedReceipt:
+  [ VerifiedOldPremise(exchange_id,incoming_id,old_ctx,peer_pair) ]
+  --[ OldVerified(exchange_id,incoming_id,old_ctx,peer_pair,tempctx(old_ctx,peer_pair)) ]->
+  [ VerifiedDivergent(exchange_id,incoming_id,old_ctx,peer_pair,tempctx(old_ctx,peer_pair)) ]
+
+rule AbortOnOldDerived:
+  [ Pending(exchange_id,old_ctx,discarded_ctx,discarded_pair), VerifiedDivergent(exchange_id,incoming_id,old_ctx,peer_pair,rx_temp) ]
+  --[ PendingAborted(exchange_id,incoming_id,old_ctx,discarded_ctx,discarded_pair), VerifiedTempMatches(rx_temp,tempctx(old_ctx,peer_pair)) ]->
+  [ BusyEntry(exchange_id,incoming_id,old_ctx,peer_pair,rx_temp,'empty_new','empty_pair') ]
+
+rule ReadBusyEntry:
+  [ BusyEntry(exchange_id,incoming_id,old_ctx,peer_pair,rx_temp,ctx_slot,pair_slot) ]
+  --[ BusyEntryRead(exchange_id,incoming_id,old_ctx,peer_pair,rx_temp,ctx_slot,pair_slot) ]->
+  [ BusyReady(exchange_id,incoming_id,old_ctx,peer_pair,rx_temp,ctx_slot,pair_slot) ]
+
+rule DeriveNewContext:
+  [ Fr(~fresh_local_pair), BusyReady(exchange_id,incoming_id,old_ctx,peer_pair,rx_temp,'empty_new','empty_pair') ]
+  --[ RestartDerived(exchange_id,incoming_id,old_ctx,peer_pair,~fresh_local_pair,newctx(old_ctx,~fresh_local_pair,peer_pair)) ]->
+  [ ReadyToSend(exchange_id,incoming_id,old_ctx,peer_pair,rx_temp,~fresh_local_pair,newctx(old_ctx,~fresh_local_pair,peer_pair)) ]
+
+rule SendConvergent:
+  [ ReadyToSend(exchange_id,incoming_id,old_ctx,peer_pair,rx_temp,local_pair,active_ctx) ]
+  --[ ConvergentSent(exchange_id,incoming_id,active_ctx) ]->
+  [ PendingAfter(exchange_id,incoming_id,old_ctx,peer_pair,rx_temp,local_pair,active_ctx) ]
+
+rule ReadPending:
+  [ PendingAfter(exchange_id,incoming_id,old_ctx,peer_pair,rx_temp,local_pair,active_ctx), BeforeSnapshot(exchange_id,old_ctx,discarded_ctx,discarded_pair) ]
+  --[ PendingRead(exchange_id,incoming_id,old_ctx,peer_pair,local_pair,active_ctx,discarded_ctx,discarded_pair,rx_temp) ]->
+  [  ]
+
+restriction SingleInit:
+  "All #i #j. Init()@i & Init()@j ==> #i = #j"
+
+restriction VerifiedTemporaryContext:
+  "All a b #i. VerifiedTempMatches(a,b)@i ==> a = b"
+
+lemma t6_continuation_reachable: exists-trace
+  "Ex exchange_id incoming_id old_ctx peer_pair local_pair active_ctx discarded_ctx discarded_pair rx_temp #k. PendingRead(exchange_id,incoming_id,old_ctx,peer_pair,local_pair,active_ctx,discarded_ctx,discarded_pair,rx_temp)@k"
+
+lemma t6_continuation_old_receipt_and_clear:
+  "All exchange_id incoming_id old_ctx peer_pair local_pair active_ctx discarded_ctx discarded_pair rx_temp #k. PendingRead(exchange_id,incoming_id,old_ctx,peer_pair,local_pair,active_ctx,discarded_ctx,discarded_pair,rx_temp)@k ==>
+    Ex #t1 #t2 #t3. OldVerified(exchange_id,incoming_id,old_ctx,peer_pair,rx_temp)@t1 & PendingAborted(exchange_id,incoming_id,old_ctx,discarded_ctx,discarded_pair)@t2 & BusyEntryRead(exchange_id,incoming_id,old_ctx,peer_pair,rx_temp,'empty_new','empty_pair')@t3 & #t1 < #t2 & #t2 < #t3 & #t3 < #k & rx_temp = tempctx(old_ctx,peer_pair)"
+
+lemma t6_continuation_derive_and_send:
+  "All exchange_id incoming_id old_ctx peer_pair local_pair active_ctx discarded_ctx discarded_pair rx_temp #k. PendingRead(exchange_id,incoming_id,old_ctx,peer_pair,local_pair,active_ctx,discarded_ctx,discarded_pair,rx_temp)@k ==>
+    Ex #t1 #t2. RestartDerived(exchange_id,incoming_id,old_ctx,peer_pair,local_pair,active_ctx)@t1 & ConvergentSent(exchange_id,incoming_id,active_ctx)@t2 & #t1 < #t2 & #t2 < #k & active_ctx = newctx(old_ctx,local_pair,peer_pair)"
+
+lemma t6_continuation_pair_distinct:
+  "All exchange_id incoming_id old_ctx peer_pair local_pair active_ctx discarded_ctx discarded_pair rx_temp #k. PendingRead(exchange_id,incoming_id,old_ctx,peer_pair,local_pair,active_ctx,discarded_ctx,discarded_pair,rx_temp)@k ==> not(local_pair = discarded_pair)"
+
+lemma t6_continuation_context_distinct:
+  "All exchange_id incoming_id old_ctx peer_pair local_pair active_ctx discarded_ctx discarded_pair rx_temp #k. PendingRead(exchange_id,incoming_id,old_ctx,peer_pair,local_pair,active_ctx,discarded_ctx,discarded_pair,rx_temp)@k ==> not(active_ctx = discarded_ctx)"
+
+end

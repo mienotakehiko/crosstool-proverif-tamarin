@@ -1,0 +1,15 @@
+theory nonground_nested begin
+functions: z/0, s/1, f/1, g/1, pair/2
+rule Init:
+ [ Fr(~sid) ] --[ InitOnce() ]-> [ St(~sid,f(g(z))) ]
+restriction OneInit:
+ "All #i #j. InitOnce()@i & InitOnce()@j ==> #i = #j"
+rule Good:
+ [ St(sid,f(g(x))) ] --[ Good(sid) ]-> []
+rule Bad:
+ [ St(sid,f(s(x))) ] --[ Bad(sid) ]-> []
+lemma good_reachable: exists-trace
+ "Ex sid #i. Good(sid)@i"
+lemma bad_reachable: exists-trace
+ "Ex sid #i. Bad(sid)@i"
+end

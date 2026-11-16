@@ -77,17 +77,17 @@ def verify_inventory(archives, u5_a):
 
 
 def verify_historical_results():
-    u5 = json_lines("experiments/u5/translation/triangulation.jsonl")
+    u5 = json_lines("runs/X0/original/triangulation.jsonl")
     require(len(u5) == 62, "Legacy U5 record count")
-    u6 = json_lines("experiments/u6/pv_results.jsonl")
+    u6 = json_lines("runs/G/proverif/pv_results.jsonl")
     require(len(u6) == 28, "Direct ProVerif record count")
-    p5 = json_lines("experiments/p5-r3/p5-checkpoint/results/records.jsonl")
+    p5 = json_lines("runs/P5/checkpoint/results/records.jsonl")
     p5_counts = Counter(r["verdict"] for r in p5 if r["job"].startswith("P5_"))
     require(p5_counts == {"verified": 965, "falsified": 160}, "P5 repetition counts")
-    u11 = json_lines("experiments/u11/final-return/results/records.jsonl")
+    u11 = json_lines("runs/L/u11/final-return/results/records.jsonl")
     require(len(u11) == len({r["job"] for r in u11}) == 7, "U11 unique jobs")
     require(Counter(r["verdict"] for r in u11) == {"HEAP": 7}, "U11 outcomes")
-    kudos = read_tsv("experiments/kudos-h1h2/stage-d/stage_d_results.tsv")
+    kudos = read_tsv("runs/K/stage-d/stage_d_results.tsv")
     observed = Counter((r["cohort"], r["family"], r["status"]) for r in kudos)
     expected = {
         ("original", "H1", "MATCH"): 24,
@@ -96,12 +96,12 @@ def verify_historical_results():
         ("diagnostic", "H1", "MATCH"): 12,
     }
     require(observed == expected, "H1/H2 cohort counts")
-    c1 = read_json("experiments/u5/c1/native-closeout/native_results.json")["properties"]
+    c1 = read_json("runs/chain/native-closeout/native_results.json")["properties"]
     require(len({r["original_lemma"] for r in c1}) == len(c1) == 7, "C1 original properties")
     c1_counts = Counter((r["kind"], r["verdict"]) for r in c1)
     require(c1_counts == {("all-traces", "verified"): 4, ("all-traces", "falsified"): 1,
                           ("exists-trace", "verified"): 2}, "C1 quantifiers and outcomes")
-    rq5b = read_tsv("experiments/rq5b/correspondence/correspondence_24.tsv")
+    rq5b = read_tsv("runs/rq5b/correspondence/correspondence_24.tsv")
     require(len({r["case_id"] for r in rq5b}) == len(rq5b) == 24, "RQ5(b) denominator")
     require(Counter(r["family"] for r in rq5b) == {"HSS": 4, "A": 15, "C1": 5},
             "RQ5(b) family counts")
@@ -125,10 +125,10 @@ def verify_state_results(archive_refs):
                         ("probe-z0", "DIFFERENT"): 6, ("probe-guard", "MATCH"): 16,
                         ("probe-source-fixed", "MATCH"): 13, ("probe-source-fixed", "DIFFERENT"): 3},
             "State cohort counts")
-    candidate = read_json("experiments/state-translation/source/source-inspection/build_check.json")
+    candidate = read_json("runs/X1/historical-probes/source/source-inspection/build_check.json")
     require(candidate["candidate_compiled"] is False, "Candidate build state")
-    probe = "experiments/state-translation/source/fixed/source_probe_ih07m7ga"
-    meta = read_json("environments/fixed-ccs26/runtime.json")
+    probe = "runs/X1/historical-probes/source/fixed/source_probe_ih07m7ga"
+    meta = read_json("env/fixed-ccs26/runtime.json")
     require(meta["binary_rebuild_verified"] is candidate["binary_rebuild_verified"] is False,
             "Binary rebuild status")
     tools = read_json(f"{probe}/tools.json")
@@ -147,6 +147,8 @@ def main():
         checked_file(ROOT, row["path"], row["sha256"], int(row["bytes"]))
     print(f"Repository file hashes: {len(manifest)}")
     archive_refs = verify_inventory(args.archives, args.u5_a)
+    for row in read_tsv("registry/recovered-files.tsv"):
+        checked_file(ROOT, row["path"], row["published_sha256"])
     verify_historical_results()
     verify_state_results(archive_refs)
 

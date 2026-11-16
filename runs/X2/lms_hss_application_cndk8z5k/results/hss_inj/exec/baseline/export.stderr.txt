@@ -1,0 +1,7 @@
+maude tool: 'maude'
+ checking version: 3.5. OK.
+ checking installation: OK.
+[Theory HSS_LS7_inj] Theory loaded
+[Theory HSS_LS7_inj] Theory translated
+[Theory HSS_LS7_inj] No Deconstruction Chain checks started
+[Theory HSS_LS7_inj] No Deconstruction Chain checks ended

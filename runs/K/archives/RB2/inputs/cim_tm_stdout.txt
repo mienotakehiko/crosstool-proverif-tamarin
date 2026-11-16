@@ -1,0 +1,15 @@
+
+==============================================================================
+summary of summaries:
+
+analyzed: results/RB2.TA1sQxlU/models/rb2.spthy
+
+  output:          results/RB2.TA1sQxlU/tamarin.proof.spthy
+  processing time: 0.69s
+  
+  rb2_second_acceptance_reachable (exists-trace): verified (5 steps)
+  rb2_request_response_binding (all-traces): verified (8 steps)
+  rb2_unique_acceptance (all-traces): verified (28 steps)
+  rb2_new_request_after_activation (all-traces): verified (4 steps)
+
+==============================================================================

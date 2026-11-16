@@ -1,0 +1,9 @@
+{
+  "model": "same_cim_lms",
+  "lemma": "exec",
+  "status": "UNCHANGED",
+  "declarations_query_prefix_equal": true,
+  "body_equal": true,
+  "baseline_status": "EXPORTED",
+  "candidate_status": "EXPORTED"
+}

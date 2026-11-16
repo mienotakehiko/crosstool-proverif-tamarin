@@ -1,0 +1,12 @@
+[
+  "/step4-tamarin-prover",
+  "+RTS",
+  "-N1",
+  "-M768m",
+  "-RTS",
+  "-d=0",
+  "-m=proverif",
+  "--lemma=good_reachable",
+  "-o=/work/baseline/source/ground_pair/good_reachable/translated.pv",
+  "/kit/models/source/ground_pair.spthy"
+]

@@ -1,0 +1,25 @@
+'tamarin-prover' '--with-maude=maude' '--derivcheck-timeout=0' '--prove=injectivity' 'corpus/csf17__counter-protocol.spthy' +RTS '-N' '-M56g' '-A64m' '-qg' '-N4' '-sresults/out/P5_P4_std_csf17__counter-protocol_T0_injectivity_d_prove_r4.rts' 
+  35,420,896,688 bytes allocated in the heap
+     865,125,232 bytes copied during GC
+     106,018,440 bytes maximum residency (7 sample(s))
+         317,816 bytes maximum slop
+             489 MiB total memory in use (0 MiB lost due to fragmentation)
+
+                                     Tot time (elapsed)  Avg pause  Max pause
+  Gen  0       130 colls,     0 par    0.129s   0.871s     0.0067s    0.0186s
+  Gen  1         7 colls,     0 par    0.018s   0.300s     0.0428s    0.0995s
+
+  TASKS: 10 (1 bound, 9 peak workers (9 total), using -N4)
+
+  SPARKS: 1861 (679 converted, 0 overflowed, 0 dud, 107 GC'd, 1075 fizzled)
+
+  INIT    time    0.004s  (  0.003s elapsed)
+  MUT     time   18.258s  (  9.104s elapsed)
+  GC      time    0.148s  (  1.170s elapsed)
+  EXIT    time    0.007s  (  0.002s elapsed)
+  Total   time   18.417s  ( 10.280s elapsed)
+
+  Alloc rate    1,940,016,062 bytes per MUT second
+
+  Productivity  99.1% of total user, 88.6% of total elapsed
+

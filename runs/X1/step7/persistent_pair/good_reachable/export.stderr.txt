@@ -1,0 +1,7 @@
+maude tool: 'maude'
+ checking version: 3.5. OK.
+ checking installation: OK.
+[Theory persistent_pair] Theory loaded
+[Theory persistent_pair] Theory translated
+[Theory persistent_pair] No Deconstruction Chain checks started
+[Theory persistent_pair] No Deconstruction Chain checks ended

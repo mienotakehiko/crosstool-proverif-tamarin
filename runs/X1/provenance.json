@@ -1,0 +1,48 @@
+{
+  "evidence": {
+    "step3": {
+      "archive": "evidence/step3.tar.gz",
+      "sha256": "5d3caef163dbaa9c1dbe83d81e47d35c9e59dae980ac30f11cf28979b336251d"
+    },
+    "step4": {
+      "archive": "evidence/step4.tar.gz",
+      "sha256": "0939de094cfa9054e04c6583f3cd5e7f54393010c54e5b675b75a77e96f2831d"
+    },
+    "step5": {
+      "archive": "evidence/step5.tar.gz",
+      "sha256": "2457476b4a63a0f6ecbec30175561f6737e61cacaa06665567d162f1e8746683"
+    },
+    "step6": {
+      "archive": "evidence/step6.tar.gz",
+      "sha256": "9bf0efd338ec53e499e94821bd55f30b70ff05798ca3f9b602a4f6841bc14fd1"
+    },
+    "step7": {
+      "archive": "evidence/step7.tar.gz",
+      "sha256": "fed152f85fe341535969ac2b67910e9045c1223c7e77e161205811d066064a7b"
+    },
+    "step8": {
+      "archive": "evidence/step8.tar.gz",
+      "sha256": "922d3ef26d81d56cbda70ec64a2bdf39b5f3daa53727e6df50bf1e301424527f"
+    }
+  },
+  "binaries": [
+    {
+      "label": "baseline",
+      "step": 3,
+      "source_commit": "c293106913ccf7bb41f49b0dc555a8074e8ea88c",
+      "sha256": "3a6ca4b3f023d206043119671b47db40e318f71dd5616dd35f0e6c212aa44ad1"
+    },
+    {
+      "label": "leafless",
+      "step": 3,
+      "source_commit": "c293106913ccf7bb41f49b0dc555a8074e8ea88c",
+      "sha256": "1caf1b4f118e67a59fbd17143f6ed2850b2256ccdb5f077815905996c1f804da"
+    },
+    {
+      "label": "row_guards",
+      "step": 7,
+      "source_commit": "c293106913ccf7bb41f49b0dc555a8074e8ea88c",
+      "sha256": "a07b24ef01cbd12b3eba99491d9b980f1561ec2df41a8137d0fe2f4744dbd6f5"
+    }
+  ]
+}

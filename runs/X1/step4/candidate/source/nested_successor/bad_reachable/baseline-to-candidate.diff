@@ -1,0 +1,18 @@
+--- baseline
++++ candidate
+@@ -56,13 +56,13 @@
+         insert tSt(stR_St, asid, f(s(z()))).
+ 
+ let rGood =
+-        get tSt(stL_St, asid, helperVar0) in
++        get tSt(stL_St, asid, =f(s(z()))) in
+         new rid_rGood: bitstring;
+         event eDistinctFact(rid_rGood, (stL_St, (asid, f(s(z())))));
+         event eGood(asid).
+ 
+ let rBad =
+-        get tSt(stL_St, asid, helperVar0) in
++        get tSt(stL_St, asid, =f(z())) in
+         new rid_rBad: bitstring;
+         event eDistinctFact(rid_rBad, (stL_St, (asid, f(z()))));
+         event eBad(asid).

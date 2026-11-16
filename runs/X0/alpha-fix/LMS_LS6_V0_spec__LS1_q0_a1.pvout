@@ -1,0 +1,1193 @@
+Linear part: No equation.
+Convergent part:
+fst((x_1,x_2)) = x_1
+snd((x_1,x_2)) = x_2
+Completing equations...
+Completed equations:
+snd((x_1,x_2)) = x_2
+fst((x_1,x_2)) = x_1
+Process 0 (that is, the initial process):
+(
+    {1}!
+    {2}new stR_St: bitstring;
+    {3}new I: bitstring;
+    {4}new sd: bitstring;
+    {5}event eKeyGen(I);
+    {6}insert tSk(I,sd);
+    {7}insert tSt(stR_St,I,z);
+    {8}insert tRoot(I,hn(I,v1,vdintr,(hn(I,v2,vdintr,(hn(I,v4,vdleaf,pblc(I,z,vdpblc,(ch(I,vm,ch(I,vm,ch(I,vm,prf(sd,z,vm)))),ch(I,vk,ch(I,vk,ch(I,vk,prf(sd,z,vk))))))),hn(I,v5,vdleaf,pblc(I,s(z),vdpblc,(ch(I,vm,ch(I,vm,ch(I,vm,prf(sd,s(z),vm)))),ch(I,vk,ch(I,vk,ch(I,vk,prf(sd,s(z),vk))))))))),hn(I,v3,vdintr,(hn(I,v6,vdleaf,pblc(I,s(s(z)),vdpblc,(ch(I,vm,ch(I,vm,ch(I,vm,prf(sd,s(s(z)),vm)))),ch(I,vk,ch(I,vk,ch(I,vk,prf(sd,s(s(z)),vk))))))),hn(I,v7,vdleaf,pblc(I,s(s(s(z))),vdpblc,(ch(I,vm,ch(I,vm,ch(I,vm,prf(sd,s(s(s(z))),vm)))),ch(I,vk,ch(I,vk,ch(I,vk,prf(sd,s(s(s(z))),vk))))))))))));
+    {9}out(publicChannel, (I,hn(I,v1,vdintr,(hn(I,v2,vdintr,(hn(I,v4,vdleaf,pblc(I,z,vdpblc,(ch(I,vm,ch(I,vm,ch(I,vm,prf(sd,z,vm)))),ch(I,vk,ch(I,vk,ch(I,vk,prf(sd,z,vk))))))),hn(I,v5,vdleaf,pblc(I,s(z),vdpblc,(ch(I,vm,ch(I,vm,ch(I,vm,prf(sd,s(z),vm)))),ch(I,vk,ch(I,vk,ch(I,vk,prf(sd,s(z),vk))))))))),hn(I,v3,vdintr,(hn(I,v6,vdleaf,pblc(I,s(s(z)),vdpblc,(ch(I,vm,ch(I,vm,ch(I,vm,prf(sd,s(s(z)),vm)))),ch(I,vk,ch(I,vk,ch(I,vk,prf(sd,s(s(z)),vk))))))),hn(I,v7,vdleaf,pblc(I,s(s(s(z))),vdpblc,(ch(I,vm,ch(I,vm,ch(I,vm,prf(sd,s(s(s(z))),vm)))),ch(I,vk,ch(I,vk,ch(I,vk,prf(sd,s(s(s(z))),vk)))))))))))))
+) | (
+    {10}!
+    {11}get tSt(stL_St: bitstring,I_1: bitstring,helperVar0: bitstring) in
+    {12}get tSk(=I_1,sd_1: bitstring) in
+    {13}in(publicChannel, helperVar1: bitstring);
+    {14}let =vsign = g_var_vsign_0(helperVar1) in
+    {15}new rid_rSign_q0_a0: bitstring;
+    {16}new stR_St_1: bitstring;
+    {17}event eDistinctFact(rid_rSign_q0_a0,(stL_St,(I_1,z)));
+    {18}event eSign(I_1,z,z);
+    {19}insert tSt(stR_St_1,I_1,s(z));
+    {20}out(publicChannel, (I_1,(z,(z,(prf(sd_1,z,vm),(ch(I_1,vk,ch(I_1,vk,ch(I_1,vk,prf(sd_1,z,vk)))),(hn(I_1,v5,vdleaf,pblc(I_1,s(z),vdpblc,(ch(I_1,vm,ch(I_1,vm,ch(I_1,vm,prf(sd_1,s(z),vm)))),ch(I_1,vk,ch(I_1,vk,ch(I_1,vk,prf(sd_1,s(z),vk))))))),hn(I_1,v3,vdintr,(hn(I_1,v6,vdleaf,pblc(I_1,s(s(z)),vdpblc,(ch(I_1,vm,ch(I_1,vm,ch(I_1,vm,prf(sd_1,s(s(z)),vm)))),ch(I_1,vk,ch(I_1,vk,ch(I_1,vk,prf(sd_1,s(s(z)),vk))))))),hn(I_1,v7,vdleaf,pblc(I_1,s(s(s(z))),vdpblc,(ch(I_1,vm,ch(I_1,vm,ch(I_1,vm,prf(sd_1,s(s(s(z))),vm)))),ch(I_1,vk,ch(I_1,vk,ch(I_1,vk,prf(sd_1,s(s(s(z))),vk))))))))))))))))
+) | (
+    {21}!
+    {22}get tSt(stL_St_1: bitstring,I_2: bitstring,helperVar0_1: bitstring) in
+    {23}get tSk(=I_2,sd_2: bitstring) in
+    {24}in(publicChannel, helperVar1_1: bitstring);
+    {25}let =vsign = g_var_vsign_1(helperVar1_1) in
+    {26}new rid_rSign_q0_a1: bitstring;
+    {27}new stR_St_2: bitstring;
+    {28}event eDistinctFact(rid_rSign_q0_a1,(stL_St_1,(I_2,z)));
+    {29}event eSign(I_2,z,s(z));
+    {30}insert tSt(stR_St_2,I_2,s(z));
+    {31}out(publicChannel, (I_2,(z,(s(z),(ch(I_2,vm,prf(sd_2,z,vm)),(ch(I_2,vk,ch(I_2,vk,prf(sd_2,z,vk))),(hn(I_2,v5,vdleaf,pblc(I_2,s(z),vdpblc,(ch(I_2,vm,ch(I_2,vm,ch(I_2,vm,prf(sd_2,s(z),vm)))),ch(I_2,vk,ch(I_2,vk,ch(I_2,vk,prf(sd_2,s(z),vk))))))),hn(I_2,v3,vdintr,(hn(I_2,v6,vdleaf,pblc(I_2,s(s(z)),vdpblc,(ch(I_2,vm,ch(I_2,vm,ch(I_2,vm,prf(sd_2,s(s(z)),vm)))),ch(I_2,vk,ch(I_2,vk,ch(I_2,vk,prf(sd_2,s(s(z)),vk))))))),hn(I_2,v7,vdleaf,pblc(I_2,s(s(s(z))),vdpblc,(ch(I_2,vm,ch(I_2,vm,ch(I_2,vm,prf(sd_2,s(s(s(z))),vm)))),ch(I_2,vk,ch(I_2,vk,ch(I_2,vk,prf(sd_2,s(s(s(z))),vk))))))))))))))))
+) | (
+    {32}!
+    {33}get tSt(stL_St_2: bitstring,I_3: bitstring,helperVar0_2: bitstring) in
+    {34}get tSk(=I_3,sd_3: bitstring) in
+    {35}in(publicChannel, helperVar1_2: bitstring);
+    {36}let =vsign = g_var_vsign_2(helperVar1_2) in
+    {37}new rid_rSign_q0_a2: bitstring;
+    {38}new stR_St_3: bitstring;
+    {39}event eDistinctFact(rid_rSign_q0_a2,(stL_St_2,(I_3,z)));
+    {40}event eSign(I_3,z,s(s(z)));
+    {41}insert tSt(stR_St_3,I_3,s(z));
+    {42}out(publicChannel, (I_3,(z,(s(s(z)),(ch(I_3,vm,ch(I_3,vm,prf(sd_3,z,vm))),(ch(I_3,vk,prf(sd_3,z,vk)),(hn(I_3,v5,vdleaf,pblc(I_3,s(z),vdpblc,(ch(I_3,vm,ch(I_3,vm,ch(I_3,vm,prf(sd_3,s(z),vm)))),ch(I_3,vk,ch(I_3,vk,ch(I_3,vk,prf(sd_3,s(z),vk))))))),hn(I_3,v3,vdintr,(hn(I_3,v6,vdleaf,pblc(I_3,s(s(z)),vdpblc,(ch(I_3,vm,ch(I_3,vm,ch(I_3,vm,prf(sd_3,s(s(z)),vm)))),ch(I_3,vk,ch(I_3,vk,ch(I_3,vk,prf(sd_3,s(s(z)),vk))))))),hn(I_3,v7,vdleaf,pblc(I_3,s(s(s(z))),vdpblc,(ch(I_3,vm,ch(I_3,vm,ch(I_3,vm,prf(sd_3,s(s(s(z))),vm)))),ch(I_3,vk,ch(I_3,vk,ch(I_3,vk,prf(sd_3,s(s(s(z))),vk))))))))))))))))
+) | (
+    {43}!
+    {44}get tSt(stL_St_3: bitstring,I_4: bitstring,helperVar0_3: bitstring) in
+    {45}get tSk(=I_4,sd_4: bitstring) in
+    {46}in(publicChannel, helperVar1_3: bitstring);
+    {47}let =vsign = g_var_vsign_3(helperVar1_3) in
+    {48}new rid_rSign_q0_a3: bitstring;
+    {49}new stR_St_4: bitstring;
+    {50}event eDistinctFact(rid_rSign_q0_a3,(stL_St_3,(I_4,z)));
+    {51}event eSign(I_4,z,s(s(s(z))));
+    {52}insert tSt(stR_St_4,I_4,s(z));
+    {53}out(publicChannel, (I_4,(z,(s(s(s(z))),(ch(I_4,vm,ch(I_4,vm,ch(I_4,vm,prf(sd_4,z,vm)))),(prf(sd_4,z,vk),(hn(I_4,v5,vdleaf,pblc(I_4,s(z),vdpblc,(ch(I_4,vm,ch(I_4,vm,ch(I_4,vm,prf(sd_4,s(z),vm)))),ch(I_4,vk,ch(I_4,vk,ch(I_4,vk,prf(sd_4,s(z),vk))))))),hn(I_4,v3,vdintr,(hn(I_4,v6,vdleaf,pblc(I_4,s(s(z)),vdpblc,(ch(I_4,vm,ch(I_4,vm,ch(I_4,vm,prf(sd_4,s(s(z)),vm)))),ch(I_4,vk,ch(I_4,vk,ch(I_4,vk,prf(sd_4,s(s(z)),vk))))))),hn(I_4,v7,vdleaf,pblc(I_4,s(s(s(z))),vdpblc,(ch(I_4,vm,ch(I_4,vm,ch(I_4,vm,prf(sd_4,s(s(s(z))),vm)))),ch(I_4,vk,ch(I_4,vk,ch(I_4,vk,prf(sd_4,s(s(s(z))),vk))))))))))))))))
+) | (
+    {54}!
+    {55}get tSt(stL_St_4: bitstring,I_5: bitstring,helperVar0_4: bitstring) in
+    {56}get tSk(=I_5,sd_5: bitstring) in
+    {57}in(publicChannel, helperVar1_4: bitstring);
+    {58}let =vsign = g_var_vsign_0(helperVar1_4) in
+    {59}new rid_rSign_q1_a0: bitstring;
+    {60}new stR_St_5: bitstring;
+    {61}event eDistinctFact(rid_rSign_q1_a0,(stL_St_4,(I_5,s(z))));
+    {62}event eSign(I_5,s(z),z);
+    {63}insert tSt(stR_St_5,I_5,s(s(z)));
+    {64}out(publicChannel, (I_5,(s(z),(z,(prf(sd_5,s(z),vm),(ch(I_5,vk,ch(I_5,vk,ch(I_5,vk,prf(sd_5,s(z),vk)))),(hn(I_5,v4,vdleaf,pblc(I_5,z,vdpblc,(ch(I_5,vm,ch(I_5,vm,ch(I_5,vm,prf(sd_5,z,vm)))),ch(I_5,vk,ch(I_5,vk,ch(I_5,vk,prf(sd_5,z,vk))))))),hn(I_5,v3,vdintr,(hn(I_5,v6,vdleaf,pblc(I_5,s(s(z)),vdpblc,(ch(I_5,vm,ch(I_5,vm,ch(I_5,vm,prf(sd_5,s(s(z)),vm)))),ch(I_5,vk,ch(I_5,vk,ch(I_5,vk,prf(sd_5,s(s(z)),vk))))))),hn(I_5,v7,vdleaf,pblc(I_5,s(s(s(z))),vdpblc,(ch(I_5,vm,ch(I_5,vm,ch(I_5,vm,prf(sd_5,s(s(s(z))),vm)))),ch(I_5,vk,ch(I_5,vk,ch(I_5,vk,prf(sd_5,s(s(s(z))),vk))))))))))))))))
+) | (
+    {65}!
+    {66}get tSt(stL_St_5: bitstring,I_6: bitstring,helperVar0_5: bitstring) in
+    {67}get tSk(=I_6,sd_6: bitstring) in
+    {68}in(publicChannel, helperVar1_5: bitstring);
+    {69}let =vsign = g_var_vsign_1(helperVar1_5) in
+    {70}new rid_rSign_q1_a1: bitstring;
+    {71}new stR_St_6: bitstring;
+    {72}event eDistinctFact(rid_rSign_q1_a1,(stL_St_5,(I_6,s(z))));
+    {73}event eSign(I_6,s(z),s(z));
+    {74}insert tSt(stR_St_6,I_6,s(s(z)));
+    {75}out(publicChannel, (I_6,(s(z),(s(z),(ch(I_6,vm,prf(sd_6,s(z),vm)),(ch(I_6,vk,ch(I_6,vk,prf(sd_6,s(z),vk))),(hn(I_6,v4,vdleaf,pblc(I_6,z,vdpblc,(ch(I_6,vm,ch(I_6,vm,ch(I_6,vm,prf(sd_6,z,vm)))),ch(I_6,vk,ch(I_6,vk,ch(I_6,vk,prf(sd_6,z,vk))))))),hn(I_6,v3,vdintr,(hn(I_6,v6,vdleaf,pblc(I_6,s(s(z)),vdpblc,(ch(I_6,vm,ch(I_6,vm,ch(I_6,vm,prf(sd_6,s(s(z)),vm)))),ch(I_6,vk,ch(I_6,vk,ch(I_6,vk,prf(sd_6,s(s(z)),vk))))))),hn(I_6,v7,vdleaf,pblc(I_6,s(s(s(z))),vdpblc,(ch(I_6,vm,ch(I_6,vm,ch(I_6,vm,prf(sd_6,s(s(s(z))),vm)))),ch(I_6,vk,ch(I_6,vk,ch(I_6,vk,prf(sd_6,s(s(s(z))),vk))))))))))))))))
+) | (
+    {76}!
+    {77}get tSt(stL_St_6: bitstring,I_7: bitstring,helperVar0_6: bitstring) in
+    {78}get tSk(=I_7,sd_7: bitstring) in
+    {79}in(publicChannel, helperVar1_6: bitstring);
+    {80}let =vsign = g_var_vsign_2(helperVar1_6) in
+    {81}new rid_rSign_q1_a2: bitstring;
+    {82}new stR_St_7: bitstring;
+    {83}event eDistinctFact(rid_rSign_q1_a2,(stL_St_6,(I_7,s(z))));
+    {84}event eSign(I_7,s(z),s(s(z)));
+    {85}insert tSt(stR_St_7,I_7,s(s(z)));
+    {86}out(publicChannel, (I_7,(s(z),(s(s(z)),(ch(I_7,vm,ch(I_7,vm,prf(sd_7,s(z),vm))),(ch(I_7,vk,prf(sd_7,s(z),vk)),(hn(I_7,v4,vdleaf,pblc(I_7,z,vdpblc,(ch(I_7,vm,ch(I_7,vm,ch(I_7,vm,prf(sd_7,z,vm)))),ch(I_7,vk,ch(I_7,vk,ch(I_7,vk,prf(sd_7,z,vk))))))),hn(I_7,v3,vdintr,(hn(I_7,v6,vdleaf,pblc(I_7,s(s(z)),vdpblc,(ch(I_7,vm,ch(I_7,vm,ch(I_7,vm,prf(sd_7,s(s(z)),vm)))),ch(I_7,vk,ch(I_7,vk,ch(I_7,vk,prf(sd_7,s(s(z)),vk))))))),hn(I_7,v7,vdleaf,pblc(I_7,s(s(s(z))),vdpblc,(ch(I_7,vm,ch(I_7,vm,ch(I_7,vm,prf(sd_7,s(s(s(z))),vm)))),ch(I_7,vk,ch(I_7,vk,ch(I_7,vk,prf(sd_7,s(s(s(z))),vk))))))))))))))))
+) | (
+    {87}!
+    {88}get tSt(stL_St_7: bitstring,I_8: bitstring,helperVar0_7: bitstring) in
+    {89}get tSk(=I_8,sd_8: bitstring) in
+    {90}in(publicChannel, helperVar1_7: bitstring);
+    {91}let =vsign = g_var_vsign_3(helperVar1_7) in
+    {92}new rid_rSign_q1_a3: bitstring;
+    {93}new stR_St_8: bitstring;
+    {94}event eDistinctFact(rid_rSign_q1_a3,(stL_St_7,(I_8,s(z))));
+    {95}event eSign(I_8,s(z),s(s(s(z))));
+    {96}insert tSt(stR_St_8,I_8,s(s(z)));
+    {97}out(publicChannel, (I_8,(s(z),(s(s(s(z))),(ch(I_8,vm,ch(I_8,vm,ch(I_8,vm,prf(sd_8,s(z),vm)))),(prf(sd_8,s(z),vk),(hn(I_8,v4,vdleaf,pblc(I_8,z,vdpblc,(ch(I_8,vm,ch(I_8,vm,ch(I_8,vm,prf(sd_8,z,vm)))),ch(I_8,vk,ch(I_8,vk,ch(I_8,vk,prf(sd_8,z,vk))))))),hn(I_8,v3,vdintr,(hn(I_8,v6,vdleaf,pblc(I_8,s(s(z)),vdpblc,(ch(I_8,vm,ch(I_8,vm,ch(I_8,vm,prf(sd_8,s(s(z)),vm)))),ch(I_8,vk,ch(I_8,vk,ch(I_8,vk,prf(sd_8,s(s(z)),vk))))))),hn(I_8,v7,vdleaf,pblc(I_8,s(s(s(z))),vdpblc,(ch(I_8,vm,ch(I_8,vm,ch(I_8,vm,prf(sd_8,s(s(s(z))),vm)))),ch(I_8,vk,ch(I_8,vk,ch(I_8,vk,prf(sd_8,s(s(s(z))),vk))))))))))))))))
+) | (
+    {98}!
+    {99}get tSt(stL_St_8: bitstring,I_9: bitstring,helperVar0_8: bitstring) in
+    {100}get tSk(=I_9,sd_9: bitstring) in
+    {101}in(publicChannel, helperVar1_8: bitstring);
+    {102}let =vsign = g_var_vsign_0(helperVar1_8) in
+    {103}new rid_rSign_q2_a0: bitstring;
+    {104}new stR_St_9: bitstring;
+    {105}event eDistinctFact(rid_rSign_q2_a0,(stL_St_8,(I_9,s(s(z)))));
+    {106}event eSign(I_9,s(s(z)),z);
+    {107}insert tSt(stR_St_9,I_9,s(s(s(z))));
+    {108}out(publicChannel, (I_9,(s(s(z)),(z,(prf(sd_9,s(s(z)),vm),(ch(I_9,vk,ch(I_9,vk,ch(I_9,vk,prf(sd_9,s(s(z)),vk)))),(hn(I_9,v7,vdleaf,pblc(I_9,s(s(s(z))),vdpblc,(ch(I_9,vm,ch(I_9,vm,ch(I_9,vm,prf(sd_9,s(s(s(z))),vm)))),ch(I_9,vk,ch(I_9,vk,ch(I_9,vk,prf(sd_9,s(s(s(z))),vk))))))),hn(I_9,v2,vdintr,(hn(I_9,v4,vdleaf,pblc(I_9,z,vdpblc,(ch(I_9,vm,ch(I_9,vm,ch(I_9,vm,prf(sd_9,z,vm)))),ch(I_9,vk,ch(I_9,vk,ch(I_9,vk,prf(sd_9,z,vk))))))),hn(I_9,v5,vdleaf,pblc(I_9,s(z),vdpblc,(ch(I_9,vm,ch(I_9,vm,ch(I_9,vm,prf(sd_9,s(z),vm)))),ch(I_9,vk,ch(I_9,vk,ch(I_9,vk,prf(sd_9,s(z),vk))))))))))))))))
+) | (
+    {109}!
+    {110}get tSt(stL_St_9: bitstring,I_10: bitstring,helperVar0_9: bitstring) in
+    {111}get tSk(=I_10,sd_10: bitstring) in
+    {112}in(publicChannel, helperVar1_9: bitstring);
+    {113}let =vsign = g_var_vsign_1(helperVar1_9) in
+    {114}new rid_rSign_q2_a1: bitstring;
+    {115}new stR_St_10: bitstring;
+    {116}event eDistinctFact(rid_rSign_q2_a1,(stL_St_9,(I_10,s(s(z)))));
+    {117}event eSign(I_10,s(s(z)),s(z));
+    {118}insert tSt(stR_St_10,I_10,s(s(s(z))));
+    {119}out(publicChannel, (I_10,(s(s(z)),(s(z),(ch(I_10,vm,prf(sd_10,s(s(z)),vm)),(ch(I_10,vk,ch(I_10,vk,prf(sd_10,s(s(z)),vk))),(hn(I_10,v7,vdleaf,pblc(I_10,s(s(s(z))),vdpblc,(ch(I_10,vm,ch(I_10,vm,ch(I_10,vm,prf(sd_10,s(s(s(z))),vm)))),ch(I_10,vk,ch(I_10,vk,ch(I_10,vk,prf(sd_10,s(s(s(z))),vk))))))),hn(I_10,v2,vdintr,(hn(I_10,v4,vdleaf,pblc(I_10,z,vdpblc,(ch(I_10,vm,ch(I_10,vm,ch(I_10,vm,prf(sd_10,z,vm)))),ch(I_10,vk,ch(I_10,vk,ch(I_10,vk,prf(sd_10,z,vk))))))),hn(I_10,v5,vdleaf,pblc(I_10,s(z),vdpblc,(ch(I_10,vm,ch(I_10,vm,ch(I_10,vm,prf(sd_10,s(z),vm)))),ch(I_10,vk,ch(I_10,vk,ch(I_10,vk,prf(sd_10,s(z),vk))))))))))))))))
+) | (
+    {120}!
+    {121}get tSt(stL_St_10: bitstring,I_11: bitstring,helperVar0_10: bitstring) in
+    {122}get tSk(=I_11,sd_11: bitstring) in
+    {123}in(publicChannel, helperVar1_10: bitstring);
+    {124}let =vsign = g_var_vsign_2(helperVar1_10) in
+    {125}new rid_rSign_q2_a2: bitstring;
+    {126}new stR_St_11: bitstring;
+    {127}event eDistinctFact(rid_rSign_q2_a2,(stL_St_10,(I_11,s(s(z)))));
+    {128}event eSign(I_11,s(s(z)),s(s(z)));
+    {129}insert tSt(stR_St_11,I_11,s(s(s(z))));
+    {130}out(publicChannel, (I_11,(s(s(z)),(s(s(z)),(ch(I_11,vm,ch(I_11,vm,prf(sd_11,s(s(z)),vm))),(ch(I_11,vk,prf(sd_11,s(s(z)),vk)),(hn(I_11,v7,vdleaf,pblc(I_11,s(s(s(z))),vdpblc,(ch(I_11,vm,ch(I_11,vm,ch(I_11,vm,prf(sd_11,s(s(s(z))),vm)))),ch(I_11,vk,ch(I_11,vk,ch(I_11,vk,prf(sd_11,s(s(s(z))),vk))))))),hn(I_11,v2,vdintr,(hn(I_11,v4,vdleaf,pblc(I_11,z,vdpblc,(ch(I_11,vm,ch(I_11,vm,ch(I_11,vm,prf(sd_11,z,vm)))),ch(I_11,vk,ch(I_11,vk,ch(I_11,vk,prf(sd_11,z,vk))))))),hn(I_11,v5,vdleaf,pblc(I_11,s(z),vdpblc,(ch(I_11,vm,ch(I_11,vm,ch(I_11,vm,prf(sd_11,s(z),vm)))),ch(I_11,vk,ch(I_11,vk,ch(I_11,vk,prf(sd_11,s(z),vk))))))))))))))))
+) | (
+    {131}!
+    {132}get tSt(stL_St_11: bitstring,I_12: bitstring,helperVar0_11: bitstring) in
+    {133}get tSk(=I_12,sd_12: bitstring) in
+    {134}in(publicChannel, helperVar1_11: bitstring);
+    {135}let =vsign = g_var_vsign_3(helperVar1_11) in
+    {136}new rid_rSign_q2_a3: bitstring;
+    {137}new stR_St_12: bitstring;
+    {138}event eDistinctFact(rid_rSign_q2_a3,(stL_St_11,(I_12,s(s(z)))));
+    {139}event eSign(I_12,s(s(z)),s(s(s(z))));
+    {140}insert tSt(stR_St_12,I_12,s(s(s(z))));
+    {141}out(publicChannel, (I_12,(s(s(z)),(s(s(s(z))),(ch(I_12,vm,ch(I_12,vm,ch(I_12,vm,prf(sd_12,s(s(z)),vm)))),(prf(sd_12,s(s(z)),vk),(hn(I_12,v7,vdleaf,pblc(I_12,s(s(s(z))),vdpblc,(ch(I_12,vm,ch(I_12,vm,ch(I_12,vm,prf(sd_12,s(s(s(z))),vm)))),ch(I_12,vk,ch(I_12,vk,ch(I_12,vk,prf(sd_12,s(s(s(z))),vk))))))),hn(I_12,v2,vdintr,(hn(I_12,v4,vdleaf,pblc(I_12,z,vdpblc,(ch(I_12,vm,ch(I_12,vm,ch(I_12,vm,prf(sd_12,z,vm)))),ch(I_12,vk,ch(I_12,vk,ch(I_12,vk,prf(sd_12,z,vk))))))),hn(I_12,v5,vdleaf,pblc(I_12,s(z),vdpblc,(ch(I_12,vm,ch(I_12,vm,ch(I_12,vm,prf(sd_12,s(z),vm)))),ch(I_12,vk,ch(I_12,vk,ch(I_12,vk,prf(sd_12,s(z),vk))))))))))))))))
+) | (
+    {142}!
+    {143}get tSt(stL_St_12: bitstring,I_13: bitstring,helperVar0_12: bitstring) in
+    {144}get tSk(=I_13,sd_13: bitstring) in
+    {145}in(publicChannel, helperVar1_12: bitstring);
+    {146}let =vsign = g_var_vsign_0(helperVar1_12) in
+    {147}new rid_rSign_q3_a0: bitstring;
+    {148}new stR_St_13: bitstring;
+    {149}event eDistinctFact(rid_rSign_q3_a0,(stL_St_12,(I_13,s(s(s(z))))));
+    {150}event eSign(I_13,s(s(s(z))),z);
+    {151}insert tSt(stR_St_13,I_13,s(s(s(s(z)))));
+    {152}out(publicChannel, (I_13,(s(s(s(z))),(z,(prf(sd_13,s(s(s(z))),vm),(ch(I_13,vk,ch(I_13,vk,ch(I_13,vk,prf(sd_13,s(s(s(z))),vk)))),(hn(I_13,v6,vdleaf,pblc(I_13,s(s(z)),vdpblc,(ch(I_13,vm,ch(I_13,vm,ch(I_13,vm,prf(sd_13,s(s(z)),vm)))),ch(I_13,vk,ch(I_13,vk,ch(I_13,vk,prf(sd_13,s(s(z)),vk))))))),hn(I_13,v2,vdintr,(hn(I_13,v4,vdleaf,pblc(I_13,z,vdpblc,(ch(I_13,vm,ch(I_13,vm,ch(I_13,vm,prf(sd_13,z,vm)))),ch(I_13,vk,ch(I_13,vk,ch(I_13,vk,prf(sd_13,z,vk))))))),hn(I_13,v5,vdleaf,pblc(I_13,s(z),vdpblc,(ch(I_13,vm,ch(I_13,vm,ch(I_13,vm,prf(sd_13,s(z),vm)))),ch(I_13,vk,ch(I_13,vk,ch(I_13,vk,prf(sd_13,s(z),vk))))))))))))))))
+) | (
+    {153}!
+    {154}get tSt(stL_St_13: bitstring,I_14: bitstring,helperVar0_13: bitstring) in
+    {155}get tSk(=I_14,sd_14: bitstring) in
+    {156}in(publicChannel, helperVar1_13: bitstring);
+    {157}let =vsign = g_var_vsign_1(helperVar1_13) in
+    {158}new rid_rSign_q3_a1: bitstring;
+    {159}new stR_St_14: bitstring;
+    {160}event eDistinctFact(rid_rSign_q3_a1,(stL_St_13,(I_14,s(s(s(z))))));
+    {161}event eSign(I_14,s(s(s(z))),s(z));
+    {162}insert tSt(stR_St_14,I_14,s(s(s(s(z)))));
+    {163}out(publicChannel, (I_14,(s(s(s(z))),(s(z),(ch(I_14,vm,prf(sd_14,s(s(s(z))),vm)),(ch(I_14,vk,ch(I_14,vk,prf(sd_14,s(s(s(z))),vk))),(hn(I_14,v6,vdleaf,pblc(I_14,s(s(z)),vdpblc,(ch(I_14,vm,ch(I_14,vm,ch(I_14,vm,prf(sd_14,s(s(z)),vm)))),ch(I_14,vk,ch(I_14,vk,ch(I_14,vk,prf(sd_14,s(s(z)),vk))))))),hn(I_14,v2,vdintr,(hn(I_14,v4,vdleaf,pblc(I_14,z,vdpblc,(ch(I_14,vm,ch(I_14,vm,ch(I_14,vm,prf(sd_14,z,vm)))),ch(I_14,vk,ch(I_14,vk,ch(I_14,vk,prf(sd_14,z,vk))))))),hn(I_14,v5,vdleaf,pblc(I_14,s(z),vdpblc,(ch(I_14,vm,ch(I_14,vm,ch(I_14,vm,prf(sd_14,s(z),vm)))),ch(I_14,vk,ch(I_14,vk,ch(I_14,vk,prf(sd_14,s(z),vk))))))))))))))))
+) | (
+    {164}!
+    {165}get tSt(stL_St_14: bitstring,I_15: bitstring,helperVar0_14: bitstring) in
+    {166}get tSk(=I_15,sd_15: bitstring) in
+    {167}in(publicChannel, helperVar1_14: bitstring);
+    {168}let =vsign = g_var_vsign_2(helperVar1_14) in
+    {169}new rid_rSign_q3_a2: bitstring;
+    {170}new stR_St_15: bitstring;
+    {171}event eDistinctFact(rid_rSign_q3_a2,(stL_St_14,(I_15,s(s(s(z))))));
+    {172}event eSign(I_15,s(s(s(z))),s(s(z)));
+    {173}insert tSt(stR_St_15,I_15,s(s(s(s(z)))));
+    {174}out(publicChannel, (I_15,(s(s(s(z))),(s(s(z)),(ch(I_15,vm,ch(I_15,vm,prf(sd_15,s(s(s(z))),vm))),(ch(I_15,vk,prf(sd_15,s(s(s(z))),vk)),(hn(I_15,v6,vdleaf,pblc(I_15,s(s(z)),vdpblc,(ch(I_15,vm,ch(I_15,vm,ch(I_15,vm,prf(sd_15,s(s(z)),vm)))),ch(I_15,vk,ch(I_15,vk,ch(I_15,vk,prf(sd_15,s(s(z)),vk))))))),hn(I_15,v2,vdintr,(hn(I_15,v4,vdleaf,pblc(I_15,z,vdpblc,(ch(I_15,vm,ch(I_15,vm,ch(I_15,vm,prf(sd_15,z,vm)))),ch(I_15,vk,ch(I_15,vk,ch(I_15,vk,prf(sd_15,z,vk))))))),hn(I_15,v5,vdleaf,pblc(I_15,s(z),vdpblc,(ch(I_15,vm,ch(I_15,vm,ch(I_15,vm,prf(sd_15,s(z),vm)))),ch(I_15,vk,ch(I_15,vk,ch(I_15,vk,prf(sd_15,s(z),vk))))))))))))))))
+) | (
+    {175}!
+    {176}get tSt(stL_St_15: bitstring,I_16: bitstring,helperVar0_15: bitstring) in
+    {177}get tSk(=I_16,sd_16: bitstring) in
+    {178}in(publicChannel, helperVar1_15: bitstring);
+    {179}let =vsign = g_var_vsign_3(helperVar1_15) in
+    {180}new rid_rSign_q3_a3: bitstring;
+    {181}new stR_St_16: bitstring;
+    {182}event eDistinctFact(rid_rSign_q3_a3,(stL_St_15,(I_16,s(s(s(z))))));
+    {183}event eSign(I_16,s(s(s(z))),s(s(s(z))));
+    {184}insert tSt(stR_St_16,I_16,s(s(s(s(z)))));
+    {185}out(publicChannel, (I_16,(s(s(s(z))),(s(s(s(z))),(ch(I_16,vm,ch(I_16,vm,ch(I_16,vm,prf(sd_16,s(s(s(z))),vm)))),(prf(sd_16,s(s(s(z))),vk),(hn(I_16,v6,vdleaf,pblc(I_16,s(s(z)),vdpblc,(ch(I_16,vm,ch(I_16,vm,ch(I_16,vm,prf(sd_16,s(s(z)),vm)))),ch(I_16,vk,ch(I_16,vk,ch(I_16,vk,prf(sd_16,s(s(z)),vk))))))),hn(I_16,v2,vdintr,(hn(I_16,v4,vdleaf,pblc(I_16,z,vdpblc,(ch(I_16,vm,ch(I_16,vm,ch(I_16,vm,prf(sd_16,z,vm)))),ch(I_16,vk,ch(I_16,vk,ch(I_16,vk,prf(sd_16,z,vk))))))),hn(I_16,v5,vdleaf,pblc(I_16,s(z),vdpblc,(ch(I_16,vm,ch(I_16,vm,ch(I_16,vm,prf(sd_16,s(z),vm)))),ch(I_16,vk,ch(I_16,vk,ch(I_16,vk,prf(sd_16,s(z),vk))))))))))))))))
+) | (
+    {186}!
+    {187}get tSk(I_17: bitstring,sd_17: bitstring) in
+    {188}event eRevealSeed(I_17);
+    {189}out(publicChannel, sd_17)
+) | (
+    {190}!
+    {191}get tRoot(I_18: bitstring,helperVar0_16: bitstring) in
+    {192}let =I_18 = g_var_I_4(helperVar0_16) in
+    {193}let =v1 = g_var_v1_5(helperVar0_16) in
+    {194}let =vdintr = g_var_vdintr_6(helperVar0_16) in
+    {195}let =v2 = g_var_v2_7(helperVar0_16) in
+    {196}let =v4 = g_var_v4_8(helperVar0_16) in
+    {197}let =vdleaf = g_var_vdleaf_9(helperVar0_16) in
+    {198}let =vdpblc = g_var_vdpblc_10(helperVar0_16) in
+    {199}let =vm = g_var_vm_11(helperVar0_16) in
+    {200}let sm: bitstring = g_var_sm_12(helperVar0_16) in
+    {201}let sk: bitstring = g_var_sk_13(helperVar0_16) in
+    {202}let p1: bitstring = g_var_p1_14(helperVar0_16) in
+    {203}let p2: bitstring = g_var_p2_15(helperVar0_16) in
+    {204}in(publicChannel, helperVar1_16: bitstring);
+    {205}let =I_18 = g_var_I_16(helperVar1_16) in
+    {206}let =sm = g_var_sm_17(helperVar1_16) in
+    {207}let =sk = g_var_sk_18(helperVar1_16) in
+    {208}let =p1 = g_var_p1_19(helperVar1_16) in
+    {209}let =p2 = g_var_p2_20(helperVar1_16) in
+    {210}event eAccept(I_18,z,z)
+) | (
+    {211}!
+    {212}get tRoot(I_19: bitstring,helperVar0_17: bitstring) in
+    {213}let =I_19 = g_var_I_21(helperVar0_17) in
+    {214}let =v1 = g_var_v1_22(helperVar0_17) in
+    {215}let =vdintr = g_var_vdintr_23(helperVar0_17) in
+    {216}let =v2 = g_var_v2_24(helperVar0_17) in
+    {217}let =v4 = g_var_v4_25(helperVar0_17) in
+    {218}let =vdleaf = g_var_vdleaf_26(helperVar0_17) in
+    {219}let =vdpblc = g_var_vdpblc_27(helperVar0_17) in
+    {220}let =vm = g_var_vm_28(helperVar0_17) in
+    {221}let sm_1: bitstring = g_var_sm_29(helperVar0_17) in
+    {222}let =vk = g_var_vk_30(helperVar0_17) in
+    {223}let sk_1: bitstring = g_var_sk_31(helperVar0_17) in
+    {224}let p1_1: bitstring = g_var_p1_32(helperVar0_17) in
+    {225}let p2_1: bitstring = g_var_p2_33(helperVar0_17) in
+    {226}in(publicChannel, helperVar1_17: bitstring);
+    {227}let =I_19 = g_var_I_34(helperVar1_17) in
+    {228}let =sm_1 = g_var_sm_35(helperVar1_17) in
+    {229}let =sk_1 = g_var_sk_36(helperVar1_17) in
+    {230}let =p1_1 = g_var_p1_37(helperVar1_17) in
+    {231}let =p2_1 = g_var_p2_38(helperVar1_17) in
+    {232}event eAccept(I_19,z,s(z))
+) | (
+    {233}!
+    {234}get tRoot(I_20: bitstring,helperVar0_18: bitstring) in
+    {235}let =I_20 = g_var_I_39(helperVar0_18) in
+    {236}let =v1 = g_var_v1_40(helperVar0_18) in
+    {237}let =vdintr = g_var_vdintr_41(helperVar0_18) in
+    {238}let =v2 = g_var_v2_42(helperVar0_18) in
+    {239}let =v4 = g_var_v4_43(helperVar0_18) in
+    {240}let =vdleaf = g_var_vdleaf_44(helperVar0_18) in
+    {241}let =vdpblc = g_var_vdpblc_45(helperVar0_18) in
+    {242}let =vm = g_var_vm_46(helperVar0_18) in
+    {243}let sm_2: bitstring = g_var_sm_47(helperVar0_18) in
+    {244}let =vk = g_var_vk_48(helperVar0_18) in
+    {245}let sk_2: bitstring = g_var_sk_49(helperVar0_18) in
+    {246}let p1_2: bitstring = g_var_p1_50(helperVar0_18) in
+    {247}let p2_2: bitstring = g_var_p2_51(helperVar0_18) in
+    {248}in(publicChannel, helperVar1_18: bitstring);
+    {249}let =I_20 = g_var_I_52(helperVar1_18) in
+    {250}let =sm_2 = g_var_sm_53(helperVar1_18) in
+    {251}let =sk_2 = g_var_sk_54(helperVar1_18) in
+    {252}let =p1_2 = g_var_p1_55(helperVar1_18) in
+    {253}let =p2_2 = g_var_p2_56(helperVar1_18) in
+    {254}event eAccept(I_20,z,s(s(z)))
+) | (
+    {255}!
+    {256}get tRoot(I_21: bitstring,helperVar0_19: bitstring) in
+    {257}let =I_21 = g_var_I_57(helperVar0_19) in
+    {258}let =v1 = g_var_v1_58(helperVar0_19) in
+    {259}let =vdintr = g_var_vdintr_59(helperVar0_19) in
+    {260}let =v2 = g_var_v2_60(helperVar0_19) in
+    {261}let =v4 = g_var_v4_61(helperVar0_19) in
+    {262}let =vdleaf = g_var_vdleaf_62(helperVar0_19) in
+    {263}let =vdpblc = g_var_vdpblc_63(helperVar0_19) in
+    {264}let sm_3: bitstring = g_var_sm_64(helperVar0_19) in
+    {265}let =vk = g_var_vk_65(helperVar0_19) in
+    {266}let sk_3: bitstring = g_var_sk_66(helperVar0_19) in
+    {267}let p1_3: bitstring = g_var_p1_67(helperVar0_19) in
+    {268}let p2_3: bitstring = g_var_p2_68(helperVar0_19) in
+    {269}in(publicChannel, helperVar1_19: bitstring);
+    {270}let =I_21 = g_var_I_69(helperVar1_19) in
+    {271}let =sm_3 = g_var_sm_70(helperVar1_19) in
+    {272}let =sk_3 = g_var_sk_71(helperVar1_19) in
+    {273}let =p1_3 = g_var_p1_72(helperVar1_19) in
+    {274}let =p2_3 = g_var_p2_73(helperVar1_19) in
+    {275}event eAccept(I_21,z,s(s(s(z))))
+) | (
+    {276}!
+    {277}get tRoot(I_22: bitstring,helperVar0_20: bitstring) in
+    {278}let =I_22 = g_var_I_74(helperVar0_20) in
+    {279}let =v1 = g_var_v1_75(helperVar0_20) in
+    {280}let =vdintr = g_var_vdintr_76(helperVar0_20) in
+    {281}let =v2 = g_var_v2_77(helperVar0_20) in
+    {282}let p1_4: bitstring = g_var_p1_78(helperVar0_20) in
+    {283}let =v5 = g_var_v5_79(helperVar0_20) in
+    {284}let =vdleaf = g_var_vdleaf_80(helperVar0_20) in
+    {285}let =vdpblc = g_var_vdpblc_81(helperVar0_20) in
+    {286}let =vm = g_var_vm_82(helperVar0_20) in
+    {287}let sm_4: bitstring = g_var_sm_83(helperVar0_20) in
+    {288}let sk_4: bitstring = g_var_sk_84(helperVar0_20) in
+    {289}let p2_4: bitstring = g_var_p2_85(helperVar0_20) in
+    {290}in(publicChannel, helperVar1_20: bitstring);
+    {291}let =I_22 = g_var_I_86(helperVar1_20) in
+    {292}let =sm_4 = g_var_sm_87(helperVar1_20) in
+    {293}let =sk_4 = g_var_sk_88(helperVar1_20) in
+    {294}let =p1_4 = g_var_p1_89(helperVar1_20) in
+    {295}let =p2_4 = g_var_p2_90(helperVar1_20) in
+    {296}event eAccept(I_22,s(z),z)
+) | (
+    {297}!
+    {298}get tRoot(I_23: bitstring,helperVar0_21: bitstring) in
+    {299}let =I_23 = g_var_I_91(helperVar0_21) in
+    {300}let =v1 = g_var_v1_92(helperVar0_21) in
+    {301}let =vdintr = g_var_vdintr_93(helperVar0_21) in
+    {302}let =v2 = g_var_v2_94(helperVar0_21) in
+    {303}let p1_5: bitstring = g_var_p1_95(helperVar0_21) in
+    {304}let =v5 = g_var_v5_96(helperVar0_21) in
+    {305}let =vdleaf = g_var_vdleaf_97(helperVar0_21) in
+    {306}let =vdpblc = g_var_vdpblc_98(helperVar0_21) in
+    {307}let =vm = g_var_vm_99(helperVar0_21) in
+    {308}let sm_5: bitstring = g_var_sm_100(helperVar0_21) in
+    {309}let =vk = g_var_vk_101(helperVar0_21) in
+    {310}let sk_5: bitstring = g_var_sk_102(helperVar0_21) in
+    {311}let p2_5: bitstring = g_var_p2_103(helperVar0_21) in
+    {312}in(publicChannel, helperVar1_21: bitstring);
+    {313}let =I_23 = g_var_I_104(helperVar1_21) in
+    {314}let =sm_5 = g_var_sm_105(helperVar1_21) in
+    {315}let =sk_5 = g_var_sk_106(helperVar1_21) in
+    {316}let =p1_5 = g_var_p1_107(helperVar1_21) in
+    {317}let =p2_5 = g_var_p2_108(helperVar1_21) in
+    {318}event eAccept(I_23,s(z),s(z))
+) | (
+    {319}!
+    {320}get tRoot(I_24: bitstring,helperVar0_22: bitstring) in
+    {321}let =I_24 = g_var_I_109(helperVar0_22) in
+    {322}let =v1 = g_var_v1_110(helperVar0_22) in
+    {323}let =vdintr = g_var_vdintr_111(helperVar0_22) in
+    {324}let =v2 = g_var_v2_112(helperVar0_22) in
+    {325}let p1_6: bitstring = g_var_p1_113(helperVar0_22) in
+    {326}let =v5 = g_var_v5_114(helperVar0_22) in
+    {327}let =vdleaf = g_var_vdleaf_115(helperVar0_22) in
+    {328}let =vdpblc = g_var_vdpblc_116(helperVar0_22) in
+    {329}let =vm = g_var_vm_117(helperVar0_22) in
+    {330}let sm_6: bitstring = g_var_sm_118(helperVar0_22) in
+    {331}let =vk = g_var_vk_119(helperVar0_22) in
+    {332}let sk_6: bitstring = g_var_sk_120(helperVar0_22) in
+    {333}let p2_6: bitstring = g_var_p2_121(helperVar0_22) in
+    {334}in(publicChannel, helperVar1_22: bitstring);
+    {335}let =I_24 = g_var_I_122(helperVar1_22) in
+    {336}let =sm_6 = g_var_sm_123(helperVar1_22) in
+    {337}let =sk_6 = g_var_sk_124(helperVar1_22) in
+    {338}let =p1_6 = g_var_p1_125(helperVar1_22) in
+    {339}let =p2_6 = g_var_p2_126(helperVar1_22) in
+    {340}event eAccept(I_24,s(z),s(s(z)))
+) | (
+    {341}!
+    {342}get tRoot(I_25: bitstring,helperVar0_23: bitstring) in
+    {343}let =I_25 = g_var_I_127(helperVar0_23) in
+    {344}let =v1 = g_var_v1_128(helperVar0_23) in
+    {345}let =vdintr = g_var_vdintr_129(helperVar0_23) in
+    {346}let =v2 = g_var_v2_130(helperVar0_23) in
+    {347}let p1_7: bitstring = g_var_p1_131(helperVar0_23) in
+    {348}let =v5 = g_var_v5_132(helperVar0_23) in
+    {349}let =vdleaf = g_var_vdleaf_133(helperVar0_23) in
+    {350}let =vdpblc = g_var_vdpblc_134(helperVar0_23) in
+    {351}let sm_7: bitstring = g_var_sm_135(helperVar0_23) in
+    {352}let =vk = g_var_vk_136(helperVar0_23) in
+    {353}let sk_7: bitstring = g_var_sk_137(helperVar0_23) in
+    {354}let p2_7: bitstring = g_var_p2_138(helperVar0_23) in
+    {355}in(publicChannel, helperVar1_23: bitstring);
+    {356}let =I_25 = g_var_I_139(helperVar1_23) in
+    {357}let =sm_7 = g_var_sm_140(helperVar1_23) in
+    {358}let =sk_7 = g_var_sk_141(helperVar1_23) in
+    {359}let =p1_7 = g_var_p1_142(helperVar1_23) in
+    {360}let =p2_7 = g_var_p2_143(helperVar1_23) in
+    {361}event eAccept(I_25,s(z),s(s(s(z))))
+) | (
+    {362}!
+    {363}get tRoot(I_26: bitstring,helperVar0_24: bitstring) in
+    {364}let =I_26 = g_var_I_144(helperVar0_24) in
+    {365}let =v1 = g_var_v1_145(helperVar0_24) in
+    {366}let =vdintr = g_var_vdintr_146(helperVar0_24) in
+    {367}let p2_8: bitstring = g_var_p2_147(helperVar0_24) in
+    {368}let =v3 = g_var_v3_148(helperVar0_24) in
+    {369}let =v6 = g_var_v6_149(helperVar0_24) in
+    {370}let =vdleaf = g_var_vdleaf_150(helperVar0_24) in
+    {371}let =vdpblc = g_var_vdpblc_151(helperVar0_24) in
+    {372}let =vm = g_var_vm_152(helperVar0_24) in
+    {373}let sm_8: bitstring = g_var_sm_153(helperVar0_24) in
+    {374}let sk_8: bitstring = g_var_sk_154(helperVar0_24) in
+    {375}let p1_8: bitstring = g_var_p1_155(helperVar0_24) in
+    {376}in(publicChannel, helperVar1_24: bitstring);
+    {377}let =I_26 = g_var_I_156(helperVar1_24) in
+    {378}let =sm_8 = g_var_sm_157(helperVar1_24) in
+    {379}let =sk_8 = g_var_sk_158(helperVar1_24) in
+    {380}let =p1_8 = g_var_p1_159(helperVar1_24) in
+    {381}let =p2_8 = g_var_p2_160(helperVar1_24) in
+    {382}event eAccept(I_26,s(s(z)),z)
+) | (
+    {383}!
+    {384}get tRoot(I_27: bitstring,helperVar0_25: bitstring) in
+    {385}let =I_27 = g_var_I_161(helperVar0_25) in
+    {386}let =v1 = g_var_v1_162(helperVar0_25) in
+    {387}let =vdintr = g_var_vdintr_163(helperVar0_25) in
+    {388}let p2_9: bitstring = g_var_p2_164(helperVar0_25) in
+    {389}let =v3 = g_var_v3_165(helperVar0_25) in
+    {390}let =v6 = g_var_v6_166(helperVar0_25) in
+    {391}let =vdleaf = g_var_vdleaf_167(helperVar0_25) in
+    {392}let =vdpblc = g_var_vdpblc_168(helperVar0_25) in
+    {393}let =vm = g_var_vm_169(helperVar0_25) in
+    {394}let sm_9: bitstring = g_var_sm_170(helperVar0_25) in
+    {395}let =vk = g_var_vk_171(helperVar0_25) in
+    {396}let sk_9: bitstring = g_var_sk_172(helperVar0_25) in
+    {397}let p1_9: bitstring = g_var_p1_173(helperVar0_25) in
+    {398}in(publicChannel, helperVar1_25: bitstring);
+    {399}let =I_27 = g_var_I_174(helperVar1_25) in
+    {400}let =sm_9 = g_var_sm_175(helperVar1_25) in
+    {401}let =sk_9 = g_var_sk_176(helperVar1_25) in
+    {402}let =p1_9 = g_var_p1_177(helperVar1_25) in
+    {403}let =p2_9 = g_var_p2_178(helperVar1_25) in
+    {404}event eAccept(I_27,s(s(z)),s(z))
+) | (
+    {405}!
+    {406}get tRoot(I_28: bitstring,helperVar0_26: bitstring) in
+    {407}let =I_28 = g_var_I_179(helperVar0_26) in
+    {408}let =v1 = g_var_v1_180(helperVar0_26) in
+    {409}let =vdintr = g_var_vdintr_181(helperVar0_26) in
+    {410}let p2_10: bitstring = g_var_p2_182(helperVar0_26) in
+    {411}let =v3 = g_var_v3_183(helperVar0_26) in
+    {412}let =v6 = g_var_v6_184(helperVar0_26) in
+    {413}let =vdleaf = g_var_vdleaf_185(helperVar0_26) in
+    {414}let =vdpblc = g_var_vdpblc_186(helperVar0_26) in
+    {415}let =vm = g_var_vm_187(helperVar0_26) in
+    {416}let sm_10: bitstring = g_var_sm_188(helperVar0_26) in
+    {417}let =vk = g_var_vk_189(helperVar0_26) in
+    {418}let sk_10: bitstring = g_var_sk_190(helperVar0_26) in
+    {419}let p1_10: bitstring = g_var_p1_191(helperVar0_26) in
+    {420}in(publicChannel, helperVar1_26: bitstring);
+    {421}let =I_28 = g_var_I_192(helperVar1_26) in
+    {422}let =sm_10 = g_var_sm_193(helperVar1_26) in
+    {423}let =sk_10 = g_var_sk_194(helperVar1_26) in
+    {424}let =p1_10 = g_var_p1_195(helperVar1_26) in
+    {425}let =p2_10 = g_var_p2_196(helperVar1_26) in
+    {426}event eAccept(I_28,s(s(z)),s(s(z)))
+) | (
+    {427}!
+    {428}get tRoot(I_29: bitstring,helperVar0_27: bitstring) in
+    {429}let =I_29 = g_var_I_197(helperVar0_27) in
+    {430}let =v1 = g_var_v1_198(helperVar0_27) in
+    {431}let =vdintr = g_var_vdintr_199(helperVar0_27) in
+    {432}let p2_11: bitstring = g_var_p2_200(helperVar0_27) in
+    {433}let =v3 = g_var_v3_201(helperVar0_27) in
+    {434}let =v6 = g_var_v6_202(helperVar0_27) in
+    {435}let =vdleaf = g_var_vdleaf_203(helperVar0_27) in
+    {436}let =vdpblc = g_var_vdpblc_204(helperVar0_27) in
+    {437}let sm_11: bitstring = g_var_sm_205(helperVar0_27) in
+    {438}let =vk = g_var_vk_206(helperVar0_27) in
+    {439}let sk_11: bitstring = g_var_sk_207(helperVar0_27) in
+    {440}let p1_11: bitstring = g_var_p1_208(helperVar0_27) in
+    {441}in(publicChannel, helperVar1_27: bitstring);
+    {442}let =I_29 = g_var_I_209(helperVar1_27) in
+    {443}let =sm_11 = g_var_sm_210(helperVar1_27) in
+    {444}let =sk_11 = g_var_sk_211(helperVar1_27) in
+    {445}let =p1_11 = g_var_p1_212(helperVar1_27) in
+    {446}let =p2_11 = g_var_p2_213(helperVar1_27) in
+    {447}event eAccept(I_29,s(s(z)),s(s(s(z))))
+) | (
+    {448}!
+    {449}get tRoot(I_30: bitstring,helperVar0_28: bitstring) in
+    {450}let =I_30 = g_var_I_214(helperVar0_28) in
+    {451}let =v1 = g_var_v1_215(helperVar0_28) in
+    {452}let =vdintr = g_var_vdintr_216(helperVar0_28) in
+    {453}let p2_12: bitstring = g_var_p2_217(helperVar0_28) in
+    {454}let =v3 = g_var_v3_218(helperVar0_28) in
+    {455}let p1_12: bitstring = g_var_p1_219(helperVar0_28) in
+    {456}let =v7 = g_var_v7_220(helperVar0_28) in
+    {457}let =vdleaf = g_var_vdleaf_221(helperVar0_28) in
+    {458}let =vdpblc = g_var_vdpblc_222(helperVar0_28) in
+    {459}let =vm = g_var_vm_223(helperVar0_28) in
+    {460}let sm_12: bitstring = g_var_sm_224(helperVar0_28) in
+    {461}let sk_12: bitstring = g_var_sk_225(helperVar0_28) in
+    {462}in(publicChannel, helperVar1_28: bitstring);
+    {463}let =I_30 = g_var_I_226(helperVar1_28) in
+    {464}let =sm_12 = g_var_sm_227(helperVar1_28) in
+    {465}let =sk_12 = g_var_sk_228(helperVar1_28) in
+    {466}let =p1_12 = g_var_p1_229(helperVar1_28) in
+    {467}let =p2_12 = g_var_p2_230(helperVar1_28) in
+    {468}event eAccept(I_30,s(s(s(z))),z)
+) | (
+    {469}!
+    {470}get tRoot(I_31: bitstring,helperVar0_29: bitstring) in
+    {471}let =I_31 = g_var_I_231(helperVar0_29) in
+    {472}let =v1 = g_var_v1_232(helperVar0_29) in
+    {473}let =vdintr = g_var_vdintr_233(helperVar0_29) in
+    {474}let p2_13: bitstring = g_var_p2_234(helperVar0_29) in
+    {475}let =v3 = g_var_v3_235(helperVar0_29) in
+    {476}let p1_13: bitstring = g_var_p1_236(helperVar0_29) in
+    {477}let =v7 = g_var_v7_237(helperVar0_29) in
+    {478}let =vdleaf = g_var_vdleaf_238(helperVar0_29) in
+    {479}let =vdpblc = g_var_vdpblc_239(helperVar0_29) in
+    {480}let =vm = g_var_vm_240(helperVar0_29) in
+    {481}let sm_13: bitstring = g_var_sm_241(helperVar0_29) in
+    {482}let =vk = g_var_vk_242(helperVar0_29) in
+    {483}let sk_13: bitstring = g_var_sk_243(helperVar0_29) in
+    {484}in(publicChannel, helperVar1_29: bitstring);
+    {485}let =I_31 = g_var_I_244(helperVar1_29) in
+    {486}let =sm_13 = g_var_sm_245(helperVar1_29) in
+    {487}let =sk_13 = g_var_sk_246(helperVar1_29) in
+    {488}let =p1_13 = g_var_p1_247(helperVar1_29) in
+    {489}let =p2_13 = g_var_p2_248(helperVar1_29) in
+    {490}event eAccept(I_31,s(s(s(z))),s(z))
+) | (
+    {491}!
+    {492}get tRoot(I_32: bitstring,helperVar0_30: bitstring) in
+    {493}let =I_32 = g_var_I_249(helperVar0_30) in
+    {494}let =v1 = g_var_v1_250(helperVar0_30) in
+    {495}let =vdintr = g_var_vdintr_251(helperVar0_30) in
+    {496}let p2_14: bitstring = g_var_p2_252(helperVar0_30) in
+    {497}let =v3 = g_var_v3_253(helperVar0_30) in
+    {498}let p1_14: bitstring = g_var_p1_254(helperVar0_30) in
+    {499}let =v7 = g_var_v7_255(helperVar0_30) in
+    {500}let =vdleaf = g_var_vdleaf_256(helperVar0_30) in
+    {501}let =vdpblc = g_var_vdpblc_257(helperVar0_30) in
+    {502}let =vm = g_var_vm_258(helperVar0_30) in
+    {503}let sm_14: bitstring = g_var_sm_259(helperVar0_30) in
+    {504}let =vk = g_var_vk_260(helperVar0_30) in
+    {505}let sk_14: bitstring = g_var_sk_261(helperVar0_30) in
+    {506}in(publicChannel, helperVar1_30: bitstring);
+    {507}let =I_32 = g_var_I_262(helperVar1_30) in
+    {508}let =sm_14 = g_var_sm_263(helperVar1_30) in
+    {509}let =sk_14 = g_var_sk_264(helperVar1_30) in
+    {510}let =p1_14 = g_var_p1_265(helperVar1_30) in
+    {511}let =p2_14 = g_var_p2_266(helperVar1_30) in
+    {512}event eAccept(I_32,s(s(s(z))),s(s(z)))
+) | (
+    {513}!
+    {514}get tRoot(I_33: bitstring,helperVar0_31: bitstring) in
+    {515}let =I_33 = g_var_I_267(helperVar0_31) in
+    {516}let =v1 = g_var_v1_268(helperVar0_31) in
+    {517}let =vdintr = g_var_vdintr_269(helperVar0_31) in
+    {518}let p2_15: bitstring = g_var_p2_270(helperVar0_31) in
+    {519}let =v3 = g_var_v3_271(helperVar0_31) in
+    {520}let p1_15: bitstring = g_var_p1_272(helperVar0_31) in
+    {521}let =v7 = g_var_v7_273(helperVar0_31) in
+    {522}let =vdleaf = g_var_vdleaf_274(helperVar0_31) in
+    {523}let =vdpblc = g_var_vdpblc_275(helperVar0_31) in
+    {524}let sm_15: bitstring = g_var_sm_276(helperVar0_31) in
+    {525}let =vk = g_var_vk_277(helperVar0_31) in
+    {526}let sk_15: bitstring = g_var_sk_278(helperVar0_31) in
+    {527}in(publicChannel, helperVar1_31: bitstring);
+    {528}let =I_33 = g_var_I_279(helperVar1_31) in
+    {529}let =sm_15 = g_var_sm_280(helperVar1_31) in
+    {530}let =sk_15 = g_var_sk_281(helperVar1_31) in
+    {531}let =p1_15 = g_var_p1_282(helperVar1_31) in
+    {532}let =p2_15 = g_var_p2_283(helperVar1_31) in
+    {533}event eAccept(I_33,s(s(s(z))),s(s(s(z))))
+)
+
+-- Restriction event(eDistinctFact(rid_i,x))@i && event(eDistinctFact(rid_j,x))@j ==> rid_i = rid_j encoded as event(eDistinctFact(rid_i,x)) && event(eDistinctFact(rid_j,x)) ==> rid_i = rid_j in process 0.
+-- Query event(eAccept(I_34,z,s(z)))@k ==> event(eSign(I_34,z,s(z)))@sign_time || event(eRevealSeed(I_34))@r encoded as event(eAccept(I_34,z,s(z))) ==> event(eSign(I_34,z,s(z))) || event(eRevealSeed(I_34)) in process 0.
+Translating the process into Horn clauses...
+Completing...
+select table(tSt(stL_St_16,I[!1 = *@sid],helperVar0_32))/-5000
+200 rules inserted. Base: 200 rules (76 with conclusion selected). Queue: 57 rules.
+400 rules inserted. Base: 336 rules (117 with conclusion selected). Queue: 176 rules.
+600 rules inserted. Base: 516 rules (117 with conclusion selected). Queue: 352 rules.
+800 rules inserted. Base: 697 rules (117 with conclusion selected). Queue: 352 rules.
+1000 rules inserted. Base: 859 rules (117 with conclusion selected). Queue: 370 rules.
+1200 rules inserted. Base: 1034 rules (117 with conclusion selected). Queue: 370 rules.
+1400 rules inserted. Base: 1204 rules (120 with conclusion selected). Queue: 529 rules.
+1600 rules inserted. Base: 1391 rules (126 with conclusion selected). Queue: 518 rules.
+1800 rules inserted. Base: 1577 rules (133 with conclusion selected). Queue: 507 rules.
+2000 rules inserted. Base: 1757 rules (133 with conclusion selected). Queue: 515 rules.
+2200 rules inserted. Base: 1944 rules (133 with conclusion selected). Queue: 521 rules.
+2400 rules inserted. Base: 2135 rules (134 with conclusion selected). Queue: 530 rules.
+2600 rules inserted. Base: 2314 rules (137 with conclusion selected). Queue: 548 rules.
+2800 rules inserted. Base: 2506 rules (141 with conclusion selected). Queue: 553 rules.
+3000 rules inserted. Base: 2692 rules (143 with conclusion selected). Queue: 552 rules.
+3200 rules inserted. Base: 2884 rules (146 with conclusion selected). Queue: 546 rules.
+3400 rules inserted. Base: 3072 rules (149 with conclusion selected). Queue: 540 rules.
+3600 rules inserted. Base: 3252 rules (149 with conclusion selected). Queue: 530 rules.
+3800 rules inserted. Base: 3429 rules (149 with conclusion selected). Queue: 522 rules.
+4000 rules inserted. Base: 3607 rules (149 with conclusion selected). Queue: 521 rules.
+4200 rules inserted. Base: 3762 rules (149 with conclusion selected). Queue: 512 rules.
+4400 rules inserted. Base: 3915 rules (149 with conclusion selected). Queue: 498 rules.
+4600 rules inserted. Base: 4092 rules (149 with conclusion selected). Queue: 484 rules.
+4800 rules inserted. Base: 4282 rules (149 with conclusion selected). Queue: 482 rules.
+5000 rules inserted. Base: 4476 rules (149 with conclusion selected). Queue: 472 rules.
+5200 rules inserted. Base: 4671 rules (149 with conclusion selected). Queue: 477 rules.
+5400 rules inserted. Base: 4868 rules (149 with conclusion selected). Queue: 480 rules.
+5600 rules inserted. Base: 5068 rules (149 with conclusion selected). Queue: 480 rules.
+5800 rules inserted. Base: 5266 rules (149 with conclusion selected). Queue: 484 rules.
+6000 rules inserted. Base: 5464 rules (149 with conclusion selected). Queue: 447 rules.
+6200 rules inserted. Base: 5663 rules (149 with conclusion selected). Queue: 358 rules.
+6400 rules inserted. Base: 5856 rules (149 with conclusion selected). Queue: 261 rules.
+6600 rules inserted. Base: 5955 rules (149 with conclusion selected). Queue: 277 rules.
+6800 rules inserted. Base: 5973 rules (149 with conclusion selected). Queue: 277 rules.
+7000 rules inserted. Base: 6086 rules (149 with conclusion selected). Queue: 277 rules.
+7200 rules inserted. Base: 6204 rules (149 with conclusion selected). Queue: 256 rules.
+7400 rules inserted. Base: 6244 rules (149 with conclusion selected). Queue: 208 rules.
+7600 rules inserted. Base: 6162 rules (149 with conclusion selected). Queue: 133 rules.
+7800 rules inserted. Base: 6292 rules (149 with conclusion selected). Queue: 16 rules.
+Starting query event(eAccept(I_34,z,s(z)))@k ==> event(eSign(I_34,z,s(z)))@sign_time || event(eRevealSeed(I_34))@r
+Removing redudant clauses.
+Removing subsumed clauses modulo the equational theory.
+Starting verification.
+Clauses verified: 0. Clauses remaining: 3. Failed clauses: 0.
+goal reachable: b-event(eSign(I_34,z,z)) && b-event(eDistinctFact(rid_rSign_q0_a0_1,(stL_St_16,(I_34,z)))) && b-event(@p_act(@occ13_1,(vsign[],z))) && b-event(@p_act(@occ12_1,tSk(I_34,sd_18))) && table(tSt(stL_St_16,I_34,helperVar0_32)) && b-event(@p_act(@occ11_1,tSt(stL_St_16,I_34,helperVar0_32))) && b-event(eSign(I_34,z,s(s(z)))) && b-event(eDistinctFact(rid_rSign_q0_a2_1,(stL_St_17,(I_34,z)))) && b-event(@p_act(@occ35_1,(vsign[],s(s(z))))) && b-event(@p_act(@occ34_1,tSk(I_34,sd_18))) && table(tSt(stL_St_17,I_34,helperVar0_33)) && b-event(@p_act(@occ33_1,tSt(stL_St_17,I_34,helperVar0_33))) && b-event(@p_act(@occ226_1,(I_34,(z,(s(z),(ch(I_34,vm[],prf(sd_18,z,vm[])),(ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[]))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))))))))) && b-event(@p_act(@occ212_1,tRoot(I_34,hn(I_34,v1[],vdintr[],(hn(I_34,v2[],vdintr[],(hn(I_34,v4[],vdleaf[],pblc(I_34,z,vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,z,vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[]))))))),hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))))))) -> event(eAccept(I_34,z,s(z)))
+The 1st, 2nd, 3rd, 4th, 6th, 7th, 8th, 9th, 10th, 12th, 13th, 14th hypotheses occur strictly before the conclusion.
+The 5th, 11th hypotheses occur before the conclusion.
+Abbreviations:
+I_34 = I[!1 = @sid]
+sd_18 = sd[!1 = @sid]
+rid_rSign_q0_a0_1 = rid_rSign_q0_a0[helperVar1 = (vsign[],z),sd_1 = sd_18,helperVar0 = helperVar0_32,I_1 = I_34,stL_St = stL_St_16,!1 = @sid_1]
+@occ13_1 = @occ13[!1 = @sid_1]
+@occ12_1 = @occ12[!1 = @sid_1]
+@occ11_1 = @occ11[!1 = @sid_1]
+rid_rSign_q0_a2_1 = rid_rSign_q0_a2[helperVar1_2 = (vsign[],s(s(z))),sd_3 = sd_18,helperVar0_2 = helperVar0_33,I_3 = I_34,stL_St_2 = stL_St_17,!1 = @sid_2]
+@occ35_1 = @occ35[!1 = @sid_2]
+@occ34_1 = @occ34[!1 = @sid_2]
+@occ33_1 = @occ33[!1 = @sid_2]
+@occ226_1 = @occ226[!1 = @sid_3]
+@occ212_1 = @occ212[!1 = @sid_3]
+
+Derivation:
+Abbreviations:
+I_34 = I[!1 = @sid]
+sd_18 = sd[!1 = @sid]
+rid_rSign_q0_a0_1 = rid_rSign_q0_a0[helperVar1 = (vsign[],z),sd_1 = sd_18,helperVar0 = helperVar0_32,I_1 = I_34,stL_St = stL_St_16,!1 = @sid_1]
+@occ13_1 = @occ13[!1 = @sid_1]
+@occ12_1 = @occ12[!1 = @sid_1]
+@occ11_1 = @occ11[!1 = @sid_1]
+rid_rSign_q0_a2_1 = rid_rSign_q0_a2[helperVar1_2 = (vsign[],s(s(z))),sd_3 = sd_18,helperVar0_2 = helperVar0_33,I_3 = I_34,stL_St_2 = stL_St_17,!1 = @sid_2]
+@occ35_1 = @occ35[!1 = @sid_2]
+@occ34_1 = @occ34[!1 = @sid_2]
+@occ33_1 = @occ33[!1 = @sid_2]
+@occ226_1 = @occ226[!1 = @sid_3]
+@occ212_1 = @occ212[!1 = @sid_3]
+
+1. The entry tRoot(I_34,hn(I_34,v1[],vdintr[],(hn(I_34,v2[],vdintr[],(hn(I_34,v4[],vdleaf[],pblc(I_34,z,vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,z,vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[]))))))),hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))))) may be inserted in a table at insert {8}.
+table(tRoot(I_34,hn(I_34,v1[],vdintr[],(hn(I_34,v2[],vdintr[],(hn(I_34,v4[],vdleaf[],pblc(I_34,z,vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,z,vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[]))))))),hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))))).
+
+2. We assume as hypothesis that
+table(tSt(stL_St_17,I_34,helperVar0_33)).
+
+3. The entry tSk(I_34,sd_18) may be inserted in a table at insert {6}.
+table(tSk(I_34,sd_18)).
+
+4. Using the function z the attacker may obtain z.
+attacker(z).
+
+5. By 4, the attacker may know z.
+Using the function s the attacker may obtain s(z).
+attacker(s(z)).
+
+6. By 5, the attacker may know s(z).
+Using the function s the attacker may obtain s(s(z)).
+attacker(s(s(z))).
+
+7. The attacker initially knows vsign[].
+attacker(vsign[]).
+
+8. By 7, the attacker may know vsign[].
+By 6, the attacker may know s(s(z)).
+Using the function 2-tuple the attacker may obtain (vsign[],s(s(z))).
+attacker((vsign[],s(s(z)))).
+
+9. The event @p_act(@occ33_1,tSt(stL_St_17,I_34,helperVar0_33)) records how variables are instantiated at {33}.
+The entry tSt(stL_St_17,I_34,helperVar0_33) that may be in a table by 2 may be read at get {33}.
+The event @p_act(@occ34_1,tSk(I_34,sd_18)) records how variables are instantiated at {34}.
+The entry tSk(I_34,sd_18) that may be in a table by 3 may be read at get {34}.
+The event @p_act(@occ35_1,(vsign[],s(s(z)))) records how variables are instantiated at {35}.
+The message (vsign[],s(s(z))) that the attacker may have by 8 may be received at input {35}.
+The event eDistinctFact(rid_rSign_q0_a2_1,(stL_St_17,(I_34,z))) may be executed at {39}.
+The event eSign(I_34,z,s(s(z))) may be executed at {40}.
+So the message (I_34,(z,(s(s(z)),(ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,z,vm[]))),(ch(I_34,vk[],prf(sd_18,z,vk[])),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))))))) may be sent to the attacker at output {42}.
+attacker((I_34,(z,(s(s(z)),(ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,z,vm[]))),(ch(I_34,vk[],prf(sd_18,z,vk[])),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))))))))).
+
+10. By 9, the attacker may know (I_34,(z,(s(s(z)),(ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,z,vm[]))),(ch(I_34,vk[],prf(sd_18,z,vk[])),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))))))).
+Using the function 2-proj-2-tuple the attacker may obtain (z,(s(s(z)),(ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,z,vm[]))),(ch(I_34,vk[],prf(sd_18,z,vk[])),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))))))).
+attacker((z,(s(s(z)),(ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,z,vm[]))),(ch(I_34,vk[],prf(sd_18,z,vk[])),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))))))).
+
+11. By 10, the attacker may know (z,(s(s(z)),(ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,z,vm[]))),(ch(I_34,vk[],prf(sd_18,z,vk[])),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))))))).
+Using the function 2-proj-2-tuple the attacker may obtain (s(s(z)),(ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,z,vm[]))),(ch(I_34,vk[],prf(sd_18,z,vk[])),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))))).
+attacker((s(s(z)),(ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,z,vm[]))),(ch(I_34,vk[],prf(sd_18,z,vk[])),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))))))).
+
+12. By 11, the attacker may know (s(s(z)),(ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,z,vm[]))),(ch(I_34,vk[],prf(sd_18,z,vk[])),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))))).
+Using the function 2-proj-2-tuple the attacker may obtain (ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,z,vm[]))),(ch(I_34,vk[],prf(sd_18,z,vk[])),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))))).
+attacker((ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,z,vm[]))),(ch(I_34,vk[],prf(sd_18,z,vk[])),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))))).
+
+13. By 12, the attacker may know (ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,z,vm[]))),(ch(I_34,vk[],prf(sd_18,z,vk[])),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))))).
+Using the function 2-proj-2-tuple the attacker may obtain (ch(I_34,vk[],prf(sd_18,z,vk[])),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))).
+attacker((ch(I_34,vk[],prf(sd_18,z,vk[])),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))))).
+
+14. By 13, the attacker may know (ch(I_34,vk[],prf(sd_18,z,vk[])),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))).
+Using the function 2-proj-2-tuple the attacker may obtain (hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))).
+attacker((hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))).
+
+15. By 14, the attacker may know (hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))).
+Using the function 2-proj-2-tuple the attacker may obtain hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))).
+attacker(hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))).
+
+16. By 14, the attacker may know (hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))).
+Using the function 1-proj-2-tuple the attacker may obtain hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))).
+attacker(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[])))))))).
+
+17. By 16, the attacker may know hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))).
+By 15, the attacker may know hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))).
+Using the function 2-tuple the attacker may obtain (hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))).
+attacker((hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))).
+
+18. By 13, the attacker may know (ch(I_34,vk[],prf(sd_18,z,vk[])),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))).
+Using the function 1-proj-2-tuple the attacker may obtain ch(I_34,vk[],prf(sd_18,z,vk[])).
+attacker(ch(I_34,vk[],prf(sd_18,z,vk[]))).
+
+19. The attacker initially knows vk[].
+attacker(vk[]).
+
+20. The message (I_34,hn(I_34,v1[],vdintr[],(hn(I_34,v2[],vdintr[],(hn(I_34,v4[],vdleaf[],pblc(I_34,z,vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,z,vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[]))))))),hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))))) may be sent to the attacker at output {9}.
+attacker((I_34,hn(I_34,v1[],vdintr[],(hn(I_34,v2[],vdintr[],(hn(I_34,v4[],vdleaf[],pblc(I_34,z,vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,z,vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[]))))))),hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))))).
+
+21. By 20, the attacker may know (I_34,hn(I_34,v1[],vdintr[],(hn(I_34,v2[],vdintr[],(hn(I_34,v4[],vdleaf[],pblc(I_34,z,vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,z,vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[]))))))),hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))))).
+Using the function 1-proj-2-tuple the attacker may obtain I_34.
+attacker(I_34).
+
+22. By 21, the attacker may know I_34.
+By 19, the attacker may know vk[].
+By 18, the attacker may know ch(I_34,vk[],prf(sd_18,z,vk[])).
+Using the function ch the attacker may obtain ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[]))).
+attacker(ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[])))).
+
+23. By 22, the attacker may know ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[]))).
+By 17, the attacker may know (hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))).
+Using the function 2-tuple the attacker may obtain (ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[]))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))).
+attacker((ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[]))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))))).
+
+24. We assume as hypothesis that
+table(tSt(stL_St_16,I_34,helperVar0_32)).
+
+25. By 7, the attacker may know vsign[].
+By 4, the attacker may know z.
+Using the function 2-tuple the attacker may obtain (vsign[],z).
+attacker((vsign[],z)).
+
+26. The event @p_act(@occ11_1,tSt(stL_St_16,I_34,helperVar0_32)) records how variables are instantiated at {11}.
+The entry tSt(stL_St_16,I_34,helperVar0_32) that may be in a table by 24 may be read at get {11}.
+The event @p_act(@occ12_1,tSk(I_34,sd_18)) records how variables are instantiated at {12}.
+The entry tSk(I_34,sd_18) that may be in a table by 3 may be read at get {12}.
+The event @p_act(@occ13_1,(vsign[],z)) records how variables are instantiated at {13}.
+The message (vsign[],z) that the attacker may have by 25 may be received at input {13}.
+The event eDistinctFact(rid_rSign_q0_a0_1,(stL_St_16,(I_34,z))) may be executed at {17}.
+The event eSign(I_34,z,z) may be executed at {18}.
+So the message (I_34,(z,(z,(prf(sd_18,z,vm[]),(ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[])))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))))))) may be sent to the attacker at output {20}.
+attacker((I_34,(z,(z,(prf(sd_18,z,vm[]),(ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[])))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))))))))).
+
+27. By 26, the attacker may know (I_34,(z,(z,(prf(sd_18,z,vm[]),(ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[])))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))))))).
+Using the function 2-proj-2-tuple the attacker may obtain (z,(z,(prf(sd_18,z,vm[]),(ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[])))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))))))).
+attacker((z,(z,(prf(sd_18,z,vm[]),(ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[])))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))))))).
+
+28. By 27, the attacker may know (z,(z,(prf(sd_18,z,vm[]),(ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[])))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))))))).
+Using the function 2-proj-2-tuple the attacker may obtain (z,(prf(sd_18,z,vm[]),(ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[])))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))))).
+attacker((z,(prf(sd_18,z,vm[]),(ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[])))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))))))).
+
+29. By 28, the attacker may know (z,(prf(sd_18,z,vm[]),(ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[])))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))))).
+Using the function 2-proj-2-tuple the attacker may obtain (prf(sd_18,z,vm[]),(ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[])))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))))).
+attacker((prf(sd_18,z,vm[]),(ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[])))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))))).
+
+30. By 29, the attacker may know (prf(sd_18,z,vm[]),(ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[])))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))))).
+Using the function 1-proj-2-tuple the attacker may obtain prf(sd_18,z,vm[]).
+attacker(prf(sd_18,z,vm[])).
+
+31. The attacker initially knows vm[].
+attacker(vm[]).
+
+32. By 21, the attacker may know I_34.
+By 31, the attacker may know vm[].
+By 30, the attacker may know prf(sd_18,z,vm[]).
+Using the function ch the attacker may obtain ch(I_34,vm[],prf(sd_18,z,vm[])).
+attacker(ch(I_34,vm[],prf(sd_18,z,vm[]))).
+
+33. By 32, the attacker may know ch(I_34,vm[],prf(sd_18,z,vm[])).
+By 23, the attacker may know (ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[]))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))).
+Using the function 2-tuple the attacker may obtain (ch(I_34,vm[],prf(sd_18,z,vm[])),(ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[]))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))))).
+attacker((ch(I_34,vm[],prf(sd_18,z,vm[])),(ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[]))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))))).
+
+34. By 5, the attacker may know s(z).
+By 33, the attacker may know (ch(I_34,vm[],prf(sd_18,z,vm[])),(ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[]))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))))).
+Using the function 2-tuple the attacker may obtain (s(z),(ch(I_34,vm[],prf(sd_18,z,vm[])),(ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[]))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))))).
+attacker((s(z),(ch(I_34,vm[],prf(sd_18,z,vm[])),(ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[]))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))))))).
+
+35. By 4, the attacker may know z.
+By 34, the attacker may know (s(z),(ch(I_34,vm[],prf(sd_18,z,vm[])),(ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[]))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))))).
+Using the function 2-tuple the attacker may obtain (z,(s(z),(ch(I_34,vm[],prf(sd_18,z,vm[])),(ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[]))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))))))).
+attacker((z,(s(z),(ch(I_34,vm[],prf(sd_18,z,vm[])),(ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[]))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))))))).
+
+36. By 21, the attacker may know I_34.
+By 35, the attacker may know (z,(s(z),(ch(I_34,vm[],prf(sd_18,z,vm[])),(ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[]))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))))))).
+Using the function 2-tuple the attacker may obtain (I_34,(z,(s(z),(ch(I_34,vm[],prf(sd_18,z,vm[])),(ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[]))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))))))).
+attacker((I_34,(z,(s(z),(ch(I_34,vm[],prf(sd_18,z,vm[])),(ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[]))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))))))))).
+
+37. The event @p_act(@occ212_1,tRoot(I_34,hn(I_34,v1[],vdintr[],(hn(I_34,v2[],vdintr[],(hn(I_34,v4[],vdleaf[],pblc(I_34,z,vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,z,vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[]))))))),hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))))) records how variables are instantiated at {212}.
+The entry tRoot(I_34,hn(I_34,v1[],vdintr[],(hn(I_34,v2[],vdintr[],(hn(I_34,v4[],vdleaf[],pblc(I_34,z,vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,z,vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[]))))))),hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))))) that may be in a table by 1 may be read at get {212}.
+The event @p_act(@occ226_1,(I_34,(z,(s(z),(ch(I_34,vm[],prf(sd_18,z,vm[])),(ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[]))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))))))))) records how variables are instantiated at {226}.
+The message (I_34,(z,(s(z),(ch(I_34,vm[],prf(sd_18,z,vm[])),(ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[]))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))))))) that the attacker may have by 36 may be received at input {226}.
+So event eAccept(I_34,z,s(z)) may be executed at {232}.
+event(eAccept(I_34,z,s(z))).
+
+38. By 37, event(eAccept(I_34,z,s(z))).
+The goals are reached, combined in the following fact:
+event(eAccept(I_34,z,s(z))).
+
+
+A more detailed output of the traces is available with
+  set traceDisplay = long.
+
+new stR_St: bitstring creating stR_St_17 at {2} in copy a
+
+new I: bitstring creating I_35 at {3} in copy a
+
+new sd: bitstring creating sd_19 at {4} in copy a
+
+event eKeyGen(I_35) at {5} in copy a
+
+insert tSk(I_35,sd_19) at {6} in copy a
+
+insert tSt(stR_St_17,I_35,z) at {7} in copy a
+
+insert tRoot(I_35,hn(I_35,v1,vdintr,(hn(I_35,v2,vdintr,(hn(I_35,v4,vdleaf,pblc(I_35,z,vdpblc,(ch(I_35,vm,ch(I_35,vm,ch(I_35,vm,prf(sd_19,z,vm)))),ch(I_35,vk,ch(I_35,vk,ch(I_35,vk,prf(sd_19,z,vk))))))),hn(I_35,v5,vdleaf,pblc(I_35,s(z),vdpblc,(ch(I_35,vm,ch(I_35,vm,ch(I_35,vm,prf(sd_19,s(z),vm)))),ch(I_35,vk,ch(I_35,vk,ch(I_35,vk,prf(sd_19,s(z),vk))))))))),hn(I_35,v3,vdintr,(hn(I_35,v6,vdleaf,pblc(I_35,s(s(z)),vdpblc,(ch(I_35,vm,ch(I_35,vm,ch(I_35,vm,prf(sd_19,s(s(z)),vm)))),ch(I_35,vk,ch(I_35,vk,ch(I_35,vk,prf(sd_19,s(s(z)),vk))))))),hn(I_35,v7,vdleaf,pblc(I_35,s(s(s(z))),vdpblc,(ch(I_35,vm,ch(I_35,vm,ch(I_35,vm,prf(sd_19,s(s(s(z))),vm)))),ch(I_35,vk,ch(I_35,vk,ch(I_35,vk,prf(sd_19,s(s(s(z))),vk)))))))))))) at {8} in copy a
+
+out(publicChannel, (~M,~M_1)) with ~M = I_35, ~M_1 = hn(I_35,v1,vdintr,(hn(I_35,v2,vdintr,(hn(I_35,v4,vdleaf,pblc(I_35,z,vdpblc,(ch(I_35,vm,ch(I_35,vm,ch(I_35,vm,prf(sd_19,z,vm)))),ch(I_35,vk,ch(I_35,vk,ch(I_35,vk,prf(sd_19,z,vk))))))),hn(I_35,v5,vdleaf,pblc(I_35,s(z),vdpblc,(ch(I_35,vm,ch(I_35,vm,ch(I_35,vm,prf(sd_19,s(z),vm)))),ch(I_35,vk,ch(I_35,vk,ch(I_35,vk,prf(sd_19,s(z),vk))))))))),hn(I_35,v3,vdintr,(hn(I_35,v6,vdleaf,pblc(I_35,s(s(z)),vdpblc,(ch(I_35,vm,ch(I_35,vm,ch(I_35,vm,prf(sd_19,s(s(z)),vm)))),ch(I_35,vk,ch(I_35,vk,ch(I_35,vk,prf(sd_19,s(s(z)),vk))))))),hn(I_35,v7,vdleaf,pblc(I_35,s(s(s(z))),vdpblc,(ch(I_35,vm,ch(I_35,vm,ch(I_35,vm,prf(sd_19,s(s(s(z))),vm)))),ch(I_35,vk,ch(I_35,vk,ch(I_35,vk,prf(sd_19,s(s(s(z))),vk))))))))))) at {9} in copy a
+
+get tSt(a_1,I_35,a_2) at {11} in copy a_3
+
+get tSk(I_35,sd_19) at {12} in copy a_3
+
+in(publicChannel, (vsign,z)) at {13} in copy a_3
+
+new rid_rSign_q0_a0: bitstring creating rid_rSign_q0_a0_2 at {15} in copy a_3
+
+new stR_St_1: bitstring creating stR_St_18 at {16} in copy a_3
+
+event eDistinctFact(rid_rSign_q0_a0_2,(a_1,(I_35,z))) at {17} in copy a_3
+
+event eSign(I_35,z,z) at {18} in copy a_3
+
+insert tSt(stR_St_18,I_35,s(z)) at {19} in copy a_3
+
+out(publicChannel, (~M_2,(~M_3,(~M_4,(~M_5,(~M_6,(~M_7,~M_8))))))) with ~M_2 = I_35, ~M_3 = z, ~M_4 = z, ~M_5 = prf(sd_19,z,vm), ~M_6 = ch(I_35,vk,ch(I_35,vk,ch(I_35,vk,prf(sd_19,z,vk)))), ~M_7 = hn(I_35,v5,vdleaf,pblc(I_35,s(z),vdpblc,(ch(I_35,vm,ch(I_35,vm,ch(I_35,vm,prf(sd_19,s(z),vm)))),ch(I_35,vk,ch(I_35,vk,ch(I_35,vk,prf(sd_19,s(z),vk))))))), ~M_8 = hn(I_35,v3,vdintr,(hn(I_35,v6,vdleaf,pblc(I_35,s(s(z)),vdpblc,(ch(I_35,vm,ch(I_35,vm,ch(I_35,vm,prf(sd_19,s(s(z)),vm)))),ch(I_35,vk,ch(I_35,vk,ch(I_35,vk,prf(sd_19,s(s(z)),vk))))))),hn(I_35,v7,vdleaf,pblc(I_35,s(s(s(z))),vdpblc,(ch(I_35,vm,ch(I_35,vm,ch(I_35,vm,prf(sd_19,s(s(s(z))),vm)))),ch(I_35,vk,ch(I_35,vk,ch(I_35,vk,prf(sd_19,s(s(s(z))),vk))))))))) at {20} in copy a_3
+
+get tSt(a_4,I_35,a_5) at {33} in copy a_6
+
+get tSk(I_35,sd_19) at {34} in copy a_6
+
+in(publicChannel, (vsign,s(s(z)))) at {35} in copy a_6
+
+new rid_rSign_q0_a2: bitstring creating rid_rSign_q0_a2_2 at {37} in copy a_6
+
+new stR_St_3: bitstring creating stR_St_19 at {38} in copy a_6
+
+event eDistinctFact(rid_rSign_q0_a2_2,(a_4,(I_35,z))) at {39} in copy a_6
+
+event eSign(I_35,z,s(s(z))) at {40} in copy a_6
+
+insert tSt(stR_St_19,I_35,s(z)) at {41} in copy a_6
+
+out(publicChannel, (~M_9,(~M_10,(~M_11,(~M_12,(~M_13,(~M_14,~M_15))))))) with ~M_9 = I_35, ~M_10 = z, ~M_11 = s(s(z)), ~M_12 = ch(I_35,vm,ch(I_35,vm,prf(sd_19,z,vm))), ~M_13 = ch(I_35,vk,prf(sd_19,z,vk)), ~M_14 = hn(I_35,v5,vdleaf,pblc(I_35,s(z),vdpblc,(ch(I_35,vm,ch(I_35,vm,ch(I_35,vm,prf(sd_19,s(z),vm)))),ch(I_35,vk,ch(I_35,vk,ch(I_35,vk,prf(sd_19,s(z),vk))))))), ~M_15 = hn(I_35,v3,vdintr,(hn(I_35,v6,vdleaf,pblc(I_35,s(s(z)),vdpblc,(ch(I_35,vm,ch(I_35,vm,ch(I_35,vm,prf(sd_19,s(s(z)),vm)))),ch(I_35,vk,ch(I_35,vk,ch(I_35,vk,prf(sd_19,s(s(z)),vk))))))),hn(I_35,v7,vdleaf,pblc(I_35,s(s(s(z))),vdpblc,(ch(I_35,vm,ch(I_35,vm,ch(I_35,vm,prf(sd_19,s(s(s(z))),vm)))),ch(I_35,vk,ch(I_35,vk,ch(I_35,vk,prf(sd_19,s(s(s(z))),vk))))))))) at {42} in copy a_6
+
+get tRoot(I_35,hn(I_35,v1,vdintr,(hn(I_35,v2,vdintr,(hn(I_35,v4,vdleaf,pblc(I_35,z,vdpblc,(ch(I_35,vm,ch(I_35,vm,ch(I_35,vm,prf(sd_19,z,vm)))),ch(I_35,vk,ch(I_35,vk,ch(I_35,vk,prf(sd_19,z,vk))))))),hn(I_35,v5,vdleaf,pblc(I_35,s(z),vdpblc,(ch(I_35,vm,ch(I_35,vm,ch(I_35,vm,prf(sd_19,s(z),vm)))),ch(I_35,vk,ch(I_35,vk,ch(I_35,vk,prf(sd_19,s(z),vk))))))))),hn(I_35,v3,vdintr,(hn(I_35,v6,vdleaf,pblc(I_35,s(s(z)),vdpblc,(ch(I_35,vm,ch(I_35,vm,ch(I_35,vm,prf(sd_19,s(s(z)),vm)))),ch(I_35,vk,ch(I_35,vk,ch(I_35,vk,prf(sd_19,s(s(z)),vk))))))),hn(I_35,v7,vdleaf,pblc(I_35,s(s(s(z))),vdpblc,(ch(I_35,vm,ch(I_35,vm,ch(I_35,vm,prf(sd_19,s(s(s(z))),vm)))),ch(I_35,vk,ch(I_35,vk,ch(I_35,vk,prf(sd_19,s(s(s(z))),vk)))))))))))) at {212} in copy a_7
+
+in(publicChannel, (~M,(z,(s(z),(ch(~M,vm,~M_5),(ch(~M,vk,~M_13),(~M_7,~M_8))))))) with ~M = I_35, ch(~M,vm,~M_5) = ch(I_35,vm,prf(sd_19,z,vm)), ch(~M,vk,~M_13) = ch(I_35,vk,ch(I_35,vk,prf(sd_19,z,vk))), ~M_7 = hn(I_35,v5,vdleaf,pblc(I_35,s(z),vdpblc,(ch(I_35,vm,ch(I_35,vm,ch(I_35,vm,prf(sd_19,s(z),vm)))),ch(I_35,vk,ch(I_35,vk,ch(I_35,vk,prf(sd_19,s(z),vk))))))), ~M_8 = hn(I_35,v3,vdintr,(hn(I_35,v6,vdleaf,pblc(I_35,s(s(z)),vdpblc,(ch(I_35,vm,ch(I_35,vm,ch(I_35,vm,prf(sd_19,s(s(z)),vm)))),ch(I_35,vk,ch(I_35,vk,ch(I_35,vk,prf(sd_19,s(s(z)),vk))))))),hn(I_35,v7,vdleaf,pblc(I_35,s(s(s(z))),vdpblc,(ch(I_35,vm,ch(I_35,vm,ch(I_35,vm,prf(sd_19,s(s(s(z))),vm)))),ch(I_35,vk,ch(I_35,vk,ch(I_35,vk,prf(sd_19,s(s(s(z))),vk))))))))) at {226} in copy a_7
+
+event eAccept(I_35,z,s(z)) at {232} in copy a_7 (goal)
+
+The event eAccept(I_35,z,s(z)) is executed at {232} in copy a_7.
+A trace has been found, assuming the following hypothesis:
+table(tSt(a_1[],I_35[],a_2[]))
+table(tSt(a_4[],I_35[],a_5[]))
+goal reachable: b-event(eSign(I_34,z,s(s(s(z))))) && b-event(eDistinctFact(rid_rSign_q0_a3_1,(stL_St_16,(I_34,z)))) && b-event(@p_act(@occ46_1,(vsign[],s(s(s(z)))))) && b-event(@p_act(@occ45_1,tSk(I_34,sd_18))) && table(tSt(stL_St_16,I_34,helperVar0_32)) && b-event(@p_act(@occ44_1,tSt(stL_St_16,I_34,helperVar0_32))) && b-event(eSign(I_34,z,z)) && b-event(eDistinctFact(rid_rSign_q0_a0_1,(stL_St_17,(I_34,z)))) && b-event(@p_act(@occ13_1,(vsign[],z))) && b-event(@p_act(@occ12_1,tSk(I_34,sd_18))) && table(tSt(stL_St_17,I_34,helperVar0_33)) && b-event(@p_act(@occ11_1,tSt(stL_St_17,I_34,helperVar0_33))) && b-event(@p_act(@occ226_1,(I_34,(z,(s(z),(ch(I_34,vm[],prf(sd_18,z,vm[])),(ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[]))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))))))))) && b-event(@p_act(@occ212_1,tRoot(I_34,hn(I_34,v1[],vdintr[],(hn(I_34,v2[],vdintr[],(hn(I_34,v4[],vdleaf[],pblc(I_34,z,vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,z,vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[]))))))),hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))))))) -> event(eAccept(I_34,z,s(z)))
+The 1st, 2nd, 3rd, 4th, 6th, 7th, 8th, 9th, 10th, 12th, 13th, 14th hypotheses occur strictly before the conclusion.
+The 5th, 11th hypotheses occur before the conclusion.
+Abbreviations:
+I_34 = I[!1 = @sid]
+sd_18 = sd[!1 = @sid]
+rid_rSign_q0_a3_1 = rid_rSign_q0_a3[helperVar1_3 = (vsign[],s(s(s(z)))),sd_4 = sd_18,helperVar0_3 = helperVar0_32,I_4 = I_34,stL_St_3 = stL_St_16,!1 = @sid_1]
+@occ46_1 = @occ46[!1 = @sid_1]
+@occ45_1 = @occ45[!1 = @sid_1]
+@occ44_1 = @occ44[!1 = @sid_1]
+rid_rSign_q0_a0_1 = rid_rSign_q0_a0[helperVar1 = (vsign[],z),sd_1 = sd_18,helperVar0 = helperVar0_33,I_1 = I_34,stL_St = stL_St_17,!1 = @sid_2]
+@occ13_1 = @occ13[!1 = @sid_2]
+@occ12_1 = @occ12[!1 = @sid_2]
+@occ11_1 = @occ11[!1 = @sid_2]
+@occ226_1 = @occ226[!1 = @sid_3]
+@occ212_1 = @occ212[!1 = @sid_3]
+
+Derivation:
+Abbreviations:
+I_34 = I[!1 = @sid]
+sd_18 = sd[!1 = @sid]
+rid_rSign_q0_a3_1 = rid_rSign_q0_a3[helperVar1_3 = (vsign[],s(s(s(z)))),sd_4 = sd_18,helperVar0_3 = helperVar0_32,I_4 = I_34,stL_St_3 = stL_St_16,!1 = @sid_1]
+@occ46_1 = @occ46[!1 = @sid_1]
+@occ45_1 = @occ45[!1 = @sid_1]
+@occ44_1 = @occ44[!1 = @sid_1]
+rid_rSign_q0_a0_1 = rid_rSign_q0_a0[helperVar1 = (vsign[],z),sd_1 = sd_18,helperVar0 = helperVar0_33,I_1 = I_34,stL_St = stL_St_17,!1 = @sid_2]
+@occ13_1 = @occ13[!1 = @sid_2]
+@occ12_1 = @occ12[!1 = @sid_2]
+@occ11_1 = @occ11[!1 = @sid_2]
+@occ226_1 = @occ226[!1 = @sid_3]
+@occ212_1 = @occ212[!1 = @sid_3]
+
+1. The entry tRoot(I_34,hn(I_34,v1[],vdintr[],(hn(I_34,v2[],vdintr[],(hn(I_34,v4[],vdleaf[],pblc(I_34,z,vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,z,vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[]))))))),hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))))) may be inserted in a table at insert {8}.
+table(tRoot(I_34,hn(I_34,v1[],vdintr[],(hn(I_34,v2[],vdintr[],(hn(I_34,v4[],vdleaf[],pblc(I_34,z,vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,z,vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[]))))))),hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))))).
+
+2. We assume as hypothesis that
+table(tSt(stL_St_17,I_34,helperVar0_33)).
+
+3. The entry tSk(I_34,sd_18) may be inserted in a table at insert {6}.
+table(tSk(I_34,sd_18)).
+
+4. Using the function z the attacker may obtain z.
+attacker(z).
+
+5. The attacker initially knows vsign[].
+attacker(vsign[]).
+
+6. By 5, the attacker may know vsign[].
+By 4, the attacker may know z.
+Using the function 2-tuple the attacker may obtain (vsign[],z).
+attacker((vsign[],z)).
+
+7. The event @p_act(@occ11_1,tSt(stL_St_17,I_34,helperVar0_33)) records how variables are instantiated at {11}.
+The entry tSt(stL_St_17,I_34,helperVar0_33) that may be in a table by 2 may be read at get {11}.
+The event @p_act(@occ12_1,tSk(I_34,sd_18)) records how variables are instantiated at {12}.
+The entry tSk(I_34,sd_18) that may be in a table by 3 may be read at get {12}.
+The event @p_act(@occ13_1,(vsign[],z)) records how variables are instantiated at {13}.
+The message (vsign[],z) that the attacker may have by 6 may be received at input {13}.
+The event eDistinctFact(rid_rSign_q0_a0_1,(stL_St_17,(I_34,z))) may be executed at {17}.
+The event eSign(I_34,z,z) may be executed at {18}.
+So the message (I_34,(z,(z,(prf(sd_18,z,vm[]),(ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[])))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))))))) may be sent to the attacker at output {20}.
+attacker((I_34,(z,(z,(prf(sd_18,z,vm[]),(ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[])))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))))))))).
+
+8. By 7, the attacker may know (I_34,(z,(z,(prf(sd_18,z,vm[]),(ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[])))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))))))).
+Using the function 2-proj-2-tuple the attacker may obtain (z,(z,(prf(sd_18,z,vm[]),(ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[])))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))))))).
+attacker((z,(z,(prf(sd_18,z,vm[]),(ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[])))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))))))).
+
+9. By 8, the attacker may know (z,(z,(prf(sd_18,z,vm[]),(ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[])))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))))))).
+Using the function 2-proj-2-tuple the attacker may obtain (z,(prf(sd_18,z,vm[]),(ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[])))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))))).
+attacker((z,(prf(sd_18,z,vm[]),(ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[])))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))))))).
+
+10. By 9, the attacker may know (z,(prf(sd_18,z,vm[]),(ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[])))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))))).
+Using the function 2-proj-2-tuple the attacker may obtain (prf(sd_18,z,vm[]),(ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[])))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))))).
+attacker((prf(sd_18,z,vm[]),(ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[])))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))))).
+
+11. By 10, the attacker may know (prf(sd_18,z,vm[]),(ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[])))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))))).
+Using the function 2-proj-2-tuple the attacker may obtain (ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[])))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))).
+attacker((ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[])))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))))).
+
+12. By 11, the attacker may know (ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[])))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))).
+Using the function 2-proj-2-tuple the attacker may obtain (hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))).
+attacker((hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))).
+
+13. By 12, the attacker may know (hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))).
+Using the function 2-proj-2-tuple the attacker may obtain hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))).
+attacker(hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))).
+
+14. By 12, the attacker may know (hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))).
+Using the function 1-proj-2-tuple the attacker may obtain hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))).
+attacker(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[])))))))).
+
+15. By 14, the attacker may know hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))).
+By 13, the attacker may know hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))).
+Using the function 2-tuple the attacker may obtain (hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))).
+attacker((hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))).
+
+16. We assume as hypothesis that
+table(tSt(stL_St_16,I_34,helperVar0_32)).
+
+17. By 4, the attacker may know z.
+Using the function s the attacker may obtain s(z).
+attacker(s(z)).
+
+18. By 17, the attacker may know s(z).
+Using the function s the attacker may obtain s(s(z)).
+attacker(s(s(z))).
+
+19. By 18, the attacker may know s(s(z)).
+Using the function s the attacker may obtain s(s(s(z))).
+attacker(s(s(s(z)))).
+
+20. By 5, the attacker may know vsign[].
+By 19, the attacker may know s(s(s(z))).
+Using the function 2-tuple the attacker may obtain (vsign[],s(s(s(z)))).
+attacker((vsign[],s(s(s(z))))).
+
+21. The event @p_act(@occ44_1,tSt(stL_St_16,I_34,helperVar0_32)) records how variables are instantiated at {44}.
+The entry tSt(stL_St_16,I_34,helperVar0_32) that may be in a table by 16 may be read at get {44}.
+The event @p_act(@occ45_1,tSk(I_34,sd_18)) records how variables are instantiated at {45}.
+The entry tSk(I_34,sd_18) that may be in a table by 3 may be read at get {45}.
+The event @p_act(@occ46_1,(vsign[],s(s(s(z))))) records how variables are instantiated at {46}.
+The message (vsign[],s(s(s(z)))) that the attacker may have by 20 may be received at input {46}.
+The event eDistinctFact(rid_rSign_q0_a3_1,(stL_St_16,(I_34,z))) may be executed at {50}.
+The event eSign(I_34,z,s(s(s(z)))) may be executed at {51}.
+So the message (I_34,(z,(s(s(s(z))),(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,z,vm[])))),(prf(sd_18,z,vk[]),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))))))) may be sent to the attacker at output {53}.
+attacker((I_34,(z,(s(s(s(z))),(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,z,vm[])))),(prf(sd_18,z,vk[]),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))))))))).
+
+22. By 21, the attacker may know (I_34,(z,(s(s(s(z))),(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,z,vm[])))),(prf(sd_18,z,vk[]),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))))))).
+Using the function 2-proj-2-tuple the attacker may obtain (z,(s(s(s(z))),(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,z,vm[])))),(prf(sd_18,z,vk[]),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))))))).
+attacker((z,(s(s(s(z))),(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,z,vm[])))),(prf(sd_18,z,vk[]),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))))))).
+
+23. By 22, the attacker may know (z,(s(s(s(z))),(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,z,vm[])))),(prf(sd_18,z,vk[]),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))))))).
+Using the function 2-proj-2-tuple the attacker may obtain (s(s(s(z))),(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,z,vm[])))),(prf(sd_18,z,vk[]),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))))).
+attacker((s(s(s(z))),(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,z,vm[])))),(prf(sd_18,z,vk[]),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))))))).
+
+24. By 23, the attacker may know (s(s(s(z))),(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,z,vm[])))),(prf(sd_18,z,vk[]),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))))).
+Using the function 2-proj-2-tuple the attacker may obtain (ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,z,vm[])))),(prf(sd_18,z,vk[]),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))))).
+attacker((ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,z,vm[])))),(prf(sd_18,z,vk[]),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))))).
+
+25. By 24, the attacker may know (ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,z,vm[])))),(prf(sd_18,z,vk[]),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))))).
+Using the function 2-proj-2-tuple the attacker may obtain (prf(sd_18,z,vk[]),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))).
+attacker((prf(sd_18,z,vk[]),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))))).
+
+26. By 25, the attacker may know (prf(sd_18,z,vk[]),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))).
+Using the function 1-proj-2-tuple the attacker may obtain prf(sd_18,z,vk[]).
+attacker(prf(sd_18,z,vk[])).
+
+27. The attacker initially knows vk[].
+attacker(vk[]).
+
+28. The message (I_34,hn(I_34,v1[],vdintr[],(hn(I_34,v2[],vdintr[],(hn(I_34,v4[],vdleaf[],pblc(I_34,z,vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,z,vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[]))))))),hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))))) may be sent to the attacker at output {9}.
+attacker((I_34,hn(I_34,v1[],vdintr[],(hn(I_34,v2[],vdintr[],(hn(I_34,v4[],vdleaf[],pblc(I_34,z,vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,z,vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[]))))))),hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))))).
+
+29. By 28, the attacker may know (I_34,hn(I_34,v1[],vdintr[],(hn(I_34,v2[],vdintr[],(hn(I_34,v4[],vdleaf[],pblc(I_34,z,vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,z,vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[]))))))),hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))))).
+Using the function 1-proj-2-tuple the attacker may obtain I_34.
+attacker(I_34).
+
+30. By 29, the attacker may know I_34.
+By 27, the attacker may know vk[].
+By 26, the attacker may know prf(sd_18,z,vk[]).
+Using the function ch the attacker may obtain ch(I_34,vk[],prf(sd_18,z,vk[])).
+attacker(ch(I_34,vk[],prf(sd_18,z,vk[]))).
+
+31. By 29, the attacker may know I_34.
+By 27, the attacker may know vk[].
+By 30, the attacker may know ch(I_34,vk[],prf(sd_18,z,vk[])).
+Using the function ch the attacker may obtain ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[]))).
+attacker(ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[])))).
+
+32. By 31, the attacker may know ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[]))).
+By 15, the attacker may know (hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))).
+Using the function 2-tuple the attacker may obtain (ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[]))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))).
+attacker((ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[]))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))))).
+
+33. By 10, the attacker may know (prf(sd_18,z,vm[]),(ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[])))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))))).
+Using the function 1-proj-2-tuple the attacker may obtain prf(sd_18,z,vm[]).
+attacker(prf(sd_18,z,vm[])).
+
+34. The attacker initially knows vm[].
+attacker(vm[]).
+
+35. By 29, the attacker may know I_34.
+By 34, the attacker may know vm[].
+By 33, the attacker may know prf(sd_18,z,vm[]).
+Using the function ch the attacker may obtain ch(I_34,vm[],prf(sd_18,z,vm[])).
+attacker(ch(I_34,vm[],prf(sd_18,z,vm[]))).
+
+36. By 35, the attacker may know ch(I_34,vm[],prf(sd_18,z,vm[])).
+By 32, the attacker may know (ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[]))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))).
+Using the function 2-tuple the attacker may obtain (ch(I_34,vm[],prf(sd_18,z,vm[])),(ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[]))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))))).
+attacker((ch(I_34,vm[],prf(sd_18,z,vm[])),(ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[]))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))))).
+
+37. By 17, the attacker may know s(z).
+By 36, the attacker may know (ch(I_34,vm[],prf(sd_18,z,vm[])),(ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[]))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))))).
+Using the function 2-tuple the attacker may obtain (s(z),(ch(I_34,vm[],prf(sd_18,z,vm[])),(ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[]))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))))).
+attacker((s(z),(ch(I_34,vm[],prf(sd_18,z,vm[])),(ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[]))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))))))).
+
+38. By 4, the attacker may know z.
+By 37, the attacker may know (s(z),(ch(I_34,vm[],prf(sd_18,z,vm[])),(ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[]))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))))).
+Using the function 2-tuple the attacker may obtain (z,(s(z),(ch(I_34,vm[],prf(sd_18,z,vm[])),(ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[]))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))))))).
+attacker((z,(s(z),(ch(I_34,vm[],prf(sd_18,z,vm[])),(ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[]))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))))))).
+
+39. By 29, the attacker may know I_34.
+By 38, the attacker may know (z,(s(z),(ch(I_34,vm[],prf(sd_18,z,vm[])),(ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[]))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))))))).
+Using the function 2-tuple the attacker may obtain (I_34,(z,(s(z),(ch(I_34,vm[],prf(sd_18,z,vm[])),(ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[]))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))))))).
+attacker((I_34,(z,(s(z),(ch(I_34,vm[],prf(sd_18,z,vm[])),(ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[]))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))))))))).
+
+40. The event @p_act(@occ212_1,tRoot(I_34,hn(I_34,v1[],vdintr[],(hn(I_34,v2[],vdintr[],(hn(I_34,v4[],vdleaf[],pblc(I_34,z,vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,z,vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[]))))))),hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))))) records how variables are instantiated at {212}.
+The entry tRoot(I_34,hn(I_34,v1[],vdintr[],(hn(I_34,v2[],vdintr[],(hn(I_34,v4[],vdleaf[],pblc(I_34,z,vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,z,vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[]))))))),hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))))) that may be in a table by 1 may be read at get {212}.
+The event @p_act(@occ226_1,(I_34,(z,(s(z),(ch(I_34,vm[],prf(sd_18,z,vm[])),(ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[]))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[])))))))))))))))) records how variables are instantiated at {226}.
+The message (I_34,(z,(s(z),(ch(I_34,vm[],prf(sd_18,z,vm[])),(ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,z,vk[]))),(hn(I_34,v5[],vdleaf[],pblc(I_34,s(z),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(z),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(z),vk[]))))))),hn(I_34,v3[],vdintr[],(hn(I_34,v6[],vdleaf[],pblc(I_34,s(s(z)),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(z)),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(z)),vk[]))))))),hn(I_34,v7[],vdleaf[],pblc(I_34,s(s(s(z))),vdpblc[],(ch(I_34,vm[],ch(I_34,vm[],ch(I_34,vm[],prf(sd_18,s(s(s(z))),vm[])))),ch(I_34,vk[],ch(I_34,vk[],ch(I_34,vk[],prf(sd_18,s(s(s(z))),vk[]))))))))))))))) that the attacker may have by 39 may be received at input {226}.
+So event eAccept(I_34,z,s(z)) may be executed at {232}.
+event(eAccept(I_34,z,s(z))).
+
+41. By 40, event(eAccept(I_34,z,s(z))).
+The goals are reached, combined in the following fact:
+event(eAccept(I_34,z,s(z))).
+
+
+A more detailed output of the traces is available with
+  set traceDisplay = long.
+
+new stR_St: bitstring creating stR_St_17 at {2} in copy a
+
+new I: bitstring creating I_35 at {3} in copy a
+
+new sd: bitstring creating sd_19 at {4} in copy a
+
+event eKeyGen(I_35) at {5} in copy a
+
+insert tSk(I_35,sd_19) at {6} in copy a
+
+insert tSt(stR_St_17,I_35,z) at {7} in copy a
+
+insert tRoot(I_35,hn(I_35,v1,vdintr,(hn(I_35,v2,vdintr,(hn(I_35,v4,vdleaf,pblc(I_35,z,vdpblc,(ch(I_35,vm,ch(I_35,vm,ch(I_35,vm,prf(sd_19,z,vm)))),ch(I_35,vk,ch(I_35,vk,ch(I_35,vk,prf(sd_19,z,vk))))))),hn(I_35,v5,vdleaf,pblc(I_35,s(z),vdpblc,(ch(I_35,vm,ch(I_35,vm,ch(I_35,vm,prf(sd_19,s(z),vm)))),ch(I_35,vk,ch(I_35,vk,ch(I_35,vk,prf(sd_19,s(z),vk))))))))),hn(I_35,v3,vdintr,(hn(I_35,v6,vdleaf,pblc(I_35,s(s(z)),vdpblc,(ch(I_35,vm,ch(I_35,vm,ch(I_35,vm,prf(sd_19,s(s(z)),vm)))),ch(I_35,vk,ch(I_35,vk,ch(I_35,vk,prf(sd_19,s(s(z)),vk))))))),hn(I_35,v7,vdleaf,pblc(I_35,s(s(s(z))),vdpblc,(ch(I_35,vm,ch(I_35,vm,ch(I_35,vm,prf(sd_19,s(s(s(z))),vm)))),ch(I_35,vk,ch(I_35,vk,ch(I_35,vk,prf(sd_19,s(s(s(z))),vk)))))))))))) at {8} in copy a
+
+out(publicChannel, (~M,~M_1)) with ~M = I_35, ~M_1 = hn(I_35,v1,vdintr,(hn(I_35,v2,vdintr,(hn(I_35,v4,vdleaf,pblc(I_35,z,vdpblc,(ch(I_35,vm,ch(I_35,vm,ch(I_35,vm,prf(sd_19,z,vm)))),ch(I_35,vk,ch(I_35,vk,ch(I_35,vk,prf(sd_19,z,vk))))))),hn(I_35,v5,vdleaf,pblc(I_35,s(z),vdpblc,(ch(I_35,vm,ch(I_35,vm,ch(I_35,vm,prf(sd_19,s(z),vm)))),ch(I_35,vk,ch(I_35,vk,ch(I_35,vk,prf(sd_19,s(z),vk))))))))),hn(I_35,v3,vdintr,(hn(I_35,v6,vdleaf,pblc(I_35,s(s(z)),vdpblc,(ch(I_35,vm,ch(I_35,vm,ch(I_35,vm,prf(sd_19,s(s(z)),vm)))),ch(I_35,vk,ch(I_35,vk,ch(I_35,vk,prf(sd_19,s(s(z)),vk))))))),hn(I_35,v7,vdleaf,pblc(I_35,s(s(s(z))),vdpblc,(ch(I_35,vm,ch(I_35,vm,ch(I_35,vm,prf(sd_19,s(s(s(z))),vm)))),ch(I_35,vk,ch(I_35,vk,ch(I_35,vk,prf(sd_19,s(s(s(z))),vk))))))))))) at {9} in copy a
+
+get tSt(a_1,I_35,a_2) at {11} in copy a_3
+
+get tSk(I_35,sd_19) at {12} in copy a_3
+
+in(publicChannel, (vsign,z)) at {13} in copy a_3
+
+new rid_rSign_q0_a0: bitstring creating rid_rSign_q0_a0_2 at {15} in copy a_3
+
+new stR_St_1: bitstring creating stR_St_18 at {16} in copy a_3
+
+event eDistinctFact(rid_rSign_q0_a0_2,(a_1,(I_35,z))) at {17} in copy a_3
+
+event eSign(I_35,z,z) at {18} in copy a_3
+
+insert tSt(stR_St_18,I_35,s(z)) at {19} in copy a_3
+
+out(publicChannel, (~M_2,(~M_3,(~M_4,(~M_5,(~M_6,(~M_7,~M_8))))))) with ~M_2 = I_35, ~M_3 = z, ~M_4 = z, ~M_5 = prf(sd_19,z,vm), ~M_6 = ch(I_35,vk,ch(I_35,vk,ch(I_35,vk,prf(sd_19,z,vk)))), ~M_7 = hn(I_35,v5,vdleaf,pblc(I_35,s(z),vdpblc,(ch(I_35,vm,ch(I_35,vm,ch(I_35,vm,prf(sd_19,s(z),vm)))),ch(I_35,vk,ch(I_35,vk,ch(I_35,vk,prf(sd_19,s(z),vk))))))), ~M_8 = hn(I_35,v3,vdintr,(hn(I_35,v6,vdleaf,pblc(I_35,s(s(z)),vdpblc,(ch(I_35,vm,ch(I_35,vm,ch(I_35,vm,prf(sd_19,s(s(z)),vm)))),ch(I_35,vk,ch(I_35,vk,ch(I_35,vk,prf(sd_19,s(s(z)),vk))))))),hn(I_35,v7,vdleaf,pblc(I_35,s(s(s(z))),vdpblc,(ch(I_35,vm,ch(I_35,vm,ch(I_35,vm,prf(sd_19,s(s(s(z))),vm)))),ch(I_35,vk,ch(I_35,vk,ch(I_35,vk,prf(sd_19,s(s(s(z))),vk))))))))) at {20} in copy a_3
+
+get tSt(a_4,I_35,a_5) at {44} in copy a_6
+
+get tSk(I_35,sd_19) at {45} in copy a_6
+
+in(publicChannel, (vsign,s(s(s(z))))) at {46} in copy a_6
+
+new rid_rSign_q0_a3: bitstring creating rid_rSign_q0_a3_2 at {48} in copy a_6
+
+new stR_St_4: bitstring creating stR_St_19 at {49} in copy a_6
+
+event eDistinctFact(rid_rSign_q0_a3_2,(a_4,(I_35,z))) at {50} in copy a_6
+
+event eSign(I_35,z,s(s(s(z)))) at {51} in copy a_6
+
+insert tSt(stR_St_19,I_35,s(z)) at {52} in copy a_6
+
+out(publicChannel, (~M_9,(~M_10,(~M_11,(~M_12,(~M_13,(~M_14,~M_15))))))) with ~M_9 = I_35, ~M_10 = z, ~M_11 = s(s(s(z))), ~M_12 = ch(I_35,vm,ch(I_35,vm,ch(I_35,vm,prf(sd_19,z,vm)))), ~M_13 = prf(sd_19,z,vk), ~M_14 = hn(I_35,v5,vdleaf,pblc(I_35,s(z),vdpblc,(ch(I_35,vm,ch(I_35,vm,ch(I_35,vm,prf(sd_19,s(z),vm)))),ch(I_35,vk,ch(I_35,vk,ch(I_35,vk,prf(sd_19,s(z),vk))))))), ~M_15 = hn(I_35,v3,vdintr,(hn(I_35,v6,vdleaf,pblc(I_35,s(s(z)),vdpblc,(ch(I_35,vm,ch(I_35,vm,ch(I_35,vm,prf(sd_19,s(s(z)),vm)))),ch(I_35,vk,ch(I_35,vk,ch(I_35,vk,prf(sd_19,s(s(z)),vk))))))),hn(I_35,v7,vdleaf,pblc(I_35,s(s(s(z))),vdpblc,(ch(I_35,vm,ch(I_35,vm,ch(I_35,vm,prf(sd_19,s(s(s(z))),vm)))),ch(I_35,vk,ch(I_35,vk,ch(I_35,vk,prf(sd_19,s(s(s(z))),vk))))))))) at {53} in copy a_6
+
+get tRoot(I_35,hn(I_35,v1,vdintr,(hn(I_35,v2,vdintr,(hn(I_35,v4,vdleaf,pblc(I_35,z,vdpblc,(ch(I_35,vm,ch(I_35,vm,ch(I_35,vm,prf(sd_19,z,vm)))),ch(I_35,vk,ch(I_35,vk,ch(I_35,vk,prf(sd_19,z,vk))))))),hn(I_35,v5,vdleaf,pblc(I_35,s(z),vdpblc,(ch(I_35,vm,ch(I_35,vm,ch(I_35,vm,prf(sd_19,s(z),vm)))),ch(I_35,vk,ch(I_35,vk,ch(I_35,vk,prf(sd_19,s(z),vk))))))))),hn(I_35,v3,vdintr,(hn(I_35,v6,vdleaf,pblc(I_35,s(s(z)),vdpblc,(ch(I_35,vm,ch(I_35,vm,ch(I_35,vm,prf(sd_19,s(s(z)),vm)))),ch(I_35,vk,ch(I_35,vk,ch(I_35,vk,prf(sd_19,s(s(z)),vk))))))),hn(I_35,v7,vdleaf,pblc(I_35,s(s(s(z))),vdpblc,(ch(I_35,vm,ch(I_35,vm,ch(I_35,vm,prf(sd_19,s(s(s(z))),vm)))),ch(I_35,vk,ch(I_35,vk,ch(I_35,vk,prf(sd_19,s(s(s(z))),vk)))))))))))) at {212} in copy a_7
+
+in(publicChannel, (~M,(z,(s(z),(ch(~M,vm,~M_5),(ch(~M,vk,ch(~M,vk,~M_13)),(~M_7,~M_8))))))) with ~M = I_35, ch(~M,vm,~M_5) = ch(I_35,vm,prf(sd_19,z,vm)), ch(~M,vk,ch(~M,vk,~M_13)) = ch(I_35,vk,ch(I_35,vk,prf(sd_19,z,vk))), ~M_7 = hn(I_35,v5,vdleaf,pblc(I_35,s(z),vdpblc,(ch(I_35,vm,ch(I_35,vm,ch(I_35,vm,prf(sd_19,s(z),vm)))),ch(I_35,vk,ch(I_35,vk,ch(I_35,vk,prf(sd_19,s(z),vk))))))), ~M_8 = hn(I_35,v3,vdintr,(hn(I_35,v6,vdleaf,pblc(I_35,s(s(z)),vdpblc,(ch(I_35,vm,ch(I_35,vm,ch(I_35,vm,prf(sd_19,s(s(z)),vm)))),ch(I_35,vk,ch(I_35,vk,ch(I_35,vk,prf(sd_19,s(s(z)),vk))))))),hn(I_35,v7,vdleaf,pblc(I_35,s(s(s(z))),vdpblc,(ch(I_35,vm,ch(I_35,vm,ch(I_35,vm,prf(sd_19,s(s(s(z))),vm)))),ch(I_35,vk,ch(I_35,vk,ch(I_35,vk,prf(sd_19,s(s(s(z))),vk))))))))) at {226} in copy a_7
+
+event eAccept(I_35,z,s(z)) at {232} in copy a_7 (goal)
+
+The event eAccept(I_35,z,s(z)) is executed at {232} in copy a_7.
+A trace has been found, assuming the following hypothesis:
+table(tSt(a_4[],I_35[],a_5[]))
+table(tSt(a_1[],I_35[],a_2[]))
+RESULT event(eAccept(I_34,z,s(z)))@k ==> event(eSign(I_34,z,s(z)))@sign_time || event(eRevealSeed(I_34))@r cannot be proved.
+
+--------------------------------------------------------------
+Verification summary:
+
+Query(ies):
+ - Query event(eAccept(I_34,z,s(z)))@k ==> event(eSign(I_34,z,s(z)))@sign_time || event(eRevealSeed(I_34))@r cannot be proved.
+Associated restriction(s):
+ - Restriction event(eDistinctFact(rid_i,x))@i && event(eDistinctFact(rid_j,x))@j ==> rid_i = rid_j encoded as event(eDistinctFact(rid_i,x)) && event(eDistinctFact(rid_j,x)) ==> rid_i = rid_j in process 0.
+
+--------------------------------------------------------------
+

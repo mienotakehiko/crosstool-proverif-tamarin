@@ -1,0 +1,181 @@
+maude tool: '/redacted-home/tools/bin/maude35'
+ checking version: 3.5. OK.
+ checking installation: OK.
+[Theory Keyserver] Theory loaded
+[Theory Keyserver] Theory translated
+[Theory Keyserver] Theory closed
+[Saturating Sources] Step 1 (Max 5)
+[Saturating Sources] Done
+theory Keyserver begin
+
+// Function signature and definition of the equational theory E
+
+functions: fst/1, pair/2, pk/1, sign/2, snd/1, true/0, verify/3
+equations:
+    fst(<x.1, x.2>) = x.1,
+    snd(<x.1, x.2>) = x.2,
+    verify(sign(x.1, x.2), x.1, pk(x.2)) = true
+
+
+
+
+
+
+
+rule (modulo E) SetupServerKey:
+   [ Fr( ~sk ) ]
+  -->
+   [ !ServerSK( ~sk ), !ServerPK( pk(~sk) ), Out( pk(~sk) ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) SetupHonestKey:
+   [ Fr( ~sk ) ]
+  --[ HonestKey( ~sk ) ]->
+   [ Out( pk(~sk) ), ClientKey( $A, ~sk ), ServerDB( $A, pk(~sk) ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) SetupDishonestKey:
+   [ In( sk ) ] --> [ ServerDB( $A, pk(sk) ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Client_RenewKey:
+   [ ClientKey( $A, ~sk ), Fr( ~skNew ) ]
+  --[ HonestKey( ~skNew ) ]->
+   [
+   Out( <<'renew', $A, pk(~skNew)>, sign(<'renew', $A, pk(~skNew)>, ~sk)> ),
+   ClientKey( $A, ~skNew ),
+   AwaitConfirmation( sign(<'renew', $A, pk(~skNew)>, ~sk), ~sk )
+   ]
+
+  // loop breaker: [0]
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Client_LeakKey:
+   [ AwaitConfirmation( request, sk ), !ServerPK( pkServer ), In( sig ) ]
+  --[
+  Eq( verify(sig, <'confirm', request>, pkServer), true ), Revoked( sk )
+  ]->
+   [ Out( sk ) ]
+
+  /*
+  rule (modulo AC) Client_LeakKey:
+     [ AwaitConfirmation( request, sk ), !ServerPK( pkServer ), In( sig ) ]
+    --[ Eq( z, true ), Revoked( sk ) ]->
+     [ Out( sk ) ]
+    variants (modulo AC)
+    1. pkServer
+             = pk(x)
+       request
+             = x.1
+       sig   = sign(<'confirm', x.1>, x)
+       z     = true
+    
+    2. pkServer
+             = pkServer.2
+       request
+             = request.2
+       sig   = sig.2
+       z     = verify(sig.2, <'confirm', request.2>, pkServer.2)
+  */
+
+rule (modulo E) Server_RenewKey[derivchecks]:
+   [
+   In( <<'renew', A, pkNew>, requestSig> ), ServerDB( A, pk(sk) ),
+   !ServerSK( skServer )
+   ]
+  --[ Eq( verify(requestSig, <'renew', A, pkNew>, pk(sk)), true ) ]->
+   [ ServerDB( A, pkNew ), Out( sign(<'confirm', requestSig>, skServer) ) ]
+
+  // loop breaker: [1]
+  /*
+  rule (modulo AC) Server_RenewKey[derivchecks]:
+     [
+     In( <<'renew', A, pkNew>, requestSig> ), ServerDB( A, pk(sk) ),
+     !ServerSK( skServer )
+     ]
+    --[ Eq( z, true ) ]->
+     [ ServerDB( A, pkNew ), Out( sign(<'confirm', requestSig>, skServer) ) ]
+    variants (modulo AC)
+    1. A     = A.3
+       pkNew = pkNew.3
+       requestSig
+             = requestSig.3
+       sk    = sk.3
+       z     = verify(requestSig.3, <'renew', A.3, pkNew.3>, pk(sk.3))
+    
+    2. A     = x.3
+       pkNew = x.4
+       requestSig
+             = sign(<'renew', x.3, x.4>, x.5)
+       sk    = x.5
+       z     = true
+    // loop breaker: [1]
+  */
+
+restriction Eq_checks_succeed:
+  "∀ x y #i. (Eq( x, y ) @ #i) ⇒ (x = y)"
+  // safety formula
+
+lemma Knows_Honest_Key_imp_Revoked:
+  all-traces
+  "∀ sk #i #d.
+    ((HonestKey( sk ) @ #i) ∧ (K( sk ) @ #d)) ⇒ (∃ #r. Revoked( sk ) @ #r)"
+/*
+guarded formula characterizing all counter-examples:
+"∃ sk #i #d.
+  (HonestKey( sk ) @ #i) ∧ (K( sk ) @ #d) ∧ ∀ #r. (Revoked( sk ) @ #r) ⇒ ⊥"
+*/
+simplify
+solve( HonestKey( x ) @ #i )
+  case Client_RenewKey
+  solve( !KU( ~skNew ) @ #vk )
+    case Client_LeakKey
+    by contradiction /* from formulas */
+  qed
+next
+  case SetupHonestKey
+  solve( !KU( ~sk.1 ) @ #vk )
+    case Client_LeakKey
+    by contradiction /* from formulas */
+  qed
+qed
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* All wellformedness checks were successful. */
+
+/*
+Generated from:
+Tamarin version 1.11.0
+Maude version 3.5
+Git revision: 87a573516fa4b1bf52e014dc9034d1be2e18df7c, branch: HEAD
+Compiled at: 2026-10-14 05:12:27.82288044 UTC
+*/
+
+end
+
+==============================================================================
+summary of summaries:
+
+analyzed: corpus/related_work__AIF_Moedersheim_CCS10__Keyserver.spthy
+
+  processing time: 0.04s
+  
+  Knows_Honest_Key_imp_Revoked (all-traces): verified (6 steps)
+
+==============================================================================

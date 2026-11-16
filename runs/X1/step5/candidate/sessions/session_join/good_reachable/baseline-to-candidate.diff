@@ -1,0 +1,23 @@
+--- baseline
++++ candidate
+@@ -63,16 +63,16 @@
+         insert tAux(stR_Aux_1, sb, vcross, z()).
+ 
+ let rGood =
+-        get tSt(stL_St, asid, =vsame, helperVar0) in
+-        get tAux(stL_Aux, =asid, =vsame, helperVar0) in
++        get tSt(stL_St, asid, =vsame, =z()) in
++        get tAux(stL_Aux, =asid, =vsame, =z()) in
+         new rid_rGood: bitstring;
+         event eDistinctFact(rid_rGood, (stL_St, (asid, (vsame, z()))));
+         event eDistinctFact(rid_rGood, (stL_Aux, (asid, (vsame, z()))));
+         event eGood(asid).
+ 
+ let rBad =
+-        get tSt(stL_St, asid, =vcross, helperVar0) in
+-        get tAux(stL_Aux, =asid, =vcross, helperVar0) in
++        get tSt(stL_St, asid, =vcross, =z()) in
++        get tAux(stL_Aux, =asid, =vcross, =z()) in
+         new rid_rBad: bitstring;
+         event eDistinctFact(rid_rBad, (stL_St, (asid, (vcross, z()))));
+         event eDistinctFact(rid_rBad, (stL_Aux, (asid, (vcross, z()))));
