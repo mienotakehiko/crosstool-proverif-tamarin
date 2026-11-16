@@ -1,0 +1,3 @@
+route	verdict	raw	rc	query_count	time_equality_preserved	timepoints_split	restriction_missing	axiom_missing	detail
+cim_direct_U2	true	true	0	1	True	False	False	False	
+tamarin_export	true	true	0	1	False	False	False	False	inspect_query_or_translation_flags

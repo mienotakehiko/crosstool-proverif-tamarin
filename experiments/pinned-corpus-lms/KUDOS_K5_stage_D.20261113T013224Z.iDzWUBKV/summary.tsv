@@ -1,0 +1,5 @@
+lemma	tamarin	translated_proverif	proverif_raw	tamarin_rc	export_rc	proverif_rc	axiom_missing	restriction_missing	status	detail
+types	true	undetermined		0	0	2	False	False	OUTSIDE_TRANSLATION_FRAGMENT	Formula contains KU fact, which is outside the supported formal semantics
+reachability_left	true	undetermined		0	0	2	True	False	OUTSIDE_TRANSLATION_FRAGMENT	Exists-trace formula contains K fact; completeness is only proved for K-free formulas
+reachability_right	true	undetermined		0	0	2	True	False	OUTSIDE_TRANSLATION_FRAGMENT	Exists-trace formula contains K fact; completeness is only proved for K-free formulas
+secrecy	true	true	true	0	0	0	True	False	AGREEMENT_WITH_AXIOM_WARNING	helper_axiom_omitted

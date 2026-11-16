@@ -1,0 +1,22 @@
+free qdone: bitstring.
+fun q0(): bitstring.
+fun q1(): bitstring.
+event Seed(bitstring).
+event Honest(bitstring).
+event Bad.
+event Again.
+query sid: bitstring; event(Honest(sid)).
+query event(Bad).
+query event(Again).
+query sid: bitstring; inj-event(Honest(sid)) ==> inj-event(Seed(sid)).
+process
+  new state: channel;
+  new sid: bitstring;
+  event Seed(sid);
+  (out(state, q0()) |
+   in(state, state_value: bitstring);
+   (if state_value = q0() then (
+      event Honest(sid);
+      let next = q0() in
+      if next = q0() then event Again)
+    else if state_value = q1() then event Bad))

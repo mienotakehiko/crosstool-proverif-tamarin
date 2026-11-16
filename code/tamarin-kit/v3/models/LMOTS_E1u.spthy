@@ -1,0 +1,61 @@
+theory LMOTS_E1u
+begin
+functions: ch/3, s/1, z/0
+/* Stage 1 (unary version): positions are the free constructors s/z instead of the AC natural numbers. Position 1 is z, position 4 is s(s(s(z))).
+   The step index of ch(I, cid, t) is implicit in the term depth; it plays the role of j in RFC 8554.
+   Abstraction L-A1a: w=2 (positions 1..4) and p=2 (chain 'm' for the message digit, chain 'k' for the checksum).
+   Checksum: a + c = 5 (counting from 1) is listed as four cases, because Tamarin equations cannot use natural numbers. */
+restriction Cks: "All a c #i. Cks(a,c)@i ==>
+   (a = z & c = s(s(s(z)))) | (a = s(z) & c = s(s(z))) | (a = s(s(z)) & c = s(z)) | (a = s(s(s(z))) & c = z)"
+restriction One: "All I #i #j. OneSig(I)@i & OneSig(I)@j ==> #i = #j"
+restriction Neq: "All x y #i. Neq(x,y)@i ==> not (x = y)"
+
+rule KeyGen:
+  [ Fr(~I), Fr(~xm), Fr(~xk) ]
+  --[ KeyGen(~I), Val(~I,'m',z,~xm), Val(~I,'k',z,~xk) ]->
+  [ GenM(~I,z,~xm,~xk), !Sk(~I,~xm,~xk) ]
+rule GenStepM:
+  [ GenM(I,p,t,xk) ] --[ Neq(p,s(s(s(z)))), Val(I,'m',s(p),ch(I,'m',t)) ]-> [ GenM(I,s(p),ch(I,'m',t),xk) ]
+rule GenSwitch:
+  [ GenM(I,s(s(s(z))),ym,xk) ] --> [ GenK(I,z,xk,ym) ]
+rule GenStepK:
+  [ GenK(I,p,t,ym) ] --[ Neq(p,s(s(s(z)))), Val(I,'k',s(p),ch(I,'k',t)) ]-> [ GenK(I,s(p),ch(I,'k',t),ym) ]
+rule GenDone:
+  [ GenK(I,s(s(s(z))),yk,ym) ] --[ PkDone(I,ym,yk) ]-> [ !Pk(I,ym,yk), Out(<I,ym,yk>) ]
+
+rule SignStart:
+  [ !Sk(I,xm,xk), !Pk(I,ym,yk), In(<'sign',a,c>) ]
+  --[ OneSig(I), Cks(a,c), SignReq(I,a) ]-> [ SigM(I,z,xm,a,c,xk) ]
+rule SigStepM:
+  [ SigM(I,p,t,a,c,xk) ] --[ Neq(p,a) ]-> [ SigM(I,s(p),ch(I,'m',t),a,c,xk) ]
+rule SigSwitch:
+  [ SigM(I,a,sm,a,c,xk) ] --> [ SigK(I,z,xk,a,c,sm) ]
+rule SigStepK:
+  [ SigK(I,p,t,a,c,sm) ] --[ Neq(p,c) ]-> [ SigK(I,s(p),ch(I,'k',t),a,c,sm) ]
+rule SigEmit:
+  [ SigK(I,c,sk,a,c,sm) ] --[ Signed(I,a), SigVal(I,'m',a,sm), SigVal(I,'k',c,sk) ]-> [ Out(<I,a,sm,c,sk>) ]
+
+rule RevealSk:
+  [ !Sk(I,xm,xk) ] --[ RevealSk(I) ]-> [ Out(<xm,xk>) ]
+rule VerStart:
+  [ !Pk(I,ym,yk), In(<I,a,sm,c,sk>), Fr(~v) ] --[ Cks(a,c), VerStart(~v,I,a) ]-> [ VerM(~v,I,a,sm,a,c,sk,ym,yk) ]
+rule VerStepM:
+  [ VerM(v,I,p,t,a,c,sk,ym,yk) ] --[ Neq(p,s(s(s(z)))) ]-> [ VerM(v,I,s(p),ch(I,'m',t),a,c,sk,ym,yk) ]
+rule VerSwitch:
+  [ VerM(v,I,s(s(s(z))),ym,a,c,sk,ym,yk) ] --> [ VerK(v,I,c,sk,a,yk) ]
+rule VerStepK:
+  [ VerK(v,I,p,t,a,yk) ] --[ Neq(p,s(s(s(z)))) ]-> [ VerK(v,I,s(p),ch(I,'k',t),a,yk) ]
+rule VerAccept:
+  [ VerK(v,I,s(s(s(z))),yk,a,yk) ] --[ Accept(v,I,a) ]-> []
+lemma exec_accept: exists-trace
+  "Ex v I a #s #k. Signed(I,a)@s & Accept(v,I,a)@k & not (Ex #r. RevealSk(I)@r)"
+
+// L-S5 (one-wayness, L2): whoever knows the value at position p has seen a signature value at a position not above p.
+lemma LS5_oneway:
+  "All I cid p t #v #k. Val(I,cid,p,t)@v & KU(t)@k & not (p = s(s(s(z)))) ==>
+     (Ex q u #s. SigVal(I,cid,q,u)@s & (q = p | (Ex d. p = s(d) & (q = d | (Ex e. d = s(e) & (q = e | (Ex f. e = s(f) & q = f)))))))
+   | (Ex #r. RevealSk(I)@r)"
+
+lemma LS1_unforge:
+  "All v I a #k. Accept(v,I,a)@k ==> (Ex #s. Signed(I,a)@s) | (Ex #r. RevealSk(I)@r)"
+end

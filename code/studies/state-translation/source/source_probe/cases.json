@@ -1,0 +1,58 @@
+[
+  {
+    "id": "nested_nullary",
+    "good_reachable": "reachable",
+    "bad_reachable": "unreachable",
+    "source_sha256": "bf857d28d930eb7e56db6c2a3e6e434c008a83f393835b69da71a1209b66ddcb",
+    "oracle_scope": "manual free-term matching; native confirmation pending"
+  },
+  {
+    "id": "nested_successor",
+    "good_reachable": "reachable",
+    "bad_reachable": "unreachable",
+    "source_sha256": "93a99efafe9e1b64d4849cea611f88990817e9903a0a8b81014ba7b09c71e4bc",
+    "oracle_scope": "manual free-term matching; native confirmation pending"
+  },
+  {
+    "id": "mixed_public_leaf",
+    "good_reachable": "reachable",
+    "bad_reachable": "unreachable",
+    "source_sha256": "e0ba715bca99c11864dc2802a1d1fe1303fd709f494cf3a7389972b0430310c5",
+    "oracle_scope": "manual free-term matching; native confirmation pending"
+  },
+  {
+    "id": "variable_shape",
+    "good_reachable": "reachable",
+    "bad_reachable": "unreachable",
+    "source_sha256": "68434cc94c2ed40af7a6ae50e14f1e44313b5222bbc7fa359bd6492e2dce013a",
+    "oracle_scope": "manual free-term matching; native confirmation pending"
+  },
+  {
+    "id": "repeated_variable",
+    "good_reachable": "reachable",
+    "bad_reachable": "unreachable",
+    "source_sha256": "0a31be634d836f4781b14f108a473303b184dc27fd10c153a60b286cfc050ac0",
+    "oracle_scope": "manual free-term matching; native confirmation pending"
+  },
+  {
+    "id": "nonground_nested",
+    "good_reachable": "reachable",
+    "bad_reachable": "unreachable",
+    "source_sha256": "ad5ca7645f672bb2d4783d5bf8e1dd62e2d9609cfcaf58a67e9102b88e779df3",
+    "oracle_scope": "manual free-term matching; native confirmation pending"
+  },
+  {
+    "id": "ground_pair",
+    "good_reachable": "reachable",
+    "bad_reachable": "unreachable",
+    "source_sha256": "07fe33e2af68f0beb74739d7fce0b386f2d5366e4689e052afc769e56ed36641",
+    "oracle_scope": "manual free-term matching; native confirmation pending"
+  },
+  {
+    "id": "shared_premises",
+    "good_reachable": "reachable",
+    "bad_reachable": "unreachable",
+    "source_sha256": "37d4cdd410dc9a15ecd63e0b2a6029f0b11321990689667c10f069c08f9df0a4",
+    "oracle_scope": "manual free-term matching; native confirmation pending"
+  }
+]

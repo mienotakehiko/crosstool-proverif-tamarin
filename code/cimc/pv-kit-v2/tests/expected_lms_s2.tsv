@@ -1,0 +1,10 @@
+# model	query	expected	source
+LMS_S2_PV_U2	exec	false	sandbox 2026-10-14 (false = reachable)
+LMS_S2_PV_U2	LS4_pure	true	sandbox; hand-written t_U2: true
+LMS_S2_PV_U2	LS1	true	sandbox; hand-written t_U2: true
+LMS_S2_PV_Urb2	LS4_pure	false	sandbox; hand-written t_U2rb: false
+LMS_S2_PV_Urb2	LS1	false	sandbox; hand-written t_U2rb: false
+LMS_S2_PV_lin	LS4_pure	cannot	sandbox; hand-written t_Rlin: cannot; Corollary 1
+LMS_S2_PV_lin	LS1	cannot	sandbox; hand-written t_Rlin: cannot; Corollary 1
+LMS_S2_PV_rep	LS4_pure	false	sandbox; hand-written t_Rrep: false
+LMS_S2_PV_rep	LS1	false	sandbox; hand-written t_Rrep: cannot (PV-rec, guard q<=1)

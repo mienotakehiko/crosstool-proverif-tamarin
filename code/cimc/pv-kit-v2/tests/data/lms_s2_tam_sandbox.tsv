@@ -1,0 +1,15 @@
+# sandbox 2026-10-14, -M1400m, 240 s
+LMS_S2_T_base	exec	verified	0	11	exec (exists-trace): verified (12 steps)
+LMS_S2_T_base	LS4_pure	verified	0	5	LS4_pure (all-traces): verified (281 steps)
+LMS_S2_T_base	LS4	verified	0	6	LS4 (all-traces): verified (281 steps)
+LMS_S2_T_base	LS1	verified	0	6	LS1 (all-traces): verified (74 steps)
+LMS_S2_T_base	LS3_forge	falsified	0	5	LS3_forge (exists-trace): falsified - no trace found (74 steps)
+LMS_S2_T_rb1	exec	TIMEOUT	124	241	TIMEOUT
+LMS_S2_T_rb1	LS4_pure	falsified	0	20	LS4_pure (all-traces): falsified - found trace (11 steps)
+LMS_S2_T_rb1	LS4	verified	0	10	LS4 (all-traces): verified (669 steps)
+LMS_S2_T_rb1	LS1	falsified	0	35	LS1 (all-traces): falsified - found trace (13 steps)
+LMS_S2_T_rb1	LS3_forge	verified	0	37	LS3_forge (exists-trace): verified (13 steps)
+LMS_S2_T_cl1	LS4_pure	TIMEOUT	124	240	TIMEOUT
+LMS_S2_T_cl1	LS4	TIMEOUT	124	240	TIMEOUT
+LMS_S2_T_cl1	LS1	KILLED	137	182	
+LMS_S2_T_cl1	LS3_forge	verified	0	42	LS3_forge (exists-trace): verified (12 steps)

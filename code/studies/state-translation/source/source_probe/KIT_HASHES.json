@@ -1,0 +1,13 @@
+{
+  "common.py": "774d7f0335f00b42044ffd479e9049692c0b0a5cbba7d240f1e5d27653b33c7e",
+  "run_probe.py": "922359319cb9cf0f6329b8ef9726f2a6283cb0855e1001b5989d1afc7b36bbe1",
+  "cases.json": "9f9a10490f851a10b61c6b520ddd3c7833b2e3b5fc2f40635e439ca8e5cbc811",
+  "models/repeated_variable.spthy": "0a31be634d836f4781b14f108a473303b184dc27fd10c153a60b286cfc050ac0",
+  "models/ground_pair.spthy": "07fe33e2af68f0beb74739d7fce0b386f2d5366e4689e052afc769e56ed36641",
+  "models/nonground_nested.spthy": "ad5ca7645f672bb2d4783d5bf8e1dd62e2d9609cfcaf58a67e9102b88e779df3",
+  "models/nested_nullary.spthy": "bf857d28d930eb7e56db6c2a3e6e434c008a83f393835b69da71a1209b66ddcb",
+  "models/nested_successor.spthy": "93a99efafe9e1b64d4849cea611f88990817e9903a0a8b81014ba7b09c71e4bc",
+  "models/variable_shape.spthy": "68434cc94c2ed40af7a6ae50e14f1e44313b5222bbc7fa359bd6492e2dce013a",
+  "models/shared_premises.spthy": "37d4cdd410dc9a15ecd63e0b2a6029f0b11321990689667c10f069c08f9df0a4",
+  "models/mixed_public_leaf.spthy": "e0ba715bca99c11864dc2802a1d1fe1303fd709f494cf3a7389972b0430310c5"
+}

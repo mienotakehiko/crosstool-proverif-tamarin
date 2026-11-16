@@ -1,0 +1,4 @@
+lemma	tamarin	translated_proverif	proverif_raw	tamarin_rc	export_rc	proverif_rc	status	detail
+aliveness	true	true	false	0	0	0	MATCH	
+secrecy	true	true	true	0	0	0	MATCH	
+noninjective_agreement	true	true	true	0	0	0	MATCH	

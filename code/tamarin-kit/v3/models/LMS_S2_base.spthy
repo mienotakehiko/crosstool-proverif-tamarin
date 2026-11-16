@@ -1,0 +1,115 @@
+theory LMS_S2_base
+/*
+ * Stage 2: LMS with tree height h = 1 (leaves z and s(z)) and LM-OTS
+ * with w = 2 and p = 2 at every leaf. The OTS secret values are derived
+ * from one seed with the private function prf, in the spirit of
+ * RFC 8554, Appendix A. The hash chains are written in closed form
+ * because w is fixed; the chain loops were studied in stage 1.
+ * The signer state holds the next unused leaf index q.
+ * Variant: base.
+ */
+begin
+functions: ch/3, prf/3 [private], hl/3, s/1, z/0
+restriction Cks: "All a c #i. Cks(a,c)@i ==>
+    (a = z & c = s(s(s(z)))) | (a = s(z) & c = s(s(z)))
+  | (a = s(s(z)) & c = s(z)) | (a = s(s(s(z))) & c = z)"
+
+rule KeyGen:
+  [ Fr(~I), Fr(~sd) ]
+  --[ KeyGen(~I) ]->
+  [ !Sk(~I,~sd), St(~I,z), !Snap(~I,z), !Root(~I, hl(~I, <ch(~I,'m',ch(~I,'m',ch(~I,'m',prf(~sd,z,'m')))), ch(~I,'k',ch(~I,'k',ch(~I,'k',prf(~sd,z,'k'))))>, <ch(~I,'m',ch(~I,'m',ch(~I,'m',prf(~sd,s(z),'m')))), ch(~I,'k',ch(~I,'k',ch(~I,'k',prf(~sd,s(z),'k'))))>)),
+    Out(<~I, hl(~I, <ch(~I,'m',ch(~I,'m',ch(~I,'m',prf(~sd,z,'m')))), ch(~I,'k',ch(~I,'k',ch(~I,'k',prf(~sd,z,'k'))))>, <ch(~I,'m',ch(~I,'m',ch(~I,'m',prf(~sd,s(z),'m')))), ch(~I,'k',ch(~I,'k',ch(~I,'k',prf(~sd,s(z),'k'))))>)>) ]
+
+// Signing consumes the state at leaf q and stores q + 1. There is one
+// rule per leaf and message digit; the checksum digit is 3 - a.
+rule Sign_q0_a0:
+  [ St(I,z), !Sk(I,sd), In(<'sign',z>) ]
+  --[ Cks(z,s(s(s(z)))), Sign(I,z,z), UseLeaf(I,z) ]->
+  [ St(I,s(z)), !Snap(I,s(z)),
+    Out(<I,z,z,prf(sd,z,'m'),ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,z,'k')))),<ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,s(z),'m')))), ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,s(z),'k'))))>>) ]
+rule Sign_q0_a1:
+  [ St(I,z), !Sk(I,sd), In(<'sign',s(z)>) ]
+  --[ Cks(s(z),s(s(z))), Sign(I,z,s(z)), UseLeaf(I,z) ]->
+  [ St(I,s(z)), !Snap(I,s(z)),
+    Out(<I,z,s(z),ch(I,'m',prf(sd,z,'m')),ch(I,'k',ch(I,'k',prf(sd,z,'k'))),<ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,s(z),'m')))), ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,s(z),'k'))))>>) ]
+rule Sign_q0_a2:
+  [ St(I,z), !Sk(I,sd), In(<'sign',s(s(z))>) ]
+  --[ Cks(s(s(z)),s(z)), Sign(I,z,s(s(z))), UseLeaf(I,z) ]->
+  [ St(I,s(z)), !Snap(I,s(z)),
+    Out(<I,z,s(s(z)),ch(I,'m',ch(I,'m',prf(sd,z,'m'))),ch(I,'k',prf(sd,z,'k')),<ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,s(z),'m')))), ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,s(z),'k'))))>>) ]
+rule Sign_q0_a3:
+  [ St(I,z), !Sk(I,sd), In(<'sign',s(s(s(z)))>) ]
+  --[ Cks(s(s(s(z))),z), Sign(I,z,s(s(s(z)))), UseLeaf(I,z) ]->
+  [ St(I,s(z)), !Snap(I,s(z)),
+    Out(<I,z,s(s(s(z))),ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,z,'m')))),prf(sd,z,'k'),<ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,s(z),'m')))), ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,s(z),'k'))))>>) ]
+rule Sign_q1_a0:
+  [ St(I,s(z)), !Sk(I,sd), In(<'sign',z>) ]
+  --[ Cks(z,s(s(s(z)))), Sign(I,s(z),z), UseLeaf(I,s(z)) ]->
+  [ St(I,s(s(z))), !Snap(I,s(s(z))),
+    Out(<I,s(z),z,prf(sd,s(z),'m'),ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,s(z),'k')))),<ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,z,'m')))), ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,z,'k'))))>>) ]
+rule Sign_q1_a1:
+  [ St(I,s(z)), !Sk(I,sd), In(<'sign',s(z)>) ]
+  --[ Cks(s(z),s(s(z))), Sign(I,s(z),s(z)), UseLeaf(I,s(z)) ]->
+  [ St(I,s(s(z))), !Snap(I,s(s(z))),
+    Out(<I,s(z),s(z),ch(I,'m',prf(sd,s(z),'m')),ch(I,'k',ch(I,'k',prf(sd,s(z),'k'))),<ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,z,'m')))), ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,z,'k'))))>>) ]
+rule Sign_q1_a2:
+  [ St(I,s(z)), !Sk(I,sd), In(<'sign',s(s(z))>) ]
+  --[ Cks(s(s(z)),s(z)), Sign(I,s(z),s(s(z))), UseLeaf(I,s(z)) ]->
+  [ St(I,s(s(z))), !Snap(I,s(s(z))),
+    Out(<I,s(z),s(s(z)),ch(I,'m',ch(I,'m',prf(sd,s(z),'m'))),ch(I,'k',prf(sd,s(z),'k')),<ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,z,'m')))), ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,z,'k'))))>>) ]
+rule Sign_q1_a3:
+  [ St(I,s(z)), !Sk(I,sd), In(<'sign',s(s(s(z)))>) ]
+  --[ Cks(s(s(s(z))),z), Sign(I,s(z),s(s(s(z)))), UseLeaf(I,s(z)) ]->
+  [ St(I,s(s(z))), !Snap(I,s(s(z))),
+    Out(<I,s(z),s(s(s(z))),ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,s(z),'m')))),prf(sd,s(z),'k'),<ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,z,'m')))), ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,z,'k'))))>>) ]
+
+rule RevealSeed:
+  [ !Sk(I,sd) ] --[ RevealSeed(I) ]-> [ Out(sd) ]
+
+// Verification hashes both values up to the top of their chains,
+// combines the result with the authentication path and compares it
+// with the stored root.
+rule Verify_q0_a0:
+  [ !Root(I,hl(I, <ch(I,'m',ch(I,'m',ch(I,'m',sm))), sk>, sib)), In(<I,z,z,sm,sk,sib>) ]
+  --[ Cks(z,s(s(s(z)))), Accept(I,z,z) ]-> []
+rule Verify_q0_a1:
+  [ !Root(I,hl(I, <ch(I,'m',ch(I,'m',sm)), ch(I,'k',sk)>, sib)), In(<I,z,s(z),sm,sk,sib>) ]
+  --[ Cks(s(z),s(s(z))), Accept(I,z,s(z)) ]-> []
+rule Verify_q0_a2:
+  [ !Root(I,hl(I, <ch(I,'m',sm), ch(I,'k',ch(I,'k',sk))>, sib)), In(<I,z,s(s(z)),sm,sk,sib>) ]
+  --[ Cks(s(s(z)),s(z)), Accept(I,z,s(s(z))) ]-> []
+rule Verify_q0_a3:
+  [ !Root(I,hl(I, <sm, ch(I,'k',ch(I,'k',ch(I,'k',sk)))>, sib)), In(<I,z,s(s(s(z))),sm,sk,sib>) ]
+  --[ Cks(s(s(s(z))),z), Accept(I,z,s(s(s(z)))) ]-> []
+rule Verify_q1_a0:
+  [ !Root(I,hl(I, sib, <ch(I,'m',ch(I,'m',ch(I,'m',sm))), sk>)), In(<I,s(z),z,sm,sk,sib>) ]
+  --[ Cks(z,s(s(s(z)))), Accept(I,s(z),z) ]-> []
+rule Verify_q1_a1:
+  [ !Root(I,hl(I, sib, <ch(I,'m',ch(I,'m',sm)), ch(I,'k',sk)>)), In(<I,s(z),s(z),sm,sk,sib>) ]
+  --[ Cks(s(z),s(s(z))), Accept(I,s(z),s(z)) ]-> []
+rule Verify_q1_a2:
+  [ !Root(I,hl(I, sib, <ch(I,'m',sm), ch(I,'k',ch(I,'k',sk))>)), In(<I,s(z),s(s(z)),sm,sk,sib>) ]
+  --[ Cks(s(s(z)),s(z)), Accept(I,s(z),s(s(z))) ]-> []
+rule Verify_q1_a3:
+  [ !Root(I,hl(I, sib, <sm, ch(I,'k',ch(I,'k',ch(I,'k',sk)))>)), In(<I,s(z),s(s(s(z))),sm,sk,sib>) ]
+  --[ Cks(s(s(s(z))),z), Accept(I,s(z),s(s(s(z)))) ]-> []
+
+lemma exec: exists-trace
+  "Ex I q a #s #k. Sign(I,q,a)@s & Accept(I,q,a)@k & not (Ex #r. RevealSeed(I)@r)"
+
+// L-S4 (leaf index uniqueness), pure form: each leaf signs at most once.
+lemma LS4_pure [use_induction]:
+  "All I q a1 a2 #i #j. Sign(I,q,a1)@i & Sign(I,q,a2)@j ==> #i = #j"
+
+// L-S4 with the state-misuse events as explicit exceptions.
+lemma LS4 [use_induction]:
+  "All I q a1 a2 #i #j. Sign(I,q,a1)@i & Sign(I,q,a2)@j ==> #i = #j"
+
+// L-S1 (unforgeability): an accepted digit at leaf q was signed at leaf q.
+lemma LS1:
+  "All I q a #k. Accept(I,q,a)@k ==> (Ex #s. Sign(I,q,a)@s) | (Ex #r. RevealSeed(I)@r)"
+
+// L-S3 (attack side): a forgery without a seed reveal.
+lemma LS3_forge: exists-trace
+  "Ex I q a #k. Accept(I,q,a)@k & not (Ex #s. Sign(I,q,a)@s) & not (Ex #r. RevealSeed(I)@r)"
+end

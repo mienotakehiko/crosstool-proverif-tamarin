@@ -1,0 +1,200 @@
+theory LMS_LS6_V0_spec
+/*
+ * L-S6: LMS with tree height h = 2 (leaves 0..3) and LM-OTS with
+ * w = 2 and p = 2. Tree nodes are numbered as in RFC 8554: the root
+ * is node 1 and the leaves are nodes 4..7.
+ * Variant: V0_spec.
+ */
+begin
+functions: ch/3, prf/3 [private], hn/4, pblc/4, s/1, z/0
+
+rule KeyGen:
+  [ Fr(~I), Fr(~sd) ]
+  --[ KeyGen(~I) ]->
+  [ !Sk(~I,~sd), St(~I,z), !Root(~I, hn(~I,'1','dintr',<hn(~I,'2','dintr',<hn(~I,'4','dleaf',pblc(~I,z,'dpblc',<ch(~I,'m',ch(~I,'m',ch(~I,'m',prf(~sd,z,'m')))),ch(~I,'k',ch(~I,'k',ch(~I,'k',prf(~sd,z,'k'))))>)),hn(~I,'5','dleaf',pblc(~I,s(z),'dpblc',<ch(~I,'m',ch(~I,'m',ch(~I,'m',prf(~sd,s(z),'m')))),ch(~I,'k',ch(~I,'k',ch(~I,'k',prf(~sd,s(z),'k'))))>))>),hn(~I,'3','dintr',<hn(~I,'6','dleaf',pblc(~I,s(s(z)),'dpblc',<ch(~I,'m',ch(~I,'m',ch(~I,'m',prf(~sd,s(s(z)),'m')))),ch(~I,'k',ch(~I,'k',ch(~I,'k',prf(~sd,s(s(z)),'k'))))>)),hn(~I,'7','dleaf',pblc(~I,s(s(s(z))),'dpblc',<ch(~I,'m',ch(~I,'m',ch(~I,'m',prf(~sd,s(s(s(z))),'m')))),ch(~I,'k',ch(~I,'k',ch(~I,'k',prf(~sd,s(s(s(z))),'k'))))>))>)>)),
+    Out(<~I, hn(~I,'1','dintr',<hn(~I,'2','dintr',<hn(~I,'4','dleaf',pblc(~I,z,'dpblc',<ch(~I,'m',ch(~I,'m',ch(~I,'m',prf(~sd,z,'m')))),ch(~I,'k',ch(~I,'k',ch(~I,'k',prf(~sd,z,'k'))))>)),hn(~I,'5','dleaf',pblc(~I,s(z),'dpblc',<ch(~I,'m',ch(~I,'m',ch(~I,'m',prf(~sd,s(z),'m')))),ch(~I,'k',ch(~I,'k',ch(~I,'k',prf(~sd,s(z),'k'))))>))>),hn(~I,'3','dintr',<hn(~I,'6','dleaf',pblc(~I,s(s(z)),'dpblc',<ch(~I,'m',ch(~I,'m',ch(~I,'m',prf(~sd,s(s(z)),'m')))),ch(~I,'k',ch(~I,'k',ch(~I,'k',prf(~sd,s(s(z)),'k'))))>)),hn(~I,'7','dleaf',pblc(~I,s(s(s(z))),'dpblc',<ch(~I,'m',ch(~I,'m',ch(~I,'m',prf(~sd,s(s(s(z))),'m')))),ch(~I,'k',ch(~I,'k',ch(~I,'k',prf(~sd,s(s(s(z))),'k'))))>))>)>)>) ]
+
+// Signing consumes the state at leaf q and stores q + 1. There is one
+// rule per leaf and message digit; the checksum digit is 3 - a. The
+// signature carries the sibling leaf and the sibling of the parent.
+rule Sign_q0_a0:
+  [ St(I,z), !Sk(I,sd), In(<'sign',z>) ]
+  --[ Sign(I,z,z) ]->
+  [ St(I,s(z)),
+    Out(<I,z,z,prf(sd,z,'m'),ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,z,'k')))),hn(I,'5','dleaf',pblc(I,s(z),'dpblc',<ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,s(z),'m')))),ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,s(z),'k'))))>)),hn(I,'3','dintr',<hn(I,'6','dleaf',pblc(I,s(s(z)),'dpblc',<ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,s(s(z)),'m')))),ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,s(s(z)),'k'))))>)),hn(I,'7','dleaf',pblc(I,s(s(s(z))),'dpblc',<ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,s(s(s(z))),'m')))),ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,s(s(s(z))),'k'))))>))>)>) ]
+rule Sign_q0_a1:
+  [ St(I,z), !Sk(I,sd), In(<'sign',s(z)>) ]
+  --[ Sign(I,z,s(z)) ]->
+  [ St(I,s(z)),
+    Out(<I,z,s(z),ch(I,'m',prf(sd,z,'m')),ch(I,'k',ch(I,'k',prf(sd,z,'k'))),hn(I,'5','dleaf',pblc(I,s(z),'dpblc',<ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,s(z),'m')))),ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,s(z),'k'))))>)),hn(I,'3','dintr',<hn(I,'6','dleaf',pblc(I,s(s(z)),'dpblc',<ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,s(s(z)),'m')))),ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,s(s(z)),'k'))))>)),hn(I,'7','dleaf',pblc(I,s(s(s(z))),'dpblc',<ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,s(s(s(z))),'m')))),ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,s(s(s(z))),'k'))))>))>)>) ]
+rule Sign_q0_a2:
+  [ St(I,z), !Sk(I,sd), In(<'sign',s(s(z))>) ]
+  --[ Sign(I,z,s(s(z))) ]->
+  [ St(I,s(z)),
+    Out(<I,z,s(s(z)),ch(I,'m',ch(I,'m',prf(sd,z,'m'))),ch(I,'k',prf(sd,z,'k')),hn(I,'5','dleaf',pblc(I,s(z),'dpblc',<ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,s(z),'m')))),ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,s(z),'k'))))>)),hn(I,'3','dintr',<hn(I,'6','dleaf',pblc(I,s(s(z)),'dpblc',<ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,s(s(z)),'m')))),ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,s(s(z)),'k'))))>)),hn(I,'7','dleaf',pblc(I,s(s(s(z))),'dpblc',<ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,s(s(s(z))),'m')))),ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,s(s(s(z))),'k'))))>))>)>) ]
+rule Sign_q0_a3:
+  [ St(I,z), !Sk(I,sd), In(<'sign',s(s(s(z)))>) ]
+  --[ Sign(I,z,s(s(s(z)))) ]->
+  [ St(I,s(z)),
+    Out(<I,z,s(s(s(z))),ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,z,'m')))),prf(sd,z,'k'),hn(I,'5','dleaf',pblc(I,s(z),'dpblc',<ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,s(z),'m')))),ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,s(z),'k'))))>)),hn(I,'3','dintr',<hn(I,'6','dleaf',pblc(I,s(s(z)),'dpblc',<ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,s(s(z)),'m')))),ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,s(s(z)),'k'))))>)),hn(I,'7','dleaf',pblc(I,s(s(s(z))),'dpblc',<ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,s(s(s(z))),'m')))),ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,s(s(s(z))),'k'))))>))>)>) ]
+rule Sign_q1_a0:
+  [ St(I,s(z)), !Sk(I,sd), In(<'sign',z>) ]
+  --[ Sign(I,s(z),z) ]->
+  [ St(I,s(s(z))),
+    Out(<I,s(z),z,prf(sd,s(z),'m'),ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,s(z),'k')))),hn(I,'4','dleaf',pblc(I,z,'dpblc',<ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,z,'m')))),ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,z,'k'))))>)),hn(I,'3','dintr',<hn(I,'6','dleaf',pblc(I,s(s(z)),'dpblc',<ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,s(s(z)),'m')))),ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,s(s(z)),'k'))))>)),hn(I,'7','dleaf',pblc(I,s(s(s(z))),'dpblc',<ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,s(s(s(z))),'m')))),ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,s(s(s(z))),'k'))))>))>)>) ]
+rule Sign_q1_a1:
+  [ St(I,s(z)), !Sk(I,sd), In(<'sign',s(z)>) ]
+  --[ Sign(I,s(z),s(z)) ]->
+  [ St(I,s(s(z))),
+    Out(<I,s(z),s(z),ch(I,'m',prf(sd,s(z),'m')),ch(I,'k',ch(I,'k',prf(sd,s(z),'k'))),hn(I,'4','dleaf',pblc(I,z,'dpblc',<ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,z,'m')))),ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,z,'k'))))>)),hn(I,'3','dintr',<hn(I,'6','dleaf',pblc(I,s(s(z)),'dpblc',<ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,s(s(z)),'m')))),ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,s(s(z)),'k'))))>)),hn(I,'7','dleaf',pblc(I,s(s(s(z))),'dpblc',<ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,s(s(s(z))),'m')))),ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,s(s(s(z))),'k'))))>))>)>) ]
+rule Sign_q1_a2:
+  [ St(I,s(z)), !Sk(I,sd), In(<'sign',s(s(z))>) ]
+  --[ Sign(I,s(z),s(s(z))) ]->
+  [ St(I,s(s(z))),
+    Out(<I,s(z),s(s(z)),ch(I,'m',ch(I,'m',prf(sd,s(z),'m'))),ch(I,'k',prf(sd,s(z),'k')),hn(I,'4','dleaf',pblc(I,z,'dpblc',<ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,z,'m')))),ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,z,'k'))))>)),hn(I,'3','dintr',<hn(I,'6','dleaf',pblc(I,s(s(z)),'dpblc',<ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,s(s(z)),'m')))),ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,s(s(z)),'k'))))>)),hn(I,'7','dleaf',pblc(I,s(s(s(z))),'dpblc',<ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,s(s(s(z))),'m')))),ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,s(s(s(z))),'k'))))>))>)>) ]
+rule Sign_q1_a3:
+  [ St(I,s(z)), !Sk(I,sd), In(<'sign',s(s(s(z)))>) ]
+  --[ Sign(I,s(z),s(s(s(z)))) ]->
+  [ St(I,s(s(z))),
+    Out(<I,s(z),s(s(s(z))),ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,s(z),'m')))),prf(sd,s(z),'k'),hn(I,'4','dleaf',pblc(I,z,'dpblc',<ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,z,'m')))),ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,z,'k'))))>)),hn(I,'3','dintr',<hn(I,'6','dleaf',pblc(I,s(s(z)),'dpblc',<ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,s(s(z)),'m')))),ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,s(s(z)),'k'))))>)),hn(I,'7','dleaf',pblc(I,s(s(s(z))),'dpblc',<ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,s(s(s(z))),'m')))),ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,s(s(s(z))),'k'))))>))>)>) ]
+rule Sign_q2_a0:
+  [ St(I,s(s(z))), !Sk(I,sd), In(<'sign',z>) ]
+  --[ Sign(I,s(s(z)),z) ]->
+  [ St(I,s(s(s(z)))),
+    Out(<I,s(s(z)),z,prf(sd,s(s(z)),'m'),ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,s(s(z)),'k')))),hn(I,'7','dleaf',pblc(I,s(s(s(z))),'dpblc',<ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,s(s(s(z))),'m')))),ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,s(s(s(z))),'k'))))>)),hn(I,'2','dintr',<hn(I,'4','dleaf',pblc(I,z,'dpblc',<ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,z,'m')))),ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,z,'k'))))>)),hn(I,'5','dleaf',pblc(I,s(z),'dpblc',<ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,s(z),'m')))),ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,s(z),'k'))))>))>)>) ]
+rule Sign_q2_a1:
+  [ St(I,s(s(z))), !Sk(I,sd), In(<'sign',s(z)>) ]
+  --[ Sign(I,s(s(z)),s(z)) ]->
+  [ St(I,s(s(s(z)))),
+    Out(<I,s(s(z)),s(z),ch(I,'m',prf(sd,s(s(z)),'m')),ch(I,'k',ch(I,'k',prf(sd,s(s(z)),'k'))),hn(I,'7','dleaf',pblc(I,s(s(s(z))),'dpblc',<ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,s(s(s(z))),'m')))),ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,s(s(s(z))),'k'))))>)),hn(I,'2','dintr',<hn(I,'4','dleaf',pblc(I,z,'dpblc',<ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,z,'m')))),ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,z,'k'))))>)),hn(I,'5','dleaf',pblc(I,s(z),'dpblc',<ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,s(z),'m')))),ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,s(z),'k'))))>))>)>) ]
+rule Sign_q2_a2:
+  [ St(I,s(s(z))), !Sk(I,sd), In(<'sign',s(s(z))>) ]
+  --[ Sign(I,s(s(z)),s(s(z))) ]->
+  [ St(I,s(s(s(z)))),
+    Out(<I,s(s(z)),s(s(z)),ch(I,'m',ch(I,'m',prf(sd,s(s(z)),'m'))),ch(I,'k',prf(sd,s(s(z)),'k')),hn(I,'7','dleaf',pblc(I,s(s(s(z))),'dpblc',<ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,s(s(s(z))),'m')))),ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,s(s(s(z))),'k'))))>)),hn(I,'2','dintr',<hn(I,'4','dleaf',pblc(I,z,'dpblc',<ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,z,'m')))),ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,z,'k'))))>)),hn(I,'5','dleaf',pblc(I,s(z),'dpblc',<ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,s(z),'m')))),ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,s(z),'k'))))>))>)>) ]
+rule Sign_q2_a3:
+  [ St(I,s(s(z))), !Sk(I,sd), In(<'sign',s(s(s(z)))>) ]
+  --[ Sign(I,s(s(z)),s(s(s(z)))) ]->
+  [ St(I,s(s(s(z)))),
+    Out(<I,s(s(z)),s(s(s(z))),ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,s(s(z)),'m')))),prf(sd,s(s(z)),'k'),hn(I,'7','dleaf',pblc(I,s(s(s(z))),'dpblc',<ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,s(s(s(z))),'m')))),ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,s(s(s(z))),'k'))))>)),hn(I,'2','dintr',<hn(I,'4','dleaf',pblc(I,z,'dpblc',<ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,z,'m')))),ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,z,'k'))))>)),hn(I,'5','dleaf',pblc(I,s(z),'dpblc',<ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,s(z),'m')))),ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,s(z),'k'))))>))>)>) ]
+rule Sign_q3_a0:
+  [ St(I,s(s(s(z)))), !Sk(I,sd), In(<'sign',z>) ]
+  --[ Sign(I,s(s(s(z))),z) ]->
+  [ St(I,s(s(s(s(z))))),
+    Out(<I,s(s(s(z))),z,prf(sd,s(s(s(z))),'m'),ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,s(s(s(z))),'k')))),hn(I,'6','dleaf',pblc(I,s(s(z)),'dpblc',<ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,s(s(z)),'m')))),ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,s(s(z)),'k'))))>)),hn(I,'2','dintr',<hn(I,'4','dleaf',pblc(I,z,'dpblc',<ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,z,'m')))),ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,z,'k'))))>)),hn(I,'5','dleaf',pblc(I,s(z),'dpblc',<ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,s(z),'m')))),ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,s(z),'k'))))>))>)>) ]
+rule Sign_q3_a1:
+  [ St(I,s(s(s(z)))), !Sk(I,sd), In(<'sign',s(z)>) ]
+  --[ Sign(I,s(s(s(z))),s(z)) ]->
+  [ St(I,s(s(s(s(z))))),
+    Out(<I,s(s(s(z))),s(z),ch(I,'m',prf(sd,s(s(s(z))),'m')),ch(I,'k',ch(I,'k',prf(sd,s(s(s(z))),'k'))),hn(I,'6','dleaf',pblc(I,s(s(z)),'dpblc',<ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,s(s(z)),'m')))),ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,s(s(z)),'k'))))>)),hn(I,'2','dintr',<hn(I,'4','dleaf',pblc(I,z,'dpblc',<ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,z,'m')))),ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,z,'k'))))>)),hn(I,'5','dleaf',pblc(I,s(z),'dpblc',<ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,s(z),'m')))),ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,s(z),'k'))))>))>)>) ]
+rule Sign_q3_a2:
+  [ St(I,s(s(s(z)))), !Sk(I,sd), In(<'sign',s(s(z))>) ]
+  --[ Sign(I,s(s(s(z))),s(s(z))) ]->
+  [ St(I,s(s(s(s(z))))),
+    Out(<I,s(s(s(z))),s(s(z)),ch(I,'m',ch(I,'m',prf(sd,s(s(s(z))),'m'))),ch(I,'k',prf(sd,s(s(s(z))),'k')),hn(I,'6','dleaf',pblc(I,s(s(z)),'dpblc',<ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,s(s(z)),'m')))),ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,s(s(z)),'k'))))>)),hn(I,'2','dintr',<hn(I,'4','dleaf',pblc(I,z,'dpblc',<ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,z,'m')))),ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,z,'k'))))>)),hn(I,'5','dleaf',pblc(I,s(z),'dpblc',<ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,s(z),'m')))),ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,s(z),'k'))))>))>)>) ]
+rule Sign_q3_a3:
+  [ St(I,s(s(s(z)))), !Sk(I,sd), In(<'sign',s(s(s(z)))>) ]
+  --[ Sign(I,s(s(s(z))),s(s(s(z)))) ]->
+  [ St(I,s(s(s(s(z))))),
+    Out(<I,s(s(s(z))),s(s(s(z))),ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,s(s(s(z))),'m')))),prf(sd,s(s(s(z))),'k'),hn(I,'6','dleaf',pblc(I,s(s(z)),'dpblc',<ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,s(s(z)),'m')))),ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,s(s(z)),'k'))))>)),hn(I,'2','dintr',<hn(I,'4','dleaf',pblc(I,z,'dpblc',<ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,z,'m')))),ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,z,'k'))))>)),hn(I,'5','dleaf',pblc(I,s(z),'dpblc',<ch(I,'m',ch(I,'m',ch(I,'m',prf(sd,s(z),'m')))),ch(I,'k',ch(I,'k',ch(I,'k',prf(sd,s(z),'k'))))>))>)>) ]
+
+rule RevealSeed:
+  [ !Sk(I,sd) ] --[ RevealSeed(I) ]-> [ Out(sd) ]
+
+// Verification completes both chains, recomputes the leaf, combines it
+// with the authentication path and compares the result with the root.
+rule Verify_q0_a0:
+  [ !Root(I,hn(I,'1','dintr',<hn(I,'2','dintr',<hn(I,'4','dleaf',pblc(I,z,'dpblc',<ch(I,'m',ch(I,'m',ch(I,'m',sm))),sk>)),p1>),p2>)), In(<I,z,z,sm,sk,p1,p2>) ]
+  --[ Accept(I,z,z) ]-> []
+rule Verify_q0_a1:
+  [ !Root(I,hn(I,'1','dintr',<hn(I,'2','dintr',<hn(I,'4','dleaf',pblc(I,z,'dpblc',<ch(I,'m',ch(I,'m',sm)),ch(I,'k',sk)>)),p1>),p2>)), In(<I,z,s(z),sm,sk,p1,p2>) ]
+  --[ Accept(I,z,s(z)) ]-> []
+rule Verify_q0_a2:
+  [ !Root(I,hn(I,'1','dintr',<hn(I,'2','dintr',<hn(I,'4','dleaf',pblc(I,z,'dpblc',<ch(I,'m',sm),ch(I,'k',ch(I,'k',sk))>)),p1>),p2>)), In(<I,z,s(s(z)),sm,sk,p1,p2>) ]
+  --[ Accept(I,z,s(s(z))) ]-> []
+rule Verify_q0_a3:
+  [ !Root(I,hn(I,'1','dintr',<hn(I,'2','dintr',<hn(I,'4','dleaf',pblc(I,z,'dpblc',<sm,ch(I,'k',ch(I,'k',ch(I,'k',sk)))>)),p1>),p2>)), In(<I,z,s(s(s(z))),sm,sk,p1,p2>) ]
+  --[ Accept(I,z,s(s(s(z)))) ]-> []
+rule Verify_q1_a0:
+  [ !Root(I,hn(I,'1','dintr',<hn(I,'2','dintr',<p1,hn(I,'5','dleaf',pblc(I,s(z),'dpblc',<ch(I,'m',ch(I,'m',ch(I,'m',sm))),sk>))>),p2>)), In(<I,s(z),z,sm,sk,p1,p2>) ]
+  --[ Accept(I,s(z),z) ]-> []
+rule Verify_q1_a1:
+  [ !Root(I,hn(I,'1','dintr',<hn(I,'2','dintr',<p1,hn(I,'5','dleaf',pblc(I,s(z),'dpblc',<ch(I,'m',ch(I,'m',sm)),ch(I,'k',sk)>))>),p2>)), In(<I,s(z),s(z),sm,sk,p1,p2>) ]
+  --[ Accept(I,s(z),s(z)) ]-> []
+rule Verify_q1_a2:
+  [ !Root(I,hn(I,'1','dintr',<hn(I,'2','dintr',<p1,hn(I,'5','dleaf',pblc(I,s(z),'dpblc',<ch(I,'m',sm),ch(I,'k',ch(I,'k',sk))>))>),p2>)), In(<I,s(z),s(s(z)),sm,sk,p1,p2>) ]
+  --[ Accept(I,s(z),s(s(z))) ]-> []
+rule Verify_q1_a3:
+  [ !Root(I,hn(I,'1','dintr',<hn(I,'2','dintr',<p1,hn(I,'5','dleaf',pblc(I,s(z),'dpblc',<sm,ch(I,'k',ch(I,'k',ch(I,'k',sk)))>))>),p2>)), In(<I,s(z),s(s(s(z))),sm,sk,p1,p2>) ]
+  --[ Accept(I,s(z),s(s(s(z)))) ]-> []
+rule Verify_q2_a0:
+  [ !Root(I,hn(I,'1','dintr',<p2,hn(I,'3','dintr',<hn(I,'6','dleaf',pblc(I,s(s(z)),'dpblc',<ch(I,'m',ch(I,'m',ch(I,'m',sm))),sk>)),p1>)>)), In(<I,s(s(z)),z,sm,sk,p1,p2>) ]
+  --[ Accept(I,s(s(z)),z) ]-> []
+rule Verify_q2_a1:
+  [ !Root(I,hn(I,'1','dintr',<p2,hn(I,'3','dintr',<hn(I,'6','dleaf',pblc(I,s(s(z)),'dpblc',<ch(I,'m',ch(I,'m',sm)),ch(I,'k',sk)>)),p1>)>)), In(<I,s(s(z)),s(z),sm,sk,p1,p2>) ]
+  --[ Accept(I,s(s(z)),s(z)) ]-> []
+rule Verify_q2_a2:
+  [ !Root(I,hn(I,'1','dintr',<p2,hn(I,'3','dintr',<hn(I,'6','dleaf',pblc(I,s(s(z)),'dpblc',<ch(I,'m',sm),ch(I,'k',ch(I,'k',sk))>)),p1>)>)), In(<I,s(s(z)),s(s(z)),sm,sk,p1,p2>) ]
+  --[ Accept(I,s(s(z)),s(s(z))) ]-> []
+rule Verify_q2_a3:
+  [ !Root(I,hn(I,'1','dintr',<p2,hn(I,'3','dintr',<hn(I,'6','dleaf',pblc(I,s(s(z)),'dpblc',<sm,ch(I,'k',ch(I,'k',ch(I,'k',sk)))>)),p1>)>)), In(<I,s(s(z)),s(s(s(z))),sm,sk,p1,p2>) ]
+  --[ Accept(I,s(s(z)),s(s(s(z)))) ]-> []
+rule Verify_q3_a0:
+  [ !Root(I,hn(I,'1','dintr',<p2,hn(I,'3','dintr',<p1,hn(I,'7','dleaf',pblc(I,s(s(s(z))),'dpblc',<ch(I,'m',ch(I,'m',ch(I,'m',sm))),sk>))>)>)), In(<I,s(s(s(z))),z,sm,sk,p1,p2>) ]
+  --[ Accept(I,s(s(s(z))),z) ]-> []
+rule Verify_q3_a1:
+  [ !Root(I,hn(I,'1','dintr',<p2,hn(I,'3','dintr',<p1,hn(I,'7','dleaf',pblc(I,s(s(s(z))),'dpblc',<ch(I,'m',ch(I,'m',sm)),ch(I,'k',sk)>))>)>)), In(<I,s(s(s(z))),s(z),sm,sk,p1,p2>) ]
+  --[ Accept(I,s(s(s(z))),s(z)) ]-> []
+rule Verify_q3_a2:
+  [ !Root(I,hn(I,'1','dintr',<p2,hn(I,'3','dintr',<p1,hn(I,'7','dleaf',pblc(I,s(s(s(z))),'dpblc',<ch(I,'m',sm),ch(I,'k',ch(I,'k',sk))>))>)>)), In(<I,s(s(s(z))),s(s(z)),sm,sk,p1,p2>) ]
+  --[ Accept(I,s(s(s(z))),s(s(z))) ]-> []
+rule Verify_q3_a3:
+  [ !Root(I,hn(I,'1','dintr',<p2,hn(I,'3','dintr',<p1,hn(I,'7','dleaf',pblc(I,s(s(s(z))),'dpblc',<sm,ch(I,'k',ch(I,'k',ch(I,'k',sk)))>))>)>)), In(<I,s(s(s(z))),s(s(s(z))),sm,sk,p1,p2>) ]
+  --[ Accept(I,s(s(s(z))),s(s(s(z)))) ]-> []
+
+lemma exec: exists-trace
+  "Ex I q a #s #k. Sign(I,q,a)@s & Accept(I,q,a)@k & not (Ex #r. RevealSeed(I)@r)"
+
+// L-S1 (unforgeability): an accepted digit at leaf q was signed at leaf q.
+lemma LS1:
+  "All I q a #k. Accept(I,q,a)@k ==> (Ex #s. Sign(I,q,a)@s) | (Ex #r. RevealSeed(I)@r)"
+
+// L-S6 leaf binding: an accepted signature at leaf q comes with some
+// signature that the signer made at the same leaf q.
+lemma LS6_bind:
+  "All I q a #k. Accept(I,q,a)@k ==> (Ex b #s. Sign(I,q,b)@s) | (Ex #r. RevealSeed(I)@r)"
+
+// L-S1 split by leaf and digit; the conjunction of these is L-S1.
+lemma LS1_q0_a0:
+  "All I #k. Accept(I,z,z)@k ==> (Ex #s. Sign(I,z,z)@s) | (Ex #r. RevealSeed(I)@r)"
+lemma LS1_q0_a1:
+  "All I #k. Accept(I,z,s(z))@k ==> (Ex #s. Sign(I,z,s(z))@s) | (Ex #r. RevealSeed(I)@r)"
+lemma LS1_q0_a2:
+  "All I #k. Accept(I,z,s(s(z)))@k ==> (Ex #s. Sign(I,z,s(s(z)))@s) | (Ex #r. RevealSeed(I)@r)"
+lemma LS1_q0_a3:
+  "All I #k. Accept(I,z,s(s(s(z))))@k ==> (Ex #s. Sign(I,z,s(s(s(z))))@s) | (Ex #r. RevealSeed(I)@r)"
+lemma LS1_q1_a0:
+  "All I #k. Accept(I,s(z),z)@k ==> (Ex #s. Sign(I,s(z),z)@s) | (Ex #r. RevealSeed(I)@r)"
+lemma LS1_q1_a1:
+  "All I #k. Accept(I,s(z),s(z))@k ==> (Ex #s. Sign(I,s(z),s(z))@s) | (Ex #r. RevealSeed(I)@r)"
+lemma LS1_q1_a2:
+  "All I #k. Accept(I,s(z),s(s(z)))@k ==> (Ex #s. Sign(I,s(z),s(s(z)))@s) | (Ex #r. RevealSeed(I)@r)"
+lemma LS1_q1_a3:
+  "All I #k. Accept(I,s(z),s(s(s(z))))@k ==> (Ex #s. Sign(I,s(z),s(s(s(z))))@s) | (Ex #r. RevealSeed(I)@r)"
+lemma LS1_q2_a0:
+  "All I #k. Accept(I,s(s(z)),z)@k ==> (Ex #s. Sign(I,s(s(z)),z)@s) | (Ex #r. RevealSeed(I)@r)"
+lemma LS1_q2_a1:
+  "All I #k. Accept(I,s(s(z)),s(z))@k ==> (Ex #s. Sign(I,s(s(z)),s(z))@s) | (Ex #r. RevealSeed(I)@r)"
+lemma LS1_q2_a2:
+  "All I #k. Accept(I,s(s(z)),s(s(z)))@k ==> (Ex #s. Sign(I,s(s(z)),s(s(z)))@s) | (Ex #r. RevealSeed(I)@r)"
+lemma LS1_q2_a3:
+  "All I #k. Accept(I,s(s(z)),s(s(s(z))))@k ==> (Ex #s. Sign(I,s(s(z)),s(s(s(z))))@s) | (Ex #r. RevealSeed(I)@r)"
+lemma LS1_q3_a0:
+  "All I #k. Accept(I,s(s(s(z))),z)@k ==> (Ex #s. Sign(I,s(s(s(z))),z)@s) | (Ex #r. RevealSeed(I)@r)"
+lemma LS1_q3_a1:
+  "All I #k. Accept(I,s(s(s(z))),s(z))@k ==> (Ex #s. Sign(I,s(s(s(z))),s(z))@s) | (Ex #r. RevealSeed(I)@r)"
+lemma LS1_q3_a2:
+  "All I #k. Accept(I,s(s(s(z))),s(s(z)))@k ==> (Ex #s. Sign(I,s(s(s(z))),s(s(z)))@s) | (Ex #r. RevealSeed(I)@r)"
+lemma LS1_q3_a3:
+  "All I #k. Accept(I,s(s(s(z))),s(s(s(z))))@k ==> (Ex #s. Sign(I,s(s(s(z))),s(s(s(z))))@s) | (Ex #r. RevealSeed(I)@r)"
+end

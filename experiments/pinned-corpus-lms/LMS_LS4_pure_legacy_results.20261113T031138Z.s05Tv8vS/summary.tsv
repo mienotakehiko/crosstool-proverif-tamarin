@@ -1,0 +1,2 @@
+route	verdict	raw	rc	query_count	equality_form	timepoints_split	restriction_missing	axiom_missing	detail
+legacy_tamarin_export	undetermined	cannot be proved	0	1	rule_instance_id_equality	False	False	False	undetermined_verdict

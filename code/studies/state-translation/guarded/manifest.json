@@ -1,0 +1,130 @@
+[
+  {
+    "case": "nullary_once",
+    "lemma": "honest_reachable",
+    "native": "reachable",
+    "original_pv": "reachable",
+    "original_hash": "185738859a4b9abab1dccc04ecd5e5a7a526004d3226ad957697d961e8e86d2a",
+    "guarded_hash": "e2d11436afef21c09f5d3bdcc69c73260fbf9e594fae0610c07d15f83b3de891"
+  },
+  {
+    "case": "nullary_once",
+    "lemma": "bad_reachable",
+    "native": "unreachable",
+    "original_pv": "reachable",
+    "original_hash": "335953a5fed0d94abe7d13cb5f3beb145f89347095d1c0af295fd232e8737a6b",
+    "guarded_hash": "106eb40095ecba08e60b90b8d97fe603446238fc6e92c5bcacf51e19687a9e48"
+  },
+  {
+    "case": "nullary_once",
+    "lemma": "repeat_reachable",
+    "native": "unreachable",
+    "original_pv": "reachable",
+    "original_hash": "a750bee71bdb4f787439d08fbd1eb56c01507acf77a34ef1bfc6bcc9db4154d7",
+    "guarded_hash": "8988392ba71f0fd4c51b4ec1a69c575384ccba6244c9a18d5a213a6bc6bd4d51"
+  },
+  {
+    "case": "nullary_once",
+    "lemma": "single_consumption",
+    "native": "holds",
+    "original_pv": "holds",
+    "original_hash": "f5cb2abf6a05a2b016b393d769319b41b3c1cc8cdb3e64e94fe88011bec431e6",
+    "guarded_hash": "ab4c65bb75b65d9f7b5e9948d8779cdc142064218b16f13cdf6eb042175322ea"
+  },
+  {
+    "case": "nullary_repeat",
+    "lemma": "honest_reachable",
+    "native": "reachable",
+    "original_pv": "reachable",
+    "original_hash": "7dc8338f087b682116949144aa4eb3b96fb40a0b3a197ae44f7c4c8b6371b777",
+    "guarded_hash": "926cb2e7196c0277943c426da4931778791785609c8db84c1382349e714e16f6"
+  },
+  {
+    "case": "nullary_repeat",
+    "lemma": "bad_reachable",
+    "native": "unreachable",
+    "original_pv": "reachable",
+    "original_hash": "26155a001ddde229c1f12c95d95a1ecff36a93407e1ed64519927fca25416cc6",
+    "guarded_hash": "bbbd16cecf4b5de6efbcd5923401a8cb8b0c59587435372768a750fdedb5eb5e"
+  },
+  {
+    "case": "nullary_repeat",
+    "lemma": "repeat_reachable",
+    "native": "reachable",
+    "original_pv": "reachable",
+    "original_hash": "fcae33c48f7f5a8826147bd7068b45815c1cdc777f0000a0be55290221e87d86",
+    "guarded_hash": "7b352a4cbd0296b7c6407ba727396cfb6b9baf20ca183818e41d6586d14bad32"
+  },
+  {
+    "case": "nullary_repeat",
+    "lemma": "single_consumption",
+    "native": "holds",
+    "original_pv": "holds",
+    "original_hash": "f0dfc4e3b770593ed5a0dc7ab9d3c7a3b24229ac1aa242a4dff20d5e48189e0f",
+    "guarded_hash": "8dfe45141289ec15985d61174aace215a71efc2e3b01936ae7e0abb44fd844c3"
+  },
+  {
+    "case": "successor_once",
+    "lemma": "honest_reachable",
+    "native": "reachable",
+    "original_pv": "reachable",
+    "original_hash": "284603d3048bcf9ca70463f4c9a56debb4d5be3e9e4ede952087b0ee20b24b04",
+    "guarded_hash": "65a0d90f89a709bf8ac28f58f7583c098472055c1da78c00afb132093dbb6aa6"
+  },
+  {
+    "case": "successor_once",
+    "lemma": "bad_reachable",
+    "native": "unreachable",
+    "original_pv": "reachable",
+    "original_hash": "f65174734bf28346271887b8681bc8835ce2d873f12ac5d12d8378447a2bf93a",
+    "guarded_hash": "6b88125f2efe0a1fadd2c9c51ebaf61b3368fc418632e6f5b68fc99e3889cdd3"
+  },
+  {
+    "case": "successor_once",
+    "lemma": "repeat_reachable",
+    "native": "unreachable",
+    "original_pv": "reachable",
+    "original_hash": "df734c580e8d16af19886b4604aa33e6146377873692aca1f17d0e16348b213f",
+    "guarded_hash": "9065f3934792fde765c3e9d36e3cf502b6f7e02c45b8f52da4b4d8724290b345"
+  },
+  {
+    "case": "successor_once",
+    "lemma": "single_consumption",
+    "native": "holds",
+    "original_pv": "holds",
+    "original_hash": "7580bde44c40d973979a76c714b372ace4d3e5ca781a82398d1d171915afef42",
+    "guarded_hash": "23eb795c0987e9a6e8110db48461a8fec36868eb174ea72afe71ee454d7388ad"
+  },
+  {
+    "case": "successor_repeat",
+    "lemma": "honest_reachable",
+    "native": "reachable",
+    "original_pv": "reachable",
+    "original_hash": "eabb33f1046595baddbb234bf36aac91566807b3ee0c9091aa1d4c7f60581d42",
+    "guarded_hash": "314e10bb5c56265622d0f792710e2282f852a8e14c5800c7762a8c7515c5d7c9"
+  },
+  {
+    "case": "successor_repeat",
+    "lemma": "bad_reachable",
+    "native": "unreachable",
+    "original_pv": "reachable",
+    "original_hash": "07635f2fc4b98db31922578379b9ed2c9148284ed877bcca3af91aa6974203e2",
+    "guarded_hash": "1219e87300e98714f555192822d48a49a188ee62f5b8896b7bbc5456bd7d5769"
+  },
+  {
+    "case": "successor_repeat",
+    "lemma": "repeat_reachable",
+    "native": "reachable",
+    "original_pv": "reachable",
+    "original_hash": "4be28b4dc31efb79c62e24ec930ff3a5a8e5b43918bdbc73d5acfc036b5ba2e7",
+    "guarded_hash": "7a895466516554b5404e5a80932bb9c533ad8c5ef3f4541b007bfd635e6e79f8"
+  },
+  {
+    "case": "successor_repeat",
+    "lemma": "single_consumption",
+    "native": "holds",
+    "original_pv": "holds",
+    "original_hash": "c06333b17b28ee7f714b219903d6a672863d9748d576eaa345ff05b9c9a4c0e3",
+    "guarded_hash": "d10f8924ef64c4c0b8ce64ce101d90cbff5dd0994111ebff3a066256fd2c0db7"
+  }
+]

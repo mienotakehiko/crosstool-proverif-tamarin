@@ -1,0 +1,13 @@
+# model	query	expected	hand-written reference
+LMOTS_PV_U1	exec_accept	false	-
+LMOTS_PV_U1	LS1_unforge	true	stage1pv/C2_once_precise: true
+LMOTS_PV_U1	forge	true	-
+LMOTS_PV_Urb1	exec_accept	false	-
+LMOTS_PV_Urb1	LS1_unforge	true	-
+LMOTS_PV_Urb1	forge	true	-
+LMOTS_PV_lin	exec_accept	false	-
+LMOTS_PV_lin	LS1_unforge	cannot	stage1pv/C2_once: cannot
+LMOTS_PV_lin	forge	cannot	-
+LMOTS_PV_rep	exec_accept	false	-
+LMOTS_PV_rep	LS1_unforge	false	stage1pv/C2_rep: false
+LMOTS_PV_rep	forge	false	-

@@ -1,0 +1,38 @@
+[
+  {
+    "id": "nullary_once",
+    "encoding": "nullary",
+    "repeat": false,
+    "initial": "q0",
+    "allowed": "q0",
+    "prohibited": "q1",
+    "max_uses": 1
+  },
+  {
+    "id": "nullary_repeat",
+    "encoding": "nullary",
+    "repeat": true,
+    "initial": "q0",
+    "allowed": "q0",
+    "prohibited": "q1",
+    "max_uses": 2
+  },
+  {
+    "id": "successor_once",
+    "encoding": "successor",
+    "repeat": false,
+    "initial": "q0",
+    "allowed": "q0",
+    "prohibited": "q1",
+    "max_uses": 1
+  },
+  {
+    "id": "successor_repeat",
+    "encoding": "successor",
+    "repeat": true,
+    "initial": "q0",
+    "allowed": "q0",
+    "prohibited": "q1",
+    "max_uses": 2
+  }
+]

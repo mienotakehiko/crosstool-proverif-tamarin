@@ -1,0 +1,6 @@
+[
+  {"id":"constant_once","encoding":"constant","repeat":false,"initial":"q0","allowed":"q0","prohibited":"q1","max_uses":1},
+  {"id":"constant_repeat","encoding":"constant","repeat":true,"initial":"q0","allowed":"q0","prohibited":"q1","max_uses":2},
+  {"id":"constructor_once","encoding":"constructor","repeat":false,"initial":"q0","allowed":"q0","prohibited":"q1","max_uses":1},
+  {"id":"constructor_repeat","encoding":"constructor","repeat":true,"initial":"q0","allowed":"q0","prohibited":"q1","max_uses":2}
+]
