@@ -1,0 +1,20 @@
+{
+  "command": [
+    "/usr/local/bin/proverif",
+    "/redacted-home/workspace/revision_20261111/mutations/pv/lms_s2__control/existing.pv"
+  ],
+  "started_utc": "2026-11-11T03:12:11.010484+00:00",
+  "elapsed_s": 0.203,
+  "rc": 0,
+  "stop_reason": null,
+  "time_limit_s": 15,
+  "peak_group_rss_kib": 14736,
+  "rss_samples": [
+    [
+      0.002,
+      16
+    ]
+  ],
+  "raw_file": "raw/pv/lms_s2__control/existing/raw.out",
+  "raw_sha256": "965f3f522bf0170df5e95aa1204c1e8169669d780edbf750f0958e60563bb6f9"
+}

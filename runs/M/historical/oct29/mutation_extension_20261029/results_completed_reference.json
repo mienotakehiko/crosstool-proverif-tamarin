@@ -1,0 +1,3805 @@
+[
+  {
+    "seed": "lmots",
+    "operator": "control",
+    "directory": "lmots__control",
+    "pv_sha256": "9dd8b7037a76ef086cd49ce017c53e1e0ceb700db2eea3af564e611065dcabf1",
+    "tm_sha256": "28e70408184a582efc07801b5bc321319d9e929eaccfd9dc3459f1a5d9c0a1c3",
+    "source_cim_sha256": "c38b6a981ec4235134031d7d588d9c121bebdd86380cefab0c3d8b36532cce16",
+    "queries": [
+      "exec_accept",
+      "LS1_unforge",
+      "forge"
+    ],
+    "kinds": [
+      "phi3",
+      "phi1",
+      "phi3"
+    ],
+    "checks": [
+      [
+        "Sig",
+        "OK",
+        "2 symbols used, one declaration table; tuples as right-nested pairs in both tools"
+      ],
+      [
+        "Evt",
+        "BY-CONSTRUCTION",
+        "3 event symbols printed from one table"
+      ],
+      [
+        "EvtSep",
+        "OK",
+        "no rule carries two observed events of one property"
+      ],
+      [
+        "Saf",
+        "OK",
+        "restrictions: OneMisuse only (variants cl1, rb1), universal with equality conclusion"
+      ],
+      [
+        "Lin",
+        "OK",
+        "4 step cases, one state in and one state out each; no leak outputs a state value"
+      ],
+      [
+        "LinSpawn",
+        "OK",
+        "single thread kind; the thread and its state are created by one rule/process"
+      ],
+      [
+        "Blk",
+        "OK",
+        "block = state input, attacker input, guards, events, outputs, state output"
+      ],
+      [
+        "Grd",
+        "OK",
+        "guards are equality tests on public numeral constants; domains q=[0], a=[0, 1, 2, 3]"
+      ],
+      [
+        "Det",
+        "OK",
+        "cases with the same consumed state have disjoint input patterns"
+      ],
+      [
+        "Dist",
+        "OK",
+        "one role with a fresh identity; no public role names"
+      ],
+      [
+        "Leak",
+        "OK",
+        "leak outputs a persistent fresh name; enabled from thread start (guard: the published identity)"
+      ],
+      [
+        "Rul",
+        "BY-CONSTRUCTION",
+        "8 cases printed to both tools from one object"
+      ],
+      [
+        "Bound(e)",
+        "OK",
+        "longest update chain 1; declared bound 1; Theorem 1(e) applies with n = 1"
+      ]
+    ],
+    "expected": "control",
+    "pv_run": {
+      "command": [
+        "proverif",
+        "/redacted-home/workspace/audit_20261028/mutation_extension_20261029/lmots__control/model.pv"
+      ],
+      "rc": 0,
+      "stdout": "PV.out",
+      "stdout_sha256": "b0f8174b4599b95de0969d0d3d62d749510e1530daf17a466d9107bf9329abc1",
+      "elapsed_s": 0.102153,
+      "timeout_s": 15,
+      "rss_stop_mib": 850,
+      "sampled_peak_rss_kib": 224
+    },
+    "tm_run": {
+      "command": [
+        "tamarin-prover",
+        "--prove",
+        "--derivcheck-timeout=0",
+        "/redacted-home/workspace/audit_20261028/mutation_extension_20261029/lmots__control/model.spthy",
+        "+RTS",
+        "-N1",
+        "-M500m",
+        "-RTS"
+      ],
+      "rc": 0,
+      "stdout": "TM.out",
+      "stdout_sha256": "79d899b5ec3988de5376f8210744a38da5e29e5a170a7501416a1e4a13d3784b",
+      "elapsed_s": 0.807973,
+      "timeout_s": 15,
+      "rss_stop_mib": 850,
+      "sampled_peak_rss_kib": 39928
+    },
+    "results": [
+      {
+        "query": "exec_accept",
+        "kind": "phi3",
+        "pv": "is false",
+        "tm": "verified",
+        "normalized_pv": "W",
+        "normalized_tm": "W",
+        "discrepancy": false,
+        "findings": []
+      },
+      {
+        "query": "LS1_unforge",
+        "kind": "phi1",
+        "pv": "is true",
+        "tm": "verified",
+        "normalized_pv": "H",
+        "normalized_tm": "H",
+        "discrepancy": false,
+        "findings": []
+      },
+      {
+        "query": "forge",
+        "kind": "phi3",
+        "pv": "is true",
+        "tm": "falsified",
+        "normalized_pv": "H",
+        "normalized_tm": "H",
+        "discrepancy": false,
+        "findings": []
+      }
+    ]
+  },
+  {
+    "seed": "lmots",
+    "operator": "event_accept_argument",
+    "directory": "lmots__event_accept_argument",
+    "pv_sha256": "b4ad8fdb6bd7c8b0e9ce9124cfcd3d963f53a8ce57fcf4b4d1fd012df4851faf",
+    "tm_sha256": "28e70408184a582efc07801b5bc321319d9e929eaccfd9dc3459f1a5d9c0a1c3",
+    "source_cim_sha256": "c38b6a981ec4235134031d7d588d9c121bebdd86380cefab0c3d8b36532cce16",
+    "queries": [
+      "exec_accept",
+      "LS1_unforge",
+      "forge"
+    ],
+    "kinds": [
+      "phi3",
+      "phi1",
+      "phi3"
+    ],
+    "checks": [
+      [
+        "Sig",
+        "OK",
+        "2 symbols used, one declaration table; tuples as right-nested pairs in both tools"
+      ],
+      [
+        "Evt",
+        "BY-CONSTRUCTION",
+        "3 event symbols printed from one table"
+      ],
+      [
+        "EvtSep",
+        "OK",
+        "no rule carries two observed events of one property"
+      ],
+      [
+        "Saf",
+        "OK",
+        "restrictions: OneMisuse only (variants cl1, rb1), universal with equality conclusion"
+      ],
+      [
+        "Lin",
+        "OK",
+        "4 step cases, one state in and one state out each; no leak outputs a state value"
+      ],
+      [
+        "LinSpawn",
+        "OK",
+        "single thread kind; the thread and its state are created by one rule/process"
+      ],
+      [
+        "Blk",
+        "OK",
+        "block = state input, attacker input, guards, events, outputs, state output"
+      ],
+      [
+        "Grd",
+        "OK",
+        "guards are equality tests on public numeral constants; domains q=[0], a=[0, 1, 2, 3]"
+      ],
+      [
+        "Det",
+        "OK",
+        "cases with the same consumed state have disjoint input patterns"
+      ],
+      [
+        "Dist",
+        "OK",
+        "one role with a fresh identity; no public role names"
+      ],
+      [
+        "Leak",
+        "OK",
+        "leak outputs a persistent fresh name; enabled from thread start (guard: the published identity)"
+      ],
+      [
+        "Rul",
+        "BY-CONSTRUCTION",
+        "8 cases printed to both tools from one object"
+      ],
+      [
+        "Bound(e)",
+        "OK",
+        "longest update chain 1; declared bound 1; Theorem 1(e) applies with n = 1"
+      ]
+    ],
+    "expected": "one-sided model change; verdict discrepancy not guaranteed",
+    "pv_run": {
+      "command": [
+        "proverif",
+        "/redacted-home/workspace/audit_20261028/mutation_extension_20261029/lmots__event_accept_argument/model.pv"
+      ],
+      "rc": 0,
+      "stdout": "PV.out",
+      "stdout_sha256": "c743614512d50f12028ff6fba8878ca7f8057ac794cbf11ad7d74b852f356601",
+      "elapsed_s": 0.102539,
+      "timeout_s": 15,
+      "rss_stop_mib": 850,
+      "sampled_peak_rss_kib": 200
+    },
+    "tm_run": {
+      "command": [
+        "tamarin-prover",
+        "--prove",
+        "--derivcheck-timeout=0",
+        "/redacted-home/workspace/audit_20261028/mutation_extension_20261029/lmots__event_accept_argument/model.spthy",
+        "+RTS",
+        "-N1",
+        "-M500m",
+        "-RTS"
+      ],
+      "rc": 0,
+      "stdout": "TM.out",
+      "stdout_sha256": "4352d0afd59a3580175156f63f2c9d1c76d46919415e6d628ac87e6edac7168b",
+      "elapsed_s": 0.806472,
+      "timeout_s": 15,
+      "rss_stop_mib": 850,
+      "sampled_peak_rss_kib": 39936
+    },
+    "results": [
+      {
+        "query": "exec_accept",
+        "kind": "phi3",
+        "pv": "is false",
+        "tm": "verified",
+        "normalized_pv": "W",
+        "normalized_tm": "W",
+        "discrepancy": false,
+        "findings": []
+      },
+      {
+        "query": "LS1_unforge",
+        "kind": "phi1",
+        "pv": "is false",
+        "tm": "verified",
+        "normalized_pv": "W",
+        "normalized_tm": "H",
+        "discrepancy": true,
+        "findings": [
+          {
+            "cause": "ENC-map",
+            "records": [
+              "X_T_base",
+              "X_PV_U2"
+            ],
+            "note": "impossible pair on Tle, T: a hypothesis, the generator or a tool is at fault"
+          }
+        ]
+      },
+      {
+        "query": "forge",
+        "kind": "phi3",
+        "pv": "is false",
+        "tm": "falsified",
+        "normalized_pv": "W",
+        "normalized_tm": "H",
+        "discrepancy": true,
+        "findings": [
+          {
+            "cause": "ENC-map",
+            "records": [
+              "X_T_base",
+              "X_PV_U2"
+            ],
+            "note": "impossible pair on Tle, T: a hypothesis, the generator or a tool is at fault"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "seed": "lmots",
+    "operator": "event_sign_argument",
+    "directory": "lmots__event_sign_argument",
+    "pv_sha256": "6dba88fcf5bfec0979e7d1f9caab1b44a0de7aa11b579dae4dbfa2d18376a574",
+    "tm_sha256": "28e70408184a582efc07801b5bc321319d9e929eaccfd9dc3459f1a5d9c0a1c3",
+    "source_cim_sha256": "c38b6a981ec4235134031d7d588d9c121bebdd86380cefab0c3d8b36532cce16",
+    "queries": [
+      "exec_accept",
+      "LS1_unforge",
+      "forge"
+    ],
+    "kinds": [
+      "phi3",
+      "phi1",
+      "phi3"
+    ],
+    "checks": [
+      [
+        "Sig",
+        "OK",
+        "2 symbols used, one declaration table; tuples as right-nested pairs in both tools"
+      ],
+      [
+        "Evt",
+        "BY-CONSTRUCTION",
+        "3 event symbols printed from one table"
+      ],
+      [
+        "EvtSep",
+        "OK",
+        "no rule carries two observed events of one property"
+      ],
+      [
+        "Saf",
+        "OK",
+        "restrictions: OneMisuse only (variants cl1, rb1), universal with equality conclusion"
+      ],
+      [
+        "Lin",
+        "OK",
+        "4 step cases, one state in and one state out each; no leak outputs a state value"
+      ],
+      [
+        "LinSpawn",
+        "OK",
+        "single thread kind; the thread and its state are created by one rule/process"
+      ],
+      [
+        "Blk",
+        "OK",
+        "block = state input, attacker input, guards, events, outputs, state output"
+      ],
+      [
+        "Grd",
+        "OK",
+        "guards are equality tests on public numeral constants; domains q=[0], a=[0, 1, 2, 3]"
+      ],
+      [
+        "Det",
+        "OK",
+        "cases with the same consumed state have disjoint input patterns"
+      ],
+      [
+        "Dist",
+        "OK",
+        "one role with a fresh identity; no public role names"
+      ],
+      [
+        "Leak",
+        "OK",
+        "leak outputs a persistent fresh name; enabled from thread start (guard: the published identity)"
+      ],
+      [
+        "Rul",
+        "BY-CONSTRUCTION",
+        "8 cases printed to both tools from one object"
+      ],
+      [
+        "Bound(e)",
+        "OK",
+        "longest update chain 1; declared bound 1; Theorem 1(e) applies with n = 1"
+      ]
+    ],
+    "expected": "one-sided model change; verdict discrepancy not guaranteed",
+    "pv_run": {
+      "command": [
+        "proverif",
+        "/redacted-home/workspace/audit_20261028/mutation_extension_20261029/lmots__event_sign_argument/model.pv"
+      ],
+      "rc": 0,
+      "stdout": "PV.out",
+      "stdout_sha256": "dd732e78e988479225a49a31567bd3f2379784b73cd0e40c20fcf9e40dc31dd0",
+      "elapsed_s": 0.102385,
+      "timeout_s": 15,
+      "rss_stop_mib": 850,
+      "sampled_peak_rss_kib": 16
+    },
+    "tm_run": {
+      "command": [
+        "tamarin-prover",
+        "--prove",
+        "--derivcheck-timeout=0",
+        "/redacted-home/workspace/audit_20261028/mutation_extension_20261029/lmots__event_sign_argument/model.spthy",
+        "+RTS",
+        "-N1",
+        "-M500m",
+        "-RTS"
+      ],
+      "rc": 0,
+      "stdout": "TM.out",
+      "stdout_sha256": "3eca548cab07a378b90b6c55d66db3e7fc8271cd5126465adcfc176cb60b1904",
+      "elapsed_s": 0.808753,
+      "timeout_s": 15,
+      "rss_stop_mib": 850,
+      "sampled_peak_rss_kib": 39860
+    },
+    "results": [
+      {
+        "query": "exec_accept",
+        "kind": "phi3",
+        "pv": "is false",
+        "tm": "verified",
+        "normalized_pv": "W",
+        "normalized_tm": "W",
+        "discrepancy": false,
+        "findings": []
+      },
+      {
+        "query": "LS1_unforge",
+        "kind": "phi1",
+        "pv": "is false",
+        "tm": "verified",
+        "normalized_pv": "W",
+        "normalized_tm": "H",
+        "discrepancy": true,
+        "findings": [
+          {
+            "cause": "ENC-map",
+            "records": [
+              "X_T_base",
+              "X_PV_U2"
+            ],
+            "note": "impossible pair on Tle, T: a hypothesis, the generator or a tool is at fault"
+          }
+        ]
+      },
+      {
+        "query": "forge",
+        "kind": "phi3",
+        "pv": "is false",
+        "tm": "falsified",
+        "normalized_pv": "W",
+        "normalized_tm": "H",
+        "discrepancy": true,
+        "findings": [
+          {
+            "cause": "ENC-map",
+            "records": [
+              "X_T_base",
+              "X_PV_U2"
+            ],
+            "note": "impossible pair on Tle, T: a hypothesis, the generator or a tool is at fault"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "seed": "lmots",
+    "operator": "remove_reveal_event",
+    "directory": "lmots__remove_reveal_event",
+    "pv_sha256": "f4e25db4e4707bf576257c22fd8bec7ec02b30d6537bfb9445a74a351ece93d1",
+    "tm_sha256": "28e70408184a582efc07801b5bc321319d9e929eaccfd9dc3459f1a5d9c0a1c3",
+    "source_cim_sha256": "c38b6a981ec4235134031d7d588d9c121bebdd86380cefab0c3d8b36532cce16",
+    "queries": [
+      "exec_accept",
+      "LS1_unforge",
+      "forge"
+    ],
+    "kinds": [
+      "phi3",
+      "phi1",
+      "phi3"
+    ],
+    "checks": [
+      [
+        "Sig",
+        "OK",
+        "2 symbols used, one declaration table; tuples as right-nested pairs in both tools"
+      ],
+      [
+        "Evt",
+        "BY-CONSTRUCTION",
+        "3 event symbols printed from one table"
+      ],
+      [
+        "EvtSep",
+        "OK",
+        "no rule carries two observed events of one property"
+      ],
+      [
+        "Saf",
+        "OK",
+        "restrictions: OneMisuse only (variants cl1, rb1), universal with equality conclusion"
+      ],
+      [
+        "Lin",
+        "OK",
+        "4 step cases, one state in and one state out each; no leak outputs a state value"
+      ],
+      [
+        "LinSpawn",
+        "OK",
+        "single thread kind; the thread and its state are created by one rule/process"
+      ],
+      [
+        "Blk",
+        "OK",
+        "block = state input, attacker input, guards, events, outputs, state output"
+      ],
+      [
+        "Grd",
+        "OK",
+        "guards are equality tests on public numeral constants; domains q=[0], a=[0, 1, 2, 3]"
+      ],
+      [
+        "Det",
+        "OK",
+        "cases with the same consumed state have disjoint input patterns"
+      ],
+      [
+        "Dist",
+        "OK",
+        "one role with a fresh identity; no public role names"
+      ],
+      [
+        "Leak",
+        "OK",
+        "leak outputs a persistent fresh name; enabled from thread start (guard: the published identity)"
+      ],
+      [
+        "Rul",
+        "BY-CONSTRUCTION",
+        "8 cases printed to both tools from one object"
+      ],
+      [
+        "Bound(e)",
+        "OK",
+        "longest update chain 1; declared bound 1; Theorem 1(e) applies with n = 1"
+      ]
+    ],
+    "expected": "one-sided model change; verdict discrepancy not guaranteed",
+    "pv_run": {
+      "command": [
+        "proverif",
+        "/redacted-home/workspace/audit_20261028/mutation_extension_20261029/lmots__remove_reveal_event/model.pv"
+      ],
+      "rc": 0,
+      "stdout": "PV.out",
+      "stdout_sha256": "462af1ae9e0c5ecefcae414a07ebf634338407708adb3a48dc7b8b90d921d30e",
+      "elapsed_s": 0.102722,
+      "timeout_s": 15,
+      "rss_stop_mib": 850,
+      "sampled_peak_rss_kib": 16
+    },
+    "tm_run": {
+      "command": [
+        "tamarin-prover",
+        "--prove",
+        "--derivcheck-timeout=0",
+        "/redacted-home/workspace/audit_20261028/mutation_extension_20261029/lmots__remove_reveal_event/model.spthy",
+        "+RTS",
+        "-N1",
+        "-M500m",
+        "-RTS"
+      ],
+      "rc": 0,
+      "stdout": "TM.out",
+      "stdout_sha256": "25b951102fe15486ecc3e50062c30a9086e270f98bcc6d69f2c2296ea7b78dd0",
+      "elapsed_s": 0.804753,
+      "timeout_s": 15,
+      "rss_stop_mib": 850,
+      "sampled_peak_rss_kib": 40000
+    },
+    "results": [
+      {
+        "query": "exec_accept",
+        "kind": "phi3",
+        "pv": "is false",
+        "tm": "verified",
+        "normalized_pv": "W",
+        "normalized_tm": "W",
+        "discrepancy": false,
+        "findings": []
+      },
+      {
+        "query": "LS1_unforge",
+        "kind": "phi1",
+        "pv": "is true",
+        "tm": "verified",
+        "normalized_pv": "H",
+        "normalized_tm": "H",
+        "discrepancy": false,
+        "findings": []
+      },
+      {
+        "query": "forge",
+        "kind": "phi3",
+        "pv": "is true",
+        "tm": "falsified",
+        "normalized_pv": "H",
+        "normalized_tm": "H",
+        "discrepancy": false,
+        "findings": []
+      }
+    ]
+  },
+  {
+    "seed": "lmots",
+    "operator": "replicate_signer",
+    "directory": "lmots__replicate_signer",
+    "pv_sha256": "6418980ebced008c3e85565c1d693ce47d4bb7189de185587a4e223a2bf03a79",
+    "tm_sha256": "28e70408184a582efc07801b5bc321319d9e929eaccfd9dc3459f1a5d9c0a1c3",
+    "source_cim_sha256": "c38b6a981ec4235134031d7d588d9c121bebdd86380cefab0c3d8b36532cce16",
+    "queries": [
+      "exec_accept",
+      "LS1_unforge",
+      "forge"
+    ],
+    "kinds": [
+      "phi3",
+      "phi1",
+      "phi3"
+    ],
+    "checks": [
+      [
+        "Sig",
+        "OK",
+        "2 symbols used, one declaration table; tuples as right-nested pairs in both tools"
+      ],
+      [
+        "Evt",
+        "BY-CONSTRUCTION",
+        "3 event symbols printed from one table"
+      ],
+      [
+        "EvtSep",
+        "OK",
+        "no rule carries two observed events of one property"
+      ],
+      [
+        "Saf",
+        "OK",
+        "restrictions: OneMisuse only (variants cl1, rb1), universal with equality conclusion"
+      ],
+      [
+        "Lin",
+        "OK",
+        "4 step cases, one state in and one state out each; no leak outputs a state value"
+      ],
+      [
+        "LinSpawn",
+        "OK",
+        "single thread kind; the thread and its state are created by one rule/process"
+      ],
+      [
+        "Blk",
+        "OK",
+        "block = state input, attacker input, guards, events, outputs, state output"
+      ],
+      [
+        "Grd",
+        "OK",
+        "guards are equality tests on public numeral constants; domains q=[0], a=[0, 1, 2, 3]"
+      ],
+      [
+        "Det",
+        "OK",
+        "cases with the same consumed state have disjoint input patterns"
+      ],
+      [
+        "Dist",
+        "OK",
+        "one role with a fresh identity; no public role names"
+      ],
+      [
+        "Leak",
+        "OK",
+        "leak outputs a persistent fresh name; enabled from thread start (guard: the published identity)"
+      ],
+      [
+        "Rul",
+        "BY-CONSTRUCTION",
+        "8 cases printed to both tools from one object"
+      ],
+      [
+        "Bound(e)",
+        "OK",
+        "longest update chain 1; declared bound 1; Theorem 1(e) applies with n = 1"
+      ]
+    ],
+    "expected": "one-sided model change; verdict discrepancy not guaranteed",
+    "pv_run": {
+      "command": [
+        "proverif",
+        "/redacted-home/workspace/audit_20261028/mutation_extension_20261029/lmots__replicate_signer/model.pv"
+      ],
+      "rc": 0,
+      "stdout": "PV.out",
+      "stdout_sha256": "ee54b0209d32fa39b7384a08df78111e118fcb883081e61cae85cd94856af7bd",
+      "elapsed_s": 0.104396,
+      "timeout_s": 15,
+      "rss_stop_mib": 850,
+      "sampled_peak_rss_kib": 7400
+    },
+    "tm_run": {
+      "command": [
+        "tamarin-prover",
+        "--prove",
+        "--derivcheck-timeout=0",
+        "/redacted-home/workspace/audit_20261028/mutation_extension_20261029/lmots__replicate_signer/model.spthy",
+        "+RTS",
+        "-N1",
+        "-M500m",
+        "-RTS"
+      ],
+      "rc": 0,
+      "stdout": "TM.out",
+      "stdout_sha256": "5a157ccc9e5de9b53f5e2dab52e12edd760f1e3f0aee3234dd6a088dbf4400df",
+      "elapsed_s": 0.805285,
+      "timeout_s": 15,
+      "rss_stop_mib": 850,
+      "sampled_peak_rss_kib": 39920
+    },
+    "results": [
+      {
+        "query": "exec_accept",
+        "kind": "phi3",
+        "pv": "is false",
+        "tm": "verified",
+        "normalized_pv": "W",
+        "normalized_tm": "W",
+        "discrepancy": false,
+        "findings": []
+      },
+      {
+        "query": "LS1_unforge",
+        "kind": "phi1",
+        "pv": "is false",
+        "tm": "verified",
+        "normalized_pv": "W",
+        "normalized_tm": "H",
+        "discrepancy": true,
+        "findings": [
+          {
+            "cause": "ENC-map",
+            "records": [
+              "X_T_base",
+              "X_PV_U2"
+            ],
+            "note": "impossible pair on Tle, T: a hypothesis, the generator or a tool is at fault"
+          }
+        ]
+      },
+      {
+        "query": "forge",
+        "kind": "phi3",
+        "pv": "is false",
+        "tm": "falsified",
+        "normalized_pv": "W",
+        "normalized_tm": "H",
+        "discrepancy": true,
+        "findings": [
+          {
+            "cause": "ENC-map",
+            "records": [
+              "X_T_base",
+              "X_PV_U2"
+            ],
+            "note": "impossible pair on Tle, T: a hypothesis, the generator or a tool is at fault"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "seed": "lmots",
+    "operator": "disable_signer",
+    "directory": "lmots__disable_signer",
+    "pv_sha256": "bdf6e1abfe690fec08907550f9e17df023d95a43a963cff99c6c85a87b124e2c",
+    "tm_sha256": "28e70408184a582efc07801b5bc321319d9e929eaccfd9dc3459f1a5d9c0a1c3",
+    "source_cim_sha256": "c38b6a981ec4235134031d7d588d9c121bebdd86380cefab0c3d8b36532cce16",
+    "queries": [
+      "exec_accept",
+      "LS1_unforge",
+      "forge"
+    ],
+    "kinds": [
+      "phi3",
+      "phi1",
+      "phi3"
+    ],
+    "checks": [
+      [
+        "Sig",
+        "OK",
+        "2 symbols used, one declaration table; tuples as right-nested pairs in both tools"
+      ],
+      [
+        "Evt",
+        "BY-CONSTRUCTION",
+        "3 event symbols printed from one table"
+      ],
+      [
+        "EvtSep",
+        "OK",
+        "no rule carries two observed events of one property"
+      ],
+      [
+        "Saf",
+        "OK",
+        "restrictions: OneMisuse only (variants cl1, rb1), universal with equality conclusion"
+      ],
+      [
+        "Lin",
+        "OK",
+        "4 step cases, one state in and one state out each; no leak outputs a state value"
+      ],
+      [
+        "LinSpawn",
+        "OK",
+        "single thread kind; the thread and its state are created by one rule/process"
+      ],
+      [
+        "Blk",
+        "OK",
+        "block = state input, attacker input, guards, events, outputs, state output"
+      ],
+      [
+        "Grd",
+        "OK",
+        "guards are equality tests on public numeral constants; domains q=[0], a=[0, 1, 2, 3]"
+      ],
+      [
+        "Det",
+        "OK",
+        "cases with the same consumed state have disjoint input patterns"
+      ],
+      [
+        "Dist",
+        "OK",
+        "one role with a fresh identity; no public role names"
+      ],
+      [
+        "Leak",
+        "OK",
+        "leak outputs a persistent fresh name; enabled from thread start (guard: the published identity)"
+      ],
+      [
+        "Rul",
+        "BY-CONSTRUCTION",
+        "8 cases printed to both tools from one object"
+      ],
+      [
+        "Bound(e)",
+        "OK",
+        "longest update chain 1; declared bound 1; Theorem 1(e) applies with n = 1"
+      ]
+    ],
+    "expected": "one-sided model change; verdict discrepancy not guaranteed",
+    "pv_run": {
+      "command": [
+        "proverif",
+        "/redacted-home/workspace/audit_20261028/mutation_extension_20261029/lmots__disable_signer/model.pv"
+      ],
+      "rc": 0,
+      "stdout": "PV.out",
+      "stdout_sha256": "0cc864341ec6f2668ca1a431317803fcfcb47252358480030335aee9268f37a7",
+      "elapsed_s": 0.104899,
+      "timeout_s": 15,
+      "rss_stop_mib": 850,
+      "sampled_peak_rss_kib": 7336
+    },
+    "tm_run": {
+      "command": [
+        "tamarin-prover",
+        "--prove",
+        "--derivcheck-timeout=0",
+        "/redacted-home/workspace/audit_20261028/mutation_extension_20261029/lmots__disable_signer/model.spthy",
+        "+RTS",
+        "-N1",
+        "-M500m",
+        "-RTS"
+      ],
+      "rc": 0,
+      "stdout": "TM.out",
+      "stdout_sha256": "c4175fd8f3b7d6be68a16b36c25d28da064e0b375b63ee9ba3efcf52129f78c1",
+      "elapsed_s": 0.807003,
+      "timeout_s": 15,
+      "rss_stop_mib": 850,
+      "sampled_peak_rss_kib": 39928
+    },
+    "results": [
+      {
+        "query": "exec_accept",
+        "kind": "phi3",
+        "pv": "is true",
+        "tm": "verified",
+        "normalized_pv": "H",
+        "normalized_tm": "W",
+        "discrepancy": true,
+        "findings": [
+          {
+            "cause": "ENC-map",
+            "records": [
+              "X_PV_U2",
+              "X_T_base"
+            ],
+            "note": "impossible pair on Tle, T: a hypothesis, the generator or a tool is at fault"
+          }
+        ]
+      },
+      {
+        "query": "LS1_unforge",
+        "kind": "phi1",
+        "pv": "is true",
+        "tm": "verified",
+        "normalized_pv": "H",
+        "normalized_tm": "H",
+        "discrepancy": false,
+        "findings": []
+      },
+      {
+        "query": "forge",
+        "kind": "phi3",
+        "pv": "is true",
+        "tm": "falsified",
+        "normalized_pv": "H",
+        "normalized_tm": "H",
+        "discrepancy": false,
+        "findings": []
+      }
+    ]
+  },
+  {
+    "seed": "lmots",
+    "operator": "disable_accept",
+    "directory": "lmots__disable_accept",
+    "pv_sha256": "6f2fea56adde1b0d488161bb47a010c6507527f88b0a17e228d80cefeddf1d69",
+    "tm_sha256": "28e70408184a582efc07801b5bc321319d9e929eaccfd9dc3459f1a5d9c0a1c3",
+    "source_cim_sha256": "c38b6a981ec4235134031d7d588d9c121bebdd86380cefab0c3d8b36532cce16",
+    "queries": [
+      "exec_accept",
+      "LS1_unforge",
+      "forge"
+    ],
+    "kinds": [
+      "phi3",
+      "phi1",
+      "phi3"
+    ],
+    "checks": [
+      [
+        "Sig",
+        "OK",
+        "2 symbols used, one declaration table; tuples as right-nested pairs in both tools"
+      ],
+      [
+        "Evt",
+        "BY-CONSTRUCTION",
+        "3 event symbols printed from one table"
+      ],
+      [
+        "EvtSep",
+        "OK",
+        "no rule carries two observed events of one property"
+      ],
+      [
+        "Saf",
+        "OK",
+        "restrictions: OneMisuse only (variants cl1, rb1), universal with equality conclusion"
+      ],
+      [
+        "Lin",
+        "OK",
+        "4 step cases, one state in and one state out each; no leak outputs a state value"
+      ],
+      [
+        "LinSpawn",
+        "OK",
+        "single thread kind; the thread and its state are created by one rule/process"
+      ],
+      [
+        "Blk",
+        "OK",
+        "block = state input, attacker input, guards, events, outputs, state output"
+      ],
+      [
+        "Grd",
+        "OK",
+        "guards are equality tests on public numeral constants; domains q=[0], a=[0, 1, 2, 3]"
+      ],
+      [
+        "Det",
+        "OK",
+        "cases with the same consumed state have disjoint input patterns"
+      ],
+      [
+        "Dist",
+        "OK",
+        "one role with a fresh identity; no public role names"
+      ],
+      [
+        "Leak",
+        "OK",
+        "leak outputs a persistent fresh name; enabled from thread start (guard: the published identity)"
+      ],
+      [
+        "Rul",
+        "BY-CONSTRUCTION",
+        "8 cases printed to both tools from one object"
+      ],
+      [
+        "Bound(e)",
+        "OK",
+        "longest update chain 1; declared bound 1; Theorem 1(e) applies with n = 1"
+      ]
+    ],
+    "expected": "one-sided model change; verdict discrepancy not guaranteed",
+    "pv_run": {
+      "command": [
+        "proverif",
+        "/redacted-home/workspace/audit_20261028/mutation_extension_20261029/lmots__disable_accept/model.pv"
+      ],
+      "rc": 0,
+      "stdout": "PV.out",
+      "stdout_sha256": "f6e88fbe0e00097948b6b2619f0a6f2d1ef2dc7b4fe52bcf1f59d44458f046fa",
+      "elapsed_s": 0.10225,
+      "timeout_s": 15,
+      "rss_stop_mib": 850,
+      "sampled_peak_rss_kib": 20
+    },
+    "tm_run": {
+      "command": [
+        "tamarin-prover",
+        "--prove",
+        "--derivcheck-timeout=0",
+        "/redacted-home/workspace/audit_20261028/mutation_extension_20261029/lmots__disable_accept/model.spthy",
+        "+RTS",
+        "-N1",
+        "-M500m",
+        "-RTS"
+      ],
+      "rc": 0,
+      "stdout": "TM.out",
+      "stdout_sha256": "d90812e89f80cb1f6f307f7428eecd63da945fe12681235f35c6a5935ca21b1f",
+      "elapsed_s": 0.804655,
+      "timeout_s": 15,
+      "rss_stop_mib": 850,
+      "sampled_peak_rss_kib": 39928
+    },
+    "results": [
+      {
+        "query": "exec_accept",
+        "kind": "phi3",
+        "pv": "is true",
+        "tm": "verified",
+        "normalized_pv": "H",
+        "normalized_tm": "W",
+        "discrepancy": true,
+        "findings": [
+          {
+            "cause": "ENC-map",
+            "records": [
+              "X_PV_U2",
+              "X_T_base"
+            ],
+            "note": "impossible pair on Tle, T: a hypothesis, the generator or a tool is at fault"
+          }
+        ]
+      },
+      {
+        "query": "LS1_unforge",
+        "kind": "phi1",
+        "pv": "is true",
+        "tm": "verified",
+        "normalized_pv": "H",
+        "normalized_tm": "H",
+        "discrepancy": false,
+        "findings": []
+      },
+      {
+        "query": "forge",
+        "kind": "phi3",
+        "pv": "is true",
+        "tm": "falsified",
+        "normalized_pv": "H",
+        "normalized_tm": "H",
+        "discrepancy": false,
+        "findings": []
+      }
+    ]
+  },
+  {
+    "seed": "lmots",
+    "operator": "unguarded_reveal",
+    "directory": "lmots__unguarded_reveal",
+    "pv_sha256": "26755efa121ca821bf15adc3d1dafb57fc1653c0d38740a42eef1c543ce78261",
+    "tm_sha256": "28e70408184a582efc07801b5bc321319d9e929eaccfd9dc3459f1a5d9c0a1c3",
+    "source_cim_sha256": "c38b6a981ec4235134031d7d588d9c121bebdd86380cefab0c3d8b36532cce16",
+    "queries": [
+      "exec_accept",
+      "LS1_unforge",
+      "forge"
+    ],
+    "kinds": [
+      "phi3",
+      "phi1",
+      "phi3"
+    ],
+    "checks": [
+      [
+        "Sig",
+        "OK",
+        "2 symbols used, one declaration table; tuples as right-nested pairs in both tools"
+      ],
+      [
+        "Evt",
+        "BY-CONSTRUCTION",
+        "3 event symbols printed from one table"
+      ],
+      [
+        "EvtSep",
+        "OK",
+        "no rule carries two observed events of one property"
+      ],
+      [
+        "Saf",
+        "OK",
+        "restrictions: OneMisuse only (variants cl1, rb1), universal with equality conclusion"
+      ],
+      [
+        "Lin",
+        "OK",
+        "4 step cases, one state in and one state out each; no leak outputs a state value"
+      ],
+      [
+        "LinSpawn",
+        "OK",
+        "single thread kind; the thread and its state are created by one rule/process"
+      ],
+      [
+        "Blk",
+        "OK",
+        "block = state input, attacker input, guards, events, outputs, state output"
+      ],
+      [
+        "Grd",
+        "OK",
+        "guards are equality tests on public numeral constants; domains q=[0], a=[0, 1, 2, 3]"
+      ],
+      [
+        "Det",
+        "OK",
+        "cases with the same consumed state have disjoint input patterns"
+      ],
+      [
+        "Dist",
+        "OK",
+        "one role with a fresh identity; no public role names"
+      ],
+      [
+        "Leak",
+        "OK",
+        "leak outputs a persistent fresh name; enabled from thread start (guard: the published identity)"
+      ],
+      [
+        "Rul",
+        "BY-CONSTRUCTION",
+        "8 cases printed to both tools from one object"
+      ],
+      [
+        "Bound(e)",
+        "OK",
+        "longest update chain 1; declared bound 1; Theorem 1(e) applies with n = 1"
+      ]
+    ],
+    "expected": "one-sided model change; verdict discrepancy not guaranteed",
+    "pv_run": {
+      "command": [
+        "proverif",
+        "/redacted-home/workspace/audit_20261028/mutation_extension_20261029/lmots__unguarded_reveal/model.pv"
+      ],
+      "rc": 0,
+      "stdout": "PV.out",
+      "stdout_sha256": "7a42a4e20fa99f9a28fc52a467081120edec309058f0e6ecd798d5d27b86cf4c",
+      "elapsed_s": 0.102246,
+      "timeout_s": 15,
+      "rss_stop_mib": 850,
+      "sampled_peak_rss_kib": 16
+    },
+    "tm_run": {
+      "command": [
+        "tamarin-prover",
+        "--prove",
+        "--derivcheck-timeout=0",
+        "/redacted-home/workspace/audit_20261028/mutation_extension_20261029/lmots__unguarded_reveal/model.spthy",
+        "+RTS",
+        "-N1",
+        "-M500m",
+        "-RTS"
+      ],
+      "rc": 0,
+      "stdout": "TM.out",
+      "stdout_sha256": "84f02193acfcfd591c293a49aa6a1cc0ada26abfbc11a015ba364ab397792eee",
+      "elapsed_s": 0.805848,
+      "timeout_s": 15,
+      "rss_stop_mib": 850,
+      "sampled_peak_rss_kib": 39908
+    },
+    "results": [
+      {
+        "query": "exec_accept",
+        "kind": "phi3",
+        "pv": "is false",
+        "tm": "verified",
+        "normalized_pv": "W",
+        "normalized_tm": "W",
+        "discrepancy": false,
+        "findings": []
+      },
+      {
+        "query": "LS1_unforge",
+        "kind": "phi1",
+        "pv": "is true",
+        "tm": "verified",
+        "normalized_pv": "H",
+        "normalized_tm": "H",
+        "discrepancy": false,
+        "findings": []
+      },
+      {
+        "query": "forge",
+        "kind": "phi3",
+        "pv": "is true",
+        "tm": "falsified",
+        "normalized_pv": "H",
+        "normalized_tm": "H",
+        "discrepancy": false,
+        "findings": []
+      }
+    ]
+  },
+  {
+    "seed": "lmots",
+    "operator": "wrong_public_key",
+    "directory": "lmots__wrong_public_key",
+    "pv_sha256": "22086b147a403518de3fb0aaa19a29fe22c86a8c0d74b2f5d8cad2d28da568b2",
+    "tm_sha256": "28e70408184a582efc07801b5bc321319d9e929eaccfd9dc3459f1a5d9c0a1c3",
+    "source_cim_sha256": "c38b6a981ec4235134031d7d588d9c121bebdd86380cefab0c3d8b36532cce16",
+    "queries": [
+      "exec_accept",
+      "LS1_unforge",
+      "forge"
+    ],
+    "kinds": [
+      "phi3",
+      "phi1",
+      "phi3"
+    ],
+    "checks": [
+      [
+        "Sig",
+        "OK",
+        "2 symbols used, one declaration table; tuples as right-nested pairs in both tools"
+      ],
+      [
+        "Evt",
+        "BY-CONSTRUCTION",
+        "3 event symbols printed from one table"
+      ],
+      [
+        "EvtSep",
+        "OK",
+        "no rule carries two observed events of one property"
+      ],
+      [
+        "Saf",
+        "OK",
+        "restrictions: OneMisuse only (variants cl1, rb1), universal with equality conclusion"
+      ],
+      [
+        "Lin",
+        "OK",
+        "4 step cases, one state in and one state out each; no leak outputs a state value"
+      ],
+      [
+        "LinSpawn",
+        "OK",
+        "single thread kind; the thread and its state are created by one rule/process"
+      ],
+      [
+        "Blk",
+        "OK",
+        "block = state input, attacker input, guards, events, outputs, state output"
+      ],
+      [
+        "Grd",
+        "OK",
+        "guards are equality tests on public numeral constants; domains q=[0], a=[0, 1, 2, 3]"
+      ],
+      [
+        "Det",
+        "OK",
+        "cases with the same consumed state have disjoint input patterns"
+      ],
+      [
+        "Dist",
+        "OK",
+        "one role with a fresh identity; no public role names"
+      ],
+      [
+        "Leak",
+        "OK",
+        "leak outputs a persistent fresh name; enabled from thread start (guard: the published identity)"
+      ],
+      [
+        "Rul",
+        "BY-CONSTRUCTION",
+        "8 cases printed to both tools from one object"
+      ],
+      [
+        "Bound(e)",
+        "OK",
+        "longest update chain 1; declared bound 1; Theorem 1(e) applies with n = 1"
+      ]
+    ],
+    "expected": "one-sided model change; verdict discrepancy not guaranteed",
+    "pv_run": {
+      "command": [
+        "proverif",
+        "/redacted-home/workspace/audit_20261028/mutation_extension_20261029/lmots__wrong_public_key/model.pv"
+      ],
+      "rc": 0,
+      "stdout": "PV.out",
+      "stdout_sha256": "f167ab6eaec744c061336629cbc64faad9583727d90d81d909db273e2cb57a84",
+      "elapsed_s": 0.102366,
+      "timeout_s": 15,
+      "rss_stop_mib": 850,
+      "sampled_peak_rss_kib": 16
+    },
+    "tm_run": {
+      "command": [
+        "tamarin-prover",
+        "--prove",
+        "--derivcheck-timeout=0",
+        "/redacted-home/workspace/audit_20261028/mutation_extension_20261029/lmots__wrong_public_key/model.spthy",
+        "+RTS",
+        "-N1",
+        "-M500m",
+        "-RTS"
+      ],
+      "rc": 0,
+      "stdout": "TM.out",
+      "stdout_sha256": "41c5ec8bc3fd9a973e152e064494098751449efb75f6d0ed5e13134ec6f5fed6",
+      "elapsed_s": 0.80698,
+      "timeout_s": 15,
+      "rss_stop_mib": 850,
+      "sampled_peak_rss_kib": 39832
+    },
+    "results": [
+      {
+        "query": "exec_accept",
+        "kind": "phi3",
+        "pv": "is true",
+        "tm": "verified",
+        "normalized_pv": "H",
+        "normalized_tm": "W",
+        "discrepancy": true,
+        "findings": [
+          {
+            "cause": "ENC-map",
+            "records": [
+              "X_PV_U2",
+              "X_T_base"
+            ],
+            "note": "impossible pair on Tle, T: a hypothesis, the generator or a tool is at fault"
+          }
+        ]
+      },
+      {
+        "query": "LS1_unforge",
+        "kind": "phi1",
+        "pv": "is true",
+        "tm": "verified",
+        "normalized_pv": "H",
+        "normalized_tm": "H",
+        "discrepancy": false,
+        "findings": []
+      },
+      {
+        "query": "forge",
+        "kind": "phi3",
+        "pv": "is true",
+        "tm": "falsified",
+        "normalized_pv": "H",
+        "normalized_tm": "H",
+        "discrepancy": false,
+        "findings": []
+      }
+    ]
+  },
+  {
+    "seed": "lmots",
+    "operator": "private_to_public",
+    "directory": "lmots__private_to_public",
+    "pv_sha256": "31c28109cbc4e5a536cea91664fd346d373abfc614ee09d5dcd81cc0c50f01d2",
+    "tm_sha256": "28e70408184a582efc07801b5bc321319d9e929eaccfd9dc3459f1a5d9c0a1c3",
+    "source_cim_sha256": "c38b6a981ec4235134031d7d588d9c121bebdd86380cefab0c3d8b36532cce16",
+    "queries": [
+      "exec_accept",
+      "LS1_unforge",
+      "forge"
+    ],
+    "kinds": [
+      "phi3",
+      "phi1",
+      "phi3"
+    ],
+    "checks": [
+      [
+        "Sig",
+        "OK",
+        "2 symbols used, one declaration table; tuples as right-nested pairs in both tools"
+      ],
+      [
+        "Evt",
+        "BY-CONSTRUCTION",
+        "3 event symbols printed from one table"
+      ],
+      [
+        "EvtSep",
+        "OK",
+        "no rule carries two observed events of one property"
+      ],
+      [
+        "Saf",
+        "OK",
+        "restrictions: OneMisuse only (variants cl1, rb1), universal with equality conclusion"
+      ],
+      [
+        "Lin",
+        "OK",
+        "4 step cases, one state in and one state out each; no leak outputs a state value"
+      ],
+      [
+        "LinSpawn",
+        "OK",
+        "single thread kind; the thread and its state are created by one rule/process"
+      ],
+      [
+        "Blk",
+        "OK",
+        "block = state input, attacker input, guards, events, outputs, state output"
+      ],
+      [
+        "Grd",
+        "OK",
+        "guards are equality tests on public numeral constants; domains q=[0], a=[0, 1, 2, 3]"
+      ],
+      [
+        "Det",
+        "OK",
+        "cases with the same consumed state have disjoint input patterns"
+      ],
+      [
+        "Dist",
+        "OK",
+        "one role with a fresh identity; no public role names"
+      ],
+      [
+        "Leak",
+        "OK",
+        "leak outputs a persistent fresh name; enabled from thread start (guard: the published identity)"
+      ],
+      [
+        "Rul",
+        "BY-CONSTRUCTION",
+        "8 cases printed to both tools from one object"
+      ],
+      [
+        "Bound(e)",
+        "OK",
+        "longest update chain 1; declared bound 1; Theorem 1(e) applies with n = 1"
+      ]
+    ],
+    "expected": "one-sided model change; verdict discrepancy not guaranteed",
+    "pv_run": {
+      "command": [
+        "proverif",
+        "/redacted-home/workspace/audit_20261028/mutation_extension_20261029/lmots__private_to_public/model.pv"
+      ],
+      "rc": 0,
+      "stdout": "PV.out",
+      "stdout_sha256": "47ef45acf199f01b8774762f178f96c7fa4e437fee18e20804d027112c381784",
+      "elapsed_s": 0.10193,
+      "timeout_s": 15,
+      "rss_stop_mib": 850,
+      "sampled_peak_rss_kib": 16
+    },
+    "tm_run": {
+      "command": [
+        "tamarin-prover",
+        "--prove",
+        "--derivcheck-timeout=0",
+        "/redacted-home/workspace/audit_20261028/mutation_extension_20261029/lmots__private_to_public/model.spthy",
+        "+RTS",
+        "-N1",
+        "-M500m",
+        "-RTS"
+      ],
+      "rc": 0,
+      "stdout": "TM.out",
+      "stdout_sha256": "cf703fee5dd3fe87a3550a9694b1a883a60352b7f750d111e775d89fd4368408",
+      "elapsed_s": 0.804934,
+      "timeout_s": 15,
+      "rss_stop_mib": 850,
+      "sampled_peak_rss_kib": 39964
+    },
+    "results": [
+      {
+        "query": "exec_accept",
+        "kind": "phi3",
+        "pv": "is false",
+        "tm": "verified",
+        "normalized_pv": "W",
+        "normalized_tm": "W",
+        "discrepancy": false,
+        "findings": []
+      },
+      {
+        "query": "LS1_unforge",
+        "kind": "phi1",
+        "pv": "is true",
+        "tm": "verified",
+        "normalized_pv": "H",
+        "normalized_tm": "H",
+        "discrepancy": false,
+        "findings": []
+      },
+      {
+        "query": "forge",
+        "kind": "phi3",
+        "pv": "is true",
+        "tm": "falsified",
+        "normalized_pv": "H",
+        "normalized_tm": "H",
+        "discrepancy": false,
+        "findings": []
+      }
+    ]
+  },
+  {
+    "seed": "lmots",
+    "operator": "reveal_wrong_secret",
+    "directory": "lmots__reveal_wrong_secret",
+    "pv_sha256": "5a430c4cbfa754e276b58d1c1abb5ae53c28f863d8b92a265e9092afc62e9c4d",
+    "tm_sha256": "28e70408184a582efc07801b5bc321319d9e929eaccfd9dc3459f1a5d9c0a1c3",
+    "source_cim_sha256": "c38b6a981ec4235134031d7d588d9c121bebdd86380cefab0c3d8b36532cce16",
+    "queries": [
+      "exec_accept",
+      "LS1_unforge",
+      "forge"
+    ],
+    "kinds": [
+      "phi3",
+      "phi1",
+      "phi3"
+    ],
+    "checks": [
+      [
+        "Sig",
+        "OK",
+        "2 symbols used, one declaration table; tuples as right-nested pairs in both tools"
+      ],
+      [
+        "Evt",
+        "BY-CONSTRUCTION",
+        "3 event symbols printed from one table"
+      ],
+      [
+        "EvtSep",
+        "OK",
+        "no rule carries two observed events of one property"
+      ],
+      [
+        "Saf",
+        "OK",
+        "restrictions: OneMisuse only (variants cl1, rb1), universal with equality conclusion"
+      ],
+      [
+        "Lin",
+        "OK",
+        "4 step cases, one state in and one state out each; no leak outputs a state value"
+      ],
+      [
+        "LinSpawn",
+        "OK",
+        "single thread kind; the thread and its state are created by one rule/process"
+      ],
+      [
+        "Blk",
+        "OK",
+        "block = state input, attacker input, guards, events, outputs, state output"
+      ],
+      [
+        "Grd",
+        "OK",
+        "guards are equality tests on public numeral constants; domains q=[0], a=[0, 1, 2, 3]"
+      ],
+      [
+        "Det",
+        "OK",
+        "cases with the same consumed state have disjoint input patterns"
+      ],
+      [
+        "Dist",
+        "OK",
+        "one role with a fresh identity; no public role names"
+      ],
+      [
+        "Leak",
+        "OK",
+        "leak outputs a persistent fresh name; enabled from thread start (guard: the published identity)"
+      ],
+      [
+        "Rul",
+        "BY-CONSTRUCTION",
+        "8 cases printed to both tools from one object"
+      ],
+      [
+        "Bound(e)",
+        "OK",
+        "longest update chain 1; declared bound 1; Theorem 1(e) applies with n = 1"
+      ]
+    ],
+    "expected": "one-sided model change; verdict discrepancy not guaranteed",
+    "pv_run": {
+      "command": [
+        "proverif",
+        "/redacted-home/workspace/audit_20261028/mutation_extension_20261029/lmots__reveal_wrong_secret/model.pv"
+      ],
+      "rc": 0,
+      "stdout": "PV.out",
+      "stdout_sha256": "3693de9c4060388ef211dde130708a9662dfc11d0963853a78b180bc6a5ddb23",
+      "elapsed_s": 0.10239,
+      "timeout_s": 15,
+      "rss_stop_mib": 850,
+      "sampled_peak_rss_kib": 16
+    },
+    "tm_run": {
+      "command": [
+        "tamarin-prover",
+        "--prove",
+        "--derivcheck-timeout=0",
+        "/redacted-home/workspace/audit_20261028/mutation_extension_20261029/lmots__reveal_wrong_secret/model.spthy",
+        "+RTS",
+        "-N1",
+        "-M500m",
+        "-RTS"
+      ],
+      "rc": 0,
+      "stdout": "TM.out",
+      "stdout_sha256": "4e814f9e62f179ebef4280a56141e5fe83bf78dfdf25203de886b2bab6e33d29",
+      "elapsed_s": 0.80456,
+      "timeout_s": 15,
+      "rss_stop_mib": 850,
+      "sampled_peak_rss_kib": 39872
+    },
+    "results": [
+      {
+        "query": "exec_accept",
+        "kind": "phi3",
+        "pv": "is false",
+        "tm": "verified",
+        "normalized_pv": "W",
+        "normalized_tm": "W",
+        "discrepancy": false,
+        "findings": []
+      },
+      {
+        "query": "LS1_unforge",
+        "kind": "phi1",
+        "pv": "is true",
+        "tm": "verified",
+        "normalized_pv": "H",
+        "normalized_tm": "H",
+        "discrepancy": false,
+        "findings": []
+      },
+      {
+        "query": "forge",
+        "kind": "phi3",
+        "pv": "is true",
+        "tm": "falsified",
+        "normalized_pv": "H",
+        "normalized_tm": "H",
+        "discrepancy": false,
+        "findings": []
+      }
+    ]
+  },
+  {
+    "seed": "lms_s2",
+    "operator": "control",
+    "directory": "lms_s2__control",
+    "pv_sha256": "f0984a43f148863be8311428e5a947df2b3a17c9a75479c96013df49c9e8c064",
+    "tm_sha256": "19829fa7ca8f36f6609f301278740bd2325f22b17a53c6439bb5a2e0697e423b",
+    "source_cim_sha256": "441457323dde0422485f4d5474d02c53d29dffd591004ebd9eeb2178fd318227",
+    "queries": [
+      "exec",
+      "LS4_pure",
+      "LS1",
+      "LS3_forge"
+    ],
+    "kinds": [
+      "phi3",
+      "phi2",
+      "phi1",
+      "phi3"
+    ],
+    "checks": [
+      [
+        "Sig",
+        "OK",
+        "3 symbols used, one declaration table; tuples as right-nested pairs in both tools"
+      ],
+      [
+        "Evt",
+        "BY-CONSTRUCTION",
+        "3 event symbols printed from one table"
+      ],
+      [
+        "EvtSep",
+        "OK",
+        "no rule carries two observed events of one property"
+      ],
+      [
+        "Saf",
+        "OK",
+        "restrictions: OneMisuse only (variants cl1, rb1), universal with equality conclusion"
+      ],
+      [
+        "Lin",
+        "OK",
+        "8 step cases, one state in and one state out each; no leak outputs a state value"
+      ],
+      [
+        "LinSpawn",
+        "OK",
+        "single thread kind; the thread and its state are created by one rule/process"
+      ],
+      [
+        "Blk",
+        "OK",
+        "block = state input, attacker input, guards, events, outputs, state output"
+      ],
+      [
+        "Grd",
+        "OK",
+        "guards are equality tests on public numeral constants; domains q=[0, 1], a=[0, 1, 2, 3]"
+      ],
+      [
+        "Det",
+        "OK",
+        "cases with the same consumed state have disjoint input patterns"
+      ],
+      [
+        "Dist",
+        "OK",
+        "one role with a fresh identity; no public role names"
+      ],
+      [
+        "Leak",
+        "OK",
+        "leak outputs a persistent fresh name; enabled from thread start (guard: the published identity)"
+      ],
+      [
+        "Rul",
+        "BY-CONSTRUCTION",
+        "16 cases printed to both tools from one object"
+      ],
+      [
+        "Bound(e)",
+        "OK",
+        "longest update chain 2; declared bound 2; Theorem 1(e) applies with n = 2"
+      ]
+    ],
+    "expected": "control",
+    "pv_run": {
+      "command": [
+        "proverif",
+        "/redacted-home/workspace/audit_20261028/mutation_extension_20261029/lms_s2__control/model.pv"
+      ],
+      "rc": 0,
+      "stdout": "PV.out",
+      "stdout_sha256": "108c833c7dfe87bc3d7d366650c054b96d9a5719c64c4b71a2ed0d5beda6ba69",
+      "elapsed_s": 0.20261,
+      "timeout_s": 15,
+      "rss_stop_mib": 850,
+      "sampled_peak_rss_kib": 14708
+    },
+    "tm_run": {
+      "command": [
+        "tamarin-prover",
+        "--prove",
+        "--derivcheck-timeout=0",
+        "/redacted-home/workspace/audit_20261028/mutation_extension_20261029/lms_s2__control/model.spthy",
+        "+RTS",
+        "-N1",
+        "-M500m",
+        "-RTS"
+      ],
+      "rc": 124,
+      "stdout": "TM.out",
+      "stdout_sha256": "d148ee83c4cdfe0f1fcfcce5a69d47590df5e0654e4c9c62bef8518beed98e67",
+      "elapsed_s": 15.060466,
+      "timeout_s": 15,
+      "rss_stop_mib": 850,
+      "sampled_peak_rss_kib": 227640
+    },
+    "results": [
+      {
+        "query": "exec",
+        "kind": "phi3",
+        "pv": "is false",
+        "tm": "verified",
+        "normalized_pv": "W",
+        "normalized_tm": "W",
+        "discrepancy": false,
+        "findings": []
+      },
+      {
+        "query": "LS4_pure",
+        "kind": "phi2",
+        "pv": "is true",
+        "tm": "verified",
+        "normalized_pv": "H",
+        "normalized_tm": "H",
+        "discrepancy": false,
+        "findings": []
+      },
+      {
+        "query": "LS1",
+        "kind": "phi1",
+        "pv": "is true",
+        "tm": "verified",
+        "normalized_pv": "H",
+        "normalized_tm": "H",
+        "discrepancy": false,
+        "findings": []
+      },
+      {
+        "query": "LS3_forge",
+        "kind": "phi3",
+        "pv": "is true",
+        "tm": "falsified",
+        "normalized_pv": "H",
+        "normalized_tm": "H",
+        "discrepancy": false,
+        "findings": []
+      }
+    ],
+    "reference_completion": {
+      "source": "../extension_20261029_rss/lms_s2/tamarin.out",
+      "model_sha256": "19829fa7ca8f36f6609f301278740bd2325f22b17a53c6439bb5a2e0697e423b",
+      "stdout_sha256": "07aebba8315d453d0bd6e5b1afcd40402f555af647eab395ff599478a676b1e9",
+      "note": "Shared unchanged source, executed once at 30s. Original 15s attempts remain saved; not independent replicates."
+    }
+  },
+  {
+    "seed": "lms_s2",
+    "operator": "event_accept_argument",
+    "directory": "lms_s2__event_accept_argument",
+    "pv_sha256": "cf4522f262c318f32ae008f15dad3d9ceecc16fa11cc17d9c529fc3241ed9955",
+    "tm_sha256": "19829fa7ca8f36f6609f301278740bd2325f22b17a53c6439bb5a2e0697e423b",
+    "source_cim_sha256": "441457323dde0422485f4d5474d02c53d29dffd591004ebd9eeb2178fd318227",
+    "queries": [
+      "exec",
+      "LS4_pure",
+      "LS1",
+      "LS3_forge"
+    ],
+    "kinds": [
+      "phi3",
+      "phi2",
+      "phi1",
+      "phi3"
+    ],
+    "checks": [
+      [
+        "Sig",
+        "OK",
+        "3 symbols used, one declaration table; tuples as right-nested pairs in both tools"
+      ],
+      [
+        "Evt",
+        "BY-CONSTRUCTION",
+        "3 event symbols printed from one table"
+      ],
+      [
+        "EvtSep",
+        "OK",
+        "no rule carries two observed events of one property"
+      ],
+      [
+        "Saf",
+        "OK",
+        "restrictions: OneMisuse only (variants cl1, rb1), universal with equality conclusion"
+      ],
+      [
+        "Lin",
+        "OK",
+        "8 step cases, one state in and one state out each; no leak outputs a state value"
+      ],
+      [
+        "LinSpawn",
+        "OK",
+        "single thread kind; the thread and its state are created by one rule/process"
+      ],
+      [
+        "Blk",
+        "OK",
+        "block = state input, attacker input, guards, events, outputs, state output"
+      ],
+      [
+        "Grd",
+        "OK",
+        "guards are equality tests on public numeral constants; domains q=[0, 1], a=[0, 1, 2, 3]"
+      ],
+      [
+        "Det",
+        "OK",
+        "cases with the same consumed state have disjoint input patterns"
+      ],
+      [
+        "Dist",
+        "OK",
+        "one role with a fresh identity; no public role names"
+      ],
+      [
+        "Leak",
+        "OK",
+        "leak outputs a persistent fresh name; enabled from thread start (guard: the published identity)"
+      ],
+      [
+        "Rul",
+        "BY-CONSTRUCTION",
+        "16 cases printed to both tools from one object"
+      ],
+      [
+        "Bound(e)",
+        "OK",
+        "longest update chain 2; declared bound 2; Theorem 1(e) applies with n = 2"
+      ]
+    ],
+    "expected": "one-sided model change; verdict discrepancy not guaranteed",
+    "pv_run": {
+      "command": [
+        "proverif",
+        "/redacted-home/workspace/audit_20261028/mutation_extension_20261029/lms_s2__event_accept_argument/model.pv"
+      ],
+      "rc": 0,
+      "stdout": "PV.out",
+      "stdout_sha256": "3e6953cf6340bbc44c80884252aad24daee76041dac77638e8551e8f3a1d4a42",
+      "elapsed_s": 0.205311,
+      "timeout_s": 15,
+      "rss_stop_mib": 850,
+      "sampled_peak_rss_kib": 14960
+    },
+    "tm_run": {
+      "command": [
+        "tamarin-prover",
+        "--prove",
+        "--derivcheck-timeout=0",
+        "/redacted-home/workspace/audit_20261028/mutation_extension_20261029/lms_s2__event_accept_argument/model.spthy",
+        "+RTS",
+        "-N1",
+        "-M500m",
+        "-RTS"
+      ],
+      "rc": 124,
+      "stdout": "TM.out",
+      "stdout_sha256": "d148ee83c4cdfe0f1fcfcce5a69d47590df5e0654e4c9c62bef8518beed98e67",
+      "elapsed_s": 15.059745,
+      "timeout_s": 15,
+      "rss_stop_mib": 850,
+      "sampled_peak_rss_kib": 225480
+    },
+    "results": [
+      {
+        "query": "exec",
+        "kind": "phi3",
+        "pv": "is false",
+        "tm": "verified",
+        "normalized_pv": "W",
+        "normalized_tm": "W",
+        "discrepancy": false,
+        "findings": []
+      },
+      {
+        "query": "LS4_pure",
+        "kind": "phi2",
+        "pv": "is true",
+        "tm": "verified",
+        "normalized_pv": "H",
+        "normalized_tm": "H",
+        "discrepancy": false,
+        "findings": []
+      },
+      {
+        "query": "LS1",
+        "kind": "phi1",
+        "pv": "is false",
+        "tm": "verified",
+        "normalized_pv": "W",
+        "normalized_tm": "H",
+        "discrepancy": true,
+        "findings": [
+          {
+            "cause": "ENC-map",
+            "records": [
+              "X_T_base",
+              "X_PV_U2"
+            ],
+            "note": "impossible pair on Tle, T: a hypothesis, the generator or a tool is at fault"
+          }
+        ]
+      },
+      {
+        "query": "LS3_forge",
+        "kind": "phi3",
+        "pv": "is false",
+        "tm": "falsified",
+        "normalized_pv": "W",
+        "normalized_tm": "H",
+        "discrepancy": true,
+        "findings": [
+          {
+            "cause": "ENC-map",
+            "records": [
+              "X_T_base",
+              "X_PV_U2"
+            ],
+            "note": "impossible pair on Tle, T: a hypothesis, the generator or a tool is at fault"
+          }
+        ]
+      }
+    ],
+    "reference_completion": {
+      "source": "../extension_20261029_rss/lms_s2/tamarin.out",
+      "model_sha256": "19829fa7ca8f36f6609f301278740bd2325f22b17a53c6439bb5a2e0697e423b",
+      "stdout_sha256": "07aebba8315d453d0bd6e5b1afcd40402f555af647eab395ff599478a676b1e9",
+      "note": "Shared unchanged source, executed once at 30s. Original 15s attempts remain saved; not independent replicates."
+    }
+  },
+  {
+    "seed": "lms_s2",
+    "operator": "event_sign_argument",
+    "directory": "lms_s2__event_sign_argument",
+    "pv_sha256": "3a918366d7aa17fd4658234639aff625d16355853e6999bfec571493845693ab",
+    "tm_sha256": "19829fa7ca8f36f6609f301278740bd2325f22b17a53c6439bb5a2e0697e423b",
+    "source_cim_sha256": "441457323dde0422485f4d5474d02c53d29dffd591004ebd9eeb2178fd318227",
+    "queries": [
+      "exec",
+      "LS4_pure",
+      "LS1",
+      "LS3_forge"
+    ],
+    "kinds": [
+      "phi3",
+      "phi2",
+      "phi1",
+      "phi3"
+    ],
+    "checks": [
+      [
+        "Sig",
+        "OK",
+        "3 symbols used, one declaration table; tuples as right-nested pairs in both tools"
+      ],
+      [
+        "Evt",
+        "BY-CONSTRUCTION",
+        "3 event symbols printed from one table"
+      ],
+      [
+        "EvtSep",
+        "OK",
+        "no rule carries two observed events of one property"
+      ],
+      [
+        "Saf",
+        "OK",
+        "restrictions: OneMisuse only (variants cl1, rb1), universal with equality conclusion"
+      ],
+      [
+        "Lin",
+        "OK",
+        "8 step cases, one state in and one state out each; no leak outputs a state value"
+      ],
+      [
+        "LinSpawn",
+        "OK",
+        "single thread kind; the thread and its state are created by one rule/process"
+      ],
+      [
+        "Blk",
+        "OK",
+        "block = state input, attacker input, guards, events, outputs, state output"
+      ],
+      [
+        "Grd",
+        "OK",
+        "guards are equality tests on public numeral constants; domains q=[0, 1], a=[0, 1, 2, 3]"
+      ],
+      [
+        "Det",
+        "OK",
+        "cases with the same consumed state have disjoint input patterns"
+      ],
+      [
+        "Dist",
+        "OK",
+        "one role with a fresh identity; no public role names"
+      ],
+      [
+        "Leak",
+        "OK",
+        "leak outputs a persistent fresh name; enabled from thread start (guard: the published identity)"
+      ],
+      [
+        "Rul",
+        "BY-CONSTRUCTION",
+        "16 cases printed to both tools from one object"
+      ],
+      [
+        "Bound(e)",
+        "OK",
+        "longest update chain 2; declared bound 2; Theorem 1(e) applies with n = 2"
+      ]
+    ],
+    "expected": "one-sided model change; verdict discrepancy not guaranteed",
+    "pv_run": {
+      "command": [
+        "proverif",
+        "/redacted-home/workspace/audit_20261028/mutation_extension_20261029/lms_s2__event_sign_argument/model.pv"
+      ],
+      "rc": 0,
+      "stdout": "PV.out",
+      "stdout_sha256": "05d71f87a5cf3eac9b1d0c1775c56bc6b275fda5760b3cd4ff732ea15d94b7b8",
+      "elapsed_s": 0.203736,
+      "timeout_s": 15,
+      "rss_stop_mib": 850,
+      "sampled_peak_rss_kib": 14864
+    },
+    "tm_run": {
+      "command": [
+        "tamarin-prover",
+        "--prove",
+        "--derivcheck-timeout=0",
+        "/redacted-home/workspace/audit_20261028/mutation_extension_20261029/lms_s2__event_sign_argument/model.spthy",
+        "+RTS",
+        "-N1",
+        "-M500m",
+        "-RTS"
+      ],
+      "rc": 124,
+      "stdout": "TM.out",
+      "stdout_sha256": "d148ee83c4cdfe0f1fcfcce5a69d47590df5e0654e4c9c62bef8518beed98e67",
+      "elapsed_s": 15.060327,
+      "timeout_s": 15,
+      "rss_stop_mib": 850,
+      "sampled_peak_rss_kib": 225532
+    },
+    "results": [
+      {
+        "query": "exec",
+        "kind": "phi3",
+        "pv": "is false",
+        "tm": "verified",
+        "normalized_pv": "W",
+        "normalized_tm": "W",
+        "discrepancy": false,
+        "findings": []
+      },
+      {
+        "query": "LS4_pure",
+        "kind": "phi2",
+        "pv": "is true",
+        "tm": "verified",
+        "normalized_pv": "H",
+        "normalized_tm": "H",
+        "discrepancy": false,
+        "findings": []
+      },
+      {
+        "query": "LS1",
+        "kind": "phi1",
+        "pv": "is false",
+        "tm": "verified",
+        "normalized_pv": "W",
+        "normalized_tm": "H",
+        "discrepancy": true,
+        "findings": [
+          {
+            "cause": "ENC-map",
+            "records": [
+              "X_T_base",
+              "X_PV_U2"
+            ],
+            "note": "impossible pair on Tle, T: a hypothesis, the generator or a tool is at fault"
+          }
+        ]
+      },
+      {
+        "query": "LS3_forge",
+        "kind": "phi3",
+        "pv": "is false",
+        "tm": "falsified",
+        "normalized_pv": "W",
+        "normalized_tm": "H",
+        "discrepancy": true,
+        "findings": [
+          {
+            "cause": "ENC-map",
+            "records": [
+              "X_T_base",
+              "X_PV_U2"
+            ],
+            "note": "impossible pair on Tle, T: a hypothesis, the generator or a tool is at fault"
+          }
+        ]
+      }
+    ],
+    "reference_completion": {
+      "source": "../extension_20261029_rss/lms_s2/tamarin.out",
+      "model_sha256": "19829fa7ca8f36f6609f301278740bd2325f22b17a53c6439bb5a2e0697e423b",
+      "stdout_sha256": "07aebba8315d453d0bd6e5b1afcd40402f555af647eab395ff599478a676b1e9",
+      "note": "Shared unchanged source, executed once at 30s. Original 15s attempts remain saved; not independent replicates."
+    }
+  },
+  {
+    "seed": "lms_s2",
+    "operator": "remove_reveal_event",
+    "directory": "lms_s2__remove_reveal_event",
+    "pv_sha256": "36494cbe13949ec92106acaa83f8107e603f886b3a5922084e6e0afd54eeb1e6",
+    "tm_sha256": "19829fa7ca8f36f6609f301278740bd2325f22b17a53c6439bb5a2e0697e423b",
+    "source_cim_sha256": "441457323dde0422485f4d5474d02c53d29dffd591004ebd9eeb2178fd318227",
+    "queries": [
+      "exec",
+      "LS4_pure",
+      "LS1",
+      "LS3_forge"
+    ],
+    "kinds": [
+      "phi3",
+      "phi2",
+      "phi1",
+      "phi3"
+    ],
+    "checks": [
+      [
+        "Sig",
+        "OK",
+        "3 symbols used, one declaration table; tuples as right-nested pairs in both tools"
+      ],
+      [
+        "Evt",
+        "BY-CONSTRUCTION",
+        "3 event symbols printed from one table"
+      ],
+      [
+        "EvtSep",
+        "OK",
+        "no rule carries two observed events of one property"
+      ],
+      [
+        "Saf",
+        "OK",
+        "restrictions: OneMisuse only (variants cl1, rb1), universal with equality conclusion"
+      ],
+      [
+        "Lin",
+        "OK",
+        "8 step cases, one state in and one state out each; no leak outputs a state value"
+      ],
+      [
+        "LinSpawn",
+        "OK",
+        "single thread kind; the thread and its state are created by one rule/process"
+      ],
+      [
+        "Blk",
+        "OK",
+        "block = state input, attacker input, guards, events, outputs, state output"
+      ],
+      [
+        "Grd",
+        "OK",
+        "guards are equality tests on public numeral constants; domains q=[0, 1], a=[0, 1, 2, 3]"
+      ],
+      [
+        "Det",
+        "OK",
+        "cases with the same consumed state have disjoint input patterns"
+      ],
+      [
+        "Dist",
+        "OK",
+        "one role with a fresh identity; no public role names"
+      ],
+      [
+        "Leak",
+        "OK",
+        "leak outputs a persistent fresh name; enabled from thread start (guard: the published identity)"
+      ],
+      [
+        "Rul",
+        "BY-CONSTRUCTION",
+        "16 cases printed to both tools from one object"
+      ],
+      [
+        "Bound(e)",
+        "OK",
+        "longest update chain 2; declared bound 2; Theorem 1(e) applies with n = 2"
+      ]
+    ],
+    "expected": "one-sided model change; verdict discrepancy not guaranteed",
+    "pv_run": {
+      "command": [
+        "proverif",
+        "/redacted-home/workspace/audit_20261028/mutation_extension_20261029/lms_s2__remove_reveal_event/model.pv"
+      ],
+      "rc": 0,
+      "stdout": "PV.out",
+      "stdout_sha256": "a04997b989dda1b194b4739c0054d2f0ccea8999a51450304f0a61718b077a3a",
+      "elapsed_s": 0.20453,
+      "timeout_s": 15,
+      "rss_stop_mib": 850,
+      "sampled_peak_rss_kib": 14612
+    },
+    "tm_run": {
+      "command": [
+        "tamarin-prover",
+        "--prove",
+        "--derivcheck-timeout=0",
+        "/redacted-home/workspace/audit_20261028/mutation_extension_20261029/lms_s2__remove_reveal_event/model.spthy",
+        "+RTS",
+        "-N1",
+        "-M500m",
+        "-RTS"
+      ],
+      "rc": 124,
+      "stdout": "TM.out",
+      "stdout_sha256": "d148ee83c4cdfe0f1fcfcce5a69d47590df5e0654e4c9c62bef8518beed98e67",
+      "elapsed_s": 15.062262,
+      "timeout_s": 15,
+      "rss_stop_mib": 850,
+      "sampled_peak_rss_kib": 225520
+    },
+    "results": [
+      {
+        "query": "exec",
+        "kind": "phi3",
+        "pv": "is false",
+        "tm": "verified",
+        "normalized_pv": "W",
+        "normalized_tm": "W",
+        "discrepancy": false,
+        "findings": []
+      },
+      {
+        "query": "LS4_pure",
+        "kind": "phi2",
+        "pv": "is true",
+        "tm": "verified",
+        "normalized_pv": "H",
+        "normalized_tm": "H",
+        "discrepancy": false,
+        "findings": []
+      },
+      {
+        "query": "LS1",
+        "kind": "phi1",
+        "pv": "is true",
+        "tm": "verified",
+        "normalized_pv": "H",
+        "normalized_tm": "H",
+        "discrepancy": false,
+        "findings": []
+      },
+      {
+        "query": "LS3_forge",
+        "kind": "phi3",
+        "pv": "is true",
+        "tm": "falsified",
+        "normalized_pv": "H",
+        "normalized_tm": "H",
+        "discrepancy": false,
+        "findings": []
+      }
+    ],
+    "reference_completion": {
+      "source": "../extension_20261029_rss/lms_s2/tamarin.out",
+      "model_sha256": "19829fa7ca8f36f6609f301278740bd2325f22b17a53c6439bb5a2e0697e423b",
+      "stdout_sha256": "07aebba8315d453d0bd6e5b1afcd40402f555af647eab395ff599478a676b1e9",
+      "note": "Shared unchanged source, executed once at 30s. Original 15s attempts remain saved; not independent replicates."
+    }
+  },
+  {
+    "seed": "lms_s2",
+    "operator": "replicate_signer",
+    "directory": "lms_s2__replicate_signer",
+    "pv_sha256": "ef57fff6bd2ea55d1cd016251d590b008ac7bc9ac64c26025e8f77c8d5d9dd59",
+    "tm_sha256": "19829fa7ca8f36f6609f301278740bd2325f22b17a53c6439bb5a2e0697e423b",
+    "source_cim_sha256": "441457323dde0422485f4d5474d02c53d29dffd591004ebd9eeb2178fd318227",
+    "queries": [
+      "exec",
+      "LS4_pure",
+      "LS1",
+      "LS3_forge"
+    ],
+    "kinds": [
+      "phi3",
+      "phi2",
+      "phi1",
+      "phi3"
+    ],
+    "checks": [
+      [
+        "Sig",
+        "OK",
+        "3 symbols used, one declaration table; tuples as right-nested pairs in both tools"
+      ],
+      [
+        "Evt",
+        "BY-CONSTRUCTION",
+        "3 event symbols printed from one table"
+      ],
+      [
+        "EvtSep",
+        "OK",
+        "no rule carries two observed events of one property"
+      ],
+      [
+        "Saf",
+        "OK",
+        "restrictions: OneMisuse only (variants cl1, rb1), universal with equality conclusion"
+      ],
+      [
+        "Lin",
+        "OK",
+        "8 step cases, one state in and one state out each; no leak outputs a state value"
+      ],
+      [
+        "LinSpawn",
+        "OK",
+        "single thread kind; the thread and its state are created by one rule/process"
+      ],
+      [
+        "Blk",
+        "OK",
+        "block = state input, attacker input, guards, events, outputs, state output"
+      ],
+      [
+        "Grd",
+        "OK",
+        "guards are equality tests on public numeral constants; domains q=[0, 1], a=[0, 1, 2, 3]"
+      ],
+      [
+        "Det",
+        "OK",
+        "cases with the same consumed state have disjoint input patterns"
+      ],
+      [
+        "Dist",
+        "OK",
+        "one role with a fresh identity; no public role names"
+      ],
+      [
+        "Leak",
+        "OK",
+        "leak outputs a persistent fresh name; enabled from thread start (guard: the published identity)"
+      ],
+      [
+        "Rul",
+        "BY-CONSTRUCTION",
+        "16 cases printed to both tools from one object"
+      ],
+      [
+        "Bound(e)",
+        "OK",
+        "longest update chain 2; declared bound 2; Theorem 1(e) applies with n = 2"
+      ]
+    ],
+    "expected": "one-sided model change; verdict discrepancy not guaranteed",
+    "pv_run": {
+      "command": [
+        "proverif",
+        "/redacted-home/workspace/audit_20261028/mutation_extension_20261029/lms_s2__replicate_signer/model.pv"
+      ],
+      "rc": 0,
+      "stdout": "PV.out",
+      "stdout_sha256": "947cebb5568bc76de599f47a01550d9a0e6ffceac31d5b80e1d8ae4dbddda871",
+      "elapsed_s": 0.506099,
+      "timeout_s": 15,
+      "rss_stop_mib": 850,
+      "sampled_peak_rss_kib": 19068
+    },
+    "tm_run": {
+      "command": [
+        "tamarin-prover",
+        "--prove",
+        "--derivcheck-timeout=0",
+        "/redacted-home/workspace/audit_20261028/mutation_extension_20261029/lms_s2__replicate_signer/model.spthy",
+        "+RTS",
+        "-N1",
+        "-M500m",
+        "-RTS"
+      ],
+      "rc": 124,
+      "stdout": "TM.out",
+      "stdout_sha256": "d148ee83c4cdfe0f1fcfcce5a69d47590df5e0654e4c9c62bef8518beed98e67",
+      "elapsed_s": 15.083509,
+      "timeout_s": 15,
+      "rss_stop_mib": 850,
+      "sampled_peak_rss_kib": 225460
+    },
+    "results": [
+      {
+        "query": "exec",
+        "kind": "phi3",
+        "pv": "is false",
+        "tm": "verified",
+        "normalized_pv": "W",
+        "normalized_tm": "W",
+        "discrepancy": false,
+        "findings": []
+      },
+      {
+        "query": "LS4_pure",
+        "kind": "phi2",
+        "pv": "is false",
+        "tm": "verified",
+        "normalized_pv": "W",
+        "normalized_tm": "H",
+        "discrepancy": true,
+        "findings": [
+          {
+            "cause": "ENC-map",
+            "records": [
+              "X_T_base",
+              "X_PV_U2"
+            ],
+            "note": "impossible pair on Tle, T: a hypothesis, the generator or a tool is at fault"
+          }
+        ]
+      },
+      {
+        "query": "LS1",
+        "kind": "phi1",
+        "pv": "is false",
+        "tm": "verified",
+        "normalized_pv": "W",
+        "normalized_tm": "H",
+        "discrepancy": true,
+        "findings": [
+          {
+            "cause": "ENC-map",
+            "records": [
+              "X_T_base",
+              "X_PV_U2"
+            ],
+            "note": "impossible pair on Tle, T: a hypothesis, the generator or a tool is at fault"
+          }
+        ]
+      },
+      {
+        "query": "LS3_forge",
+        "kind": "phi3",
+        "pv": "is false",
+        "tm": "falsified",
+        "normalized_pv": "W",
+        "normalized_tm": "H",
+        "discrepancy": true,
+        "findings": [
+          {
+            "cause": "ENC-map",
+            "records": [
+              "X_T_base",
+              "X_PV_U2"
+            ],
+            "note": "impossible pair on Tle, T: a hypothesis, the generator or a tool is at fault"
+          }
+        ]
+      }
+    ],
+    "reference_completion": {
+      "source": "../extension_20261029_rss/lms_s2/tamarin.out",
+      "model_sha256": "19829fa7ca8f36f6609f301278740bd2325f22b17a53c6439bb5a2e0697e423b",
+      "stdout_sha256": "07aebba8315d453d0bd6e5b1afcd40402f555af647eab395ff599478a676b1e9",
+      "note": "Shared unchanged source, executed once at 30s. Original 15s attempts remain saved; not independent replicates."
+    }
+  },
+  {
+    "seed": "lms_s2",
+    "operator": "disable_signer",
+    "directory": "lms_s2__disable_signer",
+    "pv_sha256": "31f61daab956c3382b1759716a75ae6101d79453230861c5a404c7d586699f22",
+    "tm_sha256": "19829fa7ca8f36f6609f301278740bd2325f22b17a53c6439bb5a2e0697e423b",
+    "source_cim_sha256": "441457323dde0422485f4d5474d02c53d29dffd591004ebd9eeb2178fd318227",
+    "queries": [
+      "exec",
+      "LS4_pure",
+      "LS1",
+      "LS3_forge"
+    ],
+    "kinds": [
+      "phi3",
+      "phi2",
+      "phi1",
+      "phi3"
+    ],
+    "checks": [
+      [
+        "Sig",
+        "OK",
+        "3 symbols used, one declaration table; tuples as right-nested pairs in both tools"
+      ],
+      [
+        "Evt",
+        "BY-CONSTRUCTION",
+        "3 event symbols printed from one table"
+      ],
+      [
+        "EvtSep",
+        "OK",
+        "no rule carries two observed events of one property"
+      ],
+      [
+        "Saf",
+        "OK",
+        "restrictions: OneMisuse only (variants cl1, rb1), universal with equality conclusion"
+      ],
+      [
+        "Lin",
+        "OK",
+        "8 step cases, one state in and one state out each; no leak outputs a state value"
+      ],
+      [
+        "LinSpawn",
+        "OK",
+        "single thread kind; the thread and its state are created by one rule/process"
+      ],
+      [
+        "Blk",
+        "OK",
+        "block = state input, attacker input, guards, events, outputs, state output"
+      ],
+      [
+        "Grd",
+        "OK",
+        "guards are equality tests on public numeral constants; domains q=[0, 1], a=[0, 1, 2, 3]"
+      ],
+      [
+        "Det",
+        "OK",
+        "cases with the same consumed state have disjoint input patterns"
+      ],
+      [
+        "Dist",
+        "OK",
+        "one role with a fresh identity; no public role names"
+      ],
+      [
+        "Leak",
+        "OK",
+        "leak outputs a persistent fresh name; enabled from thread start (guard: the published identity)"
+      ],
+      [
+        "Rul",
+        "BY-CONSTRUCTION",
+        "16 cases printed to both tools from one object"
+      ],
+      [
+        "Bound(e)",
+        "OK",
+        "longest update chain 2; declared bound 2; Theorem 1(e) applies with n = 2"
+      ]
+    ],
+    "expected": "one-sided model change; verdict discrepancy not guaranteed",
+    "pv_run": {
+      "command": [
+        "proverif",
+        "/redacted-home/workspace/audit_20261028/mutation_extension_20261029/lms_s2__disable_signer/model.pv"
+      ],
+      "rc": 0,
+      "stdout": "PV.out",
+      "stdout_sha256": "a54239f89daa2ad416c554f36d949150f3eda505f16a1e4464a98992aa804062",
+      "elapsed_s": 0.105607,
+      "timeout_s": 15,
+      "rss_stop_mib": 850,
+      "sampled_peak_rss_kib": 564
+    },
+    "tm_run": {
+      "command": [
+        "tamarin-prover",
+        "--prove",
+        "--derivcheck-timeout=0",
+        "/redacted-home/workspace/audit_20261028/mutation_extension_20261029/lms_s2__disable_signer/model.spthy",
+        "+RTS",
+        "-N1",
+        "-M500m",
+        "-RTS"
+      ],
+      "rc": 124,
+      "stdout": "TM.out",
+      "stdout_sha256": "d148ee83c4cdfe0f1fcfcce5a69d47590df5e0654e4c9c62bef8518beed98e67",
+      "elapsed_s": 15.061211,
+      "timeout_s": 15,
+      "rss_stop_mib": 850,
+      "sampled_peak_rss_kib": 225492
+    },
+    "results": [
+      {
+        "query": "exec",
+        "kind": "phi3",
+        "pv": "is true",
+        "tm": "verified",
+        "normalized_pv": "H",
+        "normalized_tm": "W",
+        "discrepancy": true,
+        "findings": [
+          {
+            "cause": "ENC-map",
+            "records": [
+              "X_PV_U2",
+              "X_T_base"
+            ],
+            "note": "impossible pair on Tle, T: a hypothesis, the generator or a tool is at fault"
+          }
+        ]
+      },
+      {
+        "query": "LS4_pure",
+        "kind": "phi2",
+        "pv": "is true",
+        "tm": "verified",
+        "normalized_pv": "H",
+        "normalized_tm": "H",
+        "discrepancy": false,
+        "findings": []
+      },
+      {
+        "query": "LS1",
+        "kind": "phi1",
+        "pv": "is true",
+        "tm": "verified",
+        "normalized_pv": "H",
+        "normalized_tm": "H",
+        "discrepancy": false,
+        "findings": []
+      },
+      {
+        "query": "LS3_forge",
+        "kind": "phi3",
+        "pv": "is true",
+        "tm": "falsified",
+        "normalized_pv": "H",
+        "normalized_tm": "H",
+        "discrepancy": false,
+        "findings": []
+      }
+    ],
+    "reference_completion": {
+      "source": "../extension_20261029_rss/lms_s2/tamarin.out",
+      "model_sha256": "19829fa7ca8f36f6609f301278740bd2325f22b17a53c6439bb5a2e0697e423b",
+      "stdout_sha256": "07aebba8315d453d0bd6e5b1afcd40402f555af647eab395ff599478a676b1e9",
+      "note": "Shared unchanged source, executed once at 30s. Original 15s attempts remain saved; not independent replicates."
+    }
+  },
+  {
+    "seed": "lms_s2",
+    "operator": "disable_accept",
+    "directory": "lms_s2__disable_accept",
+    "pv_sha256": "50d02fa6e06a10194692584f59e86956bb8843fdfe869e5f0b0299b68c95f2fb",
+    "tm_sha256": "19829fa7ca8f36f6609f301278740bd2325f22b17a53c6439bb5a2e0697e423b",
+    "source_cim_sha256": "441457323dde0422485f4d5474d02c53d29dffd591004ebd9eeb2178fd318227",
+    "queries": [
+      "exec",
+      "LS4_pure",
+      "LS1",
+      "LS3_forge"
+    ],
+    "kinds": [
+      "phi3",
+      "phi2",
+      "phi1",
+      "phi3"
+    ],
+    "checks": [
+      [
+        "Sig",
+        "OK",
+        "3 symbols used, one declaration table; tuples as right-nested pairs in both tools"
+      ],
+      [
+        "Evt",
+        "BY-CONSTRUCTION",
+        "3 event symbols printed from one table"
+      ],
+      [
+        "EvtSep",
+        "OK",
+        "no rule carries two observed events of one property"
+      ],
+      [
+        "Saf",
+        "OK",
+        "restrictions: OneMisuse only (variants cl1, rb1), universal with equality conclusion"
+      ],
+      [
+        "Lin",
+        "OK",
+        "8 step cases, one state in and one state out each; no leak outputs a state value"
+      ],
+      [
+        "LinSpawn",
+        "OK",
+        "single thread kind; the thread and its state are created by one rule/process"
+      ],
+      [
+        "Blk",
+        "OK",
+        "block = state input, attacker input, guards, events, outputs, state output"
+      ],
+      [
+        "Grd",
+        "OK",
+        "guards are equality tests on public numeral constants; domains q=[0, 1], a=[0, 1, 2, 3]"
+      ],
+      [
+        "Det",
+        "OK",
+        "cases with the same consumed state have disjoint input patterns"
+      ],
+      [
+        "Dist",
+        "OK",
+        "one role with a fresh identity; no public role names"
+      ],
+      [
+        "Leak",
+        "OK",
+        "leak outputs a persistent fresh name; enabled from thread start (guard: the published identity)"
+      ],
+      [
+        "Rul",
+        "BY-CONSTRUCTION",
+        "16 cases printed to both tools from one object"
+      ],
+      [
+        "Bound(e)",
+        "OK",
+        "longest update chain 2; declared bound 2; Theorem 1(e) applies with n = 2"
+      ]
+    ],
+    "expected": "one-sided model change; verdict discrepancy not guaranteed",
+    "pv_run": {
+      "command": [
+        "proverif",
+        "/redacted-home/workspace/audit_20261028/mutation_extension_20261029/lms_s2__disable_accept/model.pv"
+      ],
+      "rc": 0,
+      "stdout": "PV.out",
+      "stdout_sha256": "f334b124c7eb831d89eece4ed836d7a52889746321b863ec2819cce20d306720",
+      "elapsed_s": 0.10426,
+      "timeout_s": 15,
+      "rss_stop_mib": 850,
+      "sampled_peak_rss_kib": 7428
+    },
+    "tm_run": {
+      "command": [
+        "tamarin-prover",
+        "--prove",
+        "--derivcheck-timeout=0",
+        "/redacted-home/workspace/audit_20261028/mutation_extension_20261029/lms_s2__disable_accept/model.spthy",
+        "+RTS",
+        "-N1",
+        "-M500m",
+        "-RTS"
+      ],
+      "rc": 124,
+      "stdout": "TM.out",
+      "stdout_sha256": "d148ee83c4cdfe0f1fcfcce5a69d47590df5e0654e4c9c62bef8518beed98e67",
+      "elapsed_s": 15.05861,
+      "timeout_s": 15,
+      "rss_stop_mib": 850,
+      "sampled_peak_rss_kib": 225484
+    },
+    "results": [
+      {
+        "query": "exec",
+        "kind": "phi3",
+        "pv": "is true",
+        "tm": "verified",
+        "normalized_pv": "H",
+        "normalized_tm": "W",
+        "discrepancy": true,
+        "findings": [
+          {
+            "cause": "ENC-map",
+            "records": [
+              "X_PV_U2",
+              "X_T_base"
+            ],
+            "note": "impossible pair on Tle, T: a hypothesis, the generator or a tool is at fault"
+          }
+        ]
+      },
+      {
+        "query": "LS4_pure",
+        "kind": "phi2",
+        "pv": "is true",
+        "tm": "verified",
+        "normalized_pv": "H",
+        "normalized_tm": "H",
+        "discrepancy": false,
+        "findings": []
+      },
+      {
+        "query": "LS1",
+        "kind": "phi1",
+        "pv": "is true",
+        "tm": "verified",
+        "normalized_pv": "H",
+        "normalized_tm": "H",
+        "discrepancy": false,
+        "findings": []
+      },
+      {
+        "query": "LS3_forge",
+        "kind": "phi3",
+        "pv": "is true",
+        "tm": "falsified",
+        "normalized_pv": "H",
+        "normalized_tm": "H",
+        "discrepancy": false,
+        "findings": []
+      }
+    ],
+    "reference_completion": {
+      "source": "../extension_20261029_rss/lms_s2/tamarin.out",
+      "model_sha256": "19829fa7ca8f36f6609f301278740bd2325f22b17a53c6439bb5a2e0697e423b",
+      "stdout_sha256": "07aebba8315d453d0bd6e5b1afcd40402f555af647eab395ff599478a676b1e9",
+      "note": "Shared unchanged source, executed once at 30s. Original 15s attempts remain saved; not independent replicates."
+    }
+  },
+  {
+    "seed": "lms_s2",
+    "operator": "unguarded_reveal",
+    "directory": "lms_s2__unguarded_reveal",
+    "pv_sha256": "815e8d19dcd1a459f34c9a3ad285e8c1605be680e1b83a48ef6ad6f5858243a0",
+    "tm_sha256": "19829fa7ca8f36f6609f301278740bd2325f22b17a53c6439bb5a2e0697e423b",
+    "source_cim_sha256": "441457323dde0422485f4d5474d02c53d29dffd591004ebd9eeb2178fd318227",
+    "queries": [
+      "exec",
+      "LS4_pure",
+      "LS1",
+      "LS3_forge"
+    ],
+    "kinds": [
+      "phi3",
+      "phi2",
+      "phi1",
+      "phi3"
+    ],
+    "checks": [
+      [
+        "Sig",
+        "OK",
+        "3 symbols used, one declaration table; tuples as right-nested pairs in both tools"
+      ],
+      [
+        "Evt",
+        "BY-CONSTRUCTION",
+        "3 event symbols printed from one table"
+      ],
+      [
+        "EvtSep",
+        "OK",
+        "no rule carries two observed events of one property"
+      ],
+      [
+        "Saf",
+        "OK",
+        "restrictions: OneMisuse only (variants cl1, rb1), universal with equality conclusion"
+      ],
+      [
+        "Lin",
+        "OK",
+        "8 step cases, one state in and one state out each; no leak outputs a state value"
+      ],
+      [
+        "LinSpawn",
+        "OK",
+        "single thread kind; the thread and its state are created by one rule/process"
+      ],
+      [
+        "Blk",
+        "OK",
+        "block = state input, attacker input, guards, events, outputs, state output"
+      ],
+      [
+        "Grd",
+        "OK",
+        "guards are equality tests on public numeral constants; domains q=[0, 1], a=[0, 1, 2, 3]"
+      ],
+      [
+        "Det",
+        "OK",
+        "cases with the same consumed state have disjoint input patterns"
+      ],
+      [
+        "Dist",
+        "OK",
+        "one role with a fresh identity; no public role names"
+      ],
+      [
+        "Leak",
+        "OK",
+        "leak outputs a persistent fresh name; enabled from thread start (guard: the published identity)"
+      ],
+      [
+        "Rul",
+        "BY-CONSTRUCTION",
+        "16 cases printed to both tools from one object"
+      ],
+      [
+        "Bound(e)",
+        "OK",
+        "longest update chain 2; declared bound 2; Theorem 1(e) applies with n = 2"
+      ]
+    ],
+    "expected": "one-sided model change; verdict discrepancy not guaranteed",
+    "pv_run": {
+      "command": [
+        "proverif",
+        "/redacted-home/workspace/audit_20261028/mutation_extension_20261029/lms_s2__unguarded_reveal/model.pv"
+      ],
+      "rc": 0,
+      "stdout": "PV.out",
+      "stdout_sha256": "20cdd7c098f33ff2ede8208e3860ccc75f876645dde3da029edc5c8695822da2",
+      "elapsed_s": 0.20442,
+      "timeout_s": 15,
+      "rss_stop_mib": 850,
+      "sampled_peak_rss_kib": 14736
+    },
+    "tm_run": {
+      "command": [
+        "tamarin-prover",
+        "--prove",
+        "--derivcheck-timeout=0",
+        "/redacted-home/workspace/audit_20261028/mutation_extension_20261029/lms_s2__unguarded_reveal/model.spthy",
+        "+RTS",
+        "-N1",
+        "-M500m",
+        "-RTS"
+      ],
+      "rc": 124,
+      "stdout": "TM.out",
+      "stdout_sha256": "d148ee83c4cdfe0f1fcfcce5a69d47590df5e0654e4c9c62bef8518beed98e67",
+      "elapsed_s": 15.061176,
+      "timeout_s": 15,
+      "rss_stop_mib": 850,
+      "sampled_peak_rss_kib": 225476
+    },
+    "results": [
+      {
+        "query": "exec",
+        "kind": "phi3",
+        "pv": "is false",
+        "tm": "verified",
+        "normalized_pv": "W",
+        "normalized_tm": "W",
+        "discrepancy": false,
+        "findings": []
+      },
+      {
+        "query": "LS4_pure",
+        "kind": "phi2",
+        "pv": "is true",
+        "tm": "verified",
+        "normalized_pv": "H",
+        "normalized_tm": "H",
+        "discrepancy": false,
+        "findings": []
+      },
+      {
+        "query": "LS1",
+        "kind": "phi1",
+        "pv": "is true",
+        "tm": "verified",
+        "normalized_pv": "H",
+        "normalized_tm": "H",
+        "discrepancy": false,
+        "findings": []
+      },
+      {
+        "query": "LS3_forge",
+        "kind": "phi3",
+        "pv": "is true",
+        "tm": "falsified",
+        "normalized_pv": "H",
+        "normalized_tm": "H",
+        "discrepancy": false,
+        "findings": []
+      }
+    ],
+    "reference_completion": {
+      "source": "../extension_20261029_rss/lms_s2/tamarin.out",
+      "model_sha256": "19829fa7ca8f36f6609f301278740bd2325f22b17a53c6439bb5a2e0697e423b",
+      "stdout_sha256": "07aebba8315d453d0bd6e5b1afcd40402f555af647eab395ff599478a676b1e9",
+      "note": "Shared unchanged source, executed once at 30s. Original 15s attempts remain saved; not independent replicates."
+    }
+  },
+  {
+    "seed": "lms_s2",
+    "operator": "wrong_public_key",
+    "directory": "lms_s2__wrong_public_key",
+    "pv_sha256": "215e84410a970e73427ac0583c90a75783dafa3e3166afca6e1c634f9d0a6cba",
+    "tm_sha256": "19829fa7ca8f36f6609f301278740bd2325f22b17a53c6439bb5a2e0697e423b",
+    "source_cim_sha256": "441457323dde0422485f4d5474d02c53d29dffd591004ebd9eeb2178fd318227",
+    "queries": [
+      "exec",
+      "LS4_pure",
+      "LS1",
+      "LS3_forge"
+    ],
+    "kinds": [
+      "phi3",
+      "phi2",
+      "phi1",
+      "phi3"
+    ],
+    "checks": [
+      [
+        "Sig",
+        "OK",
+        "3 symbols used, one declaration table; tuples as right-nested pairs in both tools"
+      ],
+      [
+        "Evt",
+        "BY-CONSTRUCTION",
+        "3 event symbols printed from one table"
+      ],
+      [
+        "EvtSep",
+        "OK",
+        "no rule carries two observed events of one property"
+      ],
+      [
+        "Saf",
+        "OK",
+        "restrictions: OneMisuse only (variants cl1, rb1), universal with equality conclusion"
+      ],
+      [
+        "Lin",
+        "OK",
+        "8 step cases, one state in and one state out each; no leak outputs a state value"
+      ],
+      [
+        "LinSpawn",
+        "OK",
+        "single thread kind; the thread and its state are created by one rule/process"
+      ],
+      [
+        "Blk",
+        "OK",
+        "block = state input, attacker input, guards, events, outputs, state output"
+      ],
+      [
+        "Grd",
+        "OK",
+        "guards are equality tests on public numeral constants; domains q=[0, 1], a=[0, 1, 2, 3]"
+      ],
+      [
+        "Det",
+        "OK",
+        "cases with the same consumed state have disjoint input patterns"
+      ],
+      [
+        "Dist",
+        "OK",
+        "one role with a fresh identity; no public role names"
+      ],
+      [
+        "Leak",
+        "OK",
+        "leak outputs a persistent fresh name; enabled from thread start (guard: the published identity)"
+      ],
+      [
+        "Rul",
+        "BY-CONSTRUCTION",
+        "16 cases printed to both tools from one object"
+      ],
+      [
+        "Bound(e)",
+        "OK",
+        "longest update chain 2; declared bound 2; Theorem 1(e) applies with n = 2"
+      ]
+    ],
+    "expected": "one-sided model change; verdict discrepancy not guaranteed",
+    "pv_run": {
+      "command": [
+        "proverif",
+        "/redacted-home/workspace/audit_20261028/mutation_extension_20261029/lms_s2__wrong_public_key/model.pv"
+      ],
+      "rc": 0,
+      "stdout": "PV.out",
+      "stdout_sha256": "e669fccee22f022a6adff1c8a247c7b7efbba70d4d317bfcf12b2bae0c4d4d5e",
+      "elapsed_s": 0.104574,
+      "timeout_s": 15,
+      "rss_stop_mib": 850,
+      "sampled_peak_rss_kib": 184
+    },
+    "tm_run": {
+      "command": [
+        "tamarin-prover",
+        "--prove",
+        "--derivcheck-timeout=0",
+        "/redacted-home/workspace/audit_20261028/mutation_extension_20261029/lms_s2__wrong_public_key/model.spthy",
+        "+RTS",
+        "-N1",
+        "-M500m",
+        "-RTS"
+      ],
+      "rc": 124,
+      "stdout": "TM.out",
+      "stdout_sha256": "d148ee83c4cdfe0f1fcfcce5a69d47590df5e0654e4c9c62bef8518beed98e67",
+      "elapsed_s": 15.067072,
+      "timeout_s": 15,
+      "rss_stop_mib": 850,
+      "sampled_peak_rss_kib": 225504
+    },
+    "results": [
+      {
+        "query": "exec",
+        "kind": "phi3",
+        "pv": "is true",
+        "tm": "verified",
+        "normalized_pv": "H",
+        "normalized_tm": "W",
+        "discrepancy": true,
+        "findings": [
+          {
+            "cause": "ENC-map",
+            "records": [
+              "X_PV_U2",
+              "X_T_base"
+            ],
+            "note": "impossible pair on Tle, T: a hypothesis, the generator or a tool is at fault"
+          }
+        ]
+      },
+      {
+        "query": "LS4_pure",
+        "kind": "phi2",
+        "pv": "is true",
+        "tm": "verified",
+        "normalized_pv": "H",
+        "normalized_tm": "H",
+        "discrepancy": false,
+        "findings": []
+      },
+      {
+        "query": "LS1",
+        "kind": "phi1",
+        "pv": "is true",
+        "tm": "verified",
+        "normalized_pv": "H",
+        "normalized_tm": "H",
+        "discrepancy": false,
+        "findings": []
+      },
+      {
+        "query": "LS3_forge",
+        "kind": "phi3",
+        "pv": "is true",
+        "tm": "falsified",
+        "normalized_pv": "H",
+        "normalized_tm": "H",
+        "discrepancy": false,
+        "findings": []
+      }
+    ],
+    "reference_completion": {
+      "source": "../extension_20261029_rss/lms_s2/tamarin.out",
+      "model_sha256": "19829fa7ca8f36f6609f301278740bd2325f22b17a53c6439bb5a2e0697e423b",
+      "stdout_sha256": "07aebba8315d453d0bd6e5b1afcd40402f555af647eab395ff599478a676b1e9",
+      "note": "Shared unchanged source, executed once at 30s. Original 15s attempts remain saved; not independent replicates."
+    }
+  },
+  {
+    "seed": "lms_s2",
+    "operator": "private_to_public",
+    "directory": "lms_s2__private_to_public",
+    "pv_sha256": "1e51cf2c888dc75188b7030a7dd686596fa332d3263d269789b2107efbec3ac9",
+    "tm_sha256": "19829fa7ca8f36f6609f301278740bd2325f22b17a53c6439bb5a2e0697e423b",
+    "source_cim_sha256": "441457323dde0422485f4d5474d02c53d29dffd591004ebd9eeb2178fd318227",
+    "queries": [
+      "exec",
+      "LS4_pure",
+      "LS1",
+      "LS3_forge"
+    ],
+    "kinds": [
+      "phi3",
+      "phi2",
+      "phi1",
+      "phi3"
+    ],
+    "checks": [
+      [
+        "Sig",
+        "OK",
+        "3 symbols used, one declaration table; tuples as right-nested pairs in both tools"
+      ],
+      [
+        "Evt",
+        "BY-CONSTRUCTION",
+        "3 event symbols printed from one table"
+      ],
+      [
+        "EvtSep",
+        "OK",
+        "no rule carries two observed events of one property"
+      ],
+      [
+        "Saf",
+        "OK",
+        "restrictions: OneMisuse only (variants cl1, rb1), universal with equality conclusion"
+      ],
+      [
+        "Lin",
+        "OK",
+        "8 step cases, one state in and one state out each; no leak outputs a state value"
+      ],
+      [
+        "LinSpawn",
+        "OK",
+        "single thread kind; the thread and its state are created by one rule/process"
+      ],
+      [
+        "Blk",
+        "OK",
+        "block = state input, attacker input, guards, events, outputs, state output"
+      ],
+      [
+        "Grd",
+        "OK",
+        "guards are equality tests on public numeral constants; domains q=[0, 1], a=[0, 1, 2, 3]"
+      ],
+      [
+        "Det",
+        "OK",
+        "cases with the same consumed state have disjoint input patterns"
+      ],
+      [
+        "Dist",
+        "OK",
+        "one role with a fresh identity; no public role names"
+      ],
+      [
+        "Leak",
+        "OK",
+        "leak outputs a persistent fresh name; enabled from thread start (guard: the published identity)"
+      ],
+      [
+        "Rul",
+        "BY-CONSTRUCTION",
+        "16 cases printed to both tools from one object"
+      ],
+      [
+        "Bound(e)",
+        "OK",
+        "longest update chain 2; declared bound 2; Theorem 1(e) applies with n = 2"
+      ]
+    ],
+    "expected": "one-sided model change; verdict discrepancy not guaranteed",
+    "pv_run": {
+      "command": [
+        "proverif",
+        "/redacted-home/workspace/audit_20261028/mutation_extension_20261029/lms_s2__private_to_public/model.pv"
+      ],
+      "rc": 0,
+      "stdout": "PV.out",
+      "stdout_sha256": "3f89c3ebadca99d7f2d8b83723cb51e2e0f2dd683aec649436c41737c42cc4e8",
+      "elapsed_s": 0.204239,
+      "timeout_s": 15,
+      "rss_stop_mib": 850,
+      "sampled_peak_rss_kib": 15920
+    },
+    "tm_run": {
+      "command": [
+        "tamarin-prover",
+        "--prove",
+        "--derivcheck-timeout=0",
+        "/redacted-home/workspace/audit_20261028/mutation_extension_20261029/lms_s2__private_to_public/model.spthy",
+        "+RTS",
+        "-N1",
+        "-M500m",
+        "-RTS"
+      ],
+      "rc": 124,
+      "stdout": "TM.out",
+      "stdout_sha256": "d148ee83c4cdfe0f1fcfcce5a69d47590df5e0654e4c9c62bef8518beed98e67",
+      "elapsed_s": 15.065945,
+      "timeout_s": 15,
+      "rss_stop_mib": 850,
+      "sampled_peak_rss_kib": 227616
+    },
+    "results": [
+      {
+        "query": "exec",
+        "kind": "phi3",
+        "pv": "is false",
+        "tm": "verified",
+        "normalized_pv": "W",
+        "normalized_tm": "W",
+        "discrepancy": false,
+        "findings": []
+      },
+      {
+        "query": "LS4_pure",
+        "kind": "phi2",
+        "pv": "is true",
+        "tm": "verified",
+        "normalized_pv": "H",
+        "normalized_tm": "H",
+        "discrepancy": false,
+        "findings": []
+      },
+      {
+        "query": "LS1",
+        "kind": "phi1",
+        "pv": "is true",
+        "tm": "verified",
+        "normalized_pv": "H",
+        "normalized_tm": "H",
+        "discrepancy": false,
+        "findings": []
+      },
+      {
+        "query": "LS3_forge",
+        "kind": "phi3",
+        "pv": "is true",
+        "tm": "falsified",
+        "normalized_pv": "H",
+        "normalized_tm": "H",
+        "discrepancy": false,
+        "findings": []
+      }
+    ],
+    "reference_completion": {
+      "source": "../extension_20261029_rss/lms_s2/tamarin.out",
+      "model_sha256": "19829fa7ca8f36f6609f301278740bd2325f22b17a53c6439bb5a2e0697e423b",
+      "stdout_sha256": "07aebba8315d453d0bd6e5b1afcd40402f555af647eab395ff599478a676b1e9",
+      "note": "Shared unchanged source, executed once at 30s. Original 15s attempts remain saved; not independent replicates."
+    }
+  },
+  {
+    "seed": "lms_s2",
+    "operator": "reveal_wrong_secret",
+    "directory": "lms_s2__reveal_wrong_secret",
+    "pv_sha256": "dd5cda0c950a188c36345fe64e921056758bdc8998841a2d5d4952d6d742f3c5",
+    "tm_sha256": "19829fa7ca8f36f6609f301278740bd2325f22b17a53c6439bb5a2e0697e423b",
+    "source_cim_sha256": "441457323dde0422485f4d5474d02c53d29dffd591004ebd9eeb2178fd318227",
+    "queries": [
+      "exec",
+      "LS4_pure",
+      "LS1",
+      "LS3_forge"
+    ],
+    "kinds": [
+      "phi3",
+      "phi2",
+      "phi1",
+      "phi3"
+    ],
+    "checks": [
+      [
+        "Sig",
+        "OK",
+        "3 symbols used, one declaration table; tuples as right-nested pairs in both tools"
+      ],
+      [
+        "Evt",
+        "BY-CONSTRUCTION",
+        "3 event symbols printed from one table"
+      ],
+      [
+        "EvtSep",
+        "OK",
+        "no rule carries two observed events of one property"
+      ],
+      [
+        "Saf",
+        "OK",
+        "restrictions: OneMisuse only (variants cl1, rb1), universal with equality conclusion"
+      ],
+      [
+        "Lin",
+        "OK",
+        "8 step cases, one state in and one state out each; no leak outputs a state value"
+      ],
+      [
+        "LinSpawn",
+        "OK",
+        "single thread kind; the thread and its state are created by one rule/process"
+      ],
+      [
+        "Blk",
+        "OK",
+        "block = state input, attacker input, guards, events, outputs, state output"
+      ],
+      [
+        "Grd",
+        "OK",
+        "guards are equality tests on public numeral constants; domains q=[0, 1], a=[0, 1, 2, 3]"
+      ],
+      [
+        "Det",
+        "OK",
+        "cases with the same consumed state have disjoint input patterns"
+      ],
+      [
+        "Dist",
+        "OK",
+        "one role with a fresh identity; no public role names"
+      ],
+      [
+        "Leak",
+        "OK",
+        "leak outputs a persistent fresh name; enabled from thread start (guard: the published identity)"
+      ],
+      [
+        "Rul",
+        "BY-CONSTRUCTION",
+        "16 cases printed to both tools from one object"
+      ],
+      [
+        "Bound(e)",
+        "OK",
+        "longest update chain 2; declared bound 2; Theorem 1(e) applies with n = 2"
+      ]
+    ],
+    "expected": "one-sided model change; verdict discrepancy not guaranteed",
+    "pv_run": {
+      "command": [
+        "proverif",
+        "/redacted-home/workspace/audit_20261028/mutation_extension_20261029/lms_s2__reveal_wrong_secret/model.pv"
+      ],
+      "rc": 0,
+      "stdout": "PV.out",
+      "stdout_sha256": "0f765d2afb46966df9416980b38651395a826b417a36c444c3acf9f1c9b55427",
+      "elapsed_s": 0.203305,
+      "timeout_s": 15,
+      "rss_stop_mib": 850,
+      "sampled_peak_rss_kib": 14996
+    },
+    "tm_run": {
+      "command": [
+        "tamarin-prover",
+        "--prove",
+        "--derivcheck-timeout=0",
+        "/redacted-home/workspace/audit_20261028/mutation_extension_20261029/lms_s2__reveal_wrong_secret/model.spthy",
+        "+RTS",
+        "-N1",
+        "-M500m",
+        "-RTS"
+      ],
+      "rc": 124,
+      "stdout": "TM.out",
+      "stdout_sha256": "d148ee83c4cdfe0f1fcfcce5a69d47590df5e0654e4c9c62bef8518beed98e67",
+      "elapsed_s": 15.064402,
+      "timeout_s": 15,
+      "rss_stop_mib": 850,
+      "sampled_peak_rss_kib": 225532
+    },
+    "results": [
+      {
+        "query": "exec",
+        "kind": "phi3",
+        "pv": "is false",
+        "tm": "verified",
+        "normalized_pv": "W",
+        "normalized_tm": "W",
+        "discrepancy": false,
+        "findings": []
+      },
+      {
+        "query": "LS4_pure",
+        "kind": "phi2",
+        "pv": "is true",
+        "tm": "verified",
+        "normalized_pv": "H",
+        "normalized_tm": "H",
+        "discrepancy": false,
+        "findings": []
+      },
+      {
+        "query": "LS1",
+        "kind": "phi1",
+        "pv": "is true",
+        "tm": "verified",
+        "normalized_pv": "H",
+        "normalized_tm": "H",
+        "discrepancy": false,
+        "findings": []
+      },
+      {
+        "query": "LS3_forge",
+        "kind": "phi3",
+        "pv": "is true",
+        "tm": "falsified",
+        "normalized_pv": "H",
+        "normalized_tm": "H",
+        "discrepancy": false,
+        "findings": []
+      }
+    ],
+    "reference_completion": {
+      "source": "../extension_20261029_rss/lms_s2/tamarin.out",
+      "model_sha256": "19829fa7ca8f36f6609f301278740bd2325f22b17a53c6439bb5a2e0697e423b",
+      "stdout_sha256": "07aebba8315d453d0bd6e5b1afcd40402f555af647eab395ff599478a676b1e9",
+      "note": "Shared unchanged source, executed once at 30s. Original 15s attempts remain saved; not independent replicates."
+    }
+  },
+  {
+    "seed": "counterexample",
+    "operator": "unpublished_identity",
+    "directory": "unpublished_identity",
+    "pv_sha256": "24002376107fe9e646617fd00241ed7baf69ea6e4896faf5fef195459a0ad768",
+    "tm_sha256": "3fc6e221e45179a66110753739ac6db0b7796f5e08ea698655e6276fc6b53c7f",
+    "queries": [
+      "reveal_reachable"
+    ],
+    "kinds": [
+      "phi3"
+    ],
+    "checks": [
+      [
+        "Sig",
+        "OK",
+        "1 symbols used, one declaration table; tuples as right-nested pairs in both tools"
+      ],
+      [
+        "Evt",
+        "BY-CONSTRUCTION",
+        "3 event symbols printed from one table"
+      ],
+      [
+        "EvtSep",
+        "OK",
+        "no rule carries two observed events of one property"
+      ],
+      [
+        "Saf",
+        "OK",
+        "restrictions: OneMisuse only (variants cl1, rb1), universal with equality conclusion"
+      ],
+      [
+        "Lin",
+        "OK",
+        "4 step cases, one state in and one state out each; no leak outputs a state value"
+      ],
+      [
+        "LinSpawn",
+        "OK",
+        "single thread kind; the thread and its state are created by one rule/process"
+      ],
+      [
+        "Blk",
+        "OK",
+        "block = state input, attacker input, guards, events, outputs, state output"
+      ],
+      [
+        "Grd",
+        "OK",
+        "guards are equality tests on public numeral constants; domains q=[0], a=[0, 1, 2, 3]"
+      ],
+      [
+        "Det",
+        "OK",
+        "cases with the same consumed state have disjoint input patterns"
+      ],
+      [
+        "Dist",
+        "OK",
+        "one role with a fresh identity; no public role names"
+      ],
+      [
+        "Leak",
+        "OK",
+        "leak outputs a persistent fresh name; enabled from thread start (guard: the published identity)"
+      ],
+      [
+        "Rul",
+        "BY-CONSTRUCTION",
+        "8 cases printed to both tools from one object"
+      ],
+      [
+        "Bound(e)",
+        "OK",
+        "longest update chain 1; declared bound 1; Theorem 1(e) applies with n = 1"
+      ]
+    ],
+    "expected": "old checks pass but reachability differs; tests missing LeakGuard condition",
+    "pv_run": {
+      "command": [
+        "proverif",
+        "/redacted-home/workspace/audit_20261028/mutation_extension_20261029/unpublished_identity/model.pv"
+      ],
+      "rc": 0,
+      "stdout": "PV.out",
+      "stdout_sha256": "943aa2baa0ca45ff53f88e8a56c6ea5e1096ea031d4e09bf746d7a2e21e60a6d",
+      "elapsed_s": 0.105363,
+      "timeout_s": 15,
+      "rss_stop_mib": 850,
+      "sampled_peak_rss_kib": 196
+    },
+    "tm_run": {
+      "command": [
+        "tamarin-prover",
+        "--prove",
+        "--derivcheck-timeout=0",
+        "/redacted-home/workspace/audit_20261028/mutation_extension_20261029/unpublished_identity/model.spthy",
+        "+RTS",
+        "-N1",
+        "-M500m",
+        "-RTS"
+      ],
+      "rc": 0,
+      "stdout": "TM.out",
+      "stdout_sha256": "ee36e0fc767276bc1702ee259f5594a967ddf290abf884af26da27f3dde02df1",
+      "elapsed_s": 0.202909,
+      "timeout_s": 15,
+      "rss_stop_mib": 850,
+      "sampled_peak_rss_kib": 30388
+    },
+    "results": [
+      {
+        "query": "reveal_reachable",
+        "kind": "phi3",
+        "pv": "is true",
+        "tm": "verified",
+        "normalized_pv": "H",
+        "normalized_tm": "W",
+        "discrepancy": true,
+        "findings": [
+          {
+            "cause": "ENC-map",
+            "records": [
+              "X_PV_U2",
+              "X_T_base"
+            ],
+            "note": "impossible pair on Tle, T: a hypothesis, the generator or a tool is at fault"
+          }
+        ]
+      }
+    ]
+  }
+]

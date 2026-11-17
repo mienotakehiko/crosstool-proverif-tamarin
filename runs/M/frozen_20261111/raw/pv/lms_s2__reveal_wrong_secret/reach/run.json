@@ -1,0 +1,20 @@
+{
+  "command": [
+    "/usr/local/bin/proverif",
+    "/redacted-home/workspace/revision_20261111/mutations/pv/lms_s2__reveal_wrong_secret/reach.pv"
+  ],
+  "started_utc": "2026-11-11T03:12:15.138372+00:00",
+  "elapsed_s": 0.103,
+  "rc": 0,
+  "stop_reason": null,
+  "time_limit_s": 15,
+  "peak_group_rss_kib": 1912,
+  "rss_samples": [
+    [
+      0.002,
+      1912
+    ]
+  ],
+  "raw_file": "raw/pv/lms_s2__reveal_wrong_secret/reach/raw.out",
+  "raw_sha256": "950ad56b457ac18893ac9e13cca2d759e80bd9ae03d99bf0f446693592f2637b"
+}

@@ -1,0 +1,20 @@
+{
+  "command": [
+    "/usr/local/bin/proverif",
+    "/redacted-home/workspace/revision_20261111/mutations/pv/lmots__replicate_signer/audit.pv"
+  ],
+  "started_utc": "2026-11-11T03:12:08.678815+00:00",
+  "elapsed_s": 0.103,
+  "rc": 0,
+  "stop_reason": null,
+  "time_limit_s": 15,
+  "peak_group_rss_kib": 1216,
+  "rss_samples": [
+    [
+      0.002,
+      1216
+    ]
+  ],
+  "raw_file": "raw/pv/lmots__replicate_signer/audit/raw.out",
+  "raw_sha256": "7cfccbf916a0b3bf955878f99f246f1cef39a7295c949c4ba83570ac884e2412"
+}

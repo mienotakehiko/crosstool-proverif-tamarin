@@ -1,0 +1,1053 @@
+{
+  "timestamp": "2026-11-11T03:11:59.901321+00:00",
+  "tree_version": "1.1",
+  "tree_sha256": "d45347db969b78a5209adb13dbee3cc00b7d6047ec0c60a14d40be7cfc0de8e6",
+  "tools": {
+    "proverif": {
+      "path": "/usr/local/bin/proverif",
+      "sha256": "140cf1707257fb158f5fe8a5f79b1dfeefb73261bf78adb5340e19d6aad6626c"
+    },
+    "tamarin-prover": {
+      "path": "/usr/local/bin/tamarin-prover",
+      "sha256": "9d3fcbaa65aeea244cff5b8074338d129427161cc8b02e5aee72d30ee072acc9"
+    },
+    "maude": {
+      "path": "/usr/local/bin/maude",
+      "sha256": "628d625212630fd4145aa45f72fac9c7cd357f7e41cf6bac21097c011b3215e1"
+    }
+  },
+  "policy": {
+    "design": "prospective new-query re-evaluation of 20 existing PV-only mutants; NOT 100 new mutants",
+    "target_100_complete": false,
+    "shortfall_to_100": 80,
+    "condition_variants": 1,
+    "count_policy": "20 distinct original canonical content hashes; no renamed variants; distinct hashes do not prove statistical independence or semantic inequivalence",
+    "pv_budget_s": 15,
+    "tm_budget_s": 30,
+    "rss_group_stop_mib": 650,
+    "pv_address_space_mib": 800,
+    "tm_heap_mib": 400,
+    "pv_group_order": [
+      "reach",
+      "audit",
+      "existing"
+    ],
+    "tm_subset": [
+      "acceptreach",
+      "signreach",
+      "revealreach",
+      "seedreach",
+      "seed_without_reveal",
+      "reveal_guarded",
+      "prf_public_probe"
+    ],
+    "run_order": "all 66 PV groups sequentially; then 14 TM per-lemma runs sequentially",
+    "verdict_policy": "PV true/false normalized per kind; cannot/no RESULT/timeout/error are undetermined. TM verified/falsified normalized per quantifier. Only definite opposing control/mutant outcomes kill; no equivalence inferred from survivors.",
+    "partial_policy": "Accept completed individual RESULT before resource stop; missing result undetermined; nonzero non-resource exit invalidates results.",
+    "tm_policy": "Two newly instrumented baseline TM models, seven new matching queries each, 30s per lemma. No mutant TM models. No cached TM reference used as independent rerun. AuditGuard adds explicit matching public-I request and pending step; not byte-identical TM.",
+    "instrumentation": "AuditSeed after new sd, AuditGuard immediately after actual leak in(c,=I). Passive events only in PV. Reveals with removed guard do not receive AuditGuard. Instrumented input-causality detection is separate from uninstrumented observational semantics.",
+    "prf_probe": "Public chosen-input constructor availability, NOT seed secrecy or protocol forgery.",
+    "accuracy": "No gold causal labels and no independent oracle: eight-class accuracy NOT evaluated. Operator provenance is not gold causal diagnosis. No diagnosis tree invocation.",
+    "expectations": {
+      "remove_reveal_event": [
+        "revealreach",
+        "seed_without_reveal"
+      ],
+      "unguarded_reveal": [
+        "reveal_guarded"
+      ],
+      "private_to_public": [
+        "prf_public_probe"
+      ],
+      "reveal_wrong_secret": [
+        "seedreach"
+      ]
+    }
+  },
+  "queries": {
+    "lmots": [
+      {
+        "name": "acceptreach",
+        "group": "reach",
+        "kind": "reach",
+        "pv": "query I:bitstring, a:bitstring; event(Accept(I, a)) ==> false.",
+        "tm": "Ex I a #i. Accept(I, a)@i"
+      },
+      {
+        "name": "signreach",
+        "group": "reach",
+        "kind": "reach",
+        "pv": "query I:bitstring, a:bitstring; event(Sign(I, a)) ==> false.",
+        "tm": "Ex I a #i. Sign(I, a)@i"
+      },
+      {
+        "name": "revealreach",
+        "group": "reach",
+        "kind": "reach",
+        "pv": "query I:bitstring; event(RevealSeed(I)) ==> false.",
+        "tm": "Ex I #i. RevealSeed(I)@i"
+      },
+      {
+        "name": "seedreach",
+        "group": "audit",
+        "kind": "reach",
+        "pv": "query I:bitstring, s:bitstring; event(AuditSeed(I,s)) && attacker(s) ==> false.",
+        "tm": "Ex I s #i #j. AuditSeed(I,s)@i & K(s)@j"
+      },
+      {
+        "name": "seed_without_reveal",
+        "group": "audit",
+        "kind": "safety",
+        "pv": "query I:bitstring, s:bitstring; event(AuditSeed(I,s)) && attacker(s) ==> event(RevealSeed(I)).",
+        "tm": "All I s #i #j. AuditSeed(I,s)@i & K(s)@j ==> (Ex #r. RevealSeed(I)@r)"
+      },
+      {
+        "name": "reveal_guarded",
+        "group": "audit",
+        "kind": "safety",
+        "pv": "query I:bitstring; event(RevealSeed(I)) ==> event(AuditGuard(I)).",
+        "tm": "All I #i. RevealSeed(I)@i ==> (Ex #g. AuditGuard(I)@g & #g < #i)"
+      },
+      {
+        "name": "prf_public_probe",
+        "group": "audit",
+        "kind": "reach",
+        "pv": "query attacker(prf(n0, c_m)).",
+        "tm": "Ex #i. K(prf('n0', 'm'))@i"
+      },
+      {
+        "name": "exec_accept",
+        "group": "existing",
+        "kind": "reach",
+        "pv": "query I:bitstring, a:bitstring;\n  event(Sign(I, a)) && event(Accept(I, a)) ==> event(RevealSeed(I)).",
+        "tm": null
+      },
+      {
+        "name": "LS1_unforge",
+        "group": "existing",
+        "kind": "safety",
+        "pv": "query I:bitstring, a:bitstring;\n  event(Accept(I, a)) ==> event(Sign(I, a)) || event(RevealSeed(I)).",
+        "tm": null
+      },
+      {
+        "name": "forge",
+        "group": "existing",
+        "kind": "reach",
+        "pv": "query I:bitstring, a:bitstring;\n  event(Accept(I, a)) ==> event(Sign(I, a)) || event(RevealSeed(I)).",
+        "tm": null
+      }
+    ],
+    "lms_s2": [
+      {
+        "name": "acceptreach",
+        "group": "reach",
+        "kind": "reach",
+        "pv": "query I:bitstring, q:bitstring, a:bitstring; event(Accept(I, q, a)) ==> false.",
+        "tm": "Ex I q a #i. Accept(I, q, a)@i"
+      },
+      {
+        "name": "signreach",
+        "group": "reach",
+        "kind": "reach",
+        "pv": "query I:bitstring, q:bitstring, a:bitstring; event(Sign(I, q, a)) ==> false.",
+        "tm": "Ex I q a #i. Sign(I, q, a)@i"
+      },
+      {
+        "name": "revealreach",
+        "group": "reach",
+        "kind": "reach",
+        "pv": "query I:bitstring; event(RevealSeed(I)) ==> false.",
+        "tm": "Ex I #i. RevealSeed(I)@i"
+      },
+      {
+        "name": "seedreach",
+        "group": "audit",
+        "kind": "reach",
+        "pv": "query I:bitstring, s:bitstring; event(AuditSeed(I,s)) && attacker(s) ==> false.",
+        "tm": "Ex I s #i #j. AuditSeed(I,s)@i & K(s)@j"
+      },
+      {
+        "name": "seed_without_reveal",
+        "group": "audit",
+        "kind": "safety",
+        "pv": "query I:bitstring, s:bitstring; event(AuditSeed(I,s)) && attacker(s) ==> event(RevealSeed(I)).",
+        "tm": "All I s #i #j. AuditSeed(I,s)@i & K(s)@j ==> (Ex #r. RevealSeed(I)@r)"
+      },
+      {
+        "name": "reveal_guarded",
+        "group": "audit",
+        "kind": "safety",
+        "pv": "query I:bitstring; event(RevealSeed(I)) ==> event(AuditGuard(I)).",
+        "tm": "All I #i. RevealSeed(I)@i ==> (Ex #g. AuditGuard(I)@g & #g < #i)"
+      },
+      {
+        "name": "prf_public_probe",
+        "group": "audit",
+        "kind": "reach",
+        "pv": "query attacker(prf(n0, n0, c_m)).",
+        "tm": "Ex #i. K(prf('n0', 'n0', 'm'))@i"
+      },
+      {
+        "name": "exec",
+        "group": "existing",
+        "kind": "reach",
+        "pv": "query I:bitstring, q:bitstring, a:bitstring;\n  event(Sign(I, q, a)) && event(Accept(I, q, a)) ==> event(RevealSeed(I)).",
+        "tm": null
+      },
+      {
+        "name": "LS4_pure",
+        "group": "existing",
+        "kind": "safety",
+        "pv": "query I:bitstring, q:bitstring, a1:bitstring, a2:bitstring, i:time, j:time;\n  event(Sign(I, q, a1))@i && event(Sign(I, q, a2))@j ==> i = j.",
+        "tm": null
+      },
+      {
+        "name": "LS1",
+        "group": "existing",
+        "kind": "safety",
+        "pv": "query I:bitstring, q:bitstring, a:bitstring;\n  event(Accept(I, q, a)) ==> event(Sign(I, q, a)) || event(RevealSeed(I)).",
+        "tm": null
+      },
+      {
+        "name": "LS3_forge",
+        "group": "existing",
+        "kind": "reach",
+        "pv": "query I:bitstring, q:bitstring, a:bitstring;\n  event(Accept(I, q, a)) ==> event(Sign(I, q, a)) || event(RevealSeed(I)).",
+        "tm": null
+      }
+    ]
+  },
+  "models": [
+    {
+      "seed": "lmots",
+      "operator": "control",
+      "source": "audit_20261028/mutation_extension_20261029/lmots__control/model.pv",
+      "source_sha256": "9dd8b7037a76ef086cd49ce017c53e1e0ceb700db2eea3af564e611065dcabf1",
+      "original_canonical_sha256": "dfd9fd0f2c97b549bf718825627ef0e3fabf077a0977d8a701436dd787441a3f",
+      "groups": {
+        "reach": {
+          "file": "pv/lmots__control/reach.pv",
+          "queries": [
+            "acceptreach",
+            "signreach",
+            "revealreach"
+          ]
+        },
+        "audit": {
+          "file": "pv/lmots__control/audit.pv",
+          "queries": [
+            "seedreach",
+            "seed_without_reveal",
+            "reveal_guarded",
+            "prf_public_probe"
+          ]
+        },
+        "existing": {
+          "file": "pv/lmots__control/existing.pv",
+          "queries": [
+            "exec_accept",
+            "LS1_unforge",
+            "forge"
+          ]
+        }
+      }
+    },
+    {
+      "seed": "lmots",
+      "operator": "event_accept_argument",
+      "source": "audit_20261028/mutation_extension_20261029/lmots__event_accept_argument/model.pv",
+      "source_sha256": "b4ad8fdb6bd7c8b0e9ce9124cfcd3d963f53a8ce57fcf4b4d1fd012df4851faf",
+      "original_canonical_sha256": "89f6e27859fff17b819f1b2097561521429fdb7513c749d80c5b19017d0a6200",
+      "groups": {
+        "reach": {
+          "file": "pv/lmots__event_accept_argument/reach.pv",
+          "queries": [
+            "acceptreach",
+            "signreach",
+            "revealreach"
+          ]
+        },
+        "audit": {
+          "file": "pv/lmots__event_accept_argument/audit.pv",
+          "queries": [
+            "seedreach",
+            "seed_without_reveal",
+            "reveal_guarded",
+            "prf_public_probe"
+          ]
+        },
+        "existing": {
+          "file": "pv/lmots__event_accept_argument/existing.pv",
+          "queries": [
+            "exec_accept",
+            "LS1_unforge",
+            "forge"
+          ]
+        }
+      }
+    },
+    {
+      "seed": "lmots",
+      "operator": "event_sign_argument",
+      "source": "audit_20261028/mutation_extension_20261029/lmots__event_sign_argument/model.pv",
+      "source_sha256": "6dba88fcf5bfec0979e7d1f9caab1b44a0de7aa11b579dae4dbfa2d18376a574",
+      "original_canonical_sha256": "ce77b79b360933804b0f85cc2b50211ee1f7a9bbf252ac67a3a5dd9f73e88729",
+      "groups": {
+        "reach": {
+          "file": "pv/lmots__event_sign_argument/reach.pv",
+          "queries": [
+            "acceptreach",
+            "signreach",
+            "revealreach"
+          ]
+        },
+        "audit": {
+          "file": "pv/lmots__event_sign_argument/audit.pv",
+          "queries": [
+            "seedreach",
+            "seed_without_reveal",
+            "reveal_guarded",
+            "prf_public_probe"
+          ]
+        },
+        "existing": {
+          "file": "pv/lmots__event_sign_argument/existing.pv",
+          "queries": [
+            "exec_accept",
+            "LS1_unforge",
+            "forge"
+          ]
+        }
+      }
+    },
+    {
+      "seed": "lmots",
+      "operator": "remove_reveal_event",
+      "source": "audit_20261028/mutation_extension_20261029/lmots__remove_reveal_event/model.pv",
+      "source_sha256": "f4e25db4e4707bf576257c22fd8bec7ec02b30d6537bfb9445a74a351ece93d1",
+      "original_canonical_sha256": "dff027201eac81a5c9cfae49c45ebb39d218c7bac201673ccf8f9e70b9cea976",
+      "groups": {
+        "reach": {
+          "file": "pv/lmots__remove_reveal_event/reach.pv",
+          "queries": [
+            "acceptreach",
+            "signreach",
+            "revealreach"
+          ]
+        },
+        "audit": {
+          "file": "pv/lmots__remove_reveal_event/audit.pv",
+          "queries": [
+            "seedreach",
+            "seed_without_reveal",
+            "reveal_guarded",
+            "prf_public_probe"
+          ]
+        },
+        "existing": {
+          "file": "pv/lmots__remove_reveal_event/existing.pv",
+          "queries": [
+            "exec_accept",
+            "LS1_unforge",
+            "forge"
+          ]
+        }
+      }
+    },
+    {
+      "seed": "lmots",
+      "operator": "replicate_signer",
+      "source": "audit_20261028/mutation_extension_20261029/lmots__replicate_signer/model.pv",
+      "source_sha256": "6418980ebced008c3e85565c1d693ce47d4bb7189de185587a4e223a2bf03a79",
+      "original_canonical_sha256": "7efc77dd72e5976f5a3586329dcae3ee0f8601057514992ce4aaed18163d152e",
+      "groups": {
+        "reach": {
+          "file": "pv/lmots__replicate_signer/reach.pv",
+          "queries": [
+            "acceptreach",
+            "signreach",
+            "revealreach"
+          ]
+        },
+        "audit": {
+          "file": "pv/lmots__replicate_signer/audit.pv",
+          "queries": [
+            "seedreach",
+            "seed_without_reveal",
+            "reveal_guarded",
+            "prf_public_probe"
+          ]
+        },
+        "existing": {
+          "file": "pv/lmots__replicate_signer/existing.pv",
+          "queries": [
+            "exec_accept",
+            "LS1_unforge",
+            "forge"
+          ]
+        }
+      }
+    },
+    {
+      "seed": "lmots",
+      "operator": "disable_signer",
+      "source": "audit_20261028/mutation_extension_20261029/lmots__disable_signer/model.pv",
+      "source_sha256": "bdf6e1abfe690fec08907550f9e17df023d95a43a963cff99c6c85a87b124e2c",
+      "original_canonical_sha256": "086c87ee8e921f6be1af2a1d01cde7099de68b5acb7eb4056ef13ee10ad76221",
+      "groups": {
+        "reach": {
+          "file": "pv/lmots__disable_signer/reach.pv",
+          "queries": [
+            "acceptreach",
+            "signreach",
+            "revealreach"
+          ]
+        },
+        "audit": {
+          "file": "pv/lmots__disable_signer/audit.pv",
+          "queries": [
+            "seedreach",
+            "seed_without_reveal",
+            "reveal_guarded",
+            "prf_public_probe"
+          ]
+        },
+        "existing": {
+          "file": "pv/lmots__disable_signer/existing.pv",
+          "queries": [
+            "exec_accept",
+            "LS1_unforge",
+            "forge"
+          ]
+        }
+      }
+    },
+    {
+      "seed": "lmots",
+      "operator": "disable_accept",
+      "source": "audit_20261028/mutation_extension_20261029/lmots__disable_accept/model.pv",
+      "source_sha256": "6f2fea56adde1b0d488161bb47a010c6507527f88b0a17e228d80cefeddf1d69",
+      "original_canonical_sha256": "4b1bd66c9b9d08b2b17e8e912e21d4b9216cbc606fd75fb106d2f8e5f658c1e8",
+      "groups": {
+        "reach": {
+          "file": "pv/lmots__disable_accept/reach.pv",
+          "queries": [
+            "acceptreach",
+            "signreach",
+            "revealreach"
+          ]
+        },
+        "audit": {
+          "file": "pv/lmots__disable_accept/audit.pv",
+          "queries": [
+            "seedreach",
+            "seed_without_reveal",
+            "reveal_guarded",
+            "prf_public_probe"
+          ]
+        },
+        "existing": {
+          "file": "pv/lmots__disable_accept/existing.pv",
+          "queries": [
+            "exec_accept",
+            "LS1_unforge",
+            "forge"
+          ]
+        }
+      }
+    },
+    {
+      "seed": "lmots",
+      "operator": "unguarded_reveal",
+      "source": "audit_20261028/mutation_extension_20261029/lmots__unguarded_reveal/model.pv",
+      "source_sha256": "26755efa121ca821bf15adc3d1dafb57fc1653c0d38740a42eef1c543ce78261",
+      "original_canonical_sha256": "f564a14926038a8c1ba6f5180778f8639c65510443a889cc9e3d7efa60ff7668",
+      "groups": {
+        "reach": {
+          "file": "pv/lmots__unguarded_reveal/reach.pv",
+          "queries": [
+            "acceptreach",
+            "signreach",
+            "revealreach"
+          ]
+        },
+        "audit": {
+          "file": "pv/lmots__unguarded_reveal/audit.pv",
+          "queries": [
+            "seedreach",
+            "seed_without_reveal",
+            "reveal_guarded",
+            "prf_public_probe"
+          ]
+        },
+        "existing": {
+          "file": "pv/lmots__unguarded_reveal/existing.pv",
+          "queries": [
+            "exec_accept",
+            "LS1_unforge",
+            "forge"
+          ]
+        }
+      }
+    },
+    {
+      "seed": "lmots",
+      "operator": "wrong_public_key",
+      "source": "audit_20261028/mutation_extension_20261029/lmots__wrong_public_key/model.pv",
+      "source_sha256": "22086b147a403518de3fb0aaa19a29fe22c86a8c0d74b2f5d8cad2d28da568b2",
+      "original_canonical_sha256": "a615ce1fa506ee6e1a303112373cb1d2c5b05d772c1ae15736dabfed3471a040",
+      "groups": {
+        "reach": {
+          "file": "pv/lmots__wrong_public_key/reach.pv",
+          "queries": [
+            "acceptreach",
+            "signreach",
+            "revealreach"
+          ]
+        },
+        "audit": {
+          "file": "pv/lmots__wrong_public_key/audit.pv",
+          "queries": [
+            "seedreach",
+            "seed_without_reveal",
+            "reveal_guarded",
+            "prf_public_probe"
+          ]
+        },
+        "existing": {
+          "file": "pv/lmots__wrong_public_key/existing.pv",
+          "queries": [
+            "exec_accept",
+            "LS1_unforge",
+            "forge"
+          ]
+        }
+      }
+    },
+    {
+      "seed": "lmots",
+      "operator": "private_to_public",
+      "source": "audit_20261028/mutation_extension_20261029/lmots__private_to_public/model.pv",
+      "source_sha256": "31c28109cbc4e5a536cea91664fd346d373abfc614ee09d5dcd81cc0c50f01d2",
+      "original_canonical_sha256": "ff92477c5fa7166ca108b34eb7e74875db85f7bfc37b25b2eb828ab0bdf71dd0",
+      "groups": {
+        "reach": {
+          "file": "pv/lmots__private_to_public/reach.pv",
+          "queries": [
+            "acceptreach",
+            "signreach",
+            "revealreach"
+          ]
+        },
+        "audit": {
+          "file": "pv/lmots__private_to_public/audit.pv",
+          "queries": [
+            "seedreach",
+            "seed_without_reveal",
+            "reveal_guarded",
+            "prf_public_probe"
+          ]
+        },
+        "existing": {
+          "file": "pv/lmots__private_to_public/existing.pv",
+          "queries": [
+            "exec_accept",
+            "LS1_unforge",
+            "forge"
+          ]
+        }
+      }
+    },
+    {
+      "seed": "lmots",
+      "operator": "reveal_wrong_secret",
+      "source": "audit_20261028/mutation_extension_20261029/lmots__reveal_wrong_secret/model.pv",
+      "source_sha256": "5a430c4cbfa754e276b58d1c1abb5ae53c28f863d8b92a265e9092afc62e9c4d",
+      "original_canonical_sha256": "1fe7f1d9eee96097630c212f2ecf562e4ef42859c2a8cc16ee6a22498be10466",
+      "groups": {
+        "reach": {
+          "file": "pv/lmots__reveal_wrong_secret/reach.pv",
+          "queries": [
+            "acceptreach",
+            "signreach",
+            "revealreach"
+          ]
+        },
+        "audit": {
+          "file": "pv/lmots__reveal_wrong_secret/audit.pv",
+          "queries": [
+            "seedreach",
+            "seed_without_reveal",
+            "reveal_guarded",
+            "prf_public_probe"
+          ]
+        },
+        "existing": {
+          "file": "pv/lmots__reveal_wrong_secret/existing.pv",
+          "queries": [
+            "exec_accept",
+            "LS1_unforge",
+            "forge"
+          ]
+        }
+      }
+    },
+    {
+      "seed": "lms_s2",
+      "operator": "control",
+      "source": "audit_20261028/mutation_extension_20261029/lms_s2__control/model.pv",
+      "source_sha256": "f0984a43f148863be8311428e5a947df2b3a17c9a75479c96013df49c9e8c064",
+      "original_canonical_sha256": "e611c8c9d0d181d770e93f3310fbc282e3a6387051f352a6c121117d9289016c",
+      "groups": {
+        "reach": {
+          "file": "pv/lms_s2__control/reach.pv",
+          "queries": [
+            "acceptreach",
+            "signreach",
+            "revealreach"
+          ]
+        },
+        "audit": {
+          "file": "pv/lms_s2__control/audit.pv",
+          "queries": [
+            "seedreach",
+            "seed_without_reveal",
+            "reveal_guarded",
+            "prf_public_probe"
+          ]
+        },
+        "existing": {
+          "file": "pv/lms_s2__control/existing.pv",
+          "queries": [
+            "exec",
+            "LS4_pure",
+            "LS1",
+            "LS3_forge"
+          ]
+        }
+      }
+    },
+    {
+      "seed": "lms_s2",
+      "operator": "event_accept_argument",
+      "source": "audit_20261028/mutation_extension_20261029/lms_s2__event_accept_argument/model.pv",
+      "source_sha256": "cf4522f262c318f32ae008f15dad3d9ceecc16fa11cc17d9c529fc3241ed9955",
+      "original_canonical_sha256": "070b4d54797f1df8b7c06baf881fdc36f2f214aa518e79b8dd44fa83b517b5f4",
+      "groups": {
+        "reach": {
+          "file": "pv/lms_s2__event_accept_argument/reach.pv",
+          "queries": [
+            "acceptreach",
+            "signreach",
+            "revealreach"
+          ]
+        },
+        "audit": {
+          "file": "pv/lms_s2__event_accept_argument/audit.pv",
+          "queries": [
+            "seedreach",
+            "seed_without_reveal",
+            "reveal_guarded",
+            "prf_public_probe"
+          ]
+        },
+        "existing": {
+          "file": "pv/lms_s2__event_accept_argument/existing.pv",
+          "queries": [
+            "exec",
+            "LS4_pure",
+            "LS1",
+            "LS3_forge"
+          ]
+        }
+      }
+    },
+    {
+      "seed": "lms_s2",
+      "operator": "event_sign_argument",
+      "source": "audit_20261028/mutation_extension_20261029/lms_s2__event_sign_argument/model.pv",
+      "source_sha256": "3a918366d7aa17fd4658234639aff625d16355853e6999bfec571493845693ab",
+      "original_canonical_sha256": "9854f8233ef3d0ad4727433a26561cbdb604bc9a0b6fd514e9d84aa4bae71b53",
+      "groups": {
+        "reach": {
+          "file": "pv/lms_s2__event_sign_argument/reach.pv",
+          "queries": [
+            "acceptreach",
+            "signreach",
+            "revealreach"
+          ]
+        },
+        "audit": {
+          "file": "pv/lms_s2__event_sign_argument/audit.pv",
+          "queries": [
+            "seedreach",
+            "seed_without_reveal",
+            "reveal_guarded",
+            "prf_public_probe"
+          ]
+        },
+        "existing": {
+          "file": "pv/lms_s2__event_sign_argument/existing.pv",
+          "queries": [
+            "exec",
+            "LS4_pure",
+            "LS1",
+            "LS3_forge"
+          ]
+        }
+      }
+    },
+    {
+      "seed": "lms_s2",
+      "operator": "remove_reveal_event",
+      "source": "audit_20261028/mutation_extension_20261029/lms_s2__remove_reveal_event/model.pv",
+      "source_sha256": "36494cbe13949ec92106acaa83f8107e603f886b3a5922084e6e0afd54eeb1e6",
+      "original_canonical_sha256": "5a4279680aff09b6bc9f6e9fc9966805b26a4612a7a2c4219ce64afdba36fa6b",
+      "groups": {
+        "reach": {
+          "file": "pv/lms_s2__remove_reveal_event/reach.pv",
+          "queries": [
+            "acceptreach",
+            "signreach",
+            "revealreach"
+          ]
+        },
+        "audit": {
+          "file": "pv/lms_s2__remove_reveal_event/audit.pv",
+          "queries": [
+            "seedreach",
+            "seed_without_reveal",
+            "reveal_guarded",
+            "prf_public_probe"
+          ]
+        },
+        "existing": {
+          "file": "pv/lms_s2__remove_reveal_event/existing.pv",
+          "queries": [
+            "exec",
+            "LS4_pure",
+            "LS1",
+            "LS3_forge"
+          ]
+        }
+      }
+    },
+    {
+      "seed": "lms_s2",
+      "operator": "replicate_signer",
+      "source": "audit_20261028/mutation_extension_20261029/lms_s2__replicate_signer/model.pv",
+      "source_sha256": "ef57fff6bd2ea55d1cd016251d590b008ac7bc9ac64c26025e8f77c8d5d9dd59",
+      "original_canonical_sha256": "17c5dd1a81202cd2de6610d96f3c87837a523a87c002b61a120058d6f6655523",
+      "groups": {
+        "reach": {
+          "file": "pv/lms_s2__replicate_signer/reach.pv",
+          "queries": [
+            "acceptreach",
+            "signreach",
+            "revealreach"
+          ]
+        },
+        "audit": {
+          "file": "pv/lms_s2__replicate_signer/audit.pv",
+          "queries": [
+            "seedreach",
+            "seed_without_reveal",
+            "reveal_guarded",
+            "prf_public_probe"
+          ]
+        },
+        "existing": {
+          "file": "pv/lms_s2__replicate_signer/existing.pv",
+          "queries": [
+            "exec",
+            "LS4_pure",
+            "LS1",
+            "LS3_forge"
+          ]
+        }
+      }
+    },
+    {
+      "seed": "lms_s2",
+      "operator": "disable_signer",
+      "source": "audit_20261028/mutation_extension_20261029/lms_s2__disable_signer/model.pv",
+      "source_sha256": "31f61daab956c3382b1759716a75ae6101d79453230861c5a404c7d586699f22",
+      "original_canonical_sha256": "7d8ac9ab8ee37e8cdf5d7794811430815862effb17d6c1335e675405761077b9",
+      "groups": {
+        "reach": {
+          "file": "pv/lms_s2__disable_signer/reach.pv",
+          "queries": [
+            "acceptreach",
+            "signreach",
+            "revealreach"
+          ]
+        },
+        "audit": {
+          "file": "pv/lms_s2__disable_signer/audit.pv",
+          "queries": [
+            "seedreach",
+            "seed_without_reveal",
+            "reveal_guarded",
+            "prf_public_probe"
+          ]
+        },
+        "existing": {
+          "file": "pv/lms_s2__disable_signer/existing.pv",
+          "queries": [
+            "exec",
+            "LS4_pure",
+            "LS1",
+            "LS3_forge"
+          ]
+        }
+      }
+    },
+    {
+      "seed": "lms_s2",
+      "operator": "disable_accept",
+      "source": "audit_20261028/mutation_extension_20261029/lms_s2__disable_accept/model.pv",
+      "source_sha256": "50d02fa6e06a10194692584f59e86956bb8843fdfe869e5f0b0299b68c95f2fb",
+      "original_canonical_sha256": "2913566942b4677945951d6ef5fa354ba61694c3b203cbc56890cfd11b1f86ed",
+      "groups": {
+        "reach": {
+          "file": "pv/lms_s2__disable_accept/reach.pv",
+          "queries": [
+            "acceptreach",
+            "signreach",
+            "revealreach"
+          ]
+        },
+        "audit": {
+          "file": "pv/lms_s2__disable_accept/audit.pv",
+          "queries": [
+            "seedreach",
+            "seed_without_reveal",
+            "reveal_guarded",
+            "prf_public_probe"
+          ]
+        },
+        "existing": {
+          "file": "pv/lms_s2__disable_accept/existing.pv",
+          "queries": [
+            "exec",
+            "LS4_pure",
+            "LS1",
+            "LS3_forge"
+          ]
+        }
+      }
+    },
+    {
+      "seed": "lms_s2",
+      "operator": "unguarded_reveal",
+      "source": "audit_20261028/mutation_extension_20261029/lms_s2__unguarded_reveal/model.pv",
+      "source_sha256": "815e8d19dcd1a459f34c9a3ad285e8c1605be680e1b83a48ef6ad6f5858243a0",
+      "original_canonical_sha256": "58e97242d8b61e2fa58e3f945a3fce6fa84e337f3dcad2b56871ea3025e07d68",
+      "groups": {
+        "reach": {
+          "file": "pv/lms_s2__unguarded_reveal/reach.pv",
+          "queries": [
+            "acceptreach",
+            "signreach",
+            "revealreach"
+          ]
+        },
+        "audit": {
+          "file": "pv/lms_s2__unguarded_reveal/audit.pv",
+          "queries": [
+            "seedreach",
+            "seed_without_reveal",
+            "reveal_guarded",
+            "prf_public_probe"
+          ]
+        },
+        "existing": {
+          "file": "pv/lms_s2__unguarded_reveal/existing.pv",
+          "queries": [
+            "exec",
+            "LS4_pure",
+            "LS1",
+            "LS3_forge"
+          ]
+        }
+      }
+    },
+    {
+      "seed": "lms_s2",
+      "operator": "wrong_public_key",
+      "source": "audit_20261028/mutation_extension_20261029/lms_s2__wrong_public_key/model.pv",
+      "source_sha256": "215e84410a970e73427ac0583c90a75783dafa3e3166afca6e1c634f9d0a6cba",
+      "original_canonical_sha256": "7c7062938c357b325f5043d1dfe55040e35bd0e72ee0e2213fae0c90ba2e8927",
+      "groups": {
+        "reach": {
+          "file": "pv/lms_s2__wrong_public_key/reach.pv",
+          "queries": [
+            "acceptreach",
+            "signreach",
+            "revealreach"
+          ]
+        },
+        "audit": {
+          "file": "pv/lms_s2__wrong_public_key/audit.pv",
+          "queries": [
+            "seedreach",
+            "seed_without_reveal",
+            "reveal_guarded",
+            "prf_public_probe"
+          ]
+        },
+        "existing": {
+          "file": "pv/lms_s2__wrong_public_key/existing.pv",
+          "queries": [
+            "exec",
+            "LS4_pure",
+            "LS1",
+            "LS3_forge"
+          ]
+        }
+      }
+    },
+    {
+      "seed": "lms_s2",
+      "operator": "private_to_public",
+      "source": "audit_20261028/mutation_extension_20261029/lms_s2__private_to_public/model.pv",
+      "source_sha256": "1e51cf2c888dc75188b7030a7dd686596fa332d3263d269789b2107efbec3ac9",
+      "original_canonical_sha256": "76bb363259b6977464df6822264d38d9f6a5d771848b17c3628be2ed08e32f75",
+      "groups": {
+        "reach": {
+          "file": "pv/lms_s2__private_to_public/reach.pv",
+          "queries": [
+            "acceptreach",
+            "signreach",
+            "revealreach"
+          ]
+        },
+        "audit": {
+          "file": "pv/lms_s2__private_to_public/audit.pv",
+          "queries": [
+            "seedreach",
+            "seed_without_reveal",
+            "reveal_guarded",
+            "prf_public_probe"
+          ]
+        },
+        "existing": {
+          "file": "pv/lms_s2__private_to_public/existing.pv",
+          "queries": [
+            "exec",
+            "LS4_pure",
+            "LS1",
+            "LS3_forge"
+          ]
+        }
+      }
+    },
+    {
+      "seed": "lms_s2",
+      "operator": "reveal_wrong_secret",
+      "source": "audit_20261028/mutation_extension_20261029/lms_s2__reveal_wrong_secret/model.pv",
+      "source_sha256": "dd5cda0c950a188c36345fe64e921056758bdc8998841a2d5d4952d6d742f3c5",
+      "original_canonical_sha256": "c9dbe917633237c2cac96ccabae728cfd759422ed40cdb6f5e7b2f99566649f7",
+      "groups": {
+        "reach": {
+          "file": "pv/lms_s2__reveal_wrong_secret/reach.pv",
+          "queries": [
+            "acceptreach",
+            "signreach",
+            "revealreach"
+          ]
+        },
+        "audit": {
+          "file": "pv/lms_s2__reveal_wrong_secret/audit.pv",
+          "queries": [
+            "seedreach",
+            "seed_without_reveal",
+            "reveal_guarded",
+            "prf_public_probe"
+          ]
+        },
+        "existing": {
+          "file": "pv/lms_s2__reveal_wrong_secret/existing.pv",
+          "queries": [
+            "exec",
+            "LS4_pure",
+            "LS1",
+            "LS3_forge"
+          ]
+        }
+      }
+    }
+  ],
+  "files": {
+    "pv/lmots__control/reach.pv": "3b0295a1c26f8d533b36571f9b2e06b2a44f4dd9515cbbfa0cbbba1299a590c1",
+    "pv/lmots__control/audit.pv": "5297fac8e45e641c661af0db0fc90bb486d8795ca2ebc60c8068a34a81331ad9",
+    "pv/lmots__control/existing.pv": "2fb7b86876499db72df8530e9f9e9f10fa26e4fdd33a59df9634c8ba389fde09",
+    "pv/lmots__event_accept_argument/reach.pv": "c1841f4a72e537d69b684dffa7dad3ee6a73fb4c172ec77f4bf9bf7947213b16",
+    "pv/lmots__event_accept_argument/audit.pv": "2aec101316682568768fa490eff3d93ee7ce16d9a6de42ef5bcc84efe28b3e96",
+    "pv/lmots__event_accept_argument/existing.pv": "0912f8f60d79d013bc3283a682e6b5884c66cdafc503f9586f2188e0553af8d5",
+    "pv/lmots__event_sign_argument/reach.pv": "b47b537f8c7e680a199bfbdfd9d359cd978e5b20b09662ef1e5af597867dfe4f",
+    "pv/lmots__event_sign_argument/audit.pv": "1b6031840213237a6e8768cdb67140d56b0e92aacb0a0f1983edd72c5d1de61f",
+    "pv/lmots__event_sign_argument/existing.pv": "53a34031b008d4255dfcc1034647d0af2d04bf9cd953aafd1c5a485113418035",
+    "pv/lmots__remove_reveal_event/reach.pv": "eba82c0cc9aa831a8833fc86933a4cc1aacf16648810ebcdcd49c9bb73fd8002",
+    "pv/lmots__remove_reveal_event/audit.pv": "d5f6acff2491237d94b9cc5887f4bbe55f2bd76ffa459998567a6a1f08a86ff3",
+    "pv/lmots__remove_reveal_event/existing.pv": "d6085411f34738a9dbd0dd7eae6b387fa2eeee792751ba972ee2a51abf8bc8d3",
+    "pv/lmots__replicate_signer/reach.pv": "1e03adc609d3286159bc900b51f1ef544e2fb093d3fb5f5720c39237b6f345d9",
+    "pv/lmots__replicate_signer/audit.pv": "fc13812f889eb6e9aa81306a95ddb8fc5a7ad6ad8d7822a2e5c4c0f013ea8805",
+    "pv/lmots__replicate_signer/existing.pv": "3567627e09cce8df7d83323b9949bf141e4c7eb2f8b377bfa073b655ddd8ba60",
+    "pv/lmots__disable_signer/reach.pv": "c7873a278621f10d1f0ed2ef6d20e08048b58495983c0e64e0ae1acdba89ecd5",
+    "pv/lmots__disable_signer/audit.pv": "c5a77b4bf07d56d4617b0bfd193a9bc621cd81fc7920d94711f6fc4ba74f2d27",
+    "pv/lmots__disable_signer/existing.pv": "0ec11d3b3a07aa4985450c8e6f7248d75a839b05e9c588adc9d37e68bc8f542a",
+    "pv/lmots__disable_accept/reach.pv": "6900f3db3d529160f135fde1893e4c728dc44a1b55d0c4c0c2f98eee409e6f19",
+    "pv/lmots__disable_accept/audit.pv": "19c99823c39bce4350194452814d6044c6e9310c9538900cb60f6cfd3269952c",
+    "pv/lmots__disable_accept/existing.pv": "4a4092af2efc55ce9192833e5a39c1a7708a03fb673191e6a3fd5571aa2cac30",
+    "pv/lmots__unguarded_reveal/reach.pv": "ad509d9db5a46697b0bbe4e3a369b52f9dd6439ffb739945da3770e3225fc7fb",
+    "pv/lmots__unguarded_reveal/audit.pv": "251c9d0c7ba022ddc5d3df1c3d14675920ecc98b6aa211f293e15c4928cf11d8",
+    "pv/lmots__unguarded_reveal/existing.pv": "f8fd600fd215a2d392e30cd5f761ec0f1d4c07b31a9bfe69919c1361bc202177",
+    "pv/lmots__wrong_public_key/reach.pv": "2da50cc61a5d9ce50b7c198d805dcf1a0603d73f2e4399e458c4c7bfd7ad1959",
+    "pv/lmots__wrong_public_key/audit.pv": "10f936697964f8d2cce90bb3050d9b9ad01a901e46da9bef0bd2213c69f34461",
+    "pv/lmots__wrong_public_key/existing.pv": "ce309d6b039c973fccbbcc928975cac53e33152df33af7afbe99a2bbe98f32c4",
+    "pv/lmots__private_to_public/reach.pv": "4ee6f6cbd56e19f0ec4ac44591b8fc3dfd6369dba21a2158d056ae68216edbfc",
+    "pv/lmots__private_to_public/audit.pv": "d7dfdaba857419e824a2fe775642578736e9a20c4f354c8dcd95cf49acb1065e",
+    "pv/lmots__private_to_public/existing.pv": "bf0bcf4d031da98fb2fc7e9c1d52302651e60c9d193cd50ea93c41fc40a525b2",
+    "pv/lmots__reveal_wrong_secret/reach.pv": "b9326efcf7c2fd33ceeb7d037af232522aa6eb53ea75c4d276247f856585ef66",
+    "pv/lmots__reveal_wrong_secret/audit.pv": "1586b2c9c58ac090167a6f9a6805bb6336dfd8adff6cc4cbf0d41826015b386c",
+    "pv/lmots__reveal_wrong_secret/existing.pv": "265c451d656ffb8b0967a3f9d314a6647156a9efdbe48ec83e39caf6f3cf794f",
+    "tm/lmots.spthy": "2d05922c377952f44d9ff6212d5f030e60c7a706dc67ddfe3585720d90bd5472",
+    "pv/lms_s2__control/reach.pv": "7b3964f162c24a0f9e6e730434ad4cc1814962e5b3253d565a96dcf76c607434",
+    "pv/lms_s2__control/audit.pv": "88acd9cf687a24a5dff618c52c6f8503a6d69ef8d8b2048139700640b4c9b58c",
+    "pv/lms_s2__control/existing.pv": "4a6c37044e8ff4ca3805f7a402dbcddfa1a1754f8ae6afd04420935bb8dcba00",
+    "pv/lms_s2__event_accept_argument/reach.pv": "67a01e2d3c7f6f47bbbf068a0abd406b1e481ddf1e697655528c5ff6efd14d01",
+    "pv/lms_s2__event_accept_argument/audit.pv": "5bfeb6388fd4849a95273cb5da124d4c4dbe9bf2c5455ccf5c876079278c8a34",
+    "pv/lms_s2__event_accept_argument/existing.pv": "ca3d8ecc4e7f4ec410dcbdbcaaedcdcf826767509c2f5b8550663f55f8433b23",
+    "pv/lms_s2__event_sign_argument/reach.pv": "db0451403c3e81e2db393e736ba9576872bffdd16be5ce5347be283be2b0701b",
+    "pv/lms_s2__event_sign_argument/audit.pv": "640b0619117c0a3635cc6ab0d191a5f5a1bd9888e15da197446cef1b4c4af5ae",
+    "pv/lms_s2__event_sign_argument/existing.pv": "9090b30e4da359b4613e6bf1eeaaa6efaf057269b1fceb39fce8a4e24d6c8268",
+    "pv/lms_s2__remove_reveal_event/reach.pv": "816b83f01691348f949b4a2c217492dd53f9d0eee2c1bcfa285c404a2e787491",
+    "pv/lms_s2__remove_reveal_event/audit.pv": "b908939d9ec7ef6e057c2a195867dc1dfb07d51de0d5a8dfa841b35e3a9b8a32",
+    "pv/lms_s2__remove_reveal_event/existing.pv": "b2df35d5402336d6f849bc251308e73866e548364198f81bd34ca8645d6588ca",
+    "pv/lms_s2__replicate_signer/reach.pv": "be12f6ed1c3d8ffbd3e25d6758decb61ab0a8260905acfd737878a1551c5af58",
+    "pv/lms_s2__replicate_signer/audit.pv": "23b215dfc120615afda89809ed22371a380a7e70bf7e5a8b598c6483d5d5b356",
+    "pv/lms_s2__replicate_signer/existing.pv": "3e6087a7f6d29f921a6329ff49b2d24f8ca7885cc782f1d0fd28428f9459fa8c",
+    "pv/lms_s2__disable_signer/reach.pv": "3887c4c6b92c74ea8cccbdf587d0993eb5ef07a92c724a1ad573e86d4cc35000",
+    "pv/lms_s2__disable_signer/audit.pv": "6d1f8950a03e8b8acb2aaae3d8a404137ea5cd4d06d98ab6e543501fd5313072",
+    "pv/lms_s2__disable_signer/existing.pv": "ef77b007c4b664d874b32a7a130470d04b9176c7e7ae2545d1ce12bcbaa94db3",
+    "pv/lms_s2__disable_accept/reach.pv": "90d2debce7878cf46babfe02121019a44c6c99a8f5549fdb99ef855577c85603",
+    "pv/lms_s2__disable_accept/audit.pv": "c6643fde7c5b9ad4cce1e94ad935ec325200d7217d1e31737d491fc28da7292c",
+    "pv/lms_s2__disable_accept/existing.pv": "0e352fb89ce53619031bd4227c5a30f4d1fc2bbf8dfe7630d730f283ae3374fc",
+    "pv/lms_s2__unguarded_reveal/reach.pv": "d01de719dca25c645e161c963c24275328571e6d7e2a1b586154783314e10847",
+    "pv/lms_s2__unguarded_reveal/audit.pv": "87d59c73ff1ea44f59603749d87fe58d01527fc3e78cb09c996c57d29ec2c560",
+    "pv/lms_s2__unguarded_reveal/existing.pv": "5bdbf5ab92241bb02444fa775b7670780ee38a7c8eb69a411e2adddf566e8593",
+    "pv/lms_s2__wrong_public_key/reach.pv": "d7c0935b998d0e2b958140dd75f6fe8e5706cec5105e0c5480201d13195f9ba1",
+    "pv/lms_s2__wrong_public_key/audit.pv": "47bc7354d1f364d24a53c5c44b52d33de9af4e05242e63f4bd39b76588bc61e7",
+    "pv/lms_s2__wrong_public_key/existing.pv": "5f46bff61f165ed402aee56c61bbc8a60b8c5e4ca5f6d8e635b3a384c11f1340",
+    "pv/lms_s2__private_to_public/reach.pv": "83152155c41f889acf39e70379ee3bc68b3091dee402f11624dab48bba0562d2",
+    "pv/lms_s2__private_to_public/audit.pv": "c5e52c864ec28424f3e140a0868988e1a673d25c64e17d7240e10675c80a2f83",
+    "pv/lms_s2__private_to_public/existing.pv": "7162005927ed0d6877ba47dc69aba8befed8cc76699997005d0fc452e9db4e85",
+    "pv/lms_s2__reveal_wrong_secret/reach.pv": "18d98a72dabf2bf10536d44528c842b4c86843fe19dcf9b1be03458c5cf5ef09",
+    "pv/lms_s2__reveal_wrong_secret/audit.pv": "4a969f7200fb51515e7f8ad18126e00af1232a8a93bb3b1c4757fdad0f902778",
+    "pv/lms_s2__reveal_wrong_secret/existing.pv": "1cf58608c98095cd1de5df00e4b4c2f837d16c0c3155bf7c580ea14854ccfea3",
+    "tm/lms_s2.spthy": "589487f191764034f39aba9a464514c5b975748ed8a69d0bc93dad284b413d99"
+  },
+  "runner_sha256": "c5c5794c3a5a86d15856237e4e38fa666bd4da536db516d431fb85c18bcc4e18",
+  "protected_inventory_sha256": "52f2798f4f59e0a847d9fb68a7caabae8e2fbb94b8748f3e3ce26499ff1cc5d8"
+}

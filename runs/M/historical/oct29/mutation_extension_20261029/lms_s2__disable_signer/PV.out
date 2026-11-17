@@ -1,0 +1,201 @@
+File "/redacted-home/workspace/audit_20261028/mutation_extension_20261029/lms_s2__disable_signer/model.pv", line 42, character 4663:
+Warning: identifier y rebound.
+File "/redacted-home/workspace/audit_20261028/mutation_extension_20261029/lms_s2__disable_signer/model.pv", line 42, character 3216:
+Warning: identifier y rebound.
+File "/redacted-home/workspace/audit_20261028/mutation_extension_20261029/lms_s2__disable_signer/model.pv", line 42, character 1769:
+Warning: identifier y rebound.
+File "/redacted-home/workspace/audit_20261028/mutation_extension_20261029/lms_s2__disable_signer/model.pv", line 42, character 322:
+Warning: identifier y rebound.
+Process 0 (that is, the initial process):
+(
+    {1}!
+    {2}new I: bitstring;
+    {3}new sd: bitstring;
+    {4}insert Root(I,hl(I,(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n0,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n0,c_k))))),(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n1,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n1,c_k)))))));
+    {5}out(c, (I,hl(I,(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n0,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n0,c_k))))),(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n1,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n1,c_k))))))));
+    {6}in(c, y: bitstring);
+    (
+        {7}let (=c_sign,=n0) = y in
+        {8}if (n0 = n1) then
+        {9}event Sign(I,n0,n0);
+        {10}out(c, (I,(n0,(n0,(prf(sd,n0,c_m),(ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n0,c_k)))),(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n1,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n1,c_k)))))))))));
+        {11}in(c, y_1: bitstring);
+        (
+            {12}let (=c_sign,=n0) = y_1 in
+            {13}if (n0 = n1) then
+            {14}event Sign(I,n1,n0);
+            {15}out(c, (I,(n1,(n0,(prf(sd,n1,c_m),(ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n1,c_k)))),(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n0,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n0,c_k)))))))))))
+        ) | (
+            {16}let (=c_sign,=n1) = y_1 in
+            {17}if (n0 = n1) then
+            {18}event Sign(I,n1,n1);
+            {19}out(c, (I,(n1,(n1,(ch(I,c_m,prf(sd,n1,c_m)),(ch(I,c_k,ch(I,c_k,prf(sd,n1,c_k))),(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n0,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n0,c_k)))))))))))
+        ) | (
+            {20}let (=c_sign,=n2) = y_1 in
+            {21}if (n0 = n1) then
+            {22}event Sign(I,n1,n2);
+            {23}out(c, (I,(n1,(n2,(ch(I,c_m,ch(I,c_m,prf(sd,n1,c_m))),(ch(I,c_k,prf(sd,n1,c_k)),(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n0,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n0,c_k)))))))))))
+        ) | (
+            {24}let (=c_sign,=n3) = y_1 in
+            {25}if (n0 = n1) then
+            {26}event Sign(I,n1,n3);
+            {27}out(c, (I,(n1,(n3,(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n1,c_m)))),(prf(sd,n1,c_k),(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n0,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n0,c_k)))))))))))
+        )
+    ) | (
+        {28}let (=c_sign,=n1) = y in
+        {29}if (n0 = n1) then
+        {30}event Sign(I,n0,n1);
+        {31}out(c, (I,(n0,(n1,(ch(I,c_m,prf(sd,n0,c_m)),(ch(I,c_k,ch(I,c_k,prf(sd,n0,c_k))),(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n1,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n1,c_k)))))))))));
+        {32}in(c, y_2: bitstring);
+        (
+            {33}let (=c_sign,=n0) = y_2 in
+            {34}if (n0 = n1) then
+            {35}event Sign(I,n1,n0);
+            {36}out(c, (I,(n1,(n0,(prf(sd,n1,c_m),(ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n1,c_k)))),(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n0,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n0,c_k)))))))))))
+        ) | (
+            {37}let (=c_sign,=n1) = y_2 in
+            {38}if (n0 = n1) then
+            {39}event Sign(I,n1,n1);
+            {40}out(c, (I,(n1,(n1,(ch(I,c_m,prf(sd,n1,c_m)),(ch(I,c_k,ch(I,c_k,prf(sd,n1,c_k))),(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n0,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n0,c_k)))))))))))
+        ) | (
+            {41}let (=c_sign,=n2) = y_2 in
+            {42}if (n0 = n1) then
+            {43}event Sign(I,n1,n2);
+            {44}out(c, (I,(n1,(n2,(ch(I,c_m,ch(I,c_m,prf(sd,n1,c_m))),(ch(I,c_k,prf(sd,n1,c_k)),(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n0,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n0,c_k)))))))))))
+        ) | (
+            {45}let (=c_sign,=n3) = y_2 in
+            {46}if (n0 = n1) then
+            {47}event Sign(I,n1,n3);
+            {48}out(c, (I,(n1,(n3,(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n1,c_m)))),(prf(sd,n1,c_k),(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n0,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n0,c_k)))))))))))
+        )
+    ) | (
+        {49}let (=c_sign,=n2) = y in
+        {50}if (n0 = n1) then
+        {51}event Sign(I,n0,n2);
+        {52}out(c, (I,(n0,(n2,(ch(I,c_m,ch(I,c_m,prf(sd,n0,c_m))),(ch(I,c_k,prf(sd,n0,c_k)),(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n1,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n1,c_k)))))))))));
+        {53}in(c, y_3: bitstring);
+        (
+            {54}let (=c_sign,=n0) = y_3 in
+            {55}if (n0 = n1) then
+            {56}event Sign(I,n1,n0);
+            {57}out(c, (I,(n1,(n0,(prf(sd,n1,c_m),(ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n1,c_k)))),(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n0,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n0,c_k)))))))))))
+        ) | (
+            {58}let (=c_sign,=n1) = y_3 in
+            {59}if (n0 = n1) then
+            {60}event Sign(I,n1,n1);
+            {61}out(c, (I,(n1,(n1,(ch(I,c_m,prf(sd,n1,c_m)),(ch(I,c_k,ch(I,c_k,prf(sd,n1,c_k))),(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n0,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n0,c_k)))))))))))
+        ) | (
+            {62}let (=c_sign,=n2) = y_3 in
+            {63}if (n0 = n1) then
+            {64}event Sign(I,n1,n2);
+            {65}out(c, (I,(n1,(n2,(ch(I,c_m,ch(I,c_m,prf(sd,n1,c_m))),(ch(I,c_k,prf(sd,n1,c_k)),(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n0,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n0,c_k)))))))))))
+        ) | (
+            {66}let (=c_sign,=n3) = y_3 in
+            {67}if (n0 = n1) then
+            {68}event Sign(I,n1,n3);
+            {69}out(c, (I,(n1,(n3,(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n1,c_m)))),(prf(sd,n1,c_k),(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n0,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n0,c_k)))))))))))
+        )
+    ) | (
+        {70}let (=c_sign,=n3) = y in
+        {71}if (n0 = n1) then
+        {72}event Sign(I,n0,n3);
+        {73}out(c, (I,(n0,(n3,(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n0,c_m)))),(prf(sd,n0,c_k),(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n1,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n1,c_k)))))))))));
+        {74}in(c, y_4: bitstring);
+        (
+            {75}let (=c_sign,=n0) = y_4 in
+            {76}if (n0 = n1) then
+            {77}event Sign(I,n1,n0);
+            {78}out(c, (I,(n1,(n0,(prf(sd,n1,c_m),(ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n1,c_k)))),(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n0,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n0,c_k)))))))))))
+        ) | (
+            {79}let (=c_sign,=n1) = y_4 in
+            {80}if (n0 = n1) then
+            {81}event Sign(I,n1,n1);
+            {82}out(c, (I,(n1,(n1,(ch(I,c_m,prf(sd,n1,c_m)),(ch(I,c_k,ch(I,c_k,prf(sd,n1,c_k))),(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n0,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n0,c_k)))))))))))
+        ) | (
+            {83}let (=c_sign,=n2) = y_4 in
+            {84}if (n0 = n1) then
+            {85}event Sign(I,n1,n2);
+            {86}out(c, (I,(n1,(n2,(ch(I,c_m,ch(I,c_m,prf(sd,n1,c_m))),(ch(I,c_k,prf(sd,n1,c_k)),(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n0,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n0,c_k)))))))))))
+        ) | (
+            {87}let (=c_sign,=n3) = y_4 in
+            {88}if (n0 = n1) then
+            {89}event Sign(I,n1,n3);
+            {90}out(c, (I,(n1,(n3,(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n1,c_m)))),(prf(sd,n1,c_k),(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n0,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n0,c_k)))))))))))
+        )
+    ) | (
+        {91}in(c, =I);
+        {92}event RevealSeed(I);
+        {93}out(c, sd)
+    )
+) | (
+    {94}!
+    {95}in(c, y_5: bitstring);
+    (
+        {96}let (v_I: bitstring,(=n0,(=n0,(v_sm: bitstring,(v_sk: bitstring,v_sib: bitstring))))) = y_5 in
+        {98}get Root(=v_I,=hl(v_I,(ch(v_I,c_m,ch(v_I,c_m,ch(v_I,c_m,v_sm))),v_sk),v_sib)) in
+        {97}event Accept(v_I,n0,n0)
+    ) | (
+        {99}let (v_I_1: bitstring,(=n0,(=n1,(v_sm_1: bitstring,(v_sk_1: bitstring,v_sib_1: bitstring))))) = y_5 in
+        {101}get Root(=v_I_1,=hl(v_I_1,(ch(v_I_1,c_m,ch(v_I_1,c_m,v_sm_1)),ch(v_I_1,c_k,v_sk_1)),v_sib_1)) in
+        {100}event Accept(v_I_1,n0,n1)
+    ) | (
+        {102}let (v_I_2: bitstring,(=n0,(=n2,(v_sm_2: bitstring,(v_sk_2: bitstring,v_sib_2: bitstring))))) = y_5 in
+        {104}get Root(=v_I_2,=hl(v_I_2,(ch(v_I_2,c_m,v_sm_2),ch(v_I_2,c_k,ch(v_I_2,c_k,v_sk_2))),v_sib_2)) in
+        {103}event Accept(v_I_2,n0,n2)
+    ) | (
+        {105}let (v_I_3: bitstring,(=n0,(=n3,(v_sm_3: bitstring,(v_sk_3: bitstring,v_sib_3: bitstring))))) = y_5 in
+        {107}get Root(=v_I_3,=hl(v_I_3,(v_sm_3,ch(v_I_3,c_k,ch(v_I_3,c_k,ch(v_I_3,c_k,v_sk_3)))),v_sib_3)) in
+        {106}event Accept(v_I_3,n0,n3)
+    ) | (
+        {108}let (v_I_4: bitstring,(=n1,(=n0,(v_sm_4: bitstring,(v_sk_4: bitstring,v_sib_4: bitstring))))) = y_5 in
+        {110}get Root(=v_I_4,=hl(v_I_4,v_sib_4,(ch(v_I_4,c_m,ch(v_I_4,c_m,ch(v_I_4,c_m,v_sm_4))),v_sk_4))) in
+        {109}event Accept(v_I_4,n1,n0)
+    ) | (
+        {111}let (v_I_5: bitstring,(=n1,(=n1,(v_sm_5: bitstring,(v_sk_5: bitstring,v_sib_5: bitstring))))) = y_5 in
+        {113}get Root(=v_I_5,=hl(v_I_5,v_sib_5,(ch(v_I_5,c_m,ch(v_I_5,c_m,v_sm_5)),ch(v_I_5,c_k,v_sk_5)))) in
+        {112}event Accept(v_I_5,n1,n1)
+    ) | (
+        {114}let (v_I_6: bitstring,(=n1,(=n2,(v_sm_6: bitstring,(v_sk_6: bitstring,v_sib_6: bitstring))))) = y_5 in
+        {116}get Root(=v_I_6,=hl(v_I_6,v_sib_6,(ch(v_I_6,c_m,v_sm_6),ch(v_I_6,c_k,ch(v_I_6,c_k,v_sk_6))))) in
+        {115}event Accept(v_I_6,n1,n2)
+    ) | (
+        {117}let (v_I_7: bitstring,(=n1,(=n3,(v_sm_7: bitstring,(v_sk_7: bitstring,v_sib_7: bitstring))))) = y_5 in
+        {119}get Root(=v_I_7,=hl(v_I_7,v_sib_7,(v_sm_7,ch(v_I_7,c_k,ch(v_I_7,c_k,ch(v_I_7,c_k,v_sk_7)))))) in
+        {118}event Accept(v_I_7,n1,n3)
+    )
+)
+
+-- Query event(Sign(I_1,q,a)) && event(Accept(I_1,q,a)) ==> event(RevealSeed(I_1)) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query event(Sign(I_1,q,a)) && event(Accept(I_1,q,a)) ==> event(RevealSeed(I_1))
+RESULT event(Sign(I_1,q,a)) && event(Accept(I_1,q,a)) ==> event(RevealSeed(I_1)) is true.
+-- Query event(Sign(I_1,q,a1))@i && event(Sign(I_1,q,a2))@j ==> i = j encoded as event(v,Sign(I_1,q,a1)) && event(v_1,Sign(I_1,q,a2)) ==> v_1 = v in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query event(Sign(I_1,q,a1))@i && event(Sign(I_1,q,a2))@j ==> i = j
+RESULT event(Sign(I_1,q,a1))@i && event(Sign(I_1,q,a2))@j ==> i = j is true.
+-- Query event(Accept(I_1,q,a)) ==> event(Sign(I_1,q,a)) || event(RevealSeed(I_1)) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query event(Accept(I_1,q,a)) ==> event(Sign(I_1,q,a)) || event(RevealSeed(I_1))
+RESULT event(Accept(I_1,q,a)) ==> event(Sign(I_1,q,a)) || event(RevealSeed(I_1)) is true.
+-- Query event(Accept(I_1,q,a)) ==> event(Sign(I_1,q,a)) || event(RevealSeed(I_1)) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query event(Accept(I_1,q,a)) ==> event(Sign(I_1,q,a)) || event(RevealSeed(I_1))
+RESULT event(Accept(I_1,q,a)) ==> event(Sign(I_1,q,a)) || event(RevealSeed(I_1)) is true.
+
+--------------------------------------------------------------
+Verification summary:
+
+Query event(Sign(I_1,q,a)) && event(Accept(I_1,q,a)) ==> event(RevealSeed(I_1)) is true.
+
+Query event(Sign(I_1,q,a1))@i && event(Sign(I_1,q,a2))@j ==> i = j is true.
+
+Query event(Accept(I_1,q,a)) ==> event(Sign(I_1,q,a)) || event(RevealSeed(I_1)) is true.
+
+Query event(Accept(I_1,q,a)) ==> event(Sign(I_1,q,a)) || event(RevealSeed(I_1)) is true.
+
+--------------------------------------------------------------
+

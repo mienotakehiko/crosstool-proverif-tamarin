@@ -1,0 +1,17 @@
+maude tool: 'maude'
+ checking version: 3.5.1. OK.
+ checking installation: OK.
+[Theory LMS_S2_T_base] Theory loaded
+[Theory LMS_S2_T_base] Theory translated
+TAMARIN LEMMA: ∃ I q a #e0.
+ ((Accept( I, q, a ) @ #e0) ∧ (¬(∃ #n0. Sign( I, q, a ) @ #n0))) ∧
+ (¬(∃ #n1. RevealSeed( I ) @ #n1)) END
+PROVERIF LEMMA: (*LS3_forge*)
+query I:bitstring, a:bitstring, q:bitstring, e0:time, n0:time,
+      n1:time;
+ (event(eAccept( I, q, a ))@e0) ==>
+ ((event(eSign( I, q, a ))@n0) || (event(eRevealSeed( I ))@n1))
+.
+
+(* Existential lemma LS3_forge has a leading negation, interpret ProVerif's answers accordingly!*)
+ END

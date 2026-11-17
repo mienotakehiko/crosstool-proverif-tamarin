@@ -1,0 +1,160 @@
+{
+  "provenance": "Previously recovered Nov 11 frozen-query freeze.json; source model entries used solely for exact old-source cross-check",
+  "tree_sha256": "d45347db969b78a5209adb13dbee3cc00b7d6047ec0c60a14d40be7cfc0de8e6",
+  "models": [
+    {
+      "seed": "lmots",
+      "operator": "control",
+      "source": "audit_20261028/mutation_extension_20261029/lmots__control/model.pv",
+      "source_sha256": "9dd8b7037a76ef086cd49ce017c53e1e0ceb700db2eea3af564e611065dcabf1",
+      "original_canonical_sha256": "dfd9fd0f2c97b549bf718825627ef0e3fabf077a0977d8a701436dd787441a3f"
+    },
+    {
+      "seed": "lmots",
+      "operator": "event_accept_argument",
+      "source": "audit_20261028/mutation_extension_20261029/lmots__event_accept_argument/model.pv",
+      "source_sha256": "b4ad8fdb6bd7c8b0e9ce9124cfcd3d963f53a8ce57fcf4b4d1fd012df4851faf",
+      "original_canonical_sha256": "89f6e27859fff17b819f1b2097561521429fdb7513c749d80c5b19017d0a6200"
+    },
+    {
+      "seed": "lmots",
+      "operator": "event_sign_argument",
+      "source": "audit_20261028/mutation_extension_20261029/lmots__event_sign_argument/model.pv",
+      "source_sha256": "6dba88fcf5bfec0979e7d1f9caab1b44a0de7aa11b579dae4dbfa2d18376a574",
+      "original_canonical_sha256": "ce77b79b360933804b0f85cc2b50211ee1f7a9bbf252ac67a3a5dd9f73e88729"
+    },
+    {
+      "seed": "lmots",
+      "operator": "remove_reveal_event",
+      "source": "audit_20261028/mutation_extension_20261029/lmots__remove_reveal_event/model.pv",
+      "source_sha256": "f4e25db4e4707bf576257c22fd8bec7ec02b30d6537bfb9445a74a351ece93d1",
+      "original_canonical_sha256": "dff027201eac81a5c9cfae49c45ebb39d218c7bac201673ccf8f9e70b9cea976"
+    },
+    {
+      "seed": "lmots",
+      "operator": "replicate_signer",
+      "source": "audit_20261028/mutation_extension_20261029/lmots__replicate_signer/model.pv",
+      "source_sha256": "6418980ebced008c3e85565c1d693ce47d4bb7189de185587a4e223a2bf03a79",
+      "original_canonical_sha256": "7efc77dd72e5976f5a3586329dcae3ee0f8601057514992ce4aaed18163d152e"
+    },
+    {
+      "seed": "lmots",
+      "operator": "disable_signer",
+      "source": "audit_20261028/mutation_extension_20261029/lmots__disable_signer/model.pv",
+      "source_sha256": "bdf6e1abfe690fec08907550f9e17df023d95a43a963cff99c6c85a87b124e2c",
+      "original_canonical_sha256": "086c87ee8e921f6be1af2a1d01cde7099de68b5acb7eb4056ef13ee10ad76221"
+    },
+    {
+      "seed": "lmots",
+      "operator": "disable_accept",
+      "source": "audit_20261028/mutation_extension_20261029/lmots__disable_accept/model.pv",
+      "source_sha256": "6f2fea56adde1b0d488161bb47a010c6507527f88b0a17e228d80cefeddf1d69",
+      "original_canonical_sha256": "4b1bd66c9b9d08b2b17e8e912e21d4b9216cbc606fd75fb106d2f8e5f658c1e8"
+    },
+    {
+      "seed": "lmots",
+      "operator": "unguarded_reveal",
+      "source": "audit_20261028/mutation_extension_20261029/lmots__unguarded_reveal/model.pv",
+      "source_sha256": "26755efa121ca821bf15adc3d1dafb57fc1653c0d38740a42eef1c543ce78261",
+      "original_canonical_sha256": "f564a14926038a8c1ba6f5180778f8639c65510443a889cc9e3d7efa60ff7668"
+    },
+    {
+      "seed": "lmots",
+      "operator": "wrong_public_key",
+      "source": "audit_20261028/mutation_extension_20261029/lmots__wrong_public_key/model.pv",
+      "source_sha256": "22086b147a403518de3fb0aaa19a29fe22c86a8c0d74b2f5d8cad2d28da568b2",
+      "original_canonical_sha256": "a615ce1fa506ee6e1a303112373cb1d2c5b05d772c1ae15736dabfed3471a040"
+    },
+    {
+      "seed": "lmots",
+      "operator": "private_to_public",
+      "source": "audit_20261028/mutation_extension_20261029/lmots__private_to_public/model.pv",
+      "source_sha256": "31c28109cbc4e5a536cea91664fd346d373abfc614ee09d5dcd81cc0c50f01d2",
+      "original_canonical_sha256": "ff92477c5fa7166ca108b34eb7e74875db85f7bfc37b25b2eb828ab0bdf71dd0"
+    },
+    {
+      "seed": "lmots",
+      "operator": "reveal_wrong_secret",
+      "source": "audit_20261028/mutation_extension_20261029/lmots__reveal_wrong_secret/model.pv",
+      "source_sha256": "5a430c4cbfa754e276b58d1c1abb5ae53c28f863d8b92a265e9092afc62e9c4d",
+      "original_canonical_sha256": "1fe7f1d9eee96097630c212f2ecf562e4ef42859c2a8cc16ee6a22498be10466"
+    },
+    {
+      "seed": "lms_s2",
+      "operator": "control",
+      "source": "audit_20261028/mutation_extension_20261029/lms_s2__control/model.pv",
+      "source_sha256": "f0984a43f148863be8311428e5a947df2b3a17c9a75479c96013df49c9e8c064",
+      "original_canonical_sha256": "e611c8c9d0d181d770e93f3310fbc282e3a6387051f352a6c121117d9289016c"
+    },
+    {
+      "seed": "lms_s2",
+      "operator": "event_accept_argument",
+      "source": "audit_20261028/mutation_extension_20261029/lms_s2__event_accept_argument/model.pv",
+      "source_sha256": "cf4522f262c318f32ae008f15dad3d9ceecc16fa11cc17d9c529fc3241ed9955",
+      "original_canonical_sha256": "070b4d54797f1df8b7c06baf881fdc36f2f214aa518e79b8dd44fa83b517b5f4"
+    },
+    {
+      "seed": "lms_s2",
+      "operator": "event_sign_argument",
+      "source": "audit_20261028/mutation_extension_20261029/lms_s2__event_sign_argument/model.pv",
+      "source_sha256": "3a918366d7aa17fd4658234639aff625d16355853e6999bfec571493845693ab",
+      "original_canonical_sha256": "9854f8233ef3d0ad4727433a26561cbdb604bc9a0b6fd514e9d84aa4bae71b53"
+    },
+    {
+      "seed": "lms_s2",
+      "operator": "remove_reveal_event",
+      "source": "audit_20261028/mutation_extension_20261029/lms_s2__remove_reveal_event/model.pv",
+      "source_sha256": "36494cbe13949ec92106acaa83f8107e603f886b3a5922084e6e0afd54eeb1e6",
+      "original_canonical_sha256": "5a4279680aff09b6bc9f6e9fc9966805b26a4612a7a2c4219ce64afdba36fa6b"
+    },
+    {
+      "seed": "lms_s2",
+      "operator": "replicate_signer",
+      "source": "audit_20261028/mutation_extension_20261029/lms_s2__replicate_signer/model.pv",
+      "source_sha256": "ef57fff6bd2ea55d1cd016251d590b008ac7bc9ac64c26025e8f77c8d5d9dd59",
+      "original_canonical_sha256": "17c5dd1a81202cd2de6610d96f3c87837a523a87c002b61a120058d6f6655523"
+    },
+    {
+      "seed": "lms_s2",
+      "operator": "disable_signer",
+      "source": "audit_20261028/mutation_extension_20261029/lms_s2__disable_signer/model.pv",
+      "source_sha256": "31f61daab956c3382b1759716a75ae6101d79453230861c5a404c7d586699f22",
+      "original_canonical_sha256": "7d8ac9ab8ee37e8cdf5d7794811430815862effb17d6c1335e675405761077b9"
+    },
+    {
+      "seed": "lms_s2",
+      "operator": "disable_accept",
+      "source": "audit_20261028/mutation_extension_20261029/lms_s2__disable_accept/model.pv",
+      "source_sha256": "50d02fa6e06a10194692584f59e86956bb8843fdfe869e5f0b0299b68c95f2fb",
+      "original_canonical_sha256": "2913566942b4677945951d6ef5fa354ba61694c3b203cbc56890cfd11b1f86ed"
+    },
+    {
+      "seed": "lms_s2",
+      "operator": "unguarded_reveal",
+      "source": "audit_20261028/mutation_extension_20261029/lms_s2__unguarded_reveal/model.pv",
+      "source_sha256": "815e8d19dcd1a459f34c9a3ad285e8c1605be680e1b83a48ef6ad6f5858243a0",
+      "original_canonical_sha256": "58e97242d8b61e2fa58e3f945a3fce6fa84e337f3dcad2b56871ea3025e07d68"
+    },
+    {
+      "seed": "lms_s2",
+      "operator": "wrong_public_key",
+      "source": "audit_20261028/mutation_extension_20261029/lms_s2__wrong_public_key/model.pv",
+      "source_sha256": "215e84410a970e73427ac0583c90a75783dafa3e3166afca6e1c634f9d0a6cba",
+      "original_canonical_sha256": "7c7062938c357b325f5043d1dfe55040e35bd0e72ee0e2213fae0c90ba2e8927"
+    },
+    {
+      "seed": "lms_s2",
+      "operator": "private_to_public",
+      "source": "audit_20261028/mutation_extension_20261029/lms_s2__private_to_public/model.pv",
+      "source_sha256": "1e51cf2c888dc75188b7030a7dd686596fa332d3263d269789b2107efbec3ac9",
+      "original_canonical_sha256": "76bb363259b6977464df6822264d38d9f6a5d771848b17c3628be2ed08e32f75"
+    },
+    {
+      "seed": "lms_s2",
+      "operator": "reveal_wrong_secret",
+      "source": "audit_20261028/mutation_extension_20261029/lms_s2__reveal_wrong_secret/model.pv",
+      "source_sha256": "dd5cda0c950a188c36345fe64e921056758bdc8998841a2d5d4952d6d742f3c5",
+      "original_canonical_sha256": "c9dbe917633237c2cac96ccabae728cfd759422ed40cdb6f5e7b2f99566649f7"
+    }
+  ]
+}

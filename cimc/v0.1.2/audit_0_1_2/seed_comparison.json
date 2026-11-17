@@ -1,0 +1,82 @@
+[
+  {
+    "seed": "lmots",
+    "file": "LMOTS_PV_U1.pv",
+    "unchanged_except_version": true
+  },
+  {
+    "seed": "lmots",
+    "file": "LMOTS_PV_Urb1.pv",
+    "unchanged_except_version": true
+  },
+  {
+    "seed": "lmots",
+    "file": "LMOTS_PV_lin.pv",
+    "unchanged_except_version": true
+  },
+  {
+    "seed": "lmots",
+    "file": "LMOTS_PV_rep.pv",
+    "unchanged_except_version": true
+  },
+  {
+    "seed": "lmots",
+    "file": "LMOTS_T_base.spthy",
+    "unchanged_except_version": true
+  },
+  {
+    "seed": "lmots",
+    "file": "LMOTS_T_cl1.spthy",
+    "unchanged_except_version": true
+  },
+  {
+    "seed": "lmots",
+    "file": "LMOTS_T_rb1.spthy",
+    "unchanged_except_version": true
+  },
+  {
+    "seed": "lmots",
+    "file": "LMOTS_T_omega.spthy",
+    "unchanged_except_version": true
+  },
+  {
+    "seed": "lms_s2",
+    "file": "LMS_S2_PV_U2.pv",
+    "unchanged_except_version": true
+  },
+  {
+    "seed": "lms_s2",
+    "file": "LMS_S2_PV_Urb2.pv",
+    "unchanged_except_version": true
+  },
+  {
+    "seed": "lms_s2",
+    "file": "LMS_S2_PV_lin.pv",
+    "unchanged_except_version": true
+  },
+  {
+    "seed": "lms_s2",
+    "file": "LMS_S2_PV_rep.pv",
+    "unchanged_except_version": true
+  },
+  {
+    "seed": "lms_s2",
+    "file": "LMS_S2_T_base.spthy",
+    "unchanged_except_version": true
+  },
+  {
+    "seed": "lms_s2",
+    "file": "LMS_S2_T_cl1.spthy",
+    "unchanged_except_version": true
+  },
+  {
+    "seed": "lms_s2",
+    "file": "LMS_S2_T_rb1.spthy",
+    "unchanged_except_version": true
+  },
+  {
+    "seed": "lms_s2",
+    "file": "LMS_S2_T_omega.spthy",
+    "unchanged_except_version": true
+  }
+]

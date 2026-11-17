@@ -1,0 +1,26 @@
+{
+  "command": [
+    "/usr/local/bin/tamarin-prover",
+    "--prove=prospective_acceptreach",
+    "--derivcheck-timeout=0",
+    "/redacted-home/workspace/revision_20261111/mutations/tm/lmots.spthy",
+    "+RTS",
+    "-N1",
+    "-M400m",
+    "-RTS"
+  ],
+  "started_utc": "2026-11-11T03:12:15.563840+00:00",
+  "elapsed_s": 0.509,
+  "rc": 0,
+  "stop_reason": null,
+  "time_limit_s": 30,
+  "peak_group_rss_kib": 53784,
+  "rss_samples": [
+    [
+      0.002,
+      460
+    ]
+  ],
+  "raw_file": "raw/tm/lmots/acceptreach/raw.out",
+  "raw_sha256": "4fcf0f67e9b0b564d08042e5d8537c3a4f4d24482c43a184274ca343d4936383"
+}

@@ -1,0 +1,108 @@
+[
+  {
+    "case": "control",
+    "operator": "none",
+    "pv_sha256": "9dd8b7037a76ef086cd49ce017c53e1e0ceb700db2eea3af564e611065dcabf1",
+    "tm_sha256": "28e70408184a582efc07801b5bc321319d9e929eaccfd9dc3459f1a5d9c0a1c3",
+    "expected": "no mismatch",
+    "scope": "LMOTS fixed w=2,p=2, U1 versus unchanged T",
+    "runs": {
+      "PV": {
+        "rc": 0,
+        "outcome": "H"
+      },
+      "TM": {
+        "rc": 0,
+        "outcome": "H"
+      }
+    },
+    "findings": [],
+    "detected": false,
+    "matches_expected": true,
+    "caveat": "D3 pilot with intentionally stale side-condition metadata; not end-to-end checker validation"
+  },
+  {
+    "case": "event_argument",
+    "operator": "one-sided event mismatch",
+    "pv_sha256": "db060a6a1bed08fee2e708961f7d2b3fe11e5f772bf60cf9e27d63f2376784ae",
+    "tm_sha256": "28e70408184a582efc07801b5bc321319d9e929eaccfd9dc3459f1a5d9c0a1c3",
+    "expected": "ENC-map",
+    "scope": "LMOTS fixed w=2,p=2, U1 versus unchanged T",
+    "runs": {
+      "PV": {
+        "rc": 0,
+        "outcome": "W"
+      },
+      "TM": {
+        "rc": 0,
+        "outcome": "H"
+      }
+    },
+    "findings": [
+      {
+        "cause": "ENC-map",
+        "records": [
+          "X_T_base",
+          "X_PV_U1"
+        ],
+        "note": "impossible pair on Tle, T: a hypothesis, the generator or a tool is at fault"
+      }
+    ],
+    "detected": true,
+    "matches_expected": true,
+    "caveat": "D3 pilot with intentionally stale side-condition metadata; not end-to-end checker validation"
+  },
+  {
+    "case": "missing_reveal_event",
+    "operator": "one-sided observation mismatch",
+    "pv_sha256": "f4e25db4e4707bf576257c22fd8bec7ec02b30d6537bfb9445a74a351ece93d1",
+    "tm_sha256": "28e70408184a582efc07801b5bc321319d9e929eaccfd9dc3459f1a5d9c0a1c3",
+    "expected": "ENC-map",
+    "scope": "LMOTS fixed w=2,p=2, U1 versus unchanged T",
+    "runs": {
+      "PV": {
+        "rc": 0,
+        "outcome": "H"
+      },
+      "TM": {
+        "rc": 0,
+        "outcome": "H"
+      }
+    },
+    "findings": [],
+    "detected": false,
+    "matches_expected": false,
+    "caveat": "D3 pilot with intentionally stale side-condition metadata; not end-to-end checker validation"
+  },
+  {
+    "case": "replicated_signer",
+    "operator": "one-sided state linearity mismatch",
+    "pv_sha256": "6418980ebced008c3e85565c1d693ce47d4bb7189de185587a4e223a2bf03a79",
+    "tm_sha256": "28e70408184a582efc07801b5bc321319d9e929eaccfd9dc3459f1a5d9c0a1c3",
+    "expected": "ENC-map",
+    "scope": "LMOTS fixed w=2,p=2, U1 versus unchanged T",
+    "runs": {
+      "PV": {
+        "rc": 0,
+        "outcome": "W"
+      },
+      "TM": {
+        "rc": 0,
+        "outcome": "H"
+      }
+    },
+    "findings": [
+      {
+        "cause": "ENC-map",
+        "records": [
+          "X_T_base",
+          "X_PV_U1"
+        ],
+        "note": "impossible pair on Tle, T: a hypothesis, the generator or a tool is at fault"
+      }
+    ],
+    "detected": true,
+    "matches_expected": true,
+    "caveat": "D3 pilot with intentionally stale side-condition metadata; not end-to-end checker validation"
+  }
+]

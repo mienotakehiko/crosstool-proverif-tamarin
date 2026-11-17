@@ -1,0 +1,18 @@
+# generated Tamarin variant	lemma	expected	sandbox (1.4 GB, 240 s) 2026-10-14	hand-written model (kit v2)
+LMS_S2_T_base	exec	verified	verified (12 steps)	verified (12 steps)
+LMS_S2_T_base	LS4_pure	verified	verified (281 steps)	verified (141 steps)
+LMS_S2_T_base	LS4	verified	verified (281 steps)	verified (141 steps)
+LMS_S2_T_base	LS1	verified	verified (74 steps)	verified (74 steps)
+LMS_S2_T_base	LS3_forge	falsified	falsified, no trace (74 steps)	falsified, no trace (74 steps)
+LMS_S2_T_rb1	exec	verified	TIMEOUT	TIMEOUT / HEAP
+LMS_S2_T_rb1	LS4_pure	falsified	falsified (11 steps)	falsified (11 steps)
+LMS_S2_T_rb1	LS4	verified	verified (669 steps)	verified (669 steps)
+LMS_S2_T_rb1	LS1	falsified	falsified (13 steps)	falsified (15 steps)
+LMS_S2_T_rb1	LS3_forge	verified	verified (13 steps)	verified (15 steps)
+LMS_S2_T_cl1	exec	verified	not run	HEAP
+LMS_S2_T_cl1	LS4_pure	falsified	TIMEOUT	HEAP
+LMS_S2_T_cl1	LS4	verified	TIMEOUT	verified (1745 steps)
+LMS_S2_T_cl1	LS1	falsified	KILLED (memory)	falsified (14 steps)
+LMS_S2_T_cl1	LS3_forge	verified	verified (12 steps)	verified (14 steps)
+LMS_S2_T_omega	LS4_pure	falsified	not run	(no hand-written model)
+LMS_S2_T_omega	LS1	falsified	not run	(no hand-written model)

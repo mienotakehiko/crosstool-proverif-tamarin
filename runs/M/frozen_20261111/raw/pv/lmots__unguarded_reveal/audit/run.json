@@ -1,0 +1,20 @@
+{
+  "command": [
+    "/usr/local/bin/proverif",
+    "/redacted-home/workspace/revision_20261111/mutations/pv/lmots__unguarded_reveal/audit.pv"
+  ],
+  "started_utc": "2026-11-11T03:12:09.623849+00:00",
+  "elapsed_s": 0.103,
+  "rc": 0,
+  "stop_reason": null,
+  "time_limit_s": 15,
+  "peak_group_rss_kib": 16,
+  "rss_samples": [
+    [
+      0.002,
+      16
+    ]
+  ],
+  "raw_file": "raw/pv/lmots__unguarded_reveal/audit/raw.out",
+  "raw_sha256": "7a9b9892fbadb2b42affd3638616ae7f02f4ae883088d7aa167a930f36481bf0"
+}

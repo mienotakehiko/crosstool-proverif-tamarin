@@ -1,0 +1,350 @@
+maude tool: 'maude'
+ checking version: 3.5.1. OK.
+ checking installation: OK.
+[Theory LMOTS_T_base] Theory loaded
+[Theory LMOTS_T_base] Theory translated
+[Theory LMOTS_T_base] Theory closed
+[Saturating Sources] Step 1 (Max 5)
+[Saturating Sources] Done
+theory LMOTS_T_base
+
+begin
+
+// Function signature and definition of the equational theory E
+
+functions: ch/3, fst/1, pair/2, prf/2[private,constructor], snd/1
+equations: fst(<x.1, x.2>) = x.1, snd(<x.1, x.2>) = x.2
+
+/* looping facts with injective instances: St/2 */
+
+rule (modulo E) Init_Signer:
+   [ Fr( ~I ), Fr( ~sd ) ]
+  --[ Start_Signer( ~I ) ]->
+   [
+   !Thr_Signer( ~I, ~sd ), St( ~I, 'n0' ),
+   !Pk( ~I,
+        <ch(~I, 'm', ch(~I, 'm', ch(~I, 'm', prf(~sd, 'm')))), 
+         ch(~I, 'k', ch(~I, 'k', ch(~I, 'k', prf(~sd, 'k'))))>
+   ),
+   Out( <~I, ch(~I, 'm', ch(~I, 'm', ch(~I, 'm', prf(~sd, 'm')))), 
+         ch(~I, 'k', ch(~I, 'k', ch(~I, 'k', prf(~sd, 'k'))))>
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q0_a0:
+   [ St( I, 'n0' ), !Thr_Signer( I, sd ), In( <'sign', 'n0'> ) ]
+  --[ Sign( I, 'n0' ) ]->
+   [
+   St( I, 'n1' ),
+   Out( <I, 'n0', prf(sd, 'm'), 
+         ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, 'k'))))>
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q0_a1:
+   [ St( I, 'n0' ), !Thr_Signer( I, sd ), In( <'sign', 'n1'> ) ]
+  --[ Sign( I, 'n1' ) ]->
+   [
+   St( I, 'n1' ),
+   Out( <I, 'n1', ch(I, 'm', prf(sd, 'm')), 
+         ch(I, 'k', ch(I, 'k', prf(sd, 'k')))>
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q0_a2:
+   [ St( I, 'n0' ), !Thr_Signer( I, sd ), In( <'sign', 'n2'> ) ]
+  --[ Sign( I, 'n2' ) ]->
+   [
+   St( I, 'n1' ),
+   Out( <I, 'n2', ch(I, 'm', ch(I, 'm', prf(sd, 'm'))), 
+         ch(I, 'k', prf(sd, 'k'))>
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q0_a3:
+   [ St( I, 'n0' ), !Thr_Signer( I, sd ), In( <'sign', 'n3'> ) ]
+  --[ Sign( I, 'n3' ) ]->
+   [
+   St( I, 'n1' ),
+   Out( <I, 'n3', ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, 'm')))), 
+         prf(sd, 'k')>
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Leak_RevealSeed:
+   [ !Thr_Signer( I, sd ) ] --[ RevealSeed( I ) ]-> [ Out( sd ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_a0:
+   [
+   !Pk( I, <ch(I, 'm', ch(I, 'm', ch(I, 'm', sm))), sk> ),
+   In( <I, 'n0', sm, sk> )
+   ]
+  --[ Accept( I, 'n0' ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_a1:
+   [
+   !Pk( I, <ch(I, 'm', ch(I, 'm', sm)), ch(I, 'k', sk)> ),
+   In( <I, 'n1', sm, sk> )
+   ]
+  --[ Accept( I, 'n1' ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_a2:
+   [
+   !Pk( I, <ch(I, 'm', sm), ch(I, 'k', ch(I, 'k', sk))> ),
+   In( <I, 'n2', sm, sk> )
+   ]
+  --[ Accept( I, 'n2' ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_a3:
+   [
+   !Pk( I, <sm, ch(I, 'k', ch(I, 'k', ch(I, 'k', sk)))> ),
+   In( <I, 'n3', sm, sk> )
+   ]
+  --[ Accept( I, 'n3' ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+lemma exec_accept:
+  exists-trace
+  "∃ I a #e0 #e1.
+    ((Sign( I, a ) @ #e0) ∧ (Accept( I, a ) @ #e1)) ∧
+    (¬(∃ #n0. RevealSeed( I ) @ #n0))"
+/*
+guarded formula characterizing all satisfying traces:
+"∃ I a #e0 #e1.
+  (Sign( I, a ) @ #e0) ∧ (Accept( I, a ) @ #e1)
+ ∧
+  ∀ #n0. (RevealSeed( I ) @ #n0) ⇒ ⊥"
+*/
+simplify
+solve( Sign( I, a ) @ #e0 )
+  case Sign_q0_a0
+  solve( St( I, 'n0' ) ▶₀ #e0 )
+    case Init_Signer
+    solve( !Thr_Signer( ~I, sd ) ▶₁ #e0 )
+      case Init_Signer
+      solve( Accept( ~I, 'n0' ) @ #e1 )
+        case Verify_a0
+        solve( !Pk( ~I, <ch(~I, 'm', ch(~I, 'm', ch(~I, 'm', sm))), sk>
+               ) ▶₀ #e1 )
+          case Init_Signer
+          solve( !KU( prf(~sd, 'm') ) @ #vk.7 )
+            case Sign_q0_a0
+            solve( !KU( ~I ) @ #vk.6 )
+              case Init_Signer
+              solve( !KU( ch(~I, 'k', ch(~I, 'k', ch(~I, 'k', prf(~sd, 'k'))))
+                     ) @ #vk.8 )
+                case Init_Signer
+                SOLVED // trace found
+              qed
+            qed
+          qed
+        qed
+      qed
+    qed
+  qed
+qed
+
+lemma LS1_unforge:
+  all-traces
+  "∀ I a #k.
+    (Accept( I, a ) @ #k) ⇒
+    ((∃ #c0_0. Sign( I, a ) @ #c0_0) ∨ (∃ #c1_0. RevealSeed( I ) @ #c1_0))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ I a #k.
+  (Accept( I, a ) @ #k)
+ ∧
+  (∀ #c0_0. (Sign( I, a ) @ #c0_0) ⇒ ⊥) ∧
+  (∀ #c1_0. (RevealSeed( I ) @ #c1_0) ⇒ ⊥)"
+*/
+simplify
+solve( Accept( I, a ) @ #k )
+  case Verify_a0
+  solve( !Pk( I, <ch(I, 'm', ch(I, 'm', ch(I, 'm', sm))), sk> ) ▶₀ #k )
+    case Init_Signer
+    solve( !KU( prf(~sd, 'm') ) @ #vk.5 )
+      case Sign_q0_a0
+      by contradiction /* from formulas */
+    qed
+  qed
+next
+  case Verify_a1
+  solve( !Pk( I, <ch(I, 'm', ch(I, 'm', sm)), ch(I, 'k', sk)> ) ▶₀ #k )
+    case Init_Signer
+    solve( !KU( ch(~I, 'm', prf(~sd, 'm')) ) @ #vk.5 )
+      case Sign_q0_a1
+      by contradiction /* from formulas */
+    next
+      case c_ch
+      solve( !KU( prf(~sd, 'm') ) @ #vk.8 )
+        case Sign_q0_a0
+        solve( !KU( ch(~I, 'k', ch(~I, 'k', prf(~sd, 'k'))) ) @ #vk.7 )
+          case c_ch
+          solve( !KU( ch(~I, 'k', prf(~sd, 'k')) ) @ #vk.13 )
+            case c_ch
+            by solve( !KU( prf(~sd, 'k') ) @ #vk.14 )
+          qed
+        qed
+      qed
+    qed
+  qed
+next
+  case Verify_a2
+  solve( !Pk( I, <ch(I, 'm', sm), ch(I, 'k', ch(I, 'k', sk))> ) ▶₀ #k )
+    case Init_Signer
+    solve( !KU( ch(~I, 'm', ch(~I, 'm', prf(~sd, 'm'))) ) @ #vk.5 )
+      case Sign_q0_a2
+      by contradiction /* from formulas */
+    next
+      case c_ch
+      solve( !KU( ch(~I, 'k', prf(~sd, 'k')) ) @ #vk.6 )
+        case Sign_q0_a2
+        by contradiction /* from formulas */
+      next
+        case c_ch
+        solve( !KU( prf(~sd, 'k') ) @ #vk.10 )
+          case Sign_q0_a3
+          solve( !KU( ch(~I, 'm', prf(~sd, 'm')) ) @ #vk.9 )
+            case c_ch
+            by solve( !KU( prf(~sd, 'm') ) @ #vk.14 )
+          qed
+        qed
+      qed
+    qed
+  qed
+next
+  case Verify_a3
+  solve( !Pk( I, <sm, ch(I, 'k', ch(I, 'k', ch(I, 'k', sk)))> ) ▶₀ #k )
+    case Init_Signer
+    solve( !KU( prf(~sd, 'k') ) @ #vk.6 )
+      case Sign_q0_a3
+      by contradiction /* from formulas */
+    qed
+  qed
+qed
+
+lemma forge:
+  exists-trace
+  "∃ I a #e0.
+    ((Accept( I, a ) @ #e0) ∧ (¬(∃ #n0. Sign( I, a ) @ #n0))) ∧
+    (¬(∃ #n1. RevealSeed( I ) @ #n1))"
+/*
+guarded formula characterizing all satisfying traces:
+"∃ I a #e0.
+  (Accept( I, a ) @ #e0)
+ ∧
+  (∀ #n0. (Sign( I, a ) @ #n0) ⇒ ⊥) ∧ (∀ #n1. (RevealSeed( I ) @ #n1) ⇒ ⊥)"
+*/
+simplify
+solve( Accept( I, a ) @ #e0 )
+  case Verify_a0
+  solve( !Pk( I, <ch(I, 'm', ch(I, 'm', ch(I, 'm', sm))), sk> ) ▶₀ #e0 )
+    case Init_Signer
+    solve( !KU( prf(~sd, 'm') ) @ #vk.5 )
+      case Sign_q0_a0
+      by contradiction /* from formulas */
+    qed
+  qed
+next
+  case Verify_a1
+  solve( !Pk( I, <ch(I, 'm', ch(I, 'm', sm)), ch(I, 'k', sk)> ) ▶₀ #e0 )
+    case Init_Signer
+    solve( !KU( ch(~I, 'm', prf(~sd, 'm')) ) @ #vk.5 )
+      case Sign_q0_a1
+      by contradiction /* from formulas */
+    next
+      case c_ch
+      solve( !KU( prf(~sd, 'm') ) @ #vk.8 )
+        case Sign_q0_a0
+        solve( !KU( ch(~I, 'k', ch(~I, 'k', prf(~sd, 'k'))) ) @ #vk.7 )
+          case c_ch
+          solve( !KU( ch(~I, 'k', prf(~sd, 'k')) ) @ #vk.13 )
+            case c_ch
+            by solve( !KU( prf(~sd, 'k') ) @ #vk.14 )
+          qed
+        qed
+      qed
+    qed
+  qed
+next
+  case Verify_a2
+  solve( !Pk( I, <ch(I, 'm', sm), ch(I, 'k', ch(I, 'k', sk))> ) ▶₀ #e0 )
+    case Init_Signer
+    solve( !KU( ch(~I, 'm', ch(~I, 'm', prf(~sd, 'm'))) ) @ #vk.5 )
+      case Sign_q0_a2
+      by contradiction /* from formulas */
+    next
+      case c_ch
+      solve( !KU( ch(~I, 'k', prf(~sd, 'k')) ) @ #vk.6 )
+        case Sign_q0_a2
+        by contradiction /* from formulas */
+      next
+        case c_ch
+        solve( !KU( prf(~sd, 'k') ) @ #vk.10 )
+          case Sign_q0_a3
+          solve( !KU( ch(~I, 'm', prf(~sd, 'm')) ) @ #vk.9 )
+            case c_ch
+            by solve( !KU( prf(~sd, 'm') ) @ #vk.14 )
+          qed
+        qed
+      qed
+    qed
+  qed
+next
+  case Verify_a3
+  solve( !Pk( I, <sm, ch(I, 'k', ch(I, 'k', ch(I, 'k', sk)))> ) ▶₀ #e0 )
+    case Init_Signer
+    solve( !KU( prf(~sd, 'k') ) @ #vk.6 )
+      case Sign_q0_a3
+      by contradiction /* from formulas */
+    qed
+  qed
+qed
+
+/* All wellformedness checks were successful. */
+
+/*
+Generated from:
+Tamarin version 1.12.0
+Maude version 3.5.1
+Git revision: 82780bbaf3328a45f624ddb41e51bf75425f851c (with uncommited changes), branch: master
+Compiled at: 2026-03-07 14:22:39.174278293 UTC
+*/
+
+end
+
+==============================================================================
+summary of summaries:
+
+analyzed: /redacted-home/workspace/audit_20261028/mutation_extension_20261029/lmots__replicate_signer/model.spthy
+
+  processing time: 0.73s
+  
+  exec_accept (exists-trace): verified (10 steps)
+  LS1_unforge (all-traces): verified (23 steps)
+  forge (exists-trace): falsified - no trace found (23 steps)
+
+==============================================================================

@@ -1,0 +1,3 @@
+Hygiene FAIL unsupported reserved/invalid identifiers: x
+Binding FAIL First_q0 equality subterm (before pattern): unbound ['x']
+unsupported CIM: no model files generated (cimc 0.1.2)

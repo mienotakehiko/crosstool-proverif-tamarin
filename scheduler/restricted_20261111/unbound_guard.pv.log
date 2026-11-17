@@ -1,0 +1,39 @@
+Process 0 (that is, the initial process):
+{1}!
+{2}new I: bitstring;
+{3}new st: channel;
+{4}out(c, (I,c_a));
+(
+    {5}out(st, n0)
+) | (
+    {6}!
+    {7}in(st, x: bitstring);
+    {8}in(c, y: bitstring);
+    (
+        {9}let (=c_a,=seal(x)) = y in
+        {10}if (x = n0) then
+        {11}event EvA(I);
+        {12}out(c, seal(I));
+        {13}out(c, (c_a,I));
+        {14}out(st, n1)
+    ) | (
+        {15}let (=c_a,=seal(I)) = y in
+        {16}if (x = n1) then
+        {17}event EvB(I);
+        {18}out(st, n2)
+    )
+)
+
+-- Query not (event(EvA(I_1)) && event(EvB(I_1))) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query not (event(EvA(I_1)) && event(EvB(I_1)))
+RESULT not (event(EvA(I_1)) && event(EvB(I_1))) is true.
+
+--------------------------------------------------------------
+Verification summary:
+
+Query not (event(EvA(I_1)) && event(EvB(I_1))) is true.
+
+--------------------------------------------------------------
+

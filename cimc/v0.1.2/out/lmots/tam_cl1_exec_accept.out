@@ -1,0 +1,242 @@
+maude tool: 'maude'
+ checking version: 3.5.1. OK.
+ checking installation: OK.
+[Theory LMOTS_T_cl1] Theory loaded
+[Theory LMOTS_T_cl1] Theory translated
+[Theory LMOTS_T_cl1] Derivation checks started
+[Theory LMOTS_T_cl1] Derivation checks ended
+[Theory LMOTS_T_cl1] Theory closed
+[Saturating Sources] Step 1 (Max 5)
+[Saturating Sources] Done
+theory LMOTS_T_cl1
+
+begin
+
+// Function signature and definition of the equational theory E
+
+functions: ch/3, fst/1, pair/2, prf/2[private,constructor], snd/1
+equations: fst(<x.1, x.2>) = x.1, snd(<x.1, x.2>) = x.2
+
+rule (modulo E) Init_Signer:
+   [ Fr( ~I ), Fr( ~sd ) ]
+  --[ Start_Signer( ~I ) ]->
+   [
+   !Thr_Signer( ~I, ~sd ), St( ~I, 'n0' ),
+   !Pk( ~I,
+        <ch(~I, 'm', ch(~I, 'm', ch(~I, 'm', prf(~sd, 'm')))), 
+         ch(~I, 'k', ch(~I, 'k', ch(~I, 'k', prf(~sd, 'k'))))>
+   ),
+   Out( <~I, ch(~I, 'm', ch(~I, 'm', ch(~I, 'm', prf(~sd, 'm')))), 
+         ch(~I, 'k', ch(~I, 'k', ch(~I, 'k', prf(~sd, 'k'))))>
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q0_a0:
+   [ St( I, 'n0' ), !Thr_Signer( I, sd ), In( <'sign', 'n0'> ) ]
+  --[ Sign( I, 'n0' ) ]->
+   [
+   St( I, 'n1' ),
+   Out( <I, 'n0', prf(sd, 'm'), 
+         ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, 'k'))))>
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q0_a1:
+   [ St( I, 'n0' ), !Thr_Signer( I, sd ), In( <'sign', 'n1'> ) ]
+  --[ Sign( I, 'n1' ) ]->
+   [
+   St( I, 'n1' ),
+   Out( <I, 'n1', ch(I, 'm', prf(sd, 'm')), 
+         ch(I, 'k', ch(I, 'k', prf(sd, 'k')))>
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q0_a2:
+   [ St( I, 'n0' ), !Thr_Signer( I, sd ), In( <'sign', 'n2'> ) ]
+  --[ Sign( I, 'n2' ) ]->
+   [
+   St( I, 'n1' ),
+   Out( <I, 'n2', ch(I, 'm', ch(I, 'm', prf(sd, 'm'))), 
+         ch(I, 'k', prf(sd, 'k'))>
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q0_a3:
+   [ St( I, 'n0' ), !Thr_Signer( I, sd ), In( <'sign', 'n3'> ) ]
+  --[ Sign( I, 'n3' ) ]->
+   [
+   St( I, 'n1' ),
+   Out( <I, 'n3', ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, 'm')))), 
+         prf(sd, 'k')>
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Leak_RevealSeed:
+   [ !Thr_Signer( I, sd ) ] --[ RevealSeed( I ) ]-> [ Out( sd ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_a0:
+   [
+   !Pk( I, <ch(I, 'm', ch(I, 'm', ch(I, 'm', sm))), sk> ),
+   In( <I, 'n0', sm, sk> )
+   ]
+  --[ Accept( I, 'n0' ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_a1:
+   [
+   !Pk( I, <ch(I, 'm', ch(I, 'm', sm)), ch(I, 'k', sk)> ),
+   In( <I, 'n1', sm, sk> )
+   ]
+  --[ Accept( I, 'n1' ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_a2:
+   [
+   !Pk( I, <ch(I, 'm', sm), ch(I, 'k', ch(I, 'k', sk))> ),
+   In( <I, 'n2', sm, sk> )
+   ]
+  --[ Accept( I, 'n2' ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_a3:
+   [
+   !Pk( I, <sm, ch(I, 'k', ch(I, 'k', ch(I, 'k', sk)))> ),
+   In( <I, 'n3', sm, sk> )
+   ]
+  --[ Accept( I, 'n3' ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+restriction OneMisuse:
+  "∀ x #i #j. ((Misuse( x ) @ #i) ∧ (Misuse( x ) @ #j)) ⇒ (#i = #j)"
+  // safety formula
+
+  /*
+  expanded formula:
+  "∀ x #i #j. ((Misuse( x ) @ #i) ∧ (Misuse( x ) @ #j)) ⇒ (#i = #j)"
+  */
+
+rule (modulo E) Clone:
+   [ St( I, s ) ]
+  --[ Misuse( I ), Clone( I, s ) ]->
+   [ St( I, s ), St( I, s ) ]
+
+  // loop breaker: [0]
+  /* has exactly the trivial AC variant */
+
+lemma exec_accept:
+  exists-trace
+  "∃ I a #e0 #e1.
+    ((Sign( I, a ) @ #e0) ∧ (Accept( I, a ) @ #e1)) ∧
+    (¬(∃ #n0. RevealSeed( I ) @ #n0))"
+/*
+guarded formula characterizing all satisfying traces:
+"∃ I a #e0 #e1.
+  (Sign( I, a ) @ #e0) ∧ (Accept( I, a ) @ #e1)
+ ∧
+  ∀ #n0. (RevealSeed( I ) @ #n0) ⇒ ⊥"
+*/
+simplify
+solve( Sign( I, a ) @ #e0 )
+  case Sign_q0_a0
+  solve( St( I, 'n0' ) ▶₀ #e0 )
+    case Clone_case_1
+    solve( !Thr_Signer( I, sd ) ▶₁ #e0 )
+      case Init_Signer
+      solve( Accept( ~I, 'n0' ) @ #e1 )
+        case Verify_a0
+        solve( !Pk( ~I, <ch(~I, 'm', ch(~I, 'm', ch(~I, 'm', sm))), sk>
+               ) ▶₀ #e1 )
+          case Init_Signer
+          solve( St( ~I, 'n0' ) ▶₀ #vr )
+            case Init_Signer
+            solve( !KU( prf(~sd, 'm') ) @ #vk.7 )
+              case Sign_q0_a0_case_1
+              solve( !KU( ~I ) @ #vk.6 )
+                case Init_Signer
+                solve( !KU( ch(~I, 'k', ch(~I, 'k', ch(~I, 'k', prf(~sd, 'k'))))
+                       ) @ #vk.8 )
+                  case Init_Signer
+                  SOLVED // trace found
+                qed
+              qed
+            qed
+          qed
+        qed
+      qed
+    qed
+  qed
+qed
+
+lemma LS1_unforge:
+  all-traces
+  "∀ I a #k.
+    (Accept( I, a ) @ #k) ⇒
+    ((∃ #c0_0. Sign( I, a ) @ #c0_0) ∨ (∃ #c1_0. RevealSeed( I ) @ #c1_0))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ I a #k.
+  (Accept( I, a ) @ #k)
+ ∧
+  (∀ #c0_0. (Sign( I, a ) @ #c0_0) ⇒ ⊥) ∧
+  (∀ #c1_0. (RevealSeed( I ) @ #c1_0) ⇒ ⊥)"
+*/
+by sorry
+
+lemma forge:
+  exists-trace
+  "∃ I a #e0.
+    ((Accept( I, a ) @ #e0) ∧ (¬(∃ #n0. Sign( I, a ) @ #n0))) ∧
+    (¬(∃ #n1. RevealSeed( I ) @ #n1))"
+/*
+guarded formula characterizing all satisfying traces:
+"∃ I a #e0.
+  (Accept( I, a ) @ #e0)
+ ∧
+  (∀ #n0. (Sign( I, a ) @ #n0) ⇒ ⊥) ∧ (∀ #n1. (RevealSeed( I ) @ #n1) ⇒ ⊥)"
+*/
+by sorry
+
+/* All wellformedness checks were successful. */
+
+/*
+Generated from:
+Tamarin version 1.12.0
+Maude version 3.5.1
+Git revision: 82780bbaf3328a45f624ddb41e51bf75425f851c (with uncommited changes), branch: master
+Compiled at: 2026-03-07 14:22:39.174278293 UTC
+*/
+
+end
+
+==============================================================================
+summary of summaries:
+
+analyzed: LMOTS_T_cl1.spthy
+
+  processing time: 2.04s
+  
+  exec_accept (exists-trace): verified (11 steps)
+  LS1_unforge (all-traces): analysis incomplete (1 steps)
+  forge (exists-trace): analysis incomplete (1 steps)
+
+==============================================================================

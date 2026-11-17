@@ -1,0 +1,184 @@
+%=================================================================
+\section{Cross-Tool Verification Methodology}\label{sec:method}
+%=================================================================
+
+The methodology turns one CIM into a set of models, a set of verdicts and a single statement of what has been established. Section~\ref{sec:method:flow} describes the workflow, Section~\ref{sec:method:gen} the generator and its mapping rules, Section~\ref{sec:method:enc} the four ProVerif encodings and the four Tamarin variants, Section~\ref{sec:method:thm} the correspondence theorem, Section~\ref{sec:method:al} the AL and Section~\ref{sec:method:diag} the diagnosis procedure.
+
+\subsection{Workflow}\label{sec:method:flow}
+
+Figure~\ref{fig:flow} shows the workflow. The user writes a CIM and its properties once. The generator \cimc produces the models, checks the side conditions of the theorem on the generated text and writes a manifest with the hash of every file. Each model is run with its tool under a fixed resource budget. A deterministic script then combines the verdicts, the theorem and the side-condition report into an AL for each property, and assigns a cause to each disagreement. Every step writes a file; the AL of a property can be recomputed from these files alone.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+  box/.style={draw, rounded corners=2pt, align=center, font=\footnotesize, minimum height=7mm, inner sep=3pt},
+  arr/.style={-{Stealth[length=2mm]}, thick},
+  node distance=4mm and 6mm]
+\node[box] (cim) {CIM and\\properties};
+\node[box, right=of cim] (gen) {\cimc};
+\node[box, above right=2mm and 8mm of gen] (pv) {ProVerif: \PVU{n}, \textsf{PV-U}$_{\mathsf{rb}}$($n$),\\\PVlin, \PVrep};
+\node[box, below right=2mm and 8mm of gen] (tm) {Tamarin: $T$, $T_{\mathsf{cl}}$,\\$T_{\mathsf{rb}}$, $T^{\omega}$};
+\node[box, below=9mm of gen] (chk) {side-condition\\report};
+\node[box, right=28mm of gen] (ver) {verdicts};
+\node[box, right=of ver] (al) {AL and\\diagnosis};
+\draw[arr] (cim) -- (gen);
+\draw[arr] (gen) |- (pv);
+\draw[arr] (gen) |- (tm);
+\draw[arr] (gen) -- (chk);
+\draw[arr] (pv) -| (ver);
+\draw[arr] (tm) -| (ver);
+\draw[arr] (ver) -- (al);
+\draw[arr] (chk) -| (al);
+\end{tikzpicture}
+\caption{Workflow of the methodology. One Common Iterative Model (CIM) is compiled by the generator \cimc into four ProVerif encodings and four Tamarin variants; the verdicts, the theorem and the side-condition report determine the Achievement Level (AL) of each property and the cause of each disagreement.\label{fig:flow}}
+\end{figure}
+
+\subsection{The Generator}\label{sec:method:gen}
+
+A CIM is written in a small declarative file: a signature, macros for terms that the protocol computes, one thread with its fresh names, state variables, initial state, persistent values and leak points, a list of steps, a list of responders (roles without iterated state) and a list of properties. A step declares a finite domain for each numeral variable it uses. The generator expands every step into one \emph{case} per element of its domain and evaluates all terms of the case once. Both back ends print the same case objects; there is no separate translation of one model into the other.
+
+Table~\ref{tab:rules} lists the mapping rules M1--M19 that the back ends apply. Most rules are direct. Four need care, and they are where hand-written models of the same protocol diverge in practice. M1 decides how the state is carried, which is the subject of the theorem. M7 replaces numeric comparisons by case splits on public constants, so that a guard has the same meaning in both tools; in ProVerif a test $q \le 1$ on a received value is otherwise a source of false alarms. M11 creates the state channel inside the replication, so that two threads never share a state. M19 makes distinct roles carry distinct identities, which Tamarin does not assume for public names.
+
+\begin{table}[H]
+\caption{Mapping rules of the generator \cimc. Rules marked * fix a choice on which hand-written ProVerif and Tamarin models of the same protocol commonly differ.\label{tab:rules}}
+\small
+\begin{tabularx}{\textwidth}{@{}lXXX@{}}
+\toprule
+\textbf{Rule} & \textbf{CIM element} & \textbf{ProVerif} & \textbf{Tamarin} \\
+\midrule
+M1* & iterated state & \texttt{let}, \texttt{out(st,v)} or \texttt{!out(st,v)} (Section~\ref{sec:method:enc}) & linear fact \texttt{St(I,v)} \\
+M2 & persistent value & table entry & persistent fact \\
+M3 & deletion of a value & value omitted from every later leak & fact consumed and not produced \\
+M4 & numeral $k$ & public constant \texttt{n}$k$ & public constant \texttt{'n}$k$\texttt{'} \\
+M5 & bound $\nu$ & unrolling depth $n$ & restriction to $\le n$ updates, or none \\
+M6 & update function & constructor & function symbol \\
+M7* & guard on a numeral & one case per domain element, equality tests & one rule per domain element \\
+M8 & event & \texttt{event} & action fact, same name and arguments \\
+M9 & fresh value & \texttt{new} & \texttt{Fr} \\
+M10 & leak point & block guarded by the public identity & rule on the persistent thread fact \\
+M11* & thread & \texttt{new st:channel} under the replication & identity in every state fact \\
+M12 & inductive property & \texttt{[induction]} where supported & \texttt{[use\_induction]} \\
+M13 & monotonic counter & state component, case split & state component, rule per value \\
+M14 & nested iteration & tuple state $(q, j)$ & tuple state $\langle q, j\rangle$ \\
+M15 & backward check (L6) & recomputation in the responder & recomputation in the responder rule \\
+M16 & tuple & right-nested pairs & right-nested pairs \\
+M17 & correspondence & \texttt{event(e) ==> \ldots} & guarded formula, same disjuncts \\
+M18 & Clone, Rollback & \PVrep; explicit restore in \textsf{PV-U}$_{\mathsf{rb}}$($n$) & rules \texttt{Clone}, \texttt{Rollback}, bound \texttt{OneMisuse} \\
+M19* & distinct roles & distinct names & fresh identities or restriction on public names \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Three of these rules remove side conditions that our earlier, hand-written theorem had to check by reading the models (Appendix~A). M16 prints every tuple as right-nested pairs in both tools, so the encoding of terms is the identity and no restriction on tuple nesting is needed. M4 and M7 replace ProVerif numerals and comparisons by constants and equality tests, so the guard probe that justified the agreement of typed and untyped runs is no longer needed: every term has the same type, and every guard is a syntactic equality. Printing both models from one case object establishes the bijection between ProVerif blocks and Tamarin rules (hypothesis Rul) by construction.
+
+The generator then checks the remaining side conditions on its own output and writes a report with one line per hypothesis: OK, FAIL or BY-CONSTRUCTION. A model set with a FAIL is still written, but its verdicts are not transferred (Section~\ref{sec:method:al}). Following translation validation~\cite{Pnueli1998TV}, the check runs on every generated set, not once for the generator.
+
+\subsection{Encodings and Variants}\label{sec:method:enc}
+
+The generator writes four ProVerif encodings of the thread. They differ only in how the state value passes from one step to the next.
+\begin{itemize}
+\item \PVU{n} unrolls the thread $n$ times. The state value of each step is known when the process is generated, so each unrolled step offers only the cases whose consumed state equals it.
+\item \textsf{PV-U}$_{\mathsf{rb}}$($n$) adds to every unrolled step after the first one alternative that, on request of the attacker, continues from an earlier state of the same thread. It is the unrolled form of one rollback.
+\item \PVlin keeps the loop. A private channel \texttt{st}, created per thread, carries the state; each step receives one value and sends one successor with \texttt{out(st,v)}.
+\item \PVrep is \PVlin with every state output replicated, \texttt{!out(st,v)}, as in our earlier ProVerif encoding of loops~\cite{Mieno2024Access}.
+\end{itemize}
+The four Tamarin variants share all rules except the treatment of the state fact: $T$ uses the linear fact \texttt{St}; $T_{\mathsf{cl}}$ adds the rule \texttt{Clone}, which duplicates it; $T_{\mathsf{rb}}$ adds persistent snapshots and the rule \texttt{Rollback}, which restores one; and $T^{\omega}$ makes the state fact persistent. The restriction \texttt{OneMisuse} bounds Clone and Rollback to one use per thread (Section~\ref{sec:cim:att}). Properties are printed once per variant; a property that names the misuse event as an exception is printed with that disjunct only where the misuse rule exists.
+
+\subsection{Correspondence Theorem}\label{sec:method:thm}
+
+The theorem relates the observable traces of the generated models. An observable trace keeps the events that occur in properties, merges repeated leak events of the same secret, and in ProVerif groups the events of one step; Appendix~A gives the precise definition. We write $\Tr(X)$ for the set of observable traces of a model $X$ and $T_{\le n}$ for $T$ restricted to executions in which every thread updates its state at most $n$ times. The properties are those of the class $\Phi = \Phi_1 \cup \Phi_2 \cup \Phi_3$: correspondences whose conclusion events precede the premise ($\Phi_1$), universally quantified formulas with equality conclusions ($\Phi_2$), and reachability formulas with negated events ($\Phi_3$). Secrecy is expressed as a correspondence with an explicit reveal event.
+
+\noindent\textbf{Working-draft status.} The following statement is a proof obligation, not a theorem certified by a passing report. An October~29 negative control passes the old report but separates the two leak semantics when the fresh identity is unpublished. Version~0.1.1 adds \texttt{LeakGuard}, \texttt{LeakUse} and \texttt{ObsOne}; these narrow the admitted fragment but do not complete the simulation. Appendix~\ref{app:proof} proves elementary Tamarin inclusions and a prefix-ordering result and identifies the remaining process-level obligations. Transfer-dependent grades remain conditional.
+
+\begin{Theorem}[Proposed inclusion chain]\label{thm:chain}
+Let $\mathcal{C}$ be a linear CIM satisfying the strengthened observation, leak-guard and reveal-use conditions in Appendix~\ref{app:proof}, and a reviewed process-to-rule simulation for the generated blocks. The proposed relations are
+\begin{enumerate}[label=(\alph*)]
+\item $\Tr(\PVU{n}) = \Tr(T_{\le n})$;
+\item $\Tr(\PVlin) = \Tr(T)$;
+\item $\Tr(T) \subseteq \Tr(T_{\mathsf{cl}}) \subseteq \Tr(T^{\omega}) = \Tr(\PVrep)$ and $\Tr(T) \subseteq \Tr(T_{\mathsf{rb}}) \subseteq \Tr(T^{\omega})$;
+\item $\Tr(\textsf{PV-U}_{\mathsf{rb}}(n)) \subseteq \Tr(T_{\mathsf{rb}})$;
+\item if the longest chain of updates from the initial state of $\mathcal{C}$ has length $m \le n$, then $T_{\le n} = T$ and hence $\Tr(\PVU{n}) = \Tr(T)$.
+\end{enumerate}
+\end{Theorem}
+
+The intended proof uses a simulation between ProVerif configurations in block normal form and Tamarin states. It requires a reviewed event-normalization lemma and a precise account of Horn-clause abstraction for \PVlin and \PVrep. Neither matching verdicts nor syntactic side-condition checks replace these obligations. The following corollaries and transfer rules are conditional consequences of the proposed argument, not additional experimental proofs.
+
+\begin{Corollary}\label{cor:lin}
+If $\varphi \in \Phi_1 \cup \Phi_2$ is false on $\Tr(T^{\omega})$, then ProVerif cannot return ``true'' for $\varphi$ on \PVlin, although $\varphi$ may hold on $\Tr(\PVlin) = \Tr(T)$.
+\end{Corollary}
+
+Soundness of each tool turns the theorem into rules for transferring verdicts. Table~\ref{tab:transfer} lists them. A verdict of a model higher in the chain transfers downwards when it is a proof and upwards when it is an attack. The rules that the table does not contain are as informative: a ``true'' on \PVU{n} says nothing about unbounded iteration unless (e) applies, and a ``cannot be proved'' transfers nothing.
+
+\begin{table}[H]
+\caption{Transfer of verdicts for properties in $\Phi_1 \cup \Phi_2$ under Theorem~\ref{thm:chain}. For $\Phi_3$ the direction is reversed: reachability on a smaller model holds on every larger one.\label{tab:transfer}}
+\small
+\begin{tabularx}{\textwidth}{@{}lXl@{}}
+\toprule
+\textbf{Verdict} & \textbf{Implies} & \textbf{By} \\
+\midrule
+ProVerif true on \PVrep & $\varphi$ holds on $T$, $T_{\mathsf{cl}}$, $T_{\mathsf{rb}}$, $T^{\omega}$ & (c) \\
+ProVerif true on \PVlin & $\varphi$ holds on $T$ & (b) \\
+ProVerif true on \PVU{n} & $\varphi$ holds on $T_{\le n}$; on $T$ if (e) applies & (a), (e) \\
+ProVerif false (trace) on \PVlin or \PVU{n} & attack on $T$ & (a), (b) \\
+ProVerif false (trace) on \textsf{PV-U}$_{\mathsf{rb}}$($n$) & attack on $T_{\mathsf{rb}}$ & (d) \\
+ProVerif false (trace) on \PVrep & attack on $T^{\omega}$ only & (c) \\
+Tamarin verified on $T$ & $\varphi$ holds on \PVlin; on \PVU{n} & (a), (b) \\
+Tamarin falsified on $T$ & attack on \PVlin; on \PVU{n} if (e) applies & (b), (e) \\
+Tamarin falsified on $T_{\mathsf{cl}}$ or $T_{\mathsf{rb}}$ & attack on \PVrep; no ``true'' on \PVlin & (c), Cor.~\ref{cor:lin} \\
+cannot be proved, or no Tamarin result & nothing & --- \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{Corollary}[Impossible pairs]\label{cor:imp}
+Under the hypotheses of Theorem~\ref{thm:chain}, the following verdict pairs cannot occur: ProVerif true on \PVlin or \PVrep and Tamarin falsified on $T$; ProVerif false with a trace on \PVU{n} or \PVlin and Tamarin verified on $T$; ProVerif true on \PVrep and Tamarin falsified on $T_{\mathsf{cl}}$ or $T_{\mathsf{rb}}$.
+\end{Corollary}
+
+An impossible pair is not a contradiction of the theorem but evidence that one of its premises fails: a side condition that the report did not catch, a fault in the generator, or a fault in a tool. The diagnosis procedure treats it first.
+
+\subsection{Achievement Level}\label{sec:method:al}
+
+The AL has two components. The \emph{scope} states for which models the result holds: U for unbounded iteration, B($n$) for at most $n$ updates per thread, and P when the result is limited to fixed parameters of the protocol (for example a tree height) because no argument extends it. A subscript C or R records that the result holds against the attacker with Clone or with Rollback. The \emph{assurance} states how the result was obtained (Table~\ref{tab:al}). We write the AL as scope and assurance, for example \AL{U}{4} or \AL{B(2)}{3}; an attack carries the superscript a.
+
+\begin{table}[H]
+\caption{Assurance component of the Achievement Level (AL). The level is computed from the verdicts, the side-condition report and Table~\ref{tab:transfer}; no level requires a manual judgment.\label{tab:al}}
+\small
+\begin{tabularx}{\textwidth}{@{}clX@{}}
+\toprule
+\textbf{Level} & \textbf{Name} & \textbf{Condition} \\
+\midrule
+4 & Cross-validated & both tools returned the same verdict on corresponding models, and the report has no FAIL \\
+3 & Transferred & one tool returned a verdict that transfers by Table~\ref{tab:transfer}; the other returned no verdict, and its failure has a diagnosed cause \\
+2 & Triangulated & one tool returned a verdict, and the translation of Morio et al.~\cite{Morio2026CCS} agrees with it, but a side condition is not established \\
+1 & Single-model & one tool returned a verdict on one model \\
+0 & Inconclusive & no verdict \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The levels are ordered by the evidence they require, not by the strength of the property. Level~3 is the case that a single-tool analysis cannot express: if Tamarin exhausts its memory on $T$ while ProVerif proves the property on \PVlin, the property holds on $T$ by Theorem~\ref{thm:chain}(b), and the AL records that the guarantee rests on one tool and the theorem. Level~2 is weaker than level~3 because translation and our Tamarin model share their source: the agreement checks the translation, not the model. The scope component makes the cost of resource limits visible: a property that reaches \AL{U}{4} with 64~GB and only \AL{B(2)}{3} with 8~GB has lost scope, not truth.
+
+The program \texttt{al\_assign} of \cimc computes conditional grades from run records and the proposed chain $T_{\le n} \subseteq T \subseteq T_{\mathsf{cl}}, T_{\mathsf{rb}} \subseteq T^{\omega}$. For universal properties, proofs transfer downwards and counterexamples upwards; reachability uses the dual direction. It checks Table~\ref{tab:al} from level~4 downwards and reports one grade per property and system. Additional mutually consistent evidence cannot lower the grade; contradictory evidence must invalidate the assignment and trigger investigation. Fixed protocol parameters without a cutoff argument give scope P. A passing software calculation does not certify the outstanding proof obligation.
+
+\subsection{Diagnosis of Disagreements}\label{sec:method:diag}
+
+When the tools disagree or one of them returns no verdict, the procedure assigns one of eight causes.
+\begin{description}[leftmargin=5.2em,labelwidth=4.9em,font=\normalfont\ttfamily\small]
+\item[ENC-map] A side condition of the theorem is violated, so the models describe different protocols.
+\item[ENC-clone] The models lie at different levels of the inclusion chain, and the difference is the reuse of a state value.
+\item[PV-abs] The Horn clauses admit a derivation that no execution realizes (a false alarm of ProVerif).
+\item[PV-rec] An attack exists, but ProVerif does not reconstruct a trace from its derivation.
+\item[PV-term] Saturation does not terminate within the budget.
+\item[TM-res] Explicit resource exhaustion, or a provisional resource-pressure symptom.
+\item[TM-search] A timeout with flat sampled memory, provisionally suggesting a search difficulty.
+\item[SPEC-expr] The property must be written differently for one tool, and the two formulations must be shown equivalent.
+\end{description}
+
+The procedure is a fixed decision tree over the verdicts, the encoding or variant on which each was obtained, the side-condition report and three features of the tool outputs: whether ProVerif reports a derivation without a trace, whether the Tamarin run ended by a memory or time limit, and how its memory grew during the run. The tree tests, in this order:
+\begin{enumerate}
+\item the property text differs between the tools, which the generator records: SPEC-expr;
+\item the report has a FAIL and the tools disagree, or an impossible pair occurs (Corollary~\ref{cor:imp}): ENC-map;
+\item a proof on a lower system of the chain and an attack on a higher one: ENC-clone, which Tamarin confirms or refutes on $T_{\mathsf{cl}}$ and $T_{\mathsf{rb}}$;
+\item for each record without a verdict: on ProVerif, a time limit gives PV-term; a ``cannot be proved'' gives PV-abs if other records establish the property on that model, PV-rec if they establish an attack, and PV-abs by Corollary~\ref{cor:lin} if the model is \PVlin and an attack is known on $T_{\mathsf{cl}}$, $T_{\mathsf{rb}}$ or $T^{\omega}$; on Tamarin, a memory limit gives TM-res, and a time limit gives TM-search if memory was flat in the last 30\,\% of the run (growth at most 10\,\% of that in the first 30\,\%, or at most 1~MB per minute) and TM-res otherwise.
+\end{enumerate}
+A record that none of these tests explains is reported as undetermined and does not support level~3. Neither does a provisional finding based only on forced termination or timeout slopes. Confirmed false-alarm evidence for a smaller system cannot justify an attack on a larger one. The tree is implemented in \texttt{diagnose.py}, version~1.1; its hash was recorded before the small pilot of Section~\ref{sec:diag}. The assurance program is hashed separately. These records do not claim that the planned broad mutation study is complete.

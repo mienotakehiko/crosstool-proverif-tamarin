@@ -1,0 +1,124 @@
+File "/redacted-home/workspace/revision_20261111/cimc_fixed/audit_0_1_2/supported_Urb.pv", line 15, character 152:
+Warning: identifier y rebound.
+File "/redacted-home/workspace/revision_20261111/cimc_fixed/audit_0_1_2/supported_Urb.pv", line 15, character 264:
+Warning: identifier y rebound.
+File "/redacted-home/workspace/revision_20261111/cimc_fixed/audit_0_1_2/supported_Urb.pv", line 15, characters 296-304:
+Warning: identifier v_Payload rebound.
+Process 0 (that is, the initial process):
+{1}!
+{2}new I: bitstring;
+{3}out(c, (I,seal(I)));
+{4}in(c, y: bitstring);
+{5}let (v_Payload: bitstring,=I) = y in
+{6}event EvA(I);
+{7}out(c, v_Payload);
+{8}out(c, seal(I));
+{9}out(c, (c_a,I));
+{10}in(c, y_1: bitstring);
+(
+    {11}let (=c_a,=seal(I)) = y_1 in
+    {12}event EvB(I)
+) | (
+    {13}if (y_1 = (c_rollback,n0)) then
+    {14}in(c, y_2: bitstring);
+    {15}let (v_Payload_1: bitstring,=I) = y_2 in
+    {16}event EvA(I);
+    {17}out(c, v_Payload_1);
+    {18}out(c, seal(I));
+    {19}out(c, (c_a,I))
+)
+
+-- Query not (event(EvA(I_1)) && event(EvB(I_1))) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query not (event(EvA(I_1)) && event(EvB(I_1)))
+goal reachable: b-event(@p_act(@occ10_1,(c_a,seal(I_1)))) && attacker(v_Payload_2) && b-event(@p_act(@occ4_1,(v_Payload_2,I_1))) -> event(EvA(I_1)) && event(EvB(I_1))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ10_1 = @occ10[!1 = @sid]
+@occ4_1 = @occ4[!1 = @sid]
+
+Derivation:
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ4_1 = @occ4[!1 = @sid]
+@occ10_1 = @occ10[!1 = @sid]
+
+1. The message (I_1,seal(I_1)) may be sent to the attacker at output {3}.
+attacker((I_1,seal(I_1))).
+
+2. By 1, the attacker may know (I_1,seal(I_1)).
+Using the function 1-proj-2-tuple the attacker may obtain I_1.
+attacker(I_1).
+
+3. We assume as hypothesis that
+attacker(v_Payload_2).
+
+4. By 3, the attacker may know v_Payload_2.
+By 2, the attacker may know I_1.
+Using the function 2-tuple the attacker may obtain (v_Payload_2,I_1).
+attacker((v_Payload_2,I_1)).
+
+5. By 1, the attacker may know (I_1,seal(I_1)).
+Using the function 2-proj-2-tuple the attacker may obtain seal(I_1).
+attacker(seal(I_1)).
+
+6. Using the function c_a the attacker may obtain c_a.
+attacker(c_a).
+
+7. By 6, the attacker may know c_a.
+By 5, the attacker may know seal(I_1).
+Using the function 2-tuple the attacker may obtain (c_a,seal(I_1)).
+attacker((c_a,seal(I_1))).
+
+8. The event @p_act(@occ4_1,(v_Payload_2,I_1)) records how variables are instantiated at {4}.
+The message (v_Payload_2,I_1) that the attacker may have by 4 may be received at input {4}.
+The event @p_act(@occ10_1,(c_a,seal(I_1))) records how variables are instantiated at {10}.
+The message (c_a,seal(I_1)) that the attacker may have by 7 may be received at input {10}.
+So event EvB(I_1) may be executed at {12}.
+event(EvB(I_1)).
+
+9. The event @p_act(@occ4_1,(v_Payload_2,I_1)) records how variables are instantiated at {4}.
+The message (v_Payload_2,I_1) that the attacker may have by 4 may be received at input {4}.
+So event EvA(I_1) may be executed at {6}.
+event(EvA(I_1)).
+
+10. By 9, event(EvA(I_1)).
+By 8, event(EvB(I_1)).
+The goals are reached, combined in the following fact:
+event(EvA(I_1)) && event(EvB(I_1)).
+
+
+A more detailed output of the traces is available with
+  set traceDisplay = long.
+
+new I: bitstring creating I_2 at {2} in copy a
+
+out(c, (~M,~M_1)) with ~M = I_2, ~M_1 = seal(I_2) at {3} in copy a
+
+in(c, (a_1,~M)) with ~M = I_2 at {4} in copy a
+
+event EvA(I_2) at {6} in copy a (goal)
+
+out(c, ~M_2) with ~M_2 = a_1 at {7} in copy a
+
+out(c, ~M_3) with ~M_3 = seal(I_2) at {8} in copy a
+
+out(c, (~M_4,~M_5)) with ~M_4 = c_a, ~M_5 = I_2 at {9} in copy a
+
+in(c, (c_a,~M_1)) with ~M_1 = seal(I_2) at {10} in copy a
+
+event EvB(I_2) at {12} in copy a (goal)
+
+The event EvA(I_2) is executed at {6} in copy a.
+The event EvB(I_2) is executed at {12} in copy a.
+A trace has been found.
+RESULT not (event(EvA(I_1)) && event(EvB(I_1))) is false.
+
+--------------------------------------------------------------
+Verification summary:
+
+Query not (event(EvA(I_1)) && event(EvB(I_1))) is false.
+
+--------------------------------------------------------------
+

@@ -1,0 +1,1997 @@
+[
+  {
+    "seed": "lmots",
+    "operator": "control",
+    "directory": "lmots__control",
+    "pv_sha256": "9dd8b7037a76ef086cd49ce017c53e1e0ceb700db2eea3af564e611065dcabf1",
+    "tm_sha256": "28e70408184a582efc07801b5bc321319d9e929eaccfd9dc3459f1a5d9c0a1c3",
+    "source_cim_sha256": "c38b6a981ec4235134031d7d588d9c121bebdd86380cefab0c3d8b36532cce16",
+    "queries": [
+      "exec_accept",
+      "LS1_unforge",
+      "forge"
+    ],
+    "kinds": [
+      "phi3",
+      "phi1",
+      "phi3"
+    ],
+    "checks": [
+      [
+        "Sig",
+        "OK",
+        "2 symbols used, one declaration table; tuples as right-nested pairs in both tools"
+      ],
+      [
+        "Evt",
+        "BY-CONSTRUCTION",
+        "3 event symbols printed from one table"
+      ],
+      [
+        "EvtSep",
+        "OK",
+        "no rule carries two observed events of one property"
+      ],
+      [
+        "Saf",
+        "OK",
+        "restrictions: OneMisuse only (variants cl1, rb1), universal with equality conclusion"
+      ],
+      [
+        "Lin",
+        "OK",
+        "4 step cases, one state in and one state out each; no leak outputs a state value"
+      ],
+      [
+        "LinSpawn",
+        "OK",
+        "single thread kind; the thread and its state are created by one rule/process"
+      ],
+      [
+        "Blk",
+        "OK",
+        "block = state input, attacker input, guards, events, outputs, state output"
+      ],
+      [
+        "Grd",
+        "OK",
+        "guards are equality tests on public numeral constants; domains q=[0], a=[0, 1, 2, 3]"
+      ],
+      [
+        "Det",
+        "OK",
+        "cases with the same consumed state have disjoint input patterns"
+      ],
+      [
+        "Dist",
+        "OK",
+        "one role with a fresh identity; no public role names"
+      ],
+      [
+        "Leak",
+        "OK",
+        "leak outputs a persistent fresh name; enabled from thread start (guard: the published identity)"
+      ],
+      [
+        "Rul",
+        "BY-CONSTRUCTION",
+        "8 cases printed to both tools from one object"
+      ],
+      [
+        "Bound(e)",
+        "OK",
+        "longest update chain 1; declared bound 1; Theorem 1(e) applies with n = 1"
+      ]
+    ],
+    "expected": "control"
+  },
+  {
+    "seed": "lmots",
+    "operator": "event_accept_argument",
+    "directory": "lmots__event_accept_argument",
+    "pv_sha256": "b4ad8fdb6bd7c8b0e9ce9124cfcd3d963f53a8ce57fcf4b4d1fd012df4851faf",
+    "tm_sha256": "28e70408184a582efc07801b5bc321319d9e929eaccfd9dc3459f1a5d9c0a1c3",
+    "source_cim_sha256": "c38b6a981ec4235134031d7d588d9c121bebdd86380cefab0c3d8b36532cce16",
+    "queries": [
+      "exec_accept",
+      "LS1_unforge",
+      "forge"
+    ],
+    "kinds": [
+      "phi3",
+      "phi1",
+      "phi3"
+    ],
+    "checks": [
+      [
+        "Sig",
+        "OK",
+        "2 symbols used, one declaration table; tuples as right-nested pairs in both tools"
+      ],
+      [
+        "Evt",
+        "BY-CONSTRUCTION",
+        "3 event symbols printed from one table"
+      ],
+      [
+        "EvtSep",
+        "OK",
+        "no rule carries two observed events of one property"
+      ],
+      [
+        "Saf",
+        "OK",
+        "restrictions: OneMisuse only (variants cl1, rb1), universal with equality conclusion"
+      ],
+      [
+        "Lin",
+        "OK",
+        "4 step cases, one state in and one state out each; no leak outputs a state value"
+      ],
+      [
+        "LinSpawn",
+        "OK",
+        "single thread kind; the thread and its state are created by one rule/process"
+      ],
+      [
+        "Blk",
+        "OK",
+        "block = state input, attacker input, guards, events, outputs, state output"
+      ],
+      [
+        "Grd",
+        "OK",
+        "guards are equality tests on public numeral constants; domains q=[0], a=[0, 1, 2, 3]"
+      ],
+      [
+        "Det",
+        "OK",
+        "cases with the same consumed state have disjoint input patterns"
+      ],
+      [
+        "Dist",
+        "OK",
+        "one role with a fresh identity; no public role names"
+      ],
+      [
+        "Leak",
+        "OK",
+        "leak outputs a persistent fresh name; enabled from thread start (guard: the published identity)"
+      ],
+      [
+        "Rul",
+        "BY-CONSTRUCTION",
+        "8 cases printed to both tools from one object"
+      ],
+      [
+        "Bound(e)",
+        "OK",
+        "longest update chain 1; declared bound 1; Theorem 1(e) applies with n = 1"
+      ]
+    ],
+    "expected": "one-sided model change; verdict discrepancy not guaranteed"
+  },
+  {
+    "seed": "lmots",
+    "operator": "event_sign_argument",
+    "directory": "lmots__event_sign_argument",
+    "pv_sha256": "6dba88fcf5bfec0979e7d1f9caab1b44a0de7aa11b579dae4dbfa2d18376a574",
+    "tm_sha256": "28e70408184a582efc07801b5bc321319d9e929eaccfd9dc3459f1a5d9c0a1c3",
+    "source_cim_sha256": "c38b6a981ec4235134031d7d588d9c121bebdd86380cefab0c3d8b36532cce16",
+    "queries": [
+      "exec_accept",
+      "LS1_unforge",
+      "forge"
+    ],
+    "kinds": [
+      "phi3",
+      "phi1",
+      "phi3"
+    ],
+    "checks": [
+      [
+        "Sig",
+        "OK",
+        "2 symbols used, one declaration table; tuples as right-nested pairs in both tools"
+      ],
+      [
+        "Evt",
+        "BY-CONSTRUCTION",
+        "3 event symbols printed from one table"
+      ],
+      [
+        "EvtSep",
+        "OK",
+        "no rule carries two observed events of one property"
+      ],
+      [
+        "Saf",
+        "OK",
+        "restrictions: OneMisuse only (variants cl1, rb1), universal with equality conclusion"
+      ],
+      [
+        "Lin",
+        "OK",
+        "4 step cases, one state in and one state out each; no leak outputs a state value"
+      ],
+      [
+        "LinSpawn",
+        "OK",
+        "single thread kind; the thread and its state are created by one rule/process"
+      ],
+      [
+        "Blk",
+        "OK",
+        "block = state input, attacker input, guards, events, outputs, state output"
+      ],
+      [
+        "Grd",
+        "OK",
+        "guards are equality tests on public numeral constants; domains q=[0], a=[0, 1, 2, 3]"
+      ],
+      [
+        "Det",
+        "OK",
+        "cases with the same consumed state have disjoint input patterns"
+      ],
+      [
+        "Dist",
+        "OK",
+        "one role with a fresh identity; no public role names"
+      ],
+      [
+        "Leak",
+        "OK",
+        "leak outputs a persistent fresh name; enabled from thread start (guard: the published identity)"
+      ],
+      [
+        "Rul",
+        "BY-CONSTRUCTION",
+        "8 cases printed to both tools from one object"
+      ],
+      [
+        "Bound(e)",
+        "OK",
+        "longest update chain 1; declared bound 1; Theorem 1(e) applies with n = 1"
+      ]
+    ],
+    "expected": "one-sided model change; verdict discrepancy not guaranteed"
+  },
+  {
+    "seed": "lmots",
+    "operator": "remove_reveal_event",
+    "directory": "lmots__remove_reveal_event",
+    "pv_sha256": "f4e25db4e4707bf576257c22fd8bec7ec02b30d6537bfb9445a74a351ece93d1",
+    "tm_sha256": "28e70408184a582efc07801b5bc321319d9e929eaccfd9dc3459f1a5d9c0a1c3",
+    "source_cim_sha256": "c38b6a981ec4235134031d7d588d9c121bebdd86380cefab0c3d8b36532cce16",
+    "queries": [
+      "exec_accept",
+      "LS1_unforge",
+      "forge"
+    ],
+    "kinds": [
+      "phi3",
+      "phi1",
+      "phi3"
+    ],
+    "checks": [
+      [
+        "Sig",
+        "OK",
+        "2 symbols used, one declaration table; tuples as right-nested pairs in both tools"
+      ],
+      [
+        "Evt",
+        "BY-CONSTRUCTION",
+        "3 event symbols printed from one table"
+      ],
+      [
+        "EvtSep",
+        "OK",
+        "no rule carries two observed events of one property"
+      ],
+      [
+        "Saf",
+        "OK",
+        "restrictions: OneMisuse only (variants cl1, rb1), universal with equality conclusion"
+      ],
+      [
+        "Lin",
+        "OK",
+        "4 step cases, one state in and one state out each; no leak outputs a state value"
+      ],
+      [
+        "LinSpawn",
+        "OK",
+        "single thread kind; the thread and its state are created by one rule/process"
+      ],
+      [
+        "Blk",
+        "OK",
+        "block = state input, attacker input, guards, events, outputs, state output"
+      ],
+      [
+        "Grd",
+        "OK",
+        "guards are equality tests on public numeral constants; domains q=[0], a=[0, 1, 2, 3]"
+      ],
+      [
+        "Det",
+        "OK",
+        "cases with the same consumed state have disjoint input patterns"
+      ],
+      [
+        "Dist",
+        "OK",
+        "one role with a fresh identity; no public role names"
+      ],
+      [
+        "Leak",
+        "OK",
+        "leak outputs a persistent fresh name; enabled from thread start (guard: the published identity)"
+      ],
+      [
+        "Rul",
+        "BY-CONSTRUCTION",
+        "8 cases printed to both tools from one object"
+      ],
+      [
+        "Bound(e)",
+        "OK",
+        "longest update chain 1; declared bound 1; Theorem 1(e) applies with n = 1"
+      ]
+    ],
+    "expected": "one-sided model change; verdict discrepancy not guaranteed"
+  },
+  {
+    "seed": "lmots",
+    "operator": "replicate_signer",
+    "directory": "lmots__replicate_signer",
+    "pv_sha256": "6418980ebced008c3e85565c1d693ce47d4bb7189de185587a4e223a2bf03a79",
+    "tm_sha256": "28e70408184a582efc07801b5bc321319d9e929eaccfd9dc3459f1a5d9c0a1c3",
+    "source_cim_sha256": "c38b6a981ec4235134031d7d588d9c121bebdd86380cefab0c3d8b36532cce16",
+    "queries": [
+      "exec_accept",
+      "LS1_unforge",
+      "forge"
+    ],
+    "kinds": [
+      "phi3",
+      "phi1",
+      "phi3"
+    ],
+    "checks": [
+      [
+        "Sig",
+        "OK",
+        "2 symbols used, one declaration table; tuples as right-nested pairs in both tools"
+      ],
+      [
+        "Evt",
+        "BY-CONSTRUCTION",
+        "3 event symbols printed from one table"
+      ],
+      [
+        "EvtSep",
+        "OK",
+        "no rule carries two observed events of one property"
+      ],
+      [
+        "Saf",
+        "OK",
+        "restrictions: OneMisuse only (variants cl1, rb1), universal with equality conclusion"
+      ],
+      [
+        "Lin",
+        "OK",
+        "4 step cases, one state in and one state out each; no leak outputs a state value"
+      ],
+      [
+        "LinSpawn",
+        "OK",
+        "single thread kind; the thread and its state are created by one rule/process"
+      ],
+      [
+        "Blk",
+        "OK",
+        "block = state input, attacker input, guards, events, outputs, state output"
+      ],
+      [
+        "Grd",
+        "OK",
+        "guards are equality tests on public numeral constants; domains q=[0], a=[0, 1, 2, 3]"
+      ],
+      [
+        "Det",
+        "OK",
+        "cases with the same consumed state have disjoint input patterns"
+      ],
+      [
+        "Dist",
+        "OK",
+        "one role with a fresh identity; no public role names"
+      ],
+      [
+        "Leak",
+        "OK",
+        "leak outputs a persistent fresh name; enabled from thread start (guard: the published identity)"
+      ],
+      [
+        "Rul",
+        "BY-CONSTRUCTION",
+        "8 cases printed to both tools from one object"
+      ],
+      [
+        "Bound(e)",
+        "OK",
+        "longest update chain 1; declared bound 1; Theorem 1(e) applies with n = 1"
+      ]
+    ],
+    "expected": "one-sided model change; verdict discrepancy not guaranteed"
+  },
+  {
+    "seed": "lmots",
+    "operator": "disable_signer",
+    "directory": "lmots__disable_signer",
+    "pv_sha256": "bdf6e1abfe690fec08907550f9e17df023d95a43a963cff99c6c85a87b124e2c",
+    "tm_sha256": "28e70408184a582efc07801b5bc321319d9e929eaccfd9dc3459f1a5d9c0a1c3",
+    "source_cim_sha256": "c38b6a981ec4235134031d7d588d9c121bebdd86380cefab0c3d8b36532cce16",
+    "queries": [
+      "exec_accept",
+      "LS1_unforge",
+      "forge"
+    ],
+    "kinds": [
+      "phi3",
+      "phi1",
+      "phi3"
+    ],
+    "checks": [
+      [
+        "Sig",
+        "OK",
+        "2 symbols used, one declaration table; tuples as right-nested pairs in both tools"
+      ],
+      [
+        "Evt",
+        "BY-CONSTRUCTION",
+        "3 event symbols printed from one table"
+      ],
+      [
+        "EvtSep",
+        "OK",
+        "no rule carries two observed events of one property"
+      ],
+      [
+        "Saf",
+        "OK",
+        "restrictions: OneMisuse only (variants cl1, rb1), universal with equality conclusion"
+      ],
+      [
+        "Lin",
+        "OK",
+        "4 step cases, one state in and one state out each; no leak outputs a state value"
+      ],
+      [
+        "LinSpawn",
+        "OK",
+        "single thread kind; the thread and its state are created by one rule/process"
+      ],
+      [
+        "Blk",
+        "OK",
+        "block = state input, attacker input, guards, events, outputs, state output"
+      ],
+      [
+        "Grd",
+        "OK",
+        "guards are equality tests on public numeral constants; domains q=[0], a=[0, 1, 2, 3]"
+      ],
+      [
+        "Det",
+        "OK",
+        "cases with the same consumed state have disjoint input patterns"
+      ],
+      [
+        "Dist",
+        "OK",
+        "one role with a fresh identity; no public role names"
+      ],
+      [
+        "Leak",
+        "OK",
+        "leak outputs a persistent fresh name; enabled from thread start (guard: the published identity)"
+      ],
+      [
+        "Rul",
+        "BY-CONSTRUCTION",
+        "8 cases printed to both tools from one object"
+      ],
+      [
+        "Bound(e)",
+        "OK",
+        "longest update chain 1; declared bound 1; Theorem 1(e) applies with n = 1"
+      ]
+    ],
+    "expected": "one-sided model change; verdict discrepancy not guaranteed"
+  },
+  {
+    "seed": "lmots",
+    "operator": "disable_accept",
+    "directory": "lmots__disable_accept",
+    "pv_sha256": "6f2fea56adde1b0d488161bb47a010c6507527f88b0a17e228d80cefeddf1d69",
+    "tm_sha256": "28e70408184a582efc07801b5bc321319d9e929eaccfd9dc3459f1a5d9c0a1c3",
+    "source_cim_sha256": "c38b6a981ec4235134031d7d588d9c121bebdd86380cefab0c3d8b36532cce16",
+    "queries": [
+      "exec_accept",
+      "LS1_unforge",
+      "forge"
+    ],
+    "kinds": [
+      "phi3",
+      "phi1",
+      "phi3"
+    ],
+    "checks": [
+      [
+        "Sig",
+        "OK",
+        "2 symbols used, one declaration table; tuples as right-nested pairs in both tools"
+      ],
+      [
+        "Evt",
+        "BY-CONSTRUCTION",
+        "3 event symbols printed from one table"
+      ],
+      [
+        "EvtSep",
+        "OK",
+        "no rule carries two observed events of one property"
+      ],
+      [
+        "Saf",
+        "OK",
+        "restrictions: OneMisuse only (variants cl1, rb1), universal with equality conclusion"
+      ],
+      [
+        "Lin",
+        "OK",
+        "4 step cases, one state in and one state out each; no leak outputs a state value"
+      ],
+      [
+        "LinSpawn",
+        "OK",
+        "single thread kind; the thread and its state are created by one rule/process"
+      ],
+      [
+        "Blk",
+        "OK",
+        "block = state input, attacker input, guards, events, outputs, state output"
+      ],
+      [
+        "Grd",
+        "OK",
+        "guards are equality tests on public numeral constants; domains q=[0], a=[0, 1, 2, 3]"
+      ],
+      [
+        "Det",
+        "OK",
+        "cases with the same consumed state have disjoint input patterns"
+      ],
+      [
+        "Dist",
+        "OK",
+        "one role with a fresh identity; no public role names"
+      ],
+      [
+        "Leak",
+        "OK",
+        "leak outputs a persistent fresh name; enabled from thread start (guard: the published identity)"
+      ],
+      [
+        "Rul",
+        "BY-CONSTRUCTION",
+        "8 cases printed to both tools from one object"
+      ],
+      [
+        "Bound(e)",
+        "OK",
+        "longest update chain 1; declared bound 1; Theorem 1(e) applies with n = 1"
+      ]
+    ],
+    "expected": "one-sided model change; verdict discrepancy not guaranteed"
+  },
+  {
+    "seed": "lmots",
+    "operator": "unguarded_reveal",
+    "directory": "lmots__unguarded_reveal",
+    "pv_sha256": "26755efa121ca821bf15adc3d1dafb57fc1653c0d38740a42eef1c543ce78261",
+    "tm_sha256": "28e70408184a582efc07801b5bc321319d9e929eaccfd9dc3459f1a5d9c0a1c3",
+    "source_cim_sha256": "c38b6a981ec4235134031d7d588d9c121bebdd86380cefab0c3d8b36532cce16",
+    "queries": [
+      "exec_accept",
+      "LS1_unforge",
+      "forge"
+    ],
+    "kinds": [
+      "phi3",
+      "phi1",
+      "phi3"
+    ],
+    "checks": [
+      [
+        "Sig",
+        "OK",
+        "2 symbols used, one declaration table; tuples as right-nested pairs in both tools"
+      ],
+      [
+        "Evt",
+        "BY-CONSTRUCTION",
+        "3 event symbols printed from one table"
+      ],
+      [
+        "EvtSep",
+        "OK",
+        "no rule carries two observed events of one property"
+      ],
+      [
+        "Saf",
+        "OK",
+        "restrictions: OneMisuse only (variants cl1, rb1), universal with equality conclusion"
+      ],
+      [
+        "Lin",
+        "OK",
+        "4 step cases, one state in and one state out each; no leak outputs a state value"
+      ],
+      [
+        "LinSpawn",
+        "OK",
+        "single thread kind; the thread and its state are created by one rule/process"
+      ],
+      [
+        "Blk",
+        "OK",
+        "block = state input, attacker input, guards, events, outputs, state output"
+      ],
+      [
+        "Grd",
+        "OK",
+        "guards are equality tests on public numeral constants; domains q=[0], a=[0, 1, 2, 3]"
+      ],
+      [
+        "Det",
+        "OK",
+        "cases with the same consumed state have disjoint input patterns"
+      ],
+      [
+        "Dist",
+        "OK",
+        "one role with a fresh identity; no public role names"
+      ],
+      [
+        "Leak",
+        "OK",
+        "leak outputs a persistent fresh name; enabled from thread start (guard: the published identity)"
+      ],
+      [
+        "Rul",
+        "BY-CONSTRUCTION",
+        "8 cases printed to both tools from one object"
+      ],
+      [
+        "Bound(e)",
+        "OK",
+        "longest update chain 1; declared bound 1; Theorem 1(e) applies with n = 1"
+      ]
+    ],
+    "expected": "one-sided model change; verdict discrepancy not guaranteed"
+  },
+  {
+    "seed": "lmots",
+    "operator": "wrong_public_key",
+    "directory": "lmots__wrong_public_key",
+    "pv_sha256": "22086b147a403518de3fb0aaa19a29fe22c86a8c0d74b2f5d8cad2d28da568b2",
+    "tm_sha256": "28e70408184a582efc07801b5bc321319d9e929eaccfd9dc3459f1a5d9c0a1c3",
+    "source_cim_sha256": "c38b6a981ec4235134031d7d588d9c121bebdd86380cefab0c3d8b36532cce16",
+    "queries": [
+      "exec_accept",
+      "LS1_unforge",
+      "forge"
+    ],
+    "kinds": [
+      "phi3",
+      "phi1",
+      "phi3"
+    ],
+    "checks": [
+      [
+        "Sig",
+        "OK",
+        "2 symbols used, one declaration table; tuples as right-nested pairs in both tools"
+      ],
+      [
+        "Evt",
+        "BY-CONSTRUCTION",
+        "3 event symbols printed from one table"
+      ],
+      [
+        "EvtSep",
+        "OK",
+        "no rule carries two observed events of one property"
+      ],
+      [
+        "Saf",
+        "OK",
+        "restrictions: OneMisuse only (variants cl1, rb1), universal with equality conclusion"
+      ],
+      [
+        "Lin",
+        "OK",
+        "4 step cases, one state in and one state out each; no leak outputs a state value"
+      ],
+      [
+        "LinSpawn",
+        "OK",
+        "single thread kind; the thread and its state are created by one rule/process"
+      ],
+      [
+        "Blk",
+        "OK",
+        "block = state input, attacker input, guards, events, outputs, state output"
+      ],
+      [
+        "Grd",
+        "OK",
+        "guards are equality tests on public numeral constants; domains q=[0], a=[0, 1, 2, 3]"
+      ],
+      [
+        "Det",
+        "OK",
+        "cases with the same consumed state have disjoint input patterns"
+      ],
+      [
+        "Dist",
+        "OK",
+        "one role with a fresh identity; no public role names"
+      ],
+      [
+        "Leak",
+        "OK",
+        "leak outputs a persistent fresh name; enabled from thread start (guard: the published identity)"
+      ],
+      [
+        "Rul",
+        "BY-CONSTRUCTION",
+        "8 cases printed to both tools from one object"
+      ],
+      [
+        "Bound(e)",
+        "OK",
+        "longest update chain 1; declared bound 1; Theorem 1(e) applies with n = 1"
+      ]
+    ],
+    "expected": "one-sided model change; verdict discrepancy not guaranteed"
+  },
+  {
+    "seed": "lmots",
+    "operator": "private_to_public",
+    "directory": "lmots__private_to_public",
+    "pv_sha256": "31c28109cbc4e5a536cea91664fd346d373abfc614ee09d5dcd81cc0c50f01d2",
+    "tm_sha256": "28e70408184a582efc07801b5bc321319d9e929eaccfd9dc3459f1a5d9c0a1c3",
+    "source_cim_sha256": "c38b6a981ec4235134031d7d588d9c121bebdd86380cefab0c3d8b36532cce16",
+    "queries": [
+      "exec_accept",
+      "LS1_unforge",
+      "forge"
+    ],
+    "kinds": [
+      "phi3",
+      "phi1",
+      "phi3"
+    ],
+    "checks": [
+      [
+        "Sig",
+        "OK",
+        "2 symbols used, one declaration table; tuples as right-nested pairs in both tools"
+      ],
+      [
+        "Evt",
+        "BY-CONSTRUCTION",
+        "3 event symbols printed from one table"
+      ],
+      [
+        "EvtSep",
+        "OK",
+        "no rule carries two observed events of one property"
+      ],
+      [
+        "Saf",
+        "OK",
+        "restrictions: OneMisuse only (variants cl1, rb1), universal with equality conclusion"
+      ],
+      [
+        "Lin",
+        "OK",
+        "4 step cases, one state in and one state out each; no leak outputs a state value"
+      ],
+      [
+        "LinSpawn",
+        "OK",
+        "single thread kind; the thread and its state are created by one rule/process"
+      ],
+      [
+        "Blk",
+        "OK",
+        "block = state input, attacker input, guards, events, outputs, state output"
+      ],
+      [
+        "Grd",
+        "OK",
+        "guards are equality tests on public numeral constants; domains q=[0], a=[0, 1, 2, 3]"
+      ],
+      [
+        "Det",
+        "OK",
+        "cases with the same consumed state have disjoint input patterns"
+      ],
+      [
+        "Dist",
+        "OK",
+        "one role with a fresh identity; no public role names"
+      ],
+      [
+        "Leak",
+        "OK",
+        "leak outputs a persistent fresh name; enabled from thread start (guard: the published identity)"
+      ],
+      [
+        "Rul",
+        "BY-CONSTRUCTION",
+        "8 cases printed to both tools from one object"
+      ],
+      [
+        "Bound(e)",
+        "OK",
+        "longest update chain 1; declared bound 1; Theorem 1(e) applies with n = 1"
+      ]
+    ],
+    "expected": "one-sided model change; verdict discrepancy not guaranteed"
+  },
+  {
+    "seed": "lmots",
+    "operator": "reveal_wrong_secret",
+    "directory": "lmots__reveal_wrong_secret",
+    "pv_sha256": "5a430c4cbfa754e276b58d1c1abb5ae53c28f863d8b92a265e9092afc62e9c4d",
+    "tm_sha256": "28e70408184a582efc07801b5bc321319d9e929eaccfd9dc3459f1a5d9c0a1c3",
+    "source_cim_sha256": "c38b6a981ec4235134031d7d588d9c121bebdd86380cefab0c3d8b36532cce16",
+    "queries": [
+      "exec_accept",
+      "LS1_unforge",
+      "forge"
+    ],
+    "kinds": [
+      "phi3",
+      "phi1",
+      "phi3"
+    ],
+    "checks": [
+      [
+        "Sig",
+        "OK",
+        "2 symbols used, one declaration table; tuples as right-nested pairs in both tools"
+      ],
+      [
+        "Evt",
+        "BY-CONSTRUCTION",
+        "3 event symbols printed from one table"
+      ],
+      [
+        "EvtSep",
+        "OK",
+        "no rule carries two observed events of one property"
+      ],
+      [
+        "Saf",
+        "OK",
+        "restrictions: OneMisuse only (variants cl1, rb1), universal with equality conclusion"
+      ],
+      [
+        "Lin",
+        "OK",
+        "4 step cases, one state in and one state out each; no leak outputs a state value"
+      ],
+      [
+        "LinSpawn",
+        "OK",
+        "single thread kind; the thread and its state are created by one rule/process"
+      ],
+      [
+        "Blk",
+        "OK",
+        "block = state input, attacker input, guards, events, outputs, state output"
+      ],
+      [
+        "Grd",
+        "OK",
+        "guards are equality tests on public numeral constants; domains q=[0], a=[0, 1, 2, 3]"
+      ],
+      [
+        "Det",
+        "OK",
+        "cases with the same consumed state have disjoint input patterns"
+      ],
+      [
+        "Dist",
+        "OK",
+        "one role with a fresh identity; no public role names"
+      ],
+      [
+        "Leak",
+        "OK",
+        "leak outputs a persistent fresh name; enabled from thread start (guard: the published identity)"
+      ],
+      [
+        "Rul",
+        "BY-CONSTRUCTION",
+        "8 cases printed to both tools from one object"
+      ],
+      [
+        "Bound(e)",
+        "OK",
+        "longest update chain 1; declared bound 1; Theorem 1(e) applies with n = 1"
+      ]
+    ],
+    "expected": "one-sided model change; verdict discrepancy not guaranteed"
+  },
+  {
+    "seed": "lms_s2",
+    "operator": "control",
+    "directory": "lms_s2__control",
+    "pv_sha256": "f0984a43f148863be8311428e5a947df2b3a17c9a75479c96013df49c9e8c064",
+    "tm_sha256": "19829fa7ca8f36f6609f301278740bd2325f22b17a53c6439bb5a2e0697e423b",
+    "source_cim_sha256": "441457323dde0422485f4d5474d02c53d29dffd591004ebd9eeb2178fd318227",
+    "queries": [
+      "exec",
+      "LS4_pure",
+      "LS1",
+      "LS3_forge"
+    ],
+    "kinds": [
+      "phi3",
+      "phi2",
+      "phi1",
+      "phi3"
+    ],
+    "checks": [
+      [
+        "Sig",
+        "OK",
+        "3 symbols used, one declaration table; tuples as right-nested pairs in both tools"
+      ],
+      [
+        "Evt",
+        "BY-CONSTRUCTION",
+        "3 event symbols printed from one table"
+      ],
+      [
+        "EvtSep",
+        "OK",
+        "no rule carries two observed events of one property"
+      ],
+      [
+        "Saf",
+        "OK",
+        "restrictions: OneMisuse only (variants cl1, rb1), universal with equality conclusion"
+      ],
+      [
+        "Lin",
+        "OK",
+        "8 step cases, one state in and one state out each; no leak outputs a state value"
+      ],
+      [
+        "LinSpawn",
+        "OK",
+        "single thread kind; the thread and its state are created by one rule/process"
+      ],
+      [
+        "Blk",
+        "OK",
+        "block = state input, attacker input, guards, events, outputs, state output"
+      ],
+      [
+        "Grd",
+        "OK",
+        "guards are equality tests on public numeral constants; domains q=[0, 1], a=[0, 1, 2, 3]"
+      ],
+      [
+        "Det",
+        "OK",
+        "cases with the same consumed state have disjoint input patterns"
+      ],
+      [
+        "Dist",
+        "OK",
+        "one role with a fresh identity; no public role names"
+      ],
+      [
+        "Leak",
+        "OK",
+        "leak outputs a persistent fresh name; enabled from thread start (guard: the published identity)"
+      ],
+      [
+        "Rul",
+        "BY-CONSTRUCTION",
+        "16 cases printed to both tools from one object"
+      ],
+      [
+        "Bound(e)",
+        "OK",
+        "longest update chain 2; declared bound 2; Theorem 1(e) applies with n = 2"
+      ]
+    ],
+    "expected": "control"
+  },
+  {
+    "seed": "lms_s2",
+    "operator": "event_accept_argument",
+    "directory": "lms_s2__event_accept_argument",
+    "pv_sha256": "cf4522f262c318f32ae008f15dad3d9ceecc16fa11cc17d9c529fc3241ed9955",
+    "tm_sha256": "19829fa7ca8f36f6609f301278740bd2325f22b17a53c6439bb5a2e0697e423b",
+    "source_cim_sha256": "441457323dde0422485f4d5474d02c53d29dffd591004ebd9eeb2178fd318227",
+    "queries": [
+      "exec",
+      "LS4_pure",
+      "LS1",
+      "LS3_forge"
+    ],
+    "kinds": [
+      "phi3",
+      "phi2",
+      "phi1",
+      "phi3"
+    ],
+    "checks": [
+      [
+        "Sig",
+        "OK",
+        "3 symbols used, one declaration table; tuples as right-nested pairs in both tools"
+      ],
+      [
+        "Evt",
+        "BY-CONSTRUCTION",
+        "3 event symbols printed from one table"
+      ],
+      [
+        "EvtSep",
+        "OK",
+        "no rule carries two observed events of one property"
+      ],
+      [
+        "Saf",
+        "OK",
+        "restrictions: OneMisuse only (variants cl1, rb1), universal with equality conclusion"
+      ],
+      [
+        "Lin",
+        "OK",
+        "8 step cases, one state in and one state out each; no leak outputs a state value"
+      ],
+      [
+        "LinSpawn",
+        "OK",
+        "single thread kind; the thread and its state are created by one rule/process"
+      ],
+      [
+        "Blk",
+        "OK",
+        "block = state input, attacker input, guards, events, outputs, state output"
+      ],
+      [
+        "Grd",
+        "OK",
+        "guards are equality tests on public numeral constants; domains q=[0, 1], a=[0, 1, 2, 3]"
+      ],
+      [
+        "Det",
+        "OK",
+        "cases with the same consumed state have disjoint input patterns"
+      ],
+      [
+        "Dist",
+        "OK",
+        "one role with a fresh identity; no public role names"
+      ],
+      [
+        "Leak",
+        "OK",
+        "leak outputs a persistent fresh name; enabled from thread start (guard: the published identity)"
+      ],
+      [
+        "Rul",
+        "BY-CONSTRUCTION",
+        "16 cases printed to both tools from one object"
+      ],
+      [
+        "Bound(e)",
+        "OK",
+        "longest update chain 2; declared bound 2; Theorem 1(e) applies with n = 2"
+      ]
+    ],
+    "expected": "one-sided model change; verdict discrepancy not guaranteed"
+  },
+  {
+    "seed": "lms_s2",
+    "operator": "event_sign_argument",
+    "directory": "lms_s2__event_sign_argument",
+    "pv_sha256": "3a918366d7aa17fd4658234639aff625d16355853e6999bfec571493845693ab",
+    "tm_sha256": "19829fa7ca8f36f6609f301278740bd2325f22b17a53c6439bb5a2e0697e423b",
+    "source_cim_sha256": "441457323dde0422485f4d5474d02c53d29dffd591004ebd9eeb2178fd318227",
+    "queries": [
+      "exec",
+      "LS4_pure",
+      "LS1",
+      "LS3_forge"
+    ],
+    "kinds": [
+      "phi3",
+      "phi2",
+      "phi1",
+      "phi3"
+    ],
+    "checks": [
+      [
+        "Sig",
+        "OK",
+        "3 symbols used, one declaration table; tuples as right-nested pairs in both tools"
+      ],
+      [
+        "Evt",
+        "BY-CONSTRUCTION",
+        "3 event symbols printed from one table"
+      ],
+      [
+        "EvtSep",
+        "OK",
+        "no rule carries two observed events of one property"
+      ],
+      [
+        "Saf",
+        "OK",
+        "restrictions: OneMisuse only (variants cl1, rb1), universal with equality conclusion"
+      ],
+      [
+        "Lin",
+        "OK",
+        "8 step cases, one state in and one state out each; no leak outputs a state value"
+      ],
+      [
+        "LinSpawn",
+        "OK",
+        "single thread kind; the thread and its state are created by one rule/process"
+      ],
+      [
+        "Blk",
+        "OK",
+        "block = state input, attacker input, guards, events, outputs, state output"
+      ],
+      [
+        "Grd",
+        "OK",
+        "guards are equality tests on public numeral constants; domains q=[0, 1], a=[0, 1, 2, 3]"
+      ],
+      [
+        "Det",
+        "OK",
+        "cases with the same consumed state have disjoint input patterns"
+      ],
+      [
+        "Dist",
+        "OK",
+        "one role with a fresh identity; no public role names"
+      ],
+      [
+        "Leak",
+        "OK",
+        "leak outputs a persistent fresh name; enabled from thread start (guard: the published identity)"
+      ],
+      [
+        "Rul",
+        "BY-CONSTRUCTION",
+        "16 cases printed to both tools from one object"
+      ],
+      [
+        "Bound(e)",
+        "OK",
+        "longest update chain 2; declared bound 2; Theorem 1(e) applies with n = 2"
+      ]
+    ],
+    "expected": "one-sided model change; verdict discrepancy not guaranteed"
+  },
+  {
+    "seed": "lms_s2",
+    "operator": "remove_reveal_event",
+    "directory": "lms_s2__remove_reveal_event",
+    "pv_sha256": "36494cbe13949ec92106acaa83f8107e603f886b3a5922084e6e0afd54eeb1e6",
+    "tm_sha256": "19829fa7ca8f36f6609f301278740bd2325f22b17a53c6439bb5a2e0697e423b",
+    "source_cim_sha256": "441457323dde0422485f4d5474d02c53d29dffd591004ebd9eeb2178fd318227",
+    "queries": [
+      "exec",
+      "LS4_pure",
+      "LS1",
+      "LS3_forge"
+    ],
+    "kinds": [
+      "phi3",
+      "phi2",
+      "phi1",
+      "phi3"
+    ],
+    "checks": [
+      [
+        "Sig",
+        "OK",
+        "3 symbols used, one declaration table; tuples as right-nested pairs in both tools"
+      ],
+      [
+        "Evt",
+        "BY-CONSTRUCTION",
+        "3 event symbols printed from one table"
+      ],
+      [
+        "EvtSep",
+        "OK",
+        "no rule carries two observed events of one property"
+      ],
+      [
+        "Saf",
+        "OK",
+        "restrictions: OneMisuse only (variants cl1, rb1), universal with equality conclusion"
+      ],
+      [
+        "Lin",
+        "OK",
+        "8 step cases, one state in and one state out each; no leak outputs a state value"
+      ],
+      [
+        "LinSpawn",
+        "OK",
+        "single thread kind; the thread and its state are created by one rule/process"
+      ],
+      [
+        "Blk",
+        "OK",
+        "block = state input, attacker input, guards, events, outputs, state output"
+      ],
+      [
+        "Grd",
+        "OK",
+        "guards are equality tests on public numeral constants; domains q=[0, 1], a=[0, 1, 2, 3]"
+      ],
+      [
+        "Det",
+        "OK",
+        "cases with the same consumed state have disjoint input patterns"
+      ],
+      [
+        "Dist",
+        "OK",
+        "one role with a fresh identity; no public role names"
+      ],
+      [
+        "Leak",
+        "OK",
+        "leak outputs a persistent fresh name; enabled from thread start (guard: the published identity)"
+      ],
+      [
+        "Rul",
+        "BY-CONSTRUCTION",
+        "16 cases printed to both tools from one object"
+      ],
+      [
+        "Bound(e)",
+        "OK",
+        "longest update chain 2; declared bound 2; Theorem 1(e) applies with n = 2"
+      ]
+    ],
+    "expected": "one-sided model change; verdict discrepancy not guaranteed"
+  },
+  {
+    "seed": "lms_s2",
+    "operator": "replicate_signer",
+    "directory": "lms_s2__replicate_signer",
+    "pv_sha256": "ef57fff6bd2ea55d1cd016251d590b008ac7bc9ac64c26025e8f77c8d5d9dd59",
+    "tm_sha256": "19829fa7ca8f36f6609f301278740bd2325f22b17a53c6439bb5a2e0697e423b",
+    "source_cim_sha256": "441457323dde0422485f4d5474d02c53d29dffd591004ebd9eeb2178fd318227",
+    "queries": [
+      "exec",
+      "LS4_pure",
+      "LS1",
+      "LS3_forge"
+    ],
+    "kinds": [
+      "phi3",
+      "phi2",
+      "phi1",
+      "phi3"
+    ],
+    "checks": [
+      [
+        "Sig",
+        "OK",
+        "3 symbols used, one declaration table; tuples as right-nested pairs in both tools"
+      ],
+      [
+        "Evt",
+        "BY-CONSTRUCTION",
+        "3 event symbols printed from one table"
+      ],
+      [
+        "EvtSep",
+        "OK",
+        "no rule carries two observed events of one property"
+      ],
+      [
+        "Saf",
+        "OK",
+        "restrictions: OneMisuse only (variants cl1, rb1), universal with equality conclusion"
+      ],
+      [
+        "Lin",
+        "OK",
+        "8 step cases, one state in and one state out each; no leak outputs a state value"
+      ],
+      [
+        "LinSpawn",
+        "OK",
+        "single thread kind; the thread and its state are created by one rule/process"
+      ],
+      [
+        "Blk",
+        "OK",
+        "block = state input, attacker input, guards, events, outputs, state output"
+      ],
+      [
+        "Grd",
+        "OK",
+        "guards are equality tests on public numeral constants; domains q=[0, 1], a=[0, 1, 2, 3]"
+      ],
+      [
+        "Det",
+        "OK",
+        "cases with the same consumed state have disjoint input patterns"
+      ],
+      [
+        "Dist",
+        "OK",
+        "one role with a fresh identity; no public role names"
+      ],
+      [
+        "Leak",
+        "OK",
+        "leak outputs a persistent fresh name; enabled from thread start (guard: the published identity)"
+      ],
+      [
+        "Rul",
+        "BY-CONSTRUCTION",
+        "16 cases printed to both tools from one object"
+      ],
+      [
+        "Bound(e)",
+        "OK",
+        "longest update chain 2; declared bound 2; Theorem 1(e) applies with n = 2"
+      ]
+    ],
+    "expected": "one-sided model change; verdict discrepancy not guaranteed"
+  },
+  {
+    "seed": "lms_s2",
+    "operator": "disable_signer",
+    "directory": "lms_s2__disable_signer",
+    "pv_sha256": "31f61daab956c3382b1759716a75ae6101d79453230861c5a404c7d586699f22",
+    "tm_sha256": "19829fa7ca8f36f6609f301278740bd2325f22b17a53c6439bb5a2e0697e423b",
+    "source_cim_sha256": "441457323dde0422485f4d5474d02c53d29dffd591004ebd9eeb2178fd318227",
+    "queries": [
+      "exec",
+      "LS4_pure",
+      "LS1",
+      "LS3_forge"
+    ],
+    "kinds": [
+      "phi3",
+      "phi2",
+      "phi1",
+      "phi3"
+    ],
+    "checks": [
+      [
+        "Sig",
+        "OK",
+        "3 symbols used, one declaration table; tuples as right-nested pairs in both tools"
+      ],
+      [
+        "Evt",
+        "BY-CONSTRUCTION",
+        "3 event symbols printed from one table"
+      ],
+      [
+        "EvtSep",
+        "OK",
+        "no rule carries two observed events of one property"
+      ],
+      [
+        "Saf",
+        "OK",
+        "restrictions: OneMisuse only (variants cl1, rb1), universal with equality conclusion"
+      ],
+      [
+        "Lin",
+        "OK",
+        "8 step cases, one state in and one state out each; no leak outputs a state value"
+      ],
+      [
+        "LinSpawn",
+        "OK",
+        "single thread kind; the thread and its state are created by one rule/process"
+      ],
+      [
+        "Blk",
+        "OK",
+        "block = state input, attacker input, guards, events, outputs, state output"
+      ],
+      [
+        "Grd",
+        "OK",
+        "guards are equality tests on public numeral constants; domains q=[0, 1], a=[0, 1, 2, 3]"
+      ],
+      [
+        "Det",
+        "OK",
+        "cases with the same consumed state have disjoint input patterns"
+      ],
+      [
+        "Dist",
+        "OK",
+        "one role with a fresh identity; no public role names"
+      ],
+      [
+        "Leak",
+        "OK",
+        "leak outputs a persistent fresh name; enabled from thread start (guard: the published identity)"
+      ],
+      [
+        "Rul",
+        "BY-CONSTRUCTION",
+        "16 cases printed to both tools from one object"
+      ],
+      [
+        "Bound(e)",
+        "OK",
+        "longest update chain 2; declared bound 2; Theorem 1(e) applies with n = 2"
+      ]
+    ],
+    "expected": "one-sided model change; verdict discrepancy not guaranteed"
+  },
+  {
+    "seed": "lms_s2",
+    "operator": "disable_accept",
+    "directory": "lms_s2__disable_accept",
+    "pv_sha256": "50d02fa6e06a10194692584f59e86956bb8843fdfe869e5f0b0299b68c95f2fb",
+    "tm_sha256": "19829fa7ca8f36f6609f301278740bd2325f22b17a53c6439bb5a2e0697e423b",
+    "source_cim_sha256": "441457323dde0422485f4d5474d02c53d29dffd591004ebd9eeb2178fd318227",
+    "queries": [
+      "exec",
+      "LS4_pure",
+      "LS1",
+      "LS3_forge"
+    ],
+    "kinds": [
+      "phi3",
+      "phi2",
+      "phi1",
+      "phi3"
+    ],
+    "checks": [
+      [
+        "Sig",
+        "OK",
+        "3 symbols used, one declaration table; tuples as right-nested pairs in both tools"
+      ],
+      [
+        "Evt",
+        "BY-CONSTRUCTION",
+        "3 event symbols printed from one table"
+      ],
+      [
+        "EvtSep",
+        "OK",
+        "no rule carries two observed events of one property"
+      ],
+      [
+        "Saf",
+        "OK",
+        "restrictions: OneMisuse only (variants cl1, rb1), universal with equality conclusion"
+      ],
+      [
+        "Lin",
+        "OK",
+        "8 step cases, one state in and one state out each; no leak outputs a state value"
+      ],
+      [
+        "LinSpawn",
+        "OK",
+        "single thread kind; the thread and its state are created by one rule/process"
+      ],
+      [
+        "Blk",
+        "OK",
+        "block = state input, attacker input, guards, events, outputs, state output"
+      ],
+      [
+        "Grd",
+        "OK",
+        "guards are equality tests on public numeral constants; domains q=[0, 1], a=[0, 1, 2, 3]"
+      ],
+      [
+        "Det",
+        "OK",
+        "cases with the same consumed state have disjoint input patterns"
+      ],
+      [
+        "Dist",
+        "OK",
+        "one role with a fresh identity; no public role names"
+      ],
+      [
+        "Leak",
+        "OK",
+        "leak outputs a persistent fresh name; enabled from thread start (guard: the published identity)"
+      ],
+      [
+        "Rul",
+        "BY-CONSTRUCTION",
+        "16 cases printed to both tools from one object"
+      ],
+      [
+        "Bound(e)",
+        "OK",
+        "longest update chain 2; declared bound 2; Theorem 1(e) applies with n = 2"
+      ]
+    ],
+    "expected": "one-sided model change; verdict discrepancy not guaranteed"
+  },
+  {
+    "seed": "lms_s2",
+    "operator": "unguarded_reveal",
+    "directory": "lms_s2__unguarded_reveal",
+    "pv_sha256": "815e8d19dcd1a459f34c9a3ad285e8c1605be680e1b83a48ef6ad6f5858243a0",
+    "tm_sha256": "19829fa7ca8f36f6609f301278740bd2325f22b17a53c6439bb5a2e0697e423b",
+    "source_cim_sha256": "441457323dde0422485f4d5474d02c53d29dffd591004ebd9eeb2178fd318227",
+    "queries": [
+      "exec",
+      "LS4_pure",
+      "LS1",
+      "LS3_forge"
+    ],
+    "kinds": [
+      "phi3",
+      "phi2",
+      "phi1",
+      "phi3"
+    ],
+    "checks": [
+      [
+        "Sig",
+        "OK",
+        "3 symbols used, one declaration table; tuples as right-nested pairs in both tools"
+      ],
+      [
+        "Evt",
+        "BY-CONSTRUCTION",
+        "3 event symbols printed from one table"
+      ],
+      [
+        "EvtSep",
+        "OK",
+        "no rule carries two observed events of one property"
+      ],
+      [
+        "Saf",
+        "OK",
+        "restrictions: OneMisuse only (variants cl1, rb1), universal with equality conclusion"
+      ],
+      [
+        "Lin",
+        "OK",
+        "8 step cases, one state in and one state out each; no leak outputs a state value"
+      ],
+      [
+        "LinSpawn",
+        "OK",
+        "single thread kind; the thread and its state are created by one rule/process"
+      ],
+      [
+        "Blk",
+        "OK",
+        "block = state input, attacker input, guards, events, outputs, state output"
+      ],
+      [
+        "Grd",
+        "OK",
+        "guards are equality tests on public numeral constants; domains q=[0, 1], a=[0, 1, 2, 3]"
+      ],
+      [
+        "Det",
+        "OK",
+        "cases with the same consumed state have disjoint input patterns"
+      ],
+      [
+        "Dist",
+        "OK",
+        "one role with a fresh identity; no public role names"
+      ],
+      [
+        "Leak",
+        "OK",
+        "leak outputs a persistent fresh name; enabled from thread start (guard: the published identity)"
+      ],
+      [
+        "Rul",
+        "BY-CONSTRUCTION",
+        "16 cases printed to both tools from one object"
+      ],
+      [
+        "Bound(e)",
+        "OK",
+        "longest update chain 2; declared bound 2; Theorem 1(e) applies with n = 2"
+      ]
+    ],
+    "expected": "one-sided model change; verdict discrepancy not guaranteed"
+  },
+  {
+    "seed": "lms_s2",
+    "operator": "wrong_public_key",
+    "directory": "lms_s2__wrong_public_key",
+    "pv_sha256": "215e84410a970e73427ac0583c90a75783dafa3e3166afca6e1c634f9d0a6cba",
+    "tm_sha256": "19829fa7ca8f36f6609f301278740bd2325f22b17a53c6439bb5a2e0697e423b",
+    "source_cim_sha256": "441457323dde0422485f4d5474d02c53d29dffd591004ebd9eeb2178fd318227",
+    "queries": [
+      "exec",
+      "LS4_pure",
+      "LS1",
+      "LS3_forge"
+    ],
+    "kinds": [
+      "phi3",
+      "phi2",
+      "phi1",
+      "phi3"
+    ],
+    "checks": [
+      [
+        "Sig",
+        "OK",
+        "3 symbols used, one declaration table; tuples as right-nested pairs in both tools"
+      ],
+      [
+        "Evt",
+        "BY-CONSTRUCTION",
+        "3 event symbols printed from one table"
+      ],
+      [
+        "EvtSep",
+        "OK",
+        "no rule carries two observed events of one property"
+      ],
+      [
+        "Saf",
+        "OK",
+        "restrictions: OneMisuse only (variants cl1, rb1), universal with equality conclusion"
+      ],
+      [
+        "Lin",
+        "OK",
+        "8 step cases, one state in and one state out each; no leak outputs a state value"
+      ],
+      [
+        "LinSpawn",
+        "OK",
+        "single thread kind; the thread and its state are created by one rule/process"
+      ],
+      [
+        "Blk",
+        "OK",
+        "block = state input, attacker input, guards, events, outputs, state output"
+      ],
+      [
+        "Grd",
+        "OK",
+        "guards are equality tests on public numeral constants; domains q=[0, 1], a=[0, 1, 2, 3]"
+      ],
+      [
+        "Det",
+        "OK",
+        "cases with the same consumed state have disjoint input patterns"
+      ],
+      [
+        "Dist",
+        "OK",
+        "one role with a fresh identity; no public role names"
+      ],
+      [
+        "Leak",
+        "OK",
+        "leak outputs a persistent fresh name; enabled from thread start (guard: the published identity)"
+      ],
+      [
+        "Rul",
+        "BY-CONSTRUCTION",
+        "16 cases printed to both tools from one object"
+      ],
+      [
+        "Bound(e)",
+        "OK",
+        "longest update chain 2; declared bound 2; Theorem 1(e) applies with n = 2"
+      ]
+    ],
+    "expected": "one-sided model change; verdict discrepancy not guaranteed"
+  },
+  {
+    "seed": "lms_s2",
+    "operator": "private_to_public",
+    "directory": "lms_s2__private_to_public",
+    "pv_sha256": "1e51cf2c888dc75188b7030a7dd686596fa332d3263d269789b2107efbec3ac9",
+    "tm_sha256": "19829fa7ca8f36f6609f301278740bd2325f22b17a53c6439bb5a2e0697e423b",
+    "source_cim_sha256": "441457323dde0422485f4d5474d02c53d29dffd591004ebd9eeb2178fd318227",
+    "queries": [
+      "exec",
+      "LS4_pure",
+      "LS1",
+      "LS3_forge"
+    ],
+    "kinds": [
+      "phi3",
+      "phi2",
+      "phi1",
+      "phi3"
+    ],
+    "checks": [
+      [
+        "Sig",
+        "OK",
+        "3 symbols used, one declaration table; tuples as right-nested pairs in both tools"
+      ],
+      [
+        "Evt",
+        "BY-CONSTRUCTION",
+        "3 event symbols printed from one table"
+      ],
+      [
+        "EvtSep",
+        "OK",
+        "no rule carries two observed events of one property"
+      ],
+      [
+        "Saf",
+        "OK",
+        "restrictions: OneMisuse only (variants cl1, rb1), universal with equality conclusion"
+      ],
+      [
+        "Lin",
+        "OK",
+        "8 step cases, one state in and one state out each; no leak outputs a state value"
+      ],
+      [
+        "LinSpawn",
+        "OK",
+        "single thread kind; the thread and its state are created by one rule/process"
+      ],
+      [
+        "Blk",
+        "OK",
+        "block = state input, attacker input, guards, events, outputs, state output"
+      ],
+      [
+        "Grd",
+        "OK",
+        "guards are equality tests on public numeral constants; domains q=[0, 1], a=[0, 1, 2, 3]"
+      ],
+      [
+        "Det",
+        "OK",
+        "cases with the same consumed state have disjoint input patterns"
+      ],
+      [
+        "Dist",
+        "OK",
+        "one role with a fresh identity; no public role names"
+      ],
+      [
+        "Leak",
+        "OK",
+        "leak outputs a persistent fresh name; enabled from thread start (guard: the published identity)"
+      ],
+      [
+        "Rul",
+        "BY-CONSTRUCTION",
+        "16 cases printed to both tools from one object"
+      ],
+      [
+        "Bound(e)",
+        "OK",
+        "longest update chain 2; declared bound 2; Theorem 1(e) applies with n = 2"
+      ]
+    ],
+    "expected": "one-sided model change; verdict discrepancy not guaranteed"
+  },
+  {
+    "seed": "lms_s2",
+    "operator": "reveal_wrong_secret",
+    "directory": "lms_s2__reveal_wrong_secret",
+    "pv_sha256": "dd5cda0c950a188c36345fe64e921056758bdc8998841a2d5d4952d6d742f3c5",
+    "tm_sha256": "19829fa7ca8f36f6609f301278740bd2325f22b17a53c6439bb5a2e0697e423b",
+    "source_cim_sha256": "441457323dde0422485f4d5474d02c53d29dffd591004ebd9eeb2178fd318227",
+    "queries": [
+      "exec",
+      "LS4_pure",
+      "LS1",
+      "LS3_forge"
+    ],
+    "kinds": [
+      "phi3",
+      "phi2",
+      "phi1",
+      "phi3"
+    ],
+    "checks": [
+      [
+        "Sig",
+        "OK",
+        "3 symbols used, one declaration table; tuples as right-nested pairs in both tools"
+      ],
+      [
+        "Evt",
+        "BY-CONSTRUCTION",
+        "3 event symbols printed from one table"
+      ],
+      [
+        "EvtSep",
+        "OK",
+        "no rule carries two observed events of one property"
+      ],
+      [
+        "Saf",
+        "OK",
+        "restrictions: OneMisuse only (variants cl1, rb1), universal with equality conclusion"
+      ],
+      [
+        "Lin",
+        "OK",
+        "8 step cases, one state in and one state out each; no leak outputs a state value"
+      ],
+      [
+        "LinSpawn",
+        "OK",
+        "single thread kind; the thread and its state are created by one rule/process"
+      ],
+      [
+        "Blk",
+        "OK",
+        "block = state input, attacker input, guards, events, outputs, state output"
+      ],
+      [
+        "Grd",
+        "OK",
+        "guards are equality tests on public numeral constants; domains q=[0, 1], a=[0, 1, 2, 3]"
+      ],
+      [
+        "Det",
+        "OK",
+        "cases with the same consumed state have disjoint input patterns"
+      ],
+      [
+        "Dist",
+        "OK",
+        "one role with a fresh identity; no public role names"
+      ],
+      [
+        "Leak",
+        "OK",
+        "leak outputs a persistent fresh name; enabled from thread start (guard: the published identity)"
+      ],
+      [
+        "Rul",
+        "BY-CONSTRUCTION",
+        "16 cases printed to both tools from one object"
+      ],
+      [
+        "Bound(e)",
+        "OK",
+        "longest update chain 2; declared bound 2; Theorem 1(e) applies with n = 2"
+      ]
+    ],
+    "expected": "one-sided model change; verdict discrepancy not guaranteed"
+  },
+  {
+    "seed": "counterexample",
+    "operator": "unpublished_identity",
+    "directory": "unpublished_identity",
+    "pv_sha256": "24002376107fe9e646617fd00241ed7baf69ea6e4896faf5fef195459a0ad768",
+    "tm_sha256": "3fc6e221e45179a66110753739ac6db0b7796f5e08ea698655e6276fc6b53c7f",
+    "queries": [
+      "reveal_reachable"
+    ],
+    "kinds": [
+      "phi3"
+    ],
+    "checks": [
+      [
+        "Sig",
+        "OK",
+        "1 symbols used, one declaration table; tuples as right-nested pairs in both tools"
+      ],
+      [
+        "Evt",
+        "BY-CONSTRUCTION",
+        "3 event symbols printed from one table"
+      ],
+      [
+        "EvtSep",
+        "OK",
+        "no rule carries two observed events of one property"
+      ],
+      [
+        "Saf",
+        "OK",
+        "restrictions: OneMisuse only (variants cl1, rb1), universal with equality conclusion"
+      ],
+      [
+        "Lin",
+        "OK",
+        "4 step cases, one state in and one state out each; no leak outputs a state value"
+      ],
+      [
+        "LinSpawn",
+        "OK",
+        "single thread kind; the thread and its state are created by one rule/process"
+      ],
+      [
+        "Blk",
+        "OK",
+        "block = state input, attacker input, guards, events, outputs, state output"
+      ],
+      [
+        "Grd",
+        "OK",
+        "guards are equality tests on public numeral constants; domains q=[0], a=[0, 1, 2, 3]"
+      ],
+      [
+        "Det",
+        "OK",
+        "cases with the same consumed state have disjoint input patterns"
+      ],
+      [
+        "Dist",
+        "OK",
+        "one role with a fresh identity; no public role names"
+      ],
+      [
+        "Leak",
+        "OK",
+        "leak outputs a persistent fresh name; enabled from thread start (guard: the published identity)"
+      ],
+      [
+        "Rul",
+        "BY-CONSTRUCTION",
+        "8 cases printed to both tools from one object"
+      ],
+      [
+        "Bound(e)",
+        "OK",
+        "longest update chain 1; declared bound 1; Theorem 1(e) applies with n = 1"
+      ]
+    ],
+    "expected": "old checks pass but reachability differs; tests missing LeakGuard condition"
+  }
+]

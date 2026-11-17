@@ -1,0 +1,26 @@
+test_absent_publication_fails (test_correspondence_guards.Guards.test_absent_publication_fails) ... ok
+test_both_existing_seeds_pass (test_correspondence_guards.Guards.test_both_existing_seeds_pass) ... ok
+test_hidden_constructor_occurrence_fails (test_correspondence_guards.Guards.test_hidden_constructor_occurrence_fails) ... ok
+test_leak_equality_outside_fragment (test_correspondence_guards.Guards.test_leak_equality_outside_fragment) ... ok
+test_nested_tuple_publication_passes (test_correspondence_guards.Guards.test_nested_tuple_publication_passes) ... ok
+test_no_leaks_no_publication_needed (test_correspondence_guards.Guards.test_no_leaks_no_publication_needed) ... ok
+test_observed_events_cannot_share_block (test_correspondence_guards.Guards.test_observed_events_cannot_share_block) ... ok
+test_positive_leak_reachability_outside_fragment (test_correspondence_guards.Guards.test_positive_leak_reachability_outside_fragment) ... ok
+test_unguarded_dispatch_overlaps_guarded_case (test_correspondence_guards.Guards.test_unguarded_dispatch_overlaps_guarded_case) ... ok
+test_abandonment_prevents_reverse_from_arbitrary_related_state (__main__.Audit.test_abandonment_prevents_reverse_from_arbitrary_related_state) ... ok
+test_backend_reserved_identifier_capture_guard_missing (__main__.Audit.test_backend_reserved_identifier_capture_guard_missing) ... ok
+test_capture_counterexample_generated_pair (__main__.Audit.test_capture_counterexample_generated_pair) ... ok
+test_eventless_case (__main__.Audit.test_eventless_case) ... ok
+test_existing_report_accepts_fixture (__main__.Audit.test_existing_report_accepts_fixture) ... ok
+test_genuinely_unbound_constructor_variable_not_rejected_by_report (__main__.Audit.test_genuinely_unbound_constructor_variable_not_rejected_by_report) ... ok
+test_ground_trace_equality_and_forward_relation (__main__.Audit.test_ground_trace_equality_and_forward_relation) ... ok
+test_missing_binding_guard (__main__.Audit.test_missing_binding_guard) ... ok
+test_no_input_case_still_requires_public_dispatch (__main__.Audit.test_no_input_case_still_requires_public_dispatch) ... ok
+test_overlap_is_not_choice (__main__.Audit.test_overlap_is_not_choice) ... ok
+test_saturated_completion_for_every_atomic_edge (__main__.Audit.test_saturated_completion_for_every_atomic_edge) ... ok
+test_unused_empty_thread_fresh_is_not_supported (__main__.Audit.test_unused_empty_thread_fresh_is_not_supported) ... ok
+
+----------------------------------------------------------------------
+Ran 21 tests in 0.034s
+
+OK

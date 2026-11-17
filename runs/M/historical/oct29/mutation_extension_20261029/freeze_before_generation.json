@@ -1,0 +1,8 @@
+{
+  "time": "2026-10-29T00:58:55.057657+00:00",
+  "tree_version": "1.1",
+  "tree_sha256": "d45347db969b78a5209adb13dbee3cc00b7d6047ec0c60a14d40be7cfc0de8e6",
+  "checks_sha256": "75ce6d6fc33f87d0a19048524e746af6f446ab300374a903fce819f30c9b69ac",
+  "scope": "Two fixed signer seeds; ten one-sided operators. Not the planned O1-O10 study; no eight-class accuracy claim.",
+  "interpretation": "Stale IR checks are intentionally retained for output-text mutations. Survivors are not assumed equivalent."
+}

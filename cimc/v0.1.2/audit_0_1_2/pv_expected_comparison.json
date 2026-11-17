@@ -1,0 +1,149 @@
+[
+  {
+    "model": "LMOTS_PV_U1",
+    "query": "exec_accept",
+    "expected": "false",
+    "got": "false",
+    "ok": true
+  },
+  {
+    "model": "LMOTS_PV_U1",
+    "query": "LS1_unforge",
+    "expected": "true",
+    "got": "true",
+    "ok": true
+  },
+  {
+    "model": "LMOTS_PV_U1",
+    "query": "forge",
+    "expected": "true",
+    "got": "true",
+    "ok": true
+  },
+  {
+    "model": "LMOTS_PV_Urb1",
+    "query": "exec_accept",
+    "expected": "false",
+    "got": "false",
+    "ok": true
+  },
+  {
+    "model": "LMOTS_PV_Urb1",
+    "query": "LS1_unforge",
+    "expected": "true",
+    "got": "true",
+    "ok": true
+  },
+  {
+    "model": "LMOTS_PV_Urb1",
+    "query": "forge",
+    "expected": "true",
+    "got": "true",
+    "ok": true
+  },
+  {
+    "model": "LMOTS_PV_lin",
+    "query": "exec_accept",
+    "expected": "false",
+    "got": "false",
+    "ok": true
+  },
+  {
+    "model": "LMOTS_PV_lin",
+    "query": "LS1_unforge",
+    "expected": "cannot",
+    "got": "cannot",
+    "ok": true
+  },
+  {
+    "model": "LMOTS_PV_lin",
+    "query": "forge",
+    "expected": "cannot",
+    "got": "cannot",
+    "ok": true
+  },
+  {
+    "model": "LMOTS_PV_rep",
+    "query": "exec_accept",
+    "expected": "false",
+    "got": "false",
+    "ok": true
+  },
+  {
+    "model": "LMOTS_PV_rep",
+    "query": "LS1_unforge",
+    "expected": "false",
+    "got": "false",
+    "ok": true
+  },
+  {
+    "model": "LMOTS_PV_rep",
+    "query": "forge",
+    "expected": "false",
+    "got": "false",
+    "ok": true
+  },
+  {
+    "model": "LMS_S2_PV_U2",
+    "query": "exec",
+    "expected": "false",
+    "got": "false",
+    "ok": true
+  },
+  {
+    "model": "LMS_S2_PV_U2",
+    "query": "LS4_pure",
+    "expected": "true",
+    "got": "true",
+    "ok": true
+  },
+  {
+    "model": "LMS_S2_PV_U2",
+    "query": "LS1",
+    "expected": "true",
+    "got": "true",
+    "ok": true
+  },
+  {
+    "model": "LMS_S2_PV_Urb2",
+    "query": "LS4_pure",
+    "expected": "false",
+    "got": "false",
+    "ok": true
+  },
+  {
+    "model": "LMS_S2_PV_Urb2",
+    "query": "LS1",
+    "expected": "false",
+    "got": "false",
+    "ok": true
+  },
+  {
+    "model": "LMS_S2_PV_lin",
+    "query": "LS4_pure",
+    "expected": "cannot",
+    "got": "cannot",
+    "ok": true
+  },
+  {
+    "model": "LMS_S2_PV_lin",
+    "query": "LS1",
+    "expected": "cannot",
+    "got": "cannot",
+    "ok": true
+  },
+  {
+    "model": "LMS_S2_PV_rep",
+    "query": "LS4_pure",
+    "expected": "false",
+    "got": "false",
+    "ok": true
+  },
+  {
+    "model": "LMS_S2_PV_rep",
+    "query": "LS1",
+    "expected": "false",
+    "got": "false",
+    "ok": true
+  }
+]

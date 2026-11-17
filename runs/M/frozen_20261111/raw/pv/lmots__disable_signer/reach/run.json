@@ -1,0 +1,20 @@
+{
+  "command": [
+    "/usr/local/bin/proverif",
+    "/redacted-home/workspace/revision_20261111/mutations/pv/lmots__disable_signer/reach.pv"
+  ],
+  "started_utc": "2026-11-11T03:12:08.888068+00:00",
+  "elapsed_s": 0.103,
+  "rc": 0,
+  "stop_reason": null,
+  "time_limit_s": 15,
+  "peak_group_rss_kib": 1428,
+  "rss_samples": [
+    [
+      0.002,
+      1428
+    ]
+  ],
+  "raw_file": "raw/pv/lmots__disable_signer/reach/raw.out",
+  "raw_sha256": "cb5d45fe8b88bb5d4449591467103d73a4e38a72b641126d92a8ac3fdd02cff8"
+}

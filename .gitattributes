@@ -8,3 +8,9 @@
 /exporter/recipes/** -whitespace
 /env/u11/environment.txt -whitespace
 /paper/ladder_points.csv whitespace=cr-at-eol
+# Keep recovered stdout, regression fixtures and source diffs byte-for-byte.
+/cimc/v0.1.1/tests/data/** -whitespace
+/cimc/v0.1.2/tests/data/** -whitespace
+/cimc/v0.1.2/audit_0_1_2/** -whitespace
+/cimc/v0.1.2/out/** -whitespace
+/scheduler/restricted_20261111/*.log -whitespace

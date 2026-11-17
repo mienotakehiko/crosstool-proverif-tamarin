@@ -1,0 +1,254 @@
+{
+ "cim": "lmots.toml",
+ "name": "LMOTS",
+ "cimc": "0.1.0",
+ "al_assign_sha256": "569669ca1bcb20117ee4415fd72efe7ac33a6acc17d2b40ac9a78da42e41c8cc",
+ "diagnosis_tree": "1.1",
+ "diagnosis_sha256": "d45347db969b78a5209adb13dbee3cc00b7d6047ec0c60a14d40be7cfc0de8e6",
+ "checks_failed": [],
+ "bound_transfer": true,
+ "fixed_parameters": "w = 2, p = 2",
+ "properties": {
+  "exec_accept": {
+   "kind": "phi3",
+   "headline": "AL-P4",
+   "systems": [
+    {
+     "system": "T",
+     "scope": "P",
+     "outcome": "W",
+     "level": 4,
+     "al": "AL-P4",
+     "evidence": [
+      "U1:false",
+      "lin:false",
+      "base:verified"
+     ],
+     "basis": "both tools"
+    },
+    {
+     "system": "Trb",
+     "scope": "P_R",
+     "outcome": "W",
+     "level": 4,
+     "al": "AL-P_R4",
+     "evidence": [
+      "U1:false",
+      "Urb1:false",
+      "lin:false",
+      "base:verified",
+      "rb1:verified"
+     ],
+     "basis": "both tools"
+    },
+    {
+     "system": "Tcl",
+     "scope": "P_C",
+     "outcome": "W",
+     "level": 4,
+     "al": "AL-P_C4",
+     "evidence": [
+      "U1:false",
+      "lin:false",
+      "base:verified",
+      "cl1:verified"
+     ],
+     "basis": "both tools"
+    },
+    {
+     "system": "Tom",
+     "scope": "P_w",
+     "outcome": "W",
+     "level": 4,
+     "al": "AL-P_w4",
+     "evidence": [
+      "U1:false",
+      "Urb1:false",
+      "lin:false",
+      "rep:false",
+      "base:verified",
+      "rb1:verified",
+      "cl1:verified"
+     ],
+     "basis": "both tools"
+    }
+   ],
+   "records": [
+    "U1:W",
+    "Urb1:W",
+    "lin:W",
+    "rep:W",
+    "base:W",
+    "rb1:W",
+    "cl1:W"
+   ],
+   "findings": []
+  },
+  "LS1_unforge": {
+   "kind": "phi1",
+   "headline": "AL-P4",
+   "systems": [
+    {
+     "system": "T",
+     "scope": "P",
+     "outcome": "H",
+     "level": 4,
+     "al": "AL-P4",
+     "evidence": [
+      "U1:true",
+      "base:verified"
+     ],
+     "basis": "both tools"
+    },
+    {
+     "system": "Trb",
+     "scope": "P_R",
+     "outcome": "W",
+     "level": 1,
+     "al": "AL-P_R1^a",
+     "evidence": [
+      "rb1:falsified"
+     ],
+     "basis": "one tool"
+    },
+    {
+     "system": "Tcl",
+     "scope": "P_C",
+     "outcome": "W",
+     "level": 1,
+     "al": "AL-P_C1^a",
+     "evidence": [
+      "cl1:falsified"
+     ],
+     "basis": "one tool"
+    },
+    {
+     "system": "Tom",
+     "scope": "P_w",
+     "outcome": "W",
+     "level": 4,
+     "al": "AL-P_w4^a",
+     "evidence": [
+      "rep:false",
+      "rb1:falsified",
+      "cl1:falsified"
+     ],
+     "basis": "both tools"
+    }
+   ],
+   "records": [
+    "U1:H",
+    "Urb1:H",
+    "lin:N(cannot)",
+    "rep:W",
+    "base:H",
+    "rb1:W",
+    "cl1:W"
+   ],
+   "findings": [
+    {
+     "cause": "ENC-clone",
+     "records": [
+      "LMOTS_PV_U1",
+      "LMOTS_T_base",
+      "LMOTS_PV_rep",
+      "LMOTS_T_cl1",
+      "LMOTS_T_rb1"
+     ],
+     "note": "holds on U1 (Tle), base (T); fails on rep (Tom), cl1 (Tcl), rb1 (Trb): the difference is the reuse of a state value"
+    },
+    {
+     "records": [
+      "LMOTS_PV_lin"
+     ],
+     "reason": "cannot",
+     "cause": "PV-abs",
+     "note": "the property holds on this model (from U1, base): false alarm"
+    }
+   ]
+  },
+  "forge": {
+   "kind": "phi3",
+   "headline": "AL-P4",
+   "systems": [
+    {
+     "system": "T",
+     "scope": "P",
+     "outcome": "H",
+     "level": 4,
+     "al": "AL-P4",
+     "evidence": [
+      "U1:true",
+      "base:falsified"
+     ],
+     "basis": "both tools"
+    },
+    {
+     "system": "Trb",
+     "scope": "P_R",
+     "outcome": "W",
+     "level": 1,
+     "al": "AL-P_R1",
+     "evidence": [
+      "rb1:verified"
+     ],
+     "basis": "one tool"
+    },
+    {
+     "system": "Tcl",
+     "scope": "P_C",
+     "outcome": "W",
+     "level": 1,
+     "al": "AL-P_C1",
+     "evidence": [
+      "cl1:verified"
+     ],
+     "basis": "one tool"
+    },
+    {
+     "system": "Tom",
+     "scope": "P_w",
+     "outcome": "W",
+     "level": 4,
+     "al": "AL-P_w4",
+     "evidence": [
+      "rep:false",
+      "rb1:verified",
+      "cl1:verified"
+     ],
+     "basis": "both tools"
+    }
+   ],
+   "records": [
+    "U1:H",
+    "Urb1:H",
+    "lin:N(cannot)",
+    "rep:W",
+    "base:H",
+    "rb1:W",
+    "cl1:W"
+   ],
+   "findings": [
+    {
+     "cause": "ENC-clone",
+     "records": [
+      "LMOTS_PV_U1",
+      "LMOTS_T_base",
+      "LMOTS_PV_rep",
+      "LMOTS_T_cl1",
+      "LMOTS_T_rb1"
+     ],
+     "note": "holds on U1 (Tle), base (T); fails on rep (Tom), cl1 (Tcl), rb1 (Trb): the difference is the reuse of a state value"
+    },
+    {
+     "records": [
+      "LMOTS_PV_lin"
+     ],
+     "reason": "cannot",
+     "cause": "PV-abs",
+     "note": "the property holds on this model (from U1, base): false alarm"
+    }
+   ]
+  }
+ }
+}

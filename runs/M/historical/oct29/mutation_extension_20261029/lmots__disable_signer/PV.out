@@ -1,0 +1,82 @@
+Process 0 (that is, the initial process):
+(
+    {1}!
+    {2}new I: bitstring;
+    {3}new sd: bitstring;
+    {4}insert Pk(I,(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,c_k))))));
+    {5}out(c, (I,(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,c_k)))))));
+    {6}in(c, y: bitstring);
+    (
+        {7}let (=c_sign,=n0) = y in
+        {8}if (n0 = n1) then
+        {9}event Sign(I,n0);
+        {10}out(c, (I,(n0,(prf(sd,c_m),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,c_k))))))))
+    ) | (
+        {11}let (=c_sign,=n1) = y in
+        {12}if (n0 = n1) then
+        {13}event Sign(I,n1);
+        {14}out(c, (I,(n1,(ch(I,c_m,prf(sd,c_m)),ch(I,c_k,ch(I,c_k,prf(sd,c_k)))))))
+    ) | (
+        {15}let (=c_sign,=n2) = y in
+        {16}if (n0 = n1) then
+        {17}event Sign(I,n2);
+        {18}out(c, (I,(n2,(ch(I,c_m,ch(I,c_m,prf(sd,c_m))),ch(I,c_k,prf(sd,c_k))))))
+    ) | (
+        {19}let (=c_sign,=n3) = y in
+        {20}if (n0 = n1) then
+        {21}event Sign(I,n3);
+        {22}out(c, (I,(n3,(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,c_m)))),prf(sd,c_k)))))
+    ) | (
+        {23}in(c, =I);
+        {24}event RevealSeed(I);
+        {25}out(c, sd)
+    )
+) | (
+    {26}!
+    {27}in(c, y_1: bitstring);
+    (
+        {28}let (v_I: bitstring,(=n0,(v_sm: bitstring,v_sk: bitstring))) = y_1 in
+        {30}get Pk(=v_I,=(ch(v_I,c_m,ch(v_I,c_m,ch(v_I,c_m,v_sm))),v_sk)) in
+        {29}event Accept(v_I,n0)
+    ) | (
+        {31}let (v_I_1: bitstring,(=n1,(v_sm_1: bitstring,v_sk_1: bitstring))) = y_1 in
+        {33}get Pk(=v_I_1,=(ch(v_I_1,c_m,ch(v_I_1,c_m,v_sm_1)),ch(v_I_1,c_k,v_sk_1))) in
+        {32}event Accept(v_I_1,n1)
+    ) | (
+        {34}let (v_I_2: bitstring,(=n2,(v_sm_2: bitstring,v_sk_2: bitstring))) = y_1 in
+        {36}get Pk(=v_I_2,=(ch(v_I_2,c_m,v_sm_2),ch(v_I_2,c_k,ch(v_I_2,c_k,v_sk_2)))) in
+        {35}event Accept(v_I_2,n2)
+    ) | (
+        {37}let (v_I_3: bitstring,(=n3,(v_sm_3: bitstring,v_sk_3: bitstring))) = y_1 in
+        {39}get Pk(=v_I_3,=(v_sm_3,ch(v_I_3,c_k,ch(v_I_3,c_k,ch(v_I_3,c_k,v_sk_3))))) in
+        {38}event Accept(v_I_3,n3)
+    )
+)
+
+-- Query event(Sign(I_1,a)) && event(Accept(I_1,a)) ==> event(RevealSeed(I_1)) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query event(Sign(I_1,a)) && event(Accept(I_1,a)) ==> event(RevealSeed(I_1))
+RESULT event(Sign(I_1,a)) && event(Accept(I_1,a)) ==> event(RevealSeed(I_1)) is true.
+-- Query event(Accept(I_1,a)) ==> event(Sign(I_1,a)) || event(RevealSeed(I_1)) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query event(Accept(I_1,a)) ==> event(Sign(I_1,a)) || event(RevealSeed(I_1))
+RESULT event(Accept(I_1,a)) ==> event(Sign(I_1,a)) || event(RevealSeed(I_1)) is true.
+-- Query event(Accept(I_1,a)) ==> event(Sign(I_1,a)) || event(RevealSeed(I_1)) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query event(Accept(I_1,a)) ==> event(Sign(I_1,a)) || event(RevealSeed(I_1))
+RESULT event(Accept(I_1,a)) ==> event(Sign(I_1,a)) || event(RevealSeed(I_1)) is true.
+
+--------------------------------------------------------------
+Verification summary:
+
+Query event(Sign(I_1,a)) && event(Accept(I_1,a)) ==> event(RevealSeed(I_1)) is true.
+
+Query event(Accept(I_1,a)) ==> event(Sign(I_1,a)) || event(RevealSeed(I_1)) is true.
+
+Query event(Accept(I_1,a)) ==> event(Sign(I_1,a)) || event(RevealSeed(I_1)) is true.
+
+--------------------------------------------------------------
+

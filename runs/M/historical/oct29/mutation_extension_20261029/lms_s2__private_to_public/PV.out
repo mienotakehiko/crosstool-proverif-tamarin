@@ -1,0 +1,1159 @@
+File "/redacted-home/workspace/audit_20261028/mutation_extension_20261029/lms_s2__private_to_public/model.pv", line 42, character 4407:
+Warning: identifier y rebound.
+File "/redacted-home/workspace/audit_20261028/mutation_extension_20261029/lms_s2__private_to_public/model.pv", line 42, character 3040:
+Warning: identifier y rebound.
+File "/redacted-home/workspace/audit_20261028/mutation_extension_20261029/lms_s2__private_to_public/model.pv", line 42, character 1673:
+Warning: identifier y rebound.
+File "/redacted-home/workspace/audit_20261028/mutation_extension_20261029/lms_s2__private_to_public/model.pv", line 42, character 306:
+Warning: identifier y rebound.
+Process 0 (that is, the initial process):
+(
+    {1}!
+    {2}new I: bitstring;
+    {3}new sd: bitstring;
+    {4}insert Root(I,hl(I,(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n0,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n0,c_k))))),(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n1,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n1,c_k)))))));
+    {5}out(c, (I,hl(I,(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n0,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n0,c_k))))),(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n1,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n1,c_k))))))));
+    {6}in(c, y: bitstring);
+    (
+        {7}let (=c_sign,=n0) = y in
+        {8}event Sign(I,n0,n0);
+        {9}out(c, (I,(n0,(n0,(prf(sd,n0,c_m),(ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n0,c_k)))),(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n1,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n1,c_k)))))))))));
+        {10}in(c, y_1: bitstring);
+        (
+            {11}let (=c_sign,=n0) = y_1 in
+            {12}event Sign(I,n1,n0);
+            {13}out(c, (I,(n1,(n0,(prf(sd,n1,c_m),(ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n1,c_k)))),(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n0,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n0,c_k)))))))))))
+        ) | (
+            {14}let (=c_sign,=n1) = y_1 in
+            {15}event Sign(I,n1,n1);
+            {16}out(c, (I,(n1,(n1,(ch(I,c_m,prf(sd,n1,c_m)),(ch(I,c_k,ch(I,c_k,prf(sd,n1,c_k))),(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n0,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n0,c_k)))))))))))
+        ) | (
+            {17}let (=c_sign,=n2) = y_1 in
+            {18}event Sign(I,n1,n2);
+            {19}out(c, (I,(n1,(n2,(ch(I,c_m,ch(I,c_m,prf(sd,n1,c_m))),(ch(I,c_k,prf(sd,n1,c_k)),(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n0,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n0,c_k)))))))))))
+        ) | (
+            {20}let (=c_sign,=n3) = y_1 in
+            {21}event Sign(I,n1,n3);
+            {22}out(c, (I,(n1,(n3,(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n1,c_m)))),(prf(sd,n1,c_k),(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n0,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n0,c_k)))))))))))
+        )
+    ) | (
+        {23}let (=c_sign,=n1) = y in
+        {24}event Sign(I,n0,n1);
+        {25}out(c, (I,(n0,(n1,(ch(I,c_m,prf(sd,n0,c_m)),(ch(I,c_k,ch(I,c_k,prf(sd,n0,c_k))),(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n1,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n1,c_k)))))))))));
+        {26}in(c, y_2: bitstring);
+        (
+            {27}let (=c_sign,=n0) = y_2 in
+            {28}event Sign(I,n1,n0);
+            {29}out(c, (I,(n1,(n0,(prf(sd,n1,c_m),(ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n1,c_k)))),(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n0,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n0,c_k)))))))))))
+        ) | (
+            {30}let (=c_sign,=n1) = y_2 in
+            {31}event Sign(I,n1,n1);
+            {32}out(c, (I,(n1,(n1,(ch(I,c_m,prf(sd,n1,c_m)),(ch(I,c_k,ch(I,c_k,prf(sd,n1,c_k))),(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n0,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n0,c_k)))))))))))
+        ) | (
+            {33}let (=c_sign,=n2) = y_2 in
+            {34}event Sign(I,n1,n2);
+            {35}out(c, (I,(n1,(n2,(ch(I,c_m,ch(I,c_m,prf(sd,n1,c_m))),(ch(I,c_k,prf(sd,n1,c_k)),(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n0,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n0,c_k)))))))))))
+        ) | (
+            {36}let (=c_sign,=n3) = y_2 in
+            {37}event Sign(I,n1,n3);
+            {38}out(c, (I,(n1,(n3,(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n1,c_m)))),(prf(sd,n1,c_k),(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n0,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n0,c_k)))))))))))
+        )
+    ) | (
+        {39}let (=c_sign,=n2) = y in
+        {40}event Sign(I,n0,n2);
+        {41}out(c, (I,(n0,(n2,(ch(I,c_m,ch(I,c_m,prf(sd,n0,c_m))),(ch(I,c_k,prf(sd,n0,c_k)),(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n1,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n1,c_k)))))))))));
+        {42}in(c, y_3: bitstring);
+        (
+            {43}let (=c_sign,=n0) = y_3 in
+            {44}event Sign(I,n1,n0);
+            {45}out(c, (I,(n1,(n0,(prf(sd,n1,c_m),(ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n1,c_k)))),(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n0,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n0,c_k)))))))))))
+        ) | (
+            {46}let (=c_sign,=n1) = y_3 in
+            {47}event Sign(I,n1,n1);
+            {48}out(c, (I,(n1,(n1,(ch(I,c_m,prf(sd,n1,c_m)),(ch(I,c_k,ch(I,c_k,prf(sd,n1,c_k))),(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n0,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n0,c_k)))))))))))
+        ) | (
+            {49}let (=c_sign,=n2) = y_3 in
+            {50}event Sign(I,n1,n2);
+            {51}out(c, (I,(n1,(n2,(ch(I,c_m,ch(I,c_m,prf(sd,n1,c_m))),(ch(I,c_k,prf(sd,n1,c_k)),(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n0,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n0,c_k)))))))))))
+        ) | (
+            {52}let (=c_sign,=n3) = y_3 in
+            {53}event Sign(I,n1,n3);
+            {54}out(c, (I,(n1,(n3,(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n1,c_m)))),(prf(sd,n1,c_k),(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n0,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n0,c_k)))))))))))
+        )
+    ) | (
+        {55}let (=c_sign,=n3) = y in
+        {56}event Sign(I,n0,n3);
+        {57}out(c, (I,(n0,(n3,(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n0,c_m)))),(prf(sd,n0,c_k),(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n1,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n1,c_k)))))))))));
+        {58}in(c, y_4: bitstring);
+        (
+            {59}let (=c_sign,=n0) = y_4 in
+            {60}event Sign(I,n1,n0);
+            {61}out(c, (I,(n1,(n0,(prf(sd,n1,c_m),(ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n1,c_k)))),(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n0,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n0,c_k)))))))))))
+        ) | (
+            {62}let (=c_sign,=n1) = y_4 in
+            {63}event Sign(I,n1,n1);
+            {64}out(c, (I,(n1,(n1,(ch(I,c_m,prf(sd,n1,c_m)),(ch(I,c_k,ch(I,c_k,prf(sd,n1,c_k))),(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n0,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n0,c_k)))))))))))
+        ) | (
+            {65}let (=c_sign,=n2) = y_4 in
+            {66}event Sign(I,n1,n2);
+            {67}out(c, (I,(n1,(n2,(ch(I,c_m,ch(I,c_m,prf(sd,n1,c_m))),(ch(I,c_k,prf(sd,n1,c_k)),(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n0,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n0,c_k)))))))))))
+        ) | (
+            {68}let (=c_sign,=n3) = y_4 in
+            {69}event Sign(I,n1,n3);
+            {70}out(c, (I,(n1,(n3,(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n1,c_m)))),(prf(sd,n1,c_k),(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,n0,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,n0,c_k)))))))))))
+        )
+    ) | (
+        {71}in(c, =I);
+        {72}event RevealSeed(I);
+        {73}out(c, sd)
+    )
+) | (
+    {74}!
+    {75}in(c, y_5: bitstring);
+    (
+        {76}let (v_I: bitstring,(=n0,(=n0,(v_sm: bitstring,(v_sk: bitstring,v_sib: bitstring))))) = y_5 in
+        {78}get Root(=v_I,=hl(v_I,(ch(v_I,c_m,ch(v_I,c_m,ch(v_I,c_m,v_sm))),v_sk),v_sib)) in
+        {77}event Accept(v_I,n0,n0)
+    ) | (
+        {79}let (v_I_1: bitstring,(=n0,(=n1,(v_sm_1: bitstring,(v_sk_1: bitstring,v_sib_1: bitstring))))) = y_5 in
+        {81}get Root(=v_I_1,=hl(v_I_1,(ch(v_I_1,c_m,ch(v_I_1,c_m,v_sm_1)),ch(v_I_1,c_k,v_sk_1)),v_sib_1)) in
+        {80}event Accept(v_I_1,n0,n1)
+    ) | (
+        {82}let (v_I_2: bitstring,(=n0,(=n2,(v_sm_2: bitstring,(v_sk_2: bitstring,v_sib_2: bitstring))))) = y_5 in
+        {84}get Root(=v_I_2,=hl(v_I_2,(ch(v_I_2,c_m,v_sm_2),ch(v_I_2,c_k,ch(v_I_2,c_k,v_sk_2))),v_sib_2)) in
+        {83}event Accept(v_I_2,n0,n2)
+    ) | (
+        {85}let (v_I_3: bitstring,(=n0,(=n3,(v_sm_3: bitstring,(v_sk_3: bitstring,v_sib_3: bitstring))))) = y_5 in
+        {87}get Root(=v_I_3,=hl(v_I_3,(v_sm_3,ch(v_I_3,c_k,ch(v_I_3,c_k,ch(v_I_3,c_k,v_sk_3)))),v_sib_3)) in
+        {86}event Accept(v_I_3,n0,n3)
+    ) | (
+        {88}let (v_I_4: bitstring,(=n1,(=n0,(v_sm_4: bitstring,(v_sk_4: bitstring,v_sib_4: bitstring))))) = y_5 in
+        {90}get Root(=v_I_4,=hl(v_I_4,v_sib_4,(ch(v_I_4,c_m,ch(v_I_4,c_m,ch(v_I_4,c_m,v_sm_4))),v_sk_4))) in
+        {89}event Accept(v_I_4,n1,n0)
+    ) | (
+        {91}let (v_I_5: bitstring,(=n1,(=n1,(v_sm_5: bitstring,(v_sk_5: bitstring,v_sib_5: bitstring))))) = y_5 in
+        {93}get Root(=v_I_5,=hl(v_I_5,v_sib_5,(ch(v_I_5,c_m,ch(v_I_5,c_m,v_sm_5)),ch(v_I_5,c_k,v_sk_5)))) in
+        {92}event Accept(v_I_5,n1,n1)
+    ) | (
+        {94}let (v_I_6: bitstring,(=n1,(=n2,(v_sm_6: bitstring,(v_sk_6: bitstring,v_sib_6: bitstring))))) = y_5 in
+        {96}get Root(=v_I_6,=hl(v_I_6,v_sib_6,(ch(v_I_6,c_m,v_sm_6),ch(v_I_6,c_k,ch(v_I_6,c_k,v_sk_6))))) in
+        {95}event Accept(v_I_6,n1,n2)
+    ) | (
+        {97}let (v_I_7: bitstring,(=n1,(=n3,(v_sm_7: bitstring,(v_sk_7: bitstring,v_sib_7: bitstring))))) = y_5 in
+        {99}get Root(=v_I_7,=hl(v_I_7,v_sib_7,(v_sm_7,ch(v_I_7,c_k,ch(v_I_7,c_k,ch(v_I_7,c_k,v_sk_7)))))) in
+        {98}event Accept(v_I_7,n1,n3)
+    )
+)
+
+-- Query event(Sign(I_1,q,a)) && event(Accept(I_1,q,a)) ==> event(RevealSeed(I_1)) in process 0.
+Translating the process into Horn clauses...
+Completing...
+200 rules inserted. Base: 149 rules (84 with conclusion selected). Queue: 44 rules.
+400 rules inserted. Base: 258 rules (90 with conclusion selected). Queue: 58 rules.
+600 rules inserted. Base: 354 rules (124 with conclusion selected). Queue: 16 rules.
+Starting query event(Sign(I_1,q,a)) && event(Accept(I_1,q,a)) ==> event(RevealSeed(I_1))
+goal reachable: b-event(@p_act(@occ6_1,(c_sign,n0))) && b-event(@p_act(@occ75_1,(I_1,(n0,(n0,(prf(sd_1,n0,c_m),(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))))))))) -> event(Sign(I_1,n0,n0)) && event(Accept(I_1,n0,n0))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_1 = @occ6[!1 = @sid]
+@occ75_1 = @occ75[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+
+Derivation:
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_1 = @occ6[!1 = @sid]
+sd_1 = sd[!1 = @sid]
+@occ75_1 = @occ75[!1 = @sid_1]
+
+1. Using the function n0 the attacker may obtain n0.
+attacker(n0).
+
+2. Using the function c_sign the attacker may obtain c_sign.
+attacker(c_sign).
+
+3. By 2, the attacker may know c_sign.
+By 1, the attacker may know n0.
+Using the function 2-tuple the attacker may obtain (c_sign,n0).
+attacker((c_sign,n0)).
+
+4. The event @p_act(@occ6_1,(c_sign,n0)) records how variables are instantiated at {6}.
+The message (c_sign,n0) that the attacker may have by 3 may be received at input {6}.
+So the message (I_1,(n0,(n0,(prf(sd_1,n0,c_m),(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))))))) may be sent to the attacker at output {9}.
+attacker((I_1,(n0,(n0,(prf(sd_1,n0,c_m),(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k))))))))))).
+
+5. By 4, the attacker may know (I_1,(n0,(n0,(prf(sd_1,n0,c_m),(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))))))).
+Using the function 2-proj-2-tuple the attacker may obtain (n0,(n0,(prf(sd_1,n0,c_m),(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k))))))))).
+attacker((n0,(n0,(prf(sd_1,n0,c_m),(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))))))).
+
+6. By 5, the attacker may know (n0,(n0,(prf(sd_1,n0,c_m),(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k))))))))).
+Using the function 2-proj-2-tuple the attacker may obtain (n0,(prf(sd_1,n0,c_m),(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))))).
+attacker((n0,(prf(sd_1,n0,c_m),(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k))))))))).
+
+7. By 6, the attacker may know (n0,(prf(sd_1,n0,c_m),(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))))).
+Using the function 2-proj-2-tuple the attacker may obtain (prf(sd_1,n0,c_m),(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k))))))).
+attacker((prf(sd_1,n0,c_m),(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))))).
+
+8. By 7, the attacker may know (prf(sd_1,n0,c_m),(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k))))))).
+Using the function 2-proj-2-tuple the attacker may obtain (ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))).
+attacker((ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k))))))).
+
+9. By 8, the attacker may know (ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))).
+Using the function 2-proj-2-tuple the attacker may obtain (ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k))))).
+attacker((ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))).
+
+10. By 9, the attacker may know (ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k))))).
+Using the function 2-proj-2-tuple the attacker may obtain ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))).
+attacker(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k))))).
+
+11. By 9, the attacker may know (ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k))))).
+Using the function 1-proj-2-tuple the attacker may obtain ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))).
+attacker(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m))))).
+
+12. By 11, the attacker may know ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))).
+By 10, the attacker may know ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))).
+Using the function 2-tuple the attacker may obtain (ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k))))).
+attacker((ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))).
+
+13. By 8, the attacker may know (ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))).
+Using the function 1-proj-2-tuple the attacker may obtain ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))).
+attacker(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k))))).
+
+14. By 13, the attacker may know ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))).
+By 12, the attacker may know (ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k))))).
+Using the function 2-tuple the attacker may obtain (ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))).
+attacker((ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k))))))).
+
+15. By 7, the attacker may know (prf(sd_1,n0,c_m),(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k))))))).
+Using the function 1-proj-2-tuple the attacker may obtain prf(sd_1,n0,c_m).
+attacker(prf(sd_1,n0,c_m)).
+
+16. By 15, the attacker may know prf(sd_1,n0,c_m).
+By 14, the attacker may know (ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))).
+Using the function 2-tuple the attacker may obtain (prf(sd_1,n0,c_m),(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k))))))).
+attacker((prf(sd_1,n0,c_m),(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))))).
+
+17. By 1, the attacker may know n0.
+By 16, the attacker may know (prf(sd_1,n0,c_m),(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k))))))).
+Using the function 2-tuple the attacker may obtain (n0,(prf(sd_1,n0,c_m),(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))))).
+attacker((n0,(prf(sd_1,n0,c_m),(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k))))))))).
+
+18. By 1, the attacker may know n0.
+By 17, the attacker may know (n0,(prf(sd_1,n0,c_m),(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))))).
+Using the function 2-tuple the attacker may obtain (n0,(n0,(prf(sd_1,n0,c_m),(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k))))))))).
+attacker((n0,(n0,(prf(sd_1,n0,c_m),(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))))))).
+
+19. The message (I_1,hl(I_1,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k))))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k))))))) may be sent to the attacker at output {5}.
+attacker((I_1,hl(I_1,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k))))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))))).
+
+20. By 19, the attacker may know (I_1,hl(I_1,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k))))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k))))))).
+Using the function 1-proj-2-tuple the attacker may obtain I_1.
+attacker(I_1).
+
+21. By 20, the attacker may know I_1.
+By 18, the attacker may know (n0,(n0,(prf(sd_1,n0,c_m),(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k))))))))).
+Using the function 2-tuple the attacker may obtain (I_1,(n0,(n0,(prf(sd_1,n0,c_m),(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))))))).
+attacker((I_1,(n0,(n0,(prf(sd_1,n0,c_m),(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k))))))))))).
+
+22. The entry Root(I_1,hl(I_1,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k))))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k))))))) may be inserted in a table at insert {4}.
+table(Root(I_1,hl(I_1,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k))))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))))).
+
+23. The event @p_act(@occ75_1,(I_1,(n0,(n0,(prf(sd_1,n0,c_m),(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k))))))))))) records how variables are instantiated at {75}.
+The message (I_1,(n0,(n0,(prf(sd_1,n0,c_m),(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))))))) that the attacker may have by 21 may be received at input {75}.
+The entry Root(I_1,hl(I_1,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k))))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k))))))) that may be in a table by 22 may be read at get {78}.
+So event Accept(I_1,n0,n0) may be executed at {77}.
+event(Accept(I_1,n0,n0)).
+
+24. The event @p_act(@occ6_1,(c_sign,n0)) records how variables are instantiated at {6}.
+The message (c_sign,n0) that the attacker may have by 3 may be received at input {6}.
+So event Sign(I_1,n0,n0) may be executed at {8}.
+event(Sign(I_1,n0,n0)).
+
+25. By 24, event(Sign(I_1,n0,n0)).
+By 23, event(Accept(I_1,n0,n0)).
+The goals are reached, combined in the following fact:
+event(Sign(I_1,n0,n0)) && event(Accept(I_1,n0,n0)).
+
+
+A more detailed output of the traces is available with
+  set traceDisplay = long.
+
+new I: bitstring creating I_2 at {2} in copy a
+
+new sd: bitstring creating sd_2 at {3} in copy a
+
+insert Root(I_2,hl(I_2,(ch(I_2,c_m,ch(I_2,c_m,ch(I_2,c_m,prf(sd_2,n0,c_m)))),ch(I_2,c_k,ch(I_2,c_k,ch(I_2,c_k,prf(sd_2,n0,c_k))))),(ch(I_2,c_m,ch(I_2,c_m,ch(I_2,c_m,prf(sd_2,n1,c_m)))),ch(I_2,c_k,ch(I_2,c_k,ch(I_2,c_k,prf(sd_2,n1,c_k))))))) at {4} in copy a
+
+out(c, (~M,~M_1)) with ~M = I_2, ~M_1 = hl(I_2,(ch(I_2,c_m,ch(I_2,c_m,ch(I_2,c_m,prf(sd_2,n0,c_m)))),ch(I_2,c_k,ch(I_2,c_k,ch(I_2,c_k,prf(sd_2,n0,c_k))))),(ch(I_2,c_m,ch(I_2,c_m,ch(I_2,c_m,prf(sd_2,n1,c_m)))),ch(I_2,c_k,ch(I_2,c_k,ch(I_2,c_k,prf(sd_2,n1,c_k)))))) at {5} in copy a
+
+in(c, (c_sign,n0)) at {6} in copy a
+
+event Sign(I_2,n0,n0) at {8} in copy a (goal)
+
+out(c, (~M_2,(~M_3,(~M_4,(~M_5,(~M_6,(~M_7,~M_8))))))) with ~M_2 = I_2, ~M_3 = n0, ~M_4 = n0, ~M_5 = prf(sd_2,n0,c_m), ~M_6 = ch(I_2,c_k,ch(I_2,c_k,ch(I_2,c_k,prf(sd_2,n0,c_k)))), ~M_7 = ch(I_2,c_m,ch(I_2,c_m,ch(I_2,c_m,prf(sd_2,n1,c_m)))), ~M_8 = ch(I_2,c_k,ch(I_2,c_k,ch(I_2,c_k,prf(sd_2,n1,c_k)))) at {9} in copy a
+
+in(c, (~M,(n0,(n0,(~M_5,(~M_6,(~M_7,~M_8))))))) with ~M = I_2, ~M_5 = prf(sd_2,n0,c_m), ~M_6 = ch(I_2,c_k,ch(I_2,c_k,ch(I_2,c_k,prf(sd_2,n0,c_k)))), ~M_7 = ch(I_2,c_m,ch(I_2,c_m,ch(I_2,c_m,prf(sd_2,n1,c_m)))), ~M_8 = ch(I_2,c_k,ch(I_2,c_k,ch(I_2,c_k,prf(sd_2,n1,c_k)))) at {75} in copy a_1
+
+get Root(I_2,hl(I_2,(ch(I_2,c_m,ch(I_2,c_m,ch(I_2,c_m,prf(sd_2,n0,c_m)))),ch(I_2,c_k,ch(I_2,c_k,ch(I_2,c_k,prf(sd_2,n0,c_k))))),(ch(I_2,c_m,ch(I_2,c_m,ch(I_2,c_m,prf(sd_2,n1,c_m)))),ch(I_2,c_k,ch(I_2,c_k,ch(I_2,c_k,prf(sd_2,n1,c_k))))))) at {78} in copy a_1
+
+event Accept(I_2,n0,n0) at {77} in copy a_1 (goal)
+
+The event Sign(I_2,n0,n0) is executed at {8} in copy a.
+The event Accept(I_2,n0,n0) is executed at {77} in copy a_1.
+A trace has been found.
+RESULT event(Sign(I_1,q,a)) && event(Accept(I_1,q,a)) ==> event(RevealSeed(I_1)) is false.
+-- Query event(Sign(I_1,q,a1))@i && event(Sign(I_1,q,a2))@j ==> i = j encoded as event(v,Sign(I_1,q,a1)) && event(v_1,Sign(I_1,q,a2)) ==> v_1 = v in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query event(Sign(I_1,q,a1))@i && event(Sign(I_1,q,a2))@j ==> i = j
+goal reachable: b-event(@p_act(@occ6_2,(c_sign,n0))) -> inj-event(Sign(I_1,n0,n0),@occ8_1) && inj-event(Sign(I_1,n0,n0),@occ8_1)
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ8_1 = @occ8[y = (c_sign,n0),!1 = @sid]
+@occ6_2 = @occ6_1[!1 = @sid]
+goal reachable: b-event(@p_act(@occ6_2,(c_sign,n1))) -> inj-event(Sign(I_1,n0,n1),@occ24_1) && inj-event(Sign(I_1,n0,n1),@occ24_1)
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ24_1 = @occ24[y = (c_sign,n1),!1 = @sid]
+@occ6_2 = @occ6_1[!1 = @sid]
+goal reachable: b-event(@p_act(@occ6_2,(c_sign,n2))) -> inj-event(Sign(I_1,n0,n2),@occ40_1) && inj-event(Sign(I_1,n0,n2),@occ40_1)
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ40_1 = @occ40[y = (c_sign,n2),!1 = @sid]
+@occ6_2 = @occ6_1[!1 = @sid]
+goal reachable: b-event(@p_act(@occ6_2,(c_sign,n3))) -> inj-event(Sign(I_1,n0,n3),@occ56_1) && inj-event(Sign(I_1,n0,n3),@occ56_1)
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ56_1 = @occ56[y = (c_sign,n3),!1 = @sid]
+@occ6_2 = @occ6_1[!1 = @sid]
+goal reachable: b-event(@p_act(@occ58_2,(c_sign,n0))) && b-event(@p_act(@occ6_2,(c_sign,n3))) -> inj-event(Sign(I_1,n1,n0),@occ60_1) && inj-event(Sign(I_1,n1,n0),@occ60_1)
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ60_1 = @occ60[y_4 = (c_sign,n0),y = (c_sign,n3),!1 = @sid]
+@occ58_2 = @occ58_1[!1 = @sid]
+@occ6_2 = @occ6_1[!1 = @sid]
+goal reachable: b-event(@p_act(@occ42_2,(c_sign,n0))) && b-event(@p_act(@occ6_2,(c_sign,n2))) -> inj-event(Sign(I_1,n1,n0),@occ44_1) && inj-event(Sign(I_1,n1,n0),@occ44_1)
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ44_1 = @occ44[y_3 = (c_sign,n0),y = (c_sign,n2),!1 = @sid]
+@occ42_2 = @occ42_1[!1 = @sid]
+@occ6_2 = @occ6_1[!1 = @sid]
+goal reachable: b-event(@p_act(@occ26_2,(c_sign,n0))) && b-event(@p_act(@occ6_2,(c_sign,n1))) -> inj-event(Sign(I_1,n1,n0),@occ28_1) && inj-event(Sign(I_1,n1,n0),@occ28_1)
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ28_1 = @occ28[y_2 = (c_sign,n0),y = (c_sign,n1),!1 = @sid]
+@occ26_2 = @occ26_1[!1 = @sid]
+@occ6_2 = @occ6_1[!1 = @sid]
+goal reachable: b-event(@p_act(@occ10_2,(c_sign,n0))) && b-event(@p_act(@occ6_2,(c_sign,n0))) -> inj-event(Sign(I_1,n1,n0),@occ12_1) && inj-event(Sign(I_1,n1,n0),@occ12_1)
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ12_1 = @occ12[y_1 = (c_sign,n0),y = (c_sign,n0),!1 = @sid]
+@occ10_2 = @occ10_1[!1 = @sid]
+@occ6_2 = @occ6_1[!1 = @sid]
+goal reachable: b-event(@p_act(@occ58_2,(c_sign,n1))) && b-event(@p_act(@occ6_2,(c_sign,n3))) -> inj-event(Sign(I_1,n1,n1),@occ63_1) && inj-event(Sign(I_1,n1,n1),@occ63_1)
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ63_1 = @occ63[y_4 = (c_sign,n1),y = (c_sign,n3),!1 = @sid]
+@occ58_2 = @occ58_1[!1 = @sid]
+@occ6_2 = @occ6_1[!1 = @sid]
+goal reachable: b-event(@p_act(@occ42_2,(c_sign,n1))) && b-event(@p_act(@occ6_2,(c_sign,n2))) -> inj-event(Sign(I_1,n1,n1),@occ47_1) && inj-event(Sign(I_1,n1,n1),@occ47_1)
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ47_1 = @occ47[y_3 = (c_sign,n1),y = (c_sign,n2),!1 = @sid]
+@occ42_2 = @occ42_1[!1 = @sid]
+@occ6_2 = @occ6_1[!1 = @sid]
+goal reachable: b-event(@p_act(@occ26_2,(c_sign,n1))) && b-event(@p_act(@occ6_2,(c_sign,n1))) -> inj-event(Sign(I_1,n1,n1),@occ31_1) && inj-event(Sign(I_1,n1,n1),@occ31_1)
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ31_1 = @occ31[y_2 = (c_sign,n1),y = (c_sign,n1),!1 = @sid]
+@occ26_2 = @occ26_1[!1 = @sid]
+@occ6_2 = @occ6_1[!1 = @sid]
+goal reachable: b-event(@p_act(@occ10_2,(c_sign,n1))) && b-event(@p_act(@occ6_2,(c_sign,n0))) -> inj-event(Sign(I_1,n1,n1),@occ15_1) && inj-event(Sign(I_1,n1,n1),@occ15_1)
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ15_1 = @occ15[y_1 = (c_sign,n1),y = (c_sign,n0),!1 = @sid]
+@occ10_2 = @occ10_1[!1 = @sid]
+@occ6_2 = @occ6_1[!1 = @sid]
+goal reachable: b-event(@p_act(@occ58_2,(c_sign,n2))) && b-event(@p_act(@occ6_2,(c_sign,n3))) -> inj-event(Sign(I_1,n1,n2),@occ66_1) && inj-event(Sign(I_1,n1,n2),@occ66_1)
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ66_1 = @occ66[y_4 = (c_sign,n2),y = (c_sign,n3),!1 = @sid]
+@occ58_2 = @occ58_1[!1 = @sid]
+@occ6_2 = @occ6_1[!1 = @sid]
+goal reachable: b-event(@p_act(@occ42_2,(c_sign,n2))) && b-event(@p_act(@occ6_2,(c_sign,n2))) -> inj-event(Sign(I_1,n1,n2),@occ50_1) && inj-event(Sign(I_1,n1,n2),@occ50_1)
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ50_1 = @occ50[y_3 = (c_sign,n2),y = (c_sign,n2),!1 = @sid]
+@occ42_2 = @occ42_1[!1 = @sid]
+@occ6_2 = @occ6_1[!1 = @sid]
+goal reachable: b-event(@p_act(@occ26_2,(c_sign,n2))) && b-event(@p_act(@occ6_2,(c_sign,n1))) -> inj-event(Sign(I_1,n1,n2),@occ34_1) && inj-event(Sign(I_1,n1,n2),@occ34_1)
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ34_1 = @occ34[y_2 = (c_sign,n2),y = (c_sign,n1),!1 = @sid]
+@occ26_2 = @occ26_1[!1 = @sid]
+@occ6_2 = @occ6_1[!1 = @sid]
+goal reachable: b-event(@p_act(@occ10_2,(c_sign,n2))) && b-event(@p_act(@occ6_2,(c_sign,n0))) -> inj-event(Sign(I_1,n1,n2),@occ18_1) && inj-event(Sign(I_1,n1,n2),@occ18_1)
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ18_1 = @occ18[y_1 = (c_sign,n2),y = (c_sign,n0),!1 = @sid]
+@occ10_2 = @occ10_1[!1 = @sid]
+@occ6_2 = @occ6_1[!1 = @sid]
+goal reachable: b-event(@p_act(@occ58_2,(c_sign,n3))) && b-event(@p_act(@occ6_2,(c_sign,n3))) -> inj-event(Sign(I_1,n1,n3),@occ69_1) && inj-event(Sign(I_1,n1,n3),@occ69_1)
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ69_1 = @occ69[y_4 = (c_sign,n3),y = (c_sign,n3),!1 = @sid]
+@occ58_2 = @occ58_1[!1 = @sid]
+@occ6_2 = @occ6_1[!1 = @sid]
+goal reachable: b-event(@p_act(@occ42_2,(c_sign,n3))) && b-event(@p_act(@occ6_2,(c_sign,n2))) -> inj-event(Sign(I_1,n1,n3),@occ53_1) && inj-event(Sign(I_1,n1,n3),@occ53_1)
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ53_1 = @occ53[y_3 = (c_sign,n3),y = (c_sign,n2),!1 = @sid]
+@occ42_2 = @occ42_1[!1 = @sid]
+@occ6_2 = @occ6_1[!1 = @sid]
+goal reachable: b-event(@p_act(@occ26_2,(c_sign,n3))) && b-event(@p_act(@occ6_2,(c_sign,n1))) -> inj-event(Sign(I_1,n1,n3),@occ37_1) && inj-event(Sign(I_1,n1,n3),@occ37_1)
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ37_1 = @occ37[y_2 = (c_sign,n3),y = (c_sign,n1),!1 = @sid]
+@occ26_2 = @occ26_1[!1 = @sid]
+@occ6_2 = @occ6_1[!1 = @sid]
+goal reachable: b-event(@p_act(@occ10_2,(c_sign,n3))) && b-event(@p_act(@occ6_2,(c_sign,n0))) -> inj-event(Sign(I_1,n1,n3),@occ21_1) && inj-event(Sign(I_1,n1,n3),@occ21_1)
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ21_1 = @occ21[y_1 = (c_sign,n3),y = (c_sign,n0),!1 = @sid]
+@occ10_2 = @occ10_1[!1 = @sid]
+@occ6_2 = @occ6_1[!1 = @sid]
+RESULT event(Sign(I_1,q,a1))@i && event(Sign(I_1,q,a2))@j ==> i = j is true.
+-- Query event(Accept(I_1,q,a)) ==> event(Sign(I_1,q,a)) || event(RevealSeed(I_1)) in process 0.
+Translating the process into Horn clauses...
+Completing...
+200 rules inserted. Base: 142 rules (64 with conclusion selected). Queue: 44 rules.
+400 rules inserted. Base: 249 rules (70 with conclusion selected). Queue: 60 rules.
+600 rules inserted. Base: 317 rules (112 with conclusion selected). Queue: 8 rules.
+Starting query event(Accept(I_1,q,a)) ==> event(Sign(I_1,q,a)) || event(RevealSeed(I_1))
+goal reachable: b-event(Sign(I_1,n0,n0)) && b-event(@p_act(@occ6_3,(c_sign,n0))) && b-event(@p_act(@occ75_3,(I_1,(n0,(n0,(prf(sd_1,n0,c_m),(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))))))))) -> event(Accept(I_1,n0,n0))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_3 = @occ6_2[!1 = @sid]
+@occ75_3 = @occ75_2[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && b-event(Sign(I_1,n0,n1)) && b-event(@p_act(@occ6_3,(c_sign,n1))) && b-event(@p_act(@occ75_3,(I_1,(n0,(n0,(prf(sd_1,n0,c_m),(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))))))))) -> event(Accept(I_1,n0,n0))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_3 = @occ6_2[!1 = @sid]
+@occ75_3 = @occ75_2[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && b-event(Sign(I_1,n0,n2)) && b-event(@p_act(@occ6_3,(c_sign,n2))) && b-event(@p_act(@occ75_3,(I_1,(n0,(n0,(prf(sd_1,n0,c_m),(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))))))))) -> event(Accept(I_1,n0,n0))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_3 = @occ6_2[!1 = @sid]
+@occ75_3 = @occ75_2[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && b-event(Sign(I_1,n0,n3)) && b-event(@p_act(@occ6_3,(c_sign,n3))) && b-event(@p_act(@occ75_3,(I_1,(n0,(n0,(prf(sd_1,n0,c_m),(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))))))))) -> event(Accept(I_1,n0,n0))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_3 = @occ6_2[!1 = @sid]
+@occ75_3 = @occ75_2[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && attacker(y_6) && b-event(@p_act(@occ6_3,y_6)) && b-event(@p_act(@occ75_3,(I_1,(n0,(n0,(prf(sd_1,n0,c_m),(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))))))))) -> event(Accept(I_1,n0,n0))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_3 = @occ6_2[!1 = @sid]
+@occ75_3 = @occ75_2[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(Sign(I_1,n0,n1)) && b-event(@p_act(@occ6_3,(c_sign,n1))) && b-event(@p_act(@occ75_3,(I_1,(n0,(n1,(ch(I_1,c_m,prf(sd_1,n0,c_m)),(ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))))))))) -> event(Accept(I_1,n0,n1))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_3 = @occ6_2[!1 = @sid]
+@occ75_3 = @occ75_2[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && b-event(Sign(I_1,n0,n2)) && b-event(@p_act(@occ6_3,(c_sign,n2))) && b-event(@p_act(@occ75_3,(I_1,(n0,(n1,(ch(I_1,c_m,prf(sd_1,n0,c_m)),(ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))))))))) -> event(Accept(I_1,n0,n1))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_3 = @occ6_2[!1 = @sid]
+@occ75_3 = @occ75_2[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && b-event(Sign(I_1,n0,n3)) && b-event(@p_act(@occ6_3,(c_sign,n3))) && b-event(@p_act(@occ75_3,(I_1,(n0,(n1,(ch(I_1,c_m,prf(sd_1,n0,c_m)),(ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))))))))) -> event(Accept(I_1,n0,n1))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_3 = @occ6_2[!1 = @sid]
+@occ75_3 = @occ75_2[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && b-event(Sign(I_1,n0,n0)) && b-event(@p_act(@occ6_3,(c_sign,n0))) && b-event(@p_act(@occ75_3,(I_1,(n0,(n1,(ch(I_1,c_m,prf(sd_1,n0,c_m)),(ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))))))))) -> event(Accept(I_1,n0,n1))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_3 = @occ6_2[!1 = @sid]
+@occ75_3 = @occ75_2[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && attacker(y_6) && b-event(@p_act(@occ6_3,y_6)) && b-event(@p_act(@occ75_3,(I_1,(n0,(n1,(ch(I_1,c_m,prf(sd_1,n0,c_m)),(ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))))))))) -> event(Accept(I_1,n0,n1))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_3 = @occ6_2[!1 = @sid]
+@occ75_3 = @occ75_2[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(Sign(I_1,n0,n2)) && b-event(@p_act(@occ6_3,(c_sign,n2))) && b-event(@p_act(@occ75_3,(I_1,(n0,(n2,(ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m))),(ch(I_1,c_k,prf(sd_1,n0,c_k)),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))))))))) -> event(Accept(I_1,n0,n2))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_3 = @occ6_2[!1 = @sid]
+@occ75_3 = @occ75_2[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && b-event(Sign(I_1,n0,n1)) && b-event(@p_act(@occ6_3,(c_sign,n1))) && b-event(@p_act(@occ75_3,(I_1,(n0,(n2,(ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m))),(ch(I_1,c_k,prf(sd_1,n0,c_k)),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))))))))) -> event(Accept(I_1,n0,n2))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_3 = @occ6_2[!1 = @sid]
+@occ75_3 = @occ75_2[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && b-event(Sign(I_1,n0,n3)) && b-event(@p_act(@occ6_3,(c_sign,n3))) && b-event(@p_act(@occ75_3,(I_1,(n0,(n2,(ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m))),(ch(I_1,c_k,prf(sd_1,n0,c_k)),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))))))))) -> event(Accept(I_1,n0,n2))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_3 = @occ6_2[!1 = @sid]
+@occ75_3 = @occ75_2[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && b-event(Sign(I_1,n0,n0)) && b-event(@p_act(@occ6_3,(c_sign,n0))) && b-event(@p_act(@occ75_3,(I_1,(n0,(n2,(ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m))),(ch(I_1,c_k,prf(sd_1,n0,c_k)),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))))))))) -> event(Accept(I_1,n0,n2))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_3 = @occ6_2[!1 = @sid]
+@occ75_3 = @occ75_2[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && attacker(y_6) && b-event(@p_act(@occ6_3,y_6)) && b-event(@p_act(@occ75_3,(I_1,(n0,(n2,(ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m))),(ch(I_1,c_k,prf(sd_1,n0,c_k)),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))))))))) -> event(Accept(I_1,n0,n2))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_3 = @occ6_2[!1 = @sid]
+@occ75_3 = @occ75_2[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(Sign(I_1,n0,n3)) && b-event(@p_act(@occ6_3,(c_sign,n3))) && b-event(@p_act(@occ75_3,(I_1,(n0,(n3,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),(prf(sd_1,n0,c_k),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))))))))) -> event(Accept(I_1,n0,n3))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_3 = @occ6_2[!1 = @sid]
+@occ75_3 = @occ75_2[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && b-event(Sign(I_1,n0,n2)) && b-event(@p_act(@occ6_3,(c_sign,n2))) && b-event(@p_act(@occ75_3,(I_1,(n0,(n3,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),(prf(sd_1,n0,c_k),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))))))))) -> event(Accept(I_1,n0,n3))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_3 = @occ6_2[!1 = @sid]
+@occ75_3 = @occ75_2[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && b-event(Sign(I_1,n0,n1)) && b-event(@p_act(@occ6_3,(c_sign,n1))) && b-event(@p_act(@occ75_3,(I_1,(n0,(n3,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),(prf(sd_1,n0,c_k),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))))))))) -> event(Accept(I_1,n0,n3))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_3 = @occ6_2[!1 = @sid]
+@occ75_3 = @occ75_2[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && b-event(Sign(I_1,n0,n0)) && b-event(@p_act(@occ6_3,(c_sign,n0))) && b-event(@p_act(@occ75_3,(I_1,(n0,(n3,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),(prf(sd_1,n0,c_k),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))))))))) -> event(Accept(I_1,n0,n3))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_3 = @occ6_2[!1 = @sid]
+@occ75_3 = @occ75_2[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && attacker(y_6) && b-event(@p_act(@occ6_3,y_6)) && b-event(@p_act(@occ75_3,(I_1,(n0,(n3,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),(prf(sd_1,n0,c_k),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))))))))) -> event(Accept(I_1,n0,n3))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_3 = @occ6_2[!1 = @sid]
+@occ75_3 = @occ75_2[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(Sign(I_1,n1,n0)) && b-event(@p_act(@occ58_3,(c_sign,n0))) && b-event(Sign(I_1,n0,n3)) && b-event(@p_act(@occ6_3,(c_sign,n3))) && b-event(@p_act(@occ75_3,(I_1,(n1,(n0,(prf(sd_1,n1,c_m),(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n0))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ58_3 = @occ58_2[!1 = @sid]
+@occ6_3 = @occ6_2[!1 = @sid]
+@occ75_3 = @occ75_2[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(Sign(I_1,n1,n0)) && b-event(@p_act(@occ42_3,(c_sign,n0))) && b-event(Sign(I_1,n0,n2)) && b-event(@p_act(@occ6_3,(c_sign,n2))) && b-event(@p_act(@occ75_3,(I_1,(n1,(n0,(prf(sd_1,n1,c_m),(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n0))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ42_3 = @occ42_2[!1 = @sid]
+@occ6_3 = @occ6_2[!1 = @sid]
+@occ75_3 = @occ75_2[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(Sign(I_1,n1,n0)) && b-event(@p_act(@occ26_3,(c_sign,n0))) && b-event(Sign(I_1,n0,n1)) && b-event(@p_act(@occ6_3,(c_sign,n1))) && b-event(@p_act(@occ75_3,(I_1,(n1,(n0,(prf(sd_1,n1,c_m),(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n0))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ26_3 = @occ26_2[!1 = @sid]
+@occ6_3 = @occ6_2[!1 = @sid]
+@occ75_3 = @occ75_2[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(Sign(I_1,n1,n0)) && b-event(@p_act(@occ10_3,(c_sign,n0))) && b-event(Sign(I_1,n0,n0)) && b-event(@p_act(@occ6_3,(c_sign,n0))) && b-event(@p_act(@occ75_3,(I_1,(n1,(n0,(prf(sd_1,n1,c_m),(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n0))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ10_3 = @occ10_2[!1 = @sid]
+@occ6_3 = @occ6_2[!1 = @sid]
+@occ75_3 = @occ75_2[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && b-event(Sign(I_1,n0,n3)) && b-event(@p_act(@occ6_3,(c_sign,n3))) && b-event(@p_act(@occ75_3,(I_1,(n1,(n0,(prf(sd_1,n1,c_m),(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n0))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_3 = @occ6_2[!1 = @sid]
+@occ75_3 = @occ75_2[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && b-event(Sign(I_1,n0,n2)) && b-event(@p_act(@occ6_3,(c_sign,n2))) && b-event(@p_act(@occ75_3,(I_1,(n1,(n0,(prf(sd_1,n1,c_m),(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n0))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_3 = @occ6_2[!1 = @sid]
+@occ75_3 = @occ75_2[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && b-event(Sign(I_1,n0,n1)) && b-event(@p_act(@occ6_3,(c_sign,n1))) && b-event(@p_act(@occ75_3,(I_1,(n1,(n0,(prf(sd_1,n1,c_m),(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n0))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_3 = @occ6_2[!1 = @sid]
+@occ75_3 = @occ75_2[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && b-event(Sign(I_1,n0,n0)) && b-event(@p_act(@occ6_3,(c_sign,n0))) && b-event(@p_act(@occ75_3,(I_1,(n1,(n0,(prf(sd_1,n1,c_m),(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n0))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_3 = @occ6_2[!1 = @sid]
+@occ75_3 = @occ75_2[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && attacker(y_6) && b-event(@p_act(@occ6_3,y_6)) && b-event(@p_act(@occ75_3,(I_1,(n1,(n0,(prf(sd_1,n1,c_m),(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n0))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_3 = @occ6_2[!1 = @sid]
+@occ75_3 = @occ75_2[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(Sign(I_1,n1,n1)) && b-event(@p_act(@occ58_3,(c_sign,n1))) && b-event(Sign(I_1,n0,n3)) && b-event(@p_act(@occ6_3,(c_sign,n3))) && b-event(@p_act(@occ75_3,(I_1,(n1,(n1,(ch(I_1,c_m,prf(sd_1,n1,c_m)),(ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n1))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ58_3 = @occ58_2[!1 = @sid]
+@occ6_3 = @occ6_2[!1 = @sid]
+@occ75_3 = @occ75_2[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(Sign(I_1,n1,n1)) && b-event(@p_act(@occ10_3,(c_sign,n1))) && b-event(Sign(I_1,n0,n0)) && b-event(@p_act(@occ6_3,(c_sign,n0))) && b-event(@p_act(@occ75_3,(I_1,(n1,(n1,(ch(I_1,c_m,prf(sd_1,n1,c_m)),(ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n1))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ10_3 = @occ10_2[!1 = @sid]
+@occ6_3 = @occ6_2[!1 = @sid]
+@occ75_3 = @occ75_2[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(Sign(I_1,n1,n1)) && b-event(@p_act(@occ42_3,(c_sign,n1))) && b-event(Sign(I_1,n0,n2)) && b-event(@p_act(@occ6_3,(c_sign,n2))) && b-event(@p_act(@occ75_3,(I_1,(n1,(n1,(ch(I_1,c_m,prf(sd_1,n1,c_m)),(ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n1))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ42_3 = @occ42_2[!1 = @sid]
+@occ6_3 = @occ6_2[!1 = @sid]
+@occ75_3 = @occ75_2[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(Sign(I_1,n1,n1)) && b-event(@p_act(@occ26_3,(c_sign,n1))) && b-event(Sign(I_1,n0,n1)) && b-event(@p_act(@occ6_3,(c_sign,n1))) && b-event(@p_act(@occ75_3,(I_1,(n1,(n1,(ch(I_1,c_m,prf(sd_1,n1,c_m)),(ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n1))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ26_3 = @occ26_2[!1 = @sid]
+@occ6_3 = @occ6_2[!1 = @sid]
+@occ75_3 = @occ75_2[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && b-event(Sign(I_1,n0,n3)) && b-event(@p_act(@occ6_3,(c_sign,n3))) && b-event(@p_act(@occ75_3,(I_1,(n1,(n1,(ch(I_1,c_m,prf(sd_1,n1,c_m)),(ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n1))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_3 = @occ6_2[!1 = @sid]
+@occ75_3 = @occ75_2[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && b-event(Sign(I_1,n0,n0)) && b-event(@p_act(@occ6_3,(c_sign,n0))) && b-event(@p_act(@occ75_3,(I_1,(n1,(n1,(ch(I_1,c_m,prf(sd_1,n1,c_m)),(ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n1))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_3 = @occ6_2[!1 = @sid]
+@occ75_3 = @occ75_2[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && b-event(Sign(I_1,n0,n2)) && b-event(@p_act(@occ6_3,(c_sign,n2))) && b-event(@p_act(@occ75_3,(I_1,(n1,(n1,(ch(I_1,c_m,prf(sd_1,n1,c_m)),(ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n1))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_3 = @occ6_2[!1 = @sid]
+@occ75_3 = @occ75_2[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && b-event(Sign(I_1,n0,n1)) && b-event(@p_act(@occ6_3,(c_sign,n1))) && b-event(@p_act(@occ75_3,(I_1,(n1,(n1,(ch(I_1,c_m,prf(sd_1,n1,c_m)),(ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n1))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_3 = @occ6_2[!1 = @sid]
+@occ75_3 = @occ75_2[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && attacker(y_6) && b-event(@p_act(@occ6_3,y_6)) && b-event(@p_act(@occ75_3,(I_1,(n1,(n1,(ch(I_1,c_m,prf(sd_1,n1,c_m)),(ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n1))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_3 = @occ6_2[!1 = @sid]
+@occ75_3 = @occ75_2[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(Sign(I_1,n1,n2)) && b-event(@p_act(@occ58_3,(c_sign,n2))) && b-event(Sign(I_1,n0,n3)) && b-event(@p_act(@occ6_3,(c_sign,n3))) && b-event(@p_act(@occ75_3,(I_1,(n1,(n2,(ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m))),(ch(I_1,c_k,prf(sd_1,n1,c_k)),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n2))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ58_3 = @occ58_2[!1 = @sid]
+@occ6_3 = @occ6_2[!1 = @sid]
+@occ75_3 = @occ75_2[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(Sign(I_1,n1,n2)) && b-event(@p_act(@occ10_3,(c_sign,n2))) && b-event(Sign(I_1,n0,n0)) && b-event(@p_act(@occ6_3,(c_sign,n0))) && b-event(@p_act(@occ75_3,(I_1,(n1,(n2,(ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m))),(ch(I_1,c_k,prf(sd_1,n1,c_k)),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n2))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ10_3 = @occ10_2[!1 = @sid]
+@occ6_3 = @occ6_2[!1 = @sid]
+@occ75_3 = @occ75_2[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(Sign(I_1,n1,n2)) && b-event(@p_act(@occ42_3,(c_sign,n2))) && b-event(Sign(I_1,n0,n2)) && b-event(@p_act(@occ6_3,(c_sign,n2))) && b-event(@p_act(@occ75_3,(I_1,(n1,(n2,(ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m))),(ch(I_1,c_k,prf(sd_1,n1,c_k)),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n2))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ42_3 = @occ42_2[!1 = @sid]
+@occ6_3 = @occ6_2[!1 = @sid]
+@occ75_3 = @occ75_2[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(Sign(I_1,n1,n2)) && b-event(@p_act(@occ26_3,(c_sign,n2))) && b-event(Sign(I_1,n0,n1)) && b-event(@p_act(@occ6_3,(c_sign,n1))) && b-event(@p_act(@occ75_3,(I_1,(n1,(n2,(ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m))),(ch(I_1,c_k,prf(sd_1,n1,c_k)),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n2))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ26_3 = @occ26_2[!1 = @sid]
+@occ6_3 = @occ6_2[!1 = @sid]
+@occ75_3 = @occ75_2[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && b-event(Sign(I_1,n0,n3)) && b-event(@p_act(@occ6_3,(c_sign,n3))) && b-event(@p_act(@occ75_3,(I_1,(n1,(n2,(ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m))),(ch(I_1,c_k,prf(sd_1,n1,c_k)),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n2))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_3 = @occ6_2[!1 = @sid]
+@occ75_3 = @occ75_2[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && b-event(Sign(I_1,n0,n0)) && b-event(@p_act(@occ6_3,(c_sign,n0))) && b-event(@p_act(@occ75_3,(I_1,(n1,(n2,(ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m))),(ch(I_1,c_k,prf(sd_1,n1,c_k)),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n2))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_3 = @occ6_2[!1 = @sid]
+@occ75_3 = @occ75_2[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && b-event(Sign(I_1,n0,n2)) && b-event(@p_act(@occ6_3,(c_sign,n2))) && b-event(@p_act(@occ75_3,(I_1,(n1,(n2,(ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m))),(ch(I_1,c_k,prf(sd_1,n1,c_k)),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n2))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_3 = @occ6_2[!1 = @sid]
+@occ75_3 = @occ75_2[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && b-event(Sign(I_1,n0,n1)) && b-event(@p_act(@occ6_3,(c_sign,n1))) && b-event(@p_act(@occ75_3,(I_1,(n1,(n2,(ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m))),(ch(I_1,c_k,prf(sd_1,n1,c_k)),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n2))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_3 = @occ6_2[!1 = @sid]
+@occ75_3 = @occ75_2[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && attacker(y_6) && b-event(@p_act(@occ6_3,y_6)) && b-event(@p_act(@occ75_3,(I_1,(n1,(n2,(ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m))),(ch(I_1,c_k,prf(sd_1,n1,c_k)),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n2))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_3 = @occ6_2[!1 = @sid]
+@occ75_3 = @occ75_2[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(Sign(I_1,n1,n3)) && b-event(@p_act(@occ58_3,(c_sign,n3))) && b-event(Sign(I_1,n0,n3)) && b-event(@p_act(@occ6_3,(c_sign,n3))) && b-event(@p_act(@occ75_3,(I_1,(n1,(n3,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),(prf(sd_1,n1,c_k),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n3))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ58_3 = @occ58_2[!1 = @sid]
+@occ6_3 = @occ6_2[!1 = @sid]
+@occ75_3 = @occ75_2[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(Sign(I_1,n1,n3)) && b-event(@p_act(@occ42_3,(c_sign,n3))) && b-event(Sign(I_1,n0,n2)) && b-event(@p_act(@occ6_3,(c_sign,n2))) && b-event(@p_act(@occ75_3,(I_1,(n1,(n3,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),(prf(sd_1,n1,c_k),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n3))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ42_3 = @occ42_2[!1 = @sid]
+@occ6_3 = @occ6_2[!1 = @sid]
+@occ75_3 = @occ75_2[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(Sign(I_1,n1,n3)) && b-event(@p_act(@occ26_3,(c_sign,n3))) && b-event(Sign(I_1,n0,n1)) && b-event(@p_act(@occ6_3,(c_sign,n1))) && b-event(@p_act(@occ75_3,(I_1,(n1,(n3,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),(prf(sd_1,n1,c_k),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n3))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ26_3 = @occ26_2[!1 = @sid]
+@occ6_3 = @occ6_2[!1 = @sid]
+@occ75_3 = @occ75_2[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(Sign(I_1,n1,n3)) && b-event(@p_act(@occ10_3,(c_sign,n3))) && b-event(Sign(I_1,n0,n0)) && b-event(@p_act(@occ6_3,(c_sign,n0))) && b-event(@p_act(@occ75_3,(I_1,(n1,(n3,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),(prf(sd_1,n1,c_k),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n3))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ10_3 = @occ10_2[!1 = @sid]
+@occ6_3 = @occ6_2[!1 = @sid]
+@occ75_3 = @occ75_2[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && b-event(Sign(I_1,n0,n3)) && b-event(@p_act(@occ6_3,(c_sign,n3))) && b-event(@p_act(@occ75_3,(I_1,(n1,(n3,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),(prf(sd_1,n1,c_k),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n3))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_3 = @occ6_2[!1 = @sid]
+@occ75_3 = @occ75_2[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && b-event(Sign(I_1,n0,n2)) && b-event(@p_act(@occ6_3,(c_sign,n2))) && b-event(@p_act(@occ75_3,(I_1,(n1,(n3,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),(prf(sd_1,n1,c_k),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n3))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_3 = @occ6_2[!1 = @sid]
+@occ75_3 = @occ75_2[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && b-event(Sign(I_1,n0,n1)) && b-event(@p_act(@occ6_3,(c_sign,n1))) && b-event(@p_act(@occ75_3,(I_1,(n1,(n3,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),(prf(sd_1,n1,c_k),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n3))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_3 = @occ6_2[!1 = @sid]
+@occ75_3 = @occ75_2[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && b-event(Sign(I_1,n0,n0)) && b-event(@p_act(@occ6_3,(c_sign,n0))) && b-event(@p_act(@occ75_3,(I_1,(n1,(n3,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),(prf(sd_1,n1,c_k),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n3))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_3 = @occ6_2[!1 = @sid]
+@occ75_3 = @occ75_2[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && attacker(y_6) && b-event(@p_act(@occ6_3,y_6)) && b-event(@p_act(@occ75_3,(I_1,(n1,(n3,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),(prf(sd_1,n1,c_k),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n3))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_3 = @occ6_2[!1 = @sid]
+@occ75_3 = @occ75_2[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+RESULT event(Accept(I_1,q,a)) ==> event(Sign(I_1,q,a)) || event(RevealSeed(I_1)) is true.
+-- Query event(Accept(I_1,q,a)) ==> event(Sign(I_1,q,a)) || event(RevealSeed(I_1)) in process 0.
+Translating the process into Horn clauses...
+Completing...
+200 rules inserted. Base: 142 rules (64 with conclusion selected). Queue: 44 rules.
+400 rules inserted. Base: 249 rules (70 with conclusion selected). Queue: 60 rules.
+600 rules inserted. Base: 317 rules (112 with conclusion selected). Queue: 8 rules.
+Starting query event(Accept(I_1,q,a)) ==> event(Sign(I_1,q,a)) || event(RevealSeed(I_1))
+goal reachable: b-event(Sign(I_1,n0,n0)) && b-event(@p_act(@occ6_4,(c_sign,n0))) && b-event(@p_act(@occ75_4,(I_1,(n0,(n0,(prf(sd_1,n0,c_m),(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))))))))) -> event(Accept(I_1,n0,n0))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_4 = @occ6_3[!1 = @sid]
+@occ75_4 = @occ75_3[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && b-event(Sign(I_1,n0,n1)) && b-event(@p_act(@occ6_4,(c_sign,n1))) && b-event(@p_act(@occ75_4,(I_1,(n0,(n0,(prf(sd_1,n0,c_m),(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))))))))) -> event(Accept(I_1,n0,n0))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_4 = @occ6_3[!1 = @sid]
+@occ75_4 = @occ75_3[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && b-event(Sign(I_1,n0,n2)) && b-event(@p_act(@occ6_4,(c_sign,n2))) && b-event(@p_act(@occ75_4,(I_1,(n0,(n0,(prf(sd_1,n0,c_m),(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))))))))) -> event(Accept(I_1,n0,n0))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_4 = @occ6_3[!1 = @sid]
+@occ75_4 = @occ75_3[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && b-event(Sign(I_1,n0,n3)) && b-event(@p_act(@occ6_4,(c_sign,n3))) && b-event(@p_act(@occ75_4,(I_1,(n0,(n0,(prf(sd_1,n0,c_m),(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))))))))) -> event(Accept(I_1,n0,n0))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_4 = @occ6_3[!1 = @sid]
+@occ75_4 = @occ75_3[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && attacker(y_6) && b-event(@p_act(@occ6_4,y_6)) && b-event(@p_act(@occ75_4,(I_1,(n0,(n0,(prf(sd_1,n0,c_m),(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))))))))) -> event(Accept(I_1,n0,n0))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_4 = @occ6_3[!1 = @sid]
+@occ75_4 = @occ75_3[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(Sign(I_1,n0,n1)) && b-event(@p_act(@occ6_4,(c_sign,n1))) && b-event(@p_act(@occ75_4,(I_1,(n0,(n1,(ch(I_1,c_m,prf(sd_1,n0,c_m)),(ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))))))))) -> event(Accept(I_1,n0,n1))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_4 = @occ6_3[!1 = @sid]
+@occ75_4 = @occ75_3[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && b-event(Sign(I_1,n0,n2)) && b-event(@p_act(@occ6_4,(c_sign,n2))) && b-event(@p_act(@occ75_4,(I_1,(n0,(n1,(ch(I_1,c_m,prf(sd_1,n0,c_m)),(ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))))))))) -> event(Accept(I_1,n0,n1))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_4 = @occ6_3[!1 = @sid]
+@occ75_4 = @occ75_3[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && b-event(Sign(I_1,n0,n3)) && b-event(@p_act(@occ6_4,(c_sign,n3))) && b-event(@p_act(@occ75_4,(I_1,(n0,(n1,(ch(I_1,c_m,prf(sd_1,n0,c_m)),(ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))))))))) -> event(Accept(I_1,n0,n1))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_4 = @occ6_3[!1 = @sid]
+@occ75_4 = @occ75_3[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && b-event(Sign(I_1,n0,n0)) && b-event(@p_act(@occ6_4,(c_sign,n0))) && b-event(@p_act(@occ75_4,(I_1,(n0,(n1,(ch(I_1,c_m,prf(sd_1,n0,c_m)),(ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))))))))) -> event(Accept(I_1,n0,n1))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_4 = @occ6_3[!1 = @sid]
+@occ75_4 = @occ75_3[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && attacker(y_6) && b-event(@p_act(@occ6_4,y_6)) && b-event(@p_act(@occ75_4,(I_1,(n0,(n1,(ch(I_1,c_m,prf(sd_1,n0,c_m)),(ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))))))))) -> event(Accept(I_1,n0,n1))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_4 = @occ6_3[!1 = @sid]
+@occ75_4 = @occ75_3[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(Sign(I_1,n0,n2)) && b-event(@p_act(@occ6_4,(c_sign,n2))) && b-event(@p_act(@occ75_4,(I_1,(n0,(n2,(ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m))),(ch(I_1,c_k,prf(sd_1,n0,c_k)),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))))))))) -> event(Accept(I_1,n0,n2))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_4 = @occ6_3[!1 = @sid]
+@occ75_4 = @occ75_3[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && b-event(Sign(I_1,n0,n1)) && b-event(@p_act(@occ6_4,(c_sign,n1))) && b-event(@p_act(@occ75_4,(I_1,(n0,(n2,(ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m))),(ch(I_1,c_k,prf(sd_1,n0,c_k)),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))))))))) -> event(Accept(I_1,n0,n2))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_4 = @occ6_3[!1 = @sid]
+@occ75_4 = @occ75_3[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && b-event(Sign(I_1,n0,n3)) && b-event(@p_act(@occ6_4,(c_sign,n3))) && b-event(@p_act(@occ75_4,(I_1,(n0,(n2,(ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m))),(ch(I_1,c_k,prf(sd_1,n0,c_k)),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))))))))) -> event(Accept(I_1,n0,n2))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_4 = @occ6_3[!1 = @sid]
+@occ75_4 = @occ75_3[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && b-event(Sign(I_1,n0,n0)) && b-event(@p_act(@occ6_4,(c_sign,n0))) && b-event(@p_act(@occ75_4,(I_1,(n0,(n2,(ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m))),(ch(I_1,c_k,prf(sd_1,n0,c_k)),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))))))))) -> event(Accept(I_1,n0,n2))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_4 = @occ6_3[!1 = @sid]
+@occ75_4 = @occ75_3[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && attacker(y_6) && b-event(@p_act(@occ6_4,y_6)) && b-event(@p_act(@occ75_4,(I_1,(n0,(n2,(ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m))),(ch(I_1,c_k,prf(sd_1,n0,c_k)),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))))))))) -> event(Accept(I_1,n0,n2))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_4 = @occ6_3[!1 = @sid]
+@occ75_4 = @occ75_3[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(Sign(I_1,n0,n3)) && b-event(@p_act(@occ6_4,(c_sign,n3))) && b-event(@p_act(@occ75_4,(I_1,(n0,(n3,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),(prf(sd_1,n0,c_k),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))))))))) -> event(Accept(I_1,n0,n3))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_4 = @occ6_3[!1 = @sid]
+@occ75_4 = @occ75_3[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && b-event(Sign(I_1,n0,n2)) && b-event(@p_act(@occ6_4,(c_sign,n2))) && b-event(@p_act(@occ75_4,(I_1,(n0,(n3,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),(prf(sd_1,n0,c_k),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))))))))) -> event(Accept(I_1,n0,n3))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_4 = @occ6_3[!1 = @sid]
+@occ75_4 = @occ75_3[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && b-event(Sign(I_1,n0,n1)) && b-event(@p_act(@occ6_4,(c_sign,n1))) && b-event(@p_act(@occ75_4,(I_1,(n0,(n3,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),(prf(sd_1,n0,c_k),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))))))))) -> event(Accept(I_1,n0,n3))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_4 = @occ6_3[!1 = @sid]
+@occ75_4 = @occ75_3[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && b-event(Sign(I_1,n0,n0)) && b-event(@p_act(@occ6_4,(c_sign,n0))) && b-event(@p_act(@occ75_4,(I_1,(n0,(n3,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),(prf(sd_1,n0,c_k),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))))))))) -> event(Accept(I_1,n0,n3))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_4 = @occ6_3[!1 = @sid]
+@occ75_4 = @occ75_3[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && attacker(y_6) && b-event(@p_act(@occ6_4,y_6)) && b-event(@p_act(@occ75_4,(I_1,(n0,(n3,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),(prf(sd_1,n0,c_k),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))))))))))) -> event(Accept(I_1,n0,n3))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_4 = @occ6_3[!1 = @sid]
+@occ75_4 = @occ75_3[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(Sign(I_1,n1,n0)) && b-event(@p_act(@occ58_4,(c_sign,n0))) && b-event(Sign(I_1,n0,n3)) && b-event(@p_act(@occ6_4,(c_sign,n3))) && b-event(@p_act(@occ75_4,(I_1,(n1,(n0,(prf(sd_1,n1,c_m),(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n0))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ58_4 = @occ58_3[!1 = @sid]
+@occ6_4 = @occ6_3[!1 = @sid]
+@occ75_4 = @occ75_3[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(Sign(I_1,n1,n0)) && b-event(@p_act(@occ42_4,(c_sign,n0))) && b-event(Sign(I_1,n0,n2)) && b-event(@p_act(@occ6_4,(c_sign,n2))) && b-event(@p_act(@occ75_4,(I_1,(n1,(n0,(prf(sd_1,n1,c_m),(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n0))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ42_4 = @occ42_3[!1 = @sid]
+@occ6_4 = @occ6_3[!1 = @sid]
+@occ75_4 = @occ75_3[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(Sign(I_1,n1,n0)) && b-event(@p_act(@occ26_4,(c_sign,n0))) && b-event(Sign(I_1,n0,n1)) && b-event(@p_act(@occ6_4,(c_sign,n1))) && b-event(@p_act(@occ75_4,(I_1,(n1,(n0,(prf(sd_1,n1,c_m),(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n0))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ26_4 = @occ26_3[!1 = @sid]
+@occ6_4 = @occ6_3[!1 = @sid]
+@occ75_4 = @occ75_3[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(Sign(I_1,n1,n0)) && b-event(@p_act(@occ10_4,(c_sign,n0))) && b-event(Sign(I_1,n0,n0)) && b-event(@p_act(@occ6_4,(c_sign,n0))) && b-event(@p_act(@occ75_4,(I_1,(n1,(n0,(prf(sd_1,n1,c_m),(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n0))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ10_4 = @occ10_3[!1 = @sid]
+@occ6_4 = @occ6_3[!1 = @sid]
+@occ75_4 = @occ75_3[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && b-event(Sign(I_1,n0,n3)) && b-event(@p_act(@occ6_4,(c_sign,n3))) && b-event(@p_act(@occ75_4,(I_1,(n1,(n0,(prf(sd_1,n1,c_m),(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n0))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_4 = @occ6_3[!1 = @sid]
+@occ75_4 = @occ75_3[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && b-event(Sign(I_1,n0,n2)) && b-event(@p_act(@occ6_4,(c_sign,n2))) && b-event(@p_act(@occ75_4,(I_1,(n1,(n0,(prf(sd_1,n1,c_m),(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n0))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_4 = @occ6_3[!1 = @sid]
+@occ75_4 = @occ75_3[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && b-event(Sign(I_1,n0,n1)) && b-event(@p_act(@occ6_4,(c_sign,n1))) && b-event(@p_act(@occ75_4,(I_1,(n1,(n0,(prf(sd_1,n1,c_m),(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n0))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_4 = @occ6_3[!1 = @sid]
+@occ75_4 = @occ75_3[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && b-event(Sign(I_1,n0,n0)) && b-event(@p_act(@occ6_4,(c_sign,n0))) && b-event(@p_act(@occ75_4,(I_1,(n1,(n0,(prf(sd_1,n1,c_m),(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n0))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_4 = @occ6_3[!1 = @sid]
+@occ75_4 = @occ75_3[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && attacker(y_6) && b-event(@p_act(@occ6_4,y_6)) && b-event(@p_act(@occ75_4,(I_1,(n1,(n0,(prf(sd_1,n1,c_m),(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k)))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n0))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_4 = @occ6_3[!1 = @sid]
+@occ75_4 = @occ75_3[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(Sign(I_1,n1,n1)) && b-event(@p_act(@occ58_4,(c_sign,n1))) && b-event(Sign(I_1,n0,n3)) && b-event(@p_act(@occ6_4,(c_sign,n3))) && b-event(@p_act(@occ75_4,(I_1,(n1,(n1,(ch(I_1,c_m,prf(sd_1,n1,c_m)),(ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n1))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ58_4 = @occ58_3[!1 = @sid]
+@occ6_4 = @occ6_3[!1 = @sid]
+@occ75_4 = @occ75_3[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(Sign(I_1,n1,n1)) && b-event(@p_act(@occ10_4,(c_sign,n1))) && b-event(Sign(I_1,n0,n0)) && b-event(@p_act(@occ6_4,(c_sign,n0))) && b-event(@p_act(@occ75_4,(I_1,(n1,(n1,(ch(I_1,c_m,prf(sd_1,n1,c_m)),(ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n1))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ10_4 = @occ10_3[!1 = @sid]
+@occ6_4 = @occ6_3[!1 = @sid]
+@occ75_4 = @occ75_3[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(Sign(I_1,n1,n1)) && b-event(@p_act(@occ42_4,(c_sign,n1))) && b-event(Sign(I_1,n0,n2)) && b-event(@p_act(@occ6_4,(c_sign,n2))) && b-event(@p_act(@occ75_4,(I_1,(n1,(n1,(ch(I_1,c_m,prf(sd_1,n1,c_m)),(ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n1))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ42_4 = @occ42_3[!1 = @sid]
+@occ6_4 = @occ6_3[!1 = @sid]
+@occ75_4 = @occ75_3[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(Sign(I_1,n1,n1)) && b-event(@p_act(@occ26_4,(c_sign,n1))) && b-event(Sign(I_1,n0,n1)) && b-event(@p_act(@occ6_4,(c_sign,n1))) && b-event(@p_act(@occ75_4,(I_1,(n1,(n1,(ch(I_1,c_m,prf(sd_1,n1,c_m)),(ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n1))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ26_4 = @occ26_3[!1 = @sid]
+@occ6_4 = @occ6_3[!1 = @sid]
+@occ75_4 = @occ75_3[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && b-event(Sign(I_1,n0,n3)) && b-event(@p_act(@occ6_4,(c_sign,n3))) && b-event(@p_act(@occ75_4,(I_1,(n1,(n1,(ch(I_1,c_m,prf(sd_1,n1,c_m)),(ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n1))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_4 = @occ6_3[!1 = @sid]
+@occ75_4 = @occ75_3[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && b-event(Sign(I_1,n0,n0)) && b-event(@p_act(@occ6_4,(c_sign,n0))) && b-event(@p_act(@occ75_4,(I_1,(n1,(n1,(ch(I_1,c_m,prf(sd_1,n1,c_m)),(ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n1))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_4 = @occ6_3[!1 = @sid]
+@occ75_4 = @occ75_3[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && b-event(Sign(I_1,n0,n2)) && b-event(@p_act(@occ6_4,(c_sign,n2))) && b-event(@p_act(@occ75_4,(I_1,(n1,(n1,(ch(I_1,c_m,prf(sd_1,n1,c_m)),(ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n1))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_4 = @occ6_3[!1 = @sid]
+@occ75_4 = @occ75_3[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && b-event(Sign(I_1,n0,n1)) && b-event(@p_act(@occ6_4,(c_sign,n1))) && b-event(@p_act(@occ75_4,(I_1,(n1,(n1,(ch(I_1,c_m,prf(sd_1,n1,c_m)),(ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n1))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_4 = @occ6_3[!1 = @sid]
+@occ75_4 = @occ75_3[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && attacker(y_6) && b-event(@p_act(@occ6_4,y_6)) && b-event(@p_act(@occ75_4,(I_1,(n1,(n1,(ch(I_1,c_m,prf(sd_1,n1,c_m)),(ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n1,c_k))),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n1))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_4 = @occ6_3[!1 = @sid]
+@occ75_4 = @occ75_3[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(Sign(I_1,n1,n2)) && b-event(@p_act(@occ58_4,(c_sign,n2))) && b-event(Sign(I_1,n0,n3)) && b-event(@p_act(@occ6_4,(c_sign,n3))) && b-event(@p_act(@occ75_4,(I_1,(n1,(n2,(ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m))),(ch(I_1,c_k,prf(sd_1,n1,c_k)),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n2))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ58_4 = @occ58_3[!1 = @sid]
+@occ6_4 = @occ6_3[!1 = @sid]
+@occ75_4 = @occ75_3[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(Sign(I_1,n1,n2)) && b-event(@p_act(@occ10_4,(c_sign,n2))) && b-event(Sign(I_1,n0,n0)) && b-event(@p_act(@occ6_4,(c_sign,n0))) && b-event(@p_act(@occ75_4,(I_1,(n1,(n2,(ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m))),(ch(I_1,c_k,prf(sd_1,n1,c_k)),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n2))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ10_4 = @occ10_3[!1 = @sid]
+@occ6_4 = @occ6_3[!1 = @sid]
+@occ75_4 = @occ75_3[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(Sign(I_1,n1,n2)) && b-event(@p_act(@occ42_4,(c_sign,n2))) && b-event(Sign(I_1,n0,n2)) && b-event(@p_act(@occ6_4,(c_sign,n2))) && b-event(@p_act(@occ75_4,(I_1,(n1,(n2,(ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m))),(ch(I_1,c_k,prf(sd_1,n1,c_k)),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n2))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ42_4 = @occ42_3[!1 = @sid]
+@occ6_4 = @occ6_3[!1 = @sid]
+@occ75_4 = @occ75_3[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(Sign(I_1,n1,n2)) && b-event(@p_act(@occ26_4,(c_sign,n2))) && b-event(Sign(I_1,n0,n1)) && b-event(@p_act(@occ6_4,(c_sign,n1))) && b-event(@p_act(@occ75_4,(I_1,(n1,(n2,(ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m))),(ch(I_1,c_k,prf(sd_1,n1,c_k)),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n2))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ26_4 = @occ26_3[!1 = @sid]
+@occ6_4 = @occ6_3[!1 = @sid]
+@occ75_4 = @occ75_3[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && b-event(Sign(I_1,n0,n3)) && b-event(@p_act(@occ6_4,(c_sign,n3))) && b-event(@p_act(@occ75_4,(I_1,(n1,(n2,(ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m))),(ch(I_1,c_k,prf(sd_1,n1,c_k)),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n2))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_4 = @occ6_3[!1 = @sid]
+@occ75_4 = @occ75_3[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && b-event(Sign(I_1,n0,n0)) && b-event(@p_act(@occ6_4,(c_sign,n0))) && b-event(@p_act(@occ75_4,(I_1,(n1,(n2,(ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m))),(ch(I_1,c_k,prf(sd_1,n1,c_k)),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n2))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_4 = @occ6_3[!1 = @sid]
+@occ75_4 = @occ75_3[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && b-event(Sign(I_1,n0,n2)) && b-event(@p_act(@occ6_4,(c_sign,n2))) && b-event(@p_act(@occ75_4,(I_1,(n1,(n2,(ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m))),(ch(I_1,c_k,prf(sd_1,n1,c_k)),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n2))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_4 = @occ6_3[!1 = @sid]
+@occ75_4 = @occ75_3[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && b-event(Sign(I_1,n0,n1)) && b-event(@p_act(@occ6_4,(c_sign,n1))) && b-event(@p_act(@occ75_4,(I_1,(n1,(n2,(ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m))),(ch(I_1,c_k,prf(sd_1,n1,c_k)),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n2))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_4 = @occ6_3[!1 = @sid]
+@occ75_4 = @occ75_3[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && attacker(y_6) && b-event(@p_act(@occ6_4,y_6)) && b-event(@p_act(@occ75_4,(I_1,(n1,(n2,(ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m))),(ch(I_1,c_k,prf(sd_1,n1,c_k)),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n2))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_4 = @occ6_3[!1 = @sid]
+@occ75_4 = @occ75_3[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(Sign(I_1,n1,n3)) && b-event(@p_act(@occ58_4,(c_sign,n3))) && b-event(Sign(I_1,n0,n3)) && b-event(@p_act(@occ6_4,(c_sign,n3))) && b-event(@p_act(@occ75_4,(I_1,(n1,(n3,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),(prf(sd_1,n1,c_k),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n3))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ58_4 = @occ58_3[!1 = @sid]
+@occ6_4 = @occ6_3[!1 = @sid]
+@occ75_4 = @occ75_3[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(Sign(I_1,n1,n3)) && b-event(@p_act(@occ42_4,(c_sign,n3))) && b-event(Sign(I_1,n0,n2)) && b-event(@p_act(@occ6_4,(c_sign,n2))) && b-event(@p_act(@occ75_4,(I_1,(n1,(n3,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),(prf(sd_1,n1,c_k),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n3))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ42_4 = @occ42_3[!1 = @sid]
+@occ6_4 = @occ6_3[!1 = @sid]
+@occ75_4 = @occ75_3[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(Sign(I_1,n1,n3)) && b-event(@p_act(@occ26_4,(c_sign,n3))) && b-event(Sign(I_1,n0,n1)) && b-event(@p_act(@occ6_4,(c_sign,n1))) && b-event(@p_act(@occ75_4,(I_1,(n1,(n3,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),(prf(sd_1,n1,c_k),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n3))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ26_4 = @occ26_3[!1 = @sid]
+@occ6_4 = @occ6_3[!1 = @sid]
+@occ75_4 = @occ75_3[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(Sign(I_1,n1,n3)) && b-event(@p_act(@occ10_4,(c_sign,n3))) && b-event(Sign(I_1,n0,n0)) && b-event(@p_act(@occ6_4,(c_sign,n0))) && b-event(@p_act(@occ75_4,(I_1,(n1,(n3,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),(prf(sd_1,n1,c_k),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n3))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ10_4 = @occ10_3[!1 = @sid]
+@occ6_4 = @occ6_3[!1 = @sid]
+@occ75_4 = @occ75_3[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && b-event(Sign(I_1,n0,n3)) && b-event(@p_act(@occ6_4,(c_sign,n3))) && b-event(@p_act(@occ75_4,(I_1,(n1,(n3,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),(prf(sd_1,n1,c_k),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n3))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_4 = @occ6_3[!1 = @sid]
+@occ75_4 = @occ75_3[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && b-event(Sign(I_1,n0,n2)) && b-event(@p_act(@occ6_4,(c_sign,n2))) && b-event(@p_act(@occ75_4,(I_1,(n1,(n3,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),(prf(sd_1,n1,c_k),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n3))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_4 = @occ6_3[!1 = @sid]
+@occ75_4 = @occ75_3[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && b-event(Sign(I_1,n0,n1)) && b-event(@p_act(@occ6_4,(c_sign,n1))) && b-event(@p_act(@occ75_4,(I_1,(n1,(n3,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),(prf(sd_1,n1,c_k),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n3))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_4 = @occ6_3[!1 = @sid]
+@occ75_4 = @occ75_3[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && b-event(Sign(I_1,n0,n0)) && b-event(@p_act(@occ6_4,(c_sign,n0))) && b-event(@p_act(@occ75_4,(I_1,(n1,(n3,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),(prf(sd_1,n1,c_k),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n3))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_4 = @occ6_3[!1 = @sid]
+@occ75_4 = @occ75_3[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+goal reachable: b-event(RevealSeed(I_1)) && attacker(y_6) && b-event(@p_act(@occ6_4,y_6)) && b-event(@p_act(@occ75_4,(I_1,(n1,(n3,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n1,c_m)))),(prf(sd_1,n1,c_k),(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,n0,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,n0,c_k)))))))))))) -> event(Accept(I_1,n1,n3))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ6_4 = @occ6_3[!1 = @sid]
+@occ75_4 = @occ75_3[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+RESULT event(Accept(I_1,q,a)) ==> event(Sign(I_1,q,a)) || event(RevealSeed(I_1)) is true.
+
+--------------------------------------------------------------
+Verification summary:
+
+Query event(Sign(I_1,q,a)) && event(Accept(I_1,q,a)) ==> event(RevealSeed(I_1)) is false.
+
+Query event(Sign(I_1,q,a1))@i && event(Sign(I_1,q,a2))@j ==> i = j is true.
+
+Query event(Accept(I_1,q,a)) ==> event(Sign(I_1,q,a)) || event(RevealSeed(I_1)) is true.
+
+Query event(Accept(I_1,q,a)) ==> event(Sign(I_1,q,a)) || event(RevealSeed(I_1)) is true.
+
+--------------------------------------------------------------
+

@@ -1,0 +1,312 @@
+[
+  {
+    "seed": "lmots",
+    "query": "acceptreach",
+    "group": "reach",
+    "kind": "reach",
+    "control": "YES",
+    "mutant_definite_count": 10,
+    "mutant_undetermined_count": 0,
+    "detected_operators": [
+      "disable_signer",
+      "disable_accept",
+      "wrong_public_key"
+    ],
+    "tm_baseline": "YES",
+    "tm_comparison": "AGREE"
+  },
+  {
+    "seed": "lmots",
+    "query": "signreach",
+    "group": "reach",
+    "kind": "reach",
+    "control": "YES",
+    "mutant_definite_count": 10,
+    "mutant_undetermined_count": 0,
+    "detected_operators": [
+      "disable_signer"
+    ],
+    "tm_baseline": "YES",
+    "tm_comparison": "AGREE"
+  },
+  {
+    "seed": "lmots",
+    "query": "revealreach",
+    "group": "reach",
+    "kind": "reach",
+    "control": "YES",
+    "mutant_definite_count": 10,
+    "mutant_undetermined_count": 0,
+    "detected_operators": [
+      "remove_reveal_event"
+    ],
+    "tm_baseline": "YES",
+    "tm_comparison": "AGREE"
+  },
+  {
+    "seed": "lmots",
+    "query": "seedreach",
+    "group": "audit",
+    "kind": "reach",
+    "control": "YES",
+    "mutant_definite_count": 10,
+    "mutant_undetermined_count": 0,
+    "detected_operators": [
+      "reveal_wrong_secret"
+    ],
+    "tm_baseline": "YES",
+    "tm_comparison": "AGREE"
+  },
+  {
+    "seed": "lmots",
+    "query": "seed_without_reveal",
+    "group": "audit",
+    "kind": "safety",
+    "control": "YES",
+    "mutant_definite_count": 10,
+    "mutant_undetermined_count": 0,
+    "detected_operators": [
+      "remove_reveal_event"
+    ],
+    "tm_baseline": "YES",
+    "tm_comparison": "AGREE"
+  },
+  {
+    "seed": "lmots",
+    "query": "reveal_guarded",
+    "group": "audit",
+    "kind": "safety",
+    "control": "YES",
+    "mutant_definite_count": 10,
+    "mutant_undetermined_count": 0,
+    "detected_operators": [
+      "unguarded_reveal"
+    ],
+    "tm_baseline": "YES",
+    "tm_comparison": "AGREE"
+  },
+  {
+    "seed": "lmots",
+    "query": "prf_public_probe",
+    "group": "audit",
+    "kind": "reach",
+    "control": "NO",
+    "mutant_definite_count": 10,
+    "mutant_undetermined_count": 0,
+    "detected_operators": [
+      "private_to_public"
+    ],
+    "tm_baseline": "NO",
+    "tm_comparison": "AGREE"
+  },
+  {
+    "seed": "lmots",
+    "query": "exec_accept",
+    "group": "existing",
+    "kind": "reach",
+    "control": "YES",
+    "mutant_definite_count": 10,
+    "mutant_undetermined_count": 0,
+    "detected_operators": [
+      "disable_signer",
+      "disable_accept",
+      "wrong_public_key"
+    ],
+    "tm_baseline": "NOT_RUN",
+    "tm_comparison": "NOT_RUN"
+  },
+  {
+    "seed": "lmots",
+    "query": "LS1_unforge",
+    "group": "existing",
+    "kind": "safety",
+    "control": "YES",
+    "mutant_definite_count": 10,
+    "mutant_undetermined_count": 0,
+    "detected_operators": [
+      "event_accept_argument",
+      "event_sign_argument",
+      "replicate_signer"
+    ],
+    "tm_baseline": "NOT_RUN",
+    "tm_comparison": "NOT_RUN"
+  },
+  {
+    "seed": "lmots",
+    "query": "forge",
+    "group": "existing",
+    "kind": "reach",
+    "control": "NO",
+    "mutant_definite_count": 10,
+    "mutant_undetermined_count": 0,
+    "detected_operators": [
+      "event_accept_argument",
+      "event_sign_argument",
+      "replicate_signer"
+    ],
+    "tm_baseline": "NOT_RUN",
+    "tm_comparison": "NOT_RUN"
+  },
+  {
+    "seed": "lms_s2",
+    "query": "acceptreach",
+    "group": "reach",
+    "kind": "reach",
+    "control": "YES",
+    "mutant_definite_count": 10,
+    "mutant_undetermined_count": 0,
+    "detected_operators": [
+      "disable_signer",
+      "disable_accept",
+      "wrong_public_key"
+    ],
+    "tm_baseline": "UNDETERMINED",
+    "tm_comparison": "UNDETERMINED"
+  },
+  {
+    "seed": "lms_s2",
+    "query": "signreach",
+    "group": "reach",
+    "kind": "reach",
+    "control": "YES",
+    "mutant_definite_count": 10,
+    "mutant_undetermined_count": 0,
+    "detected_operators": [
+      "disable_signer"
+    ],
+    "tm_baseline": "YES",
+    "tm_comparison": "AGREE"
+  },
+  {
+    "seed": "lms_s2",
+    "query": "revealreach",
+    "group": "reach",
+    "kind": "reach",
+    "control": "YES",
+    "mutant_definite_count": 10,
+    "mutant_undetermined_count": 0,
+    "detected_operators": [
+      "remove_reveal_event"
+    ],
+    "tm_baseline": "YES",
+    "tm_comparison": "AGREE"
+  },
+  {
+    "seed": "lms_s2",
+    "query": "seedreach",
+    "group": "audit",
+    "kind": "reach",
+    "control": "YES",
+    "mutant_definite_count": 10,
+    "mutant_undetermined_count": 0,
+    "detected_operators": [
+      "reveal_wrong_secret"
+    ],
+    "tm_baseline": "YES",
+    "tm_comparison": "AGREE"
+  },
+  {
+    "seed": "lms_s2",
+    "query": "seed_without_reveal",
+    "group": "audit",
+    "kind": "safety",
+    "control": "YES",
+    "mutant_definite_count": 10,
+    "mutant_undetermined_count": 0,
+    "detected_operators": [
+      "remove_reveal_event"
+    ],
+    "tm_baseline": "YES",
+    "tm_comparison": "AGREE"
+  },
+  {
+    "seed": "lms_s2",
+    "query": "reveal_guarded",
+    "group": "audit",
+    "kind": "safety",
+    "control": "YES",
+    "mutant_definite_count": 10,
+    "mutant_undetermined_count": 0,
+    "detected_operators": [
+      "unguarded_reveal"
+    ],
+    "tm_baseline": "YES",
+    "tm_comparison": "AGREE"
+  },
+  {
+    "seed": "lms_s2",
+    "query": "prf_public_probe",
+    "group": "audit",
+    "kind": "reach",
+    "control": "NO",
+    "mutant_definite_count": 10,
+    "mutant_undetermined_count": 0,
+    "detected_operators": [
+      "private_to_public"
+    ],
+    "tm_baseline": "NO",
+    "tm_comparison": "AGREE"
+  },
+  {
+    "seed": "lms_s2",
+    "query": "exec",
+    "group": "existing",
+    "kind": "reach",
+    "control": "YES",
+    "mutant_definite_count": 10,
+    "mutant_undetermined_count": 0,
+    "detected_operators": [
+      "disable_signer",
+      "disable_accept",
+      "wrong_public_key"
+    ],
+    "tm_baseline": "NOT_RUN",
+    "tm_comparison": "NOT_RUN"
+  },
+  {
+    "seed": "lms_s2",
+    "query": "LS4_pure",
+    "group": "existing",
+    "kind": "safety",
+    "control": "YES",
+    "mutant_definite_count": 10,
+    "mutant_undetermined_count": 0,
+    "detected_operators": [
+      "replicate_signer"
+    ],
+    "tm_baseline": "NOT_RUN",
+    "tm_comparison": "NOT_RUN"
+  },
+  {
+    "seed": "lms_s2",
+    "query": "LS1",
+    "group": "existing",
+    "kind": "safety",
+    "control": "YES",
+    "mutant_definite_count": 10,
+    "mutant_undetermined_count": 0,
+    "detected_operators": [
+      "event_accept_argument",
+      "event_sign_argument",
+      "replicate_signer"
+    ],
+    "tm_baseline": "NOT_RUN",
+    "tm_comparison": "NOT_RUN"
+  },
+  {
+    "seed": "lms_s2",
+    "query": "LS3_forge",
+    "group": "existing",
+    "kind": "reach",
+    "control": "NO",
+    "mutant_definite_count": 10,
+    "mutant_undetermined_count": 0,
+    "detected_operators": [
+      "event_accept_argument",
+      "event_sign_argument",
+      "replicate_signer"
+    ],
+    "tm_baseline": "NOT_RUN",
+    "tm_comparison": "NOT_RUN"
+  }
+]

@@ -1,0 +1,9 @@
+rb1 LS4_pure rc=0 t=20s | LS4_pure (all-traces): falsified - found trace (11 steps)
+rb1 LS4 rc=0 t=10s | LS4 (all-traces): verified (669 steps)
+rb1 LS1 rc=0 t=35s | LS1 (all-traces): falsified - found trace (13 steps)
+rb1 LS3_forge rc=0 t=37s | LS3_forge (exists-trace): verified (13 steps)
+cl1 LS4_pure rc=124 t=240s | TIMEOUT
+cl1 LS4 rc=124 t=240s | TIMEOUT
+./run_tam.sh: line 3: 129718 Killed                  timeout 240 tamarin-prover +RTS -M1400m -RTS --prove=$l LMS_S2_T_$v.spthy > tam_${v}_$l.out 2>&1
+cl1 LS1 rc=137 t=182s | 
+cl1 LS3_forge rc=0 t=42s | LS3_forge (exists-trace): verified (12 steps)

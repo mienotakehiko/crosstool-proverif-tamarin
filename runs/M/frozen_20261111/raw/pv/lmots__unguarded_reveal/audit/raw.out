@@ -1,0 +1,183 @@
+Process 0 (that is, the initial process):
+(
+    {1}!
+    {2}new I: bitstring;
+    {3}new sd: bitstring;
+    {4}event AuditSeed(I,sd);
+    {5}insert Pk(I,(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,c_k))))));
+    {6}out(c, (I,(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,c_k)))))));
+    {7}in(c, y: bitstring);
+    (
+        {8}let (=c_sign,=n0) = y in
+        {9}event Sign(I,n0);
+        {10}out(c, (I,(n0,(prf(sd,c_m),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,c_k))))))))
+    ) | (
+        {11}let (=c_sign,=n1) = y in
+        {12}event Sign(I,n1);
+        {13}out(c, (I,(n1,(ch(I,c_m,prf(sd,c_m)),ch(I,c_k,ch(I,c_k,prf(sd,c_k)))))))
+    ) | (
+        {14}let (=c_sign,=n2) = y in
+        {15}event Sign(I,n2);
+        {16}out(c, (I,(n2,(ch(I,c_m,ch(I,c_m,prf(sd,c_m))),ch(I,c_k,prf(sd,c_k))))))
+    ) | (
+        {17}let (=c_sign,=n3) = y in
+        {18}event Sign(I,n3);
+        {19}out(c, (I,(n3,(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,c_m)))),prf(sd,c_k)))))
+    ) | (
+        {20}event RevealSeed(I);
+        {21}out(c, sd)
+    )
+) | (
+    {22}!
+    {23}in(c, y_1: bitstring);
+    (
+        {24}let (v_I: bitstring,(=n0,(v_sm: bitstring,v_sk: bitstring))) = y_1 in
+        {26}get Pk(=v_I,=(ch(v_I,c_m,ch(v_I,c_m,ch(v_I,c_m,v_sm))),v_sk)) in
+        {25}event Accept(v_I,n0)
+    ) | (
+        {27}let (v_I_1: bitstring,(=n1,(v_sm_1: bitstring,v_sk_1: bitstring))) = y_1 in
+        {29}get Pk(=v_I_1,=(ch(v_I_1,c_m,ch(v_I_1,c_m,v_sm_1)),ch(v_I_1,c_k,v_sk_1))) in
+        {28}event Accept(v_I_1,n1)
+    ) | (
+        {30}let (v_I_2: bitstring,(=n2,(v_sm_2: bitstring,v_sk_2: bitstring))) = y_1 in
+        {32}get Pk(=v_I_2,=(ch(v_I_2,c_m,v_sm_2),ch(v_I_2,c_k,ch(v_I_2,c_k,v_sk_2)))) in
+        {31}event Accept(v_I_2,n2)
+    ) | (
+        {33}let (v_I_3: bitstring,(=n3,(v_sm_3: bitstring,v_sk_3: bitstring))) = y_1 in
+        {35}get Pk(=v_I_3,=(v_sm_3,ch(v_I_3,c_k,ch(v_I_3,c_k,ch(v_I_3,c_k,v_sk_3))))) in
+        {34}event Accept(v_I_3,n3)
+    )
+)
+
+-- Query not (event(AuditSeed(I_1,s)) && attacker(s)) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query not (event(AuditSeed(I_1,s)) && attacker(s))
+goal reachable: attacker(y_2) && b-event(@p_act(@occ7_1,y_2)) -> event(AuditSeed(I_1,sd_1)) && attacker(sd_1)
+Abbreviations:
+I_1 = I[!1 = @sid]
+sd_1 = sd[!1 = @sid]
+@occ7_1 = @occ7[!1 = @sid]
+
+Derivation:
+Abbreviations:
+I_1 = I[!1 = @sid]
+sd_1 = sd[!1 = @sid]
+@occ7_1 = @occ7[!1 = @sid]
+
+1. We assume as hypothesis that
+attacker(y_2).
+
+2. The event @p_act(@occ7_1,y_2) records how variables are instantiated at {7}.
+The message y_2 that the attacker may have by 1 may be received at input {7}.
+So the message sd_1 may be sent to the attacker at output {21}.
+attacker(sd_1).
+
+3. Event AuditSeed(I_1,sd_1) may be executed at {4}.
+event(AuditSeed(I_1,sd_1)).
+
+4. By 3, event(AuditSeed(I_1,sd_1)).
+By 2, attacker(sd_1).
+The goals are reached, combined in the following fact:
+event(AuditSeed(I_1,sd_1)) && attacker(sd_1).
+
+
+A more detailed output of the traces is available with
+  set traceDisplay = long.
+
+new I: bitstring creating I_2 at {2} in copy a
+
+new sd: bitstring creating sd_2 at {3} in copy a
+
+event AuditSeed(I_2,sd_2) at {4} in copy a (goal)
+
+insert Pk(I_2,(ch(I_2,c_m,ch(I_2,c_m,ch(I_2,c_m,prf(sd_2,c_m)))),ch(I_2,c_k,ch(I_2,c_k,ch(I_2,c_k,prf(sd_2,c_k)))))) at {5} in copy a
+
+out(c, (~M,(~M_1,~M_2))) with ~M = I_2, ~M_1 = ch(I_2,c_m,ch(I_2,c_m,ch(I_2,c_m,prf(sd_2,c_m)))), ~M_2 = ch(I_2,c_k,ch(I_2,c_k,ch(I_2,c_k,prf(sd_2,c_k)))) at {6} in copy a
+
+in(c, a_1) at {7} in copy a
+
+event RevealSeed(I_2) at {20} in copy a
+
+out(c, ~M_3) with ~M_3 = sd_2 at {21} in copy a
+
+The event AuditSeed(I_2,sd_2) is executed at {4} in copy a.
+The attacker has the message ~M_3 = sd_2.
+A trace has been found.
+RESULT not (event(AuditSeed(I_1,s)) && attacker(s)) is false.
+-- Query event(AuditSeed(I_1,s)) && attacker(s) ==> event(RevealSeed(I_1)) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query event(AuditSeed(I_1,s)) && attacker(s) ==> event(RevealSeed(I_1))
+goal reachable: b-event(RevealSeed(I_1)) && attacker(y_2) && b-event(@p_act(@occ7_2,y_2)) -> event(AuditSeed(I_1,sd_1)) && attacker(sd_1)
+Abbreviations:
+I_1 = I[!1 = @sid]
+sd_1 = sd[!1 = @sid]
+@occ7_2 = @occ7_1[!1 = @sid]
+RESULT event(AuditSeed(I_1,s)) && attacker(s) ==> event(RevealSeed(I_1)) is true.
+-- Query event(RevealSeed(I_1)) ==> event(AuditGuard(I_1)) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query event(RevealSeed(I_1)) ==> event(AuditGuard(I_1))
+goal reachable: attacker(y_2) && b-event(@p_act(@occ7_3,y_2)) -> event(RevealSeed(I_1))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ7_3 = @occ7_2[!1 = @sid]
+
+Derivation:
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ7_3 = @occ7_2[!1 = @sid]
+
+1. We assume as hypothesis that
+attacker(y_2).
+
+2. The event @p_act(@occ7_3,y_2) records how variables are instantiated at {7}.
+The message y_2 that the attacker may have by 1 may be received at input {7}.
+So event RevealSeed(I_1) may be executed at {20}.
+event(RevealSeed(I_1)).
+
+3. By 2, event(RevealSeed(I_1)).
+The goal is reached, represented in the following fact:
+event(RevealSeed(I_1)).
+
+
+A more detailed output of the traces is available with
+  set traceDisplay = long.
+
+new I: bitstring creating I_2 at {2} in copy a
+
+new sd: bitstring creating sd_1 at {3} in copy a
+
+event AuditSeed(I_2,sd_1) at {4} in copy a
+
+insert Pk(I_2,(ch(I_2,c_m,ch(I_2,c_m,ch(I_2,c_m,prf(sd_1,c_m)))),ch(I_2,c_k,ch(I_2,c_k,ch(I_2,c_k,prf(sd_1,c_k)))))) at {5} in copy a
+
+out(c, (~M,(~M_1,~M_2))) with ~M = I_2, ~M_1 = ch(I_2,c_m,ch(I_2,c_m,ch(I_2,c_m,prf(sd_1,c_m)))), ~M_2 = ch(I_2,c_k,ch(I_2,c_k,ch(I_2,c_k,prf(sd_1,c_k)))) at {6} in copy a
+
+in(c, a_1) at {7} in copy a
+
+event RevealSeed(I_2) at {20} in copy a (goal)
+
+The event RevealSeed(I_2) is executed at {20} in copy a.
+A trace has been found.
+RESULT event(RevealSeed(I_1)) ==> event(AuditGuard(I_1)) is false.
+-- Query not attacker(prf(n0,c_m)) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query not attacker(prf(n0,c_m))
+RESULT not attacker(prf(n0,c_m)) is true.
+
+--------------------------------------------------------------
+Verification summary:
+
+Query not (event(AuditSeed(I_1,s)) && attacker(s)) is false.
+
+Query event(AuditSeed(I_1,s)) && attacker(s) ==> event(RevealSeed(I_1)) is true.
+
+Query event(RevealSeed(I_1)) ==> event(AuditGuard(I_1)) is false.
+
+Query not attacker(prf(n0,c_m)) is true.
+
+--------------------------------------------------------------
+

@@ -1,0 +1,73 @@
+theory Restricted_T_base
+
+begin
+
+// Function signature and definition of the equational theory E
+
+functions: fst/1, pair/2, seal/1[private,constructor], snd/1
+equations: fst(<x.1, x.2>) = x.1, snd(<x.1, x.2>) = x.2
+
+/* looping facts with injective instances: St/2 */
+
+rule (modulo E) Init_Thread:
+   [ Fr( ~I ) ]
+  --[ Start_Thread( ~I ) ]->
+   [ !Thr_Thread( ~I ), St( ~I, 'n0' ), Out( <~I, seal('n1')> ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) First_q0:
+   [ St( I, 'n0' ), !Thr_Thread( I ), In( <'a', seal(x)> ) ]
+  --[ EvA( I ) ]->
+   [ St( I, 'n1' ), Out( seal(I) ), Out( <'a', I> ) ]
+
+  /* has exactly the trivial AC variant */
+
+lemma capture:
+  exists-trace "∃ I #e0. EvA( I ) @ #e0"
+/*
+guarded formula characterizing all satisfying traces:
+"∃ I #e0. (EvA( I ) @ #e0)"
+*/
+simplify
+solve( St( I, 'n0' ) ▶₀ #e0 )
+  case Init_Thread
+  solve( !Thr_Thread( ~I ) ▶₁ #e0 )
+    case Init_Thread
+    solve( !KU( seal(x) ) @ #vk.2 )
+      case First_q0_case_1
+      SOLVED // trace found
+    qed
+  qed
+qed
+
+/* All wellformedness checks were successful. */
+
+/*
+Generated from:
+Tamarin version 1.12.0
+Maude version 3.5.1
+Git revision: 82780bbaf3328a45f624ddb41e51bf75425f851c (with uncommited changes), branch: master
+Compiled at: 2026-03-07 14:22:39.174278293 UTC
+*/
+
+end
+
+==============================================================================
+summary of summaries:
+
+analyzed: /redacted-home/workspace/revision_20261111/cimc_fixed/audit_0_1_2/old_capture.spthy
+
+  processing time: 0.12s
+  
+  capture (exists-trace): verified (5 steps)
+
+==============================================================================
+maude tool: 'maude'
+ checking version: 3.5.1. OK.
+ checking installation: OK.
+[Theory Restricted_T_base] Theory loaded
+[Theory Restricted_T_base] Theory translated
+[Theory Restricted_T_base] Theory closed
+[Saturating Sources] Step 1 (Max 5)
+[Saturating Sources] Done

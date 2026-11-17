@@ -1,0 +1,20 @@
+{
+  "command": [
+    "/usr/local/bin/proverif",
+    "/redacted-home/workspace/revision_20261111/mutations/pv/lms_s2__disable_signer/audit.pv"
+  ],
+  "started_utc": "2026-11-11T03:12:13.417963+00:00",
+  "elapsed_s": 0.104,
+  "rc": 0,
+  "stop_reason": null,
+  "time_limit_s": 15,
+  "peak_group_rss_kib": 5116,
+  "rss_samples": [
+    [
+      0.003,
+      5116
+    ]
+  ],
+  "raw_file": "raw/pv/lms_s2__disable_signer/audit/raw.out",
+  "raw_sha256": "9133958dad996db4a86bf3fc9a3ad57ad6ffb2fff0671777b9801f0a5d624245"
+}

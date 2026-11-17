@@ -1,0 +1,14 @@
+maude tool: 'maude'
+ checking version: 3.5.1. OK.
+ checking installation: OK.
+[Theory LMS_S2_T_base] Theory loaded
+[Theory LMS_S2_T_base] Theory translated
+TAMARIN LEMMA: ∀ I q a1 a2 #i #j.
+ ((Sign( I, q, a1 ) @ #i) ∧ (Sign( I, q, a2 ) @ #j)) ⇒ (#i = #j) END
+PROVERIF LEMMA: (*LS4_pure*)
+query I:bitstring, a1:bitstring, a2:bitstring, q:bitstring, i:time,
+      j:time;
+ ((event(eSign( I, q, a1 ))@i) && (event(eSign( I, q, a2 ))@j)) ==>
+ (i = j)
+.
+ END

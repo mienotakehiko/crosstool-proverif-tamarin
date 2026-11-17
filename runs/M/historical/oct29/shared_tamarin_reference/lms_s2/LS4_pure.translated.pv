@@ -1,0 +1,349 @@
+free publicChannel:channel.
+free sk:bitstring.
+free sm:bitstring.
+free sn0:bitstring.
+free sn1:bitstring.
+free sn2:bitstring.
+free sn3:bitstring.
+free ssign:bitstring.
+fun ch(bitstring,bitstring,bitstring):bitstring.
+fun fst(bitstring):bitstring.
+fun hl(bitstring,bitstring,bitstring):bitstring.
+fun pair(bitstring,bitstring):bitstring.
+fun prf(bitstring,bitstring,bitstring):bitstring[private].
+fun snd(bitstring):bitstring.
+event eAccept(bitstring, bitstring, bitstring).
+event eRevealSeed(bitstring).
+event eSign(bitstring, bitstring, bitstring).
+event eStart_Signer(bitstring).
+table tRoot(bitstring, bitstring).
+table tSt(bitstring, bitstring).
+table tThr_Signer(bitstring, bitstring).
+equation forall x_1:bitstring, x_2:bitstring;   fst((x_1, x_2)) = x_1.
+equation forall x_1:bitstring, x_2:bitstring;   snd((x_1, x_2)) = x_2.
+reduc forall var_sk:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_I_42(hl(var_I, (var_sm, ch(var_I, var_sk, ch(var_I, var_sk, ch(var_I, var_sk, var_sk)))), var_sib)) = var_I[private].
+reduc forall var_sk:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_I_87(hl(var_I, var_sib, (var_sm, ch(var_I, var_sk, ch(var_I, var_sk, ch(var_I, var_sk, var_sk)))))) = var_I[private].
+reduc forall var_sk:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sib_46(hl(var_I, (var_sm, ch(var_I, var_sk, ch(var_I, var_sk, ch(var_I, var_sk, var_sk)))), var_sib)) = var_sib[private].
+reduc forall var_sk:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sib_88(hl(var_I, var_sib, (var_sm, ch(var_I, var_sk, ch(var_I, var_sk, ch(var_I, var_sk, var_sk)))))) = var_sib[private].
+reduc forall var_sk:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sk_44(hl(var_I, (var_sm, ch(var_I, var_sk, ch(var_I, var_sk, ch(var_I, var_sk, var_sk)))), var_sib)) = var_sk[private].
+reduc forall var_sk:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sk_45(hl(var_I, (var_sm, ch(var_I, var_sk, ch(var_I, var_sk, ch(var_I, var_sk, var_sk)))), var_sib)) = var_sk[private].
+reduc forall var_sk:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sk_90(hl(var_I, var_sib, (var_sm, ch(var_I, var_sk, ch(var_I, var_sk, ch(var_I, var_sk, var_sk)))))) = var_sk[private].
+reduc forall var_sk:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sk_91(hl(var_I, var_sib, (var_sm, ch(var_I, var_sk, ch(var_I, var_sk, ch(var_I, var_sk, var_sk)))))) = var_sk[private].
+reduc forall var_sk:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sm_43(hl(var_I, (var_sm, ch(var_I, var_sk, ch(var_I, var_sk, ch(var_I, var_sk, var_sk)))), var_sib)) = var_sm[private].
+reduc forall var_sk:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sm_89(hl(var_I, var_sib, (var_sm, ch(var_I, var_sk, ch(var_I, var_sk, ch(var_I, var_sk, var_sk)))))) = var_sm[private].
+reduc forall var_sk:bitstring, var_sm:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_I_18(hl(var_I, (ch(var_I, var_sm, ch(var_I, var_sm, var_sm)), ch(var_I, var_sk, var_sk)), var_sib)) = var_I[private].
+reduc forall var_sk:bitstring, var_sm:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_I_30(hl(var_I, (ch(var_I, var_sm, var_sm), ch(var_I, var_sk, ch(var_I, var_sk, var_sk))), var_sib)) = var_I[private].
+reduc forall var_sk:bitstring, var_sm:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_I_64(hl(var_I, var_sib, (ch(var_I, var_sm, ch(var_I, var_sm, var_sm)), ch(var_I, var_sk, var_sk)))) = var_I[private].
+reduc forall var_sk:bitstring, var_sm:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_I_75(hl(var_I, var_sib, (ch(var_I, var_sm, var_sm), ch(var_I, var_sk, ch(var_I, var_sk, var_sk))))) = var_I[private].
+reduc forall var_sk:bitstring, var_sm:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sib_23(hl(var_I, (ch(var_I, var_sm, ch(var_I, var_sm, var_sm)), ch(var_I, var_sk, var_sk)), var_sib)) = var_sib[private].
+reduc forall var_sk:bitstring, var_sm:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sib_35(hl(var_I, (ch(var_I, var_sm, var_sm), ch(var_I, var_sk, ch(var_I, var_sk, var_sk))), var_sib)) = var_sib[private].
+reduc forall var_sk:bitstring, var_sm:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sib_65(hl(var_I, var_sib, (ch(var_I, var_sm, ch(var_I, var_sm, var_sm)), ch(var_I, var_sk, var_sk)))) = var_sib[private].
+reduc forall var_sk:bitstring, var_sm:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sib_76(hl(var_I, var_sib, (ch(var_I, var_sm, var_sm), ch(var_I, var_sk, ch(var_I, var_sk, var_sk))))) = var_sib[private].
+reduc forall var_sk:bitstring, var_sm:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sk_21(hl(var_I, (ch(var_I, var_sm, ch(var_I, var_sm, var_sm)), ch(var_I, var_sk, var_sk)), var_sib)) = var_sk[private].
+reduc forall var_sk:bitstring, var_sm:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sk_22(hl(var_I, (ch(var_I, var_sm, ch(var_I, var_sm, var_sm)), ch(var_I, var_sk, var_sk)), var_sib)) = var_sk[private].
+reduc forall var_sk:bitstring, var_sm:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sk_33(hl(var_I, (ch(var_I, var_sm, var_sm), ch(var_I, var_sk, ch(var_I, var_sk, var_sk))), var_sib)) = var_sk[private].
+reduc forall var_sk:bitstring, var_sm:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sk_34(hl(var_I, (ch(var_I, var_sm, var_sm), ch(var_I, var_sk, ch(var_I, var_sk, var_sk))), var_sib)) = var_sk[private].
+reduc forall var_sk:bitstring, var_sm:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sk_68(hl(var_I, var_sib, (ch(var_I, var_sm, ch(var_I, var_sm, var_sm)), ch(var_I, var_sk, var_sk)))) = var_sk[private].
+reduc forall var_sk:bitstring, var_sm:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sk_69(hl(var_I, var_sib, (ch(var_I, var_sm, ch(var_I, var_sm, var_sm)), ch(var_I, var_sk, var_sk)))) = var_sk[private].
+reduc forall var_sk:bitstring, var_sm:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sk_79(hl(var_I, var_sib, (ch(var_I, var_sm, var_sm), ch(var_I, var_sk, ch(var_I, var_sk, var_sk))))) = var_sk[private].
+reduc forall var_sk:bitstring, var_sm:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sk_80(hl(var_I, var_sib, (ch(var_I, var_sm, var_sm), ch(var_I, var_sk, ch(var_I, var_sk, var_sk))))) = var_sk[private].
+reduc forall var_sk:bitstring, var_sm:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sm_19(hl(var_I, (ch(var_I, var_sm, ch(var_I, var_sm, var_sm)), ch(var_I, var_sk, var_sk)), var_sib)) = var_sm[private].
+reduc forall var_sk:bitstring, var_sm:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sm_20(hl(var_I, (ch(var_I, var_sm, ch(var_I, var_sm, var_sm)), ch(var_I, var_sk, var_sk)), var_sib)) = var_sm[private].
+reduc forall var_sk:bitstring, var_sm:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sm_31(hl(var_I, (ch(var_I, var_sm, var_sm), ch(var_I, var_sk, ch(var_I, var_sk, var_sk))), var_sib)) = var_sm[private].
+reduc forall var_sk:bitstring, var_sm:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sm_32(hl(var_I, (ch(var_I, var_sm, var_sm), ch(var_I, var_sk, ch(var_I, var_sk, var_sk))), var_sib)) = var_sm[private].
+reduc forall var_sk:bitstring, var_sm:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sm_66(hl(var_I, var_sib, (ch(var_I, var_sm, ch(var_I, var_sm, var_sm)), ch(var_I, var_sk, var_sk)))) = var_sm[private].
+reduc forall var_sk:bitstring, var_sm:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sm_67(hl(var_I, var_sib, (ch(var_I, var_sm, ch(var_I, var_sm, var_sm)), ch(var_I, var_sk, var_sk)))) = var_sm[private].
+reduc forall var_sk:bitstring, var_sm:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sm_77(hl(var_I, var_sib, (ch(var_I, var_sm, var_sm), ch(var_I, var_sk, ch(var_I, var_sk, var_sk))))) = var_sm[private].
+reduc forall var_sk:bitstring, var_sm:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sm_78(hl(var_I, var_sib, (ch(var_I, var_sm, var_sm), ch(var_I, var_sk, ch(var_I, var_sk, var_sk))))) = var_sm[private].
+reduc forall var_sm:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_I_53(hl(var_I, var_sib, (ch(var_I, var_sm, ch(var_I, var_sm, ch(var_I, var_sm, var_sm))), var_sk))) = var_I[private].
+reduc forall var_sm:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_I_8(hl(var_I, (ch(var_I, var_sm, ch(var_I, var_sm, ch(var_I, var_sm, var_sm))), var_sk), var_sib)) = var_I[private].
+reduc forall var_sm:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sib_12(hl(var_I, (ch(var_I, var_sm, ch(var_I, var_sm, ch(var_I, var_sm, var_sm))), var_sk), var_sib)) = var_sib[private].
+reduc forall var_sm:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sib_54(hl(var_I, var_sib, (ch(var_I, var_sm, ch(var_I, var_sm, ch(var_I, var_sm, var_sm))), var_sk))) = var_sib[private].
+reduc forall var_sm:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sk_11(hl(var_I, (ch(var_I, var_sm, ch(var_I, var_sm, ch(var_I, var_sm, var_sm))), var_sk), var_sib)) = var_sk[private].
+reduc forall var_sm:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sk_57(hl(var_I, var_sib, (ch(var_I, var_sm, ch(var_I, var_sm, ch(var_I, var_sm, var_sm))), var_sk))) = var_sk[private].
+reduc forall var_sm:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sm_10(hl(var_I, (ch(var_I, var_sm, ch(var_I, var_sm, ch(var_I, var_sm, var_sm))), var_sk), var_sib)) = var_sm[private].
+reduc forall var_sm:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sm_55(hl(var_I, var_sib, (ch(var_I, var_sm, ch(var_I, var_sm, ch(var_I, var_sm, var_sm))), var_sk))) = var_sm[private].
+reduc forall var_sm:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sm_56(hl(var_I, var_sib, (ch(var_I, var_sm, ch(var_I, var_sm, ch(var_I, var_sm, var_sm))), var_sk))) = var_sm[private].
+reduc forall var_sm:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sm_9(hl(var_I, (ch(var_I, var_sm, ch(var_I, var_sm, ch(var_I, var_sm, var_sm))), var_sk), var_sib)) = var_sm[private].
+reduc forall var_sn0:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_I_13((var_I, (var_sn0, (var_sn0, (var_sm, (var_sk, var_sib)))))) = var_I[private].
+reduc forall var_sn0:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sib_17((var_I, (var_sn0, (var_sn0, (var_sm, (var_sk, var_sib)))))) = var_sib[private].
+reduc forall var_sn0:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sk_16((var_I, (var_sn0, (var_sn0, (var_sm, (var_sk, var_sib)))))) = var_sk[private].
+reduc forall var_sn0:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sm_15((var_I, (var_sn0, (var_sn0, (var_sm, (var_sk, var_sib)))))) = var_sm[private].
+reduc forall var_sn0:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sn0_14((var_I, (var_sn0, (var_sn0, (var_sm, (var_sk, var_sib)))))) = var_sn0[private].
+reduc forall var_sn0:bitstring, var_sn1:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_I_24((var_I, (var_sn0, (var_sn1, (var_sm, (var_sk, var_sib)))))) = var_I[private].
+reduc forall var_sn0:bitstring, var_sn1:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_I_58((var_I, (var_sn1, (var_sn0, (var_sm, (var_sk, var_sib)))))) = var_I[private].
+reduc forall var_sn0:bitstring, var_sn1:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sib_29((var_I, (var_sn0, (var_sn1, (var_sm, (var_sk, var_sib)))))) = var_sib[private].
+reduc forall var_sn0:bitstring, var_sn1:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sib_63((var_I, (var_sn1, (var_sn0, (var_sm, (var_sk, var_sib)))))) = var_sib[private].
+reduc forall var_sn0:bitstring, var_sn1:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sk_28((var_I, (var_sn0, (var_sn1, (var_sm, (var_sk, var_sib)))))) = var_sk[private].
+reduc forall var_sn0:bitstring, var_sn1:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sk_62((var_I, (var_sn1, (var_sn0, (var_sm, (var_sk, var_sib)))))) = var_sk[private].
+reduc forall var_sn0:bitstring, var_sn1:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sm_27((var_I, (var_sn0, (var_sn1, (var_sm, (var_sk, var_sib)))))) = var_sm[private].
+reduc forall var_sn0:bitstring, var_sn1:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sm_61((var_I, (var_sn1, (var_sn0, (var_sm, (var_sk, var_sib)))))) = var_sm[private].
+reduc forall var_sn0:bitstring, var_sn1:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sn0_25((var_I, (var_sn0, (var_sn1, (var_sm, (var_sk, var_sib)))))) = var_sn0[private].
+reduc forall var_sn0:bitstring, var_sn1:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sn0_60((var_I, (var_sn1, (var_sn0, (var_sm, (var_sk, var_sib)))))) = var_sn0[private].
+reduc forall var_sn0:bitstring, var_sn1:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sn1_26((var_I, (var_sn0, (var_sn1, (var_sm, (var_sk, var_sib)))))) = var_sn1[private].
+reduc forall var_sn0:bitstring, var_sn1:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sn1_59((var_I, (var_sn1, (var_sn0, (var_sm, (var_sk, var_sib)))))) = var_sn1[private].
+reduc forall var_sn0:bitstring, var_sn2:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_I_36((var_I, (var_sn0, (var_sn2, (var_sm, (var_sk, var_sib)))))) = var_I[private].
+reduc forall var_sn0:bitstring, var_sn2:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sib_41((var_I, (var_sn0, (var_sn2, (var_sm, (var_sk, var_sib)))))) = var_sib[private].
+reduc forall var_sn0:bitstring, var_sn2:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sk_40((var_I, (var_sn0, (var_sn2, (var_sm, (var_sk, var_sib)))))) = var_sk[private].
+reduc forall var_sn0:bitstring, var_sn2:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sm_39((var_I, (var_sn0, (var_sn2, (var_sm, (var_sk, var_sib)))))) = var_sm[private].
+reduc forall var_sn0:bitstring, var_sn2:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sn0_37((var_I, (var_sn0, (var_sn2, (var_sm, (var_sk, var_sib)))))) = var_sn0[private].
+reduc forall var_sn0:bitstring, var_sn2:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sn2_38((var_I, (var_sn0, (var_sn2, (var_sm, (var_sk, var_sib)))))) = var_sn2[private].
+reduc forall var_sn0:bitstring, var_sn3:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_I_47((var_I, (var_sn0, (var_sn3, (var_sm, (var_sk, var_sib)))))) = var_I[private].
+reduc forall var_sn0:bitstring, var_sn3:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sib_52((var_I, (var_sn0, (var_sn3, (var_sm, (var_sk, var_sib)))))) = var_sib[private].
+reduc forall var_sn0:bitstring, var_sn3:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sk_51((var_I, (var_sn0, (var_sn3, (var_sm, (var_sk, var_sib)))))) = var_sk[private].
+reduc forall var_sn0:bitstring, var_sn3:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sm_50((var_I, (var_sn0, (var_sn3, (var_sm, (var_sk, var_sib)))))) = var_sm[private].
+reduc forall var_sn0:bitstring, var_sn3:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sn0_48((var_I, (var_sn0, (var_sn3, (var_sm, (var_sk, var_sib)))))) = var_sn0[private].
+reduc forall var_sn0:bitstring, var_sn3:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sn3_49((var_I, (var_sn0, (var_sn3, (var_sm, (var_sk, var_sib)))))) = var_sn3[private].
+reduc forall var_sn0:bitstring, var_ssign:bitstring; g_var_sn0_1((var_ssign, var_sn0)) = var_sn0[private].
+reduc forall var_sn0:bitstring, var_ssign:bitstring; g_var_ssign_0((var_ssign, var_sn0)) = var_ssign[private].
+reduc forall var_sn1:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_I_70((var_I, (var_sn1, (var_sn1, (var_sm, (var_sk, var_sib)))))) = var_I[private].
+reduc forall var_sn1:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sib_74((var_I, (var_sn1, (var_sn1, (var_sm, (var_sk, var_sib)))))) = var_sib[private].
+reduc forall var_sn1:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sk_73((var_I, (var_sn1, (var_sn1, (var_sm, (var_sk, var_sib)))))) = var_sk[private].
+reduc forall var_sn1:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sm_72((var_I, (var_sn1, (var_sn1, (var_sm, (var_sk, var_sib)))))) = var_sm[private].
+reduc forall var_sn1:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sn1_71((var_I, (var_sn1, (var_sn1, (var_sm, (var_sk, var_sib)))))) = var_sn1[private].
+reduc forall var_sn1:bitstring, var_sn2:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_I_81((var_I, (var_sn1, (var_sn2, (var_sm, (var_sk, var_sib)))))) = var_I[private].
+reduc forall var_sn1:bitstring, var_sn2:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sib_86((var_I, (var_sn1, (var_sn2, (var_sm, (var_sk, var_sib)))))) = var_sib[private].
+reduc forall var_sn1:bitstring, var_sn2:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sk_85((var_I, (var_sn1, (var_sn2, (var_sm, (var_sk, var_sib)))))) = var_sk[private].
+reduc forall var_sn1:bitstring, var_sn2:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sm_84((var_I, (var_sn1, (var_sn2, (var_sm, (var_sk, var_sib)))))) = var_sm[private].
+reduc forall var_sn1:bitstring, var_sn2:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sn1_82((var_I, (var_sn1, (var_sn2, (var_sm, (var_sk, var_sib)))))) = var_sn1[private].
+reduc forall var_sn1:bitstring, var_sn2:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sn2_83((var_I, (var_sn1, (var_sn2, (var_sm, (var_sk, var_sib)))))) = var_sn2[private].
+reduc forall var_sn1:bitstring, var_sn3:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_I_92((var_I, (var_sn1, (var_sn3, (var_sm, (var_sk, var_sib)))))) = var_I[private].
+reduc forall var_sn1:bitstring, var_sn3:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sib_97((var_I, (var_sn1, (var_sn3, (var_sm, (var_sk, var_sib)))))) = var_sib[private].
+reduc forall var_sn1:bitstring, var_sn3:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sk_96((var_I, (var_sn1, (var_sn3, (var_sm, (var_sk, var_sib)))))) = var_sk[private].
+reduc forall var_sn1:bitstring, var_sn3:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sm_95((var_I, (var_sn1, (var_sn3, (var_sm, (var_sk, var_sib)))))) = var_sm[private].
+reduc forall var_sn1:bitstring, var_sn3:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sn1_93((var_I, (var_sn1, (var_sn3, (var_sm, (var_sk, var_sib)))))) = var_sn1[private].
+reduc forall var_sn1:bitstring, var_sn3:bitstring, var_I:bitstring, var_sib:bitstring, var_sk:bitstring, var_sm:bitstring; g_var_sn3_94((var_I, (var_sn1, (var_sn3, (var_sm, (var_sk, var_sib)))))) = var_sn3[private].
+reduc forall var_sn1:bitstring, var_ssign:bitstring; g_var_sn1_3((var_ssign, var_sn1)) = var_sn1[private].
+reduc forall var_sn1:bitstring, var_ssign:bitstring; g_var_ssign_2((var_ssign, var_sn1)) = var_ssign[private].
+reduc forall var_sn2:bitstring, var_ssign:bitstring; g_var_sn2_5((var_ssign, var_sn2)) = var_sn2[private].
+reduc forall var_sn2:bitstring, var_ssign:bitstring; g_var_ssign_4((var_ssign, var_sn2)) = var_ssign[private].
+reduc forall var_sn3:bitstring, var_ssign:bitstring; g_var_sn3_7((var_ssign, var_sn3)) = var_sn3[private].
+reduc forall var_sn3:bitstring, var_ssign:bitstring; g_var_ssign_6((var_ssign, var_sn3)) = var_ssign[private].
+(*LS4_pure*)
+query I:bitstring, a1:bitstring, a2:bitstring, q:bitstring, i:time,
+      j:time;
+ ((event(eSign( I, q, a1 ))@i) && (event(eSign( I, q, a2 ))@j)) ==>
+ (i = j)
+.
+
+let rInit_Signer =
+        new I: bitstring;
+        new sd: bitstring;
+        event eStart_Signer(I);
+        insert tThr_Signer(I, sd);
+        insert tSt(I, sn0);
+        insert tRoot(I,
+                     hl(I, (ch(I, sm, ch(I, sm, ch(I, sm, prf(sd, sn0, sm)))), ch(I, sk, ch(I, sk, ch(I, sk, prf(sd, sn0, sk))))), (ch(I, sm, ch(I, sm, ch(I, sm, prf(sd, sn1, sm)))), ch(I, sk, ch(I, sk, ch(I, sk, prf(sd, sn1, sk)))))));
+        out(publicChannel, (I, hl(I, (ch(I, sm, ch(I, sm, ch(I, sm, prf(sd, sn0, sm)))), ch(I, sk, ch(I, sk, ch(I, sk, prf(sd, sn0, sk))))), (ch(I, sm, ch(I, sm, ch(I, sm, prf(sd, sn1, sm)))), ch(I, sk, ch(I, sk, ch(I, sk, prf(sd, sn1, sk)))))))).
+let rSign_q0_a0 =
+        get tSt(I, =sn0) in
+        get tThr_Signer(=I, sd) in
+        in(publicChannel, helperVar0: bitstring);
+        let (=ssign) = g_var_ssign_0(helperVar0) in
+        let (=sn0) = g_var_sn0_1(helperVar0) in
+        event eSign(I, sn0, sn0);
+        insert tSt(I, sn1);
+        out(publicChannel, (I, (sn0, (sn0, (prf(sd, sn0, sm), (ch(I, sk, ch(I, sk, ch(I, sk, prf(sd, sn0, sk)))), (ch(I, sm, ch(I, sm, ch(I, sm, prf(sd, sn1, sm)))), ch(I, sk, ch(I, sk, ch(I, sk, prf(sd, sn1, sk))))))))))).
+let rSign_q0_a1 =
+        get tSt(I, =sn0) in
+        get tThr_Signer(=I, sd) in
+        in(publicChannel, helperVar0: bitstring);
+        let (=ssign) = g_var_ssign_2(helperVar0) in
+        let (=sn1) = g_var_sn1_3(helperVar0) in
+        event eSign(I, sn0, sn1);
+        insert tSt(I, sn1);
+        out(publicChannel, (I, (sn0, (sn1, (ch(I, sm, prf(sd, sn0, sm)), (ch(I, sk, ch(I, sk, prf(sd, sn0, sk))), (ch(I, sm, ch(I, sm, ch(I, sm, prf(sd, sn1, sm)))), ch(I, sk, ch(I, sk, ch(I, sk, prf(sd, sn1, sk))))))))))).
+let rSign_q0_a2 =
+        get tSt(I, =sn0) in
+        get tThr_Signer(=I, sd) in
+        in(publicChannel, helperVar0: bitstring);
+        let (=ssign) = g_var_ssign_4(helperVar0) in
+        let (=sn2) = g_var_sn2_5(helperVar0) in
+        event eSign(I, sn0, sn2);
+        insert tSt(I, sn1);
+        out(publicChannel, (I, (sn0, (sn2, (ch(I, sm, ch(I, sm, prf(sd, sn0, sm))), (ch(I, sk, prf(sd, sn0, sk)), (ch(I, sm, ch(I, sm, ch(I, sm, prf(sd, sn1, sm)))), ch(I, sk, ch(I, sk, ch(I, sk, prf(sd, sn1, sk))))))))))).
+let rSign_q0_a3 =
+        get tSt(I, =sn0) in
+        get tThr_Signer(=I, sd) in
+        in(publicChannel, helperVar0: bitstring);
+        let (=ssign) = g_var_ssign_6(helperVar0) in
+        let (=sn3) = g_var_sn3_7(helperVar0) in
+        event eSign(I, sn0, sn3);
+        insert tSt(I, sn1);
+        out(publicChannel, (I, (sn0, (sn3, (ch(I, sm, ch(I, sm, ch(I, sm, prf(sd, sn0, sm)))), (prf(sd, sn0, sk), (ch(I, sm, ch(I, sm, ch(I, sm, prf(sd, sn1, sm)))), ch(I, sk, ch(I, sk, ch(I, sk, prf(sd, sn1, sk))))))))))).
+let rSign_q1_a0 =
+        get tSt(I, =sn1) in
+        get tThr_Signer(=I, sd) in
+        in(publicChannel, helperVar0: bitstring);
+        let (=ssign) = g_var_ssign_0(helperVar0) in
+        let (=sn0) = g_var_sn0_1(helperVar0) in
+        event eSign(I, sn1, sn0);
+        insert tSt(I, sn2);
+        out(publicChannel, (I, (sn1, (sn0, (prf(sd, sn1, sm), (ch(I, sk, ch(I, sk, ch(I, sk, prf(sd, sn1, sk)))), (ch(I, sm, ch(I, sm, ch(I, sm, prf(sd, sn0, sm)))), ch(I, sk, ch(I, sk, ch(I, sk, prf(sd, sn0, sk))))))))))).
+let rSign_q1_a1 =
+        get tSt(I, =sn1) in
+        get tThr_Signer(=I, sd) in
+        in(publicChannel, helperVar0: bitstring);
+        let (=ssign) = g_var_ssign_2(helperVar0) in
+        let (=sn1) = g_var_sn1_3(helperVar0) in
+        event eSign(I, sn1, sn1);
+        insert tSt(I, sn2);
+        out(publicChannel, (I, (sn1, (sn1, (ch(I, sm, prf(sd, sn1, sm)), (ch(I, sk, ch(I, sk, prf(sd, sn1, sk))), (ch(I, sm, ch(I, sm, ch(I, sm, prf(sd, sn0, sm)))), ch(I, sk, ch(I, sk, ch(I, sk, prf(sd, sn0, sk))))))))))).
+let rSign_q1_a2 =
+        get tSt(I, =sn1) in
+        get tThr_Signer(=I, sd) in
+        in(publicChannel, helperVar0: bitstring);
+        let (=ssign) = g_var_ssign_4(helperVar0) in
+        let (=sn2) = g_var_sn2_5(helperVar0) in
+        event eSign(I, sn1, sn2);
+        insert tSt(I, sn2);
+        out(publicChannel, (I, (sn1, (sn2, (ch(I, sm, ch(I, sm, prf(sd, sn1, sm))), (ch(I, sk, prf(sd, sn1, sk)), (ch(I, sm, ch(I, sm, ch(I, sm, prf(sd, sn0, sm)))), ch(I, sk, ch(I, sk, ch(I, sk, prf(sd, sn0, sk))))))))))).
+let rSign_q1_a3 =
+        get tSt(I, =sn1) in
+        get tThr_Signer(=I, sd) in
+        in(publicChannel, helperVar0: bitstring);
+        let (=ssign) = g_var_ssign_6(helperVar0) in
+        let (=sn3) = g_var_sn3_7(helperVar0) in
+        event eSign(I, sn1, sn3);
+        insert tSt(I, sn2);
+        out(publicChannel, (I, (sn1, (sn3, (ch(I, sm, ch(I, sm, ch(I, sm, prf(sd, sn1, sm)))), (prf(sd, sn1, sk), (ch(I, sm, ch(I, sm, ch(I, sm, prf(sd, sn0, sm)))), ch(I, sk, ch(I, sk, ch(I, sk, prf(sd, sn0, sk))))))))))).
+let rLeak_RevealSeed =
+        get tThr_Signer(I, sd) in
+        event eRevealSeed(I);
+        out(publicChannel, sd).
+let rVerify_q0_a0 =
+        get tRoot(I, helperVar0) in
+        let (=I) = g_var_I_8(helperVar0) in
+        let (=sm) = g_var_sm_9(helperVar0) in
+        let sm = g_var_sm_10(helperVar0) in
+        let sk = g_var_sk_11(helperVar0) in
+        let sib = g_var_sib_12(helperVar0) in
+        in(publicChannel, helperVar1: bitstring);
+        let (=I) = g_var_I_13(helperVar1) in
+        let (=sn0) = g_var_sn0_14(helperVar1) in
+        let (=sm) = g_var_sm_15(helperVar1) in
+        let (=sk) = g_var_sk_16(helperVar1) in
+        let (=sib) = g_var_sib_17(helperVar1) in
+        event eAccept(I, sn0, sn0).
+let rVerify_q0_a1 =
+        get tRoot(I, helperVar0) in
+        let (=I) = g_var_I_18(helperVar0) in
+        let (=sm) = g_var_sm_19(helperVar0) in
+        let sm = g_var_sm_20(helperVar0) in
+        let (=sk) = g_var_sk_21(helperVar0) in
+        let sk = g_var_sk_22(helperVar0) in
+        let sib = g_var_sib_23(helperVar0) in
+        in(publicChannel, helperVar1: bitstring);
+        let (=I) = g_var_I_24(helperVar1) in
+        let (=sn0) = g_var_sn0_25(helperVar1) in
+        let (=sn1) = g_var_sn1_26(helperVar1) in
+        let (=sm) = g_var_sm_27(helperVar1) in
+        let (=sk) = g_var_sk_28(helperVar1) in
+        let (=sib) = g_var_sib_29(helperVar1) in
+        event eAccept(I, sn0, sn1).
+let rVerify_q0_a2 =
+        get tRoot(I, helperVar0) in
+        let (=I) = g_var_I_30(helperVar0) in
+        let (=sm) = g_var_sm_31(helperVar0) in
+        let sm = g_var_sm_32(helperVar0) in
+        let (=sk) = g_var_sk_33(helperVar0) in
+        let sk = g_var_sk_34(helperVar0) in
+        let sib = g_var_sib_35(helperVar0) in
+        in(publicChannel, helperVar1: bitstring);
+        let (=I) = g_var_I_36(helperVar1) in
+        let (=sn0) = g_var_sn0_37(helperVar1) in
+        let (=sn2) = g_var_sn2_38(helperVar1) in
+        let (=sm) = g_var_sm_39(helperVar1) in
+        let (=sk) = g_var_sk_40(helperVar1) in
+        let (=sib) = g_var_sib_41(helperVar1) in
+        event eAccept(I, sn0, sn2).
+let rVerify_q0_a3 =
+        get tRoot(I, helperVar0) in
+        let (=I) = g_var_I_42(helperVar0) in
+        let sm = g_var_sm_43(helperVar0) in
+        let (=sk) = g_var_sk_44(helperVar0) in
+        let sk = g_var_sk_45(helperVar0) in
+        let sib = g_var_sib_46(helperVar0) in
+        in(publicChannel, helperVar1: bitstring);
+        let (=I) = g_var_I_47(helperVar1) in
+        let (=sn0) = g_var_sn0_48(helperVar1) in
+        let (=sn3) = g_var_sn3_49(helperVar1) in
+        let (=sm) = g_var_sm_50(helperVar1) in
+        let (=sk) = g_var_sk_51(helperVar1) in
+        let (=sib) = g_var_sib_52(helperVar1) in
+        event eAccept(I, sn0, sn3).
+let rVerify_q1_a0 =
+        get tRoot(I, helperVar0) in
+        let (=I) = g_var_I_53(helperVar0) in
+        let sib = g_var_sib_54(helperVar0) in
+        let (=sm) = g_var_sm_55(helperVar0) in
+        let sm = g_var_sm_56(helperVar0) in
+        let sk = g_var_sk_57(helperVar0) in
+        in(publicChannel, helperVar1: bitstring);
+        let (=I) = g_var_I_58(helperVar1) in
+        let (=sn1) = g_var_sn1_59(helperVar1) in
+        let (=sn0) = g_var_sn0_60(helperVar1) in
+        let (=sm) = g_var_sm_61(helperVar1) in
+        let (=sk) = g_var_sk_62(helperVar1) in
+        let (=sib) = g_var_sib_63(helperVar1) in
+        event eAccept(I, sn1, sn0).
+let rVerify_q1_a1 =
+        get tRoot(I, helperVar0) in
+        let (=I) = g_var_I_64(helperVar0) in
+        let sib = g_var_sib_65(helperVar0) in
+        let (=sm) = g_var_sm_66(helperVar0) in
+        let sm = g_var_sm_67(helperVar0) in
+        let (=sk) = g_var_sk_68(helperVar0) in
+        let sk = g_var_sk_69(helperVar0) in
+        in(publicChannel, helperVar1: bitstring);
+        let (=I) = g_var_I_70(helperVar1) in
+        let (=sn1) = g_var_sn1_71(helperVar1) in
+        let (=sm) = g_var_sm_72(helperVar1) in
+        let (=sk) = g_var_sk_73(helperVar1) in
+        let (=sib) = g_var_sib_74(helperVar1) in
+        event eAccept(I, sn1, sn1).
+let rVerify_q1_a2 =
+        get tRoot(I, helperVar0) in
+        let (=I) = g_var_I_75(helperVar0) in
+        let sib = g_var_sib_76(helperVar0) in
+        let (=sm) = g_var_sm_77(helperVar0) in
+        let sm = g_var_sm_78(helperVar0) in
+        let (=sk) = g_var_sk_79(helperVar0) in
+        let sk = g_var_sk_80(helperVar0) in
+        in(publicChannel, helperVar1: bitstring);
+        let (=I) = g_var_I_81(helperVar1) in
+        let (=sn1) = g_var_sn1_82(helperVar1) in
+        let (=sn2) = g_var_sn2_83(helperVar1) in
+        let (=sm) = g_var_sm_84(helperVar1) in
+        let (=sk) = g_var_sk_85(helperVar1) in
+        let (=sib) = g_var_sib_86(helperVar1) in
+        event eAccept(I, sn1, sn2).
+let rVerify_q1_a3 =
+        get tRoot(I, helperVar0) in
+        let (=I) = g_var_I_87(helperVar0) in
+        let sib = g_var_sib_88(helperVar0) in
+        let sm = g_var_sm_89(helperVar0) in
+        let (=sk) = g_var_sk_90(helperVar0) in
+        let sk = g_var_sk_91(helperVar0) in
+        in(publicChannel, helperVar1: bitstring);
+        let (=I) = g_var_I_92(helperVar1) in
+        let (=sn1) = g_var_sn1_93(helperVar1) in
+        let (=sn3) = g_var_sn3_94(helperVar1) in
+        let (=sm) = g_var_sm_95(helperVar1) in
+        let (=sk) = g_var_sk_96(helperVar1) in
+        let (=sib) = g_var_sib_97(helperVar1) in
+        event eAccept(I, sn1, sn3).
+process
+    ( !(rInit_Signer) | !(rSign_q0_a0) | !(rSign_q0_a1) | !(rSign_q0_a2) | !(rSign_q0_a3) | !(rSign_q1_a0) | !(rSign_q1_a1) | !(rSign_q1_a2) | !(rSign_q1_a3) | !(rLeak_RevealSeed) | !(rVerify_q0_a0) | !(rVerify_q0_a1) | !(rVerify_q0_a2) | !(rVerify_q0_a3) | !(rVerify_q1_a0) | !(rVerify_q1_a1) | !(rVerify_q1_a2) | !(rVerify_q1_a3) )
+
+(*
+All wellformedness checks were successful.
+*)
+
+(*
+Generated from:
+Tamarin version 1.12.0
+Maude version 3.5.1
+Git revision: 82780bbaf3328a45f624ddb41e51bf75425f851c (with uncommited changes), branch: master
+Compiled at: 2026-03-07 14:22:39.174278293 UTC
+*)

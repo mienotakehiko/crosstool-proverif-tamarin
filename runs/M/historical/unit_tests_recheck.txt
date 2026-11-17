@@ -1,0 +1,4 @@
+2026-11-16 static-source test re-execution in isolated workspace (not historic logs):
+python -B tests/test_al.py -> 37/37 tests passed; exit=0
+python -B tests/test_correspondence_guards.py -> 9 tests OK; exit=0
+NOTE: Neither is proof of 24 historical Diagnosis v1.1 tests.

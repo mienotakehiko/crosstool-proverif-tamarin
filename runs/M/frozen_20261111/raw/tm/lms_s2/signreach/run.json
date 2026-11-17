@@ -1,0 +1,38 @@
+{
+  "command": [
+    "/usr/local/bin/tamarin-prover",
+    "--prove=prospective_signreach",
+    "--derivcheck-timeout=0",
+    "/redacted-home/workspace/revision_20261111/mutations/tm/lms_s2.spthy",
+    "+RTS",
+    "-N1",
+    "-M400m",
+    "-RTS"
+  ],
+  "started_utc": "2026-11-11T03:12:48.622300+00:00",
+  "elapsed_s": 3.451,
+  "rc": 0,
+  "stop_reason": null,
+  "time_limit_s": 30,
+  "peak_group_rss_kib": 141428,
+  "rss_samples": [
+    [
+      0.002,
+      3700
+    ],
+    [
+      1.018,
+      68200
+    ],
+    [
+      2.035,
+      102004
+    ],
+    [
+      3.047,
+      129792
+    ]
+  ],
+  "raw_file": "raw/tm/lms_s2/signreach/raw.out",
+  "raw_sha256": "5dd035dd878bbae21e3e0e3fc779aefe7fca0e542c7599633b882e073e8169bc"
+}

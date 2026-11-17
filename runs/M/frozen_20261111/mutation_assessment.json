@@ -1,0 +1,312 @@
+[
+  {
+    "seed": "lmots",
+    "operator": "event_accept_argument",
+    "different_queries": [
+      "LS1_unforge",
+      "forge"
+    ],
+    "ordinary_different_queries": [
+      "LS1_unforge",
+      "forge"
+    ],
+    "detected": true,
+    "input_guard_instrumentation_only": false,
+    "undetermined_queries": [],
+    "classification": "detected"
+  },
+  {
+    "seed": "lmots",
+    "operator": "event_sign_argument",
+    "different_queries": [
+      "LS1_unforge",
+      "forge"
+    ],
+    "ordinary_different_queries": [
+      "LS1_unforge",
+      "forge"
+    ],
+    "detected": true,
+    "input_guard_instrumentation_only": false,
+    "undetermined_queries": [],
+    "classification": "detected"
+  },
+  {
+    "seed": "lmots",
+    "operator": "remove_reveal_event",
+    "different_queries": [
+      "revealreach",
+      "seed_without_reveal"
+    ],
+    "ordinary_different_queries": [
+      "revealreach",
+      "seed_without_reveal"
+    ],
+    "detected": true,
+    "input_guard_instrumentation_only": false,
+    "undetermined_queries": [],
+    "classification": "detected"
+  },
+  {
+    "seed": "lmots",
+    "operator": "replicate_signer",
+    "different_queries": [
+      "LS1_unforge",
+      "forge"
+    ],
+    "ordinary_different_queries": [
+      "LS1_unforge",
+      "forge"
+    ],
+    "detected": true,
+    "input_guard_instrumentation_only": false,
+    "undetermined_queries": [],
+    "classification": "detected"
+  },
+  {
+    "seed": "lmots",
+    "operator": "disable_signer",
+    "different_queries": [
+      "acceptreach",
+      "signreach",
+      "exec_accept"
+    ],
+    "ordinary_different_queries": [
+      "acceptreach",
+      "signreach",
+      "exec_accept"
+    ],
+    "detected": true,
+    "input_guard_instrumentation_only": false,
+    "undetermined_queries": [],
+    "classification": "detected"
+  },
+  {
+    "seed": "lmots",
+    "operator": "disable_accept",
+    "different_queries": [
+      "acceptreach",
+      "exec_accept"
+    ],
+    "ordinary_different_queries": [
+      "acceptreach",
+      "exec_accept"
+    ],
+    "detected": true,
+    "input_guard_instrumentation_only": false,
+    "undetermined_queries": [],
+    "classification": "detected"
+  },
+  {
+    "seed": "lmots",
+    "operator": "unguarded_reveal",
+    "different_queries": [
+      "reveal_guarded"
+    ],
+    "ordinary_different_queries": [],
+    "detected": true,
+    "input_guard_instrumentation_only": true,
+    "undetermined_queries": [],
+    "classification": "detected"
+  },
+  {
+    "seed": "lmots",
+    "operator": "wrong_public_key",
+    "different_queries": [
+      "acceptreach",
+      "exec_accept"
+    ],
+    "ordinary_different_queries": [
+      "acceptreach",
+      "exec_accept"
+    ],
+    "detected": true,
+    "input_guard_instrumentation_only": false,
+    "undetermined_queries": [],
+    "classification": "detected"
+  },
+  {
+    "seed": "lmots",
+    "operator": "private_to_public",
+    "different_queries": [
+      "prf_public_probe"
+    ],
+    "ordinary_different_queries": [
+      "prf_public_probe"
+    ],
+    "detected": true,
+    "input_guard_instrumentation_only": false,
+    "undetermined_queries": [],
+    "classification": "detected"
+  },
+  {
+    "seed": "lmots",
+    "operator": "reveal_wrong_secret",
+    "different_queries": [
+      "seedreach"
+    ],
+    "ordinary_different_queries": [
+      "seedreach"
+    ],
+    "detected": true,
+    "input_guard_instrumentation_only": false,
+    "undetermined_queries": [],
+    "classification": "detected"
+  },
+  {
+    "seed": "lms_s2",
+    "operator": "event_accept_argument",
+    "different_queries": [
+      "LS1",
+      "LS3_forge"
+    ],
+    "ordinary_different_queries": [
+      "LS1",
+      "LS3_forge"
+    ],
+    "detected": true,
+    "input_guard_instrumentation_only": false,
+    "undetermined_queries": [],
+    "classification": "detected"
+  },
+  {
+    "seed": "lms_s2",
+    "operator": "event_sign_argument",
+    "different_queries": [
+      "LS1",
+      "LS3_forge"
+    ],
+    "ordinary_different_queries": [
+      "LS1",
+      "LS3_forge"
+    ],
+    "detected": true,
+    "input_guard_instrumentation_only": false,
+    "undetermined_queries": [],
+    "classification": "detected"
+  },
+  {
+    "seed": "lms_s2",
+    "operator": "remove_reveal_event",
+    "different_queries": [
+      "revealreach",
+      "seed_without_reveal"
+    ],
+    "ordinary_different_queries": [
+      "revealreach",
+      "seed_without_reveal"
+    ],
+    "detected": true,
+    "input_guard_instrumentation_only": false,
+    "undetermined_queries": [],
+    "classification": "detected"
+  },
+  {
+    "seed": "lms_s2",
+    "operator": "replicate_signer",
+    "different_queries": [
+      "LS4_pure",
+      "LS1",
+      "LS3_forge"
+    ],
+    "ordinary_different_queries": [
+      "LS4_pure",
+      "LS1",
+      "LS3_forge"
+    ],
+    "detected": true,
+    "input_guard_instrumentation_only": false,
+    "undetermined_queries": [],
+    "classification": "detected"
+  },
+  {
+    "seed": "lms_s2",
+    "operator": "disable_signer",
+    "different_queries": [
+      "acceptreach",
+      "signreach",
+      "exec"
+    ],
+    "ordinary_different_queries": [
+      "acceptreach",
+      "signreach",
+      "exec"
+    ],
+    "detected": true,
+    "input_guard_instrumentation_only": false,
+    "undetermined_queries": [],
+    "classification": "detected"
+  },
+  {
+    "seed": "lms_s2",
+    "operator": "disable_accept",
+    "different_queries": [
+      "acceptreach",
+      "exec"
+    ],
+    "ordinary_different_queries": [
+      "acceptreach",
+      "exec"
+    ],
+    "detected": true,
+    "input_guard_instrumentation_only": false,
+    "undetermined_queries": [],
+    "classification": "detected"
+  },
+  {
+    "seed": "lms_s2",
+    "operator": "unguarded_reveal",
+    "different_queries": [
+      "reveal_guarded"
+    ],
+    "ordinary_different_queries": [],
+    "detected": true,
+    "input_guard_instrumentation_only": true,
+    "undetermined_queries": [],
+    "classification": "detected"
+  },
+  {
+    "seed": "lms_s2",
+    "operator": "wrong_public_key",
+    "different_queries": [
+      "acceptreach",
+      "exec"
+    ],
+    "ordinary_different_queries": [
+      "acceptreach",
+      "exec"
+    ],
+    "detected": true,
+    "input_guard_instrumentation_only": false,
+    "undetermined_queries": [],
+    "classification": "detected"
+  },
+  {
+    "seed": "lms_s2",
+    "operator": "private_to_public",
+    "different_queries": [
+      "prf_public_probe"
+    ],
+    "ordinary_different_queries": [
+      "prf_public_probe"
+    ],
+    "detected": true,
+    "input_guard_instrumentation_only": false,
+    "undetermined_queries": [],
+    "classification": "detected"
+  },
+  {
+    "seed": "lms_s2",
+    "operator": "reveal_wrong_secret",
+    "different_queries": [
+      "seedreach"
+    ],
+    "ordinary_different_queries": [
+      "seedreach"
+    ],
+    "detected": true,
+    "input_guard_instrumentation_only": false,
+    "undetermined_queries": [],
+    "classification": "detected"
+  }
+]

@@ -1,0 +1,139 @@
+maude tool: 'maude'
+ checking version: 3.5.1. OK.
+ checking installation: OK.
+[Theory LMOTS_T_base] Theory loaded
+[Theory LMOTS_T_base] Theory translated
+[Theory LMOTS_T_base] Theory closed
+[Saturating Sources] Step 1 (Max 5)
+[Saturating Sources] Done
+theory LMOTS_T_base
+
+begin
+
+// Function signature and definition of the equational theory E
+
+functions: ch/3, fst/1, pair/2, prf/2[private,constructor], snd/1
+equations: fst(<x.1, x.2>) = x.1, snd(<x.1, x.2>) = x.2
+
+/* looping facts with injective instances: St/2 */
+
+rule (modulo E) Init_Signer:
+   [ Fr( ~I ), Fr( ~sd ) ]
+  --[ Start_Signer( ~I ) ]->
+   [
+   !Thr_Signer( ~I, ~sd ), St( ~I, 'n0' ),
+   !Pk( ~I,
+        <ch(~I, 'm', ch(~I, 'm', ch(~I, 'm', prf(~sd, 'm')))), 
+         ch(~I, 'k', ch(~I, 'k', ch(~I, 'k', prf(~sd, 'k'))))>
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q0_a0:
+   [ St( I, 'n0' ), !Thr_Signer( I, sd ), In( <'sign', 'n0'> ) ]
+  --[ Sign( I, 'n0' ) ]->
+   [ St( I, 'n1' ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q0_a1:
+   [ St( I, 'n0' ), !Thr_Signer( I, sd ), In( <'sign', 'n1'> ) ]
+  --[ Sign( I, 'n1' ) ]->
+   [ St( I, 'n1' ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q0_a2:
+   [ St( I, 'n0' ), !Thr_Signer( I, sd ), In( <'sign', 'n2'> ) ]
+  --[ Sign( I, 'n2' ) ]->
+   [ St( I, 'n1' ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q0_a3:
+   [ St( I, 'n0' ), !Thr_Signer( I, sd ), In( <'sign', 'n3'> ) ]
+  --[ Sign( I, 'n3' ) ]->
+   [ St( I, 'n1' ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Leak_RevealSeed:
+   [ !Thr_Signer( I, sd ) ] --[ RevealSeed( I ) ]-> [ Out( sd ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_a0:
+   [
+   !Pk( I, <ch(I, 'm', ch(I, 'm', ch(I, 'm', sm))), sk> ),
+   In( <I, 'n0', sm, sk> )
+   ]
+  --[ Accept( I, 'n0' ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_a1:
+   [
+   !Pk( I, <ch(I, 'm', ch(I, 'm', sm)), ch(I, 'k', sk)> ),
+   In( <I, 'n1', sm, sk> )
+   ]
+  --[ Accept( I, 'n1' ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_a2:
+   [
+   !Pk( I, <ch(I, 'm', sm), ch(I, 'k', ch(I, 'k', sk))> ),
+   In( <I, 'n2', sm, sk> )
+   ]
+  --[ Accept( I, 'n2' ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_a3:
+   [
+   !Pk( I, <sm, ch(I, 'k', ch(I, 'k', ch(I, 'k', sk)))> ),
+   In( <I, 'n3', sm, sk> )
+   ]
+  --[ Accept( I, 'n3' ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+lemma reveal_reachable:
+  exists-trace "∃ I #e0. RevealSeed( I ) @ #e0"
+/*
+guarded formula characterizing all satisfying traces:
+"∃ I #e0. (RevealSeed( I ) @ #e0)"
+*/
+simplify
+solve( !Thr_Signer( I, sd ) ▶₀ #e0 )
+  case Init_Signer
+  SOLVED // trace found
+qed
+
+/* All wellformedness checks were successful. */
+
+/*
+Generated from:
+Tamarin version 1.12.0
+Maude version 3.5.1
+Git revision: 82780bbaf3328a45f624ddb41e51bf75425f851c (with uncommited changes), branch: master
+Compiled at: 2026-03-07 14:22:39.174278293 UTC
+*/
+
+end
+
+==============================================================================
+summary of summaries:
+
+analyzed: /redacted-home/workspace/audit_20261028/mutation_extension_20261029/unpublished_identity/model.spthy
+
+  processing time: 0.08s
+  
+  reveal_reachable (exists-trace): verified (3 steps)
+
+==============================================================================

@@ -1,0 +1,415 @@
+maude tool: 'maude'
+ checking version: 3.5.1. OK.
+ checking installation: OK.
+[Theory LMS_S2_T_base] Theory loaded
+[Theory LMS_S2_T_base] Theory translated
+[Theory LMS_S2_T_base] Theory closed
+[Saturating Sources] Step 1 (Max 5)
+[Saturating Sources] Done
+theory LMS_S2_T_base
+
+begin
+
+// Function signature and definition of the equational theory E
+
+functions: ch/3, fst/1, hl/3, pair/2, prf/3[private,constructor], snd/1
+equations: fst(<x.1, x.2>) = x.1, snd(<x.1, x.2>) = x.2
+
+/* looping facts with injective instances: St/2 */
+
+rule (modulo E) Init_Signer:
+   [ Fr( ~I ), Fr( ~sd ) ]
+  --[ Start_Signer( ~I ), AuditSeed( ~I, ~sd ) ]->
+   [
+   !Thr_Signer( ~I, ~sd ), St( ~I, 'n0' ),
+   !Root( ~I,
+          hl(~I,
+             <ch(~I, 'm', ch(~I, 'm', ch(~I, 'm', prf(~sd, 'n0', 'm')))), 
+              ch(~I, 'k', ch(~I, 'k', ch(~I, 'k', prf(~sd, 'n0', 'k'))))>,
+             <ch(~I, 'm', ch(~I, 'm', ch(~I, 'm', prf(~sd, 'n1', 'm')))), 
+              ch(~I, 'k', ch(~I, 'k', ch(~I, 'k', prf(~sd, 'n1', 'k'))))>)
+   ),
+   Out( <~I, 
+         hl(~I,
+            <ch(~I, 'm', ch(~I, 'm', ch(~I, 'm', prf(~sd, 'n0', 'm')))), 
+             ch(~I, 'k', ch(~I, 'k', ch(~I, 'k', prf(~sd, 'n0', 'k'))))>,
+            <ch(~I, 'm', ch(~I, 'm', ch(~I, 'm', prf(~sd, 'n1', 'm')))), 
+             ch(~I, 'k', ch(~I, 'k', ch(~I, 'k', prf(~sd, 'n1', 'k'))))>)
+        >
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q0_a0:
+   [ St( I, 'n0' ), !Thr_Signer( I, sd ), In( <'sign', 'n0'> ) ]
+  --[ Sign( I, 'n0', 'n0' ) ]->
+   [
+   St( I, 'n1' ),
+   Out( <I, 'n0', 'n0', prf(sd, 'n0', 'm'), 
+         ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, 'n0', 'k')))), 
+         ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, 'n1', 'm')))), 
+         ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, 'n1', 'k'))))>
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q0_a1:
+   [ St( I, 'n0' ), !Thr_Signer( I, sd ), In( <'sign', 'n1'> ) ]
+  --[ Sign( I, 'n0', 'n1' ) ]->
+   [
+   St( I, 'n1' ),
+   Out( <I, 'n0', 'n1', ch(I, 'm', prf(sd, 'n0', 'm')), 
+         ch(I, 'k', ch(I, 'k', prf(sd, 'n0', 'k'))), 
+         ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, 'n1', 'm')))), 
+         ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, 'n1', 'k'))))>
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q0_a2:
+   [ St( I, 'n0' ), !Thr_Signer( I, sd ), In( <'sign', 'n2'> ) ]
+  --[ Sign( I, 'n0', 'n2' ) ]->
+   [
+   St( I, 'n1' ),
+   Out( <I, 'n0', 'n2', ch(I, 'm', ch(I, 'm', prf(sd, 'n0', 'm'))), 
+         ch(I, 'k', prf(sd, 'n0', 'k')), 
+         ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, 'n1', 'm')))), 
+         ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, 'n1', 'k'))))>
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q0_a3:
+   [ St( I, 'n0' ), !Thr_Signer( I, sd ), In( <'sign', 'n3'> ) ]
+  --[ Sign( I, 'n0', 'n3' ) ]->
+   [
+   St( I, 'n1' ),
+   Out( <I, 'n0', 'n3', 
+         ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, 'n0', 'm')))), 
+         prf(sd, 'n0', 'k'), 
+         ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, 'n1', 'm')))), 
+         ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, 'n1', 'k'))))>
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q1_a0:
+   [ St( I, 'n1' ), !Thr_Signer( I, sd ), In( <'sign', 'n0'> ) ]
+  --[ Sign( I, 'n1', 'n0' ) ]->
+   [
+   St( I, 'n2' ),
+   Out( <I, 'n1', 'n0', prf(sd, 'n1', 'm'), 
+         ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, 'n1', 'k')))), 
+         ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, 'n0', 'm')))), 
+         ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, 'n0', 'k'))))>
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q1_a1:
+   [ St( I, 'n1' ), !Thr_Signer( I, sd ), In( <'sign', 'n1'> ) ]
+  --[ Sign( I, 'n1', 'n1' ) ]->
+   [
+   St( I, 'n2' ),
+   Out( <I, 'n1', 'n1', ch(I, 'm', prf(sd, 'n1', 'm')), 
+         ch(I, 'k', ch(I, 'k', prf(sd, 'n1', 'k'))), 
+         ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, 'n0', 'm')))), 
+         ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, 'n0', 'k'))))>
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q1_a2:
+   [ St( I, 'n1' ), !Thr_Signer( I, sd ), In( <'sign', 'n2'> ) ]
+  --[ Sign( I, 'n1', 'n2' ) ]->
+   [
+   St( I, 'n2' ),
+   Out( <I, 'n1', 'n2', ch(I, 'm', ch(I, 'm', prf(sd, 'n1', 'm'))), 
+         ch(I, 'k', prf(sd, 'n1', 'k')), 
+         ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, 'n0', 'm')))), 
+         ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, 'n0', 'k'))))>
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Sign_q1_a3:
+   [ St( I, 'n1' ), !Thr_Signer( I, sd ), In( <'sign', 'n3'> ) ]
+  --[ Sign( I, 'n1', 'n3' ) ]->
+   [
+   St( I, 'n2' ),
+   Out( <I, 'n1', 'n3', 
+         ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, 'n1', 'm')))), 
+         prf(sd, 'n1', 'k'), 
+         ch(I, 'm', ch(I, 'm', ch(I, 'm', prf(sd, 'n0', 'm')))), 
+         ch(I, 'k', ch(I, 'k', ch(I, 'k', prf(sd, 'n0', 'k'))))>
+   )
+   ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Leak_RevealSeed:
+   [ !Thr_Signer( I, sd ), In( I ) ]
+  --[ AuditGuard( I ) ]->
+   [ PendingReveal( I, sd ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Audit_Reveal:
+   [ PendingReveal( I, sd ) ] --[ RevealSeed( I ) ]-> [ Out( sd ) ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_q0_a0:
+   [
+   !Root( I, hl(I, <ch(I, 'm', ch(I, 'm', ch(I, 'm', sm))), sk>, sib) ),
+   In( <I, 'n0', 'n0', sm, sk, sib> )
+   ]
+  --[ Accept( I, 'n0', 'n0' ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_q0_a1:
+   [
+   !Root( I, hl(I, <ch(I, 'm', ch(I, 'm', sm)), ch(I, 'k', sk)>, sib) ),
+   In( <I, 'n0', 'n1', sm, sk, sib> )
+   ]
+  --[ Accept( I, 'n0', 'n1' ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_q0_a2:
+   [
+   !Root( I, hl(I, <ch(I, 'm', sm), ch(I, 'k', ch(I, 'k', sk))>, sib) ),
+   In( <I, 'n0', 'n2', sm, sk, sib> )
+   ]
+  --[ Accept( I, 'n0', 'n2' ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_q0_a3:
+   [
+   !Root( I, hl(I, <sm, ch(I, 'k', ch(I, 'k', ch(I, 'k', sk)))>, sib) ),
+   In( <I, 'n0', 'n3', sm, sk, sib> )
+   ]
+  --[ Accept( I, 'n0', 'n3' ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_q1_a0:
+   [
+   !Root( I, hl(I, sib, <ch(I, 'm', ch(I, 'm', ch(I, 'm', sm))), sk>) ),
+   In( <I, 'n1', 'n0', sm, sk, sib> )
+   ]
+  --[ Accept( I, 'n1', 'n0' ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_q1_a1:
+   [
+   !Root( I, hl(I, sib, <ch(I, 'm', ch(I, 'm', sm)), ch(I, 'k', sk)>) ),
+   In( <I, 'n1', 'n1', sm, sk, sib> )
+   ]
+  --[ Accept( I, 'n1', 'n1' ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_q1_a2:
+   [
+   !Root( I, hl(I, sib, <ch(I, 'm', sm), ch(I, 'k', ch(I, 'k', sk))>) ),
+   In( <I, 'n1', 'n2', sm, sk, sib> )
+   ]
+  --[ Accept( I, 'n1', 'n2' ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+rule (modulo E) Verify_q1_a3:
+   [
+   !Root( I, hl(I, sib, <sm, ch(I, 'k', ch(I, 'k', ch(I, 'k', sk)))>) ),
+   In( <I, 'n1', 'n3', sm, sk, sib> )
+   ]
+  --[ Accept( I, 'n1', 'n3' ) ]->
+   [ ]
+
+  /* has exactly the trivial AC variant */
+
+lemma exec:
+  exists-trace
+  "∃ I q a #e0 #e1.
+    ((Sign( I, q, a ) @ #e0) ∧ (Accept( I, q, a ) @ #e1)) ∧
+    (¬(∃ #n0. RevealSeed( I ) @ #n0))"
+/*
+guarded formula characterizing all satisfying traces:
+"∃ I q a #e0 #e1.
+  (Sign( I, q, a ) @ #e0) ∧ (Accept( I, q, a ) @ #e1)
+ ∧
+  ∀ #n0. (RevealSeed( I ) @ #n0) ⇒ ⊥"
+*/
+by sorry
+
+lemma LS4_pure [use_induction]:
+  all-traces
+  "∀ I q a1 a2 #i #j.
+    ((Sign( I, q, a1 ) @ #i) ∧ (Sign( I, q, a2 ) @ #j)) ⇒ (#i = #j)"
+/*
+guarded formula characterizing all counter-examples:
+"∃ I q a1 a2 #i #j.
+  (Sign( I, q, a1 ) @ #i) ∧ (Sign( I, q, a2 ) @ #j) ∧ ¬(#i = #j)"
+*/
+by sorry
+
+lemma LS4 [use_induction]:
+  all-traces
+  "∀ I q a1 a2 #i #j.
+    ((Sign( I, q, a1 ) @ #i) ∧ (Sign( I, q, a2 ) @ #j)) ⇒ (#i = #j)"
+/*
+guarded formula characterizing all counter-examples:
+"∃ I q a1 a2 #i #j.
+  (Sign( I, q, a1 ) @ #i) ∧ (Sign( I, q, a2 ) @ #j) ∧ ¬(#i = #j)"
+*/
+by sorry
+
+lemma LS1:
+  all-traces
+  "∀ I q a #k.
+    (Accept( I, q, a ) @ #k) ⇒
+    ((∃ #c0_0. Sign( I, q, a ) @ #c0_0) ∨
+     (∃ #c1_0. RevealSeed( I ) @ #c1_0))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ I q a #k.
+  (Accept( I, q, a ) @ #k)
+ ∧
+  (∀ #c0_0. (Sign( I, q, a ) @ #c0_0) ⇒ ⊥) ∧
+  (∀ #c1_0. (RevealSeed( I ) @ #c1_0) ⇒ ⊥)"
+*/
+by sorry
+
+lemma LS3_forge:
+  exists-trace
+  "∃ I q a #e0.
+    ((Accept( I, q, a ) @ #e0) ∧ (¬(∃ #n0. Sign( I, q, a ) @ #n0))) ∧
+    (¬(∃ #n1. RevealSeed( I ) @ #n1))"
+/*
+guarded formula characterizing all satisfying traces:
+"∃ I q a #e0.
+  (Accept( I, q, a ) @ #e0)
+ ∧
+  (∀ #n0. (Sign( I, q, a ) @ #n0) ⇒ ⊥) ∧
+  (∀ #n1. (RevealSeed( I ) @ #n1) ⇒ ⊥)"
+*/
+by sorry
+
+lemma prospective_acceptreach:
+  exists-trace "∃ I q a #i. Accept( I, q, a ) @ #i"
+/*
+guarded formula characterizing all satisfying traces:
+"∃ I q a #i. (Accept( I, q, a ) @ #i)"
+*/
+by sorry
+
+lemma prospective_signreach:
+  exists-trace "∃ I q a #i. Sign( I, q, a ) @ #i"
+/*
+guarded formula characterizing all satisfying traces:
+"∃ I q a #i. (Sign( I, q, a ) @ #i)"
+*/
+by sorry
+
+lemma prospective_revealreach:
+  exists-trace "∃ I #i. RevealSeed( I ) @ #i"
+/*
+guarded formula characterizing all satisfying traces:
+"∃ I #i. (RevealSeed( I ) @ #i)"
+*/
+by sorry
+
+lemma prospective_seedreach:
+  exists-trace "∃ I s #i #j. (AuditSeed( I, s ) @ #i) ∧ (K( s ) @ #j)"
+/*
+guarded formula characterizing all satisfying traces:
+"∃ I s #i #j. (AuditSeed( I, s ) @ #i) ∧ (K( s ) @ #j)"
+*/
+by sorry
+
+lemma prospective_seed_without_reveal:
+  all-traces
+  "∀ I s #i #j.
+    ((AuditSeed( I, s ) @ #i) ∧ (K( s ) @ #j)) ⇒
+    (∃ #r. RevealSeed( I ) @ #r)"
+/*
+guarded formula characterizing all counter-examples:
+"∃ I s #i #j.
+  (AuditSeed( I, s ) @ #i) ∧ (K( s ) @ #j)
+ ∧
+  ∀ #r. (RevealSeed( I ) @ #r) ⇒ ⊥"
+*/
+by sorry
+
+lemma prospective_reveal_guarded:
+  all-traces
+  "∀ I #i.
+    (RevealSeed( I ) @ #i) ⇒ (∃ #g. (AuditGuard( I ) @ #g) ∧ (#g < #i))"
+/*
+guarded formula characterizing all counter-examples:
+"∃ I #i.
+  (RevealSeed( I ) @ #i) ∧ ∀ #g. (AuditGuard( I ) @ #g) ⇒ ¬(#g < #i)"
+*/
+by sorry
+
+lemma prospective_prf_public_probe:
+  exists-trace "∃ #i. K( prf('n0', 'n0', 'm') ) @ #i"
+/*
+guarded formula characterizing all satisfying traces:
+"∃ #i. (K( prf('n0', 'n0', 'm') ) @ #i)"
+*/
+simplify
+by solve( !KU( prf('n0', 'n0', 'm') ) @ #vk )
+
+/* All wellformedness checks were successful. */
+
+/*
+Generated from:
+Tamarin version 1.12.0
+Maude version 3.5.1
+Git revision: 82780bbaf3328a45f624ddb41e51bf75425f851c (with uncommited changes), branch: master
+Compiled at: 2026-03-07 14:22:39.174278293 UTC
+*/
+
+end
+
+==============================================================================
+summary of summaries:
+
+analyzed: /redacted-home/workspace/revision_20261111/mutations/tm/lms_s2.spthy
+
+  processing time: 3.23s
+  
+  exec (exists-trace): analysis incomplete (1 steps)
+  LS4_pure (all-traces): analysis incomplete (1 steps)
+  LS4 (all-traces): analysis incomplete (1 steps)
+  LS1 (all-traces): analysis incomplete (1 steps)
+  LS3_forge (exists-trace): analysis incomplete (1 steps)
+  prospective_acceptreach (exists-trace): analysis incomplete (1 steps)
+  prospective_signreach (exists-trace): analysis incomplete (1 steps)
+  prospective_revealreach (exists-trace): analysis incomplete (1 steps)
+  prospective_seedreach (exists-trace): analysis incomplete (1 steps)
+  prospective_seed_without_reveal (all-traces): analysis incomplete (1 steps)
+  prospective_reveal_guarded (all-traces): analysis incomplete (1 steps)
+  prospective_prf_public_probe (exists-trace): falsified - no trace found (2 steps)
+
+==============================================================================

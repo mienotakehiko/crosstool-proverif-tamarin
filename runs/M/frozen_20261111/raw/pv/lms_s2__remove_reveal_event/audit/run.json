@@ -1,0 +1,20 @@
+{
+  "command": [
+    "/usr/local/bin/proverif",
+    "/redacted-home/workspace/revision_20261111/mutations/pv/lms_s2__remove_reveal_event/audit.pv"
+  ],
+  "started_utc": "2026-11-11T03:12:12.168082+00:00",
+  "elapsed_s": 0.103,
+  "rc": 0,
+  "stop_reason": null,
+  "time_limit_s": 15,
+  "peak_group_rss_kib": 16,
+  "rss_samples": [
+    [
+      0.002,
+      16
+    ]
+  ],
+  "raw_file": "raw/pv/lms_s2__remove_reveal_event/audit/raw.out",
+  "raw_sha256": "61e956a8ed3ef587258e1b1956155f5641aa241ef65f4afcce61fca24bce02b6"
+}

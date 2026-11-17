@@ -1,0 +1,20 @@
+{
+  "command": [
+    "/usr/local/bin/proverif",
+    "/redacted-home/workspace/revision_20261111/mutations/pv/lmots__event_sign_argument/existing.pv"
+  ],
+  "started_utc": "2026-11-11T03:12:08.150483+00:00",
+  "elapsed_s": 0.105,
+  "rc": 0,
+  "stop_reason": null,
+  "time_limit_s": 15,
+  "peak_group_rss_kib": 5084,
+  "rss_samples": [
+    [
+      0.004,
+      5084
+    ]
+  ],
+  "raw_file": "raw/pv/lmots__event_sign_argument/existing/raw.out",
+  "raw_sha256": "f7416a36e876b58609f090b0a6ae1d82d6a86469fbb635bb081f4b746518574c"
+}

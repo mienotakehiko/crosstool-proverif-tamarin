@@ -1,0 +1,20 @@
+{
+  "command": [
+    "/usr/local/bin/proverif",
+    "/redacted-home/workspace/revision_20261111/mutations/pv/lms_s2__reveal_wrong_secret/existing.pv"
+  ],
+  "started_utc": "2026-11-11T03:12:15.351999+00:00",
+  "elapsed_s": 0.206,
+  "rc": 0,
+  "stop_reason": null,
+  "time_limit_s": 15,
+  "peak_group_rss_kib": 14732,
+  "rss_samples": [
+    [
+      0.003,
+      1888
+    ]
+  ],
+  "raw_file": "raw/pv/lms_s2__reveal_wrong_secret/existing/raw.out",
+  "raw_sha256": "e7b884933c8e59124275e121c9b460fe86541b626d3bd458fb7dc88d761acafb"
+}

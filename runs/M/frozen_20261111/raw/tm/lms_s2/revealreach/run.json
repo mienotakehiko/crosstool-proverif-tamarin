@@ -1,0 +1,38 @@
+{
+  "command": [
+    "/usr/local/bin/tamarin-prover",
+    "--prove=prospective_revealreach",
+    "--derivcheck-timeout=0",
+    "/redacted-home/workspace/revision_20261111/mutations/tm/lms_s2.spthy",
+    "+RTS",
+    "-N1",
+    "-M400m",
+    "-RTS"
+  ],
+  "started_utc": "2026-11-11T03:12:52.077925+00:00",
+  "elapsed_s": 3.457,
+  "rc": 0,
+  "stop_reason": null,
+  "time_limit_s": 30,
+  "peak_group_rss_kib": 139120,
+  "rss_samples": [
+    [
+      0.002,
+      176
+    ],
+    [
+      1.019,
+      73052
+    ],
+    [
+      2.036,
+      103132
+    ],
+    [
+      3.05,
+      129892
+    ]
+  ],
+  "raw_file": "raw/tm/lms_s2/revealreach/raw.out",
+  "raw_sha256": "566657f25759a4410705e7df2b1022ab3301cc1aefcffb2471b43aa28300ba7d"
+}

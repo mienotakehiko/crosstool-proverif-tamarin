@@ -1,0 +1,110 @@
+% Additive insertion only. Do not delete the reviewed-simulation premise,
+% Horn/event-normalization caveats, or conditional transfer statements.
+\subsection{A Restricted Ground Scheduler Lemma}
+\label{app:restricted-scheduler}
+
+The following result concerns two explicitly defined scheduler reductions,
+not the complete symbolic semantics of ProVerif and Tamarin. It does not
+discharge the reviewed process-to-rule simulation assumed in the proposed
+inclusion chain.
+
+Fix exactly one completed initialization and its identity valuation.
+The generated private state channel and initial fresh identity remain;
+there is no fresh allocation during updates. Admit only the linear
+ProVerif worker and the standard Tamarin rule shape, an acyclic finite
+state graph, and terms ground after this valuation. Require a free term
+algebra with pair projections, hygienic identifiers, parseable generated
+texts, pairwise disjoint dispatch patterns at each state, and at most one
+observed event per case. Exclude tables, responders, leaks, persistent
+state, Clone, and Rollback. Initial knowledge is the deductive closure of
+public constants and the actual initialization output; in particular,
+the fixture's identity is public by tuple projection. These conditions
+are additional restrictions, not certificates issued by the current checker.
+
+Write a case as $(s,p,e,[o_1,\ldots,o_r],t)$, where $p$ is a ground
+input or absent and $e$ is one observed event or the empty word.
+Let $D$ denote public deductive closure. Define the atomic scheduler by
+\[
+ (s,K,w)\longrightarrow
+ (t,D(K\cup\{o_1,\ldots,o_r\}),we),
+\]
+when $p\in D(K)$, or when $p$ is absent.
+Define the worker scheduler to reserve the unique private state output,
+receive a public dispatch, reduce all parallel pattern and state tests,
+and either abandon the state or select the unique successful case.
+The successful case emits $e$, delivers the public outputs in order,
+and finally releases the private successor. With no observed event,
+commit is a silent point after successful checks and before outputs.
+An absent case input still requires a public dispatch in the printed
+worker; the public numeral constant supplies one.
+
+\noindent\textbf{Restricted scheduler lemma.}
+These two scheduler reductions have the same finite observed event words.
+
+\emph{Proof.}
+For the forward direction relate available, reserved, dispatched,
+selected, and abandoned worker states at $s$ to the atomic state
+$(s,D(K),w)$. After commit of case $c$, if exactly $j$ outputs have
+been delivered, relate the worker instead to
+\[
+ (t,D(K\cup\{o_{j+1},\ldots,o_r\}),w).
+\]
+Reservation, dispatch, failed pattern tests, failed state tests, and
+inactive sibling reductions are silent matches. Disjointness ensures
+that at most one parallel branch succeeds. If none succeeds, the worker
+abandons the token and the atomic scheduler simply retains it without
+being scheduled again. Before commit there is no output debt, so the
+successful input is justified by current, not future, knowledge.
+Commit is matched by the same atomic case, with either one observation
+or none. Each public delivery is a silent match because
+\[
+ D(D(K\cup\{o_{j+1}\})\cup\{o_{j+2},\ldots,o_r\})
+ =D(K\cup\{o_{j+1},\ldots,o_r\}).
+\]
+Once the debt is empty, private successor release is silent. Replication
+unfolding and extra workers without a token add no observation. An
+abandoned or terminal worker adds none. Stopping at any partial prefix,
+including immediately after the event, is admissible. Induction over
+worker reductions proves forward trace inclusion.
+
+For the reverse direction use a different relation: a stable available
+worker and an atomic state must have exactly the same state, knowledge,
+and word, without debt. For an enabled atomic case, reserve the token,
+send its deducible input (or a public constant for absent input), reduce
+failed alternatives, select the unique successful branch, emit its zero
+or one observed event, deliver all outputs, and release the successor.
+This finite path restores the stable relation. Zero outputs require
+only release; multiple outputs are serialized before the next token
+can be consumed. Empty runs and terminal prefixes require no step.
+Induction over atomic runs proves reverse trace inclusion.
+\hfill$\square$
+
+This is not reverse simulation from every forward-related configuration:
+after a bad dispatch an abandoned worker cannot match the atomic
+scheduler's next event. It is not branching bisimulation or a liveness
+result. The public-knowledge sets can differ at the same observed prefix.
+Semantic adequacy of these scheduler reductions for the full native
+languages, including attacker processes and structural congruence,
+remains an explicit obligation.
+
+\paragraph{A generated-code boundary.}
+An independent negative control publishes $(I,\mathsf{seal}(n_1))$,
+starts at $n_0$, and gives its sole case input
+$(\mathsf{a},\mathsf{seal}(x))$. The constructor is private.
+The Tamarin rule can bind $x=n_1$ and emit the event. The ProVerif
+printer instead emits a constructor equality pattern containing its
+already bound internal state variable \texttt{x}, requiring
+$\mathsf{seal}(n_0)$, which is not available. The existing checker
+reports no FAIL. On the generated files ProVerif proves the event
+unreachable while Tamarin verifies its reachability. Closure of
+constructor equality terms and capture-avoiding identifiers are therefore
+additional necessary guards for a broader claim. A separate scalar-input
+negative control fails ProVerif parsing despite a passing report.
+
+The independent suite passes 21 tests. A finite ground fixture has three
+atomic states, thirteen worker states (three abandoned), and three event
+words on each side. Native reachability checks support the fixture and
+the negative controls, not full trace equivalence. The previous two-thread
+bounded experiment remains a separate finite abstraction. Neither result
+removes the original unproved simulation and Horn-abstraction assumptions,
+nor upgrades transfer-dependent Achievement Levels.

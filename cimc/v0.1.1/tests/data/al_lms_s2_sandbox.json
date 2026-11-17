@@ -1,0 +1,448 @@
+{
+ "cim": "lms_s2.toml",
+ "name": "LMS_S2",
+ "cimc": "0.1.0",
+ "al_assign_sha256": "569669ca1bcb20117ee4415fd72efe7ac33a6acc17d2b40ac9a78da42e41c8cc",
+ "diagnosis_tree": "1.1",
+ "diagnosis_sha256": "d45347db969b78a5209adb13dbee3cc00b7d6047ec0c60a14d40be7cfc0de8e6",
+ "checks_failed": [],
+ "bound_transfer": true,
+ "fixed_parameters": "h = 1, w = 2, p = 2",
+ "properties": {
+  "exec": {
+   "kind": "phi3",
+   "headline": "AL-P4",
+   "systems": [
+    {
+     "system": "T",
+     "scope": "P",
+     "outcome": "W",
+     "level": 4,
+     "al": "AL-P4",
+     "evidence": [
+      "U2:false",
+      "lin:false",
+      "base:verified"
+     ],
+     "basis": "both tools"
+    },
+    {
+     "system": "Trb",
+     "scope": "P_R",
+     "outcome": "W",
+     "level": 4,
+     "al": "AL-P_R4",
+     "evidence": [
+      "U2:false",
+      "Urb2:false",
+      "lin:false",
+      "base:verified"
+     ],
+     "basis": "both tools, via Theorem 1"
+    },
+    {
+     "system": "Tcl",
+     "scope": "P_C",
+     "outcome": "W",
+     "level": 4,
+     "al": "AL-P_C4",
+     "evidence": [
+      "U2:false",
+      "lin:false",
+      "base:verified"
+     ],
+     "basis": "both tools, via Theorem 1"
+    },
+    {
+     "system": "Tom",
+     "scope": "P_w",
+     "outcome": "W",
+     "level": 4,
+     "al": "AL-P_w4",
+     "evidence": [
+      "U2:false",
+      "Urb2:false",
+      "lin:false",
+      "rep:false",
+      "base:verified"
+     ],
+     "basis": "both tools"
+    }
+   ],
+   "records": [
+    "U2:W",
+    "Urb2:W",
+    "lin:W",
+    "rep:W",
+    "base:W",
+    "rb1:N(TIMEOUT)"
+   ],
+   "findings": [
+    {
+     "records": [
+      "LMS_S2_T_rb1"
+     ],
+     "reason": "TIMEOUT",
+     "cause": "TM-res",
+     "provisional": true,
+     "note": "time limit; no memory curve recorded"
+    }
+   ]
+  },
+  "LS4_pure": {
+   "kind": "phi2",
+   "headline": "AL-P4",
+   "systems": [
+    {
+     "system": "T",
+     "scope": "P",
+     "outcome": "H",
+     "level": 4,
+     "al": "AL-P4",
+     "evidence": [
+      "U2:true",
+      "base:verified"
+     ],
+     "basis": "both tools"
+    },
+    {
+     "system": "Trb",
+     "scope": "P_R",
+     "outcome": "W",
+     "level": 4,
+     "al": "AL-P_R4^a",
+     "evidence": [
+      "Urb2:false",
+      "rb1:falsified"
+     ],
+     "basis": "both tools"
+    },
+    {
+     "system": "Tcl",
+     "scope": "P_C",
+     "outcome": null,
+     "level": 0,
+     "al": "AL-P_C0",
+     "evidence": [],
+     "basis": "no outcome"
+    },
+    {
+     "system": "Tom",
+     "scope": "P_w",
+     "outcome": "W",
+     "level": 4,
+     "al": "AL-P_w4^a",
+     "evidence": [
+      "Urb2:false",
+      "rep:false",
+      "rb1:falsified"
+     ],
+     "basis": "both tools"
+    }
+   ],
+   "records": [
+    "U2:H",
+    "Urb2:W",
+    "lin:N(cannot)",
+    "rep:W",
+    "base:H",
+    "rb1:W",
+    "cl1:N(TIMEOUT)"
+   ],
+   "findings": [
+    {
+     "cause": "ENC-clone",
+     "records": [
+      "LMS_S2_PV_U2",
+      "LMS_S2_T_base",
+      "LMS_S2_PV_Urb2",
+      "LMS_S2_PV_rep",
+      "LMS_S2_T_rb1"
+     ],
+     "note": "holds on U2 (Tle), base (T); fails on Urb2 (Trb), rep (Tom), rb1 (Trb): the difference is the reuse of a state value"
+    },
+    {
+     "records": [
+      "LMS_S2_PV_lin"
+     ],
+     "reason": "cannot",
+     "cause": "PV-abs",
+     "note": "the property holds on this model (from U2, base): false alarm"
+    },
+    {
+     "records": [
+      "LMS_S2_T_cl1"
+     ],
+     "reason": "TIMEOUT",
+     "cause": "TM-res",
+     "provisional": true,
+     "note": "time limit; no memory curve recorded"
+    }
+   ]
+  },
+  "LS4": {
+   "kind": "phi2",
+   "headline": "AL-P4",
+   "systems": [
+    {
+     "system": "T",
+     "scope": "P",
+     "outcome": "H",
+     "level": 4,
+     "al": "AL-P4",
+     "evidence": [
+      "U2:true",
+      "base:verified"
+     ],
+     "basis": "both tools"
+    },
+    {
+     "system": "Trb",
+     "scope": "P_R",
+     "outcome": "H",
+     "level": 1,
+     "al": "AL-P_R1",
+     "evidence": [
+      "rb1:verified"
+     ],
+     "basis": "one tool"
+    },
+    {
+     "system": "Tcl",
+     "scope": "P_C",
+     "outcome": null,
+     "level": 0,
+     "al": "AL-P_C0",
+     "evidence": [],
+     "basis": "no outcome"
+    },
+    {
+     "system": "Tom",
+     "scope": "P_w",
+     "outcome": "W",
+     "level": 1,
+     "al": "AL-P_w1^a",
+     "evidence": [
+      "Urb2:false",
+      "rep:false"
+     ],
+     "basis": "one tool"
+    }
+   ],
+   "records": [
+    "U2:H",
+    "Urb2:W",
+    "lin:N(cannot)",
+    "rep:W",
+    "base:H",
+    "rb1:H",
+    "cl1:N(TIMEOUT)"
+   ],
+   "findings": [
+    {
+     "cause": "ENC-clone",
+     "records": [
+      "LMS_S2_PV_U2",
+      "LMS_S2_T_base",
+      "LMS_S2_PV_rep"
+     ],
+     "note": "holds on U2 (Tle), base (T); fails on rep (Tom): the difference is the reuse of a state value"
+    },
+    {
+     "records": [
+      "LMS_S2_PV_lin"
+     ],
+     "reason": "cannot",
+     "cause": "PV-abs",
+     "note": "the property holds on this model (from U2, base): false alarm"
+    },
+    {
+     "records": [
+      "LMS_S2_T_cl1"
+     ],
+     "reason": "TIMEOUT",
+     "cause": "TM-res",
+     "provisional": true,
+     "note": "time limit; no memory curve recorded"
+    }
+   ]
+  },
+  "LS1": {
+   "kind": "phi1",
+   "headline": "AL-P4",
+   "systems": [
+    {
+     "system": "T",
+     "scope": "P",
+     "outcome": "H",
+     "level": 4,
+     "al": "AL-P4",
+     "evidence": [
+      "U2:true",
+      "base:verified"
+     ],
+     "basis": "both tools"
+    },
+    {
+     "system": "Trb",
+     "scope": "P_R",
+     "outcome": "W",
+     "level": 4,
+     "al": "AL-P_R4^a",
+     "evidence": [
+      "Urb2:false",
+      "rb1:falsified"
+     ],
+     "basis": "both tools"
+    },
+    {
+     "system": "Tcl",
+     "scope": "P_C",
+     "outcome": null,
+     "level": 0,
+     "al": "AL-P_C0",
+     "evidence": [],
+     "basis": "no outcome"
+    },
+    {
+     "system": "Tom",
+     "scope": "P_w",
+     "outcome": "W",
+     "level": 4,
+     "al": "AL-P_w4^a",
+     "evidence": [
+      "Urb2:false",
+      "rep:false",
+      "rb1:falsified"
+     ],
+     "basis": "both tools"
+    }
+   ],
+   "records": [
+    "U2:H",
+    "Urb2:W",
+    "lin:N(cannot)",
+    "rep:W",
+    "base:H",
+    "rb1:W",
+    "cl1:N(KILLED)"
+   ],
+   "findings": [
+    {
+     "cause": "ENC-clone",
+     "records": [
+      "LMS_S2_PV_U2",
+      "LMS_S2_T_base",
+      "LMS_S2_PV_Urb2",
+      "LMS_S2_PV_rep",
+      "LMS_S2_T_rb1"
+     ],
+     "note": "holds on U2 (Tle), base (T); fails on Urb2 (Trb), rep (Tom), rb1 (Trb): the difference is the reuse of a state value"
+    },
+    {
+     "records": [
+      "LMS_S2_PV_lin"
+     ],
+     "reason": "cannot",
+     "cause": "PV-abs",
+     "note": "the property holds on this model (from U2, base): false alarm"
+    },
+    {
+     "records": [
+      "LMS_S2_T_cl1"
+     ],
+     "reason": "KILLED",
+     "cause": "TM-res",
+     "provisional": true,
+     "note": "forced termination; exit code alone does not distinguish timeout escalation from OOM"
+    }
+   ]
+  },
+  "LS3_forge": {
+   "kind": "phi3",
+   "headline": "AL-P4",
+   "systems": [
+    {
+     "system": "T",
+     "scope": "P",
+     "outcome": "H",
+     "level": 4,
+     "al": "AL-P4",
+     "evidence": [
+      "U2:true",
+      "base:falsified"
+     ],
+     "basis": "both tools"
+    },
+    {
+     "system": "Trb",
+     "scope": "P_R",
+     "outcome": "W",
+     "level": 4,
+     "al": "AL-P_R4",
+     "evidence": [
+      "Urb2:false",
+      "rb1:verified"
+     ],
+     "basis": "both tools"
+    },
+    {
+     "system": "Tcl",
+     "scope": "P_C",
+     "outcome": "W",
+     "level": 1,
+     "al": "AL-P_C1",
+     "evidence": [
+      "cl1:verified"
+     ],
+     "basis": "one tool"
+    },
+    {
+     "system": "Tom",
+     "scope": "P_w",
+     "outcome": "W",
+     "level": 4,
+     "al": "AL-P_w4",
+     "evidence": [
+      "Urb2:false",
+      "rep:false",
+      "rb1:verified",
+      "cl1:verified"
+     ],
+     "basis": "both tools"
+    }
+   ],
+   "records": [
+    "U2:H",
+    "Urb2:W",
+    "lin:N(cannot)",
+    "rep:W",
+    "base:H",
+    "rb1:W",
+    "cl1:W"
+   ],
+   "findings": [
+    {
+     "cause": "ENC-clone",
+     "records": [
+      "LMS_S2_PV_U2",
+      "LMS_S2_T_base",
+      "LMS_S2_PV_Urb2",
+      "LMS_S2_PV_rep",
+      "LMS_S2_T_cl1",
+      "LMS_S2_T_rb1"
+     ],
+     "note": "holds on U2 (Tle), base (T); fails on Urb2 (Trb), rep (Tom), cl1 (Tcl), rb1 (Trb): the difference is the reuse of a state value"
+    },
+    {
+     "records": [
+      "LMS_S2_PV_lin"
+     ],
+     "reason": "cannot",
+     "cause": "PV-abs",
+     "note": "the property holds on this model (from U2, base): false alarm"
+    }
+   ]
+  }
+ }
+}

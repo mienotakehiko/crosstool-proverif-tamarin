@@ -1,0 +1,59 @@
+Process 0 (that is, the initial process):
+(
+    {1}!
+    {2}new I: bitstring;
+    {3}new sd: bitstring;
+    {4}insert Pk(I,(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,c_k))))));
+    {5}in(c, y: bitstring);
+    (
+        {6}let (=c_sign,=n0) = y in
+        {7}event Sign(I,n0)
+    ) | (
+        {8}let (=c_sign,=n1) = y in
+        {9}event Sign(I,n1)
+    ) | (
+        {10}let (=c_sign,=n2) = y in
+        {11}event Sign(I,n2)
+    ) | (
+        {12}let (=c_sign,=n3) = y in
+        {13}event Sign(I,n3)
+    ) | (
+        {14}in(c, =I);
+        {15}event RevealSeed(I);
+        {16}out(c, sd)
+    )
+) | (
+    {17}!
+    {18}in(c, y_1: bitstring);
+    (
+        {19}let (v_I: bitstring,(=n0,(v_sm: bitstring,v_sk: bitstring))) = y_1 in
+        {21}get Pk(=v_I,=(ch(v_I,c_m,ch(v_I,c_m,ch(v_I,c_m,v_sm))),v_sk)) in
+        {20}event Accept(v_I,n0)
+    ) | (
+        {22}let (v_I_1: bitstring,(=n1,(v_sm_1: bitstring,v_sk_1: bitstring))) = y_1 in
+        {24}get Pk(=v_I_1,=(ch(v_I_1,c_m,ch(v_I_1,c_m,v_sm_1)),ch(v_I_1,c_k,v_sk_1))) in
+        {23}event Accept(v_I_1,n1)
+    ) | (
+        {25}let (v_I_2: bitstring,(=n2,(v_sm_2: bitstring,v_sk_2: bitstring))) = y_1 in
+        {27}get Pk(=v_I_2,=(ch(v_I_2,c_m,v_sm_2),ch(v_I_2,c_k,ch(v_I_2,c_k,v_sk_2)))) in
+        {26}event Accept(v_I_2,n2)
+    ) | (
+        {28}let (v_I_3: bitstring,(=n3,(v_sm_3: bitstring,v_sk_3: bitstring))) = y_1 in
+        {30}get Pk(=v_I_3,=(v_sm_3,ch(v_I_3,c_k,ch(v_I_3,c_k,ch(v_I_3,c_k,v_sk_3))))) in
+        {29}event Accept(v_I_3,n3)
+    )
+)
+
+-- Query not event(RevealSeed(I_1)) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query not event(RevealSeed(I_1))
+RESULT not event(RevealSeed(I_1)) is true.
+
+--------------------------------------------------------------
+Verification summary:
+
+Query not event(RevealSeed(I_1)) is true.
+
+--------------------------------------------------------------
+

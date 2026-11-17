@@ -1,0 +1,20 @@
+{
+  "command": [
+    "/usr/local/bin/proverif",
+    "/redacted-home/workspace/revision_20261111/mutations/pv/lms_s2__private_to_public/reach.pv"
+  ],
+  "started_utc": "2026-11-11T03:12:14.707995+00:00",
+  "elapsed_s": 0.104,
+  "rc": 0,
+  "stop_reason": null,
+  "time_limit_s": 15,
+  "peak_group_rss_kib": 2316,
+  "rss_samples": [
+    [
+      0.003,
+      2316
+    ]
+  ],
+  "raw_file": "raw/pv/lms_s2__private_to_public/reach/raw.out",
+  "raw_sha256": "49007114728928dfe5677b46543a0664a5bbf6c1ab96a38d53296674c78e07df"
+}

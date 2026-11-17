@@ -1,0 +1,62 @@
+status	metric	observed	expected
+ok	P1 jobs	81	81
+ok	P1 verified	42	42
+ok	P1 falsified	11	11
+ok	P1 TIMEOUT	26	26
+ok	P1 KILLED	2	2
+ok	P1 HEAP	0	0
+ok	P1 ERROR	0	0
+ok	P2 jobs	102	102
+ok	P2 verified	46	46
+ok	P2 falsified	7	7
+ok	P2 TIMEOUT	35	35
+ok	P2 KILLED	5	5
+ok	P2 HEAP	7	7
+ok	P2 ERROR	2	2
+ok	P3 jobs	24	24
+ok	P3 verified	11	11
+ok	P3 falsified	9	9
+ok	P3 TIMEOUT	3	3
+ok	P3 KILLED	1	1
+ok	P3 HEAP	0	0
+ok	P3 ERROR	0	0
+ok	P4 jobs	88	88
+ok	P4 verified	85	85
+ok	P4 falsified	1	1
+ok	P4 TIMEOUT	2	2
+ok	P4 KILLED	0	0
+ok	P4 HEAP	0	0
+ok	P4 ERROR	0	0
+ok	Screening jobs	295	295
+ok	Screening verified	184	184
+ok	Screening falsified	28	28
+ok	Screening TIMEOUT	66	66
+ok	Screening KILLED	8	8
+ok	Screening HEAP	7	7
+ok	Screening ERROR	2	2
+ok	Screening conclusive	212	212
+ok	Screening unresolved	83	83
+ok	P5 jobs	225	225
+ok	P5 trials	1125	1125
+ok	P5 verified	965	965
+ok	P5 falsified	160	160
+ok	P5 trials matching baseline	1125	1125
+ok	P5 TopAuth d_prove median	11.4	11.4
+ok	P5 TopAuth t_prove median	1861.5	1861.5
+ok	P5 TopAuth C_prove median	493.7	493.7
+ok	P5 TopAuth s_prove median	11.5	11.5
+ok	P5 TopAuth S_prove median	11.2	11.2
+ok	P5 TopAuth I_prove median	11.3	11.3
+ok	L ladder HEAP	9	9
+ok	L 96 GiB HEAP	7	7
+ok	G direct ProVerif verdict rows	28	28
+ok	X0 model–lemma pairs	40	40
+ok	Historical probe initial agreements	16	16
+ok	Historical probe z0 agreements	10	10
+ok	Historical probe source-fixed agreements	13	13
+ok	Historical probe guard agreements	16	16
+ok	K original agreements	48	48
+ok	K original comparisons	49	49
+ok	C1 all-traces verified	4	4
+ok	C1 all-traces falsified	1	1
+ok	C1 exists-trace verified	2	2

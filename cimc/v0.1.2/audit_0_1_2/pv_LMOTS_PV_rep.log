@@ -1,0 +1,593 @@
+Process 0 (that is, the initial process):
+(
+    {1}!
+    {2}new I: bitstring;
+    {3}new sd: bitstring;
+    {4}new st: channel;
+    {5}insert Pk(I,(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,c_k))))));
+    {6}out(c, (I,(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,c_k)))))));
+    (
+        {7}!
+        {8}out(st, n0)
+    ) | (
+        {9}!
+        {10}in(st, x: bitstring);
+        {11}in(c, y: bitstring);
+        (
+            {12}let (=c_sign,=n0) = y in
+            {13}if (x = n0) then
+            {14}event Sign(I,n0);
+            {15}out(c, (I,(n0,(prf(sd,c_m),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,c_k))))))));
+            {16}!
+            {17}out(st, n1)
+        ) | (
+            {18}let (=c_sign,=n1) = y in
+            {19}if (x = n0) then
+            {20}event Sign(I,n1);
+            {21}out(c, (I,(n1,(ch(I,c_m,prf(sd,c_m)),ch(I,c_k,ch(I,c_k,prf(sd,c_k)))))));
+            {22}!
+            {23}out(st, n1)
+        ) | (
+            {24}let (=c_sign,=n2) = y in
+            {25}if (x = n0) then
+            {26}event Sign(I,n2);
+            {27}out(c, (I,(n2,(ch(I,c_m,ch(I,c_m,prf(sd,c_m))),ch(I,c_k,prf(sd,c_k))))));
+            {28}!
+            {29}out(st, n1)
+        ) | (
+            {30}let (=c_sign,=n3) = y in
+            {31}if (x = n0) then
+            {32}event Sign(I,n3);
+            {33}out(c, (I,(n3,(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,c_m)))),prf(sd,c_k)))));
+            {34}!
+            {35}out(st, n1)
+        )
+    ) | (
+        {36}in(c, =I);
+        {37}event RevealSeed(I);
+        {38}out(c, sd)
+    )
+) | (
+    {39}!
+    {40}in(c, y_1: bitstring);
+    (
+        {41}let (v_I: bitstring,(=n0,(v_sm: bitstring,v_sk: bitstring))) = y_1 in
+        {43}get Pk(=v_I,=(ch(v_I,c_m,ch(v_I,c_m,ch(v_I,c_m,v_sm))),v_sk)) in
+        {42}event Accept(v_I,n0)
+    ) | (
+        {44}let (v_I_1: bitstring,(=n1,(v_sm_1: bitstring,v_sk_1: bitstring))) = y_1 in
+        {46}get Pk(=v_I_1,=(ch(v_I_1,c_m,ch(v_I_1,c_m,v_sm_1)),ch(v_I_1,c_k,v_sk_1))) in
+        {45}event Accept(v_I_1,n1)
+    ) | (
+        {47}let (v_I_2: bitstring,(=n2,(v_sm_2: bitstring,v_sk_2: bitstring))) = y_1 in
+        {49}get Pk(=v_I_2,=(ch(v_I_2,c_m,v_sm_2),ch(v_I_2,c_k,ch(v_I_2,c_k,v_sk_2)))) in
+        {48}event Accept(v_I_2,n2)
+    ) | (
+        {50}let (v_I_3: bitstring,(=n3,(v_sm_3: bitstring,v_sk_3: bitstring))) = y_1 in
+        {52}get Pk(=v_I_3,=(v_sm_3,ch(v_I_3,c_k,ch(v_I_3,c_k,ch(v_I_3,c_k,v_sk_3))))) in
+        {51}event Accept(v_I_3,n3)
+    )
+)
+
+-- Query event(Sign(I_1,a)) && event(Accept(I_1,a)) ==> event(RevealSeed(I_1)) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query event(Sign(I_1,a)) && event(Accept(I_1,a)) ==> event(RevealSeed(I_1))
+goal reachable: b-event(@p_act(@occ11_1,(c_sign,n0))) && b-event(@p_act(@occ10_1,n0)) && b-event(@p_act(@occ40_1,(I_1,(n0,(prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))))))))) -> event(Sign(I_1,n0)) && event(Accept(I_1,n0))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ11_1 = @occ11[!2 = @sid_1,!1 = @sid]
+@occ10_1 = @occ10[!2 = @sid_1,!1 = @sid]
+@occ40_1 = @occ40[!1 = @sid_2]
+sd_1 = sd[!1 = @sid]
+
+Derivation:
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ11_1 = @occ11[!2 = @sid_1,!1 = @sid]
+st_1 = st[!1 = @sid]
+@occ10_1 = @occ10[!2 = @sid_1,!1 = @sid]
+sd_1 = sd[!1 = @sid]
+@occ40_1 = @occ40[!1 = @sid_2]
+
+1. The message (I_1,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))))) may be sent to the attacker at output {6}.
+attacker((I_1,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))))))).
+
+2. By 1, the attacker may know (I_1,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))))).
+Using the function 2-proj-2-tuple the attacker may obtain (ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))))).
+attacker((ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))))).
+
+3. By 2, the attacker may know (ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))))).
+Using the function 2-proj-2-tuple the attacker may obtain ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))).
+attacker(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))))).
+
+4. The message n0 may be sent on channel st_1 at output {8}.
+mess(st_1,n0).
+
+5. Using the function n0 the attacker may obtain n0.
+attacker(n0).
+
+6. Using the function c_sign the attacker may obtain c_sign.
+attacker(c_sign).
+
+7. By 6, the attacker may know c_sign.
+By 5, the attacker may know n0.
+Using the function 2-tuple the attacker may obtain (c_sign,n0).
+attacker((c_sign,n0)).
+
+8. The event @p_act(@occ10_1,n0) records how variables are instantiated at {10}.
+The message n0 that may be sent on channel st_1 by 4 may be received at input {10}.
+The event @p_act(@occ11_1,(c_sign,n0)) records how variables are instantiated at {11}.
+The message (c_sign,n0) that the attacker may have by 7 may be received at input {11}.
+So the message (I_1,(n0,(prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))))))) may be sent to the attacker at output {15}.
+attacker((I_1,(n0,(prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))))))).
+
+9. By 8, the attacker may know (I_1,(n0,(prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))))))).
+Using the function 2-proj-2-tuple the attacker may obtain (n0,(prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))))).
+attacker((n0,(prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))))))).
+
+10. By 9, the attacker may know (n0,(prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))))).
+Using the function 2-proj-2-tuple the attacker may obtain (prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))))).
+attacker((prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))))).
+
+11. By 10, the attacker may know (prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))))).
+Using the function 1-proj-2-tuple the attacker may obtain prf(sd_1,c_m).
+attacker(prf(sd_1,c_m)).
+
+12. By 11, the attacker may know prf(sd_1,c_m).
+By 3, the attacker may know ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))).
+Using the function 2-tuple the attacker may obtain (prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))))).
+attacker((prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))))).
+
+13. By 5, the attacker may know n0.
+By 12, the attacker may know (prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))))).
+Using the function 2-tuple the attacker may obtain (n0,(prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))))).
+attacker((n0,(prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))))))).
+
+14. By 1, the attacker may know (I_1,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))))).
+Using the function 1-proj-2-tuple the attacker may obtain I_1.
+attacker(I_1).
+
+15. By 14, the attacker may know I_1.
+By 13, the attacker may know (n0,(prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))))).
+Using the function 2-tuple the attacker may obtain (I_1,(n0,(prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))))))).
+attacker((I_1,(n0,(prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))))))).
+
+16. The entry Pk(I_1,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))))) may be inserted in a table at insert {5}.
+table(Pk(I_1,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))))))).
+
+17. The event @p_act(@occ40_1,(I_1,(n0,(prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))))))) records how variables are instantiated at {40}.
+The message (I_1,(n0,(prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))))))) that the attacker may have by 15 may be received at input {40}.
+The entry Pk(I_1,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))))) that may be in a table by 16 may be read at get {43}.
+So event Accept(I_1,n0) may be executed at {42}.
+event(Accept(I_1,n0)).
+
+18. The message n0 may be sent on channel st_1 at output {8}.
+mess(st_1,n0).
+
+19. The event @p_act(@occ10_1,n0) records how variables are instantiated at {10}.
+The message n0 that may be sent on channel st_1 by 18 may be received at input {10}.
+The event @p_act(@occ11_1,(c_sign,n0)) records how variables are instantiated at {11}.
+The message (c_sign,n0) that the attacker may have by 7 may be received at input {11}.
+So event Sign(I_1,n0) may be executed at {14}.
+event(Sign(I_1,n0)).
+
+20. By 19, event(Sign(I_1,n0)).
+By 17, event(Accept(I_1,n0)).
+The goals are reached, combined in the following fact:
+event(Sign(I_1,n0)) && event(Accept(I_1,n0)).
+
+
+A more detailed output of the traces is available with
+  set traceDisplay = long.
+
+new I: bitstring creating I_2 at {2} in copy a
+
+new sd: bitstring creating sd_2 at {3} in copy a
+
+new st: channel creating st_2 at {4} in copy a
+
+insert Pk(I_2,(ch(I_2,c_m,ch(I_2,c_m,ch(I_2,c_m,prf(sd_2,c_m)))),ch(I_2,c_k,ch(I_2,c_k,ch(I_2,c_k,prf(sd_2,c_k)))))) at {5} in copy a
+
+out(c, (~M,(~M_1,~M_2))) with ~M = I_2, ~M_1 = ch(I_2,c_m,ch(I_2,c_m,ch(I_2,c_m,prf(sd_2,c_m)))), ~M_2 = ch(I_2,c_k,ch(I_2,c_k,ch(I_2,c_k,prf(sd_2,c_k)))) at {6} in copy a
+
+out(st_2, n0) at {8} in copy a, a_1 received at {10} in copy a, a_2
+
+in(c, (c_sign,n0)) at {11} in copy a, a_2
+
+event Sign(I_2,n0) at {14} in copy a, a_2 (goal)
+
+out(c, (~M_3,(~M_4,(~M_5,~M_6)))) with ~M_3 = I_2, ~M_4 = n0, ~M_5 = prf(sd_2,c_m), ~M_6 = ch(I_2,c_k,ch(I_2,c_k,ch(I_2,c_k,prf(sd_2,c_k)))) at {15} in copy a, a_2
+
+in(c, (~M,(n0,(~M_5,~M_2)))) with ~M = I_2, ~M_5 = prf(sd_2,c_m), ~M_2 = ch(I_2,c_k,ch(I_2,c_k,ch(I_2,c_k,prf(sd_2,c_k)))) at {40} in copy a_3
+
+get Pk(I_2,(ch(I_2,c_m,ch(I_2,c_m,ch(I_2,c_m,prf(sd_2,c_m)))),ch(I_2,c_k,ch(I_2,c_k,ch(I_2,c_k,prf(sd_2,c_k)))))) at {43} in copy a_3
+
+event Accept(I_2,n0) at {42} in copy a_3 (goal)
+
+The event Sign(I_2,n0) is executed at {14} in copy a, a_2.
+The event Accept(I_2,n0) is executed at {42} in copy a_3.
+A trace has been found.
+RESULT event(Sign(I_1,a)) && event(Accept(I_1,a)) ==> event(RevealSeed(I_1)) is false.
+-- Query event(Accept(I_1,a)) ==> event(Sign(I_1,a)) || event(RevealSeed(I_1)) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query event(Accept(I_1,a)) ==> event(Sign(I_1,a)) || event(RevealSeed(I_1))
+goal reachable: b-event(Sign(I_1,n0)) && b-event(@p_act(@occ11_2,(c_sign,n0))) && b-event(@p_act(@occ10_2,n0)) && b-event(Sign(I_1,n2)) && b-event(@p_act(@occ11_3,(c_sign,n2))) && b-event(@p_act(@occ10_3,n0)) && b-event(@p_act(@occ40_2,(I_1,(n1,(ch(I_1,c_m,prf(sd_1,c_m)),ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))))))) -> event(Accept(I_1,n1))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ11_2 = @occ11_1[!2 = @sid_1,!1 = @sid]
+@occ10_2 = @occ10_1[!2 = @sid_1,!1 = @sid]
+@occ11_3 = @occ11_1[!2 = @sid_2,!1 = @sid]
+@occ10_3 = @occ10_1[!2 = @sid_2,!1 = @sid]
+@occ40_2 = @occ40_1[!1 = @sid_3]
+sd_1 = sd[!1 = @sid]
+
+Derivation:
+Abbreviations:
+I_1 = I[!1 = @sid]
+sd_1 = sd[!1 = @sid]
+@occ11_2 = @occ11_1[!2 = @sid_1,!1 = @sid]
+st_1 = st[!1 = @sid]
+@occ10_2 = @occ10_1[!2 = @sid_1,!1 = @sid]
+@occ11_3 = @occ11_1[!2 = @sid_2,!1 = @sid]
+@occ10_3 = @occ10_1[!2 = @sid_2,!1 = @sid]
+@occ40_2 = @occ40_1[!1 = @sid_3]
+
+1. The message n0 may be sent on channel st_1 at output {8}.
+mess(st_1,n0).
+
+2. Using the function n2 the attacker may obtain n2.
+attacker(n2).
+
+3. Using the function c_sign the attacker may obtain c_sign.
+attacker(c_sign).
+
+4. By 3, the attacker may know c_sign.
+By 2, the attacker may know n2.
+Using the function 2-tuple the attacker may obtain (c_sign,n2).
+attacker((c_sign,n2)).
+
+5. The event @p_act(@occ10_3,n0) records how variables are instantiated at {10}.
+The message n0 that may be sent on channel st_1 by 1 may be received at input {10}.
+The event @p_act(@occ11_3,(c_sign,n2)) records how variables are instantiated at {11}.
+The message (c_sign,n2) that the attacker may have by 4 may be received at input {11}.
+The event Sign(I_1,n2) may be executed at {26}.
+So the message (I_1,(n2,(ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,c_m))),ch(I_1,c_k,prf(sd_1,c_k))))) may be sent to the attacker at output {27}.
+attacker((I_1,(n2,(ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,c_m))),ch(I_1,c_k,prf(sd_1,c_k)))))).
+
+6. By 5, the attacker may know (I_1,(n2,(ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,c_m))),ch(I_1,c_k,prf(sd_1,c_k))))).
+Using the function 2-proj-2-tuple the attacker may obtain (n2,(ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,c_m))),ch(I_1,c_k,prf(sd_1,c_k)))).
+attacker((n2,(ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,c_m))),ch(I_1,c_k,prf(sd_1,c_k))))).
+
+7. By 6, the attacker may know (n2,(ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,c_m))),ch(I_1,c_k,prf(sd_1,c_k)))).
+Using the function 2-proj-2-tuple the attacker may obtain (ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,c_m))),ch(I_1,c_k,prf(sd_1,c_k))).
+attacker((ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,c_m))),ch(I_1,c_k,prf(sd_1,c_k)))).
+
+8. By 7, the attacker may know (ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,c_m))),ch(I_1,c_k,prf(sd_1,c_k))).
+Using the function 2-proj-2-tuple the attacker may obtain ch(I_1,c_k,prf(sd_1,c_k)).
+attacker(ch(I_1,c_k,prf(sd_1,c_k))).
+
+9. Using the function c_k the attacker may obtain c_k.
+attacker(c_k).
+
+10. The message (I_1,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))))) may be sent to the attacker at output {6}.
+attacker((I_1,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))))))).
+
+11. By 10, the attacker may know (I_1,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))))).
+Using the function 1-proj-2-tuple the attacker may obtain I_1.
+attacker(I_1).
+
+12. By 11, the attacker may know I_1.
+By 9, the attacker may know c_k.
+By 8, the attacker may know ch(I_1,c_k,prf(sd_1,c_k)).
+Using the function ch the attacker may obtain ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))).
+attacker(ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))).
+
+13. The message n0 may be sent on channel st_1 at output {8}.
+mess(st_1,n0).
+
+14. Using the function n0 the attacker may obtain n0.
+attacker(n0).
+
+15. By 3, the attacker may know c_sign.
+By 14, the attacker may know n0.
+Using the function 2-tuple the attacker may obtain (c_sign,n0).
+attacker((c_sign,n0)).
+
+16. The event @p_act(@occ10_2,n0) records how variables are instantiated at {10}.
+The message n0 that may be sent on channel st_1 by 13 may be received at input {10}.
+The event @p_act(@occ11_2,(c_sign,n0)) records how variables are instantiated at {11}.
+The message (c_sign,n0) that the attacker may have by 15 may be received at input {11}.
+The event Sign(I_1,n0) may be executed at {14}.
+So the message (I_1,(n0,(prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))))))) may be sent to the attacker at output {15}.
+attacker((I_1,(n0,(prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))))))).
+
+17. By 16, the attacker may know (I_1,(n0,(prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))))))).
+Using the function 2-proj-2-tuple the attacker may obtain (n0,(prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))))).
+attacker((n0,(prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))))))).
+
+18. By 17, the attacker may know (n0,(prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))))).
+Using the function 2-proj-2-tuple the attacker may obtain (prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))))).
+attacker((prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))))).
+
+19. By 18, the attacker may know (prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))))).
+Using the function 1-proj-2-tuple the attacker may obtain prf(sd_1,c_m).
+attacker(prf(sd_1,c_m)).
+
+20. Using the function c_m the attacker may obtain c_m.
+attacker(c_m).
+
+21. By 11, the attacker may know I_1.
+By 20, the attacker may know c_m.
+By 19, the attacker may know prf(sd_1,c_m).
+Using the function ch the attacker may obtain ch(I_1,c_m,prf(sd_1,c_m)).
+attacker(ch(I_1,c_m,prf(sd_1,c_m))).
+
+22. By 21, the attacker may know ch(I_1,c_m,prf(sd_1,c_m)).
+By 12, the attacker may know ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))).
+Using the function 2-tuple the attacker may obtain (ch(I_1,c_m,prf(sd_1,c_m)),ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))).
+attacker((ch(I_1,c_m,prf(sd_1,c_m)),ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))))).
+
+23. Using the function n1 the attacker may obtain n1.
+attacker(n1).
+
+24. By 23, the attacker may know n1.
+By 22, the attacker may know (ch(I_1,c_m,prf(sd_1,c_m)),ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))).
+Using the function 2-tuple the attacker may obtain (n1,(ch(I_1,c_m,prf(sd_1,c_m)),ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))))).
+attacker((n1,(ch(I_1,c_m,prf(sd_1,c_m)),ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))))).
+
+25. By 11, the attacker may know I_1.
+By 24, the attacker may know (n1,(ch(I_1,c_m,prf(sd_1,c_m)),ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))))).
+Using the function 2-tuple the attacker may obtain (I_1,(n1,(ch(I_1,c_m,prf(sd_1,c_m)),ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))))).
+attacker((I_1,(n1,(ch(I_1,c_m,prf(sd_1,c_m)),ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))))))).
+
+26. The entry Pk(I_1,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))))) may be inserted in a table at insert {5}.
+table(Pk(I_1,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))))))).
+
+27. The event @p_act(@occ40_2,(I_1,(n1,(ch(I_1,c_m,prf(sd_1,c_m)),ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))))))) records how variables are instantiated at {40}.
+The message (I_1,(n1,(ch(I_1,c_m,prf(sd_1,c_m)),ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))))) that the attacker may have by 25 may be received at input {40}.
+The entry Pk(I_1,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))))) that may be in a table by 26 may be read at get {46}.
+So event Accept(I_1,n1) may be executed at {45}.
+event(Accept(I_1,n1)).
+
+28. By 27, event(Accept(I_1,n1)).
+The goal is reached, represented in the following fact:
+event(Accept(I_1,n1)).
+
+
+A more detailed output of the traces is available with
+  set traceDisplay = long.
+
+new I: bitstring creating I_2 at {2} in copy a
+
+new sd: bitstring creating sd_2 at {3} in copy a
+
+new st: channel creating st_2 at {4} in copy a
+
+insert Pk(I_2,(ch(I_2,c_m,ch(I_2,c_m,ch(I_2,c_m,prf(sd_2,c_m)))),ch(I_2,c_k,ch(I_2,c_k,ch(I_2,c_k,prf(sd_2,c_k)))))) at {5} in copy a
+
+out(c, (~M,(~M_1,~M_2))) with ~M = I_2, ~M_1 = ch(I_2,c_m,ch(I_2,c_m,ch(I_2,c_m,prf(sd_2,c_m)))), ~M_2 = ch(I_2,c_k,ch(I_2,c_k,ch(I_2,c_k,prf(sd_2,c_k)))) at {6} in copy a
+
+out(st_2, n0) at {8} in copy a, a_1 received at {10} in copy a, a_2
+
+in(c, (c_sign,n0)) at {11} in copy a, a_2
+
+event Sign(I_2,n0) at {14} in copy a, a_2
+
+out(c, (~M_3,(~M_4,(~M_5,~M_6)))) with ~M_3 = I_2, ~M_4 = n0, ~M_5 = prf(sd_2,c_m), ~M_6 = ch(I_2,c_k,ch(I_2,c_k,ch(I_2,c_k,prf(sd_2,c_k)))) at {15} in copy a, a_2
+
+out(st_2, n0) at {8} in copy a, a_3 received at {10} in copy a, a_4
+
+in(c, (c_sign,n2)) at {11} in copy a, a_4
+
+event Sign(I_2,n2) at {26} in copy a, a_4
+
+out(c, (~M_7,(~M_8,(~M_9,~M_10)))) with ~M_7 = I_2, ~M_8 = n2, ~M_9 = ch(I_2,c_m,ch(I_2,c_m,prf(sd_2,c_m))), ~M_10 = ch(I_2,c_k,prf(sd_2,c_k)) at {27} in copy a, a_4
+
+in(c, (~M,(n1,(ch(~M,c_m,~M_5),ch(~M,c_k,~M_10))))) with ~M = I_2, ch(~M,c_m,~M_5) = ch(I_2,c_m,prf(sd_2,c_m)), ch(~M,c_k,~M_10) = ch(I_2,c_k,ch(I_2,c_k,prf(sd_2,c_k))) at {40} in copy a_5
+
+get Pk(I_2,(ch(I_2,c_m,ch(I_2,c_m,ch(I_2,c_m,prf(sd_2,c_m)))),ch(I_2,c_k,ch(I_2,c_k,ch(I_2,c_k,prf(sd_2,c_k)))))) at {46} in copy a_5
+
+event Accept(I_2,n1) at {45} in copy a_5 (goal)
+
+The event Accept(I_2,n1) is executed at {45} in copy a_5.
+A trace has been found.
+RESULT event(Accept(I_1,a)) ==> event(Sign(I_1,a)) || event(RevealSeed(I_1)) is false.
+-- Query event(Accept(I_1,a)) ==> event(Sign(I_1,a)) || event(RevealSeed(I_1)) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query event(Accept(I_1,a)) ==> event(Sign(I_1,a)) || event(RevealSeed(I_1))
+goal reachable: b-event(Sign(I_1,n0)) && b-event(@p_act(@occ11_3,(c_sign,n0))) && b-event(@p_act(@occ10_3,n0)) && b-event(Sign(I_1,n2)) && b-event(@p_act(@occ11_4,(c_sign,n2))) && b-event(@p_act(@occ10_4,n0)) && b-event(@p_act(@occ40_3,(I_1,(n1,(ch(I_1,c_m,prf(sd_1,c_m)),ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))))))) -> event(Accept(I_1,n1))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ11_3 = @occ11_2[!2 = @sid_1,!1 = @sid]
+@occ10_3 = @occ10_2[!2 = @sid_1,!1 = @sid]
+@occ11_4 = @occ11_2[!2 = @sid_2,!1 = @sid]
+@occ10_4 = @occ10_2[!2 = @sid_2,!1 = @sid]
+@occ40_3 = @occ40_2[!1 = @sid_3]
+sd_1 = sd[!1 = @sid]
+
+Derivation:
+Abbreviations:
+I_1 = I[!1 = @sid]
+sd_1 = sd[!1 = @sid]
+@occ11_3 = @occ11_2[!2 = @sid_1,!1 = @sid]
+st_1 = st[!1 = @sid]
+@occ10_3 = @occ10_2[!2 = @sid_1,!1 = @sid]
+@occ11_4 = @occ11_2[!2 = @sid_2,!1 = @sid]
+@occ10_4 = @occ10_2[!2 = @sid_2,!1 = @sid]
+@occ40_3 = @occ40_2[!1 = @sid_3]
+
+1. The message n0 may be sent on channel st_1 at output {8}.
+mess(st_1,n0).
+
+2. Using the function n2 the attacker may obtain n2.
+attacker(n2).
+
+3. Using the function c_sign the attacker may obtain c_sign.
+attacker(c_sign).
+
+4. By 3, the attacker may know c_sign.
+By 2, the attacker may know n2.
+Using the function 2-tuple the attacker may obtain (c_sign,n2).
+attacker((c_sign,n2)).
+
+5. The event @p_act(@occ10_4,n0) records how variables are instantiated at {10}.
+The message n0 that may be sent on channel st_1 by 1 may be received at input {10}.
+The event @p_act(@occ11_4,(c_sign,n2)) records how variables are instantiated at {11}.
+The message (c_sign,n2) that the attacker may have by 4 may be received at input {11}.
+The event Sign(I_1,n2) may be executed at {26}.
+So the message (I_1,(n2,(ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,c_m))),ch(I_1,c_k,prf(sd_1,c_k))))) may be sent to the attacker at output {27}.
+attacker((I_1,(n2,(ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,c_m))),ch(I_1,c_k,prf(sd_1,c_k)))))).
+
+6. By 5, the attacker may know (I_1,(n2,(ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,c_m))),ch(I_1,c_k,prf(sd_1,c_k))))).
+Using the function 2-proj-2-tuple the attacker may obtain (n2,(ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,c_m))),ch(I_1,c_k,prf(sd_1,c_k)))).
+attacker((n2,(ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,c_m))),ch(I_1,c_k,prf(sd_1,c_k))))).
+
+7. By 6, the attacker may know (n2,(ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,c_m))),ch(I_1,c_k,prf(sd_1,c_k)))).
+Using the function 2-proj-2-tuple the attacker may obtain (ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,c_m))),ch(I_1,c_k,prf(sd_1,c_k))).
+attacker((ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,c_m))),ch(I_1,c_k,prf(sd_1,c_k)))).
+
+8. By 7, the attacker may know (ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,c_m))),ch(I_1,c_k,prf(sd_1,c_k))).
+Using the function 2-proj-2-tuple the attacker may obtain ch(I_1,c_k,prf(sd_1,c_k)).
+attacker(ch(I_1,c_k,prf(sd_1,c_k))).
+
+9. Using the function c_k the attacker may obtain c_k.
+attacker(c_k).
+
+10. The message (I_1,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))))) may be sent to the attacker at output {6}.
+attacker((I_1,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))))))).
+
+11. By 10, the attacker may know (I_1,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))))).
+Using the function 1-proj-2-tuple the attacker may obtain I_1.
+attacker(I_1).
+
+12. By 11, the attacker may know I_1.
+By 9, the attacker may know c_k.
+By 8, the attacker may know ch(I_1,c_k,prf(sd_1,c_k)).
+Using the function ch the attacker may obtain ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))).
+attacker(ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))).
+
+13. The message n0 may be sent on channel st_1 at output {8}.
+mess(st_1,n0).
+
+14. Using the function n0 the attacker may obtain n0.
+attacker(n0).
+
+15. By 3, the attacker may know c_sign.
+By 14, the attacker may know n0.
+Using the function 2-tuple the attacker may obtain (c_sign,n0).
+attacker((c_sign,n0)).
+
+16. The event @p_act(@occ10_3,n0) records how variables are instantiated at {10}.
+The message n0 that may be sent on channel st_1 by 13 may be received at input {10}.
+The event @p_act(@occ11_3,(c_sign,n0)) records how variables are instantiated at {11}.
+The message (c_sign,n0) that the attacker may have by 15 may be received at input {11}.
+The event Sign(I_1,n0) may be executed at {14}.
+So the message (I_1,(n0,(prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))))))) may be sent to the attacker at output {15}.
+attacker((I_1,(n0,(prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))))))).
+
+17. By 16, the attacker may know (I_1,(n0,(prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))))))).
+Using the function 2-proj-2-tuple the attacker may obtain (n0,(prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))))).
+attacker((n0,(prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))))))).
+
+18. By 17, the attacker may know (n0,(prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))))).
+Using the function 2-proj-2-tuple the attacker may obtain (prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))))).
+attacker((prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))))).
+
+19. By 18, the attacker may know (prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))))).
+Using the function 1-proj-2-tuple the attacker may obtain prf(sd_1,c_m).
+attacker(prf(sd_1,c_m)).
+
+20. Using the function c_m the attacker may obtain c_m.
+attacker(c_m).
+
+21. By 11, the attacker may know I_1.
+By 20, the attacker may know c_m.
+By 19, the attacker may know prf(sd_1,c_m).
+Using the function ch the attacker may obtain ch(I_1,c_m,prf(sd_1,c_m)).
+attacker(ch(I_1,c_m,prf(sd_1,c_m))).
+
+22. By 21, the attacker may know ch(I_1,c_m,prf(sd_1,c_m)).
+By 12, the attacker may know ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))).
+Using the function 2-tuple the attacker may obtain (ch(I_1,c_m,prf(sd_1,c_m)),ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))).
+attacker((ch(I_1,c_m,prf(sd_1,c_m)),ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))))).
+
+23. Using the function n1 the attacker may obtain n1.
+attacker(n1).
+
+24. By 23, the attacker may know n1.
+By 22, the attacker may know (ch(I_1,c_m,prf(sd_1,c_m)),ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))).
+Using the function 2-tuple the attacker may obtain (n1,(ch(I_1,c_m,prf(sd_1,c_m)),ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))))).
+attacker((n1,(ch(I_1,c_m,prf(sd_1,c_m)),ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))))).
+
+25. By 11, the attacker may know I_1.
+By 24, the attacker may know (n1,(ch(I_1,c_m,prf(sd_1,c_m)),ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))))).
+Using the function 2-tuple the attacker may obtain (I_1,(n1,(ch(I_1,c_m,prf(sd_1,c_m)),ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))))).
+attacker((I_1,(n1,(ch(I_1,c_m,prf(sd_1,c_m)),ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))))))).
+
+26. The entry Pk(I_1,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))))) may be inserted in a table at insert {5}.
+table(Pk(I_1,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))))))).
+
+27. The event @p_act(@occ40_3,(I_1,(n1,(ch(I_1,c_m,prf(sd_1,c_m)),ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))))))) records how variables are instantiated at {40}.
+The message (I_1,(n1,(ch(I_1,c_m,prf(sd_1,c_m)),ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))))) that the attacker may have by 25 may be received at input {40}.
+The entry Pk(I_1,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))))) that may be in a table by 26 may be read at get {46}.
+So event Accept(I_1,n1) may be executed at {45}.
+event(Accept(I_1,n1)).
+
+28. By 27, event(Accept(I_1,n1)).
+The goal is reached, represented in the following fact:
+event(Accept(I_1,n1)).
+
+
+A more detailed output of the traces is available with
+  set traceDisplay = long.
+
+new I: bitstring creating I_2 at {2} in copy a
+
+new sd: bitstring creating sd_2 at {3} in copy a
+
+new st: channel creating st_2 at {4} in copy a
+
+insert Pk(I_2,(ch(I_2,c_m,ch(I_2,c_m,ch(I_2,c_m,prf(sd_2,c_m)))),ch(I_2,c_k,ch(I_2,c_k,ch(I_2,c_k,prf(sd_2,c_k)))))) at {5} in copy a
+
+out(c, (~M,(~M_1,~M_2))) with ~M = I_2, ~M_1 = ch(I_2,c_m,ch(I_2,c_m,ch(I_2,c_m,prf(sd_2,c_m)))), ~M_2 = ch(I_2,c_k,ch(I_2,c_k,ch(I_2,c_k,prf(sd_2,c_k)))) at {6} in copy a
+
+out(st_2, n0) at {8} in copy a, a_1 received at {10} in copy a, a_2
+
+in(c, (c_sign,n0)) at {11} in copy a, a_2
+
+event Sign(I_2,n0) at {14} in copy a, a_2
+
+out(c, (~M_3,(~M_4,(~M_5,~M_6)))) with ~M_3 = I_2, ~M_4 = n0, ~M_5 = prf(sd_2,c_m), ~M_6 = ch(I_2,c_k,ch(I_2,c_k,ch(I_2,c_k,prf(sd_2,c_k)))) at {15} in copy a, a_2
+
+out(st_2, n0) at {8} in copy a, a_3 received at {10} in copy a, a_4
+
+in(c, (c_sign,n2)) at {11} in copy a, a_4
+
+event Sign(I_2,n2) at {26} in copy a, a_4
+
+out(c, (~M_7,(~M_8,(~M_9,~M_10)))) with ~M_7 = I_2, ~M_8 = n2, ~M_9 = ch(I_2,c_m,ch(I_2,c_m,prf(sd_2,c_m))), ~M_10 = ch(I_2,c_k,prf(sd_2,c_k)) at {27} in copy a, a_4
+
+in(c, (~M,(n1,(ch(~M,c_m,~M_5),ch(~M,c_k,~M_10))))) with ~M = I_2, ch(~M,c_m,~M_5) = ch(I_2,c_m,prf(sd_2,c_m)), ch(~M,c_k,~M_10) = ch(I_2,c_k,ch(I_2,c_k,prf(sd_2,c_k))) at {40} in copy a_5
+
+get Pk(I_2,(ch(I_2,c_m,ch(I_2,c_m,ch(I_2,c_m,prf(sd_2,c_m)))),ch(I_2,c_k,ch(I_2,c_k,ch(I_2,c_k,prf(sd_2,c_k)))))) at {46} in copy a_5
+
+event Accept(I_2,n1) at {45} in copy a_5 (goal)
+
+The event Accept(I_2,n1) is executed at {45} in copy a_5.
+A trace has been found.
+RESULT event(Accept(I_1,a)) ==> event(Sign(I_1,a)) || event(RevealSeed(I_1)) is false.
+
+--------------------------------------------------------------
+Verification summary:
+
+Query event(Sign(I_1,a)) && event(Accept(I_1,a)) ==> event(RevealSeed(I_1)) is false.
+
+Query event(Accept(I_1,a)) ==> event(Sign(I_1,a)) || event(RevealSeed(I_1)) is false.
+
+Query event(Accept(I_1,a)) ==> event(Sign(I_1,a)) || event(RevealSeed(I_1)) is false.
+
+--------------------------------------------------------------
+

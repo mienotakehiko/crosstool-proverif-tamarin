@@ -1,0 +1,137 @@
+{
+  "tests_run": 21,
+  "failures": 0,
+  "errors": 0,
+  "scope": "Ground single initialized thread scheduler only; relevant-term closure; no full symbolic-semantics theorem",
+  "atomic_states": 3,
+  "process_states": 13,
+  "atomic_edges": 2,
+  "process_edges": 12,
+  "atomic_traces": 3,
+  "process_traces": 3,
+  "abandoned_states": 3,
+  "commands": [
+    {
+      "command": [
+        "proverif",
+        "/redacted-home/workspace/revision_20261111/proof/restricted_lin.pv"
+      ],
+      "rc": 0,
+      "result_lines": [
+        "RESULT not (event(EvA(I_1)) && event(EvB(I_1))) is false."
+      ]
+    },
+    {
+      "command": [
+        "proverif",
+        "/redacted-home/workspace/revision_20261111/proof/restricted_U.pv"
+      ],
+      "rc": 0,
+      "result_lines": [
+        "RESULT not (event(EvA(I_1)) && event(EvB(I_1))) is false."
+      ]
+    },
+    {
+      "command": [
+        "proverif",
+        "/redacted-home/workspace/revision_20261111/proof/unbound_guard.pv"
+      ],
+      "rc": 0,
+      "result_lines": [
+        "RESULT not (event(EvA(I_1)) && event(EvB(I_1))) is true."
+      ]
+    },
+    {
+      "command": [
+        "proverif",
+        "/redacted-home/workspace/revision_20261111/proof/undefined_guard.pv"
+      ],
+      "rc": 2,
+      "result_lines": [
+        "Error: Variable, function, name, or predicate Z not declared."
+      ]
+    },
+    {
+      "command": [
+        "proverif",
+        "/redacted-home/workspace/revision_20261111/proof/scalar_pattern.pv"
+      ],
+      "rc": 2,
+      "result_lines": [
+        "Error: Syntax error."
+      ]
+    },
+    {
+      "command": [
+        "proverif",
+        "/redacted-home/workspace/revision_20261111/proof/capture.pv"
+      ],
+      "rc": 0,
+      "result_lines": [
+        "RESULT not event(EvA(I_1)) is true."
+      ]
+    },
+    {
+      "command": [
+        "proverif",
+        "/redacted-home/workspace/revision_20261111/proof/overlap.pv"
+      ],
+      "rc": 0,
+      "result_lines": [
+        "RESULT not (event(EvA(I_1)) && event(EvDup(I_1))) is false."
+      ]
+    },
+    {
+      "command": [
+        "tamarin-prover",
+        "--prove",
+        "--derivcheck-timeout=0",
+        "/redacted-home/workspace/revision_20261111/proof/restricted_base.spthy",
+        "+RTS",
+        "-N1",
+        "-M450m",
+        "-RTS"
+      ],
+      "rc": 0,
+      "result_lines": [
+        "/* All wellformedness checks were successful. */",
+        "  exec (exists-trace): verified (8 steps)"
+      ]
+    },
+    {
+      "command": [
+        "tamarin-prover",
+        "--prove",
+        "--derivcheck-timeout=0",
+        "/redacted-home/workspace/revision_20261111/proof/capture.spthy",
+        "+RTS",
+        "-N1",
+        "-M450m",
+        "-RTS"
+      ],
+      "rc": 0,
+      "result_lines": [
+        "/* All wellformedness checks were successful. */",
+        "  capture (exists-trace): verified (5 steps)"
+      ]
+    },
+    {
+      "command": [
+        "tamarin-prover",
+        "--prove",
+        "--derivcheck-timeout=0",
+        "/redacted-home/workspace/revision_20261111/proof/overlap.spthy",
+        "+RTS",
+        "-N1",
+        "-M450m",
+        "-RTS"
+      ],
+      "rc": 0,
+      "result_lines": [
+        "/* All wellformedness checks were successful. */",
+        "  overlap (exists-trace): falsified - no trace found (4 steps)"
+      ]
+    }
+  ],
+  "upstream_unchanged": true
+}

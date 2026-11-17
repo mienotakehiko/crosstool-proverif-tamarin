@@ -1,0 +1,291 @@
+Process 0 (that is, the initial process):
+(
+    {1}!
+    {2}new I: bitstring;
+    {3}new sd: bitstring;
+    {4}event AuditSeed(I,sd);
+    {5}insert Pk(I,(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,c_k))))));
+    {6}out(c, (I,(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,c_m)))),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,c_k)))))));
+    {7}in(c, y: bitstring);
+    (
+        {8}let (=c_sign,=n0) = y in
+        {9}event Sign(I,n0);
+        {10}out(c, (I,(n0,(prf(sd,c_m),ch(I,c_k,ch(I,c_k,ch(I,c_k,prf(sd,c_k))))))))
+    ) | (
+        {11}let (=c_sign,=n1) = y in
+        {12}event Sign(I,n1);
+        {13}out(c, (I,(n1,(ch(I,c_m,prf(sd,c_m)),ch(I,c_k,ch(I,c_k,prf(sd,c_k)))))))
+    ) | (
+        {14}let (=c_sign,=n2) = y in
+        {15}event Sign(I,n2);
+        {16}out(c, (I,(n2,(ch(I,c_m,ch(I,c_m,prf(sd,c_m))),ch(I,c_k,prf(sd,c_k))))))
+    ) | (
+        {17}let (=c_sign,=n3) = y in
+        {18}event Sign(I,n3);
+        {19}out(c, (I,(n3,(ch(I,c_m,ch(I,c_m,ch(I,c_m,prf(sd,c_m)))),prf(sd,c_k)))))
+    ) | (
+        {20}event RevealSeed(I);
+        {21}out(c, sd)
+    )
+) | (
+    {22}!
+    {23}in(c, y_1: bitstring);
+    (
+        {24}let (v_I: bitstring,(=n0,(v_sm: bitstring,v_sk: bitstring))) = y_1 in
+        {26}get Pk(=v_I,=(ch(v_I,c_m,ch(v_I,c_m,ch(v_I,c_m,v_sm))),v_sk)) in
+        {25}event Accept(v_I,n0)
+    ) | (
+        {27}let (v_I_1: bitstring,(=n1,(v_sm_1: bitstring,v_sk_1: bitstring))) = y_1 in
+        {29}get Pk(=v_I_1,=(ch(v_I_1,c_m,ch(v_I_1,c_m,v_sm_1)),ch(v_I_1,c_k,v_sk_1))) in
+        {28}event Accept(v_I_1,n1)
+    ) | (
+        {30}let (v_I_2: bitstring,(=n2,(v_sm_2: bitstring,v_sk_2: bitstring))) = y_1 in
+        {32}get Pk(=v_I_2,=(ch(v_I_2,c_m,v_sm_2),ch(v_I_2,c_k,ch(v_I_2,c_k,v_sk_2)))) in
+        {31}event Accept(v_I_2,n2)
+    ) | (
+        {33}let (v_I_3: bitstring,(=n3,(v_sm_3: bitstring,v_sk_3: bitstring))) = y_1 in
+        {35}get Pk(=v_I_3,=(v_sm_3,ch(v_I_3,c_k,ch(v_I_3,c_k,ch(v_I_3,c_k,v_sk_3))))) in
+        {34}event Accept(v_I_3,n3)
+    )
+)
+
+-- Query not event(Accept(I_1,a)) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query not event(Accept(I_1,a))
+goal reachable: b-event(@p_act(@occ7_1,(c_sign,n0))) && b-event(@p_act(@occ23_1,(I_1,(n0,(prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))))))))) -> event(Accept(I_1,n0))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ7_1 = @occ7[!1 = @sid]
+@occ23_1 = @occ23[!1 = @sid_1]
+sd_1 = sd[!1 = @sid]
+
+Derivation:
+Abbreviations:
+I_1 = I[!1 = @sid]
+sd_1 = sd[!1 = @sid]
+@occ7_1 = @occ7[!1 = @sid]
+@occ23_1 = @occ23[!1 = @sid_1]
+
+1. The message (I_1,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))))) may be sent to the attacker at output {6}.
+attacker((I_1,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))))))).
+
+2. By 1, the attacker may know (I_1,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))))).
+Using the function 2-proj-2-tuple the attacker may obtain (ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))))).
+attacker((ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))))).
+
+3. By 2, the attacker may know (ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))))).
+Using the function 2-proj-2-tuple the attacker may obtain ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))).
+attacker(ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))))).
+
+4. Using the function n0 the attacker may obtain n0.
+attacker(n0).
+
+5. Using the function c_sign the attacker may obtain c_sign.
+attacker(c_sign).
+
+6. By 5, the attacker may know c_sign.
+By 4, the attacker may know n0.
+Using the function 2-tuple the attacker may obtain (c_sign,n0).
+attacker((c_sign,n0)).
+
+7. The event @p_act(@occ7_1,(c_sign,n0)) records how variables are instantiated at {7}.
+The message (c_sign,n0) that the attacker may have by 6 may be received at input {7}.
+So the message (I_1,(n0,(prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))))))) may be sent to the attacker at output {10}.
+attacker((I_1,(n0,(prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))))))).
+
+8. By 7, the attacker may know (I_1,(n0,(prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))))))).
+Using the function 2-proj-2-tuple the attacker may obtain (n0,(prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))))).
+attacker((n0,(prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))))))).
+
+9. By 8, the attacker may know (n0,(prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))))).
+Using the function 2-proj-2-tuple the attacker may obtain (prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))))).
+attacker((prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))))).
+
+10. By 9, the attacker may know (prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))))).
+Using the function 1-proj-2-tuple the attacker may obtain prf(sd_1,c_m).
+attacker(prf(sd_1,c_m)).
+
+11. By 10, the attacker may know prf(sd_1,c_m).
+By 3, the attacker may know ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))).
+Using the function 2-tuple the attacker may obtain (prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))))).
+attacker((prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))))).
+
+12. By 4, the attacker may know n0.
+By 11, the attacker may know (prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))))).
+Using the function 2-tuple the attacker may obtain (n0,(prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))))).
+attacker((n0,(prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))))))).
+
+13. By 1, the attacker may know (I_1,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))))).
+Using the function 1-proj-2-tuple the attacker may obtain I_1.
+attacker(I_1).
+
+14. By 13, the attacker may know I_1.
+By 12, the attacker may know (n0,(prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))))).
+Using the function 2-tuple the attacker may obtain (I_1,(n0,(prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))))))).
+attacker((I_1,(n0,(prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))))))).
+
+15. The entry Pk(I_1,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))))) may be inserted in a table at insert {5}.
+table(Pk(I_1,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))))))).
+
+16. The event @p_act(@occ23_1,(I_1,(n0,(prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))))))) records how variables are instantiated at {23}.
+The message (I_1,(n0,(prf(sd_1,c_m),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k))))))) that the attacker may have by 14 may be received at input {23}.
+The entry Pk(I_1,(ch(I_1,c_m,ch(I_1,c_m,ch(I_1,c_m,prf(sd_1,c_m)))),ch(I_1,c_k,ch(I_1,c_k,ch(I_1,c_k,prf(sd_1,c_k)))))) that may be in a table by 15 may be read at get {26}.
+So event Accept(I_1,n0) may be executed at {25}.
+event(Accept(I_1,n0)).
+
+17. By 16, event(Accept(I_1,n0)).
+The goal is reached, represented in the following fact:
+event(Accept(I_1,n0)).
+
+
+A more detailed output of the traces is available with
+  set traceDisplay = long.
+
+new I: bitstring creating I_2 at {2} in copy a
+
+new sd: bitstring creating sd_2 at {3} in copy a
+
+event AuditSeed(I_2,sd_2) at {4} in copy a
+
+insert Pk(I_2,(ch(I_2,c_m,ch(I_2,c_m,ch(I_2,c_m,prf(sd_2,c_m)))),ch(I_2,c_k,ch(I_2,c_k,ch(I_2,c_k,prf(sd_2,c_k)))))) at {5} in copy a
+
+out(c, (~M,(~M_1,~M_2))) with ~M = I_2, ~M_1 = ch(I_2,c_m,ch(I_2,c_m,ch(I_2,c_m,prf(sd_2,c_m)))), ~M_2 = ch(I_2,c_k,ch(I_2,c_k,ch(I_2,c_k,prf(sd_2,c_k)))) at {6} in copy a
+
+in(c, (c_sign,n0)) at {7} in copy a
+
+event RevealSeed(I_2) at {20} in copy a
+
+out(c, ~M_3) with ~M_3 = sd_2 at {21} in copy a
+
+event Sign(I_2,n0) at {9} in copy a
+
+out(c, (~M_4,(~M_5,(~M_6,~M_7)))) with ~M_4 = I_2, ~M_5 = n0, ~M_6 = prf(sd_2,c_m), ~M_7 = ch(I_2,c_k,ch(I_2,c_k,ch(I_2,c_k,prf(sd_2,c_k)))) at {10} in copy a
+
+in(c, (~M,(n0,(~M_6,~M_2)))) with ~M = I_2, ~M_6 = prf(sd_2,c_m), ~M_2 = ch(I_2,c_k,ch(I_2,c_k,ch(I_2,c_k,prf(sd_2,c_k)))) at {23} in copy a_1
+
+get Pk(I_2,(ch(I_2,c_m,ch(I_2,c_m,ch(I_2,c_m,prf(sd_2,c_m)))),ch(I_2,c_k,ch(I_2,c_k,ch(I_2,c_k,prf(sd_2,c_k)))))) at {26} in copy a_1
+
+event Accept(I_2,n0) at {25} in copy a_1 (goal)
+
+The event Accept(I_2,n0) is executed at {25} in copy a_1.
+A trace has been found.
+RESULT not event(Accept(I_1,a)) is false.
+-- Query not event(Sign(I_1,a)) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query not event(Sign(I_1,a))
+goal reachable: b-event(@p_act(@occ7_2,(c_sign,n0))) -> event(Sign(I_1,n0))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ7_2 = @occ7_1[!1 = @sid]
+
+Derivation:
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ7_2 = @occ7_1[!1 = @sid]
+
+1. Using the function n0 the attacker may obtain n0.
+attacker(n0).
+
+2. Using the function c_sign the attacker may obtain c_sign.
+attacker(c_sign).
+
+3. By 2, the attacker may know c_sign.
+By 1, the attacker may know n0.
+Using the function 2-tuple the attacker may obtain (c_sign,n0).
+attacker((c_sign,n0)).
+
+4. The event @p_act(@occ7_2,(c_sign,n0)) records how variables are instantiated at {7}.
+The message (c_sign,n0) that the attacker may have by 3 may be received at input {7}.
+So event Sign(I_1,n0) may be executed at {9}.
+event(Sign(I_1,n0)).
+
+5. By 4, event(Sign(I_1,n0)).
+The goal is reached, represented in the following fact:
+event(Sign(I_1,n0)).
+
+
+A more detailed output of the traces is available with
+  set traceDisplay = long.
+
+new I: bitstring creating I_2 at {2} in copy a
+
+new sd: bitstring creating sd_1 at {3} in copy a
+
+event AuditSeed(I_2,sd_1) at {4} in copy a
+
+insert Pk(I_2,(ch(I_2,c_m,ch(I_2,c_m,ch(I_2,c_m,prf(sd_1,c_m)))),ch(I_2,c_k,ch(I_2,c_k,ch(I_2,c_k,prf(sd_1,c_k)))))) at {5} in copy a
+
+out(c, (~M,(~M_1,~M_2))) with ~M = I_2, ~M_1 = ch(I_2,c_m,ch(I_2,c_m,ch(I_2,c_m,prf(sd_1,c_m)))), ~M_2 = ch(I_2,c_k,ch(I_2,c_k,ch(I_2,c_k,prf(sd_1,c_k)))) at {6} in copy a
+
+in(c, (c_sign,n0)) at {7} in copy a
+
+event RevealSeed(I_2) at {20} in copy a
+
+out(c, ~M_3) with ~M_3 = sd_1 at {21} in copy a
+
+event Sign(I_2,n0) at {9} in copy a (goal)
+
+The event Sign(I_2,n0) is executed at {9} in copy a.
+A trace has been found.
+RESULT not event(Sign(I_1,a)) is false.
+-- Query not event(RevealSeed(I_1)) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query not event(RevealSeed(I_1))
+goal reachable: attacker(y_2) && b-event(@p_act(@occ7_3,y_2)) -> event(RevealSeed(I_1))
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ7_3 = @occ7_2[!1 = @sid]
+
+Derivation:
+Abbreviations:
+I_1 = I[!1 = @sid]
+@occ7_3 = @occ7_2[!1 = @sid]
+
+1. We assume as hypothesis that
+attacker(y_2).
+
+2. The event @p_act(@occ7_3,y_2) records how variables are instantiated at {7}.
+The message y_2 that the attacker may have by 1 may be received at input {7}.
+So event RevealSeed(I_1) may be executed at {20}.
+event(RevealSeed(I_1)).
+
+3. By 2, event(RevealSeed(I_1)).
+The goal is reached, represented in the following fact:
+event(RevealSeed(I_1)).
+
+
+A more detailed output of the traces is available with
+  set traceDisplay = long.
+
+new I: bitstring creating I_2 at {2} in copy a
+
+new sd: bitstring creating sd_1 at {3} in copy a
+
+event AuditSeed(I_2,sd_1) at {4} in copy a
+
+insert Pk(I_2,(ch(I_2,c_m,ch(I_2,c_m,ch(I_2,c_m,prf(sd_1,c_m)))),ch(I_2,c_k,ch(I_2,c_k,ch(I_2,c_k,prf(sd_1,c_k)))))) at {5} in copy a
+
+out(c, (~M,(~M_1,~M_2))) with ~M = I_2, ~M_1 = ch(I_2,c_m,ch(I_2,c_m,ch(I_2,c_m,prf(sd_1,c_m)))), ~M_2 = ch(I_2,c_k,ch(I_2,c_k,ch(I_2,c_k,prf(sd_1,c_k)))) at {6} in copy a
+
+in(c, a_1) at {7} in copy a
+
+event RevealSeed(I_2) at {20} in copy a (goal)
+
+The event RevealSeed(I_2) is executed at {20} in copy a.
+A trace has been found.
+RESULT not event(RevealSeed(I_1)) is false.
+
+--------------------------------------------------------------
+Verification summary:
+
+Query not event(Accept(I_1,a)) is false.
+
+Query not event(Sign(I_1,a)) is false.
+
+Query not event(RevealSeed(I_1)) is false.
+
+--------------------------------------------------------------
+

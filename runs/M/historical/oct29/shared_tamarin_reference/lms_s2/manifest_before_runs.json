@@ -1,0 +1,76 @@
+{
+  "cim_sha256": "441457323dde0422485f4d5474d02c53d29dffd591004ebd9eeb2178fd318227",
+  "direct_pv_sha256": "f0984a43f148863be8311428e5a947df2b3a17c9a75479c96013df49c9e8c064",
+  "generated_tamarin_sha256": "19829fa7ca8f36f6609f301278740bd2325f22b17a53c6439bb5a2e0697e423b",
+  "generator_version": "0.1.0",
+  "recorded_at": "2026-10-29T00:57:15.297169+00:00",
+  "bound": 2,
+  "checks": [
+    [
+      "Sig",
+      "OK",
+      "3 symbols used, one declaration table; tuples as right-nested pairs in both tools"
+    ],
+    [
+      "Evt",
+      "BY-CONSTRUCTION",
+      "3 event symbols printed from one table"
+    ],
+    [
+      "EvtSep",
+      "OK",
+      "no rule carries two observed events of one property"
+    ],
+    [
+      "Saf",
+      "OK",
+      "restrictions: OneMisuse only (variants cl1, rb1), universal with equality conclusion"
+    ],
+    [
+      "Lin",
+      "OK",
+      "8 step cases, one state in and one state out each; no leak outputs a state value"
+    ],
+    [
+      "LinSpawn",
+      "OK",
+      "single thread kind; the thread and its state are created by one rule/process"
+    ],
+    [
+      "Blk",
+      "OK",
+      "block = state input, attacker input, guards, events, outputs, state output"
+    ],
+    [
+      "Grd",
+      "OK",
+      "guards are equality tests on public numeral constants; domains q=[0, 1], a=[0, 1, 2, 3]"
+    ],
+    [
+      "Det",
+      "OK",
+      "cases with the same consumed state have disjoint input patterns"
+    ],
+    [
+      "Dist",
+      "OK",
+      "one role with a fresh identity; no public role names"
+    ],
+    [
+      "Leak",
+      "OK",
+      "leak outputs a persistent fresh name; enabled from thread start (guard: the published identity)"
+    ],
+    [
+      "Rul",
+      "BY-CONSTRUCTION",
+      "16 cases printed to both tools from one object"
+    ],
+    [
+      "Bound(e)",
+      "OK",
+      "longest update chain 2; declared bound 2; Theorem 1(e) applies with n = 2"
+    ]
+  ],
+  "translator": "local Tamarin export; NOT the pinned CCS artifact build"
+}

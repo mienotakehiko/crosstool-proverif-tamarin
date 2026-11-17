@@ -1,0 +1,6 @@
+base exec rc=0 t=11s | exec (exists-trace): verified (12 steps)
+base LS4_pure rc=0 t=5s | LS4_pure (all-traces): verified (281 steps)
+base LS4 rc=0 t=6s | LS4 (all-traces): verified (281 steps)
+base LS1 rc=0 t=6s | LS1 (all-traces): verified (74 steps)
+base LS3_forge rc=0 t=5s | LS3_forge (exists-trace): falsified - no trace found (74 steps)
+rb1 exec rc=124 t=241s | TIMEOUT

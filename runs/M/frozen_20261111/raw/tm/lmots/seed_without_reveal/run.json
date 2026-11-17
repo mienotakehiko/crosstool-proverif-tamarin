@@ -1,0 +1,26 @@
+{
+  "command": [
+    "/usr/local/bin/tamarin-prover",
+    "--prove=prospective_seed_without_reveal",
+    "--derivcheck-timeout=0",
+    "/redacted-home/workspace/revision_20261111/mutations/tm/lmots.spthy",
+    "+RTS",
+    "-N1",
+    "-M400m",
+    "-RTS"
+  ],
+  "started_utc": "2026-11-11T03:12:17.312300+00:00",
+  "elapsed_s": 0.407,
+  "rc": 0,
+  "stop_reason": null,
+  "time_limit_s": 30,
+  "peak_group_rss_kib": 51212,
+  "rss_samples": [
+    [
+      0.002,
+      3716
+    ]
+  ],
+  "raw_file": "raw/tm/lmots/seed_without_reveal/raw.out",
+  "raw_sha256": "df57c3ed3780f4dd18fef23ec1f60cb82b5a5e196416ffacf37c6160c17d6604"
+}

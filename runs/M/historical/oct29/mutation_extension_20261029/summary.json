@@ -1,0 +1,17 @@
+{
+  "mutants": 20,
+  "with_discrepancy": 12,
+  "controls": 2,
+  "control_discrepancies": 0,
+  "unclassified_survivors": [
+    "lmots__remove_reveal_event",
+    "lmots__unguarded_reveal",
+    "lmots__private_to_public",
+    "lmots__reveal_wrong_secret",
+    "lms_s2__remove_reveal_event",
+    "lms_s2__unguarded_reveal",
+    "lms_s2__private_to_public",
+    "lms_s2__reveal_wrong_secret"
+  ],
+  "caveat": "10 selected one-sided operators, two fixed signer seeds; stale checks retained. Not O1-O10 coverage, not eight-class accuracy, not end-to-end output validator."
+}

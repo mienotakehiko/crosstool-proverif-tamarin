@@ -1,0 +1,20 @@
+{
+  "command": [
+    "/usr/local/bin/proverif",
+    "/redacted-home/workspace/revision_20261111/mutations/pv/lmots__reveal_wrong_secret/existing.pv"
+  ],
+  "started_utc": "2026-11-11T03:12:10.690536+00:00",
+  "elapsed_s": 0.104,
+  "rc": 0,
+  "stop_reason": null,
+  "time_limit_s": 15,
+  "peak_group_rss_kib": 5172,
+  "rss_samples": [
+    [
+      0.002,
+      5172
+    ]
+  ],
+  "raw_file": "raw/pv/lmots__reveal_wrong_secret/existing/raw.out",
+  "raw_sha256": "e0d769db4e1acbab35204c224364317230b860c065a69e0e80bc912fa0d0a954"
+}

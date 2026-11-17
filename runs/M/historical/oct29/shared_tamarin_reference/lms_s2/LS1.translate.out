@@ -1,0 +1,16 @@
+maude tool: 'maude'
+ checking version: 3.5.1. OK.
+ checking installation: OK.
+[Theory LMS_S2_T_base] Theory loaded
+[Theory LMS_S2_T_base] Theory translated
+TAMARIN LEMMA: ∀ I q a #k.
+ (Accept( I, q, a ) @ #k) ⇒
+ ((∃ #c0_0. Sign( I, q, a ) @ #c0_0) ∨
+  (∃ #c1_0. RevealSeed( I ) @ #c1_0)) END
+PROVERIF LEMMA: (*LS1*)
+query I:bitstring, a:bitstring, q:bitstring, c0_0:time, c1_0:time,
+      k:time;
+ (event(eAccept( I, q, a ))@k) ==>
+ ((event(eSign( I, q, a ))@c0_0) || (event(eRevealSeed( I ))@c1_0))
+.
+ END

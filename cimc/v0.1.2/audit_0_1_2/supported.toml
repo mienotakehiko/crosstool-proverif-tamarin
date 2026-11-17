@@ -1,0 +1,27 @@
+name = "Restricted"
+[signature]
+functions = [{name="seal",arity=1,private=true}]
+[thread]
+fresh = ["I"]
+state = ["q"]
+init = {q=0}
+bound = 2
+publish = "tup(I, seal(I))"
+[[thread.step]]
+name="First"
+domain={q=[0]}
+input="tup(Payload, I)"
+update={q="1"}
+events=["EvA(I)"]
+outputs=["Payload", "seal(I)", "tup('a', I)"]
+[[thread.step]]
+name="Second"
+domain={q=[1]}
+input="tup('a', seal(I))"
+update={q="2"}
+events=["EvB(I)"]
+outputs=[]
+[[property]]
+name="exec"
+kind="phi3"
+events=["EvA(I)","EvB(I)"]

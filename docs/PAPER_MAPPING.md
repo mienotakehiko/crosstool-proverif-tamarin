@@ -4,16 +4,18 @@
 
 | Review item | Evidence in this repository | Original evidence still needed |
 | --- | --- | --- |
-| 1. Generator and assurance | Compiler 0.1.0, tree 1.0, existing tests, two signer specifications and 16 generated fixtures | Compiler 0.1.1 and 0.1.2, tree 1.1 and its tests, both guard suites, 37 AL assertions, D3 and D4 inputs/results |
+| 1. Generator and assurance | Compiler versions 0.1.0, 0.1.1 and 0.1.2, Diagnosis v1.1 source, 9 guard checks, 13 hygiene checks, 37 AL assertions, and captured-input and scalar-pattern controls | Original Diagnosis v1.1 24-test run |
 | 2. G Tamarin | Sandbox data, 23 rows with 19 conclusive outcomes | The 32 production judgments, matching JSONL and `tamout/`, generation manifest and environment |
 | 3. Screening models | All nine requested original theories and the six existing theories. Derived hashes match 19 variants in P1–P3, covering 207 jobs | None for the nine requested inputs |
-| 4. M | [Evidence requirements](../runs/M/README.md) | Pilot, 20-mutant experiment, controls and frozen-query re-evaluation |
+| 4. M | [October pilot, October main experiment and November frozen-query re-evaluation](../runs/M/README.md) | Two wrapper ZIPs referenced by the November scheduler and compiler checksums are unavailable; their extracted research files are included |
 | 5. X1 | B0/B1/B2 comparison, 21 models, all 60 pairs and all 540 archived stage invocations, two patches and build records | The original binaries if a direct binary hash recheck is desired |
 | 6. X2 | 20 exports, legacy LMS and HSS ProVerif pilots, [HSS premise comparison](../runs/X2/hss-candidate-comparison.tsv), native HSS runs and byte-identity check | None for the reported fixed-build results |
 | 7. X0 | 15 archived naming-fix runs and a 40-row post-rename join | None for the reported outcome counts |
 | 8. K | 12 specifications, original generators, 24 matching generated models, direct-run outputs and Stage D records | See the [K evidence notes](../runs/K/README.md) for how the 24 slots link to the outputs |
-| 9. Lemma 1 | [Evidence requirements](../scheduler/README.md) | Original 21-test suite, fixtures and record of its run |
+| 9. Lemma 1 | [Restricted suite, fixture and 21 stored pass records](../scheduler/README.md) | Full semantic equivalence is outside the scope of the suite |
 | 10. Morio et al. | Original dataset, 41-row subset and calculation script | None for the 41-row subset |
+
+The [release checklist](RELEASE_CHECKLIST_20261117.md) links the quantitative and publication audits.
 
 ## Counting rules
 

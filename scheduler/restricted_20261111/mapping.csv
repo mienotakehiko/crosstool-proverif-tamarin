@@ -1,0 +1,23 @@
+id,source,line_range,generated_artifact,obligation,evidence,status
+G01,snapshot/cimc/cimc/core.py,214-249,restricted.toml,finite case expansion and numeral ground states,shared Case objects inspected,audited not semantic correctness
+G02,snapshot/cimc/cimc/core.py,31-41;235-249,restricted_base.spthy,pair/state structural encoding,ground constructor induction in proof_notes_en.md,restricted proof
+G03,snapshot/cimc/cimc/backends.py,13-25;144-157,restricted_lin.pv;restricted_base.spthy,homomorphic ground term printing,no equations and fixed name valuation required,restricted proof
+G04,snapshot/cimc/cimc/backends.py,84-105;224-229;276-280,restricted_lin.pv;restricted_base.spthy,initial names and private channel cannot be absent,empty fresh test raises IndexError,explicit limitation
+G05,snapshot/cimc/cimc/backends.py,100-105;277-280,restricted_lin.pv,initial public knowledge from actual publish term,tuple I projection and post-init boundary,restricted audit
+G06,snapshot/cimc/cimc/backends.py,265-272,restricted_lin.pv,reservation before public input,forward cases 1-2 and dead-state test,restricted proof
+G07,snapshot/cimc/cimc/backends.py,201-221;270-271,overlap.pv;overlap.spthy,parallel alternatives not choice,PV reachability versus TM no trace and Det FAIL,native counterexample outside Det
+G08,snapshot/cimc/cimc/checks.py,62-77;141-158,overlap.pv,pairwise disjoint matching,existing Det rejects overlapping input,validated existing guard
+G09,snapshot/cimc/cimc/backends.py,207-215,restricted_lin.pv,pattern and state failure abandon reserved token,forward case 3 and reverse-from-dead counterexample,restricted proof
+G10,snapshot/cimc/cimc/backends.py,211-214;267-271,restricted_lin.pv,events then outputs then successor,forward cases 4-8 and debt equation,restricted proof
+G11,snapshot/cimc/cimc/backends.py,106-116,restricted_base.spthy,atomic state event outputs,atomic definition and stable reverse construction,restricted audit
+G12,snapshot/cimc/cimc/checks.py,97-103,restricted_lin.pv,at most one observed event,ObsOne plus ground event word definition,not general formula transfer
+G13,snapshot/cimc/cimc/backends.py,160-171,capture.pv;capture.spthy,closure and internal binder hygiene,existing report accepts capture native verdicts disagree,missing guard demonstrated
+G14,snapshot/cimc/cimc/backends.py,160-171,undefined_guard.pv,constructor equality variable must be bound,Z not declared with report no FAIL,missing guard demonstrated
+G15,snapshot/cimc/cimc/backends.py,160-171,scalar_pattern.pv,generated text must parse,PV exit 2 Syntax error with ground scalar input,missing parse guard demonstrated
+G16,snapshot/cimc/cimc/backends.py,117-133;249-264,restricted_base.spthy,no responder leak misuse rollback,these rule families absent from fixture,excluded not proved
+G17,snapshot/cimc/cimc/backends.py,279-280,restricted_lin.pv,one initialized thread,printed replication remains restricted run condition,not enforced by generator
+G18,snapshot/cimc/cimc/checks.py,124-138,restricted.toml,acyclic reachable update graph,fixture q0 to q1 to q2 and bound report,restricted premise
+G19,snapshot/tex/paper/sections/5_method.tex,91-104,appendix_restricted_scheduler.tex,avoid circular assumption of simulation,existing theorem explicitly assumes reviewed simulation,retain original caveats
+G20,snapshot/tex/paper/appendix_correspondence.tex,122-142,proof_notes_en.md,reservation abandonment output debt,closed for defined scheduler systems only,full semantics open
+G21,snapshot/followup_20261029/research_followup.py,16-59,snapshot/followup_20261029/research/bounded_reservation_check.json,old bounded equality not actual generated semantics,19 versus 251 states and 19 traces read only,historical bounded evidence
+G22,run_checks.py,1-end,results.json;tests.log,finite regression and native negative controls,21 tests and explicit command verdicts,not mechanized unbounded proof

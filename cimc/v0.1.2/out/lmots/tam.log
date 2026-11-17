@@ -1,0 +1,10 @@
+base exec_accept rc=0 t=1s | exec_accept (exists-trace): verified (10 steps)
+base LS1_unforge rc=0 t=1s | LS1_unforge (all-traces): verified (23 steps)
+base forge rc=0 t=1s | forge (exists-trace): falsified - no trace found (23 steps)
+rb1 exec_accept rc=0 t=1s | exec_accept (exists-trace): verified (10 steps)
+rb1 LS1_unforge rc=0 t=2s | LS1_unforge (all-traces): falsified - found trace (11 steps)
+rb1 forge rc=0 t=1s | forge (exists-trace): verified (11 steps)
+cl1 exec_accept rc=0 t=2s | exec_accept (exists-trace): verified (11 steps)
+cl1 LS1_unforge rc=0 t=2s | LS1_unforge (all-traces): falsified - found trace (10 steps)
+cl1 forge rc=0 t=1s | forge (exists-trace): verified (10 steps)
+DONE

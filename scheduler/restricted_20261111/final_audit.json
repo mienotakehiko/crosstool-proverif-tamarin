@@ -1,0 +1,14 @@
+{
+  "source_hashes_rechecked": true,
+  "mapping_rows": 22,
+  "python_tests": 21,
+  "native_commands": 10,
+  "expected_model_errors": 2,
+  "latex_compile": "success, two pages, no overfull boxes",
+  "not_claimed": [
+    "native language semantic adequacy",
+    "complete PV/TM trace equivalence",
+    "general property transfer"
+  ],
+  "write_scope": "this proof directory only; no upstream edit"
+}
