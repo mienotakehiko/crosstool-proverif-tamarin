@@ -1,0 +1,11 @@
+--- /home/user/cryptography-experiments/rev008-wsl/e6-no-git/runs/run-kowros/nullary_once/translated.pv	2026-11-17 15:17:25.283166707 +0900
++++ /home/user/cryptography-experiments/rev008-wsl/e6-no-git/review-I9Zd8w/nullary_once-control.pv	2026-11-17 15:49:23.980740580 +0900
+@@ -66,7 +66,7 @@
+         insert tSt(stR_St, asid, vqdone, vphase1).
+ 
+ let rBad =
+-        get tSt(stL_St, asid, helperVar0, =vphase0) in
++        get tSt(stL_St, asid, =q1(), =vphase0) in
+         new rid_rBad: bitstring;
+         event eDistinctFact(rid_rBad, (stL_St, (asid, (q1(), vphase0))));
+         event eBad(asid).

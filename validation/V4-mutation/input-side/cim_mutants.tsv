@@ -1,0 +1,95 @@
+mutant	operator	generator	reason
+lmots__drop_publish	drop_publish	reject	FAIL LeakGuard
+lmots__literal_numeral	literal_numeral	accept	
+lmots__leak_state	leak_state	reject	FAIL Lin, Leak
+lmots__unbound_output	unbound_output	reject	unsupported CIM: no model files generated (cimc 0.1.2)
+lmots__overlap_input	overlap_input	reject	FAIL Det
+lmots__drop_input	drop_input	reject	FAIL Det
+lmots__mixed_dispatch	mixed_dispatch	reject	FAIL Det
+lms_s2__drop_publish	drop_publish	reject	FAIL LeakGuard
+lms_s2__literal_numeral	literal_numeral	accept	
+lms_s2__leak_state	leak_state	reject	FAIL Lin, Leak
+lms_s2__unbound_output	unbound_output	reject	unsupported CIM: no model files generated (cimc 0.1.2)
+lms_s2__overlap_input	overlap_input	reject	FAIL Det
+lms_s2__drop_input	drop_input	reject	FAIL Det
+lms_s2__mixed_dispatch	mixed_dispatch	reject	FAIL Det
+lmots_w1m1__drop_publish	drop_publish	reject	FAIL LeakGuard
+lmots_w1m1__literal_numeral	literal_numeral	accept	
+lmots_w1m1__leak_state	leak_state	reject	FAIL Lin, Leak
+lmots_w1m1__unbound_output	unbound_output	reject	unsupported CIM: no model files generated (cimc 0.1.2)
+lmots_w1m1__overlap_input	overlap_input	reject	FAIL Det
+lmots_w1m1__drop_input	drop_input	reject	FAIL Det
+lmots_w1m1__mixed_dispatch	mixed_dispatch	reject	FAIL Det
+lmots_w2m1__drop_publish	drop_publish	reject	FAIL LeakGuard
+lmots_w2m1__literal_numeral	literal_numeral	accept	
+lmots_w2m1__leak_state	leak_state	reject	FAIL Lin, Leak
+lmots_w2m1__unbound_output	unbound_output	reject	unsupported CIM: no model files generated (cimc 0.1.2)
+lmots_w2m1__overlap_input	overlap_input	reject	FAIL Det
+lmots_w2m1__drop_input	drop_input	reject	FAIL Det
+lmots_w2m1__mixed_dispatch	mixed_dispatch	reject	FAIL Det
+lmots_w2m2__drop_publish	drop_publish	reject	FAIL LeakGuard
+lmots_w2m2__literal_numeral	literal_numeral	accept	
+lmots_w2m2__leak_state	leak_state	reject	FAIL Lin, Leak
+lmots_w2m2__unbound_output	unbound_output	reject	unsupported CIM: no model files generated (cimc 0.1.2)
+lmots_w2m2__overlap_input	overlap_input	reject	FAIL Det
+lmots_w2m2__drop_input	drop_input	reject	FAIL Det
+lmots_w2m2__mixed_dispatch	mixed_dispatch	reject	FAIL Det
+lmots_w3m1__drop_publish	drop_publish	reject	FAIL LeakGuard
+lmots_w3m1__literal_numeral	literal_numeral	accept	
+lmots_w3m1__leak_state	leak_state	reject	FAIL Lin, Leak
+lmots_w3m1__unbound_output	unbound_output	reject	unsupported CIM: no model files generated (cimc 0.1.2)
+lmots_w3m1__overlap_input	overlap_input	reject	FAIL Det
+lmots_w3m1__drop_input	drop_input	reject	FAIL Det
+lmots_w3m1__mixed_dispatch	mixed_dispatch	reject	FAIL Det
+lmots_w4m1__drop_publish	drop_publish	reject	FAIL LeakGuard
+lmots_w4m1__literal_numeral	literal_numeral	accept	
+lmots_w4m1__leak_state	leak_state	reject	FAIL Lin, Leak
+lmots_w4m1__unbound_output	unbound_output	reject	unsupported CIM: no model files generated (cimc 0.1.2)
+lmots_w4m1__overlap_input	overlap_input	reject	FAIL Det
+lmots_w4m1__drop_input	drop_input	reject	FAIL Det
+lmots_w4m1__mixed_dispatch	mixed_dispatch	reject	FAIL Det
+lms_h1w1__drop_publish	drop_publish	reject	unsupported CIM: no model files generated (cimc 0.1.2)
+lms_h1w1__literal_numeral	literal_numeral	reject	unsupported CIM: no model files generated (cimc 0.1.2)
+lms_h1w1__leak_state	leak_state	reject	unsupported CIM: no model files generated (cimc 0.1.2)
+lms_h1w1__unbound_output	unbound_output	reject	unsupported CIM: no model files generated (cimc 0.1.2)
+lms_h1w1__overlap_input	overlap_input	reject	unsupported CIM: no model files generated (cimc 0.1.2)
+lms_h1w1__drop_input	drop_input	reject	unsupported CIM: no model files generated (cimc 0.1.2)
+lms_h1w1__mixed_dispatch	mixed_dispatch	reject	unsupported CIM: no model files generated (cimc 0.1.2)
+lms_h1w2__drop_publish	drop_publish	reject	unsupported CIM: no model files generated (cimc 0.1.2)
+lms_h1w2__literal_numeral	literal_numeral	reject	unsupported CIM: no model files generated (cimc 0.1.2)
+lms_h1w2__leak_state	leak_state	reject	unsupported CIM: no model files generated (cimc 0.1.2)
+lms_h1w2__unbound_output	unbound_output	reject	unsupported CIM: no model files generated (cimc 0.1.2)
+lms_h1w2__overlap_input	overlap_input	reject	unsupported CIM: no model files generated (cimc 0.1.2)
+lms_h1w2__drop_input	drop_input	reject	unsupported CIM: no model files generated (cimc 0.1.2)
+lms_h1w2__mixed_dispatch	mixed_dispatch	reject	unsupported CIM: no model files generated (cimc 0.1.2)
+lms_h2w1__drop_publish	drop_publish	reject	unsupported CIM: no model files generated (cimc 0.1.2)
+lms_h2w1__literal_numeral	literal_numeral	reject	unsupported CIM: no model files generated (cimc 0.1.2)
+lms_h2w1__leak_state	leak_state	reject	unsupported CIM: no model files generated (cimc 0.1.2)
+lms_h2w1__unbound_output	unbound_output	reject	unsupported CIM: no model files generated (cimc 0.1.2)
+lms_h2w1__overlap_input	overlap_input	reject	unsupported CIM: no model files generated (cimc 0.1.2)
+lms_h2w1__drop_input	drop_input	reject	unsupported CIM: no model files generated (cimc 0.1.2)
+lms_h2w1__mixed_dispatch	mixed_dispatch	reject	unsupported CIM: no model files generated (cimc 0.1.2)
+lms_h2w2__drop_publish	drop_publish	reject	unsupported CIM: no model files generated (cimc 0.1.2)
+lms_h2w2__literal_numeral	literal_numeral	reject	unsupported CIM: no model files generated (cimc 0.1.2)
+lms_h2w2__leak_state	leak_state	reject	unsupported CIM: no model files generated (cimc 0.1.2)
+lms_h2w2__unbound_output	unbound_output	reject	unsupported CIM: no model files generated (cimc 0.1.2)
+lms_h2w2__overlap_input	overlap_input	reject	unsupported CIM: no model files generated (cimc 0.1.2)
+lms_h2w2__drop_input	drop_input	reject	unsupported CIM: no model files generated (cimc 0.1.2)
+lms_h2w2__mixed_dispatch	mixed_dispatch	reject	unsupported CIM: no model files generated (cimc 0.1.2)
+lms_h3w1__drop_publish	drop_publish	reject	unsupported CIM: no model files generated (cimc 0.1.2)
+lms_h3w1__literal_numeral	literal_numeral	reject	unsupported CIM: no model files generated (cimc 0.1.2)
+lms_h3w1__leak_state	leak_state	reject	unsupported CIM: no model files generated (cimc 0.1.2)
+lms_h3w1__unbound_output	unbound_output	reject	unsupported CIM: no model files generated (cimc 0.1.2)
+lms_h3w1__overlap_input	overlap_input	reject	unsupported CIM: no model files generated (cimc 0.1.2)
+lms_h3w1__drop_input	drop_input	reject	unsupported CIM: no model files generated (cimc 0.1.2)
+lms_h3w1__mixed_dispatch	mixed_dispatch	reject	unsupported CIM: no model files generated (cimc 0.1.2)
+otp_n2__drop_publish	drop_publish	reject	unsupported CIM: no model files generated (cimc 0.1.2)
+otp_n2__literal_numeral	literal_numeral	reject	unsupported CIM: no model files generated (cimc 0.1.2)
+otp_n2__leak_state	leak_state	reject	unsupported CIM: no model files generated (cimc 0.1.2)
+otp_n2__unbound_output	unbound_output	reject	unsupported CIM: no model files generated (cimc 0.1.2)
+otp_n2__mixed_dispatch	mixed_dispatch	reject	unsupported CIM: no model files generated (cimc 0.1.2)
+otp_n3__drop_publish	drop_publish	reject	unsupported CIM: no model files generated (cimc 0.1.2)
+otp_n3__literal_numeral	literal_numeral	reject	unsupported CIM: no model files generated (cimc 0.1.2)
+otp_n3__leak_state	leak_state	reject	unsupported CIM: no model files generated (cimc 0.1.2)
+otp_n3__unbound_output	unbound_output	reject	unsupported CIM: no model files generated (cimc 0.1.2)
+otp_n3__mixed_dispatch	mixed_dispatch	reject	unsupported CIM: no model files generated (cimc 0.1.2)

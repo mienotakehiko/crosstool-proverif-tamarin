@@ -1,0 +1,9 @@
+maude tool: '/home/linuxbrew/.linuxbrew/bin/maude'
+ checking version: 3.5.1. OK.
+ checking installation: OK.
+[Theory nullary_once] Theory loaded
+[Theory nullary_once] Theory translated
+[Theory nullary_once] No Deconstruction Chain checks started
+[Theory nullary_once] No Deconstruction Chain checks ended
+[Theory nullary_once] Derivation checks started
+[Theory nullary_once] Derivation checks ended

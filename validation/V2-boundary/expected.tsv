@@ -1,0 +1,13 @@
+# probe	fragment	expected generator outcome	class	predicted difference if the generator accepts the probe
+b01_control_inputs	inside	accept	control	none: both tools reach each event alone and no trace contains both
+b02_control_silent	inside	accept	control	none: both tools reach both events in one trace, in the order of the states
+b03_overlap	outside	reject	Det	ProVerif reaches both events with one message; the linear state fact of Tamarin admits one
+b04_two_silent	outside	reject	Det	ProVerif reaches both events with one message; the linear state fact of Tamarin admits one
+b05_mixed_dispatch	outside	reject	Det, case without input	ProVerif reaches both events with one message; the linear state fact of Tamarin admits one
+b06_numeral_literal	outside	reject	Name	Tamarin reaches the acceptance; ProVerif compares two distinct constants and proves it unreachable
+b07_reserved_name	outside	reject	Name	Tamarin releases the secret and reaches the acceptance; ProVerif releases the message of the attacker and proves it unreachable
+b08_unpublished_identity	outside	reject	LeakGuard (discrepancy D3)	Tamarin reaches the reveal event; the ProVerif leak block waits for an identity that the attacker lacks
+b09_constructor_pattern	outside	reject	Bind (discrepancy D4)	Tamarin reaches the event; ProVerif reports an unbound name for U and Urb, and proves the event unreachable for lin and rep
+b10_event_order	outside	reject	EvtSep	Tamarin verifies the correspondence at one time point; ProVerif executes the premise first and returns a trace
+b11_unbound_output	outside	reject	Bind	tool errors: ProVerif reports an unbound name; Tamarin reports an unbound variable
+b12_table_binding	outside	reject	Bind	tool error: ProVerif reports an unbound name in the responder; Tamarin binds the identity from the table and reaches the acceptance

@@ -1,0 +1,13 @@
+probe	fragment	expected	generator	reason	result
+b01_control_inputs	inside	accept	reject	unsupported CIM: no model files generated (cimc 0.1.2)	MISMATCH
+b02_control_silent	inside	accept	reject	unsupported CIM: no model files generated (cimc 0.1.2)	MISMATCH
+b03_overlap	outside	reject	reject	FAIL Det	ok
+b04_two_silent	outside	reject	reject	FAIL Det	ok
+b05_mixed_dispatch	outside	reject	reject	unsupported CIM: no model files generated (cimc 0.1.2)	ok
+b06_numeral_literal	outside	reject	reject	unsupported CIM: no model files generated (cimc 0.1.2)	ok
+b07_reserved_name	outside	reject	reject	unsupported CIM: no model files generated (cimc 0.1.2)	ok
+b08_unpublished_identity	outside	reject	reject	unsupported CIM: no model files generated (cimc 0.1.2)	ok
+b09_constructor_pattern	outside	reject	reject	unsupported CIM: no model files generated (cimc 0.1.2)	ok
+b10_event_order	outside	reject	reject	unsupported CIM: no model files generated (cimc 0.1.2)	ok
+b11_unbound_output	outside	reject	reject	unsupported CIM: no model files generated (cimc 0.1.2)	ok
+b12_table_binding	outside	reject	reject	unsupported CIM: no model files generated (cimc 0.1.2)	ok

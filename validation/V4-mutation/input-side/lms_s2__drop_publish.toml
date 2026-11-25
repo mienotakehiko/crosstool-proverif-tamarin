@@ -1,0 +1,80 @@
+# CIM of the LMS signer, stage 2: tree height h = 1 (leaves 0 and 1),
+# LM-OTS with w = 2 and p = 2 (one message digit a, checksum digit 3 - a).
+# Same protocol as the hand-written models LMS_S2_* and stage2_proverif/*.
+name = "LMS_S2"
+
+[meta]
+parameters = "h = 1, w = 2, p = 2"
+
+[signature]
+functions = [
+  { name = "ch",  arity = 3 },                    # chain step ch(I, tag, x)
+  { name = "prf", arity = 3, private = true },    # secret value prf(seed, q, tag)
+  { name = "hl",  arity = 3 },                    # Merkle node hl(I, left, right)
+]
+
+[macros]
+up     = { params = ["I", "d", "n", "t"], body = "t if n == 0 else ch(I, d, up(I, d, n - 1, t))" }
+leafpk = { params = ["I", "sd", "q"],     body = "tup(up(I, 'm', 3, prf(sd, q, 'm')), up(I, 'k', 3, prf(sd, q, 'k')))" }
+root   = { params = ["I", "sd"],          body = "hl(I, leafpk(I, sd, 0), leafpk(I, sd, 1))" }
+
+[thread]
+role    = "Signer"
+fresh   = ["I", "sd"]          # first fresh name is the public thread identity
+state   = ["q"]                # next unused leaf
+init    = { q = 0 }
+bound   = 2
+persist = [ { name = "Root", term = "root(I, sd)" } ]
+
+[[thread.leak]]
+event  = "RevealSeed(I)"
+output = "sd"
+
+[[thread.step]]
+name    = "Sign"
+domain  = { q = [0, 1], a = [0, 1, 2, 3] }
+input   = "tup('sign', a)"
+update  = { q = "q + 1" }
+events  = ["Sign(I, q, a)"]
+outputs = ["tup(I, q, a, up(I, 'm', a, prf(sd, q, 'm')), up(I, 'k', 3 - a, prf(sd, q, 'k')), leafpk(I, sd, 1 - q))"]
+
+[[responder]]
+name   = "Verify"
+domain = { q = [0, 1], a = [0, 1, 2, 3] }
+input  = "tup(I, q, a, sm, sk, sib)"
+check  = { Root = "hl(I, tup(up(I, 'm', 3 - a, sm), up(I, 'k', a, sk)), sib) if q == 0 else hl(I, sib, tup(up(I, 'm', 3 - a, sm), up(I, 'k', a, sk)))" }
+events = ["Accept(I, q, a)"]
+
+# ------------------------------------------------------------ properties
+[[property]]
+name     = "exec"
+kind     = "phi3"
+events   = ["Sign(I, q, a)", "Accept(I, q, a)"]
+absent   = ["RevealSeed(I)"]
+
+[[property]]
+name     = "LS4_pure"
+kind     = "phi2"
+premise  = ["Sign(I, q, a1)@i", "Sign(I, q, a2)@j"]
+conclusion = "i = j"
+induction = true
+
+[[property]]
+name     = "LS4"
+kind     = "phi2"
+premise  = ["Sign(I, q, a1)@i", "Sign(I, q, a2)@j"]
+conclusion = "i = j"
+induction = true
+misuse_exception = "I"         # Tamarin variants with Clone/Rollback only
+
+[[property]]
+name       = "LS1"
+kind       = "phi1"
+premise    = "Accept(I, q, a)"
+conclusion = [["Sign(I, q, a)"], ["RevealSeed(I)"]]
+
+[[property]]
+name     = "LS3_forge"
+kind     = "phi3"
+events   = ["Accept(I, q, a)"]
+absent   = ["Sign(I, q, a)", "RevealSeed(I)"]

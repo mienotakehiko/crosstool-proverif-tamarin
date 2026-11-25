@@ -1,0 +1,23 @@
+{
+ "cim": "lmots.toml",
+ "cim_sha256": "c38b6a981ec4235134031d7d588d9c121bebdd86380cefab0c3d8b36532cce16",
+ "operator": "output_shift",
+ "side": "tam",
+ "changed_files": [
+  "LMOTS_T_base.spthy",
+  "LMOTS_T_cl1.spthy",
+  "LMOTS_T_omega.spthy",
+  "LMOTS_T_rb1.spthy"
+ ],
+ "class": "encoding",
+ "sha256": {
+  "LMOTS_T_base.spthy": "e464713f5c763a26c751b5e7f199989b31a98f479cc720417910a97ecc1cb97a",
+  "LMOTS_T_cl1.spthy": "032e08ce478eb21893b66d7a8a6f4646cc53c35848c93535998c86fe0edc0bd3",
+  "LMOTS_T_rb1.spthy": "25e5038157e67538896c686f332a5395adc81477ab07f165649240672ef0b151",
+  "LMOTS_T_omega.spthy": "20f25970cf1dd69d58a231aa10f92fa94aab261ff8faeb1ddba89b7fbfade8f5",
+  "LMOTS_PV_U1.pv": "1bc72e2e2781df7ab47d43ce14b7307ef9e397b9cf9eb787ea624330684ae19b",
+  "LMOTS_PV_Urb1.pv": "d5e467eced8a3284e6dfae4546b0ecb67ff13fdc0f76bc3d8e952552c31fceeb",
+  "LMOTS_PV_lin.pv": "95b63da86dd7bffbf0f23f6d6fcaaf7d1edfc10b5f7aed83b1f6149778a389dd",
+  "LMOTS_PV_rep.pv": "588e8311f75bf1a388204613b8975f8aee5ee265344a213c357f3296bfc547af"
+ }
+}

@@ -1,0 +1,16 @@
+{"model": "LMS_H2W2_PV_U4", "query": "exec", "verdict": "false", "rc": 0, "seconds": 8.58, "sha256": "dce2ece0a0c89b4cfcdf71f1716a3be02971746991d6eefe1aa91c2dc03b005f", "timeout_s": 600}
+{"model": "LMS_H2W2_PV_U4", "query": "LS4_pure", "verdict": "true", "rc": 0, "seconds": 8.58, "sha256": "dce2ece0a0c89b4cfcdf71f1716a3be02971746991d6eefe1aa91c2dc03b005f", "timeout_s": 600}
+{"model": "LMS_H2W2_PV_U4", "query": "LS1", "verdict": "true", "rc": 0, "seconds": 8.58, "sha256": "dce2ece0a0c89b4cfcdf71f1716a3be02971746991d6eefe1aa91c2dc03b005f", "timeout_s": 600}
+{"model": "LMS_H2W2_PV_U4", "query": "LS3_forge", "verdict": "true", "rc": 0, "seconds": 8.58, "sha256": "dce2ece0a0c89b4cfcdf71f1716a3be02971746991d6eefe1aa91c2dc03b005f", "timeout_s": 600}
+{"model": "LMS_H2W2_PV_Urb4", "query": "exec", "verdict": "false", "rc": 0, "seconds": 269.69, "sha256": "52534022aa0aac52055930d274c51620e2fb46bfa06678212d0a07cfd68316f1", "timeout_s": 600}
+{"model": "LMS_H2W2_PV_Urb4", "query": "LS4_pure", "verdict": "false", "rc": 0, "seconds": 269.69, "sha256": "52534022aa0aac52055930d274c51620e2fb46bfa06678212d0a07cfd68316f1", "timeout_s": 600}
+{"model": "LMS_H2W2_PV_Urb4", "query": "LS1", "verdict": "false", "rc": 0, "seconds": 269.69, "sha256": "52534022aa0aac52055930d274c51620e2fb46bfa06678212d0a07cfd68316f1", "timeout_s": 600}
+{"model": "LMS_H2W2_PV_Urb4", "query": "LS3_forge", "verdict": "false", "rc": 0, "seconds": 269.69, "sha256": "52534022aa0aac52055930d274c51620e2fb46bfa06678212d0a07cfd68316f1", "timeout_s": 600}
+{"model": "LMS_H2W2_PV_lin", "query": "exec", "verdict": "false", "rc": 0, "seconds": 231.2, "sha256": "639a5ab4ed832509c60a243a9ad5468b5d98f8cc27b7df53c6d084d5f7d80392", "timeout_s": 600}
+{"model": "LMS_H2W2_PV_lin", "query": "LS4_pure", "verdict": "cannot", "rc": 0, "seconds": 231.2, "sha256": "639a5ab4ed832509c60a243a9ad5468b5d98f8cc27b7df53c6d084d5f7d80392", "timeout_s": 600}
+{"model": "LMS_H2W2_PV_lin", "query": "LS1", "verdict": "cannot", "rc": 0, "seconds": 231.2, "sha256": "639a5ab4ed832509c60a243a9ad5468b5d98f8cc27b7df53c6d084d5f7d80392", "timeout_s": 600}
+{"model": "LMS_H2W2_PV_lin", "query": "LS3_forge", "verdict": "cannot", "rc": 0, "seconds": 231.2, "sha256": "639a5ab4ed832509c60a243a9ad5468b5d98f8cc27b7df53c6d084d5f7d80392", "timeout_s": 600}
+{"model": "LMS_H2W2_PV_rep", "query": "exec", "verdict": "false", "rc": 0, "seconds": 228.11, "sha256": "c6a77272ba894f0a6f3c063e2ca214044141848224af86afc1a90ac222ed0f4f", "timeout_s": 600}
+{"model": "LMS_H2W2_PV_rep", "query": "LS4_pure", "verdict": "false", "rc": 0, "seconds": 228.11, "sha256": "c6a77272ba894f0a6f3c063e2ca214044141848224af86afc1a90ac222ed0f4f", "timeout_s": 600}
+{"model": "LMS_H2W2_PV_rep", "query": "LS1", "verdict": "false", "rc": 0, "seconds": 228.11, "sha256": "c6a77272ba894f0a6f3c063e2ca214044141848224af86afc1a90ac222ed0f4f", "timeout_s": 600}
+{"model": "LMS_H2W2_PV_rep", "query": "LS3_forge", "verdict": "false", "rc": 0, "seconds": 228.11, "sha256": "c6a77272ba894f0a6f3c063e2ca214044141848224af86afc1a90ac222ed0f4f", "timeout_s": 600}

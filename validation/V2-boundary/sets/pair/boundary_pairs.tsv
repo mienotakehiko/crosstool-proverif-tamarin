@@ -1,0 +1,5 @@
+probe	fragment	generator	records	conclusive	excluded_pairs	tool_errors	cross_check
+b05_mixed_dispatch_pair	outside	reject	8	8	2	0	excluded pair
+b08_unpublished_identity_pair	outside	reject	8	8	6	0	excluded pair
+b10_event_order_pair	outside	reject	8	8	11	0	excluded pair
+b13_numeral_literal_pair	outside	accept	8	8	6	0	excluded pair

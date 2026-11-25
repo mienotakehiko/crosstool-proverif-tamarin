@@ -1,7 +1,0 @@
-archive	local_user_path_hits	local_host_hits	internal_network_hits	credential_or_config_hits	opaque_hits
-step3.tar.gz	1	0	0	0	0
-step4.tar.gz	3	0	0	0	1
-step5.tar.gz	3	0	0	0	0
-step6.tar.gz	1	0	0	0	0
-step7.tar.gz	2	0	0	0	0
-step8.tar.gz	2	0	0	0	0

@@ -1,9 +1,37 @@
-# Exporter regression
+# Exporter study
 
-The controlled regression begins at Tamarin fork commit `c293106913ccf7bb41f49b0dc555a8074e8ea88c`. B0 is the rebuilt unmodified exporter. B1 adds the [leafless-pattern patch](patches/leafless_ground_candidate.patch). B2 uses the [combined patch](patches/all-translator-fixes.patch), equivalent to applying the B1 patch followed by the [row-identity guard patch](patches/row-id-guards.patch). See the [upstream license](patches/TAMARIN-LICENSE).
+Series X1 examines the exporter that translates a Tamarin theory into a ProVerif model. The study starts at commit `c293106913ccf7bb41f49b0dc555a8074e8ea88c` of a Tamarin fork and compares three builds.
 
-The [build and run metadata](../runs/X1/provenance.json) identify the base commit, recorded binary hashes and original archives. The build logs are under [step3](../runs/X1/step3/) and [step7](../runs/X1/step7/). The [recipes](recipes/) retain the build and regression inputs and scripts from Steps 3, 7 and 8. The builds used a fixed local runtime and shared dependencies. The archived evidence establishes the recorded build identities and stage results. Independent bit-for-bit reconstruction would also require the exact source and runtime of each build.
+| Build | Source |
+| --- | --- |
+| B0 | The exporter of the pinned commit without change |
+| B1 | B0 with [`leafless_ground_candidate.patch`](patches/leafless_ground_candidate.patch) |
+| B2 | B0 with [`all-translator-fixes.patch`](patches/all-translator-fixes.patch), which equals the patch of B1 followed by [`row-id-guards.patch`](patches/row-id-guards.patch) |
 
-Run `python3 -B exporter/index_regression.py` to rebuild the 540-row index from archived per-build summaries, exit codes and stage metadata. The main regression models are in the [Step 8 inputs](../runs/X1/step8/inputs/models/). The [comparison table](../runs/X1/comparison.tsv) reports the 49/60, 59/60 and 60/60 agreements. The pre-regression probes and the focused intervention are recorded in their own cohorts.
+Both modifications date from 15 November 2026. The file [`patches/TAMARIN-LICENSE`](patches/TAMARIN-LICENSE) is the license of the modified source.
 
-The source modifications date to 2026-11-15. See [third-party notices](../docs/THIRD_PARTY_NOTICES.md) and the [six-archive review](../registry/x1_archive_review.tsv).
+## Contents
+
+| Path | Content |
+| --- | --- |
+| [`probes/initial/`](probes/initial/) | Kit of four state-machine models with a constant and a constructor encoding of the state. All 16 comparisons with native Tamarin agree |
+| [`probes/zero-argument/`](probes/zero-argument/) | Kit with a nullary and a successor encoding of the state, which exposes the disagreement. 10 of 16 comparisons agree |
+| [`probes/source/`](probes/source/) | Probe on the pinned source with the script that collects the identity of the build. 13 of 16 comparisons agree |
+| [`probes/guarded/`](probes/guarded/) | Comparison of the saved translation with explicit guards on the state. All 16 comparisons agree |
+| [`recipes/step3/`](recipes/step3/), [`recipes/step7/`](recipes/step7/), [`recipes/step8/`](recipes/step8/) | Dockerfiles, build scripts and regression inputs of the three builds |
+| [`index_regression.py`](index_regression.py) | Rebuilds the index of the 540 stages from the stored stage files |
+
+The table [`runs/X1/historical-probes/state_comparisons.tsv`](../runs/X1/historical-probes/state_comparisons.tsv) holds the 64 comparisons of the four probes. The records of the regression are in [`runs/X1/`](../runs/X1/). The table [`runs/X1/comparison.tsv`](../runs/X1/comparison.tsv) reports 49, 59 and 60 agreements with native Tamarin among the 60 pairs of model and lemma for B0, B1 and B2. The file [`runs/X1/provenance.json`](../runs/X1/provenance.json) states the base commit and the hashes of the three binaries.
+
+## Checks
+
+```bash
+python3 -B exporter/index_regression.py
+(cd exporter/probes/initial && python3 -B -m unittest -v test_kit)
+```
+
+The first command confirms that all 540 stage invocations ended with exit status 0 and that the stored index follows from the stage files. The second command runs the 14 unit tests of the first probe kit, which need no container.
+
+The builds used a fixed local runtime and shared dependencies. The records establish the identity of each build and the results of its stages. A bit-for-bit reconstruction of the binaries would also need the exact runtime of each build, which the repository lacks.
+
+The validation series V6 repeats two probes on the upstream head of Tamarin. Its records are in [`validation/V6-exporter/`](../validation/V6-exporter/).

@@ -1,0 +1,38 @@
+== b05_mixed_dispatch_pair: 8 of 8 verdicts conclusive, 2 excluded pair(s), 0 unexpected outcome(s), 0 predicted outcome(s) without a verdict
+   property        U            Urb          lin          rep          base         rb1          cl1          omega        
+   both            W            W            W            W            H            W            W            W            
+   EXCLUDED PAIR both: holds on B05P_T_base, trace on B05P_PV_U1
+   EXCLUDED PAIR both: holds on B05P_T_base, trace on B05P_PV_lin
+== b08_unpublished_identity_pair: 8 of 8 verdicts conclusive, 6 excluded pair(s), 0 unexpected outcome(s), 0 predicted outcome(s) without a verdict
+   property        U            Urb          lin          rep          base         rb1          cl1          omega        
+   reveal          H            H            H            H            W            W            W            W            
+   EXCLUDED PAIR reveal: holds on B08P_PV_U1, trace on B08P_T_base
+   EXCLUDED PAIR reveal: holds on B08P_PV_lin, trace on B08P_T_base
+   EXCLUDED PAIR reveal: holds on B08P_PV_rep, trace on B08P_T_base
+   EXCLUDED PAIR reveal: holds on B08P_PV_rep, trace on B08P_T_cl1
+   EXCLUDED PAIR reveal: holds on B08P_PV_rep, trace on B08P_T_omega
+   EXCLUDED PAIR reveal: holds on B08P_PV_rep, trace on B08P_T_rb1
+== b10_event_order_pair: 8 of 8 verdicts conclusive, 11 excluded pair(s), 0 unexpected outcome(s), 0 predicted outcome(s) without a verdict
+   property        U            Urb          lin          rep          base         rb1          cl1          omega        
+   order           W            W            W            W            H            H            H            H            
+   EXCLUDED PAIR order: holds on B10P_T_base, trace on B10P_PV_U1
+   EXCLUDED PAIR order: holds on B10P_T_base, trace on B10P_PV_lin
+   EXCLUDED PAIR order: holds on B10P_T_cl1, trace on B10P_PV_U1
+   EXCLUDED PAIR order: holds on B10P_T_cl1, trace on B10P_PV_lin
+   EXCLUDED PAIR order: holds on B10P_T_omega, trace on B10P_PV_U1
+   EXCLUDED PAIR order: holds on B10P_T_omega, trace on B10P_PV_Urb1
+   EXCLUDED PAIR order: holds on B10P_T_omega, trace on B10P_PV_lin
+   EXCLUDED PAIR order: holds on B10P_T_omega, trace on B10P_PV_rep
+   EXCLUDED PAIR order: holds on B10P_T_rb1, trace on B10P_PV_U1
+   EXCLUDED PAIR order: holds on B10P_T_rb1, trace on B10P_PV_Urb1
+   EXCLUDED PAIR order: holds on B10P_T_rb1, trace on B10P_PV_lin
+== b13_numeral_literal_pair: 8 of 8 verdicts conclusive, 6 excluded pair(s), 0 unexpected outcome(s), 0 predicted outcome(s) without a verdict
+   property        U            Urb          lin          rep          base         rb1          cl1          omega        
+   accept          H            H            H            H            W            W            W            W            
+   EXCLUDED PAIR accept: holds on B13_PV_U1, trace on B13_T_base
+   EXCLUDED PAIR accept: holds on B13_PV_lin, trace on B13_T_base
+   EXCLUDED PAIR accept: holds on B13_PV_rep, trace on B13_T_base
+   EXCLUDED PAIR accept: holds on B13_PV_rep, trace on B13_T_cl1
+   EXCLUDED PAIR accept: holds on B13_PV_rep, trace on B13_T_omega
+   EXCLUDED PAIR accept: holds on B13_PV_rep, trace on B13_T_rb1
+== total: {"sets": 4, "properties": 4, "records": 32, "conclusive": 32, "both_tools_agree_on_T": 0, "both_tools_differ_on_T": 4, "excluded_pairs": 25, "unexpected": 0, "predicted_without_verdict": 0}

@@ -1,0 +1,35 @@
+Process 0 (that is, the initial process):
+{1}out(c, payload)
+
+-- Query not attacker(payload[]) in process 0.
+Translating the process into Horn clauses...
+Completing...
+Starting query not attacker(payload[])
+goal reachable: attacker(payload[])
+
+Derivation:
+
+1. The attacker initially knows payload[].
+attacker(payload[]).
+
+2. By 1, attacker(payload[]).
+The goal is reached, represented in the following fact:
+attacker(payload[]).
+
+
+A more detailed output of the traces is available with
+  set traceDisplay = long.
+
+out(c, ~M) with ~M = payload at {1}
+
+The attacker has the message payload.
+A trace has been found.
+RESULT not attacker(payload[]) is false.
+
+--------------------------------------------------------------
+Verification summary:
+
+Query not attacker(payload[]) is false.
+
+--------------------------------------------------------------
+

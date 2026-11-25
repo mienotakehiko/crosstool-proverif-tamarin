@@ -1,14 +1,13 @@
+# Python caches and local environments
 __pycache__/
 *.py[cod]
 .venv/
 .DS_Store
+# Outputs of local runs of the kits
 /cimc/v0.1.0/results/
+/cimc/v0.1.2/results/
 /models/tamarin-kit-v3/results/
 /models/tamarin-kit-v3/variants/
-/local_runs/
-*.tar.gz
-*.tar.gz.sha256*
-*.zip
 /exporter/probes/**/test_work/
 /exporter/probes/**/pinned_runs/
 /exporter/probes/**/local_runs/

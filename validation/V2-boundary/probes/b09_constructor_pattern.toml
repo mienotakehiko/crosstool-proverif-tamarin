@@ -1,0 +1,26 @@
+# Boundary probe b09 (outside the fragment, discrepancy D4 of the paper): an
+# input pattern binds a variable below a private constructor.
+name = "B09"
+
+[signature]
+functions = [ { name = "seal", arity = 1, private = true } ]
+
+[thread]
+role    = "Actor"
+fresh   = ["I", "sd"]
+state   = ["q"]
+init    = { q = 0 }
+bound   = 1
+publish = "tup(I, seal(1))"
+
+[[thread.step]]
+name    = "Open"
+domain  = { q = [0] }
+input   = "tup('a', seal(x))"
+update  = { q = "q + 1" }
+events  = ["EvA(I)"]
+
+[[property]]
+name   = "reachA"
+kind   = "phi3"
+events = ["EvA(I)"]

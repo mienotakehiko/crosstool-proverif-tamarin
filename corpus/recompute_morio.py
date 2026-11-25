@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
-"""Extract the selected seven theories from the pinned Morio et al. data."""
+"""Select the rows of seven corpus theories from the evaluation data of Morio et al.
+
+    python3 -B corpus/recompute_morio.py [--write]
+
+The script reads morio/eval-results.jsonl, keeps the rows of the theories K2
+to K8 of corpus.tsv and compares the result with morio/subset41.tsv. With
+--write it writes that table.
+"""
 from collections import Counter
 import argparse
 import csv
@@ -26,9 +33,9 @@ def category(row):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--write", action="store_true", help="regenerate morio/subset41.tsv")
+    parser.add_argument("--write", action="store_true", help="write morio/subset41.tsv")
     args = parser.parse_args()
-    with (HERE.parent / "registry/corpus.tsv").open(newline="") as f:
+    with (HERE / "corpus.tsv").open(newline="") as f:
         source = {row["upstream_path"]: row["corpus_id"] for row in
                   csv.DictReader(f, delimiter="\t") if row["corpus_id"] != "K1"}
     with (HERE / "morio/eval-results.jsonl").open() as f:
@@ -36,7 +43,7 @@ def main():
     subset = sorted((r for r in rows if r["input_file"] in source),
                     key=lambda r: (source[r["input_file"]], r["index"]))
     if len(subset) != 41 or len({(r["input_file"], r["lemma"]) for r in subset}) != len(subset):
-        sys.exit("Unexpected subset size or duplicate theory–lemma pairs.")
+        sys.exit("The subset must hold 41 distinct pairs of theory and lemma.")
     output = io.StringIO()
     writer = csv.writer(output, delimiter="\t", lineterminator="\n")
     fields = ("index", "input_file", "lemma", "trace_quantifier", "tamarin_result",
@@ -49,7 +56,7 @@ def main():
     if args.write:
         expected.write_text(output.getvalue(), encoding="utf-8")
     elif expected.read_text(encoding="utf-8") != output.getvalue():
-        sys.exit("The checked-in subset differs from the archived data.")
+        sys.exit("The stored subset differs from the evaluation data.")
     print("ProVerif:", dict(Counter(category(row) for row in subset)))
     print("Tamarin Boolean verdicts:", sum(isinstance(row["tamarin_result"], bool) for row in subset))
 

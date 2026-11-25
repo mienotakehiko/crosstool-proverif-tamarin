@@ -1,0 +1,43 @@
+# Boundary probe b01 (control, inside the fragment): two cases of one state
+# with distinct ground inputs.
+name = "B01"
+
+[signature]
+functions = [ { name = "h", arity = 2 } ]
+
+[thread]
+role    = "Actor"
+fresh   = ["I", "sd"]
+state   = ["q"]
+init    = { q = 0 }
+bound   = 1
+publish = "I"
+
+[[thread.step]]
+name    = "Left"
+domain  = { q = [0] }
+input   = "'left'"
+update  = { q = "q + 1" }
+events  = ["EvA(I)"]
+
+[[thread.step]]
+name    = "Right"
+domain  = { q = [0] }
+input   = "'right'"
+update  = { q = "q + 1" }
+events  = ["EvB(I)"]
+
+[[property]]
+name   = "both"
+kind   = "phi3"
+events = ["EvA(I)", "EvB(I)"]
+
+[[property]]
+name   = "reachA"
+kind   = "phi3"
+events = ["EvA(I)"]
+
+[[property]]
+name   = "reachB"
+kind   = "phi3"
+events = ["EvB(I)"]

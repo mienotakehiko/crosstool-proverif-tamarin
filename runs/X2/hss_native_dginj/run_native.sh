@@ -36,7 +36,7 @@ for lemma in exec LS7; do
 
   printf '%q ' "${cmd[@]}" > "$out/command.txt"
   printf '\n' >> "$out/command.txt"
-  printf '\n開始 Tamarin %s\n' "$lemma"
+  printf '\nStart Tamarin %s\n' "$lemma"
 
   rc=0
   started=$SECONDS

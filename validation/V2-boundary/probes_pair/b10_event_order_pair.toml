@@ -1,0 +1,28 @@
+# Boundary probe b10, pair-shaped input (outside the fragment): one case carries the premise and
+# the conclusion event of one correspondence. Tamarin places both at one time
+# point; ProVerif executes the premise first.
+name = "B10P"
+
+[signature]
+functions = [ { name = "h", arity = 2 } ]
+
+[thread]
+role    = "Actor"
+fresh   = ["I", "sd"]
+state   = ["q"]
+init    = { q = 0 }
+bound   = 1
+publish = "I"
+
+[[thread.step]]
+name    = "Go"
+domain  = { q = [0] }
+input   = "tup('ctl', 'go')"
+update  = { q = "q + 1" }
+events  = ["Done(I)", "Asked(I)"]
+
+[[property]]
+name       = "order"
+kind       = "phi1"
+premise    = "Done(I)"
+conclusion = [["Asked(I)"]]

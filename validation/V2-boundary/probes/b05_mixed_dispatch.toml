@@ -1,0 +1,34 @@
+# Boundary probe b05 (outside the fragment): one case without input and one
+# case with an input pattern consume the same state value. The ProVerif block
+# of the first case has no pattern test, so a message for the second case
+# starts both blocks; the linear state fact of Tamarin admits one of them.
+name = "B05"
+
+[signature]
+functions = [ { name = "h", arity = 2 } ]
+
+[thread]
+role    = "Actor"
+fresh   = ["I", "sd"]
+state   = ["q"]
+init    = { q = 0 }
+bound   = 1
+publish = "I"
+
+[[thread.step]]
+name    = "Auto"
+domain  = { q = [0] }
+update  = { q = "q + 1" }
+events  = ["EvA(I)"]
+
+[[thread.step]]
+name    = "Asked"
+domain  = { q = [0] }
+input   = "'go'"
+update  = { q = "q + 1" }
+events  = ["EvB(I)"]
+
+[[property]]
+name   = "both"
+kind   = "phi3"
+events = ["EvA(I)", "EvB(I)"]

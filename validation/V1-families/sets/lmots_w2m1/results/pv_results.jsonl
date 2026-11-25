@@ -1,0 +1,12 @@
+{"model": "LMOTS_W2M1_PV_U1", "query": "exec_accept", "verdict": "false", "rc": 0, "seconds": 0.01, "sha256": "f48e8ef27608256cc21b38ff258cd564db60a329bbb063603f5aa33fd3d1360f", "timeout_s": 600}
+{"model": "LMOTS_W2M1_PV_U1", "query": "LS1_unforge", "verdict": "true", "rc": 0, "seconds": 0.01, "sha256": "f48e8ef27608256cc21b38ff258cd564db60a329bbb063603f5aa33fd3d1360f", "timeout_s": 600}
+{"model": "LMOTS_W2M1_PV_U1", "query": "forge", "verdict": "true", "rc": 0, "seconds": 0.01, "sha256": "f48e8ef27608256cc21b38ff258cd564db60a329bbb063603f5aa33fd3d1360f", "timeout_s": 600}
+{"model": "LMOTS_W2M1_PV_Urb1", "query": "exec_accept", "verdict": "false", "rc": 0, "seconds": 0.01, "sha256": "2dfcdea1d29729613b525708ac5dd4dd9ac93f6f8347e84539303b28dadab2da", "timeout_s": 600}
+{"model": "LMOTS_W2M1_PV_Urb1", "query": "LS1_unforge", "verdict": "true", "rc": 0, "seconds": 0.01, "sha256": "2dfcdea1d29729613b525708ac5dd4dd9ac93f6f8347e84539303b28dadab2da", "timeout_s": 600}
+{"model": "LMOTS_W2M1_PV_Urb1", "query": "forge", "verdict": "true", "rc": 0, "seconds": 0.01, "sha256": "2dfcdea1d29729613b525708ac5dd4dd9ac93f6f8347e84539303b28dadab2da", "timeout_s": 600}
+{"model": "LMOTS_W2M1_PV_lin", "query": "exec_accept", "verdict": "false", "rc": 0, "seconds": 0.02, "sha256": "a70f0cf9b34697c6b38172886d15742f329f9e29100615272e21e706680c61e3", "timeout_s": 600}
+{"model": "LMOTS_W2M1_PV_lin", "query": "LS1_unforge", "verdict": "cannot", "rc": 0, "seconds": 0.02, "sha256": "a70f0cf9b34697c6b38172886d15742f329f9e29100615272e21e706680c61e3", "timeout_s": 600}
+{"model": "LMOTS_W2M1_PV_lin", "query": "forge", "verdict": "cannot", "rc": 0, "seconds": 0.02, "sha256": "a70f0cf9b34697c6b38172886d15742f329f9e29100615272e21e706680c61e3", "timeout_s": 600}
+{"model": "LMOTS_W2M1_PV_rep", "query": "exec_accept", "verdict": "false", "rc": 0, "seconds": 0.02, "sha256": "0a8141851f9591d03262062d702f8df713e07deb17626880ed960f18ddd8499b", "timeout_s": 600}
+{"model": "LMOTS_W2M1_PV_rep", "query": "LS1_unforge", "verdict": "false", "rc": 0, "seconds": 0.02, "sha256": "0a8141851f9591d03262062d702f8df713e07deb17626880ed960f18ddd8499b", "timeout_s": 600}
+{"model": "LMOTS_W2M1_PV_rep", "query": "forge", "verdict": "false", "rc": 0, "seconds": 0.02, "sha256": "0a8141851f9591d03262062d702f8df713e07deb17626880ed960f18ddd8499b", "timeout_s": 600}

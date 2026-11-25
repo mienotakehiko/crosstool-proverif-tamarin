@@ -1,0 +1,23 @@
+{
+ "cim": "lmots.toml",
+ "cim_sha256": "c38b6a981ec4235134031d7d588d9c121bebdd86380cefab0c3d8b36532cce16",
+ "operator": "domain_drop",
+ "side": "tam",
+ "changed_files": [
+  "LMOTS_T_base.spthy",
+  "LMOTS_T_cl1.spthy",
+  "LMOTS_T_omega.spthy",
+  "LMOTS_T_rb1.spthy"
+ ],
+ "class": "encoding",
+ "sha256": {
+  "LMOTS_T_base.spthy": "dc2222a31d45e8560f83867949e4b601e8721461d38c019ffc24b768cd824ffd",
+  "LMOTS_T_cl1.spthy": "ef9b5f5bcf4d3d11889d56f8cca69e7929b130a88e249071715f4803b917bf39",
+  "LMOTS_T_rb1.spthy": "3ac5806a90b7eb665db40ee89c070c73a704e7c126b21bbd8883c91ae10ec9cf",
+  "LMOTS_T_omega.spthy": "7daff6946540952d213ac0c70701e5b47c5299a9561815c46687bd313950c1ba",
+  "LMOTS_PV_U1.pv": "1bc72e2e2781df7ab47d43ce14b7307ef9e397b9cf9eb787ea624330684ae19b",
+  "LMOTS_PV_Urb1.pv": "d5e467eced8a3284e6dfae4546b0ecb67ff13fdc0f76bc3d8e952552c31fceeb",
+  "LMOTS_PV_lin.pv": "95b63da86dd7bffbf0f23f6d6fcaaf7d1edfc10b5f7aed83b1f6149778a389dd",
+  "LMOTS_PV_rep.pv": "588e8311f75bf1a388204613b8975f8aee5ee265344a213c357f3296bfc547af"
+ }
+}

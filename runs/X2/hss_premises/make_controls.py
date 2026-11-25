@@ -9,11 +9,11 @@ def block(text, start, end):
     start += "\n"
     end += "\n"
     if text.count(start) != 1 or text.count(end) != 1:
-        raise SystemExit(f"見出しの照合に失敗: {start.strip()}")
+        raise SystemExit(f"Heading check failed for {start.strip()}")
     first = text.index(start)
     last = text.index(end)
     if first >= last:
-        raise SystemExit("生成PVの節順が想定と異なります")
+        raise SystemExit("The section order of the generated ProVerif file differs from the expected order")
     return text[first:last]
 
 records = []
@@ -26,14 +26,14 @@ for lemma in ("exec", "LS7"):
     dginj = block(inj, "(* DgInj *)", "(* DistinctFact *)")
     topauth = block(inj, "(* Axioms from reuse/source lemmas *)", "(* Queries *)")
     if inj.replace(dginj, "", 1).replace(topauth, "", 1) != noinj:
-        raise SystemExit(f"{lemma}: 2前提以外の差分があります")
+        raise SystemExit(f"{lemma} differs in more than the two premises")
 
     for variant, term, anchor in (
         ("dginj_only", dginj, "(* DistinctFact *)"),
         ("topauth_only", topauth, "(* Queries *)"),
     ):
         if noinj.count(anchor) != 1:
-            raise SystemExit(f"{lemma}: 挿入位置を一意に特定できません")
+            raise SystemExit(f"{lemma} has no unique insertion point")
         dest = controls / "results" / "hss_noinj" / lemma / variant / "translated.pv"
         dest.parent.mkdir(parents=True)
         body = noinj.replace(anchor, term + anchor, 1).encode("utf-8")
@@ -47,9 +47,9 @@ for old, new in (
     ("^timeout: sending signal", "^([^ ]*/)?timeout: sending signal"),
 ):
     if runner.count(old) != 1:
-        raise SystemExit(f"前回スクリプトの照合に失敗: {old}")
+        raise SystemExit(f"Check of the previous script failed for {old}")
     runner = runner.replace(old, new, 1)
 
 (run / "run_controls.sh").write_text(runner, encoding="utf-8")
 (run / "controls.sha256").write_text("\n".join(records) + "\n", encoding="utf-8")
-print("差分照合OK。診断用PVを4件生成しました。")
+print("The difference check passed. Wrote four diagnostic ProVerif files.")

@@ -1,0 +1,5 @@
+# probe	fragment	expected generator outcome	class	predicted difference if the generator accepts the probe
+b05_mixed_dispatch_pair	outside	reject	Det, case without input	ProVerif reaches both events with one message; the linear state fact of Tamarin admits one
+b08_unpublished_identity_pair	outside	reject	LeakGuard (discrepancy D3)	Tamarin reaches the reveal event; the ProVerif leak block waits for an identity that the attacker lacks
+b10_event_order_pair	outside	reject	ObsOne, EvtSep	Tamarin verifies the correspondence at one time point; ProVerif executes the premise first and returns a trace
+b13_numeral_literal_pair	outside	reject	Hygiene, literal (generator 0.1.3)	Tamarin reaches the acceptance; ProVerif compares two distinct constants and proves it unreachable

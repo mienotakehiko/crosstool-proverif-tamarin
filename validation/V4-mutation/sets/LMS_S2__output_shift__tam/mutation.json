@@ -1,0 +1,23 @@
+{
+ "cim": "lms_s2.toml",
+ "cim_sha256": "441457323dde0422485f4d5474d02c53d29dffd591004ebd9eeb2178fd318227",
+ "operator": "output_shift",
+ "side": "tam",
+ "changed_files": [
+  "LMS_S2_T_base.spthy",
+  "LMS_S2_T_cl1.spthy",
+  "LMS_S2_T_omega.spthy",
+  "LMS_S2_T_rb1.spthy"
+ ],
+ "class": "encoding",
+ "sha256": {
+  "LMS_S2_T_base.spthy": "a18ebfab29e7f63cc26d0cf2d2269618bd760746bcd70f3c68940c5611c061a9",
+  "LMS_S2_T_cl1.spthy": "d65fe31dc0fc2908ee764905f178cf885a26f82114d04dd4c401a57812489e7b",
+  "LMS_S2_T_rb1.spthy": "e8cde5de8c4e18c665130c7305da936315118a74e0f775a91ed2b17b32a00ce3",
+  "LMS_S2_T_omega.spthy": "97ddbc4a7a6a944d3c1899b9ea356e76a892d5fc9a9844f0db1f395a069ba49c",
+  "LMS_S2_PV_U2.pv": "0971750a8cf2c5e43349298e333b8f30234e9694d8f1d8d70c6c286c54e87305",
+  "LMS_S2_PV_Urb2.pv": "34e98b4f2c48c1a40a2f9ced164da06ae942daa4ef5dfbdd7f802e4e47c47179",
+  "LMS_S2_PV_lin.pv": "ee28c5dbf07e0afd4ed881005a828c7d3e716a2945919ac28844d0f99108c14f",
+  "LMS_S2_PV_rep.pv": "192cbc0a1a0c32b22cec27b3b98a7e96dcf56ef994e6e59f164b1a924716b0cd"
+ }
+}

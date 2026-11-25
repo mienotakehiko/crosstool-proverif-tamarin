@@ -1,0 +1,44 @@
+File "/home/user/cryptography-experiments/rev008-wsl/e6-no-git/runs/run-kowros/linear_pair/translated.pv", line 63, characters 41-50:
+Warning: identifier helperVar0 rebound.
+File "/home/user/cryptography-experiments/rev008-wsl/e6-no-git/runs/run-kowros/linear_pair/translated.pv", line 71, characters 41-50:
+Warning: identifier helperVar0 rebound.
+Linear part: No equation.
+Convergent part:
+fst((x_1,x_2)) = x_1
+snd((x_1,x_2)) = x_2
+Completing equations...
+Completed equations:
+snd((x_1,x_2)) = x_2
+fst((x_1,x_2)) = x_1
+Process 0 (that is, the initial process):
+(
+    {1}!
+    {2}new rid_rInit: bitstring;
+    {3}new stR_St: bitstring;
+    {4}new stR_St_1: bitstring;
+    {5}new stR_St_2: bitstring;
+    {6}new asid: bitstring;
+    {7}event eInitOnce(rid_rInit);
+    {8}insert tSt(stR_St,asid,vtwo,z);
+    {9}insert tSt(stR_St_1,asid,vtwo,z);
+    {10}insert tSt(stR_St_2,asid,vone,z)
+) | (
+    {11}!
+    {17}get tSt(stL_St: bitstring,asid_1: bitstring,=vtwo,helperVar0: bitstring) in
+    {16}get tSt(stL_St_1: bitstring,=asid_1,=vtwo,helperVar0_1: bitstring) in
+    {12}new rid_rGood: bitstring;
+    {13}event eDistinctFact(rid_rGood,(stL_St,(asid_1,(vtwo,z))));
+    {14}event eDistinctFact(rid_rGood,(stL_St_1,(asid_1,(vtwo,z))));
+    {15}event eGood(asid_1)
+) | (
+    {18}!
+    {24}get tSt(stL_St_2: bitstring,asid_2: bitstring,=vone,helperVar0_2: bitstring) in
+    {23}get tSt(stL_St_3: bitstring,=asid_2,=vone,helperVar0_3: bitstring) in
+    {19}new rid_rBad: bitstring;
+    {20}event eDistinctFact(rid_rBad,(stL_St_2,(asid_2,(vone,z))));
+    {21}event eDistinctFact(rid_rBad,(stL_St_3,(asid_2,(vone,z))));
+    {22}event eBad(asid_2)
+)
+
+File "/home/user/cryptography-experiments/rev008-wsl/e6-no-git/runs/run-kowros/linear_pair/translated.pv", line 32, character 60:
+Error: Declared axioms and lemmas cannot contain variables of type time.

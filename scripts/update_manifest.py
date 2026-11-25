@@ -1,5 +1,13 @@
 #!/usr/bin/env python3
-"""Write or check the release file manifest."""
+"""Write or check the file inventory registry/repository-files.tsv.
+
+    python3 -B scripts/update_manifest.py            writes the inventory
+    python3 -B scripts/update_manifest.py --check    compares it with the files
+
+The inventory lists the path, the size in bytes and the SHA-256 hash of every
+file except itself. Inside a Git working tree the script takes the file list
+from Git, so files that .gitignore excludes stay out of the inventory.
+"""
 import csv
 import hashlib
 import io
@@ -11,12 +19,10 @@ ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = Path("registry/repository-files.tsv")
 
 
-def release_paths():
+def listed_paths():
     if (ROOT / ".git").exists():
         output = subprocess.check_output(
-            ["git", "ls-files", "-z", "--cached", "--others", "--exclude-standard"],
-            cwd=ROOT,
-        )
+            ["git", "ls-files", "-z", "--cached", "--others", "--exclude-standard"], cwd=ROOT)
         paths = {Path(name.decode()) for name in output.split(b"\x00") if name}
     else:
         paths = {
@@ -27,14 +33,14 @@ def release_paths():
     return sorted(path for path in paths if path != MANIFEST and (ROOT / path).is_file())
 
 
-def render_manifest():
+def render():
     output = io.StringIO()
     writer = csv.writer(output, delimiter="\t", lineterminator="\n")
     writer.writerow(("path", "bytes", "sha256"))
-    for relative in release_paths():
+    for relative in listed_paths():
         path = ROOT / relative
         if path.is_symlink():
-            raise ValueError(f"Manifest input is a symlink: {relative}")
+            raise ValueError(f"The inventory accepts no symbolic link such as {relative}")
         with path.open("rb") as stream:
             writer.writerow((relative.as_posix(), path.stat().st_size,
                              hashlib.file_digest(stream, "sha256").hexdigest()))
@@ -45,11 +51,11 @@ if __name__ == "__main__":
     if sys.argv[1:] not in ([], ["--check"]):
         sys.exit("Usage: update_manifest.py [--check]")
     target = ROOT / MANIFEST
-    rendered = render_manifest()
+    rendered = render()
     if sys.argv[1:]:
         if target.read_bytes() != rendered:
-            sys.exit("Manifest differs from the current files.")
-        print("Repository manifest: current")
+            sys.exit("The inventory differs from the current files.")
+        print("The inventory matches the current files.")
     else:
         temporary = target.with_suffix(".tmp")
         temporary.write_bytes(rendered)

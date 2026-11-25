@@ -1,0 +1,42 @@
+item	cause	source
+lmots_w2m1|LS1_unforge|*	ENC-clone	E1: predicted to fail with a reused state value only
+lmots_w2m1|LS1_unforge|lin	PV-abs	E1: predicted to hold on this model
+lmots_w2m1|forge|*	ENC-clone	E1: predicted to fail with a reused state value only
+lmots_w2m1|forge|lin	PV-abs	E1: predicted to hold on this model
+lmots_w2m2|LS1_unforge|*	ENC-clone	E1: predicted to fail with a reused state value only
+lmots_w2m2|LS1_unforge|lin	PV-abs	E1: predicted to hold on this model
+lmots_w2m2|forge|*	ENC-clone	E1: predicted to fail with a reused state value only
+lmots_w2m2|forge|lin	PV-abs	E1: predicted to hold on this model
+lmots_w3m1|LS1_unforge|*	ENC-clone	E1: predicted to fail with a reused state value only
+lmots_w3m1|LS1_unforge|lin	PV-abs	E1: predicted to hold on this model
+lmots_w3m1|forge|*	ENC-clone	E1: predicted to fail with a reused state value only
+lmots_w3m1|forge|lin	PV-abs	E1: predicted to hold on this model
+lmots_w4m1|LS1_unforge|*	ENC-clone	E1: predicted to fail with a reused state value only
+lmots_w4m1|LS1_unforge|lin	PV-abs	E1: predicted to hold on this model
+lmots_w4m1|forge|*	ENC-clone	E1: predicted to fail with a reused state value only
+lmots_w4m1|forge|lin	PV-abs	E1: predicted to hold on this model
+LMOTS__check_shorten__pv|LS1_unforge|*	ENC-map	E4: operator check_shorten on side pv changes U, Urb
+LMOTS__check_shorten__pv|forge|*	ENC-map	E4: operator check_shorten on side pv changes U, Urb
+LMOTS__check_shorten__tam|LS1_unforge|*	ENC-map	E4: operator check_shorten on side tam changes base
+LMOTS__check_shorten__tam|forge|*	ENC-map	E4: operator check_shorten on side tam changes base
+LMOTS__output_shift__pv|LS1_unforge|*	ENC-map	E4: operator output_shift on side pv changes U, Urb
+LMOTS__output_shift__pv|forge|*	ENC-map	E4: operator output_shift on side pv changes U, Urb
+LMOTS__output_shift__tam|LS1_unforge|*	ENC-map	E4: operator output_shift on side tam changes base
+LMOTS__output_shift__tam|forge|*	ENC-map	E4: operator output_shift on side tam changes base
+LMOTS__state_stall__tam|LS1_unforge|*	ENC-map	E4: operator state_stall on side tam changes base
+LMOTS__state_stall__tam|forge|*	ENC-map	E4: operator state_stall on side tam changes base
+LMS_S2__check_shorten__pv|LS1|*	ENC-map	E4: operator check_shorten on side pv changes U
+LMS_S2__check_shorten__pv|LS3_forge|*	ENC-map	E4: operator check_shorten on side pv changes U
+LMS_S2__check_shorten__tam|LS1|*	ENC-map	E4: operator check_shorten on side tam changes base
+LMS_S2__check_shorten__tam|LS3_forge|*	ENC-map	E4: operator check_shorten on side tam changes base
+LMS_S2__output_shift__pv|LS1|*	ENC-map	E4: operator output_shift on side pv changes U
+LMS_S2__output_shift__pv|LS3_forge|*	ENC-map	E4: operator output_shift on side pv changes U
+LMS_S2__output_shift__tam|LS1|*	ENC-map	E4: operator output_shift on side tam changes base
+LMS_S2__output_shift__tam|LS3_forge|*	ENC-map	E4: operator output_shift on side tam changes base
+LMS_S2__state_stall__pv|LS1|*	ENC-map	E4: operator state_stall on side pv changes U
+LMS_S2__state_stall__pv|LS3_forge|*	ENC-map	E4: operator state_stall on side pv changes U
+LMS_S2__state_stall__pv|LS4_pure|*	ENC-map	E4: operator state_stall on side pv changes U
+LMS_S2__state_stall__tam|LS1|*	ENC-map	E4: operator state_stall on side tam changes base
+LMS_S2__state_stall__tam|LS3_forge|*	ENC-map	E4: operator state_stall on side tam changes base
+LMS_S2__state_stall__tam|LS4|*	ENC-map	E4: operator state_stall on side tam changes base, cl1, rb1
+LMS_S2__state_stall__tam|LS4_pure|*	ENC-map	E4: operator state_stall on side tam changes base

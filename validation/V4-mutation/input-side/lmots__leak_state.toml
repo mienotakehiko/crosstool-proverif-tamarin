@@ -1,0 +1,64 @@
+# CIM of the one-time signer LM-OTS, stage 1: w = 2 (positions 0..3) and
+# p = 2 (message digit a, checksum digit 3 - a). One thread signs once
+# (state q: 0 -> 1). Same protocol as the hand-written models LMOTS_E1u
+# (Tamarin) and stage1pv (ProVerif); the chains are computed by macros.
+name = "LMOTS"
+
+[meta]
+parameters = "w = 2, p = 2"
+
+[signature]
+functions = [
+  { name = "ch",  arity = 3 },                    # chain step ch(I, tag, x)
+  { name = "prf", arity = 2, private = true },    # secret chain start prf(seed, tag)
+]
+
+[macros]
+up = { params = ["I", "d", "n", "t"], body = "t if n == 0 else ch(I, d, up(I, d, n - 1, t))" }
+pk = { params = ["I", "sd"],          body = "tup(up(I, 'm', 3, prf(sd, 'm')), up(I, 'k', 3, prf(sd, 'k')))" }
+
+[thread]
+role    = "Signer"
+fresh   = ["I", "sd"]
+state   = ["q"]
+init    = { q = 0 }
+bound   = 1
+publish = "tup(I, pk(I, sd))"
+persist = [ { name = "Pk", term = "pk(I, sd)" } ]
+
+[[thread.leak]]
+event  = "RevealSeed(I)"
+output = "q"
+
+[[thread.step]]
+name    = "Sign"
+domain  = { q = [0], a = [0, 1, 2, 3] }
+input   = "tup('sign', a)"
+update  = { q = "q + 1" }
+events  = ["Sign(I, a)"]
+outputs = ["tup(I, a, up(I, 'm', a, prf(sd, 'm')), up(I, 'k', 3 - a, prf(sd, 'k')))"]
+
+[[responder]]
+name   = "Verify"
+domain = { a = [0, 1, 2, 3] }
+input  = "tup(I, a, sm, sk)"
+check  = { Pk = "tup(up(I, 'm', 3 - a, sm), up(I, 'k', a, sk))" }
+events = ["Accept(I, a)"]
+
+[[property]]
+name   = "exec_accept"
+kind   = "phi3"
+events = ["Sign(I, a)", "Accept(I, a)"]
+absent = ["RevealSeed(I)"]
+
+[[property]]
+name       = "LS1_unforge"
+kind       = "phi1"
+premise    = "Accept(I, a)"
+conclusion = [["Sign(I, a)"], ["RevealSeed(I)"]]
+
+[[property]]
+name   = "forge"
+kind   = "phi3"
+events = ["Accept(I, a)"]
+absent = ["Sign(I, a)", "RevealSeed(I)"]

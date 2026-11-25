@@ -1,0 +1,35 @@
+# Boundary probe b07 (outside the fragment): the thread calls its secret y.
+# The ProVerif printer binds y to the message of the attacker, so the step
+# releases that message; the Tamarin rule releases the secret.
+name = "B07"
+
+[signature]
+functions = [ { name = "h", arity = 2 } ]
+
+[thread]
+role    = "Actor"
+fresh   = ["I", "y"]
+state   = ["q"]
+init    = { q = 0 }
+bound   = 1
+publish = "tup(I, h(I, y))"
+persist = [ { name = "Pk", term = "h(I, y)" } ]
+
+[[thread.step]]
+name    = "Release"
+domain  = { q = [0] }
+input   = "'go'"
+update  = { q = "q + 1" }
+events  = ["EvA(I)"]
+outputs = ["y"]
+
+[[responder]]
+name   = "Check"
+input  = "tup(I, z)"
+check  = { Pk = "h(I, z)" }
+events = ["Acc(I)"]
+
+[[property]]
+name   = "accept"
+kind   = "phi3"
+events = ["Acc(I)"]

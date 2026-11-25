@@ -1,41 +1,71 @@
-# Mapping between the manuscript and this repository
+# Evidence map
 
-[README.md](../README.md) maps manuscript series to commands and table or figure subjects. [series_map.tsv](../registry/series_map.tsv) gives the evidence status of each series. [recovered-files.tsv](../registry/recovered-files.tsv) maps recovered files to archive members and SHA-256 values. The version and outcome in each archived record govern comparisons.
+This map relates every experimental series of the paper to its records in this repository and to the command that recomputes its counts. The paper identifies each series by a letter, and this map uses the same letters. Table and figure numbers can change between revisions of the paper, so the map names the subject of each table.
 
-| Review item | Evidence in this repository | Original evidence still needed |
+## Series G to K
+
+| Series | Content and size | Records | Recomputation |
+| --- | --- | --- | --- |
+| G | Generated LM-OTS and LMS signers in both tools, 28 ProVerif queries and 32 Tamarin lemmas | [`runs/G/proverif/pv_results.jsonl`](../runs/G/proverif/pv_results.jsonl) for the first ProVerif run. [`LMOTS__control`](../validation/V4-mutation/sets/LMOTS__control/) and [`LMS_S2__control`](../validation/V4-mutation/sets/LMS_S2__control/) for the rerun of both tools with generator 0.1.2 | `scripts/recompute_paper_numbers.py`, `scripts/recompute_validation_numbers.py` |
+| P1 to P3 | Tamarin screening of the signer, HSS and chain theories under search variants, 81, 102 and 24 jobs | [`runs/P1/`](../runs/P1/), [`runs/P2/`](../runs/P2/), [`runs/P3/`](../runs/P3/), cumulative record [`runs/screening/records.jsonl`](../runs/screening/records.jsonl) | `scripts/recompute_paper_numbers.py`, `scripts/check_model_hashes.py` |
+| P4 | Public corpus on the standard and the cyclic build, 88 jobs | [`runs/P4/`](../runs/P4/), [`corpus/corpus.tsv`](../corpus/corpus.tsv) | `scripts/recompute_paper_numbers.py`, `scripts/check_model_hashes.py` |
+| P5 | Fivefold repetition of the conclusive jobs, 225 jobs and 1,125 trials | [`runs/P5/`](../runs/P5/) | `scripts/recompute_paper_numbers.py` |
+| L | Heap limits for the searches that exhaust 56 GiB, 9 runs at 8 to 32 GiB and 7 runs at 96 GiB | [`runs/L/ladder/`](../runs/L/ladder/), [`runs/L/heap96/`](../runs/L/heap96/), [`env/ec2-96g/`](../env/ec2-96g/) | `scripts/recompute_paper_numbers.py` |
+| M | Mutation of generated ProVerif encodings, 20 mutants and 2 controls | [`runs/M/`](../runs/M/) | `scripts/recompute_paper_numbers.py`, `scripts/verify_evidence.py` |
+| X0 | Translation of hand-written theories, 40 pairs of model and lemma | [`runs/X0/`](../runs/X0/) | `scripts/recompute_paper_numbers.py` |
+| X1 | Exporter regression on three builds, 60 pairs of model and lemma and 540 stages | [`runs/X1/`](../runs/X1/), [`exporter/`](../exporter/) | `exporter/index_regression.py`, `scripts/recompute_paper_numbers.py` |
+| X2 | Exporter applications to LMS and HSS, 10 pairs of model and lemma and 20 exports | [`runs/X2/`](../runs/X2/) | `scripts/recompute_paper_numbers.py` |
+| K | Finite KUDOS schedules, 12 schedules, 24 model inputs and 49 lemma comparisons | [`runs/K/`](../runs/K/), [`cim/kudos/`](../cim/kudos/) | `scripts/check_kudos_models.py`, `scripts/recompute_paper_numbers.py` |
+| Chain model | Summary of the seven properties of the chain theory `C1_E1g` in native Tamarin | [`runs/chain/native-closeout/native_results.json`](../runs/chain/native-closeout/native_results.json) | `scripts/recompute_paper_numbers.py` |
+| Corpus | Eight public theories and 41 rows of the evaluation data of Morio et al. | [`corpus/`](../corpus/) | `corpus/recompute_morio.py` |
+
+## Validation series V1 to V7
+
+| Series | Content and size | Records | Recomputation |
+| --- | --- | --- | --- |
+| V1 | Three parameterized families in both tools, 12 members and 372 records | [`validation/V1-families/`](../validation/V1-families/) | `scripts/recompute_validation_numbers.py` |
+| V2 | 200 random CIMs with 1,024 properties and 8,192 records, 12 boundary probes and 4 pair-shaped probes | [`validation/V2-random/`](../validation/V2-random/), [`validation/V2-boundary/`](../validation/V2-boundary/) | `scripts/recompute_validation_numbers.py` |
+| V3 | 41 sealed labels for the decision tree | [`validation/V3-diagnosis/`](../validation/V3-diagnosis/), [`validation/plan/labels.sha256`](../validation/plan/labels.sha256) | `scripts/recompute_validation_numbers.py` |
+| V4 | Held-out mutation, 30 mutants and 2 controls with 972 records, and 94 input mutants | [`validation/V4-mutation/`](../validation/V4-mutation/) | `scripts/recompute_validation_numbers.py` |
+| V5 | Bounded enumeration of the two schedulers of Lemma 2, 225 enumerations | [`scheduler/lemma2/`](../scheduler/lemma2/) | `bash scheduler/lemma2/run_checks.sh` |
+| V6 | Exporter at the upstream head of Tamarin (commit `03215cd03e7c`), 2 models and 2 corrected exports | [`validation/V6-exporter/`](../validation/V6-exporter/) | inspection of the stored outputs |
+| V7 | Fourfold time limit, 10 jobs | [`validation/V7-time-limit/`](../validation/V7-time-limit/) | `scripts/recompute_validation_numbers.py` |
+
+## Generator, lemmas and diagnosis
+
+| Subject of the paper | Records | Check |
 | --- | --- | --- |
-| 1. Generator and assurance | Compiler versions 0.1.0, 0.1.1 and 0.1.2, Diagnosis v1.1 source, 9 guard checks, 13 hygiene checks, 37 AL assertions, and captured-input and scalar-pattern controls | Original Diagnosis v1.1 24-test run |
-| 2. G Tamarin | Sandbox data, 23 rows with 19 conclusive outcomes | The 32 production judgments, matching JSONL and `tamout/`, generation manifest and environment |
-| 3. Screening models | All nine requested original theories and the six existing theories. Derived hashes match 19 variants in P1–P3, covering 207 jobs | None for the nine requested inputs |
-| 4. M | [October pilot, October main experiment and November frozen-query re-evaluation](../runs/M/README.md) | Two wrapper ZIPs referenced by the November scheduler and compiler checksums are unavailable; their extracted research files are included |
-| 5. X1 | B0/B1/B2 comparison, 21 models, all 60 pairs and all 540 archived stage invocations, two patches and build records | The original binaries if a direct binary hash recheck is desired |
-| 6. X2 | 20 exports, legacy LMS and HSS ProVerif pilots, [HSS premise comparison](../runs/X2/hss-candidate-comparison.tsv), native HSS runs and byte-identity check | None for the reported fixed-build results |
-| 7. X0 | 15 archived naming-fix runs and a 40-row post-rename join | None for the reported outcome counts |
-| 8. K | 12 specifications, original generators, 24 matching generated models, direct-run outputs and Stage D records | See the [K evidence notes](../runs/K/README.md) for how the 24 slots link to the outputs |
-| 9. Lemma 1 | [Restricted suite, fixture and 21 stored pass records](../scheduler/README.md) | Full semantic equivalence is outside the scope of the suite |
-| 10. Morio et al. | Original dataset, 41-row subset and calculation script | None for the 41-row subset |
-
-The [release checklist](RELEASE_CHECKLIST_20261117.md) links the quantitative and publication audits.
+| Generator and its side-condition checks | [`cimc/`](../cimc/) with 9 guard tests, 13 hygiene tests, 5 literal tests and 37 assertions on the Achievement Levels | unit tests in [`cimc/README.md`](../cimc/README.md) |
+| Third counterexample (literal in the shape of a numeral) | [`cimc/v0.1.3/`](../cimc/v0.1.3/), probe `b13_numeral_literal_pair` in [`validation/V2-boundary/`](../validation/V2-boundary/) | `validation/V2-boundary/run_boundary.py` |
+| Lemma 1 (restricted scheduler) | [`scheduler/lemma1/`](../scheduler/lemma1/) with 21 stored passes | `scheduler/lemma1/run_checks.py` |
+| Lemma 2 (unrolled scheduler) | [`scheduler/lemma2/`](../scheduler/lemma2/) | `scheduler/lemma2/run_checks.sh` |
+| Decision tree 1.1 | [`diagnosis/v1.1/diagnose.py`](../diagnosis/v1.1/diagnose.py), SHA-256 `d45347db969b78a5209adb13dbee3cc00b7d6047ec0c60a14d40be7cfc0de8e6` | `scripts/verify_evidence.py` |
+| Reveal alternative of the signers | [`scheduler/lemma2/predict_reveal.py`](../scheduler/lemma2/predict_reveal.py) | command in [`scheduler/README.md`](../scheduler/README.md) |
 
 ## Counting rules
 
-- Screening selects the latest recorded attempt per job in the cumulative checkpoint. These are the 295 P1–P4 jobs. The eight corpus hashes come from the P4 records. Seven also match the original files recorded in the companion kit. The corpus K1 hash identifies the author's imported input.
-- P5 counts five archived trials per selected baseline. It does not estimate the chance of obtaining a result on all screening jobs. The ladder data distinguish nine new trials from earlier 56 GiB reference points. The cloud environment record identifies CPU count, memory and tool versions. The EC2 instance type remains unknown.
-- X0 joins the 15 recorded alpha-renaming reruns by theory and lemma. Of the 40 retained pairs, 9 have raw `true`, 1 has raw `false`, 26 have `cannot be proved`, and 4 have `TIMEOUT`. The original raw verdicts, including their query polarity, remain in the original records.
-- X1 compares the same 60 pairs across three builds. The 540 stages cover native Tamarin, export, and ProVerif for each of those pairs. The earlier image-based probes and the focused intervention have different scopes.
-- X2's application archive supplies exports. Separate pilot and premise archives supply logical verdicts. For `DgInj` with `TopAuth` as an ordinary native lemma, Tamarin verifies `exec` and `LS7` in 14 and 408 steps. The same source generates the two ProVerif inputs byte for byte. `TopAuth` alone times out in the two premise experiments.
-- K juxtaposes 49 original Stage D lemma comparisons and 12 separate diagnostic comparisons. The 24-row index connects 12 schedules to their direct ProVerif and Tamarin inputs. Stage D uses separate per-lemma stages.
-- The Morio et al. count uses seven specified theories from the dataset in [Zenodo record 21827126](https://doi.org/10.5281/zenodo.21827126). It is a selected 41-row subset. The broader CCS evaluation and the present paper's X0/X1 experiments have separate denominators.
-- The 24 resource-limited translated cases in [RQ5(b)](../runs/rq5b/correspondence/) have an unconfirmed matched direct-route numerator. This repository assigns no proportion.
+A record is one ProVerif query or one Tamarin lemma on one model. If a job has several records, the last one counts.
 
-## Updating the manifest
+The screening counts of P1 to P4 take the last attempt of each of the 295 jobs from the cumulative record. P5 counts five trials for each of 225 conclusive jobs and compares every trial with the first run of its job. The ladder of series L holds nine new trials, and its three reference points at 56 GiB come from the records of P2.
 
-```bash
-git add -A
-python3 -B scripts/update_manifest.py
-git add registry/repository-files.tsv
-python3 -B scripts/update_manifest.py --check
-python3 -B scripts/verify_evidence.py
-```
+Series X0 joins the 15 reruns after the renaming fix to the original records by theory and lemma. Of the 40 pairs, ProVerif answers `true` for 9, `false` for 1 and `cannot be proved` for 26, and 4 runs reach the time limit. The 24 translated runs that ended at a resource limit have no matched direct result, so the repository assigns no proportion to them ([`correspondence_24.tsv`](../runs/X0/resource-limited/correspondence_24.tsv)).
 
-In archived P3 and P5 log filenames, `rank-lower-s` and `rank-upper-s` distinguish the original `s` and `S` heuristics on case-insensitive file systems. The evidence map retains the original archive member name. Job IDs in tables and records retain their original spelling.
+Series X1 compares the same 60 pairs on the three builds B0, B1 and B2. The 540 stages cover native Tamarin, export and ProVerif for each pair and build. The probes that preceded the regression form separate cohorts ([`state_comparisons.tsv`](../runs/X1/historical-probes/state_comparisons.tsv)).
+
+Series K compares 49 lemmas in the original stage and 12 lemmas in a separate diagnostic stage. The 24 model inputs belong to 12 schedules with one ProVerif and one Tamarin input each.
+
+The counts of the validation series follow from [`validation/common/xcheck.py`](../validation/common/xcheck.py), which counts the excluded verdict pairs and the agreement on the standard system. The Achievement Levels come from the program `al_assign` of generator 0.1.2 with decision tree 1.1. The counts of V1 and V2 refer to the renamed inputs that the [validation notes](../validation/README.md) describe.
+
+## Records that this repository lacks
+
+| Subject | Missing record | Available instead |
+| --- | --- | --- |
+| Series G, first run | Tamarin outputs of the 32 lemmas | Rerun of both tools in the two control sets of V4 |
+| Series L | Instance type of the 96 GiB host | CPU count, memory and tool versions in [`env/ec2-96g/`](../env/ec2-96g/) |
+| Series X1 | Binaries of the three exporter builds | Recorded hashes, build logs, patches and recipes |
+| Series V1 to V4 | Complete tool outputs of the runs | One record per query or lemma with the verdict line, the exit status and the hash of the model |
+| Pair-shaped probes of V2 | Complete tool outputs | [`raw-verdict-lines.tsv`](../validation/V2-boundary/sets/pair/raw-verdict-lines.tsv) with the verdict line and the hash of each output |
+| Series V3 | Items for five of the eight causes | 41 items for three causes |
+| Series V6 | Number of a report at the upstream project | Models, exports and outputs of the probes |
+
+The file names of two search heuristics differ from their job identifiers. The archived outputs of P3 and P5 use `rank-lower-s` and `rank-upper-s` for the heuristics `s` and `S`, because some file systems ignore case. The records keep the original spelling.

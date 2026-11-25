@@ -1,0 +1,11 @@
+--- /home/user/cryptography-experiments/rev008-wsl/e6-no-git/runs/run-kowros/linear_pair/translated.pv	2026-11-17 15:17:25.589081904 +0900
++++ /home/user/cryptography-experiments/rev008-wsl/e6-no-git/review-I9Zd8w/linear_pair-control.pv	2026-11-17 15:49:23.981090463 +0900
+@@ -68,7 +68,7 @@
+ 
+ let rBad =
+         get tSt(stL_St, asid, =vone, helperVar0) in
+-        get tSt(stL_St_1, =asid, =vone, helperVar0) in
++        get tSt(stL_St_1, =asid, =vone, helperVar0) suchthat (stL_St_1 <> stL_St) in
+         new rid_rBad: bitstring;
+         event eDistinctFact(rid_rBad, (stL_St, (asid, (vone, z()))));
+         event eDistinctFact(rid_rBad, (stL_St_1, (asid, (vone, z()))));

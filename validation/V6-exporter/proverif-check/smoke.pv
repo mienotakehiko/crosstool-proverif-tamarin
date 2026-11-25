@@ -1,0 +1,5 @@
+free c:channel.
+free payload:bitstring.
+query attacker(payload).
+process
+  out(c,payload)

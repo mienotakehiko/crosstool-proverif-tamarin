@@ -1,0 +1,20 @@
+series	content	unit	size	main_records
+G	generated LM-OTS and LMS signers in both tools	ProVerif query and Tamarin lemma	28 queries and 32 lemmas	runs/G/proverif/pv_results.jsonl
+P1	Tamarin screening of the LMS and HSS theories	job	81	runs/P1/records.jsonl
+P2	Tamarin screening of the LM-OTS and chain theories	job	102	runs/P2/records.jsonl
+P3	Tamarin screening of search heuristics	job	24	runs/P3/records.jsonl
+P4	public corpus on the standard and the cyclic build	job	88	runs/P4/records.jsonl
+P5	fivefold repetition of conclusive jobs	trial	1125	runs/P5/records.jsonl
+L	heap limits for the searches that exhaust 56 GiB	run	9 and 7	runs/L/ladder/records.jsonl
+M	mutation of generated ProVerif encodings	mutant	20 and 2 controls	runs/M/frozen_20261111/results.json
+X0	translation of hand-written theories	pair of model and lemma	40	runs/X0/post-rename.tsv
+X1	exporter regression on three builds	pair of model and lemma	60 pairs and 540 stages	runs/X1/comparison.tsv
+X2	exporter applications to LMS and HSS	pair of model and lemma	10 pairs and 20 exports	runs/X2/lms_hss_application_cndk8z5k/results/comparison.tsv
+K	finite KUDOS schedules	schedule	12 schedules and 49 lemma comparisons	runs/K/stage-d/stage_d_results.tsv
+V1	three parameterized families in both tools	record	372 records of 12 members	validation/V1-families/sets
+V2	random CIMs and boundary probes	record	8192 records of 200 CIMs and 16 probes	validation/V2-random/sets
+V3	sealed labels for the decision tree	item	41	validation/V3-diagnosis/labels.tsv
+V4	held-out mutation of encodings and of inputs	record	972 records of 32 sets and 94 input mutants	validation/V4-mutation/sets
+V5	bounded enumeration of the schedulers of Lemma 2	enumeration	225	scheduler/lemma2/reference-run.log
+V6	exporter at the upstream head of Tamarin	model	2	validation/V6-exporter/run
+V7	fourfold time limit	job	10	validation/V7-time-limit/records.jsonl

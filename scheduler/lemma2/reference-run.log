@@ -1,0 +1,9 @@
+the files equal the reference manifest /home/user/cryptography-experiments/rev008-wsl/repo/code/studies/scheduler/../validation/e2-smallcim/manifest_20261116.tsv
+suite A
+== 204 model(s), 0 unexpected result(s); bounds: 1 thread(s), words of at most 4 events
+suite B
+== 12 model(s), 0 unexpected result(s); bounds: 1 thread(s), words of at most 3 events
+suite C
+== 5 model(s), 0 unexpected result(s); bounds: 2 thread(s), words of at most 3 events
+suite D
+== 4 model(s), 0 unexpected result(s); bounds: 1 thread(s), words of at most 4 events

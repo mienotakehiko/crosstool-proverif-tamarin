@@ -1,0 +1,2 @@
+job	time	seconds	reason
+E7x4_P2_cyc_C1_E2f_T0_Auto_SeedSecret_d_prove	2026-11-19T19:20:22+09:00	103170.6	After the parent shell stopped, fg resumed the termination. The elapsed time includes the stopped period, so the counts exclude this attempt.

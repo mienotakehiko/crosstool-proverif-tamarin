@@ -1,16 +1,3 @@
-# Preserve archived bytes, including upstream formats and line endings.
-* -text
-*.tsv whitespace=-blank-at-eol
-# Historical records and upstream patches retain their original formatting.
-/runs/** -whitespace
-/corpus/morio/eval-results.jsonl -whitespace
-/exporter/patches/** -whitespace
-/exporter/recipes/** -whitespace
-/env/u11/environment.txt -whitespace
-/paper/ladder_points.csv whitespace=cr-at-eol
-# Keep recovered stdout, regression fixtures and source diffs byte-for-byte.
-/cimc/v0.1.1/tests/data/** -whitespace
-/cimc/v0.1.2/tests/data/** -whitespace
-/cimc/v0.1.2/audit_0_1_2/** -whitespace
-/cimc/v0.1.2/out/** -whitespace
-/scheduler/restricted_20261111/*.log -whitespace
+# Keep every file byte for byte. The inventory records the hash of each file,
+# and records, tool outputs and third-party files keep their original whitespace.
+* -text -whitespace

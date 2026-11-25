@@ -1,0 +1,12 @@
+{"model": "R154_PV_U1", "query": "reachA", "verdict": "false", "rc": 0, "seconds": 0.01, "sha256": "15ace815604509238a090231c9a67831b2da86b03d5ce460894a3475334035ff", "timeout_s": 60}
+{"model": "R154_PV_U1", "query": "uniqA", "verdict": "true", "rc": 0, "seconds": 0.01, "sha256": "15ace815604509238a090231c9a67831b2da86b03d5ce460894a3475334035ff", "timeout_s": 60}
+{"model": "R154_PV_U1", "query": "reachB", "verdict": "false", "rc": 0, "seconds": 0.01, "sha256": "15ace815604509238a090231c9a67831b2da86b03d5ce460894a3475334035ff", "timeout_s": 60}
+{"model": "R154_PV_Urb1", "query": "reachA", "verdict": "false", "rc": 0, "seconds": 0.01, "sha256": "88aeec7bc7f139f0943f9a806ded965ce8590c63d5e9b2c6431a2384f40034db", "timeout_s": 60}
+{"model": "R154_PV_Urb1", "query": "uniqA", "verdict": "true", "rc": 0, "seconds": 0.01, "sha256": "88aeec7bc7f139f0943f9a806ded965ce8590c63d5e9b2c6431a2384f40034db", "timeout_s": 60}
+{"model": "R154_PV_Urb1", "query": "reachB", "verdict": "false", "rc": 0, "seconds": 0.01, "sha256": "88aeec7bc7f139f0943f9a806ded965ce8590c63d5e9b2c6431a2384f40034db", "timeout_s": 60}
+{"model": "R154_PV_lin", "query": "reachA", "verdict": "false", "rc": 0, "seconds": 0.02, "sha256": "0e7991e436f2bd9652b1322dccf5f30347020b11913bca40927804d103f0a475", "timeout_s": 60}
+{"model": "R154_PV_lin", "query": "uniqA", "verdict": "cannot", "rc": 0, "seconds": 0.02, "sha256": "0e7991e436f2bd9652b1322dccf5f30347020b11913bca40927804d103f0a475", "timeout_s": 60}
+{"model": "R154_PV_lin", "query": "reachB", "verdict": "false", "rc": 0, "seconds": 0.02, "sha256": "0e7991e436f2bd9652b1322dccf5f30347020b11913bca40927804d103f0a475", "timeout_s": 60}
+{"model": "R154_PV_rep", "query": "reachA", "verdict": "false", "rc": 0, "seconds": 0.02, "sha256": "ad62a4f4ee3cace4233f453e5b93c912cc3512ae3257ff29a4f1f80490f844a7", "timeout_s": 60}
+{"model": "R154_PV_rep", "query": "uniqA", "verdict": "false", "rc": 0, "seconds": 0.02, "sha256": "ad62a4f4ee3cace4233f453e5b93c912cc3512ae3257ff29a4f1f80490f844a7", "timeout_s": 60}
+{"model": "R154_PV_rep", "query": "reachB", "verdict": "false", "rc": 0, "seconds": 0.02, "sha256": "ad62a4f4ee3cace4233f453e5b93c912cc3512ae3257ff29a4f1f80490f844a7", "timeout_s": 60}

@@ -1,0 +1,12 @@
+{"model": "R186_PV_U3", "query": "reachA", "verdict": "false", "rc": 0, "seconds": 0.03, "sha256": "6ce9d0c6ebb12f8aeded225c90bf6c28927ab577b6aa45b712728372d79f2ca7", "timeout_s": 60}
+{"model": "R186_PV_U3", "query": "uniqA", "verdict": "true", "rc": 0, "seconds": 0.03, "sha256": "6ce9d0c6ebb12f8aeded225c90bf6c28927ab577b6aa45b712728372d79f2ca7", "timeout_s": 60}
+{"model": "R186_PV_U3", "query": "reachB", "verdict": "false", "rc": 0, "seconds": 0.03, "sha256": "6ce9d0c6ebb12f8aeded225c90bf6c28927ab577b6aa45b712728372d79f2ca7", "timeout_s": 60}
+{"model": "R186_PV_Urb3", "query": "reachA", "verdict": "false", "rc": 0, "seconds": 0.11, "sha256": "e176f8a7a12f3dc97a1422747a742d9ffaaa70e10c0cbe8c880ef96a20360c3c", "timeout_s": 60}
+{"model": "R186_PV_Urb3", "query": "uniqA", "verdict": "false", "rc": 0, "seconds": 0.11, "sha256": "e176f8a7a12f3dc97a1422747a742d9ffaaa70e10c0cbe8c880ef96a20360c3c", "timeout_s": 60}
+{"model": "R186_PV_Urb3", "query": "reachB", "verdict": "false", "rc": 0, "seconds": 0.11, "sha256": "e176f8a7a12f3dc97a1422747a742d9ffaaa70e10c0cbe8c880ef96a20360c3c", "timeout_s": 60}
+{"model": "R186_PV_lin", "query": "reachA", "verdict": "false", "rc": 0, "seconds": 0.07, "sha256": "0f5431eb1b18428851e72d3431f44c7f87feb904c5bcaa906e84ebb7a11af3e5", "timeout_s": 60}
+{"model": "R186_PV_lin", "query": "uniqA", "verdict": "cannot", "rc": 0, "seconds": 0.07, "sha256": "0f5431eb1b18428851e72d3431f44c7f87feb904c5bcaa906e84ebb7a11af3e5", "timeout_s": 60}
+{"model": "R186_PV_lin", "query": "reachB", "verdict": "false", "rc": 0, "seconds": 0.07, "sha256": "0f5431eb1b18428851e72d3431f44c7f87feb904c5bcaa906e84ebb7a11af3e5", "timeout_s": 60}
+{"model": "R186_PV_rep", "query": "reachA", "verdict": "false", "rc": 0, "seconds": 0.07, "sha256": "19f57e11fedc425f20636de679ace494721f3965ecfcf2cc27fb06d8b5564e69", "timeout_s": 60}
+{"model": "R186_PV_rep", "query": "uniqA", "verdict": "false", "rc": 0, "seconds": 0.07, "sha256": "19f57e11fedc425f20636de679ace494721f3965ecfcf2cc27fb06d8b5564e69", "timeout_s": 60}
+{"model": "R186_PV_rep", "query": "reachB", "verdict": "false", "rc": 0, "seconds": 0.07, "sha256": "19f57e11fedc425f20636de679ace494721f3965ecfcf2cc27fb06d8b5564e69", "timeout_s": 60}

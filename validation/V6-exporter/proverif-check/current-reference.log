@@ -1,0 +1,40 @@
+Linear part: No equation.
+Convergent part:
+fst((x_1,x_2)) = x_1
+snd((x_1,x_2)) = x_2
+Completing equations...
+Completed equations:
+snd((x_1,x_2)) = x_2
+fst((x_1,x_2)) = x_1
+Process 0 (that is, the initial process):
+(
+    {1}!
+    {2}new rid_rInit: bitstring;
+    {3}new stR_St: bitstring;
+    {4}new asid: bitstring;
+    {5}event eInitOnce(rid_rInit);
+    {6}insert tSt(stR_St,asid,q0,vphase0)
+) | (
+    {7}!
+    {13}get tSt(stL_St: bitstring,asid_1: bitstring,=q0,=vphase0) in
+    {8}new rid_rGood: bitstring;
+    {9}new stR_St_1: bitstring;
+    {10}event eDistinctFact(rid_rGood,(stL_St,(asid_1,(q0,vphase0))));
+    {11}event eHonest(asid_1);
+    {12}insert tSt(stR_St_1,asid_1,vqdone,vphase1)
+) | (
+    {14}!
+    {18}get tSt(stL_St_1: bitstring,asid_2: bitstring,=q1,=vphase0) in
+    {15}new rid_rBad: bitstring;
+    {16}event eDistinctFact(rid_rBad,(stL_St_1,(asid_2,(q1,vphase0))));
+    {17}event eBad(asid_2)
+) | (
+    {19}!
+    {23}get tSt(stL_St_2: bitstring,asid_3: bitstring,=q0,=vphase1) in
+    {20}new rid_rAgain: bitstring;
+    {21}event eDistinctFact(rid_rAgain,(stL_St_2,(asid_3,(q0,vphase1))));
+    {22}event eAgain(asid_3)
+)
+
+File "/home/user/cryptography-experiments/rev008-wsl/e6-no-git/pv-diagnosis/run-kowros-tAq3JG/reference-nullary.pv", line 35, character 60:
+Error: Declared axioms and lemmas cannot contain variables of type time.

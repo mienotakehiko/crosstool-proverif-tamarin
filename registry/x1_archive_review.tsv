@@ -1,7 +1,0 @@
-step	archive	bytes	sha256	file_members	member_hashes_verified	released_members	internal_manifest	original_archive_scope	original_archive_rights
-step3	step3.tar.gz	177519	5d3caef163dbaa9c1dbe83d81e47d35c9e59dae980ac30f11cf28979b336251d	19	0	19	absent; archive and member ledger checked	reviewed; public repository contains extracted records	pending rightsholder confirmation
-step4	step4.tar.gz	373479	0939de094cfa9054e04c6583f3cd5e7f54393010c54e5b675b75a77e96f2831d	1765	1764	1764	present	reviewed; public repository contains extracted records	pending rightsholder confirmation
-step5	step5.tar.gz	48409	2457476b4a63a0f6ecbec30175561f6737e61cacaa06665567d162f1e8746683	297	296	297	present	reviewed; public repository contains extracted records	pending rightsholder confirmation
-step6	step6.tar.gz	15353	9bf0efd338ec53e499e94821bd55f30b70ff05798ca3f9b602a4f6841bc14fd1	44	43	44	present	reviewed; public repository contains extracted records	pending rightsholder confirmation
-step7	step7.tar.gz	77277	fed152f85fe341535969ac2b67910e9045c1223c7e77e161205811d066064a7b	183	182	183	present	reviewed; public repository contains extracted records	pending rightsholder confirmation
-step8	step8.tar.gz	124884	922d3ef26d81d56cbda70ec64a2bdf39b5f3daa53727e6df50bf1e301424527f	1067	1066	1067	present	reviewed; public repository contains extracted records	pending rightsholder confirmation

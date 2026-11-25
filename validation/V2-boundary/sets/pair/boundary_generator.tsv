@@ -1,0 +1,5 @@
+probe	fragment	expected	generator	reason	result
+b05_mixed_dispatch_pair	outside	reject	reject	FAIL Det	ok
+b08_unpublished_identity_pair	outside	reject	reject	FAIL LeakGuard, LeakUse	ok
+b10_event_order_pair	outside	reject	reject	FAIL EvtSep, Blk, ObsOne	ok
+b13_numeral_literal_pair	outside	reject	accept		MISMATCH

@@ -1,8 +1,8 @@
-=== 元ログの識別 ===
+=== Identity of the original log ===
 mtime=2026-10-24 11:34:37.823394984 +0900 bytes=1746063 file=/redacted-home/cryptography-experiments/kit3/u5_build_ccs26_retry.log
 48bc9039c72a972b1e08481cededa0ccaf4fc71dd777c533e842446185f7439b  /redacted-home/cryptography-experiments/kit3/u5_build_ccs26_retry.log
 
-=== ビルド完了付近（元ログの行番号付き） ===
+=== End of the build (with the line numbers of the original log) ===
  20733	[notice] To update, run: python3 -m pip install --upgrade pip
  20734	[0m ---> Removed intermediate container 93442372c837
  20735	 ---> 958dace6965e
@@ -22,7 +22,7 @@ mtime=2026-10-24 11:34:37.823394984 +0900 bytes=1746063 file=/redacted-home/cryp
  20749	 checking installation: OK.
  20750	Proverif version-devel. Cryptographic protocol verifier, by Bruno Blanchet, Vincent Cheval, and Marc Sylvestre
 
-=== Debian snapshot 修正に対応する記録 ===
+=== Lines that record the Debian snapshot change ===
 50:Step 20/61 : RUN set -eux;     for src in /etc/apt/sources.list /etc/apt/sources.list.d/*.list /etc/apt/sources.list.d/*.sources; do       [ -f "$src" ] || continue;       sed -i -E 's@https?://(deb|security)\.debian\.org/debian-security@http://snapshot.debian.org/archive/debian-security/20260830T000000Z@g' "$src";     done;     grep -Rq 'http://snapshot.debian.org/archive/debian-security/20260830T000000Z' /etc/apt/sources.list /etc/apt/sources.list.d;     printf '%s\n' 'Acquire::Check-Valid-Until "false";' > /etc/apt/apt.conf.d/99bullseye-snapshot
 53:+ sed -i -E s@https?://(deb|security)\.debian\.org/debian-security@http://snapshot.debian.org/archive/debian-security/20260830T000000Z@g /etc/apt/sources.list
 58:+ grep -Rq http://snapshot.debian.org/archive/debian-security/20260830T000000Z /etc/apt/sources.list /etc/apt/sources.list.d

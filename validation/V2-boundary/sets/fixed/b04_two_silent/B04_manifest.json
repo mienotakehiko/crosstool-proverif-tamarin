@@ -1,0 +1,15 @@
+{
+ "B04_T_base.spthy": "c9ac1d533eae4e555c2fb8744741c1709e75edbb75f0fe2ec80ebdb52a2bd9f1",
+ "B04_T_cl1.spthy": "fa2ca0722ab8f8b088c3b738eec51dfc0dc2d956aa3bbacb4f34d6391f744312",
+ "B04_T_rb1.spthy": "fa42a39d81e8bb1ae098b35585f167163960c0f662cfd782a3ecc02f8bcd090f",
+ "B04_T_omega.spthy": "d4c229328e91bc0d8ee0dc540db77ce9bbb940311a921aee3e786b067c41f2f4",
+ "B04_PV_U1.pv": "52dc76a953603c0f78c57138ce96b5781064c71fd07d2f25c2ff47a27249239b",
+ "B04_PV_Urb1.pv": "f455ba707ae4b7c70643daabf696704dd05c7ad292099d8dc289fff7162ef6ce",
+ "B04_PV_lin.pv": "31f5b77affaa87a1d21ebcfa27338e41378c4fb432586ee49cbe1ab338053275",
+ "B04_PV_rep.pv": "f3d1b9730bacf46fbb1c90e9c2de60d3ff0c860d59aae4d370dad05ebb928858",
+ "B04_checks.txt": "506cb6bf7d20129c5f3fdead4915c45f6b53fb78c11262b5f31e4d8ed100c542",
+ "_cim": "67e47b6ad1df305cc12609b75854d24c49372a6a5d3543fc92976b15ce206ebf",
+ "_checks_failed": [
+  "Det"
+ ]
+}

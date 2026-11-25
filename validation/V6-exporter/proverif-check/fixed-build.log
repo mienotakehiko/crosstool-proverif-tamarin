@@ -1,0 +1,46 @@
+c4ccdc7e5808a79debc205b3acecac2a1c69791fa20e7d9eaaf3d867b803e655  /mnt/c/Users/user/Downloads/proverif-1d4cd9458d9ccf648e149ec2ea5147b2c87b67df.tar.gz
+4.14.1
+36 states, 401 transitions, table size 1820 bytes
+10 shift/reduce conflicts.
+43 states, 762 transitions, table size 3306 bytes
+151 shift/reduce conflicts.
+112 states, 3109 transitions, table size 13108 bytes
+46 states, 476 transitions, table size 2180 bytes
+71 states, 1001 transitions, table size 4430 bytes
+File "display.ml", line 5, characters 46-83:
+5 | let requires_liveness = ref false [@ppwarning "Vincent: variable never initialized"]
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Warning 22 [preprocessor]: Vincent: variable never initialized
+File "termsEq.ml", line 2774, characters 14-74:
+2774 |   [@ppwarning "For efficiency, check when we can remove the copy_constra4"]
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Warning 22 [preprocessor]: For efficiency, check when we can remove the copy_constra4
+File "ordering.ml", line 356, characters 13-214:
+356 | 	[@ppwarning "Vincent: if we say that user-defined predicates are always before other predicates, then the second conjunct above disappears and the function reduces to [can_predicate_have_clause_ordering_relation]"]
+      	            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Warning 22 [preprocessor]: Vincent: if we say that user-defined predicates are always before other predicates, then the second conjunct above disappears and the function reduces to [can_predicate_have_clause_ordering_relation]
+File "ordering.ml", lines 674-676, characters 12-41:
+674 | ............"Vincent: in assume_proved_*, you might want to just copy ord_target into
+675 |  ord_proved, and use one generic function to simplify lemmas. (Lemma.transl_realquery
+676 |  could be a good place for that function".
+Warning 22 [preprocessor]: Vincent: in assume_proved_*, you might want to just copy ord_target into
+ ord_proved, and use one generic function to simplify lemmas. (Lemma.transl_realquery
+ could be a good place for that function
+File "clause.ml", line 259, characters 18-94:
+259 |       [@ppwarning "Ideally, do exactly the same checks as in [clauseOrd_of_saturated_clause]."]
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Warning 22 [preprocessor]: Ideally, do exactly the same checks as in [clauseOrd_of_saturated_clause].
+File "lemma.ml", line 1130, characters 16-79:
+1130 |     [@ppwarning "Vincent: do a full simplification of lemmas in this function?"]
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Warning 22 [preprocessor]: Vincent: do a full simplification of lemmas in this function?
+File "rules.ml", line 2582, characters 51-82:
+2582 |         ordered_saturation := true  *) [@ppwarning "Vincent: is that code useful?"]
+                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Warning 22 [preprocessor]: Vincent: is that code useful?
+File "encode_queries.ml", line 249, characters 12-138:
+249 | [@ppwarning "Vincent: why do you need to simplify QMax, QMaxq? You do not allow them in input; you have the max in the orderings (QOMax)."]
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Warning 22 [preprocessor]: Vincent: why do you need to simplify QMax, QMaxq? You do not allow them in input; you have the max in the orderings (QOMax).
+ci_system not found; you might want to update the ci_system submodule
+db7526d0373a4fe7c689636053e67960d2c77df79b160f345fd86c879617682c  /home/user/cryptography-experiments/rev008-wsl/e6-no-git/tools/bin/proverif-e6-1d4cd9458d9ccf648e149ec2ea5147b2c87b67df

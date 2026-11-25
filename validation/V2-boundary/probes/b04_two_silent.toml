@@ -1,0 +1,31 @@
+# Boundary probe b04 (outside the fragment): two cases of one state have no
+# input, so one message starts both ProVerif blocks.
+name = "B04"
+
+[signature]
+functions = [ { name = "h", arity = 2 } ]
+
+[thread]
+role    = "Actor"
+fresh   = ["I", "sd"]
+state   = ["q"]
+init    = { q = 0 }
+bound   = 1
+publish = "I"
+
+[[thread.step]]
+name    = "AutoA"
+domain  = { q = [0] }
+update  = { q = "q + 1" }
+events  = ["EvA(I)"]
+
+[[thread.step]]
+name    = "AutoB"
+domain  = { q = [0] }
+update  = { q = "q + 1" }
+events  = ["EvB(I)"]
+
+[[property]]
+name   = "both"
+kind   = "phi3"
+events = ["EvA(I)", "EvB(I)"]

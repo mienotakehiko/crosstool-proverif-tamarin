@@ -1,0 +1,4 @@
+{"model": "B05P_PV_U1", "query": "both", "verdict": "false", "rc": 0, "seconds": 0.0, "sha256": "d99019a87f1227cdb87d8b69349cc02086dcb013909068d59e9f5be26eedfb1d", "timeout_s": 120}
+{"model": "B05P_PV_Urb1", "query": "both", "verdict": "false", "rc": 0, "seconds": 0.0, "sha256": "25120f5666524d067d89b23dbff468b2b06bb79c8951f050904a9d66f6c5aaa6", "timeout_s": 120}
+{"model": "B05P_PV_lin", "query": "both", "verdict": "false", "rc": 0, "seconds": 0.0, "sha256": "1108475e71d2c5fefe77c94c26856e5d890ca9255048cc67be24a1b2efe8ab71", "timeout_s": 120}
+{"model": "B05P_PV_rep", "query": "both", "verdict": "false", "rc": 0, "seconds": 0.0, "sha256": "857eda6506812fa409de3dbcf82bad3d8338406392f833116948e1ee99df89a5", "timeout_s": 120}

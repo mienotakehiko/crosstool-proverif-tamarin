@@ -41,7 +41,7 @@ for lemma in exec LS7; do
 
     printf '%q ' "${cmd[@]}" > "$out/command.txt"
     printf '\n' >> "$out/command.txt"
-    printf '\n開始 hss_noinj/%s/%s\n' "$lemma" "$variant"
+    printf '\nStart hss_noinj/%s/%s\n' "$lemma" "$variant"
 
     rc=0
     started=$SECONDS

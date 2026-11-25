@@ -1,0 +1,34 @@
+# Boundary probe b11 (outside the fragment): an output names a variable that
+# neither the thread nor the input pattern binds.
+name = "B11"
+
+[signature]
+functions = [ { name = "h", arity = 2 } ]
+
+[thread]
+role    = "Actor"
+fresh   = ["I", "sd"]
+state   = ["q"]
+init    = { q = 0 }
+bound   = 1
+publish = "tup(I, h(I, sd))"
+persist = [ { name = "Pk", term = "h(I, sd)" } ]
+
+[[thread.step]]
+name    = "Go"
+domain  = { q = [0] }
+input   = "'go'"
+update  = { q = "q + 1" }
+events  = ["EvA(I)"]
+outputs = ["tup(I, w)"]
+
+[[responder]]
+name   = "Check"
+input  = "tup(I, z)"
+check  = { Pk = "h(I, z)" }
+events = ["Acc(I)"]
+
+[[property]]
+name   = "accept"
+kind   = "phi3"
+events = ["Acc(I)"]

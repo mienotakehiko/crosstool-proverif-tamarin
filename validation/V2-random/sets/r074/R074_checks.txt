@@ -1,0 +1,20 @@
+# side conditions of Theorem 1 for R074 (cimc 0.1.2)
+Hygiene    OK               no backend-reserved identifier collision
+Binding    OK               equality subterms and bodies closed at point of use
+PatternSupported OK               supported PV input pattern shape
+Sig        OK               2 symbols used, one declaration table; tuples as right-nested pairs in both tools
+Evt        BY-CONSTRUCTION  4 event symbols printed from one table
+EvtSep     OK               no rule carries two observed events of one property
+Saf        OK               restrictions: OneMisuse only (variants cl1, rb1), universal with equality conclusion
+Lin        OK               3 step cases, one state in and one state out each; no leak outputs a state value
+LinSpawn   OK               single thread kind; the thread and its state are created by one rule/process
+Blk        OK               block = state input, attacker input, guards, events, outputs, state output
+Grd        OK               guards are equality tests on public numeral constants; domains q=[1]
+Det        OK               cases with the same consumed state have disjoint input patterns
+Dist       OK               one role with a fresh identity; no public role names
+Leak       OK               leak outputs a persistent fresh name; enabled from thread start (guard: the published identity)
+LeakGuard  OK               leak identity is tuple-projectable from the initial public output
+ObsOne     OK               at most one observed event per generated block
+LeakUse    OK               leak events appear only as correspondence conclusions or absent events
+Rul        BY-CONSTRUCTION  4 cases printed to both tools from one object
+Bound(e)   OK               longest update chain 3; declared bound 3; Theorem 1(e) applies with n = 3

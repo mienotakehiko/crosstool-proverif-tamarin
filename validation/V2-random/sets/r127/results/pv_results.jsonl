@@ -1,0 +1,8 @@
+{"model": "R127_PV_U2", "query": "reachA", "verdict": "false", "rc": 0, "seconds": 0.01, "sha256": "04bc21650e22f6558d6aaa06c9c800bb3a9829007c4b73aaa3226bdda717c201", "timeout_s": 60}
+{"model": "R127_PV_U2", "query": "uniqA", "verdict": "true", "rc": 0, "seconds": 0.01, "sha256": "04bc21650e22f6558d6aaa06c9c800bb3a9829007c4b73aaa3226bdda717c201", "timeout_s": 60}
+{"model": "R127_PV_Urb2", "query": "reachA", "verdict": "false", "rc": 0, "seconds": 0.01, "sha256": "c71c9605a169342fd8df601c69397ea37bb0a3720d7a198dddabe1b32e2ced69", "timeout_s": 60}
+{"model": "R127_PV_Urb2", "query": "uniqA", "verdict": "false", "rc": 0, "seconds": 0.01, "sha256": "c71c9605a169342fd8df601c69397ea37bb0a3720d7a198dddabe1b32e2ced69", "timeout_s": 60}
+{"model": "R127_PV_lin", "query": "reachA", "verdict": "false", "rc": 0, "seconds": 0.01, "sha256": "cc9fbeb55341991909d38af2ce2535db63e8d76754c74d7d0d1bcedb234c495e", "timeout_s": 60}
+{"model": "R127_PV_lin", "query": "uniqA", "verdict": "cannot", "rc": 0, "seconds": 0.01, "sha256": "cc9fbeb55341991909d38af2ce2535db63e8d76754c74d7d0d1bcedb234c495e", "timeout_s": 60}
+{"model": "R127_PV_rep", "query": "reachA", "verdict": "false", "rc": 0, "seconds": 0.01, "sha256": "044d36c2b5d044308ab46d9ecf5e026039dc888a2ccb383678aa41a50640bfeb", "timeout_s": 60}
+{"model": "R127_PV_rep", "query": "uniqA", "verdict": "false", "rc": 0, "seconds": 0.01, "sha256": "044d36c2b5d044308ab46d9ecf5e026039dc888a2ccb383678aa41a50640bfeb", "timeout_s": 60}

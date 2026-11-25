@@ -1,0 +1,29 @@
+# Boundary probe b08 (outside the fragment, discrepancy D3 of the paper): the
+# thread publishes nothing, and its leak waits for the identity.
+name = "B08P"
+
+[signature]
+functions = [ { name = "h", arity = 2 } ]
+
+[thread]
+role    = "Actor"
+fresh   = ["I", "sd"]
+state   = ["q"]
+init    = { q = 0 }
+bound   = 1
+
+[[thread.leak]]
+event  = "RevealSeed(I)"
+output = "sd"
+
+[[thread.step]]
+name    = "Go"
+domain  = { q = [0] }
+input   = "tup('ctl', 'go')"
+update  = { q = "q + 1" }
+events  = ["EvA(I)"]
+
+[[property]]
+name   = "reveal"
+kind   = "phi3"
+events = ["RevealSeed(I)"]

@@ -1,80 +1,87 @@
 # Cross-tool verification of iterative cryptographic protocols
 
-This repository accompanies *A Cross-Tool Formal Verification Methodology for Cryptographic Protocols with Iterative Behavior Using ProVerif and Tamarin Prover*. It collects the Common Iterative Model (CIM) compiler, symbolic models, published comparison data and archived results for the manuscript. See the [GitHub repository](https://github.com/mienotakehiko/crosstool-proverif-tamarin).
+This repository is the reproduction package of the paper *A Cross-Tool Formal Verification Methodology for Cryptographic Protocols with Iterative Behavior Using ProVerif and Tamarin Prover* by Takehiko Mieno. It holds the generator `cimc`, the models, the run scripts and the records of every experimental series of the paper. Seven scripts check these records and recompute each reported count without a prover.
 
-**Evidence status.** The [manuscript map](docs/PAPER_MAPPING.md) identifies the original evidence available for each claim. The historical M runs, Lemma 1 suite, and compiler versions 0.1.1 and 0.1.2 are included. The original Diagnosis v1.1 run of 24 tests and the G production Tamarin runs remain unrecovered. See the [release checklist](docs/RELEASE_CHECKLIST_20261117.md) for technical and publication status.
+## Contents
 
-## Recompute the manuscript results
+| Directory | Content |
+| --- | --- |
+| [`cimc/`](cimc/) | Generator of ProVerif and Tamarin models from a Common Iterative Model (CIM), versions 0.1.0 to 0.1.3 with their tests |
+| [`cim/`](cim/) | CIM sources of the two signers and the specifications of the twelve KUDOS schedules |
+| [`models/`](models/) | Sixteen generated signer models, the hand-written Tamarin theories and the kit that derives and runs their variants |
+| [`runs/`](runs/) | Records of the series G, P1 to P5, L, M, X0, X1, X2 and K |
+| [`validation/`](validation/) | Plan, scripts, inputs and records of the validation series V1 to V7 |
+| [`exporter/`](exporter/) | Probes, patches and build recipes of the Tamarin-to-ProVerif exporter study |
+| [`scheduler/`](scheduler/) | Executable checks of the two scheduler lemmas |
+| [`diagnosis/`](diagnosis/) | Decision tree 1.1 of the diagnosis procedure |
+| [`corpus/`](corpus/) | Sources and hashes of the public theory corpus and the subset of the evaluation data of Morio et al. |
+| [`env/`](env/) | Environment records of the hosts and the pinned container image |
+| [`registry/`](registry/) | Inventory of all files with SHA-256 hashes, table of normalized files and index of the series |
+| [`scripts/`](scripts/) | Checks and recomputations that need Python only |
+| [`docs/`](docs/) | Map from the paper to the records, guide to the prover runs and third-party notices |
 
-Use Python 3.11 or later from the repository root.
+## Check the records without a prover
+
+The checks need Python 3.11 or later and no further package. Run them from the root of the repository.
+
+```bash
+bash scripts/check_all.sh
+```
+
+The script runs the following commands in turn and stops at the first failure.
 
 ```bash
 python3 -B scripts/verify_evidence.py
-python3 -B scripts/verify_recovery_20261117.py
-python3 -B scripts/check_x1_archives.py
+python3 -B scripts/recompute_paper_numbers.py
+python3 -B scripts/recompute_validation_numbers.py --check validation/expected_counts.tsv
 python3 -B scripts/check_model_hashes.py
 python3 -B scripts/check_kudos_models.py
-python3 -B scripts/recompute_paper_numbers.py
 python3 -B corpus/recompute_morio.py
+python3 -B exporter/index_regression.py
 ```
 
-The default recomputation includes the baseline counts and the checks added for the recovered records. Use `--baseline-only` for the 61 baseline comparisons. The scripts read local files and start neither prover.
-
-| Series | Records | Recalculation | Manuscript location |
-| --- | --- | --- | --- |
-| G | [ProVerif verdicts](runs/G/proverif/), [sandbox fixtures](cimc/v0.1.0/tests/data/) | `scripts/recompute_paper_numbers.py` | Table 9, generated-model evaluation and AL |
-| P1–P4 | [P1](runs/P1/), [P2](runs/P2/), [P3](runs/P3/), [P4](runs/P4/), [cumulative checkpoints](runs/screening/) | `scripts/recompute_paper_numbers.py`, `scripts/check_model_hashes.py` | Tables 9–10, screening and corpus |
-| P5 | [Repeated runs](runs/P5/) | `scripts/recompute_paper_numbers.py` | Repetition and search-order comparison |
-| L | [Ladder and cloud runs](runs/L/), [host configuration](env/u11/) | `scripts/recompute_paper_numbers.py`, `paper/plot_ladder.py` | Heap-exhaustion figure and 96 GiB trials |
-| M | [October and November cohorts](runs/M/) | `scripts/verify_recovery_20261117.py` | Mutation evaluation |
-| X0 | [Historical and post-rename records](runs/X0/) | `scripts/recompute_paper_numbers.py` | Handwritten-model translation outcomes |
-| X1 | [Comparison and stage files](runs/X1/), [patches and recipes](exporter/) | `exporter/index_regression.py`, `scripts/recompute_paper_numbers.py` | B0/B1/B2 regression table |
-| X2 | [LMS/HSS exports and proof records](runs/X2/) | `scripts/recompute_paper_numbers.py` | LMS/HSS application and assumptions table |
-| K | [Schedules and run records](runs/K/), [specifications and generators](cim/kudos/) | `scripts/recompute_paper_numbers.py` | Finite KUDOS schedule comparison |
-| Corpus | [Theory sources and SHA-256 hashes](registry/corpus.tsv), [Morio et al. subset](corpus/morio/) | `corpus/recompute_morio.py`, `scripts/check_model_hashes.py` | Public theory corpus and related work |
-| Lemma 1 | [Restricted scheduler suite](scheduler/) | `scheduler/restricted_20261111/run_checks.py` | Appendix B |
-
-The paper references use the series names and table subjects because table and figure numbers can change between revisions.
-
-## Source and evidence layout
-
-| Directory | Contents |
+| Command | Result on an unchanged copy |
 | --- | --- |
-| [`cimc/`](cimc/), [`cim/`](cim/) | Compiler versions 0.1.0, 0.1.1 and 0.1.2, and signer/KUDOS specifications |
-| [`models/`](models/) | Generated signer fixtures and their SHA-256 sums, handwritten theories, and tactic generation |
-| [`al/`](al/), [`diagnosis/`](diagnosis/), [`scheduler/`](scheduler/) | Version and test coverage notes |
-| [`exporter/`](exporter/) | Translation probes, regression stage indexing, source patches and selected build recipes |
-| [`env/`](env/), [`registry/`](registry/) | Recorded environments, manuscript map, source provenance and file inventories |
-| [`paper/`](paper/) | Data and script for the memory-ladder figure |
+| `verify_evidence.py` | Every file matches the inventory, every internal hash list matches the original hashes, and the records of the series are consistent |
+| `recompute_paper_numbers.py` | 115 counts of the series G to K, M, L and of Lemma 1 equal the values of the paper |
+| `recompute_validation_numbers.py` | 527 counts of the series V1 to V4 and V7 equal the stored table |
+| `check_model_hashes.py` | 19 derived theory variants and 8 corpus theories carry the hashes of the screening records |
+| `check_kudos_models.py` | 24 regenerated KUDOS model inputs are byte-identical to the archived inputs |
+| `recompute_morio.py` | The 41 rows of the corpus subset follow from the evaluation data |
+| `index_regression.py` | The index of the 540 exporter stages follows from the stage files |
 
-The native Tamarin route checks a lemma against a multiset-rewriting theory. The direct ProVerif route generates a process from a CIM specification. The translated ProVerif route uses an exporter on a Tamarin model and lemma. Compare verdicts only after checking the model assumptions and query polarity. A reconstructed witness for a negated existence query establishes reachability. A timeout leaves that run unresolved.
+## Regenerate the models
 
-## Check the archived compiler and models
-
-Run the compiler and its existing tests from its version directory.
+The generator needs Python only. The following commands run its unit tests, check the hashes of the sixteen signer models, regenerate the 1,728 model files of the validation series and run the checks of the two scheduler lemmas.
 
 ```bash
-(
-  cd cimc/v0.1.0 &&
-  python3 -B tests/test_al.py &&
-  python3 -B tests/regress_al.py &&
-  work="$(mktemp -d)" &&
-  python3 -B -m cimc ../../cim/signers/lms_s2.toml "$work" &&
-  diff -r --exclude=run_tam.sh ../../models/generated/v0.1.0/lms_s2 "$work"
-)
-(cd models/generated && sha256sum -c SHA256SUMS)
-(cd exporter/probes/initial && python3 -B -m unittest -v test_kit)
+(cd cimc/v0.1.2 && python3 -B tests/test_correspondence_guards.py && python3 -B tests/test_hygiene.py && python3 -B tests/test_al.py)
+(cd models/generated && sha256sum -c --quiet SHA256SUMS)
+python3 -B validation/common/regen_check.py --cimc cimc/v0.1.2 \
+    validation/V1-families/sets validation/V2-random/sets validation/V2-boundary/sets/controls \
+    validation/V4-mutation/sets/LMOTS__control validation/V4-mutation/sets/LMS_S2__control
+python3 -B scheduler/lemma1/run_checks.py
+bash scheduler/lemma2/run_checks.sh
 ```
 
-The legacy compiler checks exercise version 0.1.0. The generated signer manifest authenticates the 16 archived fixtures. To inspect the exporter build, follow the [build and regression notes](exporter/README.md). The resource budgets and runtime identities in the archived records belong to their respective cohorts.
+The regeneration reports 216 sets and 1,728 identical model files. The two scheduler checks report 21 passing tests and four suites without an unexpected result. The README of each directory lists further commands.
 
-## Sources and licensing
+## Rerun the provers
 
-The LMS and LM-OTS models use abstractions of [RFC 8554](https://www.rfc-editor.org/rfc/rfc8554). The controlled translation comparison records the [pinned Tamarin fork](https://github.com/felixlinker/tamarin-prover/tree/c293106913ccf7bb41f49b0dc555a8074e8ea88c). The Morio et al. subset comes from the [CCS 2026 evaluation artifact](https://doi.org/10.5281/zenodo.21827126). The [third-party notices](docs/THIRD_PARTY_NOTICES.md) identify the source, licenses and boundaries of redistribution. [CITATION.cff](CITATION.cff) identifies the repository and its author.
+The runs of the paper used ProVerif 2.05, Tamarin 1.12.0 and Maude 3.5.1. The [reproduction guide](docs/REPRODUCTION.md) states the tools, the limits and one command per series. The [evidence map](docs/PAPER_MAPPING.md) relates each series, table and claim of the paper to its records and names the records that this repository lacks.
 
-The supplied materials do not identify a repository-wide license for the author's code. The author can add one after confirming the intended terms. For evidence provenance, see [recovered-files.tsv](registry/recovered-files.tsv). It records source and published hashes for files recovered from archives. Some text logs normalize host paths. Model files and benchmark inputs retain their source bytes.
+## Integrity of the files
 
-## Contact
+The inventory [`registry/repository-files.tsv`](registry/repository-files.tsv) lists the size and the SHA-256 hash of every file. Model files, inputs and verdict records keep the bytes of the runs. The published bytes of 611 other files differ from the bytes of the runs. In 584 logs and environment records, placeholders replace host names and local paths. Seven files carry notes, headings or messages in English translation, and 20 scripts carry revised comments or default paths for the layout of this repository. The table [`registry/normalized-files.tsv`](registry/normalized-files.tsv) states the original and the published hash of each such file, and the [registry notes](registry/README.md) explain how the checks use both.
 
-Takehiko Mieno, EPSON AVASYS Corporation, Ueda, Nagano, Japan.
-Email `Mieno.Takehiko2@exc.epson.co.jp`.
+Tool outputs and third-party sources keep their wording, including the first-person plural in ProVerif messages and in license texts.
+
+## Sources and licenses
+
+The signer models abstract LM-OTS, LMS and HSS of [RFC 8554](https://www.rfc-editor.org/rfc/rfc8554). The exporter study starts from a [pinned commit of a Tamarin fork](https://github.com/felixlinker/tamarin-prover/tree/c293106913ccf7bb41f49b0dc555a8074e8ea88c) and from the [artifact of Morio, Ivanov and Künnemann](https://doi.org/10.5281/zenodo.21827126). The [third-party notices](docs/THIRD_PARTY_NOTICES.md) name the sources, their licenses and the modified files. The [MIT License](LICENSE) covers the author's original files.
+
+## Citation and contact
+
+[`CITATION.cff`](CITATION.cff) identifies the repository. Please cite the paper if these results contribute to other work.
+
+Takehiko Mieno, EPSON AVASYS Corporation, Ueda, Nagano, Japan, `mieno.takehiko2@exc.epson.co.jp`

@@ -1,0 +1,36 @@
+# Boundary probe b13, pair-shaped input (outside the fragment): the literal
+# 'n1' and the numeral 1 are one constant in the Tamarin output and two
+# constants in the ProVerif output. The stored value uses the numeral, the
+# check uses the literal. Generator 0.1.2 accepts this input without a FAIL;
+# generator 0.1.3 refuses it (Hygiene).
+name = "B13"
+
+[signature]
+functions = [ { name = "h", arity = 2 } ]
+
+[thread]
+role    = "Actor"
+fresh   = ["I", "sd"]
+state   = ["q"]
+init    = { q = 0 }
+bound   = 1
+publish = "I"
+persist = [ { name = "Pk", term = "h(I, 1)" } ]
+
+[[thread.step]]
+name    = "Go"
+domain  = { q = [0] }
+input   = "tup('ctl', 'go')"
+update  = { q = "q + 1" }
+events  = ["EvA(I)"]
+
+[[responder]]
+name   = "Check"
+input  = "tup(I, z)"
+check  = { Pk = "h(I, 'n1')" }
+events = ["Acc(I)"]
+
+[[property]]
+name   = "accept"
+kind   = "phi3"
+events = ["Acc(I)"]

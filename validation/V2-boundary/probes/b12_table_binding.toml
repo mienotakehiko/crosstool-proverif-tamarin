@@ -1,0 +1,33 @@
+# Boundary probe b12 (outside the fragment): the responder reads the identity
+# from the table entry and not from its input.
+name = "B12"
+
+[signature]
+functions = [ { name = "h", arity = 2 } ]
+
+[thread]
+role    = "Actor"
+fresh   = ["I", "sd"]
+state   = ["q"]
+init    = { q = 0 }
+bound   = 1
+publish = "h(I, sd)"
+persist = [ { name = "Pk", term = "h(I, sd)" } ]
+
+[[thread.step]]
+name    = "Go"
+domain  = { q = [0] }
+input   = "'go'"
+update  = { q = "q + 1" }
+events  = ["EvA(I)"]
+
+[[responder]]
+name   = "Check"
+input  = "z"
+check  = { Pk = "z" }
+events = ["Acc(I)"]
+
+[[property]]
+name   = "accept"
+kind   = "phi3"
+events = ["Acc(I)"]

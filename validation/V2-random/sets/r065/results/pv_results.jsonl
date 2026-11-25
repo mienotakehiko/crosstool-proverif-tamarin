@@ -1,0 +1,8 @@
+{"model": "R065_PV_U3", "query": "reachA", "verdict": "false", "rc": 0, "seconds": 0.01, "sha256": "5357c555e9f8e96aa1146eb27a912f4a913cb2fcea37a88c2493b3df37d6ac70", "timeout_s": 60}
+{"model": "R065_PV_U3", "query": "uniqA", "verdict": "true", "rc": 0, "seconds": 0.01, "sha256": "5357c555e9f8e96aa1146eb27a912f4a913cb2fcea37a88c2493b3df37d6ac70", "timeout_s": 60}
+{"model": "R065_PV_Urb3", "query": "reachA", "verdict": "false", "rc": 0, "seconds": 0.02, "sha256": "dd8e1418cf8b9f51c965ae4b37a8dd6c1cd69b8c6f774e715f71f788c1686f1c", "timeout_s": 60}
+{"model": "R065_PV_Urb3", "query": "uniqA", "verdict": "false", "rc": 0, "seconds": 0.02, "sha256": "dd8e1418cf8b9f51c965ae4b37a8dd6c1cd69b8c6f774e715f71f788c1686f1c", "timeout_s": 60}
+{"model": "R065_PV_lin", "query": "reachA", "verdict": "false", "rc": 0, "seconds": 0.02, "sha256": "d30a52d30636f8ce332fc68344eebeccd08424b0aa9ff51166149273a4f9b623", "timeout_s": 60}
+{"model": "R065_PV_lin", "query": "uniqA", "verdict": "cannot", "rc": 0, "seconds": 0.02, "sha256": "d30a52d30636f8ce332fc68344eebeccd08424b0aa9ff51166149273a4f9b623", "timeout_s": 60}
+{"model": "R065_PV_rep", "query": "reachA", "verdict": "false", "rc": 0, "seconds": 0.02, "sha256": "8fa9ee22c1073b32628c41161eb16a26c8436177b53f379e49273011e7e1aef5", "timeout_s": 60}
+{"model": "R065_PV_rep", "query": "uniqA", "verdict": "false", "rc": 0, "seconds": 0.02, "sha256": "8fa9ee22c1073b32628c41161eb16a26c8436177b53f379e49273011e7e1aef5", "timeout_s": 60}

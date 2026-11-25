@@ -1,0 +1,38 @@
+# Boundary probe b02 (control, inside the fragment): the only case of a
+# state has no input.
+name = "B02"
+
+[signature]
+functions = [ { name = "h", arity = 2 } ]
+
+[thread]
+role    = "Actor"
+fresh   = ["I", "sd"]
+state   = ["q"]
+init    = { q = 0 }
+bound   = 2
+publish = "I"
+
+[[thread.step]]
+name    = "Auto"
+domain  = { q = [0] }
+update  = { q = "q + 1" }
+events  = ["EvA(I)"]
+
+[[thread.step]]
+name    = "Asked"
+domain  = { q = [1] }
+input   = "'go'"
+update  = { q = "q + 1" }
+events  = ["EvB(I)"]
+
+[[property]]
+name   = "both"
+kind   = "phi3"
+events = ["EvA(I)", "EvB(I)"]
+
+[[property]]
+name       = "order"
+kind       = "phi1"
+premise    = "EvB(I)"
+conclusion = [["EvA(I)"]]

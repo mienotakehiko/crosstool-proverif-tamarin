@@ -1,0 +1,13 @@
+{
+ "R052_T_base.spthy": "6a86a897c0cf350e66c6a8fd7ce54cbd442fd4067298c15fd5f7c339cf7f4304",
+ "R052_T_cl1.spthy": "fe6596904bdf8bd1aacb05ee5ab4aa7896b0ac68f35c639364105d618ceff5e5",
+ "R052_T_rb1.spthy": "4242dd26a0db2c1f4e7304bfce889b6eff5ab7ab4df076e7b0c37dae78ca1506",
+ "R052_T_omega.spthy": "a9dd1dde6da69ac7bca351e225d3e6bb7901cb26bbac643210d7649179af4dc1",
+ "R052_PV_U1.pv": "816a8c16d678f1e0a3ba345e2fa62d61ad36a08f65c609fe26eb79066056a48c",
+ "R052_PV_Urb1.pv": "e81e06acdd64b9dbf568730b230e317824783a415e1c50468675cedcf918a1f2",
+ "R052_PV_lin.pv": "4289fee32112fe1a1c4fb087cb15923156ab94dcd71fe4b807972f6491d92ee8",
+ "R052_PV_rep.pv": "6cde1f707f94dbeabec4fcd2db8c2c5057e32dafdb2d3c552dbab63b6051bf92",
+ "R052_checks.txt": "b8ae01edeae4300cddf6982bd421c7c34999075cb2101ed85ec0374e57ec08ed",
+ "_cim": "528ed2b72e57b78719bf71365252a2b1975a1f0fcf0993de5a8dc8d2324bdd4c",
+ "_checks_failed": []
+}

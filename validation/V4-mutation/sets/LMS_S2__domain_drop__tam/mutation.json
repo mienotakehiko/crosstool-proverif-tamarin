@@ -1,0 +1,23 @@
+{
+ "cim": "lms_s2.toml",
+ "cim_sha256": "441457323dde0422485f4d5474d02c53d29dffd591004ebd9eeb2178fd318227",
+ "operator": "domain_drop",
+ "side": "tam",
+ "changed_files": [
+  "LMS_S2_T_base.spthy",
+  "LMS_S2_T_cl1.spthy",
+  "LMS_S2_T_omega.spthy",
+  "LMS_S2_T_rb1.spthy"
+ ],
+ "class": "encoding",
+ "sha256": {
+  "LMS_S2_T_base.spthy": "61a2327e3e434b25188fb5b0032bf65f939751dc21fc4bf74f1c156ececc544e",
+  "LMS_S2_T_cl1.spthy": "799000a616f1252d382a7f6c901cb4ed98dfb88022868d3fb666ca76afde9c0c",
+  "LMS_S2_T_rb1.spthy": "d991a9d3a25444983e38197633dfb1d6023e022bd96101c5785fb8b07c2aae02",
+  "LMS_S2_T_omega.spthy": "657d660d245f4db0959aaddc307f8a57e2ca318f22341c1e50654c065b2b1353",
+  "LMS_S2_PV_U2.pv": "0971750a8cf2c5e43349298e333b8f30234e9694d8f1d8d70c6c286c54e87305",
+  "LMS_S2_PV_Urb2.pv": "34e98b4f2c48c1a40a2f9ced164da06ae942daa4ef5dfbdd7f802e4e47c47179",
+  "LMS_S2_PV_lin.pv": "ee28c5dbf07e0afd4ed881005a828c7d3e716a2945919ac28844d0f99108c14f",
+  "LMS_S2_PV_rep.pv": "192cbc0a1a0c32b22cec27b3b98a7e96dcf56ef994e6e59f164b1a924716b0cd"
+ }
+}

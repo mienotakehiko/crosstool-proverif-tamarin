@@ -1,0 +1,13 @@
+{
+ "R087_T_base.spthy": "fac276c9f9110d58ce8b9c7fe25d1d6fac40d32f87eccbaf03065e766593c7e6",
+ "R087_T_cl1.spthy": "6efa73389bb249c6b67bf8885e8501d2cb4a6c224731bfd55e0251bf66b74c56",
+ "R087_T_rb1.spthy": "7f1b55113a31b177c984122a7aad9af0dd7bcd3d437c61d7a60962e8a1e00302",
+ "R087_T_omega.spthy": "32ece6be4b3eb28ae9db0b97b442cffba7245e82bfc0bd3e1912b56e84fc8074",
+ "R087_PV_U3.pv": "59cb3a9b978dc3621c3344a86b4ebd3f5ea594e313885a1404eeeb3b9f18c6d6",
+ "R087_PV_Urb3.pv": "749d627f82b0ba69b955e95b08fdef5da49d3d4b28ee4e1389524ebd444e7b5f",
+ "R087_PV_lin.pv": "b749ddda540532ffcf65517e17135bb58f6820d25fa778242b75a8f3f80be6ca",
+ "R087_PV_rep.pv": "45193bcdc17df6ac2f1d93450422da3fd4fde29c869b013a476cf2bdb7ba4a9e",
+ "R087_checks.txt": "0645200017596cda3d94ad0330a5e96818c4f56a2ec6e6bee3effdba3904530c",
+ "_cim": "ccf645db1460ca4117662bcb92ef35a7f50df704148b7b02a4a9ac7bcfe8272c",
+ "_checks_failed": []
+}

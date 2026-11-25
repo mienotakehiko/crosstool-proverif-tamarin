@@ -1,0 +1,9 @@
+group	set	model	lemma	original_seconds	limit
+lowheap	lmots_w1m1	LMOTS_W1M1_T_base	exec_accept	0.32	heap 64m
+lowheap	lmots_w1m1	LMOTS_W1M1_T_base	LS1_unforge	0.27	heap 64m
+lowheap	lmots_w1m1	LMOTS_W1M1_T_base	forge	0.27	heap 64m
+lowheap	lmots_w1m1	LMOTS_W1M1_T_cl1	exec_accept	0.52	heap 64m
+lowheap	lmots_w1m1	LMOTS_W1M1_T_cl1	LS1_unforge	0.32	heap 64m
+lowheap	lmots_w1m1	LMOTS_W1M1_T_cl1	forge	0.32	heap 64m
+lowheap	lmots_w1m1	LMOTS_W1M1_T_omega	exec_accept	0.32	heap 64m
+lowheap	lmots_w1m1	LMOTS_W1M1_T_omega	LS1_unforge	0.27	heap 64m

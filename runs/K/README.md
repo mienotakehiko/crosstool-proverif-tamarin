@@ -1,3 +1,19 @@
-# Finite KUDOS schedule comparison
+# Series K, finite KUDOS schedules
 
-[specification-index.tsv](specification-index.tsv) identifies the 12 specifications and generators. Run `python3 -B scripts/check_kudos_models.py` from the repository root to repeat the regeneration check. The original RB1 source holds two schedules in a shared file. Each specification regenerates its Tamarin and ProVerif model byte for byte. [jobs.tsv](jobs.tsv) indexes these 24 model/tool slots. The direct-run directories retain the recovered execution outputs. The [Stage D table](stage-d/stage_d_results.tsv) reports 49 original per-lemma comparisons (48 agreements) and 12 diagnostic comparisons. The [archives/](archives/) directory contains the selected Stage D inputs, per-lemma execution records and summaries. These finite schedules model stated assumptions for conditional scenarios.
+Series K compares both tools on twelve finite schedules of the KUDOS key update. Each schedule models stated assumptions for one conditional scenario.
+
+| Path | Content |
+| --- | --- |
+| [`specification-index.tsv`](specification-index.tsv) | Specification and generator of each of the 12 schedules |
+| [`jobs.tsv`](jobs.tsv) | The 24 model inputs, one ProVerif and one Tamarin input per schedule, with their SHA-256 hashes |
+| [`direct/`](direct/) | Outputs of the direct runs of both tools |
+| [`stage-d/stage_d_results.tsv`](stage-d/stage_d_results.tsv) | Comparison per lemma, with 49 comparisons of the original stage and 12 of a diagnostic stage |
+| [`archives/`](archives/) | Inputs, records per lemma and summaries of the comparison stage |
+
+The original stage agrees on 48 of its 49 comparisons. The specifications live in [`cim/kudos/`](../../cim/kudos/), and the source of the schedule group RB1 holds two schedules in one file.
+
+```bash
+python3 -B scripts/check_kudos_models.py
+```
+
+The command runs every generator on its specification and confirms that all 24 regenerated inputs are byte-identical to the archived inputs.

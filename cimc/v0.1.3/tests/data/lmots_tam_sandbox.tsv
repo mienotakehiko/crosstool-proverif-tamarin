@@ -1,0 +1,10 @@
+# sandbox 2026-10-14, -M1400m, 200 s
+LMOTS_T_base	exec_accept	verified	0	1	exec_accept (exists-trace): verified
+LMOTS_T_base	LS1_unforge	verified	0	1	LS1_unforge (all-traces): verified
+LMOTS_T_base	forge	falsified	0	1	forge (exists-trace): falsified
+LMOTS_T_rb1	exec_accept	verified	0	1	exec_accept (exists-trace): verified
+LMOTS_T_rb1	LS1_unforge	falsified	0	2	LS1_unforge (all-traces): falsified
+LMOTS_T_rb1	forge	verified	0	1	forge (exists-trace): verified
+LMOTS_T_cl1	exec_accept	verified	0	2	exec_accept (exists-trace): verified
+LMOTS_T_cl1	LS1_unforge	falsified	0	2	LS1_unforge (all-traces): falsified
+LMOTS_T_cl1	forge	verified	0	1	forge (exists-trace): verified

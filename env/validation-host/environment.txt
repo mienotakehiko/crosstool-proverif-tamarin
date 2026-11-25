@@ -1,0 +1,37 @@
+2026-11-17T11:13:09+09:00
+Linux host-redacted 6.18.58.1-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Tue Oct 27 00:24:11 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
+8
+               total        used        free      shared  buff/cache   available
+Mem:            58Gi       947Mi        58Gi       4.2Mi       429Mi        57Gi
+Swap:             0B          0B          0B
+Python 3.14.6
+proverif is /home/user/.opam/default/bin/proverif
+tamarin-prover is /home/user/.local/bin/tamarin-prover
+tamarin-prover is /home/user/.local/bin/tamarin-prover
+tamarin-prover is /home/linuxbrew/.linuxbrew/bin/tamarin-prover
+maude is /home/linuxbrew/.linuxbrew/bin/maude
+maude is /usr/bin/maude
+maude is /bin/maude
+Proverif 2.05. Cryptographic protocol verifier, by Bruno Blanchet, Vincent Cheval, and Marc Sylvestre
+  -test 		display a bit more information for debugging
+  -in <format> 		choose the input format (horn, horntype, spass, pi, pitype)
+  -out <format> 	choose the output format (solve, spass)
+  -o <filename> 	choose the output file name (for spass output)
+  -lib <filename> 	choose the library file (for pitype front-end only)
+  -set <param> <value> 	equivalent to adding set <param> = <value> to the input file
+  -TulaFale <version> 	indicate the version of TulaFale when ProVerif is used inside TulaFale
+maude tool: 'maude'
+ checking version: tamarin-prover 1.12.0, (C) David Basin, Cas Cremers, Jannik Dreier, Simon Meier, Ralf Sasse, Benedikt Schmidt, 2010-2023
+
+This program comes with ABSOLUTELY NO WARRANTY. It is free software, and you
+are welcome to redistribute it according to its LICENSE, see
+'https://github.com/tamarin-prover/tamarin-prover/blob/master/LICENSE'.
+
+3.5.1. OK.
+ checking installation: OK.
+Generated from:
+Tamarin version 1.12.0
+Maude version 3.5.1
+Git revision: UNKNOWN, branch: UNKNOWN
+Compiled at: 2026-03-08 10:05:47.616272992 UTC
+3.5.1
