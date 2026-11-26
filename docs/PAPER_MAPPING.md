@@ -64,11 +64,11 @@ The reveal follow-up of series V1 holds 64 records of its own, which enter none 
 | Subject | Missing record | Available instead |
 | --- | --- | --- |
 | Series G, first run | Tamarin outputs of the 32 lemmas | Rerun of both tools in the two control sets of V4 |
-| Series L | Instance type of the 96 GiB host | CPU count, memory and tool versions in [`env/ec2-96g/`](../env/ec2-96g/) |
+| Series L | CloudTrail export with the management events of the 96 GiB host, which contains account and network identifiers | Event times, instance type and the hash of the export in [`env/ec2-96g/instance-type.md`](../env/ec2-96g/instance-type.md) |
 | Series X1 | Binaries of the three exporter builds | Recorded hashes, build logs, patches and recipes |
 | Series V1 to V4 | Complete tool outputs of the runs | One record per query or lemma with the verdict line, the exit status and the hash of the model |
 | Pair-shaped probes of V2 | Complete tool outputs | [`raw-verdict-lines.tsv`](../validation/V2-boundary/sets/pair/raw-verdict-lines.tsv) with the verdict line and the hash of each output |
 | Reveal follow-up of V1 | Complete tool outputs | [`raw-verdict-lines.tsv`](../validation/V1-families/reveal_followup/records/raw-verdict-lines.tsv) with the verdict line and the hash of each output |
 | Series V3 | Items for five of the eight causes | 41 items for three causes |
 
-The file names of two search heuristics differ from their job identifiers. The archived outputs of P3 and P5 use `rank-lower-s` and `rank-upper-s` for the heuristics `s` and `S`, because some file systems ignore case. The records keep the original spelling.
+The reports of the generator and its grade tables call Hypothesis 1 of the paper "Theorem 1", its name in an early draft, and [`cimc/README.md`](../cimc/README.md) explains this name. The file names of two search heuristics differ from their job identifiers. The archived outputs of P3 and P5 use `rank-lower-s` and `rank-upper-s` for the heuristics `s` and `S`, because some file systems ignore case. The records keep the original spelling.

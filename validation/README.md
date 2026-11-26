@@ -93,4 +93,4 @@ No run produced items for five of the eight causes of V3. The directory [`V3-dia
 
 ## Clock
 
-The runner `common/run_set.py` takes durations from the wall clock. The clock of the host moved during the runs, so the durations of these records are approximate. A negative duration appears in 104 records of V1, V2 and V4 and in one record of the pair-shaped probes. The runner `common/run_set_monotonic.py` differs from it only in the clock.
+The runner `common/run_set.py` takes durations from the wall clock. The clock of the host moved during the runs, so the durations of these records are approximate. A negative duration appears in 104 records of V1, V2 and V4 and in one record of the pair-shaped probes. Both runners wait for a prover with `process.wait(timeout=...)`, which follows the monotonic clock of the system. The movement of the wall clock therefore changes the recorded durations and neither the limits nor the verdicts. The runner `common/run_set_monotonic.py` differs from `run_set.py` only in the clock of the durations.

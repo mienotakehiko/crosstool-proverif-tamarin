@@ -12,7 +12,7 @@ This guide explains how to repeat the prover runs of the paper. The checks of th
 | Python | 3.11 or later | generator, runners and checks |
 | Container image of the exporter study | image of the artifact of Morio et al. at Tamarin commit `c293106913cc` | series X0, X1, X2 and K |
 
-The environment records in [`env/`](../env/) state the hosts, the tool versions and the pinned commits. The validation series ran on a WSL2 host with 8 processors and 58 GiB of memory. The screening series used heap limits up to 56 GiB, and seven jobs of series L ran on a cloud host with 126,757 MB of memory under a heap limit of 96 GiB.
+The environment records in [`env/`](../env/) state the hosts, the tool versions and the pinned commits. The validation series ran on a WSL2 host with 8 processors and 58 GiB of memory. The screening series used heap limits up to 56 GiB, and seven jobs of series L ran on a cloud host of the type `r7i.4xlarge` with 126,757 MB of memory under a heap limit of 96 GiB.
 
 Run times and memory use depend on the host. A reproduction succeeds if the verdicts agree. Jobs that ended at a time or memory limit in the archived records may end with a verdict on a larger host, and the paper reports such jobs as runs without a verdict.
 
