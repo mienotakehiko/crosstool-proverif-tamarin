@@ -1,0 +1,8 @@
+[
+  "docker",
+  "image",
+  "inspect",
+  "--format",
+  "{{.Id}} {{.Os}}/{{.Architecture}}",
+  "sha256:70093355b2b5ad24b5ada7b4e9b405008bd467a39209850cc8fcca830a420793"
+]

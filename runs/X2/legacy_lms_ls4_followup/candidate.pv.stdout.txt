@@ -1,0 +1,595 @@
+Linear part: No equation.
+Convergent part:
+fst((x_1,x_2)) = x_1
+snd((x_1,x_2)) = x_2
+Completing equations...
+Completed equations:
+snd((x_1,x_2)) = x_2
+fst((x_1,x_2)) = x_1
+Process 0 (that is, the initial process):
+(
+    {1}!
+    {2}new stR_St: bitstring;
+    {3}new I: bitstring;
+    {4}new sd: bitstring;
+    {5}event eKeyGen(I);
+    {6}insert tSk(I,sd);
+    {7}insert tSt(stR_St,I,z);
+    {8}insert tSnap(I,z);
+    {9}insert tRoot(I,hl(I,(ch(I,vm,ch(I,vm,ch(I,vm,prf(sd,z,vm)))),ch(I,vk,ch(I,vk,ch(I,vk,prf(sd,z,vk))))),(ch(I,vm,ch(I,vm,ch(I,vm,prf(sd,s(z),vm)))),ch(I,vk,ch(I,vk,ch(I,vk,prf(sd,s(z),vk)))))));
+    {10}out(publicChannel, (I,hl(I,(ch(I,vm,ch(I,vm,ch(I,vm,prf(sd,z,vm)))),ch(I,vk,ch(I,vk,ch(I,vk,prf(sd,z,vk))))),(ch(I,vm,ch(I,vm,ch(I,vm,prf(sd,s(z),vm)))),ch(I,vk,ch(I,vk,ch(I,vk,prf(sd,s(z),vk))))))))
+) | (
+    {11}!
+    {12}get tSt(stL_St: bitstring,I_1: bitstring,=z) in
+    {13}get tSk(=I_1,sd_1: bitstring) in
+    {14}in(publicChannel, helperVar0: bitstring);
+    {15}let =vsign = g_var_vsign_0(helperVar0) in
+    {16}new rid_rSign_q0_a0: bitstring;
+    {17}new stR_St_1: bitstring;
+    {18}event eDistinctFact(rid_rSign_q0_a0,(stL_St,(I_1,z)));
+    {19}event eCks(z,s(s(s(z))));
+    {20}event eSign(rid_rSign_q0_a0,I_1,z,z);
+    {21}event eUseLeaf(I_1,z);
+    {22}insert tSt(stR_St_1,I_1,s(z));
+    {23}insert tSnap(I_1,s(z));
+    {24}out(publicChannel, (I_1,(z,(z,(prf(sd_1,z,vm),(ch(I_1,vk,ch(I_1,vk,ch(I_1,vk,prf(sd_1,z,vk)))),(ch(I_1,vm,ch(I_1,vm,ch(I_1,vm,prf(sd_1,s(z),vm)))),ch(I_1,vk,ch(I_1,vk,ch(I_1,vk,prf(sd_1,s(z),vk)))))))))))
+) | (
+    {25}!
+    {26}get tSt(stL_St_1: bitstring,I_2: bitstring,=z) in
+    {27}get tSk(=I_2,sd_2: bitstring) in
+    {28}in(publicChannel, helperVar0_1: bitstring);
+    {29}let =vsign = g_var_vsign_1(helperVar0_1) in
+    {30}new rid_rSign_q0_a1: bitstring;
+    {31}new stR_St_2: bitstring;
+    {32}event eDistinctFact(rid_rSign_q0_a1,(stL_St_1,(I_2,z)));
+    {33}event eCks(s(z),s(s(z)));
+    {34}event eSign(rid_rSign_q0_a1,I_2,z,s(z));
+    {35}event eUseLeaf(I_2,z);
+    {36}insert tSt(stR_St_2,I_2,s(z));
+    {37}insert tSnap(I_2,s(z));
+    {38}out(publicChannel, (I_2,(z,(s(z),(ch(I_2,vm,prf(sd_2,z,vm)),(ch(I_2,vk,ch(I_2,vk,prf(sd_2,z,vk))),(ch(I_2,vm,ch(I_2,vm,ch(I_2,vm,prf(sd_2,s(z),vm)))),ch(I_2,vk,ch(I_2,vk,ch(I_2,vk,prf(sd_2,s(z),vk)))))))))))
+) | (
+    {39}!
+    {40}get tSt(stL_St_2: bitstring,I_3: bitstring,=z) in
+    {41}get tSk(=I_3,sd_3: bitstring) in
+    {42}in(publicChannel, helperVar0_2: bitstring);
+    {43}let =vsign = g_var_vsign_2(helperVar0_2) in
+    {44}new rid_rSign_q0_a2: bitstring;
+    {45}new stR_St_3: bitstring;
+    {46}event eDistinctFact(rid_rSign_q0_a2,(stL_St_2,(I_3,z)));
+    {47}event eCks(s(s(z)),s(z));
+    {48}event eSign(rid_rSign_q0_a2,I_3,z,s(s(z)));
+    {49}event eUseLeaf(I_3,z);
+    {50}insert tSt(stR_St_3,I_3,s(z));
+    {51}insert tSnap(I_3,s(z));
+    {52}out(publicChannel, (I_3,(z,(s(s(z)),(ch(I_3,vm,ch(I_3,vm,prf(sd_3,z,vm))),(ch(I_3,vk,prf(sd_3,z,vk)),(ch(I_3,vm,ch(I_3,vm,ch(I_3,vm,prf(sd_3,s(z),vm)))),ch(I_3,vk,ch(I_3,vk,ch(I_3,vk,prf(sd_3,s(z),vk)))))))))))
+) | (
+    {53}!
+    {54}get tSt(stL_St_3: bitstring,I_4: bitstring,=z) in
+    {55}get tSk(=I_4,sd_4: bitstring) in
+    {56}in(publicChannel, helperVar0_3: bitstring);
+    {57}let =vsign = g_var_vsign_3(helperVar0_3) in
+    {58}new rid_rSign_q0_a3: bitstring;
+    {59}new stR_St_4: bitstring;
+    {60}event eDistinctFact(rid_rSign_q0_a3,(stL_St_3,(I_4,z)));
+    {61}event eCks(s(s(s(z))),z);
+    {62}event eSign(rid_rSign_q0_a3,I_4,z,s(s(s(z))));
+    {63}event eUseLeaf(I_4,z);
+    {64}insert tSt(stR_St_4,I_4,s(z));
+    {65}insert tSnap(I_4,s(z));
+    {66}out(publicChannel, (I_4,(z,(s(s(s(z))),(ch(I_4,vm,ch(I_4,vm,ch(I_4,vm,prf(sd_4,z,vm)))),(prf(sd_4,z,vk),(ch(I_4,vm,ch(I_4,vm,ch(I_4,vm,prf(sd_4,s(z),vm)))),ch(I_4,vk,ch(I_4,vk,ch(I_4,vk,prf(sd_4,s(z),vk)))))))))))
+) | (
+    {67}!
+    {68}get tSt(stL_St_4: bitstring,I_5: bitstring,=s(z)) in
+    {69}get tSk(=I_5,sd_5: bitstring) in
+    {70}in(publicChannel, helperVar0_4: bitstring);
+    {71}let =vsign = g_var_vsign_0(helperVar0_4) in
+    {72}new rid_rSign_q1_a0: bitstring;
+    {73}new stR_St_5: bitstring;
+    {74}event eDistinctFact(rid_rSign_q1_a0,(stL_St_4,(I_5,s(z))));
+    {75}event eCks(z,s(s(s(z))));
+    {76}event eSign(rid_rSign_q1_a0,I_5,s(z),z);
+    {77}event eUseLeaf(I_5,s(z));
+    {78}insert tSt(stR_St_5,I_5,s(s(z)));
+    {79}insert tSnap(I_5,s(s(z)));
+    {80}out(publicChannel, (I_5,(s(z),(z,(prf(sd_5,s(z),vm),(ch(I_5,vk,ch(I_5,vk,ch(I_5,vk,prf(sd_5,s(z),vk)))),(ch(I_5,vm,ch(I_5,vm,ch(I_5,vm,prf(sd_5,z,vm)))),ch(I_5,vk,ch(I_5,vk,ch(I_5,vk,prf(sd_5,z,vk)))))))))))
+) | (
+    {81}!
+    {82}get tSt(stL_St_5: bitstring,I_6: bitstring,=s(z)) in
+    {83}get tSk(=I_6,sd_6: bitstring) in
+    {84}in(publicChannel, helperVar0_5: bitstring);
+    {85}let =vsign = g_var_vsign_1(helperVar0_5) in
+    {86}new rid_rSign_q1_a1: bitstring;
+    {87}new stR_St_6: bitstring;
+    {88}event eDistinctFact(rid_rSign_q1_a1,(stL_St_5,(I_6,s(z))));
+    {89}event eCks(s(z),s(s(z)));
+    {90}event eSign(rid_rSign_q1_a1,I_6,s(z),s(z));
+    {91}event eUseLeaf(I_6,s(z));
+    {92}insert tSt(stR_St_6,I_6,s(s(z)));
+    {93}insert tSnap(I_6,s(s(z)));
+    {94}out(publicChannel, (I_6,(s(z),(s(z),(ch(I_6,vm,prf(sd_6,s(z),vm)),(ch(I_6,vk,ch(I_6,vk,prf(sd_6,s(z),vk))),(ch(I_6,vm,ch(I_6,vm,ch(I_6,vm,prf(sd_6,z,vm)))),ch(I_6,vk,ch(I_6,vk,ch(I_6,vk,prf(sd_6,z,vk)))))))))))
+) | (
+    {95}!
+    {96}get tSt(stL_St_6: bitstring,I_7: bitstring,=s(z)) in
+    {97}get tSk(=I_7,sd_7: bitstring) in
+    {98}in(publicChannel, helperVar0_6: bitstring);
+    {99}let =vsign = g_var_vsign_2(helperVar0_6) in
+    {100}new rid_rSign_q1_a2: bitstring;
+    {101}new stR_St_7: bitstring;
+    {102}event eDistinctFact(rid_rSign_q1_a2,(stL_St_6,(I_7,s(z))));
+    {103}event eCks(s(s(z)),s(z));
+    {104}event eSign(rid_rSign_q1_a2,I_7,s(z),s(s(z)));
+    {105}event eUseLeaf(I_7,s(z));
+    {106}insert tSt(stR_St_7,I_7,s(s(z)));
+    {107}insert tSnap(I_7,s(s(z)));
+    {108}out(publicChannel, (I_7,(s(z),(s(s(z)),(ch(I_7,vm,ch(I_7,vm,prf(sd_7,s(z),vm))),(ch(I_7,vk,prf(sd_7,s(z),vk)),(ch(I_7,vm,ch(I_7,vm,ch(I_7,vm,prf(sd_7,z,vm)))),ch(I_7,vk,ch(I_7,vk,ch(I_7,vk,prf(sd_7,z,vk)))))))))))
+) | (
+    {109}!
+    {110}get tSt(stL_St_7: bitstring,I_8: bitstring,=s(z)) in
+    {111}get tSk(=I_8,sd_8: bitstring) in
+    {112}in(publicChannel, helperVar0_7: bitstring);
+    {113}let =vsign = g_var_vsign_3(helperVar0_7) in
+    {114}new rid_rSign_q1_a3: bitstring;
+    {115}new stR_St_8: bitstring;
+    {116}event eDistinctFact(rid_rSign_q1_a3,(stL_St_7,(I_8,s(z))));
+    {117}event eCks(s(s(s(z))),z);
+    {118}event eSign(rid_rSign_q1_a3,I_8,s(z),s(s(s(z))));
+    {119}event eUseLeaf(I_8,s(z));
+    {120}insert tSt(stR_St_8,I_8,s(s(z)));
+    {121}insert tSnap(I_8,s(s(z)));
+    {122}out(publicChannel, (I_8,(s(z),(s(s(s(z))),(ch(I_8,vm,ch(I_8,vm,ch(I_8,vm,prf(sd_8,s(z),vm)))),(prf(sd_8,s(z),vk),(ch(I_8,vm,ch(I_8,vm,ch(I_8,vm,prf(sd_8,z,vm)))),ch(I_8,vk,ch(I_8,vk,ch(I_8,vk,prf(sd_8,z,vk)))))))))))
+) | (
+    {123}!
+    {124}get tSk(I_9: bitstring,sd_9: bitstring) in
+    {125}event eRevealSeed(I_9);
+    {126}out(publicChannel, sd_9)
+) | (
+    {127}!
+    {128}get tRoot(I_10: bitstring,helperVar0_8: bitstring) in
+    {129}let =I_10 = g_var_I_4(helperVar0_8) in
+    {130}let =vm = g_var_vm_5(helperVar0_8) in
+    {131}let sm: bitstring = g_var_sm_6(helperVar0_8) in
+    {132}let sk: bitstring = g_var_sk_7(helperVar0_8) in
+    {133}let sib: bitstring = g_var_sib_8(helperVar0_8) in
+    {134}in(publicChannel, helperVar1: bitstring);
+    {135}let =I_10 = g_var_I_9(helperVar1) in
+    {136}let =sm = g_var_sm_10(helperVar1) in
+    {137}let =sk = g_var_sk_11(helperVar1) in
+    {138}let =sib = g_var_sib_12(helperVar1) in
+    {139}event eCks(z,s(s(s(z))));
+    {140}event eAccept(I_10,z,z)
+) | (
+    {141}!
+    {142}get tRoot(I_11: bitstring,helperVar0_9: bitstring) in
+    {143}let =I_11 = g_var_I_13(helperVar0_9) in
+    {144}let =vm = g_var_vm_14(helperVar0_9) in
+    {145}let sm_1: bitstring = g_var_sm_15(helperVar0_9) in
+    {146}let =vk = g_var_vk_16(helperVar0_9) in
+    {147}let sk_1: bitstring = g_var_sk_17(helperVar0_9) in
+    {148}let sib_1: bitstring = g_var_sib_18(helperVar0_9) in
+    {149}in(publicChannel, helperVar1_1: bitstring);
+    {150}let =I_11 = g_var_I_19(helperVar1_1) in
+    {151}let =sm_1 = g_var_sm_20(helperVar1_1) in
+    {152}let =sk_1 = g_var_sk_21(helperVar1_1) in
+    {153}let =sib_1 = g_var_sib_22(helperVar1_1) in
+    {154}event eCks(s(z),s(s(z)));
+    {155}event eAccept(I_11,z,s(z))
+) | (
+    {156}!
+    {157}get tRoot(I_12: bitstring,helperVar0_10: bitstring) in
+    {158}let =I_12 = g_var_I_23(helperVar0_10) in
+    {159}let =vm = g_var_vm_24(helperVar0_10) in
+    {160}let sm_2: bitstring = g_var_sm_25(helperVar0_10) in
+    {161}let =vk = g_var_vk_26(helperVar0_10) in
+    {162}let sk_2: bitstring = g_var_sk_27(helperVar0_10) in
+    {163}let sib_2: bitstring = g_var_sib_28(helperVar0_10) in
+    {164}in(publicChannel, helperVar1_2: bitstring);
+    {165}let =I_12 = g_var_I_29(helperVar1_2) in
+    {166}let =sm_2 = g_var_sm_30(helperVar1_2) in
+    {167}let =sk_2 = g_var_sk_31(helperVar1_2) in
+    {168}let =sib_2 = g_var_sib_32(helperVar1_2) in
+    {169}event eCks(s(s(z)),s(z));
+    {170}event eAccept(I_12,z,s(s(z)))
+) | (
+    {171}!
+    {172}get tRoot(I_13: bitstring,helperVar0_11: bitstring) in
+    {173}let =I_13 = g_var_I_33(helperVar0_11) in
+    {174}let sm_3: bitstring = g_var_sm_34(helperVar0_11) in
+    {175}let =vk = g_var_vk_35(helperVar0_11) in
+    {176}let sk_3: bitstring = g_var_sk_36(helperVar0_11) in
+    {177}let sib_3: bitstring = g_var_sib_37(helperVar0_11) in
+    {178}in(publicChannel, helperVar1_3: bitstring);
+    {179}let =I_13 = g_var_I_38(helperVar1_3) in
+    {180}let =sm_3 = g_var_sm_39(helperVar1_3) in
+    {181}let =sk_3 = g_var_sk_40(helperVar1_3) in
+    {182}let =sib_3 = g_var_sib_41(helperVar1_3) in
+    {183}event eCks(s(s(s(z))),z);
+    {184}event eAccept(I_13,z,s(s(s(z))))
+) | (
+    {185}!
+    {186}get tRoot(I_14: bitstring,helperVar0_12: bitstring) in
+    {187}let =I_14 = g_var_I_42(helperVar0_12) in
+    {188}let sib_4: bitstring = g_var_sib_43(helperVar0_12) in
+    {189}let =vm = g_var_vm_44(helperVar0_12) in
+    {190}let sm_4: bitstring = g_var_sm_45(helperVar0_12) in
+    {191}let sk_4: bitstring = g_var_sk_46(helperVar0_12) in
+    {192}in(publicChannel, helperVar1_4: bitstring);
+    {193}let =I_14 = g_var_I_47(helperVar1_4) in
+    {194}let =sm_4 = g_var_sm_48(helperVar1_4) in
+    {195}let =sk_4 = g_var_sk_49(helperVar1_4) in
+    {196}let =sib_4 = g_var_sib_50(helperVar1_4) in
+    {197}event eCks(z,s(s(s(z))));
+    {198}event eAccept(I_14,s(z),z)
+) | (
+    {199}!
+    {200}get tRoot(I_15: bitstring,helperVar0_13: bitstring) in
+    {201}let =I_15 = g_var_I_51(helperVar0_13) in
+    {202}let sib_5: bitstring = g_var_sib_52(helperVar0_13) in
+    {203}let =vm = g_var_vm_53(helperVar0_13) in
+    {204}let sm_5: bitstring = g_var_sm_54(helperVar0_13) in
+    {205}let =vk = g_var_vk_55(helperVar0_13) in
+    {206}let sk_5: bitstring = g_var_sk_56(helperVar0_13) in
+    {207}in(publicChannel, helperVar1_5: bitstring);
+    {208}let =I_15 = g_var_I_57(helperVar1_5) in
+    {209}let =sm_5 = g_var_sm_58(helperVar1_5) in
+    {210}let =sk_5 = g_var_sk_59(helperVar1_5) in
+    {211}let =sib_5 = g_var_sib_60(helperVar1_5) in
+    {212}event eCks(s(z),s(s(z)));
+    {213}event eAccept(I_15,s(z),s(z))
+) | (
+    {214}!
+    {215}get tRoot(I_16: bitstring,helperVar0_14: bitstring) in
+    {216}let =I_16 = g_var_I_61(helperVar0_14) in
+    {217}let sib_6: bitstring = g_var_sib_62(helperVar0_14) in
+    {218}let =vm = g_var_vm_63(helperVar0_14) in
+    {219}let sm_6: bitstring = g_var_sm_64(helperVar0_14) in
+    {220}let =vk = g_var_vk_65(helperVar0_14) in
+    {221}let sk_6: bitstring = g_var_sk_66(helperVar0_14) in
+    {222}in(publicChannel, helperVar1_6: bitstring);
+    {223}let =I_16 = g_var_I_67(helperVar1_6) in
+    {224}let =sm_6 = g_var_sm_68(helperVar1_6) in
+    {225}let =sk_6 = g_var_sk_69(helperVar1_6) in
+    {226}let =sib_6 = g_var_sib_70(helperVar1_6) in
+    {227}event eCks(s(s(z)),s(z));
+    {228}event eAccept(I_16,s(z),s(s(z)))
+) | (
+    {229}!
+    {230}get tRoot(I_17: bitstring,helperVar0_15: bitstring) in
+    {231}let =I_17 = g_var_I_71(helperVar0_15) in
+    {232}let sib_7: bitstring = g_var_sib_72(helperVar0_15) in
+    {233}let sm_7: bitstring = g_var_sm_73(helperVar0_15) in
+    {234}let =vk = g_var_vk_74(helperVar0_15) in
+    {235}let sk_7: bitstring = g_var_sk_75(helperVar0_15) in
+    {236}in(publicChannel, helperVar1_7: bitstring);
+    {237}let =I_17 = g_var_I_76(helperVar1_7) in
+    {238}let =sm_7 = g_var_sm_77(helperVar1_7) in
+    {239}let =sk_7 = g_var_sk_78(helperVar1_7) in
+    {240}let =sib_7 = g_var_sib_79(helperVar1_7) in
+    {241}event eCks(s(s(s(z))),z);
+    {242}event eAccept(I_17,s(z),s(s(s(z))))
+)
+
+-- Restriction event(eCks(a,c))@i ==> (a = z && c = s(s(s(z)))) || (a = s(z) && c = s(s(z))) || (a = s(s(z)) && c = s(z)) || (a = s(s(s(z))) && c = z) encoded as event(eCks(a,c)) ==> (a = z && c = s(s(s(z)))) || (a = s(z) && c = s(s(z))) || (a = s(s(z)) && c = s(z)) || (a = s(s(s(z))) && c = z) in process 0.
+-- Restriction event(eDistinctFact(rid_i,x))@i && event(eDistinctFact(rid_j,x))@j ==> rid_i = rid_j encoded as event(eDistinctFact(rid_i,x)) && event(eDistinctFact(rid_j,x)) ==> rid_i = rid_j in process 0.
+-- Query event(eSign(rid_i,I_18,q,a1))@i && event(eSign(rid_j,I_18,q,a2))@j ==> rid_i = rid_j encoded as event(eSign(rid_i,I_18,q,a1)) && event(eSign(rid_j,I_18,q,a2)) ==> rid_i = rid_j in process 0.
+Translating the process into Horn clauses...
+Completing...
+200 rules inserted. Base: 200 rules (55 with conclusion selected). Queue: 105 rules.
+Starting query event(eSign(rid_i,I_18,q,a1))@i && event(eSign(rid_j,I_18,q,a2))@j ==> rid_i = rid_j
+Removing redudant clauses.
+Removing subsumed clauses modulo the equational theory.
+Starting verification.
+Clauses verified: 0. Clauses remaining: 20. Failed clauses: 0.
+goal reachable: b-event(eDistinctFact(rid_rSign_q1_a3_1,(stR_St_9,(I_18,s(z))))) && b-event(@p_act(@occ112_1,(vsign[],s(s(s(z)))))) && b-event(@p_act(@occ111_1,tSk(I_18,sd_10))) && b-event(eSign(rid_rSign_q0_a3_1,I_18,z,s(s(s(z))))) && b-event(eCks(s(s(s(z))),z)) && b-event(eDistinctFact(rid_rSign_q0_a3_1,(stR_St_10,(I_18,z)))) && b-event(@p_act(@occ56_1,(vsign[],s(s(s(z)))))) && b-event(@p_act(@occ55_1,tSk(I_18,sd_10))) && b-event(@p_act(@occ54_1,tSt(stR_St_10,I_18,z))) && b-event(@p_act(@occ110_1,tSt(stR_St_9,I_18,s(z)))) -> event(eSign(rid_rSign_q1_a3_1,I_18,s(z),s(s(s(z))))) && event(eSign(rid_rSign_q1_a3_1,I_18,s(z),s(s(s(z)))))
+The 1st, 2nd, 3rd, 4th, 5th, 6th, 7th, 8th, 9th, 10th hypotheses occur strictly before the 1st conclusion.
+The 1st, 2nd, 3rd, 4th, 5th, 6th, 7th, 8th, 9th, 10th hypotheses occur strictly before the 2nd conclusion.
+Abbreviations:
+sd_10 = sd[!1 = @sid]
+I_18 = I[!1 = @sid]
+stR_St_10 = stR_St[!1 = @sid]
+stR_St_9 = stR_St_4[helperVar0_3 = (vsign[],s(s(s(z)))),sd_4 = sd_10,I_4 = I_18,stL_St_3 = stR_St_10,!1 = @sid_1]
+rid_rSign_q1_a3_1 = rid_rSign_q1_a3[helperVar0_7 = (vsign[],s(s(s(z)))),sd_8 = sd_10,I_8 = I_18,stL_St_7 = stR_St_9,!1 = @sid_2]
+@occ112_1 = @occ112[!1 = @sid_2]
+@occ111_1 = @occ111[!1 = @sid_2]
+rid_rSign_q0_a3_1 = rid_rSign_q0_a3[helperVar0_3 = (vsign[],s(s(s(z)))),sd_4 = sd_10,I_4 = I_18,stL_St_3 = stR_St_10,!1 = @sid_1]
+@occ56_1 = @occ56[!1 = @sid_1]
+@occ55_1 = @occ55[!1 = @sid_1]
+@occ54_1 = @occ54[!1 = @sid_1]
+@occ110_1 = @occ110[!1 = @sid_2]
+goal reachable: b-event(eCks(s(s(s(z))),z)) && b-event(eDistinctFact(rid_rSign_q1_a3_1,(stR_St_9,(I_18,s(z))))) && b-event(@p_act(@occ112_1,(vsign[],s(s(s(z)))))) && b-event(@p_act(@occ111_1,tSk(I_18,sd_10))) && b-event(eSign(rid_rSign_q0_a2_1,I_18,z,s(s(z)))) && b-event(eCks(s(s(z)),s(z))) && b-event(eDistinctFact(rid_rSign_q0_a2_1,(stR_St_10,(I_18,z)))) && b-event(@p_act(@occ42_1,(vsign[],s(s(z))))) && b-event(@p_act(@occ41_1,tSk(I_18,sd_10))) && b-event(@p_act(@occ40_1,tSt(stR_St_10,I_18,z))) && b-event(@p_act(@occ110_1,tSt(stR_St_9,I_18,s(z)))) -> event(eSign(rid_rSign_q1_a3_1,I_18,s(z),s(s(s(z))))) && event(eSign(rid_rSign_q1_a3_1,I_18,s(z),s(s(s(z)))))
+The 1st, 2nd, 3rd, 4th, 5th, 6th, 7th, 8th, 9th, 10th, 11th hypotheses occur strictly before the 1st conclusion.
+The 1st, 2nd, 3rd, 4th, 5th, 6th, 7th, 8th, 9th, 10th, 11th hypotheses occur strictly before the 2nd conclusion.
+Abbreviations:
+sd_10 = sd[!1 = @sid]
+I_18 = I[!1 = @sid]
+stR_St_10 = stR_St[!1 = @sid]
+stR_St_9 = stR_St_3[helperVar0_2 = (vsign[],s(s(z))),sd_3 = sd_10,I_3 = I_18,stL_St_2 = stR_St_10,!1 = @sid_1]
+rid_rSign_q1_a3_1 = rid_rSign_q1_a3[helperVar0_7 = (vsign[],s(s(s(z)))),sd_8 = sd_10,I_8 = I_18,stL_St_7 = stR_St_9,!1 = @sid_2]
+@occ112_1 = @occ112[!1 = @sid_2]
+@occ111_1 = @occ111[!1 = @sid_2]
+rid_rSign_q0_a2_1 = rid_rSign_q0_a2[helperVar0_2 = (vsign[],s(s(z))),sd_3 = sd_10,I_3 = I_18,stL_St_2 = stR_St_10,!1 = @sid_1]
+@occ42_1 = @occ42[!1 = @sid_1]
+@occ41_1 = @occ41[!1 = @sid_1]
+@occ40_1 = @occ40[!1 = @sid_1]
+@occ110_1 = @occ110[!1 = @sid_2]
+goal reachable: b-event(eCks(s(s(s(z))),z)) && b-event(eDistinctFact(rid_rSign_q1_a3_1,(stR_St_9,(I_18,s(z))))) && b-event(@p_act(@occ112_1,(vsign[],s(s(s(z)))))) && b-event(@p_act(@occ111_1,tSk(I_18,sd_10))) && b-event(eSign(rid_rSign_q0_a1_1,I_18,z,s(z))) && b-event(eCks(s(z),s(s(z)))) && b-event(eDistinctFact(rid_rSign_q0_a1_1,(stR_St_10,(I_18,z)))) && b-event(@p_act(@occ28_1,(vsign[],s(z)))) && b-event(@p_act(@occ27_1,tSk(I_18,sd_10))) && b-event(@p_act(@occ26_1,tSt(stR_St_10,I_18,z))) && b-event(@p_act(@occ110_1,tSt(stR_St_9,I_18,s(z)))) -> event(eSign(rid_rSign_q1_a3_1,I_18,s(z),s(s(s(z))))) && event(eSign(rid_rSign_q1_a3_1,I_18,s(z),s(s(s(z)))))
+The 1st, 2nd, 3rd, 4th, 5th, 6th, 7th, 8th, 9th, 10th, 11th hypotheses occur strictly before the 1st conclusion.
+The 1st, 2nd, 3rd, 4th, 5th, 6th, 7th, 8th, 9th, 10th, 11th hypotheses occur strictly before the 2nd conclusion.
+Abbreviations:
+sd_10 = sd[!1 = @sid]
+I_18 = I[!1 = @sid]
+stR_St_10 = stR_St[!1 = @sid]
+stR_St_9 = stR_St_2[helperVar0_1 = (vsign[],s(z)),sd_2 = sd_10,I_2 = I_18,stL_St_1 = stR_St_10,!1 = @sid_1]
+rid_rSign_q1_a3_1 = rid_rSign_q1_a3[helperVar0_7 = (vsign[],s(s(s(z)))),sd_8 = sd_10,I_8 = I_18,stL_St_7 = stR_St_9,!1 = @sid_2]
+@occ112_1 = @occ112[!1 = @sid_2]
+@occ111_1 = @occ111[!1 = @sid_2]
+rid_rSign_q0_a1_1 = rid_rSign_q0_a1[helperVar0_1 = (vsign[],s(z)),sd_2 = sd_10,I_2 = I_18,stL_St_1 = stR_St_10,!1 = @sid_1]
+@occ28_1 = @occ28[!1 = @sid_1]
+@occ27_1 = @occ27[!1 = @sid_1]
+@occ26_1 = @occ26[!1 = @sid_1]
+@occ110_1 = @occ110[!1 = @sid_2]
+goal reachable: b-event(eCks(s(s(s(z))),z)) && b-event(eDistinctFact(rid_rSign_q1_a3_1,(stR_St_9,(I_18,s(z))))) && b-event(@p_act(@occ112_1,(vsign[],s(s(s(z)))))) && b-event(@p_act(@occ111_1,tSk(I_18,sd_10))) && b-event(eSign(rid_rSign_q0_a0_1,I_18,z,z)) && b-event(eCks(z,s(s(s(z))))) && b-event(eDistinctFact(rid_rSign_q0_a0_1,(stR_St_10,(I_18,z)))) && b-event(@p_act(@occ14_1,(vsign[],z))) && b-event(@p_act(@occ13_1,tSk(I_18,sd_10))) && b-event(@p_act(@occ12_1,tSt(stR_St_10,I_18,z))) && b-event(@p_act(@occ110_1,tSt(stR_St_9,I_18,s(z)))) -> event(eSign(rid_rSign_q1_a3_1,I_18,s(z),s(s(s(z))))) && event(eSign(rid_rSign_q1_a3_1,I_18,s(z),s(s(s(z)))))
+The 1st, 2nd, 3rd, 4th, 5th, 6th, 7th, 8th, 9th, 10th, 11th hypotheses occur strictly before the 1st conclusion.
+The 1st, 2nd, 3rd, 4th, 5th, 6th, 7th, 8th, 9th, 10th, 11th hypotheses occur strictly before the 2nd conclusion.
+Abbreviations:
+sd_10 = sd[!1 = @sid]
+I_18 = I[!1 = @sid]
+stR_St_10 = stR_St[!1 = @sid]
+stR_St_9 = stR_St_1[helperVar0 = (vsign[],z),sd_1 = sd_10,I_1 = I_18,stL_St = stR_St_10,!1 = @sid_1]
+rid_rSign_q1_a3_1 = rid_rSign_q1_a3[helperVar0_7 = (vsign[],s(s(s(z)))),sd_8 = sd_10,I_8 = I_18,stL_St_7 = stR_St_9,!1 = @sid_2]
+@occ112_1 = @occ112[!1 = @sid_2]
+@occ111_1 = @occ111[!1 = @sid_2]
+rid_rSign_q0_a0_1 = rid_rSign_q0_a0[helperVar0 = (vsign[],z),sd_1 = sd_10,I_1 = I_18,stL_St = stR_St_10,!1 = @sid_1]
+@occ14_1 = @occ14[!1 = @sid_1]
+@occ13_1 = @occ13[!1 = @sid_1]
+@occ12_1 = @occ12[!1 = @sid_1]
+@occ110_1 = @occ110[!1 = @sid_2]
+goal reachable: b-event(eCks(s(s(z)),s(z))) && b-event(eDistinctFact(rid_rSign_q1_a2_1,(stR_St_9,(I_18,s(z))))) && b-event(@p_act(@occ98_1,(vsign[],s(s(z))))) && b-event(@p_act(@occ97_1,tSk(I_18,sd_10))) && b-event(eSign(rid_rSign_q0_a3_1,I_18,z,s(s(s(z))))) && b-event(eCks(s(s(s(z))),z)) && b-event(eDistinctFact(rid_rSign_q0_a3_1,(stR_St_10,(I_18,z)))) && b-event(@p_act(@occ56_1,(vsign[],s(s(s(z)))))) && b-event(@p_act(@occ55_1,tSk(I_18,sd_10))) && b-event(@p_act(@occ54_1,tSt(stR_St_10,I_18,z))) && b-event(@p_act(@occ96_1,tSt(stR_St_9,I_18,s(z)))) -> event(eSign(rid_rSign_q1_a2_1,I_18,s(z),s(s(z)))) && event(eSign(rid_rSign_q1_a2_1,I_18,s(z),s(s(z))))
+The 1st, 2nd, 3rd, 4th, 5th, 6th, 7th, 8th, 9th, 10th, 11th hypotheses occur strictly before the 1st conclusion.
+The 1st, 2nd, 3rd, 4th, 5th, 6th, 7th, 8th, 9th, 10th, 11th hypotheses occur strictly before the 2nd conclusion.
+Abbreviations:
+sd_10 = sd[!1 = @sid]
+I_18 = I[!1 = @sid]
+stR_St_10 = stR_St[!1 = @sid]
+stR_St_9 = stR_St_4[helperVar0_3 = (vsign[],s(s(s(z)))),sd_4 = sd_10,I_4 = I_18,stL_St_3 = stR_St_10,!1 = @sid_1]
+rid_rSign_q1_a2_1 = rid_rSign_q1_a2[helperVar0_6 = (vsign[],s(s(z))),sd_7 = sd_10,I_7 = I_18,stL_St_6 = stR_St_9,!1 = @sid_2]
+@occ98_1 = @occ98[!1 = @sid_2]
+@occ97_1 = @occ97[!1 = @sid_2]
+rid_rSign_q0_a3_1 = rid_rSign_q0_a3[helperVar0_3 = (vsign[],s(s(s(z)))),sd_4 = sd_10,I_4 = I_18,stL_St_3 = stR_St_10,!1 = @sid_1]
+@occ56_1 = @occ56[!1 = @sid_1]
+@occ55_1 = @occ55[!1 = @sid_1]
+@occ54_1 = @occ54[!1 = @sid_1]
+@occ96_1 = @occ96[!1 = @sid_2]
+goal reachable: b-event(eDistinctFact(rid_rSign_q1_a2_1,(stR_St_9,(I_18,s(z))))) && b-event(@p_act(@occ98_1,(vsign[],s(s(z))))) && b-event(@p_act(@occ97_1,tSk(I_18,sd_10))) && b-event(eSign(rid_rSign_q0_a2_1,I_18,z,s(s(z)))) && b-event(eCks(s(s(z)),s(z))) && b-event(eDistinctFact(rid_rSign_q0_a2_1,(stR_St_10,(I_18,z)))) && b-event(@p_act(@occ42_1,(vsign[],s(s(z))))) && b-event(@p_act(@occ41_1,tSk(I_18,sd_10))) && b-event(@p_act(@occ40_1,tSt(stR_St_10,I_18,z))) && b-event(@p_act(@occ96_1,tSt(stR_St_9,I_18,s(z)))) -> event(eSign(rid_rSign_q1_a2_1,I_18,s(z),s(s(z)))) && event(eSign(rid_rSign_q1_a2_1,I_18,s(z),s(s(z))))
+The 1st, 2nd, 3rd, 4th, 5th, 6th, 7th, 8th, 9th, 10th hypotheses occur strictly before the 1st conclusion.
+The 1st, 2nd, 3rd, 4th, 5th, 6th, 7th, 8th, 9th, 10th hypotheses occur strictly before the 2nd conclusion.
+Abbreviations:
+sd_10 = sd[!1 = @sid]
+I_18 = I[!1 = @sid]
+stR_St_10 = stR_St[!1 = @sid]
+stR_St_9 = stR_St_3[helperVar0_2 = (vsign[],s(s(z))),sd_3 = sd_10,I_3 = I_18,stL_St_2 = stR_St_10,!1 = @sid_1]
+rid_rSign_q1_a2_1 = rid_rSign_q1_a2[helperVar0_6 = (vsign[],s(s(z))),sd_7 = sd_10,I_7 = I_18,stL_St_6 = stR_St_9,!1 = @sid_2]
+@occ98_1 = @occ98[!1 = @sid_2]
+@occ97_1 = @occ97[!1 = @sid_2]
+rid_rSign_q0_a2_1 = rid_rSign_q0_a2[helperVar0_2 = (vsign[],s(s(z))),sd_3 = sd_10,I_3 = I_18,stL_St_2 = stR_St_10,!1 = @sid_1]
+@occ42_1 = @occ42[!1 = @sid_1]
+@occ41_1 = @occ41[!1 = @sid_1]
+@occ40_1 = @occ40[!1 = @sid_1]
+@occ96_1 = @occ96[!1 = @sid_2]
+goal reachable: b-event(eCks(s(s(z)),s(z))) && b-event(eDistinctFact(rid_rSign_q1_a2_1,(stR_St_9,(I_18,s(z))))) && b-event(@p_act(@occ98_1,(vsign[],s(s(z))))) && b-event(@p_act(@occ97_1,tSk(I_18,sd_10))) && b-event(eSign(rid_rSign_q0_a1_1,I_18,z,s(z))) && b-event(eCks(s(z),s(s(z)))) && b-event(eDistinctFact(rid_rSign_q0_a1_1,(stR_St_10,(I_18,z)))) && b-event(@p_act(@occ28_1,(vsign[],s(z)))) && b-event(@p_act(@occ27_1,tSk(I_18,sd_10))) && b-event(@p_act(@occ26_1,tSt(stR_St_10,I_18,z))) && b-event(@p_act(@occ96_1,tSt(stR_St_9,I_18,s(z)))) -> event(eSign(rid_rSign_q1_a2_1,I_18,s(z),s(s(z)))) && event(eSign(rid_rSign_q1_a2_1,I_18,s(z),s(s(z))))
+The 1st, 2nd, 3rd, 4th, 5th, 6th, 7th, 8th, 9th, 10th, 11th hypotheses occur strictly before the 1st conclusion.
+The 1st, 2nd, 3rd, 4th, 5th, 6th, 7th, 8th, 9th, 10th, 11th hypotheses occur strictly before the 2nd conclusion.
+Abbreviations:
+sd_10 = sd[!1 = @sid]
+I_18 = I[!1 = @sid]
+stR_St_10 = stR_St[!1 = @sid]
+stR_St_9 = stR_St_2[helperVar0_1 = (vsign[],s(z)),sd_2 = sd_10,I_2 = I_18,stL_St_1 = stR_St_10,!1 = @sid_1]
+rid_rSign_q1_a2_1 = rid_rSign_q1_a2[helperVar0_6 = (vsign[],s(s(z))),sd_7 = sd_10,I_7 = I_18,stL_St_6 = stR_St_9,!1 = @sid_2]
+@occ98_1 = @occ98[!1 = @sid_2]
+@occ97_1 = @occ97[!1 = @sid_2]
+rid_rSign_q0_a1_1 = rid_rSign_q0_a1[helperVar0_1 = (vsign[],s(z)),sd_2 = sd_10,I_2 = I_18,stL_St_1 = stR_St_10,!1 = @sid_1]
+@occ28_1 = @occ28[!1 = @sid_1]
+@occ27_1 = @occ27[!1 = @sid_1]
+@occ26_1 = @occ26[!1 = @sid_1]
+@occ96_1 = @occ96[!1 = @sid_2]
+goal reachable: b-event(eCks(s(s(z)),s(z))) && b-event(eDistinctFact(rid_rSign_q1_a2_1,(stR_St_9,(I_18,s(z))))) && b-event(@p_act(@occ98_1,(vsign[],s(s(z))))) && b-event(@p_act(@occ97_1,tSk(I_18,sd_10))) && b-event(eSign(rid_rSign_q0_a0_1,I_18,z,z)) && b-event(eCks(z,s(s(s(z))))) && b-event(eDistinctFact(rid_rSign_q0_a0_1,(stR_St_10,(I_18,z)))) && b-event(@p_act(@occ14_1,(vsign[],z))) && b-event(@p_act(@occ13_1,tSk(I_18,sd_10))) && b-event(@p_act(@occ12_1,tSt(stR_St_10,I_18,z))) && b-event(@p_act(@occ96_1,tSt(stR_St_9,I_18,s(z)))) -> event(eSign(rid_rSign_q1_a2_1,I_18,s(z),s(s(z)))) && event(eSign(rid_rSign_q1_a2_1,I_18,s(z),s(s(z))))
+The 1st, 2nd, 3rd, 4th, 5th, 6th, 7th, 8th, 9th, 10th, 11th hypotheses occur strictly before the 1st conclusion.
+The 1st, 2nd, 3rd, 4th, 5th, 6th, 7th, 8th, 9th, 10th, 11th hypotheses occur strictly before the 2nd conclusion.
+Abbreviations:
+sd_10 = sd[!1 = @sid]
+I_18 = I[!1 = @sid]
+stR_St_10 = stR_St[!1 = @sid]
+stR_St_9 = stR_St_1[helperVar0 = (vsign[],z),sd_1 = sd_10,I_1 = I_18,stL_St = stR_St_10,!1 = @sid_1]
+rid_rSign_q1_a2_1 = rid_rSign_q1_a2[helperVar0_6 = (vsign[],s(s(z))),sd_7 = sd_10,I_7 = I_18,stL_St_6 = stR_St_9,!1 = @sid_2]
+@occ98_1 = @occ98[!1 = @sid_2]
+@occ97_1 = @occ97[!1 = @sid_2]
+rid_rSign_q0_a0_1 = rid_rSign_q0_a0[helperVar0 = (vsign[],z),sd_1 = sd_10,I_1 = I_18,stL_St = stR_St_10,!1 = @sid_1]
+@occ14_1 = @occ14[!1 = @sid_1]
+@occ13_1 = @occ13[!1 = @sid_1]
+@occ12_1 = @occ12[!1 = @sid_1]
+@occ96_1 = @occ96[!1 = @sid_2]
+goal reachable: b-event(eCks(s(z),s(s(z)))) && b-event(eDistinctFact(rid_rSign_q1_a1_1,(stR_St_9,(I_18,s(z))))) && b-event(@p_act(@occ84_1,(vsign[],s(z)))) && b-event(@p_act(@occ83_1,tSk(I_18,sd_10))) && b-event(eSign(rid_rSign_q0_a3_1,I_18,z,s(s(s(z))))) && b-event(eCks(s(s(s(z))),z)) && b-event(eDistinctFact(rid_rSign_q0_a3_1,(stR_St_10,(I_18,z)))) && b-event(@p_act(@occ56_1,(vsign[],s(s(s(z)))))) && b-event(@p_act(@occ55_1,tSk(I_18,sd_10))) && b-event(@p_act(@occ54_1,tSt(stR_St_10,I_18,z))) && b-event(@p_act(@occ82_1,tSt(stR_St_9,I_18,s(z)))) -> event(eSign(rid_rSign_q1_a1_1,I_18,s(z),s(z))) && event(eSign(rid_rSign_q1_a1_1,I_18,s(z),s(z)))
+The 1st, 2nd, 3rd, 4th, 5th, 6th, 7th, 8th, 9th, 10th, 11th hypotheses occur strictly before the 1st conclusion.
+The 1st, 2nd, 3rd, 4th, 5th, 6th, 7th, 8th, 9th, 10th, 11th hypotheses occur strictly before the 2nd conclusion.
+Abbreviations:
+sd_10 = sd[!1 = @sid]
+I_18 = I[!1 = @sid]
+stR_St_10 = stR_St[!1 = @sid]
+stR_St_9 = stR_St_4[helperVar0_3 = (vsign[],s(s(s(z)))),sd_4 = sd_10,I_4 = I_18,stL_St_3 = stR_St_10,!1 = @sid_1]
+rid_rSign_q1_a1_1 = rid_rSign_q1_a1[helperVar0_5 = (vsign[],s(z)),sd_6 = sd_10,I_6 = I_18,stL_St_5 = stR_St_9,!1 = @sid_2]
+@occ84_1 = @occ84[!1 = @sid_2]
+@occ83_1 = @occ83[!1 = @sid_2]
+rid_rSign_q0_a3_1 = rid_rSign_q0_a3[helperVar0_3 = (vsign[],s(s(s(z)))),sd_4 = sd_10,I_4 = I_18,stL_St_3 = stR_St_10,!1 = @sid_1]
+@occ56_1 = @occ56[!1 = @sid_1]
+@occ55_1 = @occ55[!1 = @sid_1]
+@occ54_1 = @occ54[!1 = @sid_1]
+@occ82_1 = @occ82[!1 = @sid_2]
+goal reachable: b-event(eCks(s(z),s(s(z)))) && b-event(eDistinctFact(rid_rSign_q1_a1_1,(stR_St_9,(I_18,s(z))))) && b-event(@p_act(@occ84_1,(vsign[],s(z)))) && b-event(@p_act(@occ83_1,tSk(I_18,sd_10))) && b-event(eSign(rid_rSign_q0_a2_1,I_18,z,s(s(z)))) && b-event(eCks(s(s(z)),s(z))) && b-event(eDistinctFact(rid_rSign_q0_a2_1,(stR_St_10,(I_18,z)))) && b-event(@p_act(@occ42_1,(vsign[],s(s(z))))) && b-event(@p_act(@occ41_1,tSk(I_18,sd_10))) && b-event(@p_act(@occ40_1,tSt(stR_St_10,I_18,z))) && b-event(@p_act(@occ82_1,tSt(stR_St_9,I_18,s(z)))) -> event(eSign(rid_rSign_q1_a1_1,I_18,s(z),s(z))) && event(eSign(rid_rSign_q1_a1_1,I_18,s(z),s(z)))
+The 1st, 2nd, 3rd, 4th, 5th, 6th, 7th, 8th, 9th, 10th, 11th hypotheses occur strictly before the 1st conclusion.
+The 1st, 2nd, 3rd, 4th, 5th, 6th, 7th, 8th, 9th, 10th, 11th hypotheses occur strictly before the 2nd conclusion.
+Abbreviations:
+sd_10 = sd[!1 = @sid]
+I_18 = I[!1 = @sid]
+stR_St_10 = stR_St[!1 = @sid]
+stR_St_9 = stR_St_3[helperVar0_2 = (vsign[],s(s(z))),sd_3 = sd_10,I_3 = I_18,stL_St_2 = stR_St_10,!1 = @sid_1]
+rid_rSign_q1_a1_1 = rid_rSign_q1_a1[helperVar0_5 = (vsign[],s(z)),sd_6 = sd_10,I_6 = I_18,stL_St_5 = stR_St_9,!1 = @sid_2]
+@occ84_1 = @occ84[!1 = @sid_2]
+@occ83_1 = @occ83[!1 = @sid_2]
+rid_rSign_q0_a2_1 = rid_rSign_q0_a2[helperVar0_2 = (vsign[],s(s(z))),sd_3 = sd_10,I_3 = I_18,stL_St_2 = stR_St_10,!1 = @sid_1]
+@occ42_1 = @occ42[!1 = @sid_1]
+@occ41_1 = @occ41[!1 = @sid_1]
+@occ40_1 = @occ40[!1 = @sid_1]
+@occ82_1 = @occ82[!1 = @sid_2]
+goal reachable: b-event(eDistinctFact(rid_rSign_q1_a1_1,(stR_St_9,(I_18,s(z))))) && b-event(@p_act(@occ84_1,(vsign[],s(z)))) && b-event(@p_act(@occ83_1,tSk(I_18,sd_10))) && b-event(eSign(rid_rSign_q0_a1_1,I_18,z,s(z))) && b-event(eCks(s(z),s(s(z)))) && b-event(eDistinctFact(rid_rSign_q0_a1_1,(stR_St_10,(I_18,z)))) && b-event(@p_act(@occ28_1,(vsign[],s(z)))) && b-event(@p_act(@occ27_1,tSk(I_18,sd_10))) && b-event(@p_act(@occ26_1,tSt(stR_St_10,I_18,z))) && b-event(@p_act(@occ82_1,tSt(stR_St_9,I_18,s(z)))) -> event(eSign(rid_rSign_q1_a1_1,I_18,s(z),s(z))) && event(eSign(rid_rSign_q1_a1_1,I_18,s(z),s(z)))
+The 1st, 2nd, 3rd, 4th, 5th, 6th, 7th, 8th, 9th, 10th hypotheses occur strictly before the 1st conclusion.
+The 1st, 2nd, 3rd, 4th, 5th, 6th, 7th, 8th, 9th, 10th hypotheses occur strictly before the 2nd conclusion.
+Abbreviations:
+sd_10 = sd[!1 = @sid]
+I_18 = I[!1 = @sid]
+stR_St_10 = stR_St[!1 = @sid]
+stR_St_9 = stR_St_2[helperVar0_1 = (vsign[],s(z)),sd_2 = sd_10,I_2 = I_18,stL_St_1 = stR_St_10,!1 = @sid_1]
+rid_rSign_q1_a1_1 = rid_rSign_q1_a1[helperVar0_5 = (vsign[],s(z)),sd_6 = sd_10,I_6 = I_18,stL_St_5 = stR_St_9,!1 = @sid_2]
+@occ84_1 = @occ84[!1 = @sid_2]
+@occ83_1 = @occ83[!1 = @sid_2]
+rid_rSign_q0_a1_1 = rid_rSign_q0_a1[helperVar0_1 = (vsign[],s(z)),sd_2 = sd_10,I_2 = I_18,stL_St_1 = stR_St_10,!1 = @sid_1]
+@occ28_1 = @occ28[!1 = @sid_1]
+@occ27_1 = @occ27[!1 = @sid_1]
+@occ26_1 = @occ26[!1 = @sid_1]
+@occ82_1 = @occ82[!1 = @sid_2]
+goal reachable: b-event(eCks(s(z),s(s(z)))) && b-event(eDistinctFact(rid_rSign_q1_a1_1,(stR_St_9,(I_18,s(z))))) && b-event(@p_act(@occ84_1,(vsign[],s(z)))) && b-event(@p_act(@occ83_1,tSk(I_18,sd_10))) && b-event(eSign(rid_rSign_q0_a0_1,I_18,z,z)) && b-event(eCks(z,s(s(s(z))))) && b-event(eDistinctFact(rid_rSign_q0_a0_1,(stR_St_10,(I_18,z)))) && b-event(@p_act(@occ14_1,(vsign[],z))) && b-event(@p_act(@occ13_1,tSk(I_18,sd_10))) && b-event(@p_act(@occ12_1,tSt(stR_St_10,I_18,z))) && b-event(@p_act(@occ82_1,tSt(stR_St_9,I_18,s(z)))) -> event(eSign(rid_rSign_q1_a1_1,I_18,s(z),s(z))) && event(eSign(rid_rSign_q1_a1_1,I_18,s(z),s(z)))
+The 1st, 2nd, 3rd, 4th, 5th, 6th, 7th, 8th, 9th, 10th, 11th hypotheses occur strictly before the 1st conclusion.
+The 1st, 2nd, 3rd, 4th, 5th, 6th, 7th, 8th, 9th, 10th, 11th hypotheses occur strictly before the 2nd conclusion.
+Abbreviations:
+sd_10 = sd[!1 = @sid]
+I_18 = I[!1 = @sid]
+stR_St_10 = stR_St[!1 = @sid]
+stR_St_9 = stR_St_1[helperVar0 = (vsign[],z),sd_1 = sd_10,I_1 = I_18,stL_St = stR_St_10,!1 = @sid_1]
+rid_rSign_q1_a1_1 = rid_rSign_q1_a1[helperVar0_5 = (vsign[],s(z)),sd_6 = sd_10,I_6 = I_18,stL_St_5 = stR_St_9,!1 = @sid_2]
+@occ84_1 = @occ84[!1 = @sid_2]
+@occ83_1 = @occ83[!1 = @sid_2]
+rid_rSign_q0_a0_1 = rid_rSign_q0_a0[helperVar0 = (vsign[],z),sd_1 = sd_10,I_1 = I_18,stL_St = stR_St_10,!1 = @sid_1]
+@occ14_1 = @occ14[!1 = @sid_1]
+@occ13_1 = @occ13[!1 = @sid_1]
+@occ12_1 = @occ12[!1 = @sid_1]
+@occ82_1 = @occ82[!1 = @sid_2]
+goal reachable: b-event(eCks(z,s(s(s(z))))) && b-event(eDistinctFact(rid_rSign_q1_a0_1,(stR_St_9,(I_18,s(z))))) && b-event(@p_act(@occ70_1,(vsign[],z))) && b-event(@p_act(@occ69_1,tSk(I_18,sd_10))) && b-event(eSign(rid_rSign_q0_a3_1,I_18,z,s(s(s(z))))) && b-event(eCks(s(s(s(z))),z)) && b-event(eDistinctFact(rid_rSign_q0_a3_1,(stR_St_10,(I_18,z)))) && b-event(@p_act(@occ56_1,(vsign[],s(s(s(z)))))) && b-event(@p_act(@occ55_1,tSk(I_18,sd_10))) && b-event(@p_act(@occ54_1,tSt(stR_St_10,I_18,z))) && b-event(@p_act(@occ68_1,tSt(stR_St_9,I_18,s(z)))) -> event(eSign(rid_rSign_q1_a0_1,I_18,s(z),z)) && event(eSign(rid_rSign_q1_a0_1,I_18,s(z),z))
+The 1st, 2nd, 3rd, 4th, 5th, 6th, 7th, 8th, 9th, 10th, 11th hypotheses occur strictly before the 1st conclusion.
+The 1st, 2nd, 3rd, 4th, 5th, 6th, 7th, 8th, 9th, 10th, 11th hypotheses occur strictly before the 2nd conclusion.
+Abbreviations:
+sd_10 = sd[!1 = @sid]
+I_18 = I[!1 = @sid]
+stR_St_10 = stR_St[!1 = @sid]
+stR_St_9 = stR_St_4[helperVar0_3 = (vsign[],s(s(s(z)))),sd_4 = sd_10,I_4 = I_18,stL_St_3 = stR_St_10,!1 = @sid_1]
+rid_rSign_q1_a0_1 = rid_rSign_q1_a0[helperVar0_4 = (vsign[],z),sd_5 = sd_10,I_5 = I_18,stL_St_4 = stR_St_9,!1 = @sid_2]
+@occ70_1 = @occ70[!1 = @sid_2]
+@occ69_1 = @occ69[!1 = @sid_2]
+rid_rSign_q0_a3_1 = rid_rSign_q0_a3[helperVar0_3 = (vsign[],s(s(s(z)))),sd_4 = sd_10,I_4 = I_18,stL_St_3 = stR_St_10,!1 = @sid_1]
+@occ56_1 = @occ56[!1 = @sid_1]
+@occ55_1 = @occ55[!1 = @sid_1]
+@occ54_1 = @occ54[!1 = @sid_1]
+@occ68_1 = @occ68[!1 = @sid_2]
+goal reachable: b-event(eCks(z,s(s(s(z))))) && b-event(eDistinctFact(rid_rSign_q1_a0_1,(stR_St_9,(I_18,s(z))))) && b-event(@p_act(@occ70_1,(vsign[],z))) && b-event(@p_act(@occ69_1,tSk(I_18,sd_10))) && b-event(eSign(rid_rSign_q0_a2_1,I_18,z,s(s(z)))) && b-event(eCks(s(s(z)),s(z))) && b-event(eDistinctFact(rid_rSign_q0_a2_1,(stR_St_10,(I_18,z)))) && b-event(@p_act(@occ42_1,(vsign[],s(s(z))))) && b-event(@p_act(@occ41_1,tSk(I_18,sd_10))) && b-event(@p_act(@occ40_1,tSt(stR_St_10,I_18,z))) && b-event(@p_act(@occ68_1,tSt(stR_St_9,I_18,s(z)))) -> event(eSign(rid_rSign_q1_a0_1,I_18,s(z),z)) && event(eSign(rid_rSign_q1_a0_1,I_18,s(z),z))
+The 1st, 2nd, 3rd, 4th, 5th, 6th, 7th, 8th, 9th, 10th, 11th hypotheses occur strictly before the 1st conclusion.
+The 1st, 2nd, 3rd, 4th, 5th, 6th, 7th, 8th, 9th, 10th, 11th hypotheses occur strictly before the 2nd conclusion.
+Abbreviations:
+sd_10 = sd[!1 = @sid]
+I_18 = I[!1 = @sid]
+stR_St_10 = stR_St[!1 = @sid]
+stR_St_9 = stR_St_3[helperVar0_2 = (vsign[],s(s(z))),sd_3 = sd_10,I_3 = I_18,stL_St_2 = stR_St_10,!1 = @sid_1]
+rid_rSign_q1_a0_1 = rid_rSign_q1_a0[helperVar0_4 = (vsign[],z),sd_5 = sd_10,I_5 = I_18,stL_St_4 = stR_St_9,!1 = @sid_2]
+@occ70_1 = @occ70[!1 = @sid_2]
+@occ69_1 = @occ69[!1 = @sid_2]
+rid_rSign_q0_a2_1 = rid_rSign_q0_a2[helperVar0_2 = (vsign[],s(s(z))),sd_3 = sd_10,I_3 = I_18,stL_St_2 = stR_St_10,!1 = @sid_1]
+@occ42_1 = @occ42[!1 = @sid_1]
+@occ41_1 = @occ41[!1 = @sid_1]
+@occ40_1 = @occ40[!1 = @sid_1]
+@occ68_1 = @occ68[!1 = @sid_2]
+goal reachable: b-event(eCks(z,s(s(s(z))))) && b-event(eDistinctFact(rid_rSign_q1_a0_1,(stR_St_9,(I_18,s(z))))) && b-event(@p_act(@occ70_1,(vsign[],z))) && b-event(@p_act(@occ69_1,tSk(I_18,sd_10))) && b-event(eSign(rid_rSign_q0_a1_1,I_18,z,s(z))) && b-event(eCks(s(z),s(s(z)))) && b-event(eDistinctFact(rid_rSign_q0_a1_1,(stR_St_10,(I_18,z)))) && b-event(@p_act(@occ28_1,(vsign[],s(z)))) && b-event(@p_act(@occ27_1,tSk(I_18,sd_10))) && b-event(@p_act(@occ26_1,tSt(stR_St_10,I_18,z))) && b-event(@p_act(@occ68_1,tSt(stR_St_9,I_18,s(z)))) -> event(eSign(rid_rSign_q1_a0_1,I_18,s(z),z)) && event(eSign(rid_rSign_q1_a0_1,I_18,s(z),z))
+The 1st, 2nd, 3rd, 4th, 5th, 6th, 7th, 8th, 9th, 10th, 11th hypotheses occur strictly before the 1st conclusion.
+The 1st, 2nd, 3rd, 4th, 5th, 6th, 7th, 8th, 9th, 10th, 11th hypotheses occur strictly before the 2nd conclusion.
+Abbreviations:
+sd_10 = sd[!1 = @sid]
+I_18 = I[!1 = @sid]
+stR_St_10 = stR_St[!1 = @sid]
+stR_St_9 = stR_St_2[helperVar0_1 = (vsign[],s(z)),sd_2 = sd_10,I_2 = I_18,stL_St_1 = stR_St_10,!1 = @sid_1]
+rid_rSign_q1_a0_1 = rid_rSign_q1_a0[helperVar0_4 = (vsign[],z),sd_5 = sd_10,I_5 = I_18,stL_St_4 = stR_St_9,!1 = @sid_2]
+@occ70_1 = @occ70[!1 = @sid_2]
+@occ69_1 = @occ69[!1 = @sid_2]
+rid_rSign_q0_a1_1 = rid_rSign_q0_a1[helperVar0_1 = (vsign[],s(z)),sd_2 = sd_10,I_2 = I_18,stL_St_1 = stR_St_10,!1 = @sid_1]
+@occ28_1 = @occ28[!1 = @sid_1]
+@occ27_1 = @occ27[!1 = @sid_1]
+@occ26_1 = @occ26[!1 = @sid_1]
+@occ68_1 = @occ68[!1 = @sid_2]
+goal reachable: b-event(eDistinctFact(rid_rSign_q1_a0_1,(stR_St_9,(I_18,s(z))))) && b-event(@p_act(@occ70_1,(vsign[],z))) && b-event(@p_act(@occ69_1,tSk(I_18,sd_10))) && b-event(eSign(rid_rSign_q0_a0_1,I_18,z,z)) && b-event(eCks(z,s(s(s(z))))) && b-event(eDistinctFact(rid_rSign_q0_a0_1,(stR_St_10,(I_18,z)))) && b-event(@p_act(@occ14_1,(vsign[],z))) && b-event(@p_act(@occ13_1,tSk(I_18,sd_10))) && b-event(@p_act(@occ12_1,tSt(stR_St_10,I_18,z))) && b-event(@p_act(@occ68_1,tSt(stR_St_9,I_18,s(z)))) -> event(eSign(rid_rSign_q1_a0_1,I_18,s(z),z)) && event(eSign(rid_rSign_q1_a0_1,I_18,s(z),z))
+The 1st, 2nd, 3rd, 4th, 5th, 6th, 7th, 8th, 9th, 10th hypotheses occur strictly before the 1st conclusion.
+The 1st, 2nd, 3rd, 4th, 5th, 6th, 7th, 8th, 9th, 10th hypotheses occur strictly before the 2nd conclusion.
+Abbreviations:
+sd_10 = sd[!1 = @sid]
+I_18 = I[!1 = @sid]
+stR_St_10 = stR_St[!1 = @sid]
+stR_St_9 = stR_St_1[helperVar0 = (vsign[],z),sd_1 = sd_10,I_1 = I_18,stL_St = stR_St_10,!1 = @sid_1]
+rid_rSign_q1_a0_1 = rid_rSign_q1_a0[helperVar0_4 = (vsign[],z),sd_5 = sd_10,I_5 = I_18,stL_St_4 = stR_St_9,!1 = @sid_2]
+@occ70_1 = @occ70[!1 = @sid_2]
+@occ69_1 = @occ69[!1 = @sid_2]
+rid_rSign_q0_a0_1 = rid_rSign_q0_a0[helperVar0 = (vsign[],z),sd_1 = sd_10,I_1 = I_18,stL_St = stR_St_10,!1 = @sid_1]
+@occ14_1 = @occ14[!1 = @sid_1]
+@occ13_1 = @occ13[!1 = @sid_1]
+@occ12_1 = @occ12[!1 = @sid_1]
+@occ68_1 = @occ68[!1 = @sid_2]
+goal reachable: b-event(eCks(s(s(s(z))),z)) && b-event(eDistinctFact(rid_rSign_q0_a3_1,(stR_St_9,(I_18,z)))) && b-event(@p_act(@occ56_1,(vsign[],s(s(s(z)))))) && b-event(@p_act(@occ55_1,tSk(I_18,sd_10))) && b-event(@p_act(@occ54_1,tSt(stR_St_9,I_18,z))) -> event(eSign(rid_rSign_q0_a3_1,I_18,z,s(s(s(z))))) && event(eSign(rid_rSign_q0_a3_1,I_18,z,s(s(s(z)))))
+The 1st, 2nd, 3rd, 4th, 5th hypotheses occur strictly before the 1st conclusion.
+The 1st, 2nd, 3rd, 4th, 5th hypotheses occur strictly before the 2nd conclusion.
+Abbreviations:
+sd_10 = sd[!1 = @sid]
+I_18 = I[!1 = @sid]
+stR_St_9 = stR_St[!1 = @sid]
+rid_rSign_q0_a3_1 = rid_rSign_q0_a3[helperVar0_3 = (vsign[],s(s(s(z)))),sd_4 = sd_10,I_4 = I_18,stL_St_3 = stR_St_9,!1 = @sid_1]
+@occ56_1 = @occ56[!1 = @sid_1]
+@occ55_1 = @occ55[!1 = @sid_1]
+@occ54_1 = @occ54[!1 = @sid_1]
+goal reachable: b-event(eCks(s(s(z)),s(z))) && b-event(eDistinctFact(rid_rSign_q0_a2_1,(stR_St_9,(I_18,z)))) && b-event(@p_act(@occ42_1,(vsign[],s(s(z))))) && b-event(@p_act(@occ41_1,tSk(I_18,sd_10))) && b-event(@p_act(@occ40_1,tSt(stR_St_9,I_18,z))) -> event(eSign(rid_rSign_q0_a2_1,I_18,z,s(s(z)))) && event(eSign(rid_rSign_q0_a2_1,I_18,z,s(s(z))))
+The 1st, 2nd, 3rd, 4th, 5th hypotheses occur strictly before the 1st conclusion.
+The 1st, 2nd, 3rd, 4th, 5th hypotheses occur strictly before the 2nd conclusion.
+Abbreviations:
+sd_10 = sd[!1 = @sid]
+I_18 = I[!1 = @sid]
+stR_St_9 = stR_St[!1 = @sid]
+rid_rSign_q0_a2_1 = rid_rSign_q0_a2[helperVar0_2 = (vsign[],s(s(z))),sd_3 = sd_10,I_3 = I_18,stL_St_2 = stR_St_9,!1 = @sid_1]
+@occ42_1 = @occ42[!1 = @sid_1]
+@occ41_1 = @occ41[!1 = @sid_1]
+@occ40_1 = @occ40[!1 = @sid_1]
+goal reachable: b-event(eCks(s(z),s(s(z)))) && b-event(eDistinctFact(rid_rSign_q0_a1_1,(stR_St_9,(I_18,z)))) && b-event(@p_act(@occ28_1,(vsign[],s(z)))) && b-event(@p_act(@occ27_1,tSk(I_18,sd_10))) && b-event(@p_act(@occ26_1,tSt(stR_St_9,I_18,z))) -> event(eSign(rid_rSign_q0_a1_1,I_18,z,s(z))) && event(eSign(rid_rSign_q0_a1_1,I_18,z,s(z)))
+The 1st, 2nd, 3rd, 4th, 5th hypotheses occur strictly before the 1st conclusion.
+The 1st, 2nd, 3rd, 4th, 5th hypotheses occur strictly before the 2nd conclusion.
+Abbreviations:
+sd_10 = sd[!1 = @sid]
+I_18 = I[!1 = @sid]
+stR_St_9 = stR_St[!1 = @sid]
+rid_rSign_q0_a1_1 = rid_rSign_q0_a1[helperVar0_1 = (vsign[],s(z)),sd_2 = sd_10,I_2 = I_18,stL_St_1 = stR_St_9,!1 = @sid_1]
+@occ28_1 = @occ28[!1 = @sid_1]
+@occ27_1 = @occ27[!1 = @sid_1]
+@occ26_1 = @occ26[!1 = @sid_1]
+goal reachable: b-event(eCks(z,s(s(s(z))))) && b-event(eDistinctFact(rid_rSign_q0_a0_1,(stR_St_9,(I_18,z)))) && b-event(@p_act(@occ14_1,(vsign[],z))) && b-event(@p_act(@occ13_1,tSk(I_18,sd_10))) && b-event(@p_act(@occ12_1,tSt(stR_St_9,I_18,z))) -> event(eSign(rid_rSign_q0_a0_1,I_18,z,z)) && event(eSign(rid_rSign_q0_a0_1,I_18,z,z))
+The 1st, 2nd, 3rd, 4th, 5th hypotheses occur strictly before the 1st conclusion.
+The 1st, 2nd, 3rd, 4th, 5th hypotheses occur strictly before the 2nd conclusion.
+Abbreviations:
+sd_10 = sd[!1 = @sid]
+I_18 = I[!1 = @sid]
+stR_St_9 = stR_St[!1 = @sid]
+rid_rSign_q0_a0_1 = rid_rSign_q0_a0[helperVar0 = (vsign[],z),sd_1 = sd_10,I_1 = I_18,stL_St = stR_St_9,!1 = @sid_1]
+@occ14_1 = @occ14[!1 = @sid_1]
+@occ13_1 = @occ13[!1 = @sid_1]
+@occ12_1 = @occ12[!1 = @sid_1]
+RESULT event(eSign(rid_i,I_18,q,a1))@i && event(eSign(rid_j,I_18,q,a2))@j ==> rid_i = rid_j is true.
+
+--------------------------------------------------------------
+Verification summary:
+
+Query(ies):
+ - Query event(eSign(rid_i,I_18,q,a1))@i && event(eSign(rid_j,I_18,q,a2))@j ==> rid_i = rid_j is true.
+Associated restriction(s):
+ - Restriction event(eCks(a,c))@i ==> (a = z && c = s(s(s(z)))) || (a = s(z) && c = s(s(z))) || (a = s(s(z)) && c = s(z)) || (a = s(s(s(z))) && c = z) encoded as event(eCks(a,c)) ==> (a = z && c = s(s(s(z)))) || (a = s(z) && c = s(s(z))) || (a = s(s(z)) && c = s(z)) || (a = s(s(s(z))) && c = z) in process 0.
+ - Restriction event(eDistinctFact(rid_i,x))@i && event(eDistinctFact(rid_j,x))@j ==> rid_i = rid_j encoded as event(eDistinctFact(rid_i,x)) && event(eDistinctFact(rid_j,x)) ==> rid_i = rid_j in process 0.
+
+--------------------------------------------------------------
+

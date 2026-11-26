@@ -1,0 +1,13 @@
+== otp_n2_reveal: 32 of 32 verdicts conclusive, 0 excluded pair(s), 0 unexpected outcome(s), 0 predicted outcome(s) without a verdict
+   property        U            Urb          lin          rep          base         rb1          cl1          omega        
+   Auth            H            H            H            H            H            H            H            H            
+   Auth_noreveal   W            W            W            W            W            W            W            W            
+   Forge           H            H            H            H            H            H            H            H            
+   Forge_noreveal  W            W            W            W            W            W            W            W            
+== otp_n3_reveal: 32 of 32 verdicts conclusive, 0 excluded pair(s), 0 unexpected outcome(s), 0 predicted outcome(s) without a verdict
+   property        U            Urb          lin          rep          base         rb1          cl1          omega        
+   Auth            H            H            H            H            H            H            H            H            
+   Auth_noreveal   W            W            W            W            W            W            W            W            
+   Forge           H            H            H            H            H            H            H            H            
+   Forge_noreveal  W            W            W            W            W            W            W            W            
+== total: {"sets": 2, "properties": 8, "records": 64, "conclusive": 64, "both_tools_agree_on_T": 8, "both_tools_differ_on_T": 0, "excluded_pairs": 0, "unexpected": 0, "predicted_without_verdict": 0}

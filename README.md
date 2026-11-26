@@ -72,13 +72,13 @@ The runs of the paper used ProVerif 2.05, Tamarin 1.12.0 and Maude 3.5.1. The [r
 
 ## Integrity of the files
 
-The inventory [`registry/repository-files.tsv`](registry/repository-files.tsv) lists the size and the SHA-256 hash of every file. Model files, inputs and verdict records keep the bytes of the runs. The published bytes of 611 other files differ from the bytes of the runs. In 584 logs and environment records, placeholders replace host names and local paths. Seven files carry notes, headings or messages in English translation, and 20 scripts carry revised comments or default paths for the layout of this repository. The table [`registry/normalized-files.tsv`](registry/normalized-files.tsv) states the original and the published hash of each such file, and the [registry notes](registry/README.md) explain how the checks use both.
+The inventory [`registry/repository-files.tsv`](registry/repository-files.tsv) lists the size and the SHA-256 hash of every file. Model files, inputs and verdict records keep the bytes of the runs. The published bytes of 613 other files differ from the bytes of the runs. In 586 logs and environment records, placeholders replace host names and local paths. Seven files carry notes, headings or messages in English translation, and 20 scripts carry revised comments or default paths for the layout of this repository. The table [`registry/normalized-files.tsv`](registry/normalized-files.tsv) states the original and the published hash of each such file, and the [registry notes](registry/README.md) explain how the checks use both.
 
 Tool outputs and third-party sources keep their wording, including the first-person plural in ProVerif messages and in license texts.
 
 ## Sources and licenses
 
-The signer models abstract LM-OTS, LMS and HSS of [RFC 8554](https://www.rfc-editor.org/rfc/rfc8554). The exporter study starts from a [pinned commit of a Tamarin fork](https://github.com/felixlinker/tamarin-prover/tree/c293106913ccf7bb41f49b0dc555a8074e8ea88c) and from the [artifact of Morio, Ivanov and Künnemann](https://doi.org/10.5281/zenodo.21827126). The [third-party notices](docs/THIRD_PARTY_NOTICES.md) name the sources, their licenses and the modified files. The [MIT License](LICENSE) covers the author's original files.
+The signer models abstract LM-OTS, LMS and HSS of [RFC 8554](https://www.rfc-editor.org/rfc/rfc8554). The exporter study starts from a [pinned commit of the development branch of Tamarin](https://github.com/tamarin-prover/tamarin-prover/tree/c293106913ccf7bb41f49b0dc555a8074e8ea88c) and from the [artifact of Morio, Ivanov and Künnemann](https://doi.org/10.5281/zenodo.21827126). The [third-party notices](docs/THIRD_PARTY_NOTICES.md) name the sources, their licenses and the modified files. The [MIT License](LICENSE) covers the author's original files.
 
 ## Citation and contact
 

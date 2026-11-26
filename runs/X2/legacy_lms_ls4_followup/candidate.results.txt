@@ -1,0 +1,1 @@
+RESULT event(eSign(rid_i,I_18,q,a1))@i && event(eSign(rid_j,I_18,q,a2))@j ==> rid_i = rid_j is true.

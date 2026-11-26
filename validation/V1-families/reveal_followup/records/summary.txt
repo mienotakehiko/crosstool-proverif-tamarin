@@ -1,0 +1,37 @@
+Reveal follow-up of series V1: one-time password family with and without the reveal alternative
+Outcomes: H = no such trace, W = such a trace exists, N = no outcome
+
+run of 2026-11-25T23:30:01Z on Linux-6.18.58.1-microsoft-standard-WSL2-x86_64-with-glibc2.39, 8 processors
+ProVerif: Proverif 2.05
+Tamarin: tamarin-prover 1.12.0, Maude 3.5.1
+limits of the last call: {"pv_timeout_s": 600, "tm_timeout_s": 300, "heap": "16g"}
+runner hash: abddd91abb1d49f852331a4863b16b3cb2240a2102dc5a94636e2aaa274ab9a1
+
+== otp_n2_reveal
+   property        U      Urb    lin    rep    base   rb1    cl1    omega  
+   Auth            H      H      H      H      H      H      H      H      
+   Forge           H      H      H      H      H      H      H      H      
+   Auth_noreveal   W      W      W      W      W      W      W      W      
+   Forge_noreveal  W      W      W      W      W      W      W      W      
+   records with a verdict: 32 of 32
+   excluded pairs: 0, outcomes against the prediction: 0, predicted outcomes without a verdict: 0
+   properties on which both tools decide and agree on T: 4 of 4 (they differ on 0)
+
+== otp_n3_reveal
+   property        U      Urb    lin    rep    base   rb1    cl1    omega  
+   Auth            H      H      H      H      H      H      H      H      
+   Forge           H      H      H      H      H      H      H      H      
+   Auth_noreveal   W      W      W      W      W      W      W      W      
+   Forge_noreveal  W      W      W      W      W      W      W      W      
+   records with a verdict: 32 of 32
+   excluded pairs: 0, outcomes against the prediction: 0, predicted outcomes without a verdict: 0
+   properties on which both tools decide and agree on T: 4 of 4 (they differ on 0)
+
+== total
+   records with a verdict: 64 of 64
+   excluded pairs: 0, outcomes against the prediction: 0, predicted outcomes without a verdict: 0
+   properties on which both tools decide and agree on T: 8 (they differ on 0)
+   unchanged properties Auth and Forge against series V1: 32 of 32 comparable outcomes equal, 16 of 16 Tamarin proofs with the same number of steps
+   tool outputs read for raw-verdict-lines.tsv: 64 verdict lines, 0 of them differ from the records
+
+CONFIRMED: on the standard system of both members, both tools prove the authentication property with the reveal alternative and find a trace against the property without it

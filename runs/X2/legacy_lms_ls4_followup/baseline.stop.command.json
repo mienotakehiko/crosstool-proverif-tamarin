@@ -1,0 +1,7 @@
+[
+  "docker",
+  "stop",
+  "-t",
+  "5",
+  "fbca3e588990d6f3ee1a84819b27de5a6de12386bd425c4e0806b94c17ac3a3b"
+]

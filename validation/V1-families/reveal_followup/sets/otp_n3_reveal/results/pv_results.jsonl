@@ -1,0 +1,16 @@
+{"model": "OTP_N3_REVEAL_PV_U6", "query": "Auth", "verdict": "true", "rc": 0, "seconds": 0.07, "sha256": "fa9491c92632d72ae0c14074450c2a67737ba208dc0ce83ce635267c90ba98b9", "timeout_s": 600}
+{"model": "OTP_N3_REVEAL_PV_U6", "query": "Forge", "verdict": "true", "rc": 0, "seconds": 0.07, "sha256": "fa9491c92632d72ae0c14074450c2a67737ba208dc0ce83ce635267c90ba98b9", "timeout_s": 600}
+{"model": "OTP_N3_REVEAL_PV_U6", "query": "Auth_noreveal", "verdict": "false", "rc": 0, "seconds": 0.07, "sha256": "fa9491c92632d72ae0c14074450c2a67737ba208dc0ce83ce635267c90ba98b9", "timeout_s": 600}
+{"model": "OTP_N3_REVEAL_PV_U6", "query": "Forge_noreveal", "verdict": "false", "rc": 0, "seconds": 0.07, "sha256": "fa9491c92632d72ae0c14074450c2a67737ba208dc0ce83ce635267c90ba98b9", "timeout_s": 600}
+{"model": "OTP_N3_REVEAL_PV_Urb6", "query": "Auth", "verdict": "true", "rc": 0, "seconds": 1.3, "sha256": "7ebea78302b23015cd16ca06f97a8343cb6de8fca1a357bd1c39e39cd36876ca", "timeout_s": 600}
+{"model": "OTP_N3_REVEAL_PV_Urb6", "query": "Forge", "verdict": "true", "rc": 0, "seconds": 1.3, "sha256": "7ebea78302b23015cd16ca06f97a8343cb6de8fca1a357bd1c39e39cd36876ca", "timeout_s": 600}
+{"model": "OTP_N3_REVEAL_PV_Urb6", "query": "Auth_noreveal", "verdict": "false", "rc": 0, "seconds": 1.3, "sha256": "7ebea78302b23015cd16ca06f97a8343cb6de8fca1a357bd1c39e39cd36876ca", "timeout_s": 600}
+{"model": "OTP_N3_REVEAL_PV_Urb6", "query": "Forge_noreveal", "verdict": "false", "rc": 0, "seconds": 1.3, "sha256": "7ebea78302b23015cd16ca06f97a8343cb6de8fca1a357bd1c39e39cd36876ca", "timeout_s": 600}
+{"model": "OTP_N3_REVEAL_PV_lin", "query": "Auth", "verdict": "true", "rc": 0, "seconds": 1.61, "sha256": "d71641482629a3a0bd79c7efc46225922113c28e7d0f23b6d792ddc4fb0da23c", "timeout_s": 600}
+{"model": "OTP_N3_REVEAL_PV_lin", "query": "Forge", "verdict": "true", "rc": 0, "seconds": 1.61, "sha256": "d71641482629a3a0bd79c7efc46225922113c28e7d0f23b6d792ddc4fb0da23c", "timeout_s": 600}
+{"model": "OTP_N3_REVEAL_PV_lin", "query": "Auth_noreveal", "verdict": "false", "rc": 0, "seconds": 1.61, "sha256": "d71641482629a3a0bd79c7efc46225922113c28e7d0f23b6d792ddc4fb0da23c", "timeout_s": 600}
+{"model": "OTP_N3_REVEAL_PV_lin", "query": "Forge_noreveal", "verdict": "false", "rc": 0, "seconds": 1.61, "sha256": "d71641482629a3a0bd79c7efc46225922113c28e7d0f23b6d792ddc4fb0da23c", "timeout_s": 600}
+{"model": "OTP_N3_REVEAL_PV_rep", "query": "Auth", "verdict": "true", "rc": 0, "seconds": 1.61, "sha256": "66ef28cdc9719a7797d18b483f36e8ac7c93f01649985d26e8637b5719713aa0", "timeout_s": 600}
+{"model": "OTP_N3_REVEAL_PV_rep", "query": "Forge", "verdict": "true", "rc": 0, "seconds": 1.61, "sha256": "66ef28cdc9719a7797d18b483f36e8ac7c93f01649985d26e8637b5719713aa0", "timeout_s": 600}
+{"model": "OTP_N3_REVEAL_PV_rep", "query": "Auth_noreveal", "verdict": "false", "rc": 0, "seconds": 1.61, "sha256": "66ef28cdc9719a7797d18b483f36e8ac7c93f01649985d26e8637b5719713aa0", "timeout_s": 600}
+{"model": "OTP_N3_REVEAL_PV_rep", "query": "Forge_noreveal", "verdict": "false", "rc": 0, "seconds": 1.61, "sha256": "66ef28cdc9719a7797d18b483f36e8ac7c93f01649985d26e8637b5719713aa0", "timeout_s": 600}

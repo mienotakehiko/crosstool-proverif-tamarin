@@ -1,0 +1,2 @@
+OTP_N2_REVEAL: 18 words; authentication with reveal alternative: holds; without it: fails; e.g. RevealSeed(I#1) Acc(I#1,0)
+OTP_N3_REVEAL: 19 words; authentication with reveal alternative: holds; without it: fails; e.g. RevealSeed(I#1) Acc(I#1,0)

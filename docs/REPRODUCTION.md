@@ -49,6 +49,14 @@ done
 python3 -B validation/V4-mutation/score.py "$work/mutants"
 ```
 
+## Reveal follow-up of series V1
+
+The script [`run_reveal.sh`](../validation/V1-families/reveal_followup/run_reveal.sh) runs both provers on the two model sets of the follow-up, with and without the reveal alternative of the one-time password family. The [notes](../validation/V1-families/reveal_followup/README.md) describe the inputs, the limits and the records. The work directory lies outside the repository.
+
+```bash
+bash validation/V1-families/reveal_followup/run_reveal.sh "$work/reveal"
+```
+
 ## Boundary probes (series V2)
 
 The option `--provers` of [`run_boundary.py`](../validation/V2-boundary/run_boundary.py) runs both tools on every probe whose model files exist. The command for the four pair-shaped probes follows. It takes a few seconds per probe.
@@ -91,7 +99,7 @@ These series ran in the working directories and containers of the original study
 | M | `model.pv` and `model.spthy` of each case in [`runs/M/historical/`](../runs/M/historical/), frozen inputs in [`runs/M/frozen_20261111/pv/`](../runs/M/frozen_20261111/pv/) and [`tm/`](../runs/M/frozen_20261111/tm/) | `proverif FILE` and `tamarin-prover --prove FILE`, as the scripts in the same directories record |
 | X0 | translated inputs in [`runs/X0/alpha-fix/`](../runs/X0/alpha-fix/) | `proverif FILE` inside the pinned image |
 | X1 | theories in [`runs/X1/step8/inputs/models/`](../runs/X1/step8/inputs/models/), patches in [`exporter/patches/`](../exporter/patches/) | build the three exporters with the recipes in [`exporter/recipes/`](../exporter/recipes/), then run `run-step8.sh` |
-| X2 | theories and translated inputs in the subdirectories of [`runs/X2/`](../runs/X2/) | the run script of each subdirectory states its container command |
+| X2 | theories and translated inputs in the subdirectories of [`runs/X2/`](../runs/X2/) | the run script or the command files of each subdirectory state its container command |
 | K | 24 model inputs that [`runs/K/jobs.tsv`](../runs/K/jobs.tsv) lists | `proverif FILE` and `tamarin-prover --prove FILE` on each input |
 
 The command `python3 -B scripts/check_kudos_models.py` regenerates the 24 inputs of series K from their specifications, and `python3 -B exporter/index_regression.py` rebuilds the stage index of series X1 from the stored stage files.

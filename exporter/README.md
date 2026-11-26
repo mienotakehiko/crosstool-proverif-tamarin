@@ -1,6 +1,6 @@
 # Exporter study
 
-Series X1 examines the exporter that translates a Tamarin theory into a ProVerif model. The study starts at commit `c293106913ccf7bb41f49b0dc555a8074e8ea88c` of a Tamarin fork and compares three builds.
+Series X1 examines the exporter that translates a Tamarin theory into a ProVerif model. The study starts at commit `c293106913ccf7bb41f49b0dc555a8074e8ea88c` of the development branch of Tamarin and compares three builds.
 
 | Build | Source |
 | --- | --- |
@@ -34,4 +34,4 @@ The first command confirms that all 540 stage invocations ended with exit status
 
 The builds used a fixed local runtime and shared dependencies. The records establish the identity of each build and the results of its stages. A bit-for-bit reconstruction of the binaries would also need the exact runtime of each build, which the repository lacks.
 
-The validation series V6 repeats two probes on the upstream head of Tamarin. Its records are in [`validation/V6-exporter/`](../validation/V6-exporter/).
+The validation series V6 repeats two probes on the upstream head of Tamarin. Its records are in [`validation/V6-exporter/`](../validation/V6-exporter/). The pinned commit lies on the same branch, and the directory `lib/export` is identical at the pinned commit and at that head (`03215cd03e7c`). The author reported both defects to the upstream project as [issue 996](https://github.com/tamarin-prover/tamarin-prover/issues/996).

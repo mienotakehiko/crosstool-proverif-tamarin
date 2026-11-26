@@ -1,14 +1,14 @@
 # Plan of the validation series
 
-The validation series follow a plan that fixes inputs, tools and rules before the first prover run. The files of this directory are the hash lists of that plan. Each list names files of this repository by a relative path, so `sha256sum -c` checks it from this directory.
+The validation series follow a written plan. This directory states the rules of that plan and holds its hash lists. Each list names files of this repository by a relative path, so `sha256sum -c` checks it from this directory. All 449 entries of the four lists match the archived files.
 
-| File | Fixed before the runs |
+| File | Content |
 | --- | --- |
 | [`inputs.sha256`](inputs.sha256) | The 12 family inputs of V1 with their predictions and family table, and the 200 random inputs of V2 with their manifest |
 | [`inputs_renamed.sha256`](inputs_renamed.sha256) | The 200 random inputs after the renaming for generator 0.1.2 |
 | [`generator.txt`](generator.txt) | Version 0.1.2 of the generator with the hashes of its nine source files |
 | [`mutations.sha256`](mutations.sha256) | The file `mutation.json` of each of the 32 sets of V4, which states the operator, the side and the hashes of the model files |
-| [`labels.sha256`](labels.sha256) | The 41 labels of V3 before the predictions of the decision tree |
+| [`labels.sha256`](labels.sha256) | The 41 labels of V3. The author recorded this hash before applying the decision tree |
 
 ## Rules of the plan
 

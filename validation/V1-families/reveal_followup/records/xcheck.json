@@ -1,0 +1,145 @@
+{
+ "total": {
+  "sets": 2,
+  "properties": 8,
+  "records": 64,
+  "conclusive": 64,
+  "both_tools_agree_on_T": 8,
+  "both_tools_differ_on_T": 0,
+  "excluded_pairs": 0,
+  "unexpected": 0,
+  "predicted_without_verdict": 0
+ },
+ "sets": [
+  {
+   "set": "otp_n2_reveal",
+   "records": 32,
+   "conclusive": 32,
+   "properties": 4,
+   "both_tools_agree_on_T": 4,
+   "both_tools_differ_on_T": 0,
+   "excluded_pairs": [],
+   "unexpected": [],
+   "unresolved": [],
+   "rows": [
+    [
+     "Auth",
+     {
+      "U4": "H",
+      "Urb4": "H",
+      "lin": "H",
+      "rep": "H",
+      "base": "H",
+      "cl1": "H",
+      "omega": "H",
+      "rb1": "H"
+     }
+    ],
+    [
+     "Auth_noreveal",
+     {
+      "U4": "W",
+      "Urb4": "W",
+      "lin": "W",
+      "rep": "W",
+      "base": "W",
+      "cl1": "W",
+      "omega": "W",
+      "rb1": "W"
+     }
+    ],
+    [
+     "Forge",
+     {
+      "U4": "H",
+      "Urb4": "H",
+      "lin": "H",
+      "rep": "H",
+      "base": "H",
+      "cl1": "H",
+      "omega": "H",
+      "rb1": "H"
+     }
+    ],
+    [
+     "Forge_noreveal",
+     {
+      "U4": "W",
+      "Urb4": "W",
+      "lin": "W",
+      "rep": "W",
+      "base": "W",
+      "cl1": "W",
+      "omega": "W",
+      "rb1": "W"
+     }
+    ]
+   ]
+  },
+  {
+   "set": "otp_n3_reveal",
+   "records": 32,
+   "conclusive": 32,
+   "properties": 4,
+   "both_tools_agree_on_T": 4,
+   "both_tools_differ_on_T": 0,
+   "excluded_pairs": [],
+   "unexpected": [],
+   "unresolved": [],
+   "rows": [
+    [
+     "Auth",
+     {
+      "U6": "H",
+      "Urb6": "H",
+      "lin": "H",
+      "rep": "H",
+      "base": "H",
+      "cl1": "H",
+      "omega": "H",
+      "rb1": "H"
+     }
+    ],
+    [
+     "Auth_noreveal",
+     {
+      "U6": "W",
+      "Urb6": "W",
+      "lin": "W",
+      "rep": "W",
+      "base": "W",
+      "cl1": "W",
+      "omega": "W",
+      "rb1": "W"
+     }
+    ],
+    [
+     "Forge",
+     {
+      "U6": "H",
+      "Urb6": "H",
+      "lin": "H",
+      "rep": "H",
+      "base": "H",
+      "cl1": "H",
+      "omega": "H",
+      "rb1": "H"
+     }
+    ],
+    [
+     "Forge_noreveal",
+     {
+      "U6": "W",
+      "Urb6": "W",
+      "lin": "W",
+      "rep": "W",
+      "base": "W",
+      "cl1": "W",
+      "omega": "W",
+      "rb1": "W"
+     }
+    ]
+   ]
+  }
+ ]
+}

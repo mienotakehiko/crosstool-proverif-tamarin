@@ -1,0 +1,6 @@
+[
+  "docker",
+  "start",
+  "-a",
+  "3d42b7a19a570f41b9f8034ef689c27ee5aff72d3ddc7c1832c78effc82d7315"
+]

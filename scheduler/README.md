@@ -42,4 +42,4 @@ python3 -B scheduler/lemma2/predict_reveal.py --cimc cimc/v0.1.2 --checker sched
     validation/V1-families/inputs/fixed/lmots_w2m1.toml validation/V1-families/inputs/renamed/otp_n2.toml
 ```
 
-For the LM-OTS signer the property holds in both readings, because a private function hides the chain values from an attacker who holds the seed. For the one-time password family it fails without the alternative.
+For the LM-OTS signer the property holds in both readings, because a private function hides the chain values from an attacker who holds the seed. For the one-time password family it fails without the alternative. The [reveal follow-up](../validation/V1-families/reveal_followup/README.md) of series V1 puts this prediction to both provers.
