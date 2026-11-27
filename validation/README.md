@@ -13,7 +13,7 @@ This directory holds the plan, the scripts, the inputs and the records of the va
 | [`V2-boundary/`](V2-boundary/) | V2 | 12 boundary probes and 4 pair-shaped probes ([notes](V2-boundary/README.md)) |
 | [`V3-diagnosis/`](V3-diagnosis/) | V3 | 41 sealed labels and the predictions of decision tree 1.1 |
 | [`V4-mutation/`](V4-mutation/) | V4 | 30 mutants and 2 controls of the two signers, and 94 input mutants |
-| [`V6-exporter/`](V6-exporter/) | V6 | Two exporter probes on the upstream head of Tamarin, and the benchmark of the translation artifact under the exporter builds B0 and B2 ([notes](V6-exporter/benchmark/README.md)) |
+| [`V6-exporter/`](V6-exporter/) | V6 | Two exporter probes on the upstream head of Tamarin, and the benchmark of the translation artifact under the exporter builds B0 and B2 ([notes](V6-exporter/benchmark/README.md)), and the follow-up on the build B3 ([notes](V6-exporter/b3_followup/README.md)) |
 | [`V7-time-limit/`](V7-time-limit/) | V7 | Ten screening jobs with a fourfold time limit |
 
 Series V5 is the bounded enumeration of the schedulers of Lemma 2 in [`scheduler/lemma2/`](../scheduler/lemma2/).
@@ -49,6 +49,7 @@ The first command recomputes 527 counts of the series V1 to V4 and V7, including
 | V4 | 972 records in 32 sets, and 94 input mutants | The comparison detects 12 of 26 encoding mutants and none of 4 property mutants. No verdict changes for the other mutants. The generator refuses 87 of 94 input mutants |
 | V6 | 2 models | Both exports of the upstream exporter admit a witness of the forbidden event that native Tamarin excludes, and one correction per export removes it |
 | V6, benchmark | 566 pairs of theory and lemma under 2 builds | B0 and B2 return a definitive outcome for the same 308 pairs, and the outcomes are equal. Five pairs of one theory change from a time limit or from no result to a syntax error of ProVerif, which the first patch causes. The [benchmark notes](V6-exporter/benchmark/README.md) report the comparison |
+| V6, build B3 | 5 pairs of the YubiKey theory and the 60 pairs of the regression set of X1 | ProVerif reports the syntax error of the B2 export at line 99, character 36. Build B3 omits the type after an equality pattern of an input. ProVerif parses its five exports, each of the five pairs has its outcome class of B0, and all 60 pairs of the regression set agree with native Tamarin. The rows of B2 and the patch determine the exports of the other 561 pairs of the benchmark, which need no run under B3. The [follow-up notes](V6-exporter/b3_followup/README.md) report the runs |
 | V7 | 10 jobs | All ten jobs reach the fourfold time limit of 14,400 s without a verdict |
 
 The two unchanged controls of V4, `LMOTS__control` and `LMS_S2__control`, are the rerun of series G with generator 0.1.2. They hold 28 ProVerif and 32 Tamarin verdicts on the two signers.
@@ -70,6 +71,7 @@ The seven input mutants that the generator accepts all come from the operator `l
 | `V4-mutation/mutate.py`, `mutate_cim.py`, `score.py` | Write the mutants of the models and of the inputs and score the mutants |
 | `V6-exporter/compare_runs.py` | Compare two result tables of the translated route |
 | `V6-exporter/benchmark/summarize_benchmark.py` | Recompute the counts of the benchmark comparison from its records |
+| `V6-exporter/b3_followup/summarize_b3.py` | Recompute the counts of the follow-up on the build B3 from its records |
 | `V7-time-limit/select_jobs.py` | Select the ten jobs by the fixed rule |
 
 Each script states its usage at its head. The directory names of the series carry the letter V, and the scripts keep the option names `--e1` and `--e4` and the job prefix `E7x4_` of the runs.

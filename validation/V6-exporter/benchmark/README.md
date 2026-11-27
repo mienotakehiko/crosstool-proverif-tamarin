@@ -39,9 +39,9 @@ On the 295 pairs for which the translated route and native Tamarin both return a
 
 ## Cause of the syntax error
 
-The explanation follows from the source of the exporter. In the unmodified exporter, the function `translatePatternTerm` replaces every term that is no literal by a helper variable, and the input branch of `translatePatternFact` writes this variable with the type `bitstring`. The first patch lets `translatePatternTerm` return an equality pattern for a term without variables and names. The input branch still appends the type, and the grammar of ProVerif admits no type after an equality pattern. A textual scan of the 121 theories finds an input of such a term in the YubiKey theory alone, in the rule `InitSucc` with the premises `In(myzero)` and `In(S(myzero))`.
+The explanation follows from the source of the exporter, and the [follow-up on the build B3](../b3_followup/README.md) confirms it on the export. In the unmodified exporter, the function `translatePatternTerm` replaces every term that is no literal by a helper variable, and the input branch of `translatePatternFact` writes this variable with the type `bitstring`. The first patch lets `translatePatternTerm` return an equality pattern for a term without variables and names. The input branch still appends the type, and the grammar of ProVerif admits no type after an equality pattern. A textual scan of the 121 theories finds an input of such a term in the YubiKey theory alone, in the rule `InitSucc` with the premises `In(myzero)` and `In(S(myzero))`.
 
-The run stored no exported file, so the rejected line itself is not among the records. B1 holds the same patch. B0 exports the same input as a helper variable without a check and accepts every message there. The [exporter notes](../../../exporter/README.md) state the correction that the first patch needs.
+The benchmark run stored no exported file. The follow-up exports one lemma again and finds the error at line 99, character 36, which is the colon after the equality pattern of `In(myzero)`. A third patch omits this type, and ProVerif parses the exports of the resulting build B3 for all five lemmas. B1 holds the first patch without this correction. By a reading of the source, B0 exports the same input as a helper variable without a check and accepts every message there.
 
 ## Recompute
 

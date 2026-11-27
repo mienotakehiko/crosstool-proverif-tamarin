@@ -6,7 +6,7 @@ The paper cites this repository by its address and names no commit. The reposito
 
 | Release | Version of the manuscript | Content | Archive |
 | --- | --- | --- | --- |
-| `v1.0` | Manuscript as submitted to *Cryptography* (MDPI) | The series G to K and V1 to V7 of the paper, the two follow-ups of series V1 and the benchmark comparison of series V6 | none yet |
+| `v1.0` | Manuscript as submitted to *Cryptography* (MDPI) | The series G to K and V1 to V7 of the paper, the two follow-ups of series V1, and the benchmark comparison of series V6 with its follow-up on the exporter build B3 | none yet |
 
 Each release is a Git tag, and the release page of the repository states its date. A row of this table exists as soon as the corresponding state is ready, and the tag follows when the manuscript version goes to the journal.
 

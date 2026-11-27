@@ -97,6 +97,12 @@ The comparison ran the evaluation scripts of the translation artifact in its con
 python3 -B validation/V6-exporter/benchmark/summarize_benchmark.py
 ```
 
+The follow-up on the build B3 exports one lemma of the YubiKey theory with B2 and with B3, runs the five pairs of this theory through the evaluation scripts with B3 and repeats the regression of series X1 with B3. The [follow-up notes](../validation/V6-exporter/b3_followup/README.md) describe the runs and hold their scripts, and the following command recomputes the counts from the records.
+
+```bash
+python3 -B validation/V6-exporter/b3_followup/summarize_b3.py
+```
+
 ## Scheduler lemmas
 
 ```bash

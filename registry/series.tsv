@@ -16,5 +16,5 @@ V2	random CIMs and boundary probes	record	8192 records of 200 CIMs and 16 probes
 V3	sealed labels for the decision tree	item	41	validation/V3-diagnosis/labels.tsv
 V4	held-out mutation of encodings and of inputs	record	972 records of 32 sets and 94 input mutants	validation/V4-mutation/sets
 V5	bounded enumeration of the schedulers of Lemma 2	enumeration	225	scheduler/lemma2/reference-run.log
-V6	exporter at the upstream head of Tamarin and on the benchmark of the translation artifact	model, and pair of theory and lemma	2 models, and 566 pairs under 2 builds	validation/V6-exporter
+V6	exporter at the upstream head of Tamarin and on the benchmark of the translation artifact	model, and pair of theory and lemma	2 models, 566 pairs under 2 builds, and 65 pairs under a third build	validation/V6-exporter
 V7	fourfold time limit	job	10	validation/V7-time-limit/records.jsonl
