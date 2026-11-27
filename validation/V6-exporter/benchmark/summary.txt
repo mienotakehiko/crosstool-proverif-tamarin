@@ -1,0 +1,31 @@
+theories: 121, pairs of theory and lemma: 566 (453 all-traces, 113 exists-trace)
+
+class               B0    B2
+true                254   254
+false                54    54
+memory exhausted    133   133
+time limit           34    30
+error of ProVerif    43    48
+no result            48    47
+
+definitive outcome under both builds: 308, equal: 308, under one build only: 0
+other pairs: 258, same class under both builds: 253, changed: 5
+  changed: examples/related_work/YubiSecure_KS_STM12/Yubikey.spthy Login_invalidates_smaller_counters (time limit -> error of ProVerif: Syntax error, 0.004 s, published: time limit)
+  changed: examples/related_work/YubiSecure_KS_STM12/Yubikey.spthy Login_reachable (no result -> error of ProVerif: Syntax error, 0.004 s, published: no result)
+  changed: examples/related_work/YubiSecure_KS_STM12/Yubikey.spthy injective_correspondance (time limit -> error of ProVerif: Syntax error, 0.004 s, published: time limit)
+  changed: examples/related_work/YubiSecure_KS_STM12/Yubikey.spthy no_replay (time limit -> error of ProVerif: Syntax error, 0.004 s, published: time limit)
+  changed: examples/related_work/YubiSecure_KS_STM12/Yubikey.spthy slightly_weaker_invariant (time limit -> error of ProVerif: Syntax error, 0.004 s, published: time limit)
+
+B0 against the published translated route: 308 of 308 equal, definitive in the published run only: 5, in the local run only: 0
+B2 against the published translated route: 308 of 308 equal, definitive in the published run only: 5, in the local run only: 0
+published translated route: 313 definitive outcomes, times of the pairs that only the published run decides: 1253.566 s to 4163.937 s
+
+B0 against native Tamarin: 264 of 295 equal, 31 differ in 23 theories
+B2 against native Tamarin: 264 of 295 equal, 31 differ in 23 theories
+published against native Tamarin: 269 of 300 equal, 31 differ in 23 theories
+the differences with native Tamarin are the same pairs in B0, B2 and the published run: yes
+
+theory files that equal the hash list: 121 of 121
+theories with an input of a term without variables and names: 1
+  examples/related_work/YubiSecure_KS_STM12/Yubikey.spthy: S(myzero), myzero
+differences with native Tamarin in theories that declare exclusive-or: 30 of 31 (in 22 theories), other theories: examples/usenix23-ens/dp3t.spthy

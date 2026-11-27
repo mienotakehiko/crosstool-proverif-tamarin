@@ -28,7 +28,7 @@ This map relates every experimental series of the paper to its records in this r
 | V3 | 41 sealed labels for the decision tree | [`validation/V3-diagnosis/`](../validation/V3-diagnosis/), [`validation/plan/labels.sha256`](../validation/plan/labels.sha256) | `scripts/recompute_validation_numbers.py` |
 | V4 | Held-out mutation, 30 mutants and 2 controls with 972 records, and 94 input mutants | [`validation/V4-mutation/`](../validation/V4-mutation/) | `scripts/recompute_validation_numbers.py` |
 | V5 | Bounded enumeration of the two schedulers of Lemma 2, 225 enumerations | [`scheduler/lemma2/`](../scheduler/lemma2/) | `bash scheduler/lemma2/run_checks.sh` |
-| V6 | Exporter at the upstream head of Tamarin (commit `03215cd03e7c`), 2 models and 2 corrected exports, reported upstream as [issue 996](https://github.com/tamarin-prover/tamarin-prover/issues/996) | [`validation/V6-exporter/`](../validation/V6-exporter/) | inspection of the stored outputs |
+| V6 | Exporter at the upstream head of Tamarin (commit `03215cd03e7c`), 2 models and 2 corrected exports, reported upstream as [issue 996](https://github.com/tamarin-prover/tamarin-prover/issues/996), and the benchmark of the translation artifact with 566 pairs of theory and lemma under the builds B0 and B2 | [`validation/V6-exporter/`](../validation/V6-exporter/) | inspection of the stored outputs and `python3 -B validation/V6-exporter/benchmark/summarize_benchmark.py` |
 | V7 | Fourfold time limit, 10 jobs | [`validation/V7-time-limit/`](../validation/V7-time-limit/) | `scripts/recompute_validation_numbers.py` |
 
 ## Generator, lemmas and diagnosis
@@ -42,6 +42,7 @@ This map relates every experimental series of the paper to its records in this r
 | Decision tree 1.1 | [`diagnosis/v1.1/diagnose.py`](../diagnosis/v1.1/diagnose.py), SHA-256 `d45347db969b78a5209adb13dbee3cc00b7d6047ec0c60a14d40be7cfc0de8e6` | `scripts/verify_evidence.py` |
 | Reveal alternative of the signers | [`scheduler/lemma2/predict_reveal.py`](../scheduler/lemma2/predict_reveal.py) | command in [`scheduler/README.md`](../scheduler/README.md) |
 | Reveal alternative in the one-time password family, prover runs | [`validation/V1-families/reveal_followup/`](../validation/V1-families/reveal_followup/) | `python3 -B validation/V1-families/reveal_followup/summarize_reveal.py --no-write` |
+| Reveal alternative of two signers with a public derivation function, prover runs | [`validation/V1-families/public_derivation_followup/`](../validation/V1-families/public_derivation_followup/) | `python3 -B validation/V1-families/public_derivation_followup/summarize_public.py --no-write` |
 
 ## Counting rules
 
@@ -57,7 +58,7 @@ Series K compares 49 lemmas in the original stage and 12 lemmas in a separate di
 
 The counts of the validation series follow from [`validation/common/xcheck.py`](../validation/common/xcheck.py), which counts the excluded verdict pairs and the agreement on the standard system. The Achievement Levels come from the program `al_assign` of generator 0.1.2 with decision tree 1.1. The counts of V1 and V2 refer to the renamed inputs that the [validation notes](../validation/README.md) describe.
 
-The reveal follow-up of series V1 holds 64 records of its own, which enter none of the counts of the validation series.
+The reveal follow-up and the public-derivation follow-up of series V1 hold 64 and 92 records of their own, which enter none of the counts of the validation series.
 
 ## Records that this repository lacks
 
@@ -69,6 +70,8 @@ The reveal follow-up of series V1 holds 64 records of its own, which enter none 
 | Series V1 to V4 | Complete tool outputs of the runs | One record per query or lemma with the verdict line, the exit status and the hash of the model |
 | Pair-shaped probes of V2 | Complete tool outputs | [`raw-verdict-lines.tsv`](../validation/V2-boundary/sets/pair/raw-verdict-lines.tsv) with the verdict line and the hash of each output |
 | Reveal follow-up of V1 | Complete tool outputs | [`raw-verdict-lines.tsv`](../validation/V1-families/reveal_followup/records/raw-verdict-lines.tsv) with the verdict line and the hash of each output |
+| Public-derivation follow-up of V1 | Complete tool outputs | [`raw-verdict-lines.tsv`](../validation/V1-families/public_derivation_followup/records/raw-verdict-lines.tsv) with the verdict line and the hash of each output |
+| Benchmark comparison of V6 | Exported ProVerif files and tool outputs of the 1,132 jobs, and the container images | One row per job with the outcome, the error message, the time and the memory, and the hashes of the binaries of both images |
 | Series V3 | Items for five of the eight causes | 41 items for three causes |
 
 The reports of the generator and its grade tables call Hypothesis 1 of the paper "Theorem 1", its name in an early draft, and [`cimc/README.md`](../cimc/README.md) explains this name. The file names of two search heuristics differ from their job identifiers. The archived outputs of P3 and P5 use `rank-lower-s` and `rank-upper-s` for the heuristics `s` and `S`, because some file systems ignore case. The records keep the original spelling.

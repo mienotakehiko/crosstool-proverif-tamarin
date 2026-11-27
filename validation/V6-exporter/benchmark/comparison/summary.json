@@ -1,0 +1,31 @@
+{
+  "model_count": 121,
+  "paired_tasks": 566,
+  "changed": 5,
+  "boolean_flips": 0,
+  "gained_boolean": 0,
+  "lost_boolean": 0,
+  "native_agreement_numerator_denominator": {
+    "b0": [
+      264,
+      295
+    ],
+    "b2": [
+      264,
+      295
+    ],
+    "b0_common": [
+      264,
+      295
+    ],
+    "b2_common": [
+      264,
+      295
+    ]
+  },
+  "sha256": {
+    "reference": "f4b35acb6d474d1db2188e1a4d3d1504572d02dd99ff3803081d16a1e10a9c8b",
+    "B0": "95a8328ff27b295df5ac42e137d636ab940319c201ec996d35d8e1072262f3fb",
+    "B2": "ff860b656ce3b21304c876a7257e48ef98b9c7f0c598baccf096c211e68a7aec"
+  }
+}

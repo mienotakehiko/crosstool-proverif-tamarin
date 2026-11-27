@@ -1,0 +1,4 @@
+LMOTS_W2M1: 34 words; authentication with reveal alternative: holds; without it: holds
+LMOTS_W2M1_PUB: 94 words; authentication with reveal alternative: holds; without it: fails; e.g. RevealSeed(I#1) Accept(I#1,0)
+LMS_H1W2: 146 words; authentication with reveal alternative: holds; without it: holds
+LMS_H1W2_PUB: 306 words; authentication with reveal alternative: holds; without it: fails; e.g. RevealSeed(I#1) Accept(I#1,0,0)

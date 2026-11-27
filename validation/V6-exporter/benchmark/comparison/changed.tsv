@@ -1,0 +1,6 @@
+input_file	lemma	quantifier	native	B0	B2
+examples/related_work/YubiSecure_KS_STM12/Yubikey.spthy	Login_invalidates_smaller_counters	all-traces	true	timeout	pv_error
+examples/related_work/YubiSecure_KS_STM12/Yubikey.spthy	Login_reachable	exists-trace	true	unresolved	pv_error
+examples/related_work/YubiSecure_KS_STM12/Yubikey.spthy	injective_correspondance	all-traces	true	timeout	pv_error
+examples/related_work/YubiSecure_KS_STM12/Yubikey.spthy	no_replay	all-traces	true	timeout	pv_error
+examples/related_work/YubiSecure_KS_STM12/Yubikey.spthy	slightly_weaker_invariant	all-traces	true	timeout	pv_error

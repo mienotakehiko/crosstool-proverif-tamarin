@@ -1,0 +1,41 @@
+Public-derivation follow-up of series V1: LM-OTS(2,1) and LMS(1,2) with a public derivation function
+Outcomes: H = no such trace, W = such a trace exists, N = no outcome, - = no query or lemma
+
+run of 2026-11-26T10:45:21Z on Linux-6.18.58.1-microsoft-standard-WSL2-x86_64-with-glibc2.39, 8 processors
+ProVerif: Proverif 2.05
+Tamarin: tamarin-prover 1.12.0, Maude 3.5.1
+limits of the last call: {"pv_timeout_s": 3600, "tm_timeout_s": 7200, "heap": "16g"}
+runner hash: abddd91abb1d49f852331a4863b16b3cb2240a2102dc5a94636e2aaa274ab9a1
+
+== lmots_w2m1_pub
+   property              U      Urb    lin    rep    base   rb1    cl1    omega  
+   exec_accept           W      W      W      W      W      W      W      W      
+   LS1_unforge           H      H      N      W      H      W      W      W      
+   forge                 H      H      N      W      H      W      W      W      
+   LS1_unforge_noreveal  W      W      W      W      W      W      W      W      
+   forge_noreveal        W      W      W      W      W      W      W      W      
+   records with a verdict: 38 of 40
+   excluded pairs: 0, outcomes against the prediction: 0, predicted outcomes without a verdict: 0
+   properties on which both tools decide and agree on T: 5 of 5 (they differ on 0)
+
+== lms_h1w2_pub
+   property              U      Urb    lin    rep    base   rb1    cl1    omega  
+   exec                  W      W      W      W      W      W      W      W      
+   LS4_pure              H      W      N      W      H      W      W      W      
+   LS4                   -      -      -      -      H      H      H      W      
+   LS1                   H      W      N      W      H      W      W      W      
+   LS3_forge             H      W      N      W      H      W      W      W      
+   LS1_noreveal          W      W      W      W      W      W      W      W      
+   LS3_forge_noreveal    W      W      W      W      W      W      W      W      
+   records with a verdict: 49 of 52
+   excluded pairs: 0, outcomes against the prediction: 0, predicted outcomes without a verdict: 0
+   properties on which both tools decide and agree on T: 6 of 7 (they differ on 0)
+
+== total
+   records with a verdict: 87 of 92
+   excluded pairs: 0, outcomes against the prediction: 0, predicted outcomes without a verdict: 0
+   properties on which both tools decide and agree on T: 11 (they differ on 0)
+   properties of series V1 against the records of series V1: 55 of 55 comparable outcomes equal, 28 of 32 Tamarin results with the same number of steps
+   tool outputs read for raw-verdict-lines.tsv: 92 verdict lines, 0 of them differ from the records
+
+CONFIRMED: on the standard system of both members, both tools prove the unforgeability property with the reveal alternative and find a trace against the property without it, and every comparable outcome of a property of series V1 equals the outcome of series V1

@@ -1,0 +1,17 @@
+{
+  "timeout": 300,
+  "memory_MB": 8192,
+  "driver_image_argument": "--image",
+  "image_request": "msr-to-pv-eval:ccs26",
+  "images": [
+    "sha256:540c245a3bc36569bb8f546ca664bd1f97205aee9658c7594dc86bffcdc5e6c8",
+    "sha256:38fffe6dff4d9c2b2757c43e3df20be1f21a57751183d7e803fa02829e77545b"
+  ],
+  "csv": "93dd69ed59dc8a1243e5d23afb1117b660b563fbc61489d997186342cd392d7c",
+  "native_reference": "f4b35acb6d474d1db2188e1a4d3d1504572d02dd99ff3803081d16a1e10a9c8b",
+  "driver": "46876c47afd9fd8190206bc71383f989aa51a1b785066530dfa22736906597bc",
+  "eval_py": "29ec8cca3a7ef913d5ce8ae7e9d73cc965f9a3a6971ad8d440cee6809860eb40",
+  "wrapper": "3b4054ce0bb96709313bb105b6d2f7d2eaf08d160ab95e8e60230b6910313a75",
+  "proxy": "475e79c0523037de2937d25d6f2ae12877023a23c3e6e4442d1084428a0b85f1",
+  "launcher": "9e261c863819a8aec3d19d59b34be03ccc85c5d0484f461e510e3dca7eb74baf"
+}

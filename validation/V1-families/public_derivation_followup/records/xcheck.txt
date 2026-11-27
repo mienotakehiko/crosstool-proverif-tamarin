@@ -1,0 +1,17 @@
+== lmots_w2m1_pub: 38 of 40 verdicts conclusive, 0 excluded pair(s), 0 unexpected outcome(s), 0 predicted outcome(s) without a verdict
+   property        U            Urb          lin          rep          base         rb1          cl1          omega        
+   LS1_unforge     H            H            N(cannot)    W            H            W            W            W            
+   LS1_unforge_norevealW            W            W            W            W            W            W            W            
+   exec_accept     W            W            W            W            W            W            W            W            
+   forge           H            H            N(cannot)    W            H            W            W            W            
+   forge_noreveal  W            W            W            W            W            W            W            W            
+== lms_h1w2_pub: 49 of 52 verdicts conclusive, 0 excluded pair(s), 0 unexpected outcome(s), 0 predicted outcome(s) without a verdict
+   property        U            Urb          lin          rep          base         rb1          cl1          omega        
+   LS1             H            W            N(cannot)    W            H            W            W            W            
+   LS1_noreveal    W            W            W            W            W            W            W            W            
+   LS3_forge       H            W            N(cannot)    W            H            W            W            W            
+   LS3_forge_norevealW            W            W            W            W            W            W            W            
+   LS4             -            -            -            -            H            H            H            W            
+   LS4_pure        H            W            N(cannot)    W            H            W            W            W            
+   exec            W            W            W            W            W            W            W            W            
+== total: {"sets": 2, "properties": 12, "records": 92, "conclusive": 87, "both_tools_agree_on_T": 11, "both_tools_differ_on_T": 0, "excluded_pairs": 0, "unexpected": 0, "predicted_without_verdict": 0}

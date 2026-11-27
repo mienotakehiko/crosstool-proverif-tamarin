@@ -8,11 +8,12 @@ This directory holds the plan, the scripts, the inputs and the records of the va
 | [`common/`](common/) | all | Runner of one model set, cross-check of verdict pairs and regeneration check |
 | [`V1-families/`](V1-families/) | V1 | 12 members of the LM-OTS, LMS and one-time password families with their predictions |
 | [`V1-families/reveal_followup/`](V1-families/reveal_followup/) | follow-up of V1 | Two members of the one-time password family with and without the reveal alternative ([notes](V1-families/reveal_followup/README.md)) |
+| [`V1-families/public_derivation_followup/`](V1-families/public_derivation_followup/) | follow-up of V1 | LM-OTS(2,1) and LMS(1,2) with a public derivation function, with and without the reveal alternative ([notes](V1-families/public_derivation_followup/README.md)) |
 | [`V2-random/`](V2-random/) | V2 | 200 random CIMs from the seed 20261116 |
 | [`V2-boundary/`](V2-boundary/) | V2 | 12 boundary probes and 4 pair-shaped probes ([notes](V2-boundary/README.md)) |
 | [`V3-diagnosis/`](V3-diagnosis/) | V3 | 41 sealed labels and the predictions of decision tree 1.1 |
 | [`V4-mutation/`](V4-mutation/) | V4 | 30 mutants and 2 controls of the two signers, and 94 input mutants |
-| [`V6-exporter/`](V6-exporter/) | V6 | Two exporter probes on the upstream head of Tamarin |
+| [`V6-exporter/`](V6-exporter/) | V6 | Two exporter probes on the upstream head of Tamarin, and the benchmark of the translation artifact under the exporter builds B0 and B2 ([notes](V6-exporter/benchmark/README.md)) |
 | [`V7-time-limit/`](V7-time-limit/) | V7 | Ten screening jobs with a fourfold time limit |
 
 Series V5 is the bounded enumeration of the schedulers of Lemma 2 in [`scheduler/lemma2/`](../scheduler/lemma2/).
@@ -41,11 +42,13 @@ The first command recomputes 527 counts of the series V1 to V4 and V7, including
 | --- | --- | --- |
 | V1 | 372 records on 50 properties, 322 with a verdict | No excluded pair. Both tools agree on all 43 properties that both decide on T. The verdicts confirm 346 of 372 predicted cells and contradict none |
 | V1, reveal follow-up | 64 records on 8 properties, all with a verdict | No excluded pair. Both tools agree on all 8 properties on T. The authentication property of the one-time password family holds with the reveal alternative and has a trace without it. The [follow-up notes](V1-families/reveal_followup/README.md) report the runs |
+| V1, public-derivation follow-up | 92 records on 12 properties, 87 with a verdict | No excluded pair. Both tools agree on all 11 properties that both decide on T. With a public derivation function, the unforgeability of the two signers holds with the reveal alternative and has a trace without it. The [follow-up notes](V1-families/public_derivation_followup/README.md) report the runs |
 | V2, random | 8,192 records on 1,024 properties, 7,986 with a verdict | No excluded pair. Both tools agree on all 1,024 properties on T |
 | V2, boundary | 12 probes | Generator 0.1.2 refuses all ten probes outside its fragment. The [boundary notes](V2-boundary/README.md) report the prover runs |
 | V3 | 41 items | Decision tree 1.1 assigns the labeled cause to all 41 items, which cover three of the eight causes |
 | V4 | 972 records in 32 sets, and 94 input mutants | The comparison detects 12 of 26 encoding mutants and none of 4 property mutants. No verdict changes for the other mutants. The generator refuses 87 of 94 input mutants |
 | V6 | 2 models | Both exports of the upstream exporter admit a witness of the forbidden event that native Tamarin excludes, and one correction per export removes it |
+| V6, benchmark | 566 pairs of theory and lemma under 2 builds | B0 and B2 return a definitive outcome for the same 308 pairs, and the outcomes are equal. Five pairs of one theory change from a time limit or from no result to a syntax error of ProVerif, which the first patch causes. The [benchmark notes](V6-exporter/benchmark/README.md) report the comparison |
 | V7 | 10 jobs | All ten jobs reach the fourfold time limit of 14,400 s without a verdict |
 
 The two unchanged controls of V4, `LMOTS__control` and `LMS_S2__control`, are the rerun of series G with generator 0.1.2. They hold 28 ProVerif and 32 Tamarin verdicts on the two signers.
@@ -66,6 +69,7 @@ The seven input mutants that the generator accepts all come from the operator `l
 | `V3-diagnosis/make_resource_runs.py`, `e7_items.py` | Prepare runs under chosen resource limits and derive items from the reruns of V7 |
 | `V4-mutation/mutate.py`, `mutate_cim.py`, `score.py` | Write the mutants of the models and of the inputs and score the mutants |
 | `V6-exporter/compare_runs.py` | Compare two result tables of the translated route |
+| `V6-exporter/benchmark/summarize_benchmark.py` | Recompute the counts of the benchmark comparison from its records |
 | `V7-time-limit/select_jobs.py` | Select the ten jobs by the fixed rule |
 
 Each script states its usage at its head. The directory names of the series carry the letter V, and the scripts keep the option names `--e1` and `--e4` and the job prefix `E7x4_` of the runs.

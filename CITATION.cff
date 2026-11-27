@@ -2,7 +2,15 @@ cff-version: 1.2.0
 message: "If you use this repository, please cite it as follows."
 type: software
 title: "Cross-tool verification of iterative cryptographic protocols"
+abstract: "Reproduction package of the paper 'A Cross-Tool Formal Verification Methodology for Cryptographic Protocols with Iterative Behavior Using ProVerif and Tamarin Prover'. It holds the generator cimc, the Common Iterative Models, the generated ProVerif and Tamarin models, the exporter probes and patches, and the records of all experimental series."
 authors:
   - family-names: Mieno
     given-names: Takehiko
+    orcid: "https://orcid.org/0009-0002-1646-2333"
 repository-code: "https://github.com/mienotakehiko/crosstool-proverif-tamarin"
+keywords:
+  - formal verification
+  - ProVerif
+  - Tamarin
+  - cross-tool verification
+  - differential testing

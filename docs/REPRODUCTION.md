@@ -57,6 +57,14 @@ The script [`run_reveal.sh`](../validation/V1-families/reveal_followup/run_revea
 bash validation/V1-families/reveal_followup/run_reveal.sh "$work/reveal"
 ```
 
+## Public-derivation follow-up of series V1
+
+The script [`run_public.sh`](../validation/V1-families/public_derivation_followup/run_public.sh) runs both provers on the two model sets of the follow-up, in which LM-OTS(2,1) and LMS(1,2) declare their derivation function public. The [notes](../validation/V1-families/public_derivation_followup/README.md) describe the inputs, the limits and the records. The work directory lies outside the repository.
+
+```bash
+bash validation/V1-families/public_derivation_followup/run_public.sh "$work/public"
+```
+
 ## Boundary probes (series V2)
 
 The option `--provers` of [`run_boundary.py`](../validation/V2-boundary/run_boundary.py) runs both tools on every probe whose model files exist. The command for the four pair-shaped probes follows. It takes a few seconds per probe.
@@ -80,6 +88,14 @@ bash models/tamarin-kit-v3/run_one_v3.sh P1_std_HSS_LS7_inj_T0_exec_d_prove std 
 ```
 
 The runner writes `results/records.jsonl` and the raw outputs below the kit directory, and `.gitignore` excludes both. The tool name `cyc` needs the binary `tamarin-cyclic` and the variable `MAUDE_CYC`. The corpus theories of P4 come from their upstream sources, which [`corpus/README.md`](../corpus/README.md) names. Series P5 repeats a job five times with the job names `P5_<job>_r1` to `P5_<job>_r5`. Series L repeats three jobs with the heap limits 8g, 16g and 32g. Series V7 repeats the ten jobs of [`jobs_e7.tsv`](../validation/V7-time-limit/jobs_e7.tsv) with a time limit of 14,400 s, and [`select_jobs.py`](../validation/V7-time-limit/select_jobs.py) prints their commands.
+
+## Benchmark comparison (series V6)
+
+The comparison ran the evaluation scripts of the translation artifact in its container image, once with the exporter B0 and once with B2, with 300 s and 8,192 MB per pair of theory and lemma. The repository holds the records of both runs and the hashes of the binaries, and it holds neither the images nor the exported files. The [benchmark notes](../validation/V6-exporter/benchmark/README.md) describe the setup, and the following command recomputes the counts from the records.
+
+```bash
+python3 -B validation/V6-exporter/benchmark/summarize_benchmark.py
+```
 
 ## Scheduler lemmas
 

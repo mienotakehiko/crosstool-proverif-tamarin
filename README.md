@@ -82,6 +82,6 @@ The signer models abstract LM-OTS, LMS and HSS of [RFC 8554](https://www.rfc-edi
 
 ## Citation and contact
 
-[`CITATION.cff`](CITATION.cff) identifies the repository. Please cite the paper if these results contribute to other work.
+[`CITATION.cff`](CITATION.cff) identifies the repository. Please cite the paper if these results contribute to other work. The paper cites the repository by its address and names no commit. The page [`docs/RELEASES.md`](docs/RELEASES.md) relates the releases of the repository to the versions of the paper.
 
 Takehiko Mieno, EPSON AVASYS Corporation, Ueda, Nagano, Japan, `mieno.takehiko2@exc.epson.co.jp`

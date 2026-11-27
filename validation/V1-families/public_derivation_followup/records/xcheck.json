@@ -1,0 +1,193 @@
+{
+ "total": {
+  "sets": 2,
+  "properties": 12,
+  "records": 92,
+  "conclusive": 87,
+  "both_tools_agree_on_T": 11,
+  "both_tools_differ_on_T": 0,
+  "excluded_pairs": 0,
+  "unexpected": 0,
+  "predicted_without_verdict": 0
+ },
+ "sets": [
+  {
+   "set": "lmots_w2m1_pub",
+   "records": 40,
+   "conclusive": 38,
+   "properties": 5,
+   "both_tools_agree_on_T": 5,
+   "both_tools_differ_on_T": 0,
+   "excluded_pairs": [],
+   "unexpected": [],
+   "unresolved": [],
+   "rows": [
+    [
+     "LS1_unforge",
+     {
+      "U1": "H",
+      "Urb1": "H",
+      "lin": "N(cannot)",
+      "rep": "W",
+      "base": "H",
+      "cl1": "W",
+      "omega": "W",
+      "rb1": "W"
+     }
+    ],
+    [
+     "LS1_unforge_noreveal",
+     {
+      "U1": "W",
+      "Urb1": "W",
+      "lin": "W",
+      "rep": "W",
+      "base": "W",
+      "cl1": "W",
+      "omega": "W",
+      "rb1": "W"
+     }
+    ],
+    [
+     "exec_accept",
+     {
+      "U1": "W",
+      "Urb1": "W",
+      "lin": "W",
+      "rep": "W",
+      "base": "W",
+      "cl1": "W",
+      "omega": "W",
+      "rb1": "W"
+     }
+    ],
+    [
+     "forge",
+     {
+      "U1": "H",
+      "Urb1": "H",
+      "lin": "N(cannot)",
+      "rep": "W",
+      "base": "H",
+      "cl1": "W",
+      "omega": "W",
+      "rb1": "W"
+     }
+    ],
+    [
+     "forge_noreveal",
+     {
+      "U1": "W",
+      "Urb1": "W",
+      "lin": "W",
+      "rep": "W",
+      "base": "W",
+      "cl1": "W",
+      "omega": "W",
+      "rb1": "W"
+     }
+    ]
+   ]
+  },
+  {
+   "set": "lms_h1w2_pub",
+   "records": 52,
+   "conclusive": 49,
+   "properties": 7,
+   "both_tools_agree_on_T": 6,
+   "both_tools_differ_on_T": 0,
+   "excluded_pairs": [],
+   "unexpected": [],
+   "unresolved": [],
+   "rows": [
+    [
+     "LS1",
+     {
+      "U2": "H",
+      "Urb2": "W",
+      "lin": "N(cannot)",
+      "rep": "W",
+      "base": "H",
+      "cl1": "W",
+      "omega": "W",
+      "rb1": "W"
+     }
+    ],
+    [
+     "LS1_noreveal",
+     {
+      "U2": "W",
+      "Urb2": "W",
+      "lin": "W",
+      "rep": "W",
+      "base": "W",
+      "cl1": "W",
+      "omega": "W",
+      "rb1": "W"
+     }
+    ],
+    [
+     "LS3_forge",
+     {
+      "U2": "H",
+      "Urb2": "W",
+      "lin": "N(cannot)",
+      "rep": "W",
+      "base": "H",
+      "cl1": "W",
+      "omega": "W",
+      "rb1": "W"
+     }
+    ],
+    [
+     "LS3_forge_noreveal",
+     {
+      "U2": "W",
+      "Urb2": "W",
+      "lin": "W",
+      "rep": "W",
+      "base": "W",
+      "cl1": "W",
+      "omega": "W",
+      "rb1": "W"
+     }
+    ],
+    [
+     "LS4",
+     {
+      "base": "H",
+      "cl1": "H",
+      "omega": "W",
+      "rb1": "H"
+     }
+    ],
+    [
+     "LS4_pure",
+     {
+      "U2": "H",
+      "Urb2": "W",
+      "lin": "N(cannot)",
+      "rep": "W",
+      "base": "H",
+      "cl1": "W",
+      "omega": "W",
+      "rb1": "W"
+     }
+    ],
+    [
+     "exec",
+     {
+      "U2": "W",
+      "Urb2": "W",
+      "lin": "W",
+      "rep": "W",
+      "base": "W",
+      "cl1": "W",
+      "omega": "W",
+      "rb1": "W"
+     }
+    ]
+   ]
+  }
+ ]
+}
