@@ -1,0 +1,12 @@
+[
+  "/step8-tamarin-prover",
+  "+RTS",
+  "-N1",
+  "-M768m",
+  "-RTS",
+  "-d=0",
+  "-m=proverif",
+  "--lemma=bad_reachable",
+  "-o=/work/step4/variable_controls/shared_equality/bad_reachable/translated.pv",
+  "/kit/models/variable_controls/shared_equality.spthy"
+]

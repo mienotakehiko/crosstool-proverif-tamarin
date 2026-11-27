@@ -1,0 +1,25 @@
+diff --git a/lib/export/src/Export/ProVerif/Rule.hs b/lib/export/src/Export/ProVerif/Rule.hs
+index 73ad851..f1c3f89 100644
+--- a/lib/export/src/Export/ProVerif/Rule.hs
++++ b/lib/export/src/Export/ProVerif/Rule.hs
+@@ -674,10 +674,17 @@ translatePatternFact rowReadGuards fact@(Fact tag _ ts) factType vars helperVars
+       foldl' (\acc@(_, helpers) t -> acc `accumulateResult` translatePatternTerm vars helpers t) ([], helperVars) ts
+     factDoc = case factType of
+       GET -> text "get" <-> text (showFactName tag) <> text "(" <> (fsep . punctuate comma $ doclist) <> text ")" <> rowReadCondition rowReadGuards fact <> text " in"
+-      IN -> case doclist of
+-        document : _ -> text "in(publicChannel," <-> document <> text ": bitstring);"
+-        [] -> translationFail "An input pattern requires one term."
++      IN -> case (doclist, ts) of
++        (document : _, t : _)
++          -- Candidate: ProVerif admits no type after an equality pattern.
++          | writesEquality t -> text "in(publicChannel," <-> document <> text ");"
++          | otherwise -> text "in(publicChannel," <-> document <> text ": bitstring);"
++        _ -> translationFail "An input pattern requires one term."
+       _ -> translationInvariantFail "Pattern translation received a fact other than get or input."
++    -- The cases in which translatePatternTerm writes an equality pattern.
++    writesEquality t = case viewTerm t of
++      Lit l -> S.member (show l) vars || startsWith '\'' (show l)
++      _ -> null (lits t)
+ 
+ startsWith :: Char -> String -> Bool
+ startsWith expected (actual : _) = expected == actual

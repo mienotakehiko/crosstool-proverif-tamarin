@@ -1,0 +1,5 @@
+-d=0
+-m=proverif
+--lemma=Login_reachable
+-o=Yubikey_Login_reachable.pv
+examples/related_work/YubiSecure_KS_STM12/Yubikey.spthy

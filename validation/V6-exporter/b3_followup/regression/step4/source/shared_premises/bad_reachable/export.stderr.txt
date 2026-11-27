@@ -1,0 +1,7 @@
+maude tool: 'maude'
+ checking version: 3.5. OK.
+ checking installation: OK.
+[Theory shared_premises] Theory loaded
+[Theory shared_premises] Theory translated
+[Theory shared_premises] No Deconstruction Chain checks started
+[Theory shared_premises] No Deconstruction Chain checks ended

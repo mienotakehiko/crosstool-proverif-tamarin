@@ -1,0 +1,9 @@
+maude tool: 'maude'
+ checking version: 3.5. OK.
+ checking installation: OK.
+[Theory shared_equality] Theory loaded
+[Theory shared_equality] Theory translated
+[Theory shared_equality] No Deconstruction Chain checks started
+[Theory shared_equality] No Deconstruction Chain checks ended
+[Theory shared_equality] Theory closed
+[Saturating Sources] Done

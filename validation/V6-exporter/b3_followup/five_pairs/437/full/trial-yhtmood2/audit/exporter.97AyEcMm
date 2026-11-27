@@ -1,0 +1,5 @@
+-d=0
+-m=proverif
+--lemma=Login_invalidates_smaller_counters
+-o=Yubikey_Login_invalidates_smaller_counters.pv
+examples/related_work/YubiSecure_KS_STM12/Yubikey.spthy

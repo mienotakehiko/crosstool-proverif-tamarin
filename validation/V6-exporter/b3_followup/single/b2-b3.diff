@@ -1,0 +1,21 @@
+--- b2/yubikey_b2.pv
++++ b3/yubikey_b3.pv
+@@ -96,8 +96,8 @@
+ (* Processes *)
+ 
+ let rInitSucc =
+-        in(publicChannel, =myzero(): bitstring);
+-        in(publicChannel, =S(myzero()): bitstring);
++        in(publicChannel, =myzero());
++        in(publicChannel, =S(myzero()));
+         event eTheory();
+         event eIsSucc(myzero(), S(myzero()));
+         event eIsZero(myzero());
+@@ -204,5 +204,5 @@
+ Tamarin version 1.13.0
+ Maude version 3.5
+ Git revision: UNKNOWN
+-Compiled at: 2026-11-15 05:08:08.737146731 UTC
++Compiled at: 2026-11-27 02:55:27.210994582 UTC
+ *)
+\ No newline at end of file

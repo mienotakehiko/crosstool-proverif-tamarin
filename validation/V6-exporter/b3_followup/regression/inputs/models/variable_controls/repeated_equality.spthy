@@ -1,0 +1,22 @@
+theory repeated_equality begin
+functions: z/0, s/1, pair/2
+
+rule Init:
+ [ Fr(~sid) ] --[ InitOnce() ]->
+ [ StGood(~sid,pair(z,z)), StBad(~sid,pair(z,s(z))) ]
+
+restriction OneInit:
+ "All #i #j. InitOnce()@i & InitOnce()@j ==> #i = #j"
+
+rule Good:
+ [ StGood(sid,pair(x,x)) ] --[ Good(sid) ]-> []
+
+rule Bad:
+ [ StBad(sid,pair(x,x)) ] --[ Bad(sid) ]-> []
+
+lemma good_reachable: exists-trace
+ "Ex sid #i. Good(sid)@i"
+
+lemma bad_reachable: exists-trace
+ "Ex sid #i. Bad(sid)@i"
+end

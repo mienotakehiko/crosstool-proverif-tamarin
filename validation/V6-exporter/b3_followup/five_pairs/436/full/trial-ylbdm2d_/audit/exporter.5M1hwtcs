@@ -1,0 +1,5 @@
+-d=0
+-m=proverif
+--lemma=injective_correspondance
+-o=Yubikey_injective_correspondance.pv
+examples/related_work/YubiSecure_KS_STM12/Yubikey.spthy

@@ -1,0 +1,20 @@
+--- step4-or-step5
++++ regenerated
+@@ -60,7 +60,7 @@
+ 
+ let rGood =
+         get tSt(stL_St, asid, =vtwo, =z()) in
+-        get tSt(stL_St_1, =asid, =vtwo, =z()) in
++        get tSt(stL_St_1, =asid, =vtwo, =z()) suchthat (stL_St_1 <> stL_St) in
+         new rid_rGood: bitstring;
+         event eDistinctFact(rid_rGood, (stL_St, (asid, (vtwo, z()))));
+         event eDistinctFact(rid_rGood, (stL_St_1, (asid, (vtwo, z()))));
+@@ -68,7 +68,7 @@
+ 
+ let rBad =
+         get tSt(stL_St, asid, =vone, =z()) in
+-        get tSt(stL_St_1, =asid, =vone, =z()) in
++        get tSt(stL_St_1, =asid, =vone, =z()) suchthat (stL_St_1 <> stL_St) in
+         new rid_rBad: bitstring;
+         event eDistinctFact(rid_rBad, (stL_St, (asid, (vone, z()))));
+         event eDistinctFact(rid_rBad, (stL_St_1, (asid, (vone, z()))));

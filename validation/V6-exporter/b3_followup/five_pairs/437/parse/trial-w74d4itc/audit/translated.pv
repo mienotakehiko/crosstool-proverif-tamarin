@@ -1,0 +1,212 @@
+set preciseActions = true.
+
+(* Free names *)
+free publicChannel:channel.
+
+(* Functions *)
+fun S(bitstring):bitstring.
+fun fst(bitstring):bitstring.
+fun myzero():bitstring.
+fun pair(bitstring,bitstring):bitstring.
+fun sdec(bitstring,bitstring):bitstring.
+fun senc(bitstring,bitstring):bitstring.
+fun snd(bitstring):bitstring.
+
+(* Equations *)
+equation forall x_1:bitstring, x_2:bitstring; fst((x_1, x_2)) = x_1.
+equation forall x_1:bitstring, x_2:bitstring; sdec(senc(x_1, x_2), x_2) = x_1.
+equation forall x_1:bitstring, x_2:bitstring; snd((x_1, x_2)) = x_2.
+reduc forall var_k:bitstring, var_nonce:bitstring, var_pid:bitstring, var_sid:bitstring, var_tc:bitstring, var_pr:bitstring; g_var_k_6((var_pid, (var_nonce, senc((var_sid, (var_tc, var_pr)), var_k)))) = var_k[private].
+reduc forall var_k:bitstring, var_nonce:bitstring, var_pid:bitstring, var_sid:bitstring, var_tc:bitstring, var_pr:bitstring; g_var_nonce_2((var_pid, (var_nonce, senc((var_sid, (var_tc, var_pr)), var_k)))) = var_nonce[private].
+reduc forall var_k:bitstring, var_nonce:bitstring, var_pid:bitstring, var_sid:bitstring, var_tc:bitstring, var_pr:bitstring; g_var_pid_1((var_pid, (var_nonce, senc((var_sid, (var_tc, var_pr)), var_k)))) = var_pid[private].
+reduc forall var_k:bitstring, var_nonce:bitstring, var_pid:bitstring, var_sid:bitstring, var_tc:bitstring, var_pr:bitstring; g_var_pr_5((var_pid, (var_nonce, senc((var_sid, (var_tc, var_pr)), var_k)))) = var_pr[private].
+reduc forall var_k:bitstring, var_nonce:bitstring, var_pid:bitstring, var_sid:bitstring, var_tc:bitstring, var_pr:bitstring; g_var_sid_3((var_pid, (var_nonce, senc((var_sid, (var_tc, var_pr)), var_k)))) = var_sid[private].
+reduc forall var_k:bitstring, var_nonce:bitstring, var_pid:bitstring, var_sid:bitstring, var_tc:bitstring, var_pr:bitstring; g_var_tc_4((var_pid, (var_nonce, senc((var_sid, (var_tc, var_pr)), var_k)))) = var_tc[private].
+reduc forall var_y:bitstring; g_var_y_0(S(var_y)) = var_y[private].
+
+(* Events *)
+event eDistinctFact(bitstring, bitstring).
+event eExtendedInit(bitstring, bitstring, bitstring).
+event eInit(bitstring, bitstring).
+event eIsSmaller(bitstring, bitstring).
+event eIsSucc(bitstring, bitstring).
+event eIsZero(bitstring).
+event eLogin(bitstring, bitstring, bitstring, bitstring).
+event eLoginCounter(bitstring, bitstring, bitstring, bitstring).
+event eProtocol().
+event eTheory().
+event eYubi(bitstring, bitstring).
+event eYubiOTP(bitstring, bitstring).
+event eYubiPress(bitstring, bitstring).
+event eYubiSid(bitstring, bitstring, bitstring).
+
+(* Tables *)
+table tServer(bitstring, bitstring, bitstring, bitstring).
+table tSharedKey(bitstring, bitstring).
+table tSmaller(bitstring, bitstring).
+table tSucc(bitstring, bitstring).
+table tY(bitstring, bitstring).
+table tY_counter(bitstring, bitstring, bitstring).
+
+(* Restrictions *)
+
+(* transitivity *)
+
+restriction a:bitstring, b:bitstring, c:bitstring, t1:time, t2:time,
+            t3:time;
+  event(eIsSmaller( a, b ))@t1 && event(eIsSmaller( b, c ))@t2
+  ==> event(eIsSmaller( a, c ))@t3.
+
+(* smaller_implies_unequal *)
+(* Restriction translation failed: formula is outside the supported ProVerif restriction fragment. *)
+(*¬(∃ a #t. IsSmaller( a, a ) @ #t)*)
+
+
+(* theory_before_protocol *)
+
+restriction i:time, j:time;
+  event(eTheory( ))@i && event(eProtocol( ))@j ==> i < j.
+
+(* DistinctFact *)
+
+restriction rid_i:bitstring, rid_j:bitstring, x:bitstring, i:time,
+            j:time;
+  event(eDistinctFact( rid_i, x ))@i && event(eDistinctFact( rid_j, x ))@j
+  ==> rid_i = rid_j.
+
+(* Axioms from reuse/source lemmas *)
+
+(* slightly_weaker_invariant [reuse/source lemma translated as axiom] *)
+
+axiom rid_t1:bitstring, rid_t2:bitstring, otc1:bitstring, otc2:bitstring,
+      pid:bitstring, tc1:bitstring, tc2:bitstring, t1:time, t2:time, t3:time;
+  event(eLoginCounter( rid_t1, pid, otc1, tc1 ))@t1
+  && event(eLoginCounter( rid_t2, pid, otc2, tc2 ))@t2
+  ==> (t1 < t2 && event(eIsSmaller( tc1, tc2 ))@t3)
+      || t2 < t1
+      || rid_t1 = rid_t2.
+
+(* Queries *)
+
+(* Login_invalidates_smaller_counters *)
+
+query rid_t1:bitstring, rid_t2:bitstring, otc1:bitstring, otc2:bitstring,
+      pid:bitstring, tc1:bitstring, tc2:bitstring, t1:time, t2:time, t3:time;
+  event(eLoginCounter( rid_t1, pid, otc1, tc1 ))@t1
+  && event(eLoginCounter( rid_t2, pid, otc2, tc2 ))@t2
+  && event(eIsSmaller( tc1, tc2 ))@t3
+  ==> t1 < t2.
+
+(* Processes *)
+
+let rInitSucc =
+        in(publicChannel, =myzero());
+        in(publicChannel, =S(myzero()));
+        event eTheory();
+        event eIsSucc(myzero(), S(myzero()));
+        event eIsZero(myzero());
+        insert tSucc(myzero(), S(myzero())).
+
+let rStepSucc =
+        get tSucc(x, y) in
+        in(publicChannel, helperVar0: bitstring);
+        let (=y) = g_var_y_0(helperVar0) in
+        in(publicChannel, =y);
+        event eTheory();
+        event eIsSucc(y, S(y));
+        insert tSucc(y, S(y)).
+
+let rSimpleSmaller =
+        get tSucc(x, y) in
+        event eTheory();
+        event eIsSmaller(x, y);
+        insert tSmaller(x, y).
+
+let rZExtendedSmaller =
+        get tSmaller(x, y) in
+        get tSucc(=y, z) in
+        event eTheory();
+        event eIsSmaller(x, z);
+        insert tSmaller(x, z).
+
+let rBuyANewYubikey =
+        new stR_Y_counter: bitstring;
+        new stR_Server: bitstring;
+        new k: bitstring;
+        new pid: bitstring;
+        new asid: bitstring;
+        event eProtocol();
+        event eInit(pid, k);
+        event eExtendedInit(pid, asid, k);
+        event eIsZero(myzero());
+        insert tY(pid, asid);
+        insert tY_counter(stR_Y_counter, pid, myzero());
+        insert tServer(stR_Server, pid, asid, myzero());
+        insert tSharedKey(pid, k);
+        out(publicChannel, pid).
+
+let rYubikey_Plugin =
+        get tY_counter(stL_Y_counter, pid, sc) in
+        get tSmaller(=sc, Ssc) in
+        new rid_rYubikey_Plugin: bitstring;
+        new stR_Y_counter: bitstring;
+        event eDistinctFact(rid_rYubikey_Plugin, (stL_Y_counter, (pid, sc)));
+        event eYubi(pid, Ssc);
+        insert tY_counter(stR_Y_counter, pid, Ssc).
+
+let rYubikey_PressButton =
+        get tY(pid, asid) in
+        get tY_counter(stL_Y_counter, =pid, tc) in
+        get tSharedKey(=pid, k) in
+        get tSucc(=tc, Stc) in
+        new rid_rYubikey_PressButton: bitstring;
+        new stR_Y_counter: bitstring;
+        new npr: bitstring;
+        new nonce: bitstring;
+        event eDistinctFact(rid_rYubikey_PressButton, (stL_Y_counter, (pid, tc)));
+        event eYubiPress(pid, tc);
+        event eYubiOTP(pid, senc((asid, (tc, npr)), k));
+        event eYubiSid(pid, asid, k);
+        insert tY_counter(stR_Y_counter, pid, Stc);
+        out(publicChannel, (pid, (nonce, senc((asid, (tc, npr)), k)))).
+
+let rServer_ReceiveOTP_NewSession =
+        get tServer(stL_Server, pid, asid, otc) in
+        get tSharedKey(=pid, k) in
+        get tSmaller(=otc, tc) in
+        in(publicChannel, helperVar0: bitstring);
+        let (=pid) = g_var_pid_1(helperVar0) in
+        let nonce = g_var_nonce_2(helperVar0) in
+        let (=asid) = g_var_sid_3(helperVar0) in
+        let (=tc) = g_var_tc_4(helperVar0) in
+        let pr = g_var_pr_5(helperVar0) in
+        let (=k) = g_var_k_6(helperVar0) in
+        new rid_rServer_ReceiveOTP_NewSession: bitstring;
+        new stR_Server: bitstring;
+        event eDistinctFact(rid_rServer_ReceiveOTP_NewSession, (stL_Server, (pid, (asid, otc))));
+        event eLogin(pid, asid, tc, senc((asid, (tc, pr)), k));
+        event eLoginCounter(rid_rServer_ReceiveOTP_NewSession, pid, otc, tc);
+        insert tServer(stR_Server, pid, asid, tc).
+
+process
+    ( !(rInitSucc) | !(rStepSucc) | !(rSimpleSmaller) | !(rZExtendedSmaller) | !(rBuyANewYubikey) | !(rYubikey_Plugin) | !(rYubikey_PressButton) | !(rServer_ReceiveOTP_NewSession) )
+
+(*
+ The Yubikey-Protocol 
+*)
+
+(*
+WARNING: export omitted or approximated proof-relevant input.
+
+Changed assumptions
+===================
+- Restriction `smaller_implies_unequal`: was not emitted; the translated trace model is incomplete: formula is outside the supported ProVerif restriction fragment [PV-RESTRICTION-OMITTED]
+*)
+
+(*
+Generated from:
+Tamarin version 1.13.0
+Maude version 3.5
+Git revision: UNKNOWN
+Compiled at: 2026-11-27 02:55:27.210994582 UTC
+*)

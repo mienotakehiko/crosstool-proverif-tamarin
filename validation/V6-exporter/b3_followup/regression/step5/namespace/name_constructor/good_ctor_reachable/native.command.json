@@ -1,0 +1,10 @@
+[
+  "/step8-tamarin-prover",
+  "+RTS",
+  "-N1",
+  "-M768m",
+  "-RTS",
+  "-d=0",
+  "--prove=good_ctor_reachable",
+  "/kit/models/namespace/name_constructor.spthy"
+]

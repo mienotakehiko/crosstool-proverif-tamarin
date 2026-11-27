@@ -1,0 +1,17 @@
+Linear part: No equation.
+Convergent part:
+sdec(senc(x_1,x_2),x_2) = x_1
+fst((x_1,x_2)) = x_1
+snd((x_1,x_2)) = x_2
+Completing equations...
+Completed equations:
+snd((x_1,x_2)) = x_2
+fst((x_1,x_2)) = x_1
+sdec(senc(x_1,x_2),x_2) = x_1
+
+--------------------------------------------------------------
+Verification summary:
+
+No query in the input file.
+--------------------------------------------------------------
+

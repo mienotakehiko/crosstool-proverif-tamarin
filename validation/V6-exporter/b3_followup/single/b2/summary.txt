@@ -1,0 +1,7 @@
+mode=b2
+lemma=Login_reachable
+proverif_mode=full
+export_rc=0
+proverif_rc=2
+location_check=SAME_LINE
+input_lines_listed=5

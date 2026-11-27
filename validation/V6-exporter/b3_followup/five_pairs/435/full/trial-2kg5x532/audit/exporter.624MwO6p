@@ -1,0 +1,5 @@
+-d=0
+-m=proverif
+--lemma=slightly_weaker_invariant
+-o=Yubikey_slightly_weaker_invariant.pv
+examples/related_work/YubiSecure_KS_STM12/Yubikey.spthy

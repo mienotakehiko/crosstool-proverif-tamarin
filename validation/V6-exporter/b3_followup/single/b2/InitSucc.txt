@@ -1,0 +1,16 @@
+40	rule InitSucc:
+41	    [In(myzero),In(S(myzero))]
+42		 --[Theory(), IsSucc(myzero,S(myzero)),IsZero(myzero)]->
+43		[!Succ(myzero,S(myzero))]
+44	
+45	rule StepSucc:
+46	    [In(y),In(S(y)), !Succ(x,y)]
+47		--[Theory(), IsSucc(y,S(y)) ]->
+48		[!Succ(y,S(y))]
+49	
+50	rule SimpleSmaller:
+51	    [!Succ(x,y)]
+52		--[Theory(), IsSmaller(x,y)]->
+53		[!Smaller(x,y)]
+54	
+55	rule ZExtendedSmaller:

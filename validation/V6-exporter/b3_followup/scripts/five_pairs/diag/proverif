@@ -1,0 +1,15 @@
+#!/bin/sh
+# Only installed on PATH for the separate syntax check.
+set -eu
+if [ "$#" -ne 1 ] || [ ! -s "$1" ]; then
+    printf 'Unexpected ProVerif arguments: %s\n' "$*" >&2
+    exit 2
+fi
+d=/rev013-audit
+printf '%s\n' "$1" >> "$d/parser-inputs.txt"
+cp -- "$1" "$d/translated.pv"
+rc=0
+/usr/local/bin/proverif -parse-only "$1" > "$d/parse.log" 2>&1 || rc=$?
+printf '%s\n' "$rc" > "$d/parse.rc"
+cat "$d/parse.log"
+exit "$rc"

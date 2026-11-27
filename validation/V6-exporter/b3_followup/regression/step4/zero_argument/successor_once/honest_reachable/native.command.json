@@ -1,0 +1,10 @@
+[
+  "/step8-tamarin-prover",
+  "+RTS",
+  "-N1",
+  "-M768m",
+  "-RTS",
+  "-d=0",
+  "--prove=honest_reachable",
+  "/kit/models/zero_argument/successor_once.spthy"
+]

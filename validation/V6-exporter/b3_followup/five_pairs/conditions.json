@@ -1,0 +1,36 @@
+{
+  "image": "sha256:38fffe6dff4d9c2b2757c43e3df20be1f21a57751183d7e803fa02829e77545b",
+  "driver": "46876c47afd9fd8190206bc71383f989aa51a1b785066530dfa22736906597bc",
+  "csv": "93dd69ed59dc8a1243e5d23afb1117b660b563fbc61489d997186342cd392d7c",
+  "timeout": 300,
+  "memory_MB": 8192,
+  "files": {
+    "b2": {
+      "/opt/rev013/native": "b942e7f58d15023bc1a7210c0bedbc0d36db921f0a54888827bca7989730f70a",
+      "/opt/rev013/exporter": "a07b24ef01cbd12b3eba99491d9b980f1561ec2df41a8137d0fe2f4744dbd6f5",
+      "/usr/local/bin/proverif": "f6b5e9606e639350085167f150e6bca7adfcdac0b34614b890e72f7f9e0c1c28",
+      "/usr/local/bin/maude": "13b89491dcfeef5a0befba10db503de1937fc46279320242423fc38f1fd830a0",
+      "/opt/eval/eval.py": "29ec8cca3a7ef913d5ce8ae7e9d73cc965f9a3a6971ad8d440cee6809860eb40",
+      "/usr/local/bin/tamarin-prover": "e497a71595b5815ce70c0aff7738278c0f92217d5e595866f29e82dbe155b5db",
+      "/opt/eval/examples/related_work/YubiSecure_KS_STM12/Yubikey.spthy": "d43d55e62da0222eaa7e0f433b9b6d4131969ace3f534e19c7ba411dfc4fb196"
+    },
+    "b3": {
+      "/opt/rev013/native": "b942e7f58d15023bc1a7210c0bedbc0d36db921f0a54888827bca7989730f70a",
+      "/opt/rev013/exporter": "59a810bf9494eca1476cfc344ee1f657e2c327c4c31d7721ba4375afa10ef9fc",
+      "/usr/local/bin/proverif": "f6b5e9606e639350085167f150e6bca7adfcdac0b34614b890e72f7f9e0c1c28",
+      "/usr/local/bin/maude": "13b89491dcfeef5a0befba10db503de1937fc46279320242423fc38f1fd830a0",
+      "/opt/eval/eval.py": "29ec8cca3a7ef913d5ce8ae7e9d73cc965f9a3a6971ad8d440cee6809860eb40",
+      "/usr/local/bin/tamarin-prover": "e497a71595b5815ce70c0aff7738278c0f92217d5e595866f29e82dbe155b5db",
+      "/opt/eval/examples/related_work/YubiSecure_KS_STM12/Yubikey.spthy": "d43d55e62da0222eaa7e0f433b9b6d4131969ace3f534e19c7ba411dfc4fb196"
+    }
+  },
+  "driver_inputs": "/redacted-home/cryptography-experiments/rev013-evidence-8UgiWm/morio-paired-local300/full-b2/task-433/trial-6m3171nc/work/eval",
+  "binary": "/redacted-home/rev015-sec8.vJXRNNGe/b3-src/build/candidate/tamarin-prover",
+  "driver_output_option": "--output",
+  "kit": {
+    "run.py": "58b1c80fe528dd0f118456d63210dd86fe8398447f7aae0a41580b4e528bceb2",
+    "diag/proverif": "e3017539ab82e02e51a6d8eefcb36085f97ce773c007be1b759f6bc42149076f",
+    "proxy/docker": "df8ad1e41980d2afc1e7e9b86f09b7bc820625e6a30c9c135837fffdd639f98c",
+    "references.json": "2c0b2c5a0ccf1b745a3a996a441b966f07322aacb2a510047bc23617627db6a1"
+  }
+}

@@ -1,0 +1,9 @@
+maude tool: 'maude'
+ checking version: 3.5. OK.
+ checking installation: OK.
+[Theory session_join] Theory loaded
+[Theory session_join] Theory translated
+[Theory session_join] No Deconstruction Chain checks started
+[Theory session_join] No Deconstruction Chain checks ended
+[Theory session_join] Theory closed
+[Saturating Sources] Done

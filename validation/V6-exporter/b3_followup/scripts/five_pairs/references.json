@@ -1,0 +1,239 @@
+{
+  "archive": "morio-B0-B2-local300.zip",
+  "csv": "93dd69ed59dc8a1243e5d23afb1117b660b563fbc61489d997186342cd392d7c",
+  "driver": "46876c47afd9fd8190206bc71383f989aa51a1b785066530dfa22736906597bc",
+  "image": "sha256:38fffe6dff4d9c2b2757c43e3df20be1f21a57751183d7e803fa02829e77545b",
+  "driver_image": "msr-to-pv-eval:ccs26",
+  "original_image_files": {
+    "/opt/rev013/native": "b942e7f58d15023bc1a7210c0bedbc0d36db921f0a54888827bca7989730f70a",
+    "/opt/rev013/exporter": "a07b24ef01cbd12b3eba99491d9b980f1561ec2df41a8137d0fe2f4744dbd6f5",
+    "/usr/local/bin/proverif": "f6b5e9606e639350085167f150e6bca7adfcdac0b34614b890e72f7f9e0c1c28",
+    "/usr/local/bin/maude": "13b89491dcfeef5a0befba10db503de1937fc46279320242423fc38f1fd830a0",
+    "/opt/eval/eval.py": "29ec8cca3a7ef913d5ce8ae7e9d73cc965f9a3a6971ad8d440cee6809860eb40",
+    "/usr/local/bin/tamarin-prover": "e497a71595b5815ce70c0aff7738278c0f92217d5e595866f29e82dbe155b5db"
+  },
+  "model_hash": "d43d55e62da0222eaa7e0f433b9b6d4131969ace3f534e19c7ba411dfc4fb196",
+  "b3": "59a810bf9494eca1476cfc344ee1f657e2c327c4c31d7721ba4375afa10ef9fc",
+  "tasks": {
+    "433": {
+      "B0": {
+        "index": 433,
+        "input_file": "examples/related_work/YubiSecure_KS_STM12/Yubikey.spthy",
+        "lemma": "Login_reachable",
+        "trace_quantifier": "exists-trace",
+        "verifiers_run": [
+          "proverif"
+        ],
+        "proverif_result": null,
+        "proverif_timeout": false,
+        "proverif_oom": false,
+        "proverif_time": 119.276,
+        "proverif_memory": 939228,
+        "translate_error": false,
+        "proverif_error": null,
+        "axiom_missing": false,
+        "restriction_missing": true,
+        "timepoints_split": false,
+        "leading_negation": false,
+        "multiple_queries": false
+      },
+      "B2": {
+        "index": 433,
+        "input_file": "examples/related_work/YubiSecure_KS_STM12/Yubikey.spthy",
+        "lemma": "Login_reachable",
+        "trace_quantifier": "exists-trace",
+        "verifiers_run": [
+          "proverif"
+        ],
+        "proverif_result": "error",
+        "proverif_timeout": false,
+        "proverif_oom": false,
+        "proverif_time": 0.004,
+        "proverif_memory": 7956,
+        "translate_error": false,
+        "proverif_error": "Syntax error",
+        "axiom_missing": false,
+        "restriction_missing": true,
+        "timepoints_split": false,
+        "leading_negation": false,
+        "multiple_queries": false
+      }
+    },
+    "434": {
+      "B0": {
+        "index": 434,
+        "input_file": "examples/related_work/YubiSecure_KS_STM12/Yubikey.spthy",
+        "lemma": "no_replay",
+        "trace_quantifier": "all-traces",
+        "verifiers_run": [
+          "proverif"
+        ],
+        "proverif_result": "error",
+        "proverif_timeout": true,
+        "proverif_oom": false,
+        "proverif_time": 300.005,
+        "proverif_memory": 0,
+        "translate_error": false,
+        "proverif_error": null,
+        "axiom_missing": false,
+        "restriction_missing": true,
+        "timepoints_split": false,
+        "leading_negation": false,
+        "multiple_queries": false
+      },
+      "B2": {
+        "index": 434,
+        "input_file": "examples/related_work/YubiSecure_KS_STM12/Yubikey.spthy",
+        "lemma": "no_replay",
+        "trace_quantifier": "all-traces",
+        "verifiers_run": [
+          "proverif"
+        ],
+        "proverif_result": "error",
+        "proverif_timeout": false,
+        "proverif_oom": false,
+        "proverif_time": 0.004,
+        "proverif_memory": 7900,
+        "translate_error": false,
+        "proverif_error": "Syntax error",
+        "axiom_missing": false,
+        "restriction_missing": true,
+        "timepoints_split": false,
+        "leading_negation": false,
+        "multiple_queries": false
+      }
+    },
+    "435": {
+      "B0": {
+        "index": 435,
+        "input_file": "examples/related_work/YubiSecure_KS_STM12/Yubikey.spthy",
+        "lemma": "slightly_weaker_invariant",
+        "trace_quantifier": "all-traces",
+        "verifiers_run": [
+          "proverif"
+        ],
+        "proverif_result": "error",
+        "proverif_timeout": true,
+        "proverif_oom": false,
+        "proverif_time": 300.103,
+        "proverif_memory": 0,
+        "translate_error": false,
+        "proverif_error": null,
+        "axiom_missing": false,
+        "restriction_missing": true,
+        "timepoints_split": false,
+        "leading_negation": false,
+        "multiple_queries": false
+      },
+      "B2": {
+        "index": 435,
+        "input_file": "examples/related_work/YubiSecure_KS_STM12/Yubikey.spthy",
+        "lemma": "slightly_weaker_invariant",
+        "trace_quantifier": "all-traces",
+        "verifiers_run": [
+          "proverif"
+        ],
+        "proverif_result": "error",
+        "proverif_timeout": false,
+        "proverif_oom": false,
+        "proverif_time": 0.004,
+        "proverif_memory": 7852,
+        "translate_error": false,
+        "proverif_error": "Syntax error",
+        "axiom_missing": false,
+        "restriction_missing": true,
+        "timepoints_split": false,
+        "leading_negation": false,
+        "multiple_queries": false
+      }
+    },
+    "436": {
+      "B0": {
+        "index": 436,
+        "input_file": "examples/related_work/YubiSecure_KS_STM12/Yubikey.spthy",
+        "lemma": "injective_correspondance",
+        "trace_quantifier": "all-traces",
+        "verifiers_run": [
+          "proverif"
+        ],
+        "proverif_result": "error",
+        "proverif_timeout": true,
+        "proverif_oom": false,
+        "proverif_time": 300.112,
+        "proverif_memory": 0,
+        "translate_error": false,
+        "proverif_error": null,
+        "axiom_missing": false,
+        "restriction_missing": true,
+        "timepoints_split": false,
+        "leading_negation": false,
+        "multiple_queries": true
+      },
+      "B2": {
+        "index": 436,
+        "input_file": "examples/related_work/YubiSecure_KS_STM12/Yubikey.spthy",
+        "lemma": "injective_correspondance",
+        "trace_quantifier": "all-traces",
+        "verifiers_run": [
+          "proverif"
+        ],
+        "proverif_result": "error",
+        "proverif_timeout": false,
+        "proverif_oom": false,
+        "proverif_time": 0.004,
+        "proverif_memory": 7976,
+        "translate_error": false,
+        "proverif_error": "Syntax error",
+        "axiom_missing": false,
+        "restriction_missing": true,
+        "timepoints_split": false,
+        "leading_negation": false,
+        "multiple_queries": true
+      }
+    },
+    "437": {
+      "B0": {
+        "index": 437,
+        "input_file": "examples/related_work/YubiSecure_KS_STM12/Yubikey.spthy",
+        "lemma": "Login_invalidates_smaller_counters",
+        "trace_quantifier": "all-traces",
+        "verifiers_run": [
+          "proverif"
+        ],
+        "proverif_result": "error",
+        "proverif_timeout": true,
+        "proverif_oom": false,
+        "proverif_time": 300.102,
+        "proverif_memory": 0,
+        "translate_error": false,
+        "proverif_error": null,
+        "axiom_missing": false,
+        "restriction_missing": true,
+        "timepoints_split": false,
+        "leading_negation": false,
+        "multiple_queries": false
+      },
+      "B2": {
+        "index": 437,
+        "input_file": "examples/related_work/YubiSecure_KS_STM12/Yubikey.spthy",
+        "lemma": "Login_invalidates_smaller_counters",
+        "trace_quantifier": "all-traces",
+        "verifiers_run": [
+          "proverif"
+        ],
+        "proverif_result": "error",
+        "proverif_timeout": false,
+        "proverif_oom": false,
+        "proverif_time": 0.004,
+        "proverif_memory": 8100,
+        "translate_error": false,
+        "proverif_error": "Syntax error",
+        "axiom_missing": false,
+        "restriction_missing": true,
+        "timepoints_split": false,
+        "leading_negation": false,
+        "multiple_queries": false
+      }
+    }
+  }
+}

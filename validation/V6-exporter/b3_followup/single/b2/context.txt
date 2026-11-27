@@ -1,0 +1,8 @@
+File "/out/yubikey_b2.pv", line 99, character 36:
+  96	(* Processes *)
+  97	
+  98	let rInitSucc =
+> 99	        in(publicChannel, =myzero(): bitstring);
+  100	        in(publicChannel, =S(myzero()): bitstring);
+  101	        event eTheory();
+  102	        event eIsSucc(myzero(), S(myzero()));

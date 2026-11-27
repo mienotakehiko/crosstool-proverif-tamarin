@@ -1,0 +1,7 @@
+maude tool: 'maude'
+ checking version: 3.5. OK.
+ checking installation: OK.
+[Theory nonground_nested] Theory loaded
+[Theory nonground_nested] Theory translated
+[Theory nonground_nested] No Deconstruction Chain checks started
+[Theory nonground_nested] No Deconstruction Chain checks ended

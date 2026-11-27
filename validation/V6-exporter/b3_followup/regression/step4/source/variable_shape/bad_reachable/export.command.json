@@ -1,0 +1,12 @@
+[
+  "/step8-tamarin-prover",
+  "+RTS",
+  "-N1",
+  "-M768m",
+  "-RTS",
+  "-d=0",
+  "-m=proverif",
+  "--lemma=bad_reachable",
+  "-o=/work/step4/source/variable_shape/bad_reachable/translated.pv",
+  "/kit/models/source/variable_shape.spthy"
+]

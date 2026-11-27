@@ -1,0 +1,5 @@
+-d=0
+-m=proverif
+--lemma=no_replay
+-o=Yubikey_no_replay.pv
+examples/related_work/YubiSecure_KS_STM12/Yubikey.spthy

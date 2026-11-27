@@ -1,0 +1,1100 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 3.33kB done
+#1 DONE 0.0s
+
+#2 resolve image config for docker-image://docker.io/docker/dockerfile:1@sha256:4edf897a3ffa55b89f906fc8cc78afdb3f1834cc9c7083565e611a8a7d5fe99e
+#2 DONE 1.2s
+
+#3 docker-image://docker.io/docker/dockerfile:1@sha256:4edf897a3ffa55b89f906fc8cc78afdb3f1834cc9c7083565e611a8a7d5fe99e
+#3 resolve docker.io/docker/dockerfile:1@sha256:4edf897a3ffa55b89f906fc8cc78afdb3f1834cc9c7083565e611a8a7d5fe99e 0.0s done
+#3 CACHED
+
+#4 [internal] load metadata for docker.io/library/debian:bookworm-slim@sha256:734a72b3d6142a71993b4bc580ca01d8ca687f77a2c422d96a961d3376b179bc
+#4 ...
+
+#5 [internal] load metadata for docker.io/library/haskell:9.6.7@sha256:adba20678db75a4ef90b943bc05520cb20d30837e81f7446e20817f9dcca09a7
+#5 DONE 1.1s
+
+#4 [internal] load metadata for docker.io/library/debian:bookworm-slim@sha256:734a72b3d6142a71993b4bc580ca01d8ca687f77a2c422d96a961d3376b179bc
+#4 DONE 1.1s
+
+#6 [internal] load .dockerignore
+#6 transferring context: 2B done
+#6 DONE 0.0s
+
+#7 [internal] load build context
+#7 DONE 0.0s
+
+#8 [tamarin-source 1/4] FROM docker.io/library/debian:bookworm-slim@sha256:734a72b3d6142a71993b4bc580ca01d8ca687f77a2c422d96a961d3376b179bc
+#8 resolve docker.io/library/debian:bookworm-slim@sha256:734a72b3d6142a71993b4bc580ca01d8ca687f77a2c422d96a961d3376b179bc 0.1s done
+#8 DONE 0.1s
+
+#9 [shared-build  1/13] FROM docker.io/library/haskell:9.6.7@sha256:adba20678db75a4ef90b943bc05520cb20d30837e81f7446e20817f9dcca09a7
+#9 resolve docker.io/library/haskell:9.6.7@sha256:adba20678db75a4ef90b943bc05520cb20d30837e81f7446e20817f9dcca09a7
+#9 resolve docker.io/library/haskell:9.6.7@sha256:adba20678db75a4ef90b943bc05520cb20d30837e81f7446e20817f9dcca09a7 0.1s done
+#9 DONE 0.1s
+
+#7 [internal] load build context
+#7 transferring context: 38.74kB done
+#7 DONE 0.0s
+
+#10 [shared-build  8/13] COPY --from=tamarin-source /opt/tamarin/src ./src
+#10 CACHED
+
+#11 [shared-build 10/13] COPY --from=tamarin-source /opt/tamarin/images ./images
+#11 CACHED
+
+#12 [tamarin-source 2/4] RUN apt-get update && apt-get install -y --no-install-recommends     ca-certificates     git     && rm -rf /var/lib/apt/lists/*
+#12 CACHED
+
+#13 [shared-build 11/13] COPY --from=tamarin-source /opt/tamarin/TAMARIN_COMMIT /build-evidence/source.commit
+#13 CACHED
+
+#14 [shared-build  4/13] RUN apt-get update && apt-get install -y --no-install-recommends     libncurses-dev     zlib1g-dev     pkg-config     binutils     && rm -rf /var/lib/apt/lists/*
+#14 CACHED
+
+#15 [shared-build  6/13] COPY --from=tamarin-source /opt/tamarin/LICENSE ./
+#15 CACHED
+
+#16 [tamarin-source 3/4] WORKDIR /opt/tamarin
+#16 CACHED
+
+#17 [tamarin-source 4/4] RUN git init .     && git remote add origin "https://github.com/tamarin-prover/tamarin-prover.git"     && git fetch --depth 1 origin "c293106913ccf7bb41f49b0dc555a8074e8ea88c"     && git checkout --detach FETCH_HEAD     && git rev-parse HEAD > TAMARIN_COMMIT     && test "$(cat TAMARIN_COMMIT)" = "c293106913ccf7bb41f49b0dc555a8074e8ea88c"
+#17 CACHED
+
+#18 [shared-build  5/13] COPY --from=tamarin-source /opt/tamarin/stack.yaml /opt/tamarin/tamarin-prover.cabal ./
+#18 CACHED
+
+#19 [shared-build  2/13] RUN set -eux;     for src in /etc/apt/sources.list /etc/apt/sources.list.d/*.list /etc/apt/sources.list.d/*.sources; do       [ -f "$src" ] || continue;       sed -i -E 's@https?://(deb|security)\.debian\.org/debian-security@http://snapshot.debian.org/archive/debian-security/20260830T000000Z@g' "$src";     done;     grep -Rq 'http://snapshot.debian.org/archive/debian-security/20260830T000000Z' /etc/apt/sources.list /etc/apt/sources.list.d;     printf '%s\n' 'Acquire::Check-Valid-Until "false";' > /etc/apt/apt.conf.d/99bullseye-snapshot
+#19 CACHED
+
+#20 [shared-build  7/13] COPY --from=tamarin-source /opt/tamarin/lib/. ./lib/
+#20 CACHED
+
+#21 [shared-build 12/13] COPY compile-variant.sh /usr/local/bin/compile-variant
+#21 CACHED
+
+#22 [shared-build  3/13] WORKDIR /opt/build
+#22 CACHED
+
+#23 [shared-build  9/13] COPY --from=tamarin-source /opt/tamarin/data ./data
+#23 CACHED
+
+#24 [shared-build 13/13] RUN sha256sum -- lib/export/src/Export/ProVerif/Rule.hs     | grep -F 'faa7042e95c3ffb45b033de161abd17b006e268b534e699e9ccbe8a784c30b56'     && stack build --system-ghc --dependencies-only     && ghc --version > /build-evidence/ghc-version.txt     && stack --version > /build-evidence/stack-version.txt     && dpkg-query -W > /build-evidence/dpkg-packages.txt
+#24 CACHED
+
+#25 [candidate 1/3] COPY Rule.candidate.hs /opt/build/lib/export/src/Export/ProVerif/Rule.hs
+#25 DONE 0.1s
+
+#26 [candidate 2/3] COPY compile-candidate.sh /usr/local/bin/compile-candidate
+#26 DONE 0.1s
+
+#27 [candidate 3/3] RUN --network=none /bin/sh /usr/local/bin/compile-candidate candidate
+#27 0.114 lib/export/src/Export/ProVerif/Rule.hs: OK
+#27 0.429 Cabal file warning in /opt/build/lib/theory/tamarin-prover-theory.cabal@160:3: The field "default-extensions" is available only since the Cabal specification version 1.10. This field will be ignored.
+#27 0.614 tamarin-prover-utils         > configure (lib)
+#27 0.628 tamarin-prover-utils         > Configuring tamarin-prover-utils-1.13.0...
+#27 1.241 tamarin-prover-utils         > build (lib) with ghc-9.6.7
+#27 1.275 tamarin-prover-utils         > Preprocessing library for tamarin-prover-utils-1.13.0..
+#27 1.275 tamarin-prover-utils         > Building library for tamarin-prover-utils-1.13.0..
+#27 1.376 tamarin-prover-utils         > [ 1 of 25] Compiling Control.Basics
+#27 1.423 tamarin-prover-utils         > [ 2 of 25] Compiling Control.Monad.Trans.FastFresh
+#27 1.629 tamarin-prover-utils         > [ 3 of 25] Compiling Control.Monad.Trans.PreciseFresh
+#27 1.813 tamarin-prover-utils         > [ 4 of 25] Compiling Control.Monad.Fresh.Class
+#27 1.869 tamarin-prover-utils         > [ 5 of 25] Compiling Control.Monad.Fresh
+#27 1.880 tamarin-prover-utils         > [ 6 of 25] Compiling Control.Monad.Disj.Class
+#27 1.916 tamarin-prover-utils         > [ 7 of 25] Compiling Control.Monad.Trans.Disj
+#27 1.960 tamarin-prover-utils         > [ 8 of 25] Compiling Control.Monad.Disj
+#27 1.982 tamarin-prover-utils         > [ 9 of 25] Compiling Control.Monad.Bind
+#27 2.012 tamarin-prover-utils         > [10 of 25] Compiling Data.Color
+#27 2.576 tamarin-prover-utils         > [11 of 25] Compiling Data.DAG.Simple
+#27 2.733 tamarin-prover-utils         > [12 of 25] Compiling Debug.Trace.EnvTracer
+#27 2.781 tamarin-prover-utils         > [13 of 25] Compiling Debug.Trace.Ignore
+#27 2.791 tamarin-prover-utils         > [14 of 25] Compiling Extension.Data.ByteString
+#27 2.801 tamarin-prover-utils         > [15 of 25] Compiling Extension.Data.Label
+#27 2.847 tamarin-prover-utils         > [16 of 25] Compiling Extension.Data.Monoid
+#27 2.875 tamarin-prover-utils         > [17 of 25] Compiling Extension.Prelude
+#27 2.888 tamarin-prover-utils         > 
+#27 2.888 tamarin-prover-utils         > /opt/build/lib/utils/src/Extension/Prelude.hs:17:1: warning: [-Wunused-imports]
+#27 2.888 tamarin-prover-utils         >     The import of ‘Data.Foldable’ is redundant
+#27 2.888 tamarin-prover-utils         >       except perhaps to import instances from ‘Data.Foldable’
+#27 2.888 tamarin-prover-utils         >     To import instances alone, use: import Data.Foldable()
+#27 2.888 tamarin-prover-utils         >    |
+#27 2.888 tamarin-prover-utils         > 17 | import Data.Foldable (asum)
+#27 2.888 tamarin-prover-utils         >    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+#27 3.030 tamarin-prover-utils         > [18 of 25] Compiling Logic.Connectives
+#27 3.231 tamarin-prover-utils         > [19 of 25] Compiling System.Timing
+#27 3.266 tamarin-prover-utils         > [20 of 25] Compiling Text.Dot
+#27 3.373 tamarin-prover-utils         > 
+#27 3.373 tamarin-prover-utils         > /opt/build/lib/utils/src/Text/Dot.hs:80:1: warning: [-Wunused-imports]
+#27 3.373 tamarin-prover-utils         >     The import of ‘Data.GraphViz’ is redundant
+#27 3.373 tamarin-prover-utils         >       except perhaps to import instances from ‘Data.GraphViz’
+#27 3.373 tamarin-prover-utils         >     To import instances alone, use: import Data.GraphViz()
+#27 3.373 tamarin-prover-utils         >    |
+#27 3.373 tamarin-prover-utils         > 80 | import Data.GraphViz (GraphvizCommand(Dot), DotRepr (setID))
+#27 3.373 tamarin-prover-utils         >    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+#27 3.778 tamarin-prover-utils         > [21 of 25] Compiling Text.PrettyPrint.Class
+#27 3.919 tamarin-prover-utils         > [22 of 25] Compiling Text.PrettyPrint.Highlight
+#27 3.972 tamarin-prover-utils         > [23 of 25] Compiling Text.PrettyPrint.Html
+#27 4.117 tamarin-prover-utils         > [24 of 25] Compiling Text.Unicode
+#27 4.130 tamarin-prover-utils         > [25 of 25] Compiling Utils.Misc
+#27 4.557 tamarin-prover-utils         > copy/register
+#27 4.583 tamarin-prover-utils         > Installing library in /opt/build/.stack-work/install/x86_64-linux/3b5daa4896952fb7751ca298ddf1d8a492a302907c654f2171b3de98f80d5f33/9.6.7/lib/x86_64-linux-ghc-9.6.7/tamarin-prover-utils-1.13.0-JY2efYnwYQ6GUaFZ9kT6yj
+#27 4.660 tamarin-prover-utils         > Registering library for tamarin-prover-utils-1.13.0..
+#27 4.735 tamarin-prover-term          > configure (lib)
+#27 4.738 tamarin-prover-term          > Configuring tamarin-prover-term-1.13.0...
+#27 5.212 tamarin-prover-term          > build (lib) with ghc-9.6.7
+#27 5.247 tamarin-prover-term          > Preprocessing library for tamarin-prover-term-1.13.0..
+#27 5.247 tamarin-prover-term          > Building library for tamarin-prover-term-1.13.0..
+#27 5.314 tamarin-prover-term          > [ 1 of 28] Compiling Term.Rewriting.Definitions
+#27 5.793 tamarin-prover-term          > [ 2 of 28] Compiling Term.Term.Classes
+#27 5.810 tamarin-prover-term          > [ 3 of 28] Compiling Term.Term.FunctionSymbols
+#27 7.785 tamarin-prover-term          > [ 4 of 28] Compiling Term.Term.Raw
+#27 8.545 tamarin-prover-term          > [ 5 of 28] Compiling Term.Term
+#27 8.699 tamarin-prover-term          > [ 6 of 28] Compiling Term.VTerm
+#27 8.986 tamarin-prover-term          > [ 7 of 28] Compiling Term.Positions
+#27 9.102 tamarin-prover-term          > [ 8 of 28] Compiling Term.LTerm
+#27 9.248 tamarin-prover-term          > 
+#27 9.248 tamarin-prover-term          > /opt/build/lib/term/src/Term/LTerm.hs:624:10: warning: [GHC-62161] [-Wincomplete-uni-patterns]
+#27 9.248 tamarin-prover-term          >     Pattern match(es) are non-exhaustive
+#27 9.248 tamarin-prover-term          >     In a lambda abstraction:
+#27 9.248 tamarin-prover-term          >         Patterns of type ‘[(LVar, Occurence)]’ not matched: []
+#27 9.248 tamarin-prover-term          >     |
+#27 9.248 tamarin-prover-term          > 624 |     map (\((v,ctx1):rest) -> (v, S.fromList (ctx1:map snd rest))) . groupOn fst . sortOn fst
+#27 9.248 tamarin-prover-term          >     |          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+#27 11.22 tamarin-prover-term          > [ 9 of 28] Compiling Term.SubtermRule
+#27 11.23 tamarin-prover-term          > 
+#27 11.23 tamarin-prover-term          > /opt/build/lib/term/src/Term/SubtermRule.hs:19:7: warning: [GHC-47854] [-Wduplicate-exports]
+#27 11.23 tamarin-prover-term          >     ‘findAllSubterms’ is exported by ‘findAllSubterms’ and ‘findAllSubterms’
+#27 11.23 tamarin-prover-term          >    |
+#27 11.23 tamarin-prover-term          > 19 |     , findAllSubterms
+#27 11.23 tamarin-prover-term          >    |       ^^^^^^^^^^^^^^^
+#27 11.23 tamarin-prover-term          > 
+#27 11.23 tamarin-prover-term          > /opt/build/lib/term/src/Term/SubtermRule.hs:20:7: warning: [GHC-47854] [-Wduplicate-exports]
+#27 11.23 tamarin-prover-term          >     ‘findSubterm’ is exported by ‘findSubterm’ and ‘findSubterm’
+#27 11.23 tamarin-prover-term          >    |
+#27 11.23 tamarin-prover-term          > 20 |     , findSubterm
+#27 11.23 tamarin-prover-term          >    |       ^^^^^^^^^^^
+#27 11.23 tamarin-prover-term          > 
+#27 11.23 tamarin-prover-term          > /opt/build/lib/term/src/Term/SubtermRule.hs:36:1: warning: [-Wunused-imports]
+#27 11.23 tamarin-prover-term          >     The import of ‘Data.ByteString’ is redundant
+#27 11.23 tamarin-prover-term          >       except perhaps to import instances from ‘Data.ByteString’
+#27 11.23 tamarin-prover-term          >     To import instances alone, use: import Data.ByteString()
+#27 11.23 tamarin-prover-term          >    |
+#27 11.23 tamarin-prover-term          > 36 | import Data.ByteString (find)
+#27 11.23 tamarin-prover-term          >    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+#27 11.23 tamarin-prover-term          > 
+#27 11.23 tamarin-prover-term          > /opt/build/lib/term/src/Term/SubtermRule.hs:78:24: warning: [GHC-63397] [-Wname-shadowing]
+#27 11.23 tamarin-prover-term          >     This binding for ‘lst’ shadows the existing binding
+#27 11.23 tamarin-prover-term          >       bound at src/Term/SubtermRule.hs:75:13
+#27 11.23 tamarin-prover-term          >    |
+#27 11.23 tamarin-prover-term          > 78 |       findSubtermPrime lst r rpos | lst == r            = [reverse rpos]
+#27 11.23 tamarin-prover-term          >    |                        ^^^
+#27 11.23 tamarin-prover-term          > 
+#27 11.23 tamarin-prover-term          > /opt/build/lib/term/src/Term/SubtermRule.hs:78:28: warning: [GHC-63397] [-Wname-shadowing]
+#27 11.23 tamarin-prover-term          >     This binding for ‘r’ shadows the existing binding
+#27 11.23 tamarin-prover-term          >       bound at src/Term/SubtermRule.hs:75:17
+#27 11.23 tamarin-prover-term          >    |
+#27 11.23 tamarin-prover-term          > 78 |       findSubtermPrime lst r rpos | lst == r            = [reverse rpos]
+#27 11.23 tamarin-prover-term          >    |                            ^
+#27 11.23 tamarin-prover-term          > 
+#27 11.23 tamarin-prover-term          > /opt/build/lib/term/src/Term/SubtermRule.hs:79:50: warning: [GHC-63397] [-Wname-shadowing]
+#27 11.23 tamarin-prover-term          >     This binding for ‘r’ shadows the existing binding
+#27 11.23 tamarin-prover-term          >       bound at src/Term/SubtermRule.hs:75:17
+#27 11.23 tamarin-prover-term          >    |
+#27 11.23 tamarin-prover-term          > 79 |       findSubtermPrime (viewTerm -> FApp _ args) r rpos =
+#27 11.23 tamarin-prover-term          >    |                                                  ^
+#27 11.23 tamarin-prover-term          > 
+#27 11.23 tamarin-prover-term          > /opt/build/lib/term/src/Term/SubtermRule.hs:80:32: warning: [GHC-63397] [-Wname-shadowing]
+#27 11.23 tamarin-prover-term          >     This binding for ‘lst’ shadows the existing binding
+#27 11.23 tamarin-prover-term          >       bound at src/Term/SubtermRule.hs:75:13
+#27 11.23 tamarin-prover-term          >    |
+#27 11.23 tamarin-prover-term          > 80 |             concat $ zipWith (\lst i -> findSubtermPrime lst r (i:rpos)) args [0..]
+#27 11.23 tamarin-prover-term          >    |                                ^^^
+#27 11.45 tamarin-prover-term          > [10 of 28] Compiling Term.Substitution.SubstVFresh
+#27 11.72 tamarin-prover-term          > [11 of 28] Compiling Term.Substitution.SubstVFree
+#27 11.74 tamarin-prover-term          > 
+#27 11.74 tamarin-prover-term          > /opt/build/lib/term/src/Term/Substitution/SubstVFree.hs:77:1: warning: [-Wunused-imports]
+#27 11.74 tamarin-prover-term          >     The import of ‘Data.Data’ is redundant
+#27 11.74 tamarin-prover-term          >       except perhaps to import instances from ‘Data.Data’
+#27 11.74 tamarin-prover-term          >     To import instances alone, use: import Data.Data()
+#27 11.74 tamarin-prover-term          >    |
+#27 11.74 tamarin-prover-term          > 77 | import Data.Data (Data)
+#27 11.74 tamarin-prover-term          >    | ^^^^^^^^^^^^^^^^^^^^^^^
+#27 12.10 tamarin-prover-term          > [12 of 28] Compiling Term.Substitution
+#27 12.24 tamarin-prover-term          > [13 of 28] Compiling Term.Macro
+#27 12.24 tamarin-prover-term          > 
+#27 12.24 tamarin-prover-term          > /opt/build/lib/term/src/Term/Macro.hs:34:1: warning: [-Wunused-top-binds]
+#27 12.24 tamarin-prover-term          >     Defined but not used: ‘applyMacro’
+#27 12.24 tamarin-prover-term          >    |
+#27 12.24 tamarin-prover-term          > 34 | applyMacro mc margs mout (viewTerm -> FApp f targs)
+#27 12.24 tamarin-prover-term          >    | ^^^^^^^^^^
+#27 12.27 tamarin-prover-term          > [14 of 28] Compiling Term.Maude.Types
+#27 12.74 tamarin-prover-term          > [15 of 28] Compiling Term.Builtin.Signature
+#27 12.77 tamarin-prover-term          > [16 of 28] Compiling Term.Builtin.Convenience
+#27 12.84 tamarin-prover-term          > [17 of 28] Compiling Term.Builtin.Rules
+#27 12.85 tamarin-prover-term          > 
+#27 12.85 tamarin-prover-term          > /opt/build/lib/term/src/Term/Builtin/Rules.hs:36:1: warning: [-Wunused-imports]
+#27 12.85 tamarin-prover-term          >     The import of ‘Term.Term.FunctionSymbols’ is redundant
+#27 12.85 tamarin-prover-term          >       except perhaps to import instances from ‘Term.Term.FunctionSymbols’
+#27 12.85 tamarin-prover-term          >     To import instances alone, use: import Term.Term.FunctionSymbols()
+#27 12.85 tamarin-prover-term          >    |
+#27 12.85 tamarin-prover-term          > 36 | import Term.Term.FunctionSymbols
+#27 12.85 tamarin-prover-term          >    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+#27 12.99 tamarin-prover-term          > [18 of 28] Compiling Term.Maude.Signature
+#27 13.01 tamarin-prover-term          > 
+#27 13.01 tamarin-prover-term          > /opt/build/lib/term/src/Term/Maude/Signature.hs:111:127: warning: [-Wunused-matches]
+#27 13.01 tamarin-prover-term          >     Defined but not used: ‘macroNames’
+#27 13.01 tamarin-prover-term          >     |
+#27 13.01 tamarin-prover-term          > 111 | maudeSig msig@MaudeSig{enableDH, enableBP, enableMSet, enableNat, enableXor, enableDiff = _, stFunSyms, stACFunSyms, stRules, macroNames, eqConvergent} =
+#27 13.01 tamarin-prover-term          >     |                                                                                                                               ^^^^^^^^^^
+#27 13.92 tamarin-prover-term          > [19 of 28] Compiling Term.Maude.Parser
+#27 15.24 tamarin-prover-term          > [20 of 28] Compiling Term.Maude.Process
+#27 15.55 tamarin-prover-term          > [21 of 28] Compiling Term.Unification
+#27 16.27 tamarin-prover-term          > [22 of 28] Compiling Term.Subsumption
+#27 16.35 tamarin-prover-term          > [23 of 28] Compiling Term.Narrowing.Narrow
+#27 16.45 tamarin-prover-term          > [24 of 28] Compiling Term.Rewriting.Norm
+#27 16.57 tamarin-prover-term          > [25 of 28] Compiling Term.Narrowing.Variants.Check
+#27 16.66 tamarin-prover-term          > [26 of 28] Compiling Term.Narrowing.Variants.Compute
+#27 16.82 tamarin-prover-term          > [27 of 28] Compiling Term.Narrowing.Variants
+#27 16.84 tamarin-prover-term          > [28 of 28] Compiling Term.UnitTests
+#27 17.64 tamarin-prover-term          > copy/register
+#27 17.68 tamarin-prover-term          > Installing library in /opt/build/.stack-work/install/x86_64-linux/3b5daa4896952fb7751ca298ddf1d8a492a302907c654f2171b3de98f80d5f33/9.6.7/lib/x86_64-linux-ghc-9.6.7/tamarin-prover-term-1.13.0-HEWlVEyEBKAFHPl3i5M61g
+#27 17.78 tamarin-prover-term          > Registering library for tamarin-prover-term-1.13.0..
+#27 17.86 tamarin-prover-theory        > configure (lib)
+#27 17.86 tamarin-prover-theory        > Warning: tamarin-prover-theory.cabal:160:3: The field "default-extensions" is
+#27 17.86 tamarin-prover-theory        > available only since the Cabal specification version 1.10. This field will be
+#27 17.86 tamarin-prover-theory        > ignored.
+#27 17.86 tamarin-prover-theory        > Configuring tamarin-prover-theory-1.13.0...
+#27 18.36 tamarin-prover-theory        > build (lib) with ghc-9.6.7
+#27 18.40 tamarin-prover-theory        > Preprocessing library for tamarin-prover-theory-1.13.0..
+#27 18.40 tamarin-prover-theory        > Building library for tamarin-prover-theory-1.13.0..
+#27 18.52 tamarin-prover-theory        > [ 1 of 81] Compiling Items.ExportInfo
+#27 18.84 tamarin-prover-theory        > [ 2 of 81] Compiling Theory.Model.Fact
+#27 20.48 tamarin-prover-theory        > [ 3 of 81] Compiling Items.OptionItem
+#27 21.01 tamarin-prover-theory        > [ 4 of 81] Compiling Theory.Module
+#27 20.39 tamarin-prover-theory        > [ 5 of 81] Compiling Theory.Sapic.Position
+#27 20.40 tamarin-prover-theory        > [ 6 of 81] Compiling Theory.Text.Pretty
+#27 20.50 tamarin-prover-theory        > [ 7 of 81] Compiling Theory.Model.Signature
+#27 20.66 tamarin-prover-theory        > [ 8 of 81] Compiling Theory.Model.Atom
+#27 21.69 tamarin-prover-theory        > [ 9 of 81] Compiling Theory.Model.Formula
+#27 23.45 tamarin-prover-theory        > [10 of 81] Compiling Theory.Sapic.Term
+#27 23.81 tamarin-prover-theory        > [11 of 81] Compiling Theory.Sapic.Annotation
+#27 23.82 tamarin-prover-theory        > 
+#27 23.82 tamarin-prover-theory        > /opt/build/lib/theory/src/Theory/Sapic/Annotation.hs:57:1: warning: [GHC-90177] [-Worphans]
+#27 23.82 tamarin-prover-theory        >     Orphan instance: instance Data (Subst Name LVar)
+#27 23.82 tamarin-prover-theory        >     Suggested fix:
+#27 23.82 tamarin-prover-theory        >       Move the instance declaration to the module of the class or of the type, or
+#27 23.82 tamarin-prover-theory        >       wrap the type with a newtype and declare the instance on the new type.
+#27 23.82 tamarin-prover-theory        >    |
+#27 23.82 tamarin-prover-theory        > 57 | deriving instance Data (Subst Name LVar)
+#27 23.82 tamarin-prover-theory        >    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+#27 24.12 tamarin-prover-theory        > [12 of 81] Compiling Theory.Sapic.Substitution
+#27 24.22 tamarin-prover-theory        > [13 of 81] Compiling Theory.Sapic.Pattern
+#27 24.73 tamarin-prover-theory        > [14 of 81] Compiling Theory.Sapic.Process
+#27 28.00 tamarin-prover-theory        > [15 of 81] Compiling Theory.Sapic.PlainProcess
+#27 28.01 tamarin-prover-theory        > [16 of 81] Compiling Theory.Sapic
+#27 28.02 tamarin-prover-theory        > [17 of 81] Compiling Items.ProcessItem
+#27 28.16 tamarin-prover-theory        > [18 of 81] Compiling Theory.Model.Rule
+#27 28.30 tamarin-prover-theory        > 
+#27 28.30 tamarin-prover-theory        > /opt/build/lib/theory/src/Theory/Model/Rule.hs:192:1: warning: [-Wunused-imports]
+#27 28.30 tamarin-prover-theory        >     The import of ‘Text.Read’ is redundant
+#27 28.30 tamarin-prover-theory        >       except perhaps to import instances from ‘Text.Read’
+#27 28.30 tamarin-prover-theory        >     To import instances alone, use: import Text.Read()
+#27 28.30 tamarin-prover-theory        >     |
+#27 28.30 tamarin-prover-theory        > 192 | import           Text.Read (readMaybe)
+#27 28.30 tamarin-prover-theory        >     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+#27 32.29 tamarin-prover-theory        > [19 of 81] Compiling Theory.Sapic.Print
+#27 32.32 tamarin-prover-theory        > [20 of 81] Compiling Theory.Model.Restriction
+#27 32.33 tamarin-prover-theory        > 
+#27 32.33 tamarin-prover-theory        > /opt/build/lib/theory/src/Theory/Model/Restriction.hs:79:2: warning: [-Wunused-top-binds]
+#27 32.33 tamarin-prover-theory        >     Defined but not used: ‘rstrOriginalFormula’
+#27 32.33 tamarin-prover-theory        >    |
+#27 32.33 tamarin-prover-theory        > 79 | $(mkLabels [''ProtoRestriction])
+#27 32.33 tamarin-prover-theory        >    |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+#27 32.62 tamarin-prover-theory        > [21 of 81] Compiling Theory.Model
+#27 32.63 tamarin-prover-theory        > [22 of 81] Compiling Theory.Syntactic.Predicate
+#27 32.64 tamarin-prover-theory        > 
+#27 32.64 tamarin-prover-theory        > /opt/build/lib/theory/src/Theory/Syntactic/Predicate.hs:39:1: warning: [GHC-38417] [-Wmissing-signatures]
+#27 32.64 tamarin-prover-theory        >     Top-level binding with no type signature:
+#27 32.64 tamarin-prover-theory        >       mkPredicate :: [Char] -> LNFormula -> Predicate
+#27 32.64 tamarin-prover-theory        >    |
+#27 32.64 tamarin-prover-theory        > 39 | mkPredicate name formula = Predicate fact formula
+#27 32.64 tamarin-prover-theory        >    | ^^^^^^^^^^^
+#27 32.64 tamarin-prover-theory        > 
+#27 32.64 tamarin-prover-theory        > /opt/build/lib/theory/src/Theory/Syntactic/Predicate.hs:42:21: warning: [GHC-63397] [-Wname-shadowing]
+#27 32.64 tamarin-prover-theory        >     This binding for ‘head’ shadows the existing binding
+#27 32.64 tamarin-prover-theory        >       imported from ‘Data.List’ at src/Theory/Syntactic/Predicate.hs:25:1-16
+#27 32.64 tamarin-prover-theory        >       (and originally defined in ‘GHC.List’)
+#27 32.64 tamarin-prover-theory        >    |
+#27 32.64 tamarin-prover-theory        > 42 |         capitalize (head:tail) = toUpper head : tail
+#27 32.64 tamarin-prover-theory        >    |                     ^^^^
+#27 32.64 tamarin-prover-theory        > 
+#27 32.64 tamarin-prover-theory        > /opt/build/lib/theory/src/Theory/Syntactic/Predicate.hs:42:26: warning: [GHC-63397] [-Wname-shadowing]
+#27 32.64 tamarin-prover-theory        >     This binding for ‘tail’ shadows the existing binding
+#27 32.64 tamarin-prover-theory        >       imported from ‘Data.List’ at src/Theory/Syntactic/Predicate.hs:25:1-16
+#27 32.64 tamarin-prover-theory        >       (and originally defined in ‘GHC.List’)
+#27 32.64 tamarin-prover-theory        >    |
+#27 32.64 tamarin-prover-theory        > 42 |         capitalize (head:tail) = toUpper head : tail
+#27 32.64 tamarin-prover-theory        >    |                          ^^^^
+#27 33.01 tamarin-prover-theory        > [23 of 81] Compiling Theory.Constraint.System.Guarded
+#27 35.08 tamarin-prover-theory        > [24 of 81] Compiling Items.CaseTestItem
+#27 35.23 tamarin-prover-theory        > [25 of 81] Compiling Theory.Tools.AbstractInterpretation
+#27 35.69 tamarin-prover-theory        > [26 of 81] Compiling Theory.Tools.EquationStore
+#27 37.13 tamarin-prover-theory        > [27 of 81] Compiling Theory.Constraint.System.Constraints
+#27 38.56 tamarin-prover-theory        > [28 of 81] Compiling Theory.Constraint.Solver.AnnotatedGoals
+#27 38.60 tamarin-prover-theory        > [29 of 81] Compiling Theory.Tools.InjectiveFactInstances
+#27 39.05 tamarin-prover-theory        > [30 of 81] Compiling Theory.Tools.IntruderRules
+#27 39.08 tamarin-prover-theory        > 
+#27 39.08 tamarin-prover-theory        > /opt/build/lib/theory/src/Theory/Tools/IntruderRules.hs:166:59: warning: [-Wunused-matches]
+#27 39.08 tamarin-prover-theory        >     Defined but not used: ‘vname’
+#27 39.08 tamarin-prover-theory        >     |
+#27 39.08 tamarin-prover-theory        > 166 |     (CtxtStRule lhs (StRhs _ (viewTerm -> FApp fun@(NoEq (vname,(0,Private,_,_))) _))):xs
+#27 39.08 tamarin-prover-theory        >     |                                                           ^^^^^
+#27 39.78 tamarin-prover-theory        > [31 of 81] Compiling Theory.Tools.LoopBreakers
+#27 39.94 tamarin-prover-theory        > [32 of 81] Compiling Theory.Tools.RuleVariants
+#27 40.35 tamarin-prover-theory        > [33 of 81] Compiling Theory.Tools.SubtermStore
+#27 42.39 tamarin-prover-theory        > [34 of 81] Compiling Theory.Constraint.System
+#27 42.61 tamarin-prover-theory        > 
+#27 42.61 tamarin-prover-theory        > /opt/build/lib/theory/src/Theory/Constraint/System.hs:261:1: warning: [-Wunused-imports]
+#27 42.61 tamarin-prover-theory        >     The qualified import of ‘Data.ByteString.Char8’ is redundant
+#27 42.61 tamarin-prover-theory        >       except perhaps to import instances from ‘Data.ByteString.Char8’
+#27 42.61 tamarin-prover-theory        >     To import instances alone, use: import Data.ByteString.Char8()
+#27 42.61 tamarin-prover-theory        >     |
+#27 42.61 tamarin-prover-theory        > 261 | import qualified Data.ByteString.Char8                as BC
+#27 42.61 tamarin-prover-theory        >     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+#27 42.61 tamarin-prover-theory        > 
+#27 42.61 tamarin-prover-theory        > /opt/build/lib/theory/src/Theory/Constraint/System.hs:1013:20: warning: [-Wunused-matches]
+#27 42.61 tamarin-prover-theory        >     Defined but not used: ‘n’
+#27 42.61 tamarin-prover-theory        >      |
+#27 42.61 tamarin-prover-theory        > 1013 |         (DestrRule n l s c (x:_)) | x == AC Xor -> (constrRuleToDestrRule (xorRuleInstance (length prem)) l s c)++(concat $ map destrRuleToDestrRule (intruderRuleWithName (getAllRulesOnOtherSide ctxt side) i))
+#27 42.61 tamarin-prover-theory        >      |                    ^
+#27 51.24 tamarin-prover-theory        > [35 of 81] Compiling Theory.Constraint.Solver.Contradictions
+#27 52.48 tamarin-prover-theory        > [36 of 81] Compiling Theory.Constraint.Solver.Reduction
+#27 52.51 tamarin-prover-theory        > 
+#27 52.51 tamarin-prover-theory        > /opt/build/lib/theory/src/Theory/Constraint/Solver/Reduction.hs:109:1: warning: [-Wunused-imports]
+#27 52.51 tamarin-prover-theory        >     The import of ‘Control.Applicative.Lift’ is redundant
+#27 52.51 tamarin-prover-theory        >       except perhaps to import instances from ‘Control.Applicative.Lift’
+#27 52.51 tamarin-prover-theory        >     To import instances alone, use: import Control.Applicative.Lift()
+#27 52.51 tamarin-prover-theory        >     |
+#27 52.51 tamarin-prover-theory        > 109 | import Control.Applicative.Lift (Lift(Other))
+#27 52.51 tamarin-prover-theory        >     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+#27 52.51 tamarin-prover-theory        > 
+#27 52.51 tamarin-prover-theory        > /opt/build/lib/theory/src/Theory/Constraint/Solver/Reduction.hs:732:25: warning: [GHC-63397] [-Wname-shadowing]
+#27 52.51 tamarin-prover-theory        >     This binding for ‘isAC’ shadows the existing binding
+#27 52.51 tamarin-prover-theory        >       imported from ‘Theory.Model’ at src/Theory/Constraint/Solver/Reduction.hs:108:1-29
+#27 52.51 tamarin-prover-theory        >       (and originally defined in ‘tamarin-prover-term-1.13.0:Term.Term’)
+#27 52.51 tamarin-prover-theory        >     |
+#27 52.51 tamarin-prover-theory        > 732 | solveTermEqs splitStrat isAC eqs0 =
+#27 52.51 tamarin-prover-theory        >     |                         ^^^^
+#27 52.51 tamarin-prover-theory        > 
+#27 52.51 tamarin-prover-theory        > /opt/build/lib/theory/src/Theory/Constraint/Solver/Reduction.hs:767:20: warning: [GHC-63397] [-Wname-shadowing]
+#27 52.51 tamarin-prover-theory        >     This binding for ‘isAC’ shadows the existing binding
+#27 52.51 tamarin-prover-theory        >       imported from ‘Theory.Model’ at src/Theory/Constraint/Solver/Reduction.hs:108:1-29
+#27 52.51 tamarin-prover-theory        >       (and originally defined in ‘tamarin-prover-term-1.13.0:Term.Term’)
+#27 52.51 tamarin-prover-theory        >     |
+#27 52.51 tamarin-prover-theory        > 767 | solveFactEqs split isAC eqs = do
+#27 52.51 tamarin-prover-theory        >     |                    ^^^^
+#27 53.32 tamarin-prover-theory        > [37 of 81] Compiling Theory.Constraint.Solver.Goals
+#27 53.34 tamarin-prover-theory        > 
+#27 53.34 tamarin-prover-theory        > /opt/build/lib/theory/src/Theory/Constraint/Solver/Goals.hs:27:1: warning: [-Wunused-imports]
+#27 53.34 tamarin-prover-theory        >     The qualified import of ‘Data.ByteString.Char8’ is redundant
+#27 53.34 tamarin-prover-theory        >       except perhaps to import instances from ‘Data.ByteString.Char8’
+#27 53.34 tamarin-prover-theory        >     To import instances alone, use: import Data.ByteString.Char8()
+#27 53.34 tamarin-prover-theory        >    |
+#27 53.34 tamarin-prover-theory        > 27 | import qualified Data.ByteString.Char8                   as BC
+#27 53.34 tamarin-prover-theory        >    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+#27 53.34 tamarin-prover-theory        > 
+#27 53.34 tamarin-prover-theory        > /opt/build/lib/theory/src/Theory/Constraint/Solver/Goals.hs:33:1: warning: [-Wunused-imports]
+#27 53.34 tamarin-prover-theory        >     The import of ‘Data.List’ is redundant
+#27 53.34 tamarin-prover-theory        >       except perhaps to import instances from ‘Data.List’
+#27 53.34 tamarin-prover-theory        >     To import instances alone, use: import Data.List()
+#27 53.34 tamarin-prover-theory        >    |
+#27 53.34 tamarin-prover-theory        > 33 | import           Data.List
+#27 53.34 tamarin-prover-theory        >    | ^^^^^^^^^^^^^^^^^^^^^^^^^^
+#27 53.34 tamarin-prover-theory        > 
+#27 53.34 tamarin-prover-theory        > /opt/build/lib/theory/src/Theory/Constraint/Solver/Goals.hs:34:1: warning: [-Wunused-imports]
+#27 53.34 tamarin-prover-theory        >     The import of ‘Data.Maybe’ is redundant
+#27 53.34 tamarin-prover-theory        >       except perhaps to import instances from ‘Data.Maybe’
+#27 53.34 tamarin-prover-theory        >     To import instances alone, use: import Data.Maybe()
+#27 53.34 tamarin-prover-theory        >    |
+#27 53.34 tamarin-prover-theory        > 34 | import           Data.Maybe
+#27 53.34 tamarin-prover-theory        >    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+#27 53.34 tamarin-prover-theory        > 
+#27 53.34 tamarin-prover-theory        > /opt/build/lib/theory/src/Theory/Constraint/Solver/Goals.hs:51:1: warning: [-Wunused-imports]
+#27 53.34 tamarin-prover-theory        >     The import of ‘Utils.Misc’ is redundant
+#27 53.34 tamarin-prover-theory        >       except perhaps to import instances from ‘Utils.Misc’
+#27 53.34 tamarin-prover-theory        >     To import instances alone, use: import Utils.Misc()
+#27 53.34 tamarin-prover-theory        >    |
+#27 53.34 tamarin-prover-theory        > 51 | import           Utils.Misc                              (twoPartitions)
+#27 53.34 tamarin-prover-theory        >    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+#27 53.34 tamarin-prover-theory        > 
+#27 53.34 tamarin-prover-theory        > /opt/build/lib/theory/src/Theory/Constraint/Solver/Goals.hs:66:11: warning: [-Wunused-matches]
+#27 53.34 tamarin-prover-theory        >     Defined but not used: ‘ctxt’
+#27 53.34 tamarin-prover-theory        >    |
+#27 53.34 tamarin-prover-theory        > 66 | openGoals ctxt sys = do
+#27 53.34 tamarin-prover-theory        >    |           ^^^^
+#27 53.34 tamarin-prover-theory        > 
+#27 53.34 tamarin-prover-theory        > /opt/build/lib/theory/src/Theory/Constraint/Solver/Goals.hs:225:29: warning: [-Wunused-matches]
+#27 53.34 tamarin-prover-theory        >     Defined but not used: ‘m’
+#27 53.34 tamarin-prover-theory        >     |
+#27 53.34 tamarin-prover-theory        > 225 |             (Fact KUFact _ [m@(FAPP (AC o) ts)]) -> do
+#27 53.34 tamarin-prover-theory        >     |                             ^
+#27 53.34 tamarin-prover-theory        > 
+#27 53.34 tamarin-prover-theory        > /opt/build/lib/theory/src/Theory/Constraint/Solver/Goals.hs:225:41: warning: [-Wunused-matches]
+#27 53.34 tamarin-prover-theory        >     Defined but not used: ‘o’
+#27 53.34 tamarin-prover-theory        >     |
+#27 53.34 tamarin-prover-theory        > 225 |             (Fact KUFact _ [m@(FAPP (AC o) ts)]) -> do
+#27 53.34 tamarin-prover-theory        >     |                                         ^
+#27 53.34 tamarin-prover-theory        > 
+#27 53.34 tamarin-prover-theory        > /opt/build/lib/theory/src/Theory/Constraint/Solver/Goals.hs:225:44: warning: [-Wunused-matches]
+#27 53.34 tamarin-prover-theory        >     Defined but not used: ‘ts’
+#27 53.34 tamarin-prover-theory        >     |
+#27 53.34 tamarin-prover-theory        > 225 |             (Fact KUFact _ [m@(FAPP (AC o) ts)]) -> do
+#27 53.34 tamarin-prover-theory        >     |                                            ^^
+#27 54.02 tamarin-prover-theory        > [38 of 81] Compiling Theory.Constraint.Solver.Simplify
+#27 54.07 tamarin-prover-theory        > 
+#27 54.07 tamarin-prover-theory        > /opt/build/lib/theory/src/Theory/Constraint/Solver/Simplify.hs:484:38: warning: [-Wunused-matches]
+#27 54.07 tamarin-prover-theory        >     Defined but not used: ‘freshVar’
+#27 54.07 tamarin-prover-theory        >     |
+#27 54.07 tamarin-prover-theory        > 484 |       connectNodeToFreshes el (((nid,freshVar), containing):xs) r =
+#27 54.07 tamarin-prover-theory        >     |                                      ^^^^^^^^
+#27 54.07 tamarin-prover-theory        > 
+#27 54.07 tamarin-prover-theory        > /opt/build/lib/theory/src/Theory/Constraint/Solver/Simplify.hs:488:7: warning: [GHC-53633] [-Woverlapping-patterns]
+#27 54.07 tamarin-prover-theory        >     Pattern match is redundant
+#27 54.07 tamarin-prover-theory        >     In an equation for ‘connectNodeToFreshes’:
+#27 54.07 tamarin-prover-theory        >         connectNodeToFreshes el (_ : xs) r = ...
+#27 54.07 tamarin-prover-theory        >     |
+#27 54.07 tamarin-prover-theory        > 488 |       connectNodeToFreshes el (_:xs) r = connectNodeToFreshes el xs r
+#27 54.07 tamarin-prover-theory        >     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+#27 55.93 tamarin-prover-theory        > [39 of 81] Compiling Theory.Constraint.Solver.Sources
+#27 58.36 tamarin-prover-theory        > [40 of 81] Compiling Theory.Constraint.Solver.ProofMethod
+#27 58.43 tamarin-prover-theory        > 
+#27 58.43 tamarin-prover-theory        > /opt/build/lib/theory/src/Theory/Constraint/Solver/ProofMethod.hs:43:1: warning: [-Wunused-imports]
+#27 58.43 tamarin-prover-theory        >     The import of ‘Data.Label’ is redundant
+#27 58.43 tamarin-prover-theory        >       except perhaps to import instances from ‘Data.Label’
+#27 58.43 tamarin-prover-theory        >     To import instances alone, use: import Data.Label()
+#27 58.43 tamarin-prover-theory        >    |
+#27 58.43 tamarin-prover-theory        > 43 | import           Data.Label                                hiding (get)
+#27 58.43 tamarin-prover-theory        >    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+#27 58.43 tamarin-prover-theory        > 
+#27 58.43 tamarin-prover-theory        > /opt/build/lib/theory/src/Theory/Constraint/Solver/ProofMethod.hs:57:1: warning: [-Wunused-imports]
+#27 58.43 tamarin-prover-theory        >     The qualified import of ‘Control.Monad.Trans.State’ is redundant
+#27 58.43 tamarin-prover-theory        >       except perhaps to import instances from ‘Control.Monad.Trans.State’
+#27 58.43 tamarin-prover-theory        >     To import instances alone, use: import Control.Monad.Trans.State()
+#27 58.43 tamarin-prover-theory        >    |
+#27 58.43 tamarin-prover-theory        > 57 | import qualified Control.Monad.Trans.State                 as St
+#27 58.43 tamarin-prover-theory        >    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+#27 58.43 tamarin-prover-theory        > 
+#27 58.43 tamarin-prover-theory        > /opt/build/lib/theory/src/Theory/Constraint/Solver/ProofMethod.hs:255:5: warning: [GHC-62161] [-Wincomplete-patterns]
+#27 58.43 tamarin-prover-theory        >     Pattern match(es) are non-exhaustive
+#27 58.43 tamarin-prover-theory        >     In a case alternative:
+#27 58.43 tamarin-prover-theory        >         Patterns of type ‘ProofMethod’ not matched: Invalidated
+#27 58.43 tamarin-prover-theory        >     |
+#27 58.43 tamarin-prover-theory        > 255 |     case method of
+#27 58.43 tamarin-prover-theory        >     |     ^^^^^^^^^^^^^^...
+#27 58.43 tamarin-prover-theory        > 
+#27 58.43 tamarin-prover-theory        > /opt/build/lib/theory/src/Theory/Constraint/Solver/ProofMethod.hs:472:5: warning: [-Wunused-top-binds]
+#27 58.43 tamarin-prover-theory        >     Defined but not used: ‘instruction’
+#27 58.43 tamarin-prover-theory        >     |
+#27 58.43 tamarin-prover-theory        > 472 |   , instruction :: Maybe ProofInstruction }
+#27 58.43 tamarin-prover-theory        >     |     ^^^^^^^^^^^
+#27 58.43 tamarin-prover-theory        > 
+#27 58.43 tamarin-prover-theory        > /opt/build/lib/theory/src/Theory/Constraint/Solver/ProofMethod.hs:610:7: warning: [GHC-63397] [-Wname-shadowing]
+#27 58.43 tamarin-prover-theory        >     This binding for ‘ranked’ shadows the existing binding
+#27 58.43 tamarin-prover-theory        >       defined at src/Theory/Constraint/Solver/ProofMethod.hs:471:5
+#27 58.43 tamarin-prover-theory        >     |
+#27 58.43 tamarin-prover-theory        > 610 |       ranked = mapMaybe (atMay ags) indices
+#27 58.43 tamarin-prover-theory        >     |       ^^^^^^
+#27 60.90 tamarin-prover-theory        > [41 of 81] Compiling Theory.Constraint.Solver
+#27 60.91 tamarin-prover-theory        > [42 of 81] Compiling Theory.Proof
+#27 61.00 tamarin-prover-theory        > 
+#27 61.00 tamarin-prover-theory        > /opt/build/lib/theory/src/Theory/Proof.hs:935:9: warning: [GHC-62161] [-Wincomplete-patterns]
+#27 61.00 tamarin-prover-theory        >     Pattern match(es) are non-exhaustive
+#27 61.00 tamarin-prover-theory        >     In a case alternative:
+#27 61.00 tamarin-prover-theory        >         Patterns of type ‘(LTree l (ProofStep (Maybe a)),
+#27 61.00 tamarin-prover-theory        >                            ProofStatus)’ not matched:
+#27 61.00 tamarin-prover-theory        >             (_, InvalidatedProof)
+#27 61.00 tamarin-prover-theory        >     |
+#27 61.00 tamarin-prover-theory        > 935 |         case S.runState (checkLevel l prf) CompleteProof of
+#27 61.00 tamarin-prover-theory        >     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+#27 61.00 tamarin-prover-theory        > 
+#27 61.00 tamarin-prover-theory        > /opt/build/lib/theory/src/Theory/Proof.hs:965:9: warning: [GHC-62161] [-Wincomplete-patterns]
+#27 61.00 tamarin-prover-theory        >     Pattern match(es) are non-exhaustive
+#27 61.00 tamarin-prover-theory        >     In a case alternative:
+#27 61.00 tamarin-prover-theory        >         Patterns of type ‘(LTree l (DiffProofStep (Maybe a)),
+#27 61.00 tamarin-prover-theory        >                            ProofStatus)’ not matched:
+#27 61.00 tamarin-prover-theory        >             (_, InvalidatedProof)
+#27 61.00 tamarin-prover-theory        >     |
+#27 61.00 tamarin-prover-theory        > 965 |         case S.runState (checkLevel l prf) CompleteProof of
+#27 61.00 tamarin-prover-theory        >     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+#27 62.82 tamarin-prover-theory        > [43 of 81] Compiling Pretty
+#27 62.84 tamarin-prover-theory        > [44 of 81] Compiling Items.RuleItem
+#27 63.38 tamarin-prover-theory        > [45 of 81] Compiling Rule
+#27 63.39 tamarin-prover-theory        > 
+#27 63.39 tamarin-prover-theory        > /opt/build/lib/theory/src/Rule.hs:22:1: warning: [-Wunused-imports]
+#27 63.39 tamarin-prover-theory        >     The import of ‘Theory.Constraint.Solver.Sources’ is redundant
+#27 63.39 tamarin-prover-theory        >       except perhaps to import instances from ‘Theory.Constraint.Solver.Sources’
+#27 63.39 tamarin-prover-theory        >     To import instances alone, use: import Theory.Constraint.Solver.Sources()
+#27 63.39 tamarin-prover-theory        >    |
+#27 63.39 tamarin-prover-theory        > 22 | import Theory.Constraint.Solver.Sources (IntegerParameters)
+#27 63.39 tamarin-prover-theory        >    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+#27 63.52 tamarin-prover-theory        > [46 of 81] Compiling Items.LemmaItem
+#27 64.52 tamarin-prover-theory        > [47 of 81] Compiling Lemma
+#27 64.65 tamarin-prover-theory        > [48 of 81] Compiling Theory.ProofSkeleton
+#27 64.68 tamarin-prover-theory        > [49 of 81] Compiling Items.AccLemmaItem
+#27 64.93 tamarin-prover-theory        > [50 of 81] Compiling Items.TheoryItem
+#27 65.93 tamarin-prover-theory        > [51 of 81] Compiling TheoryObject
+#27 68.04 tamarin-prover-theory        > [52 of 81] Compiling Items.OpenTheoryItem
+#27 68.05 tamarin-prover-theory        > [53 of 81] Compiling OpenTheory
+#27 69.20 tamarin-prover-theory        > [54 of 81] Compiling ClosedTheory
+#27 69.23 tamarin-prover-theory        > 
+#27 69.23 tamarin-prover-theory        > /opt/build/lib/theory/src/ClosedTheory.hs:3:7: warning: [GHC-47854] [-Wduplicate-exports]
+#27 69.23 tamarin-prover-theory        >     ‘prettyClosedProtoRule’ is exported by ‘prettyClosedProtoRule’ and ‘module ClosedTheory’
+#27 69.23 tamarin-prover-theory        >   |
+#27 69.23 tamarin-prover-theory        > 3 |     , prettyClosedProtoRule
+#27 69.23 tamarin-prover-theory        >   |       ^^^^^^^^^^^^^^^^^^^^^
+#27 69.86 tamarin-prover-theory        > [55 of 81] Compiling CloseRule
+#27 69.89 tamarin-prover-theory        > 
+#27 69.89 tamarin-prover-theory        > /opt/build/lib/theory/src/CloseRule.hs:224:5: warning: [-Wunused-local-binds]
+#27 69.89 tamarin-prover-theory        >     Defined but not used: ‘ndcTheoryTrace’
+#27 69.89 tamarin-prover-theory        >     |
+#27 69.89 tamarin-prover-theory        > 224 |     ndcTheoryTrace =
+#27 69.89 tamarin-prover-theory        >     |     ^^^^^^^^^^^^^^
+#27 69.89 tamarin-prover-theory        > 
+#27 69.89 tamarin-prover-theory        > /opt/build/lib/theory/src/CloseRule.hs:232:5: warning: [GHC-62161] [-Wincomplete-patterns]
+#27 69.89 tamarin-prover-theory        >     Pattern match(es) are non-exhaustive
+#27 69.89 tamarin-prover-theory        >     In an equation for ‘tInf’:
+#27 69.89 tamarin-prover-theory        >         Patterns of type ‘Fact t’ not matched:
+#27 69.89 tamarin-prover-theory        >             Fact _ _ []
+#27 69.89 tamarin-prover-theory        >             Fact _ _ (_:_:_)
+#27 69.89 tamarin-prover-theory        >     |
+#27 69.89 tamarin-prover-theory        > 232 |     tInf (Fact _ _ [f]) = f
+#27 69.89 tamarin-prover-theory        >     |     ^^^^^^^^^^^^^^^^^^^^^^^
+#27 69.89 tamarin-prover-theory        > 
+#27 69.89 tamarin-prover-theory        > /opt/build/lib/theory/src/CloseRule.hs:254:5: warning: [-Wunused-local-binds]
+#27 69.89 tamarin-prover-theory        >     Defined but not used: ‘tabTheory’
+#27 69.89 tamarin-prover-theory        >     |
+#27 69.89 tamarin-prover-theory        > 254 |     tabTheory (th1:thq) = render (prettyTheory prettySignaturePure prettyOpenRuleCache{-WithLimitAndNDC-} prettyOpenProtoRule prettyProof prettyTranslationElement th1) ++ " \n\n " ++ tabTheory thq
+#27 69.89 tamarin-prover-theory        >     |     ^^^^^^^^^
+#27 70.64 tamarin-prover-theory        > [56 of 81] Compiling Prover
+#27 71.20 tamarin-prover-theory        > [57 of 81] Compiling Theory
+#27 71.22 tamarin-prover-theory        > [58 of 81] Compiling Theory.Tools.Wellformedness
+#27 73.98 tamarin-prover-theory        > [59 of 81] Compiling Theory.Tools.MessageDerivationChecks
+#27 74.27 tamarin-prover-theory        > [60 of 81] Compiling Theory.Text.Parser.Token
+#27 74.31 tamarin-prover-theory        > 
+#27 74.31 tamarin-prover-theory        > /opt/build/lib/theory/src/Theory/Text/Parser/Token.hs:200:13: warning: [GHC-63397] [-Wname-shadowing]
+#27 74.31 tamarin-prover-theory        >     This binding for ‘sig’ shadows the existing binding
+#27 74.31 tamarin-prover-theory        >       defined at src/Theory/Text/Parser/Token.hs:161:10
+#27 74.31 tamarin-prover-theory        >     |
+#27 74.31 tamarin-prover-theory        > 200 |     foldl (\sig macro -> 
+#27 74.31 tamarin-prover-theory        >     |             ^^^
+#27 76.53 tamarin-prover-theory        > [61 of 81] Compiling Theory.Text.Parser.Term
+#27 77.03 tamarin-prover-theory        > [62 of 81] Compiling Theory.Text.Parser.Let
+#27 77.08 tamarin-prover-theory        > [63 of 81] Compiling Theory.Text.Parser.Fact
+#27 77.25 tamarin-prover-theory        > [64 of 81] Compiling Theory.Text.Parser.Tactics
+#27 77.83 tamarin-prover-theory        > [65 of 81] Compiling Theory.Text.Parser.Macro
+#27 77.93 tamarin-prover-theory        > [66 of 81] Compiling Theory.Text.Parser.Formula
+#27 78.59 tamarin-prover-theory        > [67 of 81] Compiling Theory.Text.Parser.Rule
+#27 78.60 tamarin-prover-theory        > 
+#27 78.60 tamarin-prover-theory        > /opt/build/lib/theory/src/Theory/Text/Parser/Rule.hs:90:9: warning: [GHC-63397] [-Wname-shadowing]
+#27 78.60 tamarin-prover-theory        >     This binding for ‘role’ shadows the existing binding
+#27 78.60 tamarin-prover-theory        >       imported from ‘Theory’ at src/Theory/Text/Parser/Rule.hs:39:1-23
+#27 78.60 tamarin-prover-theory        >       (and originally defined in ‘Theory.Model.Rule’
+#27 78.60 tamarin-prover-theory        >          at src/Theory/Model/Rule.hs:377:5-8)
+#27 78.60 tamarin-prover-theory        >    |
+#27 78.60 tamarin-prover-theory        > 90 |         role <- manyTill anyChar (try (symbol "\'" <|> symbol "\""))
+#27 78.60 tamarin-prover-theory        >    |         ^^^^
+#27 78.60 tamarin-prover-theory        > 
+#27 78.60 tamarin-prover-theory        > /opt/build/lib/theory/src/Theory/Text/Parser/Rule.hs:159:6: warning: [-Wunused-matches]
+#27 78.60 tamarin-prover-theory        >     Defined but not used: ‘name’
+#27 78.60 tamarin-prover-theory        >     |
+#27 78.60 tamarin-prover-theory        > 159 |     (name, info)  <- try (symbol "rule" *> moduloAC *> intrInfo <* colon)
+#27 78.60 tamarin-prover-theory        >     |      ^^^^
+#27 78.60 tamarin-prover-theory        > 
+#27 78.60 tamarin-prover-theory        > /opt/build/lib/theory/src/Theory/Text/Parser/Rule.hs:170:9: warning: [GHC-62161] [-Wincomplete-patterns]
+#27 78.60 tamarin-prover-theory        >     Pattern match(es) are non-exhaustive
+#27 78.60 tamarin-prover-theory        >     In a case alternative:
+#27 78.60 tamarin-prover-theory        >         Patterns of type ‘[Char]’ not matched:
+#27 78.60 tamarin-prover-theory        >             []
+#27 78.60 tamarin-prover-theory        >             (p:_) where p is not one of {'c', 'd'}
+#27 78.60 tamarin-prover-theory        >     |
+#27 78.60 tamarin-prover-theory        > 170 |         case name of
+#27 78.60 tamarin-prover-theory        >     |         ^^^^^^^^^^^^...
+#27 79.41 tamarin-prover-theory        > [68 of 81] Compiling Theory.Text.Parser.Sapic
+#27 81.01 tamarin-prover-theory        > [69 of 81] Compiling Theory.Text.Parser.Restriction
+#27 81.15 tamarin-prover-theory        > [70 of 81] Compiling Theory.Text.Parser.Proof
+#27 81.55 tamarin-prover-theory        > [71 of 81] Compiling Theory.Text.Parser.Exceptions
+#27 81.61 tamarin-prover-theory        > [72 of 81] Compiling Theory.Text.Parser.Signature
+#27 81.63 tamarin-prover-theory        > 
+#27 81.63 tamarin-prover-theory        > /opt/build/lib/theory/src/Theory/Text/Parser/Signature.hs:47:1: warning: [-Wunused-imports]
+#27 81.63 tamarin-prover-theory        >     The import of ‘Debug.Trace’ is redundant
+#27 81.63 tamarin-prover-theory        >       except perhaps to import instances from ‘Debug.Trace’
+#27 81.63 tamarin-prover-theory        >     To import instances alone, use: import Debug.Trace()
+#27 81.63 tamarin-prover-theory        >    |
+#27 81.63 tamarin-prover-theory        > 47 | import Debug.Trace (traceM)
+#27 81.63 tamarin-prover-theory        >    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+#27 81.63 tamarin-prover-theory        > 
+#27 81.63 tamarin-prover-theory        > /opt/build/lib/theory/src/Theory/Text/Parser/Signature.hs:132:23: warning: [GHC-63397] [-Wname-shadowing]
+#27 81.63 tamarin-prover-theory        >     This binding for ‘st’ shadows the existing binding
+#27 81.63 tamarin-prover-theory        >       bound at src/Theory/Text/Parser/Signature.hs:104:9
+#27 81.63 tamarin-prover-theory        >     |
+#27 81.63 tamarin-prover-theory        > 132 |         modifyState (\st -> st { reservedBuiltinNames = 
+#27 81.63 tamarin-prover-theory        >     |                       ^^
+#27 81.63 tamarin-prover-theory        > 
+#27 81.63 tamarin-prover-theory        > /opt/build/lib/theory/src/Theory/Text/Parser/Signature.hs:241:22: warning: [GHC-63397] [-Wname-shadowing]
+#27 81.63 tamarin-prover-theory        >     This binding for ‘sig’ shadows the existing binding
+#27 81.63 tamarin-prover-theory        >       imported from ‘Theory.Text.Parser.Token’ at src/Theory/Text/Parser/Signature.hs:42:1-41
+#27 81.63 tamarin-prover-theory        >       (and originally defined
+#27 81.63 tamarin-prover-theory        >          at src/Theory/Text/Parser/Token.hs:161:10-12)
+#27 81.63 tamarin-prover-theory        >     |
+#27 81.63 tamarin-prover-theory        > 241 |     modifyStateSig (\sig -> foldl (flip addCtxtStRule) sig eqs)
+#27 81.63 tamarin-prover-theory        >     |                      ^^^
+#27 82.75 tamarin-prover-theory        > [73 of 81] Compiling Theory.Text.Parser.Lemma
+#27 82.97 tamarin-prover-theory        > [74 of 81] Compiling Theory.Text.Parser.Accountability
+#27 83.09 tamarin-prover-theory        > [75 of 81] Compiling Theory.Text.Parser
+#27 84.41 tamarin-prover-theory        > [76 of 81] Compiling Theory.Constraint.System.Graph.Simplification
+#27 85.46 tamarin-prover-theory        > [77 of 81] Compiling Theory.Constraint.System.Graph.GraphRepr
+#27 85.47 tamarin-prover-theory        > 
+#27 85.47 tamarin-prover-theory        > /opt/build/lib/theory/src/Theory/Constraint/System/Graph/GraphRepr.hs:46:19: warning: [-Wunused-imports]
+#27 85.47 tamarin-prover-theory        >     The import of ‘find’ from module ‘Data.List’ is redundant
+#27 85.47 tamarin-prover-theory        >    |
+#27 85.47 tamarin-prover-theory        > 46 | import Data.List (find, intercalate)
+#27 85.47 tamarin-prover-theory        >    |                   ^^^^
+#27 86.51 tamarin-prover-theory        > [78 of 81] Compiling Theory.Constraint.System.Graph.Abbreviation
+#27 86.52 tamarin-prover-theory        > 
+#27 86.52 tamarin-prover-theory        > /opt/build/lib/theory/src/Theory/Constraint/System/Graph/Abbreviation.hs:39:1: warning: [-Wunused-imports]
+#27 86.52 tamarin-prover-theory        >     The import of ‘Debug.Trace.EnvTracer’ is redundant
+#27 86.52 tamarin-prover-theory        >       except perhaps to import instances from ‘Debug.Trace.EnvTracer’
+#27 86.52 tamarin-prover-theory        >     To import instances alone, use: import Debug.Trace.EnvTracer()
+#27 86.52 tamarin-prover-theory        >    |
+#27 86.52 tamarin-prover-theory        > 39 | import Debug.Trace.EnvTracer (etraceSectionLn, etraceLn)
+#27 86.52 tamarin-prover-theory        >    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+#27 86.52 tamarin-prover-theory        > 
+#27 86.52 tamarin-prover-theory        > /opt/build/lib/theory/src/Theory/Constraint/System/Graph/Abbreviation.hs:236:5: warning: [-Wunused-local-binds]
+#27 86.52 tamarin-prover-theory        >     Defined but not used: ‘abbreviateTerms’
+#27 86.52 tamarin-prover-theory        >     |
+#27 86.52 tamarin-prover-theory        > 236 |     abbreviateTerms ts =
+#27 86.52 tamarin-prover-theory        >     |     ^^^^^^^^^^^^^^^
+#27 86.85 tamarin-prover-theory        > [79 of 81] Compiling Theory.Constraint.System.Graph.Graph
+#27 87.15 tamarin-prover-theory        > [80 of 81] Compiling Theory.Constraint.System.Dot
+#27 87.19 tamarin-prover-theory        > 
+#27 87.19 tamarin-prover-theory        > /opt/build/lib/theory/src/Theory/Constraint/System/Dot.hs:69:1: warning: [-Wunused-imports]
+#27 87.19 tamarin-prover-theory        >     The import of ‘Theory’ is redundant
+#27 87.19 tamarin-prover-theory        >       except perhaps to import instances from ‘Theory’
+#27 87.19 tamarin-prover-theory        >     To import instances alone, use: import Theory()
+#27 87.19 tamarin-prover-theory        >    |
+#27 87.19 tamarin-prover-theory        > 69 | import Theory (laSmaller, laLarger, laReason)
+#27 87.19 tamarin-prover-theory        >    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+#27 87.19 tamarin-prover-theory        > 
+#27 87.19 tamarin-prover-theory        > /opt/build/lib/theory/src/Theory/Constraint/System/Dot.hs:103:2: warning: [-Wunused-top-binds]
+#27 87.19 tamarin-prover-theory        >     Defined but not used: ‘dsSingles’
+#27 87.19 tamarin-prover-theory        >     |
+#27 87.19 tamarin-prover-theory        > 103 | $(mkLabels [''DotState])
+#27 87.19 tamarin-prover-theory        >     |  ^^^^^^^^^^^^^^^^^^^^^^^
+#27 87.19 tamarin-prover-theory        > 
+#27 87.19 tamarin-prover-theory        > /opt/build/lib/theory/src/Theory/Constraint/System/Dot.hs:246:11: warning: [GHC-63397] [-Wname-shadowing]
+#27 87.19 tamarin-prover-theory        >     This binding for ‘role’ shadows the existing binding
+#27 87.19 tamarin-prover-theory        >       imported from ‘Theory.Model’ at src/Theory/Constraint/System/Dot.hs:64:1-29
+#27 87.19 tamarin-prover-theory        >       (and originally defined in ‘Theory.Model.Rule’
+#27 87.19 tamarin-prover-theory        >          at src/Theory/Model/Rule.hs:377:5-8)
+#27 87.19 tamarin-prover-theory        >     |
+#27 87.19 tamarin-prover-theory        > 246 |       let role = fromMaybe "Undefined" (getNodeRole node)
+#27 87.19 tamarin-prover-theory        >     |           ^^^^
+#27 88.89 tamarin-prover-theory        > [81 of 81] Compiling Theory.Constraint.System.JSON
+#27 89.06 tamarin-prover-theory        > 
+#27 89.06 tamarin-prover-theory        > /opt/build/lib/theory/src/Theory/Constraint/System/JSON.hs:50:1: warning: [-Wunused-imports]
+#27 89.06 tamarin-prover-theory        >     The qualified import of ‘Theory.Constraint.System.Graph.Graph’ is redundant
+#27 89.06 tamarin-prover-theory        >       except perhaps to import instances from ‘Theory.Constraint.System.Graph.Graph’
+#27 89.06 tamarin-prover-theory        >     To import instances alone, use: import Theory.Constraint.System.Graph.Graph()
+#27 89.06 tamarin-prover-theory        >    |
+#27 89.06 tamarin-prover-theory        > 50 | import qualified Theory.Constraint.System.Graph.Graph as G
+#27 89.06 tamarin-prover-theory        >    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+#27 89.06 tamarin-prover-theory        > 
+#27 89.06 tamarin-prover-theory        > /opt/build/lib/theory/src/Theory/Constraint/System/JSON.hs:51:1: warning: [-Wdodgy-imports]
+#27 89.06 tamarin-prover-theory        >     Module
+#27 89.06 tamarin-prover-theory        >     ‘Theory.Constraint.System.Graph.Graph’
+#27 89.06 tamarin-prover-theory        >     does not export
+#27 89.06 tamarin-prover-theory        >     ‘defaultOptions’
+#27 89.06 tamarin-prover-theory        >    |
+#27 89.06 tamarin-prover-theory        > 51 | import           Theory.Constraint.System.Graph.Graph hiding (defaultOptions)
+#27 89.06 tamarin-prover-theory        >    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+#27 89.06 tamarin-prover-theory        > 
+#27 89.06 tamarin-prover-theory        > /opt/build/lib/theory/src/Theory/Constraint/System/JSON.hs:342:31: warning: [GHC-63397] [-Wname-shadowing]
+#27 89.06 tamarin-prover-theory        >     This binding for ‘nodeColorMap’ shadows the existing binding
+#27 89.06 tamarin-prover-theory        >       imported from ‘Theory.Constraint.System.Dot’ at src/Theory/Constraint/System/JSON.hs:53:62-73
+#27 89.06 tamarin-prover-theory        >       (and originally defined
+#27 89.06 tamarin-prover-theory        >          at src/Theory/Constraint/System/Dot.hs:194:1-12)
+#27 89.06 tamarin-prover-theory        >     |
+#27 89.06 tamarin-prover-theory        > 342 | graphNodeToJSONGraphNode node nodeColorMap = do
+#27 89.06 tamarin-prover-theory        >     |                               ^^^^^^^^^^^^
+#27 89.06 tamarin-prover-theory        > 
+#27 89.06 tamarin-prover-theory        > /opt/build/lib/theory/src/Theory/Constraint/System/JSON.hs:384:23: warning: [-Wunused-matches]
+#27 89.06 tamarin-prover-theory        >     Defined but not used: ‘conc’
+#27 89.06 tamarin-prover-theory        >     |
+#27 89.06 tamarin-prover-theory        > 384 |     MissingNode (Left conc) -> 
+#27 89.06 tamarin-prover-theory        >     |                       ^^^^
+#27 89.06 tamarin-prover-theory        > 
+#27 89.06 tamarin-prover-theory        > /opt/build/lib/theory/src/Theory/Constraint/System/JSON.hs:407:24: warning: [-Wunused-matches]
+#27 89.06 tamarin-prover-theory        >     Defined but not used: ‘prem’
+#27 89.06 tamarin-prover-theory        >     |
+#27 89.06 tamarin-prover-theory        > 407 |     MissingNode (Right prem) -> 
+#27 89.06 tamarin-prover-theory        >     |                        ^^^^
+#27 89.06 tamarin-prover-theory        > 
+#27 89.06 tamarin-prover-theory        > /opt/build/lib/theory/src/Theory/Constraint/System/JSON.hs:454:20: warning: [-Wunused-matches]
+#27 89.06 tamarin-prover-theory        >     Defined but not used: ‘src’
+#27 89.06 tamarin-prover-theory        >     |
+#27 89.06 tamarin-prover-theory        > 454 |     UnsolvedChain (src, tgt) -> "green"
+#27 89.06 tamarin-prover-theory        >     |                    ^^^
+#27 89.06 tamarin-prover-theory        > 
+#27 89.06 tamarin-prover-theory        > /opt/build/lib/theory/src/Theory/Constraint/System/JSON.hs:454:25: warning: [-Wunused-matches]
+#27 89.06 tamarin-prover-theory        >     Defined but not used: ‘tgt’
+#27 89.06 tamarin-prover-theory        >     |
+#27 89.06 tamarin-prover-theory        > 454 |     UnsolvedChain (src, tgt) -> "green"
+#27 89.06 tamarin-prover-theory        >     |                         ^^^
+#27 89.06 tamarin-prover-theory        > 
+#27 89.06 tamarin-prover-theory        > /opt/build/lib/theory/src/Theory/Constraint/System/JSON.hs:499:40: warning: [GHC-63397] [-Wname-shadowing]
+#27 89.06 tamarin-prover-theory        >     This binding for ‘nodeColorMap’ shadows the existing binding
+#27 89.06 tamarin-prover-theory        >       imported from ‘Theory.Constraint.System.Dot’ at src/Theory/Constraint/System/JSON.hs:53:62-73
+#27 89.06 tamarin-prover-theory        >       (and originally defined
+#27 89.06 tamarin-prover-theory        >          at src/Theory/Constraint/System/Dot.hs:194:1-12)
+#27 89.06 tamarin-prover-theory        >     |
+#27 89.06 tamarin-prover-theory        > 499 | graphClusterToJSONGraphCluster cluster nodeColorMap = do
+#27 89.06 tamarin-prover-theory        >     |                                        ^^^^^^^^^^^^
+#27 89.06 tamarin-prover-theory        > 
+#27 89.06 tamarin-prover-theory        > /opt/build/lib/theory/src/Theory/Constraint/System/JSON.hs:523:26: warning: [GHC-63397] [-Wname-shadowing]
+#27 89.06 tamarin-prover-theory        >     This binding for ‘nodeColorMap’ shadows the existing binding
+#27 89.06 tamarin-prover-theory        >       imported from ‘Theory.Constraint.System.Dot’ at src/Theory/Constraint/System/JSON.hs:53:62-73
+#27 89.06 tamarin-prover-theory        >       (and originally defined
+#27 89.06 tamarin-prover-theory        >          at src/Theory/Constraint/System/Dot.hs:194:1-12)
+#27 89.06 tamarin-prover-theory        >     |
+#27 89.06 tamarin-prover-theory        > 523 | sequentToJSONGraph label nodeColorMap = do
+#27 89.06 tamarin-prover-theory        >     |                          ^^^^^^^^^^^^
+#27 89.06 tamarin-prover-theory        > 
+#27 89.06 tamarin-prover-theory        > /opt/build/lib/theory/src/Theory/Constraint/System/JSON.hs:553:7: warning: [GHC-63397] [-Wname-shadowing]
+#27 89.06 tamarin-prover-theory        >     This binding for ‘graphs’ shadows the existing binding
+#27 89.06 tamarin-prover-theory        >       defined at src/Theory/Constraint/System/JSON.hs:146:7
+#27 89.06 tamarin-prover-theory        >     |
+#27 89.06 tamarin-prover-theory        > 553 |   let graphs = map (\(label, system) -> (label, systemToGraph system graphOptions , nodeColorMap (M.elems $ get sNodes system))) systems
+#27 89.06 tamarin-prover-theory        >     |       ^^^^^^
+#27 89.06 tamarin-prover-theory        > 
+#27 89.07 tamarin-prover-theory        > /opt/build/lib/theory/src/Theory/Constraint/System/JSON.hs:566:7: warning: [GHC-63397] [-Wname-shadowing]
+#27 89.07 tamarin-prover-theory        >     This binding for ‘graphs’ shadows the existing binding
+#27 89.07 tamarin-prover-theory        >       defined at src/Theory/Constraint/System/JSON.hs:146:7
+#27 89.07 tamarin-prover-theory        >     |
+#27 89.07 tamarin-prover-theory        > 566 |   let graphs = map (\(label, system) -> (label, systemToGraph system graphOptions , nodeColorMap (M.elems $ get sNodes system))) systems
+#27 89.07 tamarin-prover-theory        >     |       ^^^^^^
+#27 91.25 tamarin-prover-theory        > copy/register
+#27 91.38 tamarin-prover-theory        > Installing library in /opt/build/.stack-work/install/x86_64-linux/3b5daa4896952fb7751ca298ddf1d8a492a302907c654f2171b3de98f80d5f33/9.6.7/lib/x86_64-linux-ghc-9.6.7/tamarin-prover-theory-1.13.0-8wixYaxm5uHCGl2uEzaKzP
+#27 91.62 tamarin-prover-theory        > Registering library for tamarin-prover-theory-1.13.0..
+#27 91.70 tamarin-prover-sapic         > configure (lib)
+#27 91.70 tamarin-prover-accountability> configure (lib)
+#27 91.70 tamarin-prover-accountability> Configuring tamarin-prover-accountability-1.13.0...
+#27 91.70 tamarin-prover-sapic         > Configuring tamarin-prover-sapic-1.13.0...
+#27 92.23 tamarin-prover-sapic         > build (lib) with ghc-9.6.7
+#27 92.25 tamarin-prover-accountability> build (lib) with ghc-9.6.7
+#27 92.28 tamarin-prover-sapic         > Preprocessing library for tamarin-prover-sapic-1.13.0..
+#27 92.28 tamarin-prover-sapic         > Building library for tamarin-prover-sapic-1.13.0..
+#27 92.30 tamarin-prover-accountability> Preprocessing library for tamarin-prover-accountability-1.13.0..
+#27 92.30 tamarin-prover-accountability> Building library for tamarin-prover-accountability-1.13.0..
+#27 92.35 tamarin-prover-sapic         > [ 1 of 18] Compiling Sapic.Bindings
+#27 92.36 tamarin-prover-accountability> [1 of 2] Compiling Accountability.Generation
+#27 92.49 tamarin-prover-sapic         > [ 2 of 18] Compiling Sapic.Exceptions
+#27 92.51 tamarin-prover-accountability> 
+#27 92.51 tamarin-prover-accountability> /opt/build/lib/accountability/src/Accountability/Generation.hs:16:1: warning: [-Wunused-imports]
+#27 92.51 tamarin-prover-accountability>     The qualified import of ‘Extension.Data.Label’ is redundant
+#27 92.51 tamarin-prover-accountability>       except perhaps to import instances from ‘Extension.Data.Label’
+#27 92.51 tamarin-prover-accountability>     To import instances alone, use: import Extension.Data.Label()
+#27 92.51 tamarin-prover-accountability>    |
+#27 92.51 tamarin-prover-accountability> 16 | import qualified Extension.Data.Label        as L
+#27 92.51 tamarin-prover-accountability>    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+#27 92.78 tamarin-prover-sapic         > [ 3 of 18] Compiling Sapic.Annotation
+#27 93.19 tamarin-prover-accountability> [2 of 2] Compiling Accountability
+#27 93.30 tamarin-prover-sapic         > [ 4 of 18] Compiling Sapic.Facts
+#27 93.68 tamarin-prover-accountability> copy/register
+#27 93.72 tamarin-prover-sapic         > [ 5 of 18] Compiling Sapic.Compression
+#27 93.74 tamarin-prover-accountability> Installing library in /opt/build/.stack-work/install/x86_64-linux/3b5daa4896952fb7751ca298ddf1d8a492a302907c654f2171b3de98f80d5f33/9.6.7/lib/x86_64-linux-ghc-9.6.7/tamarin-prover-accountability-1.13.0-I8KIPESpJ3uLXLh7gfU0Mc
+#27 93.86 tamarin-prover-accountability> Registering library for tamarin-prover-accountability-1.13.0..
+#27 93.97 tamarin-prover-sapic         > [ 6 of 18] Compiling Sapic.LetDestructors
+#27 94.20 tamarin-prover-sapic         > [ 7 of 18] Compiling Sapic.Locks
+#27 94.28 tamarin-prover-sapic         > [ 8 of 18] Compiling Sapic.ProcessUtils
+#27 94.33 tamarin-prover-sapic         > [ 9 of 18] Compiling Sapic.Basetranslation
+#27 95.07 tamarin-prover-sapic         > [10 of 18] Compiling Sapic.ProgressFunction
+#27 95.32 tamarin-prover-sapic         > [11 of 18] Compiling Sapic.ProgressTranslation
+#27 95.52 tamarin-prover-sapic         > [12 of 18] Compiling Sapic.ReliableChannelTranslation
+#27 95.75 tamarin-prover-sapic         > [13 of 18] Compiling Sapic.Report
+#27 95.86 tamarin-prover-sapic         > [14 of 18] Compiling Sapic.SecretChannels
+#27 96.06 tamarin-prover-sapic         > [15 of 18] Compiling Sapic.States
+#27 96.66 tamarin-prover-sapic         > [16 of 18] Compiling Sapic.Typing
+#27 97.20 tamarin-prover-sapic         > [17 of 18] Compiling Sapic.Warnings
+#27 97.24 tamarin-prover-sapic         > [18 of 18] Compiling Sapic
+#27 97.72 tamarin-prover-sapic         > copy/register
+#27 97.76 tamarin-prover-sapic         > Installing library in /opt/build/.stack-work/install/x86_64-linux/3b5daa4896952fb7751ca298ddf1d8a492a302907c654f2171b3de98f80d5f33/9.6.7/lib/x86_64-linux-ghc-9.6.7/tamarin-prover-sapic-1.13.0-7UlixFJ4zlFDSLuVlJcw1D
+#27 97.86 tamarin-prover-sapic         > Registering library for tamarin-prover-sapic-1.13.0..
+#27 97.94 tamarin-prover-export        > configure (lib)
+#27 97.94 tamarin-prover-export        > Configuring tamarin-prover-export-1.13.0...
+#27 98.44 tamarin-prover-export        > build (lib) with ghc-9.6.7
+#27 98.48 tamarin-prover-export        > Preprocessing library for tamarin-prover-export-1.13.0..
+#27 98.48 tamarin-prover-export        > Building library for tamarin-prover-export-1.13.0..
+#27 98.54 tamarin-prover-export        > [ 1 of 14] Compiling Export.Name
+#27 98.74 tamarin-prover-export        > [ 2 of 14] Compiling Export.ProVerif.Formula
+#27 100.5 tamarin-prover-export        > [ 3 of 14] Compiling Export.ProVerif.Instrumentation
+#27 101.2 tamarin-prover-export        > [ 4 of 14] Compiling Export.Types
+#27 101.5 tamarin-prover-export        > [ 5 of 14] Compiling Export.ProVerif.Property
+#27 102.1 tamarin-prover-export        > [ 6 of 14] Compiling Export.ProVerif.Header
+#27 102.5 tamarin-prover-export        > [ 7 of 14] Compiling Export.ProVerif.Rule
+#27 104.3 tamarin-prover-export        > [ 8 of 14] Compiling Export.Sapic
+#27 106.4 tamarin-prover-export        > [ 9 of 14] Compiling Export.ProVerif.Render
+#27 107.4 tamarin-prover-export        > [10 of 14] Compiling Export.Diagnostic
+#27 107.8 tamarin-prover-export        > [11 of 14] Compiling Export.ProVerif
+#27 108.3 tamarin-prover-export        > [12 of 14] Compiling Export.ProVerifEquivalence
+#27 108.4 tamarin-prover-export        > [13 of 14] Compiling Export.DeepSec
+#27 108.4 tamarin-prover-export        > [14 of 14] Compiling Export
+#27 108.7 tamarin-prover-export        > copy/register
+#27 108.8 tamarin-prover-export        > Installing library in /opt/build/.stack-work/install/x86_64-linux/3b5daa4896952fb7751ca298ddf1d8a492a302907c654f2171b3de98f80d5f33/9.6.7/lib/x86_64-linux-ghc-9.6.7/tamarin-prover-export-1.13.0-Gu56SxJI4OVBmZbfMJJf7K
+#27 108.9 tamarin-prover-export        > Registering library for tamarin-prover-export-1.13.0..
+#27 109.0 tamarin-prover               > configure (exe)
+#27 109.0 tamarin-prover               > Configuring tamarin-prover-1.13.0...
+#27 109.5 tamarin-prover               > build (exe) with ghc-9.6.7
+#27 109.6 tamarin-prover               > Preprocessing executable 'tamarin-prover' for tamarin-prover-1.13.0..
+#27 109.6 tamarin-prover               > Building executable 'tamarin-prover' for tamarin-prover-1.13.0..
+#27 109.6 tamarin-prover               > [ 1 of 20] Compiling Main.Utils
+#27 109.7 tamarin-prover               > [ 2 of 20] Compiling Paths_tamarin_prover
+#27 109.8 tamarin-prover               > [ 3 of 20] Compiling Main.Console
+#27 110.3 tamarin-prover               > [ 4 of 20] Compiling Main.TheoryLoader
+#27 110.6 tamarin-prover               > 
+#27 110.6 tamarin-prover               > /opt/build/src/Main/TheoryLoader.hs:40:1: warning: [-Wunused-imports]
+#27 110.6 tamarin-prover               >     The import of ‘Control.Monad.IO.Class’ is redundant
+#27 110.6 tamarin-prover               >       except perhaps to import instances from ‘Control.Monad.IO.Class’
+#27 110.6 tamarin-prover               >     To import instances alone, use: import Control.Monad.IO.Class()
+#27 110.6 tamarin-prover               >    |
+#27 110.6 tamarin-prover               > 40 | import Control.Monad.IO.Class (MonadIO(liftIO))
+#27 110.6 tamarin-prover               >    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+#27 110.6 tamarin-prover               > 
+#27 110.6 tamarin-prover               > /opt/build/src/Main/TheoryLoader.hs:47:1: warning: [-Wunused-imports]
+#27 110.6 tamarin-prover               >     The import of ‘Data.Function’ is redundant
+#27 110.6 tamarin-prover               >       except perhaps to import instances from ‘Data.Function’
+#27 110.6 tamarin-prover               >     To import instances alone, use: import Data.Function()
+#27 110.6 tamarin-prover               >    |
+#27 110.6 tamarin-prover               > 47 | import Data.Function (on)
+#27 110.6 tamarin-prover               >    | ^^^^^^^^^^^^^^^^^^^^^^^^^
+#27 110.6 tamarin-prover               > 
+#27 110.6 tamarin-prover               > /opt/build/src/Main/TheoryLoader.hs:52:1: warning: [-Wunused-imports]
+#27 110.6 tamarin-prover               >     The import of ‘groupBy, sortOn’
+#27 110.6 tamarin-prover               >     from module ‘Data.List’ is redundant
+#27 110.6 tamarin-prover               >    |
+#27 110.6 tamarin-prover               > 52 | import Data.List (isPrefixOf, intercalate, find, groupBy, sortOn)
+#27 110.6 tamarin-prover               >    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+#27 110.6 tamarin-prover               > 
+#27 110.6 tamarin-prover               > /opt/build/src/Main/TheoryLoader.hs:53:1: warning: [-Wunused-imports]
+#27 110.6 tamarin-prover               >     The import of ‘Data.Map’ is redundant
+#27 110.6 tamarin-prover               >       except perhaps to import instances from ‘Data.Map’
+#27 110.6 tamarin-prover               >     To import instances alone, use: import Data.Map()
+#27 110.6 tamarin-prover               >    |
+#27 110.6 tamarin-prover               > 53 | import Data.Map (keys)
+#27 110.6 tamarin-prover               >    | ^^^^^^^^^^^^^^^^^^^^^^
+#27 110.6 tamarin-prover               > 
+#27 110.6 tamarin-prover               > /opt/build/src/Main/TheoryLoader.hs:83:83: warning: [-Wunused-imports]
+#27 110.6 tamarin-prover               >     The import of ‘deductionChainCheck’
+#27 110.6 tamarin-prover               >     from module ‘TheoryObject’ is redundant
+#27 110.6 tamarin-prover               >    |
+#27 110.6 tamarin-prover               > 83 | import TheoryObject (diffTheoryConfigBlock, theoryConfigBlock, theoryConfigBlock, deductionChainCheck)
+#27 110.6 tamarin-prover               >    |                                                                                   ^^^^^^^^^^^^^^^^^^^
+#27 110.6 tamarin-prover               > 
+#27 110.6 tamarin-prover               > /opt/build/src/Main/TheoryLoader.hs:510:5: warning: [-Wunused-local-binds]
+#27 110.6 tamarin-prover               >     Defined but not used: ‘hnd’
+#27 110.6 tamarin-prover               >     |
+#27 110.6 tamarin-prover               > 510 |     hnd = sign._sigMaudeInfo
+#27 110.6 tamarin-prover               >     |     ^^^
+#27 111.8 tamarin-prover               > [ 5 of 20] Compiling Main.REPL
+#27 112.0 tamarin-prover               > [ 6 of 20] Compiling Main.ScratchPad
+#27 112.0 tamarin-prover               > 
+#27 112.0 tamarin-prover               > /opt/build/src/Main/ScratchPad.hs:24:1: warning: [GHC-38417] [-Wmissing-signatures]
+#27 112.0 tamarin-prover               >     Top-level binding with no type signature: thy :: IO ClosedTheory
+#27 112.0 tamarin-prover               >    |
+#27 112.0 tamarin-prover               > 24 | thy = loadThy "examples/ake/dh/NAXOS_eCK.spthy"
+#27 112.0 tamarin-prover               >    | ^^^
+#27 112.0 tamarin-prover               > 
+#27 112.0 tamarin-prover               > /opt/build/src/Main/ScratchPad.hs:26:1: warning: [GHC-38417] [-Wmissing-signatures]
+#27 112.0 tamarin-prover               >     Top-level binding with no type signature:
+#27 112.0 tamarin-prover               >       steps :: Control.Monad.Trans.Reader.ReaderT
+#27 112.0 tamarin-prover               >                  ClosedTheory IO REPLProof
+#27 112.0 tamarin-prover               >    |
+#27 112.0 tamarin-prover               > 26 | steps = getProofForLemma "eCK_key_secrecy"
+#27 112.0 tamarin-prover               >    | ^^^^^
+#27 112.0 tamarin-prover               > 
+#27 112.0 tamarin-prover               > /opt/build/src/Main/ScratchPad.hs:33:1: warning: [GHC-38417] [-Wmissing-signatures]
+#27 112.0 tamarin-prover               >     Top-level binding with no type signature: paths :: IO ()
+#27 112.0 tamarin-prover               >    |
+#27 112.0 tamarin-prover               > 33 | paths = showPaths thy steps
+#27 112.0 tamarin-prover               >    | ^^^^^
+#27 112.0 tamarin-prover               > 
+#27 112.0 tamarin-prover               > /opt/build/src/Main/ScratchPad.hs:36:1: warning: [GHC-38417] [-Wmissing-signatures]
+#27 112.0 tamarin-prover               >     Top-level binding with no type signature: methodsAt :: Int -> IO ()
+#27 112.0 tamarin-prover               >    |
+#27 112.0 tamarin-prover               > 36 | methodsAt i = showMethodsAt thy i steps
+#27 112.0 tamarin-prover               >    | ^^^^^^^^^
+#27 112.0 tamarin-prover               > 
+#27 112.0 tamarin-prover               > /opt/build/src/Main/ScratchPad.hs:38:1: warning: [GHC-38417] [-Wmissing-signatures]
+#27 112.0 tamarin-prover               >     Top-level binding with no type signature: debug :: IO ()
+#27 112.0 tamarin-prover               >    |
+#27 112.0 tamarin-prover               > 38 | debug = showWith thy debugM debugInput
+#27 112.0 tamarin-prover               >    | ^^^^^
+#27 112.0 tamarin-prover               > 
+#27 112.0 tamarin-prover               > /opt/build/src/Main/ScratchPad.hs:52:1: warning: [GHC-38417] [-Wmissing-signatures]
+#27 112.0 tamarin-prover               >     Top-level binding with no type signature:
+#27 112.0 tamarin-prover               >       debugInput :: Control.Monad.Trans.Reader.ReaderT
+#27 112.0 tamarin-prover               >                       ClosedTheory IO (ProofContext, MaudeHandle, REPLProof, System)
+#27 112.0 tamarin-prover               >    |
+#27 112.0 tamarin-prover               > 52 | debugInput = do
+#27 112.0 tamarin-prover               >    | ^^^^^^^^^^
+#27 112.0 tamarin-prover               > 
+#27 112.0 tamarin-prover               > /opt/build/src/Main/ScratchPad.hs:61:1: warning: [GHC-38417] [-Wmissing-signatures]
+#27 112.0 tamarin-prover               >     Top-level binding with no type signature:
+#27 112.0 tamarin-prover               >       debugM :: (Show a1,
+#27 112.0 tamarin-prover               >                  GHC.Records.HasField "_sNodes" r (M.Map a1 a2)) =>
+#27 112.0 tamarin-prover               >                 (a3, b, c, r) -> IO ()
+#27 112.0 tamarin-prover               >    |
+#27 112.0 tamarin-prover               > 61 | debugM (_, _, _, s) = do
+#27 112.0 tamarin-prover               >    | ^^^^^^
+#27 112.0 tamarin-prover               > [ 7 of 20] Compiling Main.Mode.Intruder
+#27 112.1 tamarin-prover               > [ 8 of 20] Compiling Test.ParserTests
+#27 112.2 tamarin-prover               > [ 9 of 20] Compiling Web.Settings
+#27 112.2 tamarin-prover               > [10 of 20] Compiling Web.Types
+#27 114.8 tamarin-prover               > [11 of 20] Compiling Main.Environment
+#27 114.9 tamarin-prover               > [12 of 20] Compiling Main.Mode.Test
+#27 114.9 tamarin-prover               > [13 of 20] Compiling Main.Mode.Batch
+#27 115.5 tamarin-prover               > [14 of 20] Compiling Web.Utils
+#27 115.6 tamarin-prover               > 
+#27 115.6 tamarin-prover               > /opt/build/src/Web/Utils.hs:46:1: warning: [-Wunused-top-binds]
+#27 115.6 tamarin-prover               >     Defined but not used: ‘termCount’
+#27 115.6 tamarin-prover               >    |
+#27 115.6 tamarin-prover               > 46 | termCount = M.fromList . map (\x -> (head x, length x)) . classify . getTerms
+#27 115.6 tamarin-prover               >    | ^^^^^^^^^
+#27 115.6 tamarin-prover               > 
+#27 115.6 tamarin-prover               > /opt/build/src/Web/Utils.hs:56:1: warning: [-Wunused-top-binds]
+#27 115.6 tamarin-prover               >     Defined but not used: ‘termScore’
+#27 115.6 tamarin-prover               >    |
+#27 115.6 tamarin-prover               > 56 | termScore t m = size t * m M.! t
+#27 115.6 tamarin-prover               >    | ^^^^^^^^^
+#27 115.7 tamarin-prover               > [15 of 20] Compiling Web.Theory
+#27 115.8 tamarin-prover               > 
+#27 115.8 tamarin-prover               > /opt/build/src/Web/Theory.hs:168:1: warning: [-Wunused-top-binds]
+#27 115.8 tamarin-prover               >     Defined but not used: ‘refDotPath’
+#27 115.8 tamarin-prover               >     |
+#27 115.8 tamarin-prover               > 168 | refDotPath renderUrl tidx path = closedTag "img" [("class", "graph"), ("src", imgPath), ("onclick", jsOpenSrcInNewTab)]
+#27 115.8 tamarin-prover               >     | ^^^^^^^^^^
+#27 115.8 tamarin-prover               > 
+#27 115.8 tamarin-prover               > /opt/build/src/Web/Theory.hs:187:1: warning: [-Wunused-top-binds]
+#27 115.8 tamarin-prover               >     Defined but not used: ‘refDotDiffPath’
+#27 115.8 tamarin-prover               >     |
+#27 115.8 tamarin-prover               > 187 | refDotDiffPath renderUrl tidx path mirror = withTag "a" [("href", imgPath), ("target", "_blank")] $ closedTag "img" [("class", "graph"), ("src", imgPath)]
+#27 115.8 tamarin-prover               >     | ^^^^^^^^^^^^^^
+#27 115.8 tamarin-prover               > 
+#27 115.8 tamarin-prover               > /opt/build/src/Web/Theory.hs:1331:19: warning: [-Wunused-local-binds]
+#27 115.8 tamarin-prover               >     Defined but not used: ‘legend’
+#27 115.8 tamarin-prover               >      |
+#27 115.8 tamarin-prover               > 1331 |         let (sys, legend) = State.evalState (Web.Utils.abbrev abbreviate 30 sequent) M.empty
+#27 115.8 tamarin-prover               >      |                   ^^^^^^
+#27 118.9 tamarin-prover               > [16 of 20] Compiling Web.Hamlet
+#27 119.3 tamarin-prover               > [17 of 20] Compiling Web.Handler
+#27 119.3 tamarin-prover               > 
+#27 119.3 tamarin-prover               > /opt/build/src/Web/Handler.hs:69:1: warning: [-Wunused-imports]
+#27 119.3 tamarin-prover               >     The import of ‘Signature, toSignaturePure’
+#27 119.3 tamarin-prover               >     from module ‘Theory’ is redundant
+#27 119.3 tamarin-prover               >    |
+#27 119.3 tamarin-prover               > 69 | import Theory
+#27 119.3 tamarin-prover               >    | ^^^^^^^^^^^^^...
+#27 119.3 tamarin-prover               > 
+#27 119.3 tamarin-prover               > /opt/build/src/Web/Handler.hs:132:1: warning: [-Wunused-imports]
+#27 119.3 tamarin-prover               >     The import of ‘Data.Version’ is redundant
+#27 119.3 tamarin-prover               >       except perhaps to import instances from ‘Data.Version’
+#27 119.3 tamarin-prover               >     To import instances alone, use: import Data.Version()
+#27 119.3 tamarin-prover               >     |
+#27 119.3 tamarin-prover               > 132 | import Data.Version (showVersion)
+#27 119.3 tamarin-prover               >     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+#27 119.3 tamarin-prover               > 
+#27 119.3 tamarin-prover               > /opt/build/src/Web/Handler.hs:150:1: warning: [-Wunused-imports]
+#27 119.3 tamarin-prover               >     The import of ‘Paths_tamarin_prover’ is redundant
+#27 119.3 tamarin-prover               >       except perhaps to import instances from ‘Paths_tamarin_prover’
+#27 119.3 tamarin-prover               >     To import instances alone, use: import Paths_tamarin_prover()
+#27 119.3 tamarin-prover               >     |
+#27 119.3 tamarin-prover               > 150 | import Paths_tamarin_prover (version)
+#27 119.3 tamarin-prover               >     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+#27 119.3 tamarin-prover               > 
+#27 119.3 tamarin-prover               > /opt/build/src/Web/Handler.hs:405:31: warning: [-Wunused-matches]
+#27 119.3 tamarin-prover               >     Defined but not used: ‘idx’
+#27 119.3 tamarin-prover               >     |
+#27 119.3 tamarin-prover               > 405 | reloadTheoryFromFile filePath idx isDiff replaceTrace replaceDiff successRoute = do
+#27 119.3 tamarin-prover               >     |                               ^^^
+#27 119.3 tamarin-prover               > 
+#27 119.3 tamarin-prover               > /opt/build/src/Web/Handler.hs:409:7: warning: [GHC-63397] [-Wname-shadowing]
+#27 119.3 tamarin-prover               >     This binding for ‘redirect’ shadows the existing binding
+#27 119.3 tamarin-prover               >       imported from ‘Yesod.Core’ at src/Web/Handler.hs:118:1-17
+#27 119.3 tamarin-prover               >       (and originally defined in ‘Yesod.Core.Handler’)
+#27 119.3 tamarin-prover               >     |
+#27 119.3 tamarin-prover               > 409 |       redirect = getUrlRender >>= \f -> pure $ responseToJson $ JsonRedirect $ f successRoute
+#27 119.3 tamarin-prover               >     |       ^^^^^^^^
+#27 119.3 tamarin-prover               > 
+#27 119.3 tamarin-prover               > /opt/build/src/Web/Handler.hs:809:9: warning: [GHC-63397] [-Wname-shadowing]
+#27 119.3 tamarin-prover               >     This binding for ‘result’ shadows the existing binding
+#27 119.3 tamarin-prover               >       bound at src/Web/Handler.hs:796:3
+#27 119.3 tamarin-prover               >     |
+#27 119.3 tamarin-prover               > 809 |         result <- loadAndCloseTheory srcContent filename
+#27 119.3 tamarin-prover               >     |         ^^^^^^
+#27 119.3 tamarin-prover               > 
+#27 119.3 tamarin-prover               > /opt/build/src/Web/Handler.hs:1365:39: warning: [GHC-62161] [-Wincomplete-patterns]
+#27 119.3 tamarin-prover               >     Pattern match(es) are non-exhaustive
+#27 119.3 tamarin-prover               >     In a case alternative:
+#27 119.3 tamarin-prover               >         Patterns of type ‘SolutionExtractor’ not matched: CutAfterSorry
+#27 119.3 tamarin-prover               >      |
+#27 119.3 tamarin-prover               > 1365 |     (proverName, extractorQualfier) = case extractor of
+#27 119.3 tamarin-prover               >      |                                       ^^^^^^^^^^^^^^^^^...
+#27 119.3 tamarin-prover               > 
+#27 119.3 tamarin-prover               > /opt/build/src/Web/Handler.hs:1441:20: warning: [-Wunused-matches]
+#27 119.3 tamarin-prover               >     Defined but not used: ‘dotOptions’
+#27 119.3 tamarin-prover               >      |
+#27 119.3 tamarin-prover               > 1441 |     (graphOptions, dotOptions) <- getOptions
+#27 119.3 tamarin-prover               >      |                    ^^^^^^^^^^
+#27 119.3 tamarin-prover               > 
+#27 119.3 tamarin-prover               > /opt/build/src/Web/Handler.hs:1460:20: warning: [-Wunused-matches]
+#27 119.3 tamarin-prover               >     Defined but not used: ‘dotOptions’
+#27 119.3 tamarin-prover               >      |
+#27 119.3 tamarin-prover               > 1460 |     (graphOptions, dotOptions) <- getOptions
+#27 119.3 tamarin-prover               >      |                    ^^^^^^^^^^
+#27 119.3 tamarin-prover               > 
+#27 119.3 tamarin-prover               > /opt/build/src/Web/Handler.hs:1786:29: warning: [-Wunused-matches]
+#27 119.3 tamarin-prover               >     Defined but not used: ‘nidx’
+#27 119.3 tamarin-prover               >      |
+#27 119.3 tamarin-prover               > 1786 |                             nidx <- replaceTheory (Just ti) Nothing nthy ("modified" ++ show idx) idx
+#27 119.3 tamarin-prover               >      |                             ^^^^
+#27 121.9 tamarin-prover               > [18 of 20] Compiling Web.Dispatch
+#27 123.5 tamarin-prover               > [19 of 20] Compiling Main.Mode.Interactive
+#27 123.8 tamarin-prover               > [20 of 20] Compiling Main
+#27 124.3 tamarin-prover               > [10 of 21] Compiling Web.Types [Missing dynamic object file]
+#27 128.2 tamarin-prover               > [18 of 21] Compiling Web.Dispatch [Web.Types[TH] changed]
+#27 129.5 tamarin-prover               > [21 of 21] Linking .stack-work/dist/x86_64-linux/ghc-9.6.7/build/tamarin-prover/tamarin-prover
+#27 131.3 tamarin-prover               > copy/register
+#27 131.4 tamarin-prover               > Installing executable tamarin-prover in /opt/build/.stack-work/install/x86_64-linux/3b5daa4896952fb7751ca298ddf1d8a492a302907c654f2171b3de98f80d5f33/9.6.7/bin
+#27 131.5 Completed 7 action(s).
+#27 131.5 Copying from
+#27 131.5 /opt/build/.stack-work/install/x86_64-linux/3b5daa4896952fb7751ca298ddf1d8a492a302907c654f2171b3de98f80d5f33/9.6.7/bin/tamarin-prover
+#27 131.5 to /opt/build/bin/tamarin-prover.
+#27 131.5 Copied executables to /opt/build/bin/:
+#27 131.5 * tamarin-prover
+#27 131.5 
+#27 131.5 Warning: Installation path /opt/build/bin not found on the PATH environment variable.
+#27 DONE 131.9s
+
+#28 [outputs 1/2] COPY --from=shared-build /build-evidence/ /metadata/
+#28 CACHED
+
+#29 [outputs 2/2] COPY --from=candidate /build-evidence/candidate/ /candidate/
+#29 DONE 0.1s
+
+#30 exporting to client directory
+#30 copying files 50.32MB 0.1s
+#30 copying files 51.99MB 0.1s done
+#30 DONE 0.1s

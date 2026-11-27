@@ -1,0 +1,7 @@
+mode=b3
+lemma=Login_reachable
+proverif_mode=-parse-only
+export_rc=0
+proverif_rc=0
+location_check=NO_SYNTAX_DIAGNOSTIC
+input_lines_listed=5

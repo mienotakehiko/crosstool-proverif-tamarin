@@ -1,0 +1,29 @@
+{
+  "trial": "trial-omzl_ho0",
+  "index": 433,
+  "lemma": "Login_reachable",
+  "driver_rc": 0,
+  "row": {
+    "index": 433,
+    "input_file": "examples/related_work/YubiSecure_KS_STM12/Yubikey.spthy",
+    "lemma": "Login_reachable",
+    "trace_quantifier": "exists-trace",
+    "verifiers_run": [
+      "proverif"
+    ],
+    "proverif_result": null,
+    "proverif_timeout": false,
+    "proverif_oom": false,
+    "proverif_time": 75.007,
+    "proverif_memory": 932888,
+    "translate_error": false,
+    "proverif_error": null,
+    "axiom_missing": false,
+    "restriction_missing": true,
+    "timepoints_split": false,
+    "leading_negation": false,
+    "multiple_queries": false
+  },
+  "category": "unresolved",
+  "source": "new-results/result/result-433.json"
+}

@@ -1,0 +1,18 @@
+[
+  "bash",
+  "eval/scripts/run-eval-local.sh",
+  "eval/eval.csv",
+  "--start",
+  "434",
+  "--end",
+  "434",
+  "--proverif",
+  "--timeout",
+  "300",
+  "--memory",
+  "8192",
+  "--image",
+  "msr-to-pv-eval:ccs26",
+  "--output",
+  "/redacted-home/cryptography-experiments/yubikey5.rdbrFXrl/results/434/parse/trial-0ltkjzqz/work/new-results"
+]

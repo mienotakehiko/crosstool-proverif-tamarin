@@ -1,0 +1,21 @@
+OUT=/redacted-home/rev015-sec8.vJXRNNGe/b2
+reference_image=sha256:38fffe6dff4d9c2b2757c43e3df20be1f21a57751183d7e803fa02829e77545b
+used_image=sha256:38fffe6dff4d9c2b2757c43e3df20be1f21a57751183d7e803fa02829e77545b
+default
+sha256:38fffe6dff4d9c2b2757c43e3df20be1f21a57751183d7e803fa02829e77545b linux/amd64
+mode=b2
+lemma=Login_reachable
+proverif_mode=full
+export_rc=0
+proverif_rc=2
+location_check=SAME_LINE
+input_lines_listed=5
+File "/out/yubikey_b2.pv", line 99, character 36:
+  96	(* Processes *)
+  97	
+  98	let rInitSucc =
+> 99	        in(publicChannel, =myzero(): bitstring);
+  100	        in(publicChannel, =S(myzero()): bitstring);
+  101	        event eTheory();
+  102	        event eIsSucc(myzero(), S(myzero()));
+container_rc=0

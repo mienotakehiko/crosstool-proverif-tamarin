@@ -1,0 +1,24 @@
+============================================
+Evaluation Configuration
+============================================
+CSV file:     /redacted-home/cryptography-experiments/yubikey5.rdbrFXrl/results/437/parse/trial-w74d4itc/work/eval/eval.csv
+Total rows:   566
+Index range:  437 to 437
+Timeout:      300s
+Memory:       8192MB
+Threads:      4
+Parallel:     1
+Output dir:   /redacted-home/cryptography-experiments/yubikey5.rdbrFXrl/results/437/parse/trial-w74d4itc/work/new-results
+Docker image: msr-to-pv-eval:ccs26
+Eval flags:    --proverif
+============================================
+
+[437] Running...
+[437] Done
+
+============================================
+Evaluation complete
+Results in: /redacted-home/cryptography-experiments/yubikey5.rdbrFXrl/results/437/parse/trial-w74d4itc/work/new-results/result/
+============================================
+Completed: 1
+Failed:    0

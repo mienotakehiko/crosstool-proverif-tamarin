@@ -1,0 +1,34 @@
+theory name_constructor begin
+functions: q0/0
+
+rule Init:
+  [ Fr(~sid) ] --[ InitOnce() ]->
+  [ St(~sid, 'ctor', q0), St(~sid, 'name', 'q0') ]
+
+restriction OneInit:
+  "All #i #j. InitOnce() @ i & InitOnce() @ j ==> #i = #j"
+
+rule GoodCtor:
+  [ St(sid, 'ctor', q0) ] --[ GoodCtor(sid) ]-> []
+
+rule GoodName:
+  [ St(sid, 'name', 'q0') ] --[ GoodName(sid) ]-> []
+
+rule BadCtor:
+  [ St(sid, 'name', q0) ] --[ BadCtor(sid) ]-> []
+
+rule BadName:
+  [ St(sid, 'ctor', 'q0') ] --[ BadName(sid) ]-> []
+
+lemma good_ctor_reachable: exists-trace
+  "Ex sid #i. GoodCtor(sid) @ i"
+
+lemma good_name_reachable: exists-trace
+  "Ex sid #i. GoodName(sid) @ i"
+
+lemma bad_ctor_reachable: exists-trace
+  "Ex sid #i. BadCtor(sid) @ i"
+
+lemma bad_name_reachable: exists-trace
+  "Ex sid #i. BadName(sid) @ i"
+end

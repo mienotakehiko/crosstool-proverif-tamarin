@@ -1,0 +1,6 @@
+index	lemma	B0	B2	B3_parse	parse_rc	B3_full	timeout	oom	translate_error	proverif_result	proverif_error	restriction_missing	multiple_queries	seconds	parsed_pv_sha256
+433	Login_reachable	unresolved	syntax_error	ACCEPTED	0	unresolved	False	False	False	null		True	False	75.007	dc4c55111ca36cd5c76cd474b4574e3068d86d0e4f0cd2a2bce1e26903090372
+434	no_replay	timeout	syntax_error	ACCEPTED	0	timeout	True	False	False	"""error"""		True	False	300.01	b5c0a724e59493ba198a2bbb8f63ed0979f53334dd46f7ff86624b7233a951a7
+435	slightly_weaker_invariant	timeout	syntax_error	ACCEPTED	0	timeout	True	False	False	"""error"""		True	False	300.035	414605109625ff4cc9e3b4fab88efea164afc6ca41746036f784ca4b111e8cea
+436	injective_correspondance	timeout	syntax_error	ACCEPTED	0	timeout	True	False	False	"""error"""		True	True	300.02	b20c1ff91e334c6a866e67aca327af15159c79edf4eb8ea51b0a900049e30db3
+437	Login_invalidates_smaller_counters	timeout	syntax_error	ACCEPTED	0	timeout	True	False	False	"""error"""		True	False	300.029	70567c24c0c839425c9523f50e1769c6519995da42e14b17d6a7282a5df735c0

@@ -1,0 +1,30 @@
+#!/usr/bin/env python3
+"""Forward the official driver's Docker calls to the pinned local image."""
+import json
+import os
+from pathlib import Path
+import sys
+
+env = os.environ
+args = sys.argv[1:]
+image = env['Y5_IMAGE']
+requested = env['Y5_REQUESTED']
+audit = Path(env['Y5_AUDIT'])
+if args[:1] == ['run'] or args[:2] == ['container','run']:
+    if args.count(requested) != 1:
+        sys.exit('Cannot identify the official image argument: '+repr(args))
+    args[args.index(requested)] = image
+    mounts = ['--mount', 'type=bind,src='+env['Y5_BIN']+',dst=/opt/rev013/exporter,readonly',
+              '--mount', 'type=bind,src='+str(audit)+',dst=/rev013-audit']
+    if env['Y5_PHASE'] == 'parse':
+        mounts += ['--mount','type=bind,src='+env['Y5_DIAG']+',dst=/rev015-diag,readonly',
+                   '--env','PATH=/rev015-diag:'+env['Y5_IMAGE_PATH']]
+    pos = 1 if args[0] == 'run' else 2
+    args[pos:pos] = mounts
+    with (audit/'docker.jsonl').open('a') as f:
+        print(json.dumps(args),file=f)
+elif args[:2] == ['image','inspect'] or args[:1] == ['inspect']:
+    args = [image if arg == requested else arg for arg in args]
+elif args[:1] in (['build'],['pull'],['buildx'],['create'],['compose']):
+    sys.exit('Unexpected Docker operation: '+repr(args))
+os.execv(env['Y5_DOCKER'], [env['Y5_DOCKER'], *args])

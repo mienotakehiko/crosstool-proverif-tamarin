@@ -1,0 +1,31 @@
+exporter of B2: a07b24ef01cbd12b3eba99491d9b980f1561ec2df41a8137d0fe2f4744dbd6f5
+exporter of B3: 59a810bf9494eca1476cfc344ee1f657e2c327c4c31d7721ba4375afa10ef9fc
+patched source of B3: ece58c7131e460541c2db6ee5e42d66839d7165230f6ff1e6a9e3d0468b3bcda at commit c293106913ccf7bb41f49b0dc555a8074e8ea88c
+B2, lemma Login_reachable: ProVerif reports a syntax error at line 99, character 36, which is the colon of
+    in(publicChannel, =myzero(): bitstring);
+B3, same lemma: ProVerif parses the export (option -parse-only, exit code 0)
+lines that differ between the two exports apart from the build time: [99, 100]
+    in(publicChannel, =myzero());
+    in(publicChannel, =S(myzero()));
+
+index  lemma                               B0          B2        B3 parse  B3 ordinary run
+433    Login_reachable                     unresolved  pv_error  accepted  unresolved (75.007 s)
+434    no_replay                           timeout     pv_error  accepted  timeout (300.01 s)
+435    slightly_weaker_invariant           timeout     pv_error  accepted  timeout (300.035 s)
+436    injective_correspondance            timeout     pv_error  accepted  timeout (300.02 s)
+437    Login_invalidates_smaller_counters  timeout     pv_error  accepted  timeout (300.029 s)
+exports of B3 that ProVerif parses: 5 of 5
+ordinary runs of B3: 4 at the time limit, 1 without a result, 0 with a definitive outcome, same class as B0: 5 of 5
+sum of the ProVerif times of the ordinary runs: 1275.101 s
+the exporter omits the restriction smaller_implies_unequal of the theory under B0, B2 and B3
+
+regression of series X1 under B3: 60 pairs of 21 models, 180 stages with exit code 0 and within their limit
+agreement of the translated route with native Tamarin: 60 of 60 (26 reachable, 26 unreachable, 8 hold)
+pairs with the outcomes of B2: 60 of 60
+exports equal to the exports of B2 apart from the build time: 60 of 60
+
+pairs of the benchmark with a syntax error of ProVerif under B2: 5, all of the YubiKey theory, and none under B0
+other pairs of the benchmark: 561
+  outcome under B2 that follows the parser of ProVerif: 521 (254 true, 54 false, 133 memory exhausted, 30 time limit, 47 no result, 3 equations without a termination proof)
+  lemma that the formula translation declines, with the same message under B0: 40 (32 with a KU fact, 8 exists-trace lemmas with a K fact)
+  source file that the three patches change: lib/export/src/Export/ProVerif/Rule.hs

@@ -1,0 +1,5 @@
+99	equality	        in(publicChannel, =myzero());
+100	equality	        in(publicChannel, =S(myzero()));
+108	helperVar	        in(publicChannel, helperVar0: bitstring);
+110	equality	        in(publicChannel, =y);
+173	helperVar	        in(publicChannel, helperVar0: bitstring);

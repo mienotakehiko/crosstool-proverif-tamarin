@@ -1,0 +1,15 @@
+OUT=/redacted-home/rev015-sec8.vJXRNNGe/b3
+reference_image=sha256:38fffe6dff4d9c2b2757c43e3df20be1f21a57751183d7e803fa02829e77545b
+used_image=sha256:38fffe6dff4d9c2b2757c43e3df20be1f21a57751183d7e803fa02829e77545b
+default
+sha256:38fffe6dff4d9c2b2757c43e3df20be1f21a57751183d7e803fa02829e77545b linux/amd64
+tamarin-prover: OK
+mode=b3
+lemma=Login_reachable
+proverif_mode=-parse-only
+export_rc=0
+proverif_rc=0
+location_check=NO_SYNTAX_DIAGNOSTIC
+input_lines_listed=5
+
+container_rc=0

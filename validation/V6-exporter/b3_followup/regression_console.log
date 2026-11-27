@@ -1,0 +1,175 @@
+./README_ja.md: OK
+./STEP7_RESULTS.md: OK
+./candidate-binary.sha256: OK
+./cases.json: OK
+./common.py: OK
+./fixed-runtime.sha256: OK
+./models/initial/constant_once.spthy: OK
+./models/initial/constant_repeat.spthy: OK
+./models/initial/constructor_once.spthy: OK
+./models/initial/constructor_repeat.spthy: OK
+./models/multiplicity/linear_pair.spthy: OK
+./models/namespace/name_constructor.spthy: OK
+./models/sessions/session_join.spthy: OK
+./models/source/ground_pair.spthy: OK
+./models/source/mixed_public_leaf.spthy: OK
+./models/source/nested_nullary.spthy: OK
+./models/source/nested_successor.spthy: OK
+./models/source/nonground_nested.spthy: OK
+./models/source/repeated_variable.spthy: OK
+./models/source/shared_premises.spthy: OK
+./models/source/variable_shape.spthy: OK
+./models/variable_controls/repeated_equality.spthy: OK
+./models/variable_controls/shared_equality.spthy: OK
+./models/zero_argument/nullary_once.spthy: OK
+./models/zero_argument/nullary_repeat.spthy: OK
+./models/zero_argument/successor_once.spthy: OK
+./models/zero_argument/successor_repeat.spthy: OK
+./reference/previous/initial/constant_once/bad_reachable.pv: OK
+./reference/previous/initial/constant_once/honest_reachable.pv: OK
+./reference/previous/initial/constant_once/repeat_reachable.pv: OK
+./reference/previous/initial/constant_once/single_consumption.pv: OK
+./reference/previous/initial/constant_repeat/bad_reachable.pv: OK
+./reference/previous/initial/constant_repeat/honest_reachable.pv: OK
+./reference/previous/initial/constant_repeat/repeat_reachable.pv: OK
+./reference/previous/initial/constant_repeat/single_consumption.pv: OK
+./reference/previous/initial/constructor_once/bad_reachable.pv: OK
+./reference/previous/initial/constructor_once/honest_reachable.pv: OK
+./reference/previous/initial/constructor_once/repeat_reachable.pv: OK
+./reference/previous/initial/constructor_once/single_consumption.pv: OK
+./reference/previous/initial/constructor_repeat/bad_reachable.pv: OK
+./reference/previous/initial/constructor_repeat/honest_reachable.pv: OK
+./reference/previous/initial/constructor_repeat/repeat_reachable.pv: OK
+./reference/previous/initial/constructor_repeat/single_consumption.pv: OK
+./reference/previous/multiplicity/linear_pair/bad_reachable.pv: OK
+./reference/previous/multiplicity/linear_pair/good_reachable.pv: OK
+./reference/previous/namespace/name_constructor/bad_ctor_reachable.pv: OK
+./reference/previous/namespace/name_constructor/bad_name_reachable.pv: OK
+./reference/previous/namespace/name_constructor/good_ctor_reachable.pv: OK
+./reference/previous/namespace/name_constructor/good_name_reachable.pv: OK
+./reference/previous/sessions/session_join/bad_reachable.pv: OK
+./reference/previous/sessions/session_join/good_reachable.pv: OK
+./reference/previous/source/ground_pair/bad_reachable.pv: OK
+./reference/previous/source/ground_pair/good_reachable.pv: OK
+./reference/previous/source/mixed_public_leaf/bad_reachable.pv: OK
+./reference/previous/source/mixed_public_leaf/good_reachable.pv: OK
+./reference/previous/source/nested_nullary/bad_reachable.pv: OK
+./reference/previous/source/nested_nullary/good_reachable.pv: OK
+./reference/previous/source/nested_successor/bad_reachable.pv: OK
+./reference/previous/source/nested_successor/good_reachable.pv: OK
+./reference/previous/source/nonground_nested/bad_reachable.pv: OK
+./reference/previous/source/nonground_nested/good_reachable.pv: OK
+./reference/previous/source/repeated_variable/bad_reachable.pv: OK
+./reference/previous/source/repeated_variable/good_reachable.pv: OK
+./reference/previous/source/shared_premises/bad_reachable.pv: OK
+./reference/previous/source/shared_premises/good_reachable.pv: OK
+./reference/previous/source/variable_shape/bad_reachable.pv: OK
+./reference/previous/source/variable_shape/good_reachable.pv: OK
+./reference/previous/variable_controls/repeated_equality/bad_reachable.pv: OK
+./reference/previous/variable_controls/repeated_equality/good_reachable.pv: OK
+./reference/previous/variable_controls/shared_equality/bad_reachable.pv: OK
+./reference/previous/variable_controls/shared_equality/good_reachable.pv: OK
+./reference/previous/zero_argument/nullary_once/bad_reachable.pv: OK
+./reference/previous/zero_argument/nullary_once/honest_reachable.pv: OK
+./reference/previous/zero_argument/nullary_once/repeat_reachable.pv: OK
+./reference/previous/zero_argument/nullary_once/single_consumption.pv: OK
+./reference/previous/zero_argument/nullary_repeat/bad_reachable.pv: OK
+./reference/previous/zero_argument/nullary_repeat/honest_reachable.pv: OK
+./reference/previous/zero_argument/nullary_repeat/repeat_reachable.pv: OK
+./reference/previous/zero_argument/nullary_repeat/single_consumption.pv: OK
+./reference/previous/zero_argument/successor_once/bad_reachable.pv: OK
+./reference/previous/zero_argument/successor_once/honest_reachable.pv: OK
+./reference/previous/zero_argument/successor_once/repeat_reachable.pv: OK
+./reference/previous/zero_argument/successor_once/single_consumption.pv: OK
+./reference/previous/zero_argument/successor_repeat/bad_reachable.pv: OK
+./reference/previous/zero_argument/successor_repeat/honest_reachable.pv: OK
+./reference/previous/zero_argument/successor_repeat/repeat_reachable.pv: OK
+./reference/previous/zero_argument/successor_repeat/single_consumption.pv: OK
+./reference/source-archives.json: OK
+./reference/step7/bad_reachable.pv: OK
+./reference/step7/good_reachable.pv: OK
+./regression.py: OK
+./run-step8.sh: OK
+/redacted-home/rev015-sec8.vJXRNNGe/b3-src/build/candidate/tamarin-prover: OK
+Client=29.1.3 Server=29.1.3
+sha256:70093355b2b5ad24b5ada7b4e9b405008bd467a39209850cc8fcca830a420793 linux/amd64
+b942e7f58d15023bc1a7210c0bedbc0d36db921f0a54888827bca7989730f70a  /usr/local/bin/tamarin-prover
+f6b5e9606e639350085167f150e6bca7adfcdac0b34614b890e72f7f9e0c1c28  /usr/local/bin/proverif
+13b89491dcfeef5a0befba10db503de1937fc46279320242423fc38f1fd830a0  /usr/local/bin/maude
+29ec8cca3a7ef913d5ce8ae7e9d73cc965f9a3a6971ad8d440cee6809860eb40  /opt/eval/eval.py
+step4	constant_once	honest_reachable	reachable	reachable	OK	MATCH
+step4	constant_once	bad_reachable	unreachable	unreachable	OK	MATCH
+step4	constant_once	repeat_reachable	unreachable	unreachable	OK	MATCH
+step4	constant_once	single_consumption	holds	holds	OK	MATCH
+step4	constant_repeat	honest_reachable	reachable	reachable	OK	MATCH
+step4	constant_repeat	bad_reachable	unreachable	unreachable	OK	MATCH
+step4	constant_repeat	repeat_reachable	reachable	reachable	OK	MATCH
+step4	constant_repeat	single_consumption	holds	holds	OK	MATCH
+step4	constructor_once	honest_reachable	reachable	reachable	OK	MATCH
+step4	constructor_once	bad_reachable	unreachable	unreachable	OK	MATCH
+step4	constructor_once	repeat_reachable	unreachable	unreachable	OK	MATCH
+step4	constructor_once	single_consumption	holds	holds	OK	MATCH
+step4	constructor_repeat	honest_reachable	reachable	reachable	OK	MATCH
+step4	constructor_repeat	bad_reachable	unreachable	unreachable	OK	MATCH
+step4	constructor_repeat	repeat_reachable	reachable	reachable	OK	MATCH
+step4	constructor_repeat	single_consumption	holds	holds	OK	MATCH
+step4	nullary_once	honest_reachable	reachable	reachable	OK	MATCH
+step4	nullary_once	bad_reachable	unreachable	unreachable	OK	MATCH
+step4	nullary_once	repeat_reachable	unreachable	unreachable	OK	MATCH
+step4	nullary_once	single_consumption	holds	holds	OK	MATCH
+step4	nullary_repeat	honest_reachable	reachable	reachable	OK	MATCH
+step4	nullary_repeat	bad_reachable	unreachable	unreachable	OK	MATCH
+step4	nullary_repeat	repeat_reachable	reachable	reachable	OK	MATCH
+step4	nullary_repeat	single_consumption	holds	holds	OK	MATCH
+step4	successor_once	honest_reachable	reachable	reachable	OK	MATCH
+step4	successor_once	bad_reachable	unreachable	unreachable	OK	MATCH
+step4	successor_once	repeat_reachable	unreachable	unreachable	OK	MATCH
+step4	successor_once	single_consumption	holds	holds	OK	MATCH
+step4	successor_repeat	honest_reachable	reachable	reachable	OK	MATCH
+step4	successor_repeat	bad_reachable	unreachable	unreachable	OK	MATCH
+step4	successor_repeat	repeat_reachable	reachable	reachable	OK	MATCH
+step4	successor_repeat	single_consumption	holds	holds	OK	MATCH
+step4	nested_nullary	good_reachable	reachable	reachable	OK	MATCH
+step4	nested_nullary	bad_reachable	unreachable	unreachable	OK	MATCH
+step4	nested_successor	good_reachable	reachable	reachable	OK	MATCH
+step4	nested_successor	bad_reachable	unreachable	unreachable	OK	MATCH
+step4	mixed_public_leaf	good_reachable	reachable	reachable	OK	MATCH
+step4	mixed_public_leaf	bad_reachable	unreachable	unreachable	OK	MATCH
+step4	variable_shape	good_reachable	reachable	reachable	OK	MATCH
+step4	variable_shape	bad_reachable	unreachable	unreachable	OK	MATCH
+step4	repeated_variable	good_reachable	reachable	reachable	OK	MATCH
+step4	repeated_variable	bad_reachable	unreachable	unreachable	OK	MATCH
+step4	nonground_nested	good_reachable	reachable	reachable	OK	MATCH
+step4	nonground_nested	bad_reachable	unreachable	unreachable	OK	MATCH
+step4	ground_pair	good_reachable	reachable	reachable	OK	MATCH
+step4	ground_pair	bad_reachable	unreachable	unreachable	OK	MATCH
+step4	shared_premises	good_reachable	reachable	reachable	OK	MATCH
+step4	shared_premises	bad_reachable	unreachable	unreachable	OK	MATCH
+step4	repeated_equality	good_reachable	reachable	reachable	OK	MATCH
+step4	repeated_equality	bad_reachable	unreachable	unreachable	OK	MATCH
+step4	shared_equality	good_reachable	reachable	reachable	OK	MATCH
+step4	shared_equality	bad_reachable	unreachable	unreachable	OK	MATCH
+step5	session_join	good_reachable	reachable	reachable	OK	MATCH
+step5	session_join	bad_reachable	unreachable	unreachable	OK	MATCH
+step5	linear_pair	good_reachable	reachable	reachable	OK	MATCH
+step5	linear_pair	bad_reachable	unreachable	unreachable	OK	MATCH
+step5	name_constructor	good_ctor_reachable	reachable	reachable	OK	MATCH
+step5	name_constructor	good_name_reachable	reachable	reachable	OK	MATCH
+step5	name_constructor	bad_ctor_reachable	unreachable	unreachable	OK	MATCH
+step5	name_constructor	bad_name_reachable	unreachable	unreachable	OK	MATCH
+{
+  "DIFFERENT": 0,
+  "MATCH": 60,
+  "REVIEW": 0,
+  "changed_pv": 2,
+  "decision": "PASS",
+  "preserved": 59,
+  "repaired": 1,
+  "rows": 60,
+  "step4_rows": 52,
+  "step5_rows": 8
+}
+stage=complete
+rc=0
+56882b844b017f0be1114191bb73736cb327556344dc4c606733df4963e040b1  /redacted-home/rev015-sec8.vJXRNNGe/x1/ccs26_step8_20261115/step8-run.gCu6j3g7/evidence.tar.gz
+ARCHIVE=/redacted-home/rev015-sec8.vJXRNNGe/x1/ccs26_step8_20261115/step8-run.gCu6j3g7/evidence.tar.gz
